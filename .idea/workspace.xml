@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="">
+    <list default="true" id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="#26 Test commit 2. for base structure">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Bag_of_Tiles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/socket/SocketClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -27,8 +40,18 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/git/scrabble5" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../ServerProject/ArterionCopy" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.scrab5.socket" />
+      <recent name="com.scrab5.core.game" />
+      <recent name="com" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="scrabble5 []" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
@@ -66,8 +89,20 @@
       <option name="presentableId" value="Default" />
       <updated>1616094845091</updated>
       <workItem from="1616094848839" duration="742000" />
-      <workItem from="1616095603668" duration="284000" />
+      <workItem from="1616095603668" duration="3694000" />
+      <workItem from="1616147145320" duration="2454000" />
+      <workItem from="1616321418590" duration="617000" />
+      <workItem from="1616322347142" duration="301000" />
+      <workItem from="1616322659650" duration="5500000" />
     </task>
+    <task id="LOCAL-00001" summary="#26 Test commit 2. for base structure">
+      <created>1616096003309</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1616096003309</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -75,44 +110,66 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="#26 Test commit 2. for base structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="#26 Test commit 2. for base structure" />
   </component>
   <component name="WindowStateProjectService">
     <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616095448208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616095448208" />
-    <state x="852" y="294" key="CommitChangelistDialog2" timestamp="1616096002683">
+    <state x="243" y="528" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1616336990420">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="852" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616096002683" />
-    <state x="1060" y="454" key="FileChooserDialogImpl" timestamp="1616095762515">
+    <state x="243" y="528" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616336990420" />
+    <state x="1076" y="559" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1616337520483">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="454" key="FileChooserDialogImpl/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616095762515" />
-    <state width="2517" height="272" key="GridCell.Tab.0.bottom" timestamp="1616096061342">
+    <state x="1076" y="559" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616337520483" />
+    <state x="424" y="483" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1616323627169">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="272" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616096061342" />
-    <state width="2517" height="272" key="GridCell.Tab.0.center" timestamp="1616096061342">
+    <state x="424" y="483" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323627169" />
+    <state x="852" y="294" key="CommitChangelistDialog2" timestamp="1616147332803">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="272" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616096061342" />
-    <state width="2517" height="272" key="GridCell.Tab.0.left" timestamp="1616096061341">
+    <state x="852" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616147332803" />
+    <state x="1060" y="454" key="FileChooserDialogImpl" timestamp="1616323423551">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="272" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616096061341" />
-    <state width="2517" height="272" key="GridCell.Tab.0.right" timestamp="1616096061342">
+    <state x="1060" y="454" key="FileChooserDialogImpl/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323423551" />
+    <state width="1258" height="272" key="GridCell.Tab.0.bottom" timestamp="1616112875128">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="272" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616096061342" />
-    <state x="781" y="342" key="SettingsEditor" timestamp="1616095926303">
+    <state width="1258" height="272" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616112875128" />
+    <state width="1258" height="272" key="GridCell.Tab.0.center" timestamp="1616112875128">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="342" key="SettingsEditor/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616095926303" />
+    <state width="1258" height="272" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616112875128" />
+    <state width="1258" height="272" key="GridCell.Tab.0.left" timestamp="1616112875128">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1258" height="272" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616112875128" />
+    <state width="1258" height="272" key="GridCell.Tab.0.right" timestamp="1616112875128">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="1258" height="272" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616112875128" />
+    <state x="337" y="325" key="RollbackChangesDialog" timestamp="1616323642137">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="337" y="325" key="RollbackChangesDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323642137" />
+    <state x="781" y="342" width="1481" height="715" key="SettingsEditor" timestamp="1616322821477">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="781" y="342" width="1481" height="715" key="SettingsEditor/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616322821477" />
     <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616095417172">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616095417172" />
+    <state x="662" y="395" key="new project wizard" timestamp="1616323056347">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="662" y="395" key="new project wizard/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323056347" />
     <state x="936" y="330" key="run.anything.popup" timestamp="1616095459226">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
