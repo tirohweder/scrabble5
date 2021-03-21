@@ -1,4 +1,4 @@
-package com.scrab5.socket;
+package com.scrab5.network;
 
 public class SocketClient {
 
