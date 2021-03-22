@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AIPlayer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/PlayerProfile.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/LoginScreen.java" afterDir="false" />
+    <list default="true" id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="#26 Base Structure created">
+      <change afterPath="$PROJECT_DIR$/.idea/saveactions_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/socket/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/SocketClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Bag_of_Tiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Bag_of_Tiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Timm Rohweder &lt;trohwede@mail.uni-mannheim.de&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1pwWtJDRehXmUZ0i73fj7fu624K" />
@@ -41,8 +44,8 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../ServerProject/ArterionCopy" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="settings.saveactions" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -94,7 +97,10 @@
       <workItem from="1616147145320" duration="2454000" />
       <workItem from="1616321418590" duration="617000" />
       <workItem from="1616322347142" duration="301000" />
-      <workItem from="1616322659650" duration="8048000" />
+      <workItem from="1616322659650" duration="9642000" />
+      <workItem from="1616371096428" duration="391000" />
+      <workItem from="1616371498531" duration="763000" />
+      <workItem from="1616403728498" duration="2061000" />
     </task>
     <task id="LOCAL-00001" summary="#26 Test commit 2. for base structure">
       <created>1616096003309</created>
@@ -110,7 +116,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616337605195</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="#26 Base Structure created">
+      <created>1616350503881</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616350503881</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,7 +132,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="#26 Test commit 2. for base structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="#26 Test commit 2. for base structure" />
+    <MESSAGE value="#26 Base Structure created" />
+    <option name="LAST_COMMIT_MESSAGE" value="#26 Base Structure created" />
   </component>
   <component name="WindowStateProjectService">
     <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616095448208">
@@ -138,10 +152,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="424" y="483" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323627169" />
-    <state x="852" y="294" key="CommitChangelistDialog2" timestamp="1616337604420">
+    <state x="852" y="294" key="CommitChangelistDialog2" timestamp="1616406269084">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="852" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616337604420" />
+    <state x="852" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616406269084" />
     <state x="1060" y="454" key="FileChooserDialogImpl" timestamp="1616323423551">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -166,14 +180,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="337" y="325" key="RollbackChangesDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323642137" />
-    <state x="781" y="342" width="1481" height="715" key="SettingsEditor" timestamp="1616322821477">
+    <state x="781" y="342" width="1481" height="715" key="SettingsEditor" timestamp="1616404313696">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="342" width="1481" height="715" key="SettingsEditor/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616322821477" />
-    <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616095417172">
+    <state x="781" y="342" width="1481" height="715" key="SettingsEditor/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616404313696" />
+    <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616371379292">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616095417172" />
+    <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616371379292" />
     <state x="662" y="395" key="new project wizard" timestamp="1616323056347">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -182,5 +196,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="936" y="330" key="run.anything.popup/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616095459226" />
+    <state x="943" y="315" key="search.everywhere.popup" timestamp="1616404124664">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="943" y="315" key="search.everywhere.popup/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616404124664" />
   </component>
 </project>
