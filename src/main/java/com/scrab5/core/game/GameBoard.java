@@ -42,7 +42,7 @@ public class GameBoard {
   }
 
   // removes all Tiles from the board
-  public void clear_board() {
+  public void clearBoard() {
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
         gameBoard[i][j] = null;
@@ -50,7 +50,7 @@ public class GameBoard {
     }
   }
 
-  public boolean place_tile(Tile t, int row, int column) {
+  public boolean placeTile(Tile t, int row, int column) {
     if (is_spot_free(row, column)) {
       gameBoard[row][column] = t;
       return true;
@@ -59,11 +59,11 @@ public class GameBoard {
     }
   }
 
-  public boolean is_board_legal() {
+  public boolean isBoardLegal() {
     return true;
   }
 
-  public int count_score() {
+  public int countScore() {
     return 1;
   }
 }

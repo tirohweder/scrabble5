@@ -21,7 +21,7 @@ public class Rack {
   /* if Rack is not full add more tiles from bag till full
    but only add if the bag is not empty.
   */
-  public void fill(Bag_of_Tiles bag) {
+  public void fill(BagOfTiles bag) {
     for (int i = 0; i < 7; i++) {
       if (rack.size() < 7 && bag.get_Size() >= 1) {
         rack.add(bag.pick());

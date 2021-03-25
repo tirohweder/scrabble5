@@ -3,7 +3,7 @@ package com.scrab5.core.game;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Bag_of_Tiles {
+public class BagOfTiles {
   private ArrayList<Tile> bag = new ArrayList<>();
 
   /*
@@ -11,7 +11,7 @@ public class Bag_of_Tiles {
   */
 
   // Constructor
-  public Bag_of_Tiles() {}
+  public BagOfTiles() {}
 
   // Methods
   public void add(Tile t) {
@@ -27,7 +27,7 @@ public class Bag_of_Tiles {
     return bag.remove(new Random().nextInt(bag.size()));
   }
 
-  public int get_Size() {
+  public int getSize() {
     // returns how many Tiles are left in the Bag
     return this.bag.size();
   }
