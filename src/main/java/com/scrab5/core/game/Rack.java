@@ -23,7 +23,7 @@ public class Rack {
   */
   public void fill(BagOfTiles bag) {
     for (int i = 0; i < 7; i++) {
-      if (rack.size() < 7 && bag.get_Size() >= 1) {
+      if (rack.size() < 7 && bag.getSize() >= 1) {
         rack.add(bag.pick());
       }
     }
