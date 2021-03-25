@@ -1,45 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6cab12f3-3099-4c68-a2ad-4336f4ae5879" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/example/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/example/PrimaryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/example/SecondaryController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/example/primary.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/example/secondary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scrabble5-1.0-SNAPSHOT-tests.jar" beforeDir="false" />
+    <list default="true" id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/google-java-format.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/saveactions_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AIPlayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/PlayerProfile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/example/App.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/example/PrimaryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/example/SecondaryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/SocketClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/LoginScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/Database.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/example/primary.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/example/secondary.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/res1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _A_ .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _B_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _C_.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _D_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _E_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _F_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _G_.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _H_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _I_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _J_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _K_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _L_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _M_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _N_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _O_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _P_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _Q_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _R_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _S_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _T_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _U_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _V_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _W_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _X_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _Y_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/tiles/Tile _Z_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/example/primary.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/example/secondary.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/res1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _A_ .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _B_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _C_.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _D_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _E_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _F_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _G_.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _H_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _I_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _J_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _K_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _L_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _M_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _N_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _O_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _P_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _Q_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _R_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _S_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _T_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _U_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _V_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _W_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _X_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _Y_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/tiles/Tile _Z_  .png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="1qG82ehZL3hTVRoe8LhlQf4sRH0" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="1qGJJOixoDeHR3QDN9NlDhxBUni" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -47,109 +109,44 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/git/scrabble5" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\java" />
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main" />
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\java\com\scrab5\example" />
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\resources\example" />
-    </key>
-  </component>
-  <component name="RunManager">
-    <configuration name="Scrabble5 [clean,javafx:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="clean" />
-                <option value="javafx:run" />
-              </list>
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="false" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6cab12f3-3099-4c68-a2ad-4336f4ae5879" name="Default Changelist" comment="" />
-      <created>1616694360097</created>
+      <changelist id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="" />
+      <created>1616699920549</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1616694360097</updated>
-      <workItem from="1616694369415" duration="2937000" />
+      <updated>1616699920549</updated>
+      <workItem from="1616699923200" duration="8000" />
     </task>
-    <task id="LOCAL-00001" summary="#26 had to recreate most of project because i had an error where maven plugin javafx wouldnt load. now it works">
-      <created>1616695179381</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1616695179381</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="#26 had to recreate most of project because i had an error where maven plugin javafx wouldnt load. now it works" />
-    <option name="LAST_COMMIT_MESSAGE" value="#26 had to recreate most of project because i had an error where maven plugin javafx wouldnt load. now it works" />
-  </component>
   <component name="WindowStateProjectService">
-    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616694397120">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1616699934398">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616694397120" />
-    <state x="988" y="559" width="584" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1616697076065">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616699934398" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1616699934398">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="988" y="559" width="584" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616697076065" />
-    <state x="842" y="294" key="CommitChangelistDialog2" timestamp="1616696206262">
+    <state width="2517" height="401" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616699934398" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1616699934398">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="842" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616696206262" />
-    <state width="2517" height="272" key="GridCell.Tab.0.bottom" timestamp="1616697422137">
+    <state width="2517" height="401" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616699934398" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1616699934398">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="272" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616697422137" />
-    <state width="2517" height="272" key="GridCell.Tab.0.center" timestamp="1616697422137">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="272" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616697422137" />
-    <state width="2517" height="272" key="GridCell.Tab.0.left" timestamp="1616697422137">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="272" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616697422137" />
-    <state width="2517" height="272" key="GridCell.Tab.0.right" timestamp="1616697422137">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="272" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616697422137" />
-    <state x="781" y="342" key="SettingsEditor" timestamp="1616697384477">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="781" y="342" key="SettingsEditor/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616697384477" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616699934398" />
   </component>
 </project>
