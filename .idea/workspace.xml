@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="#26 Base Structure created">
-      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
+    <list default="true" id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Bag_of_Tiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Bag_of_Tiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +45,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../ServerProject/ArterionCopy" />
     <property name="settings.editor.selected.configurable" value="settings.saveactions" />
   </component>
   <component name="RecentsManager">
@@ -98,7 +103,9 @@
       <workItem from="1616371498531" duration="763000" />
       <workItem from="1616403728498" duration="2061000" />
       <workItem from="1616427784358" duration="677000" />
-      <workItem from="1616508735282" duration="2837000" />
+      <workItem from="1616508735282" duration="3603000" />
+      <workItem from="1616574046047" duration="13262000" />
+      <workItem from="1616660027689" duration="2526000" />
     </task>
     <task id="LOCAL-00001" summary="#26 Test commit 2. for base structure">
       <created>1616096003309</created>
@@ -121,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616350503881</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="#26 Base Structure created">
+      <created>1616511870920</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1616511870920</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -134,10 +148,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="#26 Base Structure created" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1010" y="455" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1616604125663">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1010" y="455" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616604125663" />
     <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616095448208">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616095448208" />
+    <state x="1085" y="384" key="#com.intellij.ide.util.MemberChooser" timestamp="1616665893579">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1085" y="384" key="#com.intellij.ide.util.MemberChooser/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616665893579" />
     <state x="243" y="528" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1616350245279">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -150,14 +172,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="424" y="483" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323627169" />
-    <state x="852" y="294" key="CommitChangelistDialog2" timestamp="1616406269084">
+    <state x="852" y="294" key="CommitChangelistDialog2" timestamp="1616511870346">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="852" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616406269084" />
-    <state x="1060" y="454" key="FileChooserDialogImpl" timestamp="1616323423551">
+    <state x="852" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616511870346" />
+    <state x="1060" y="454" key="FileChooserDialogImpl" timestamp="1616606998643">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="454" key="FileChooserDialogImpl/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323423551" />
+    <state x="1060" y="454" key="FileChooserDialogImpl/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616606998643" />
     <state width="1258" height="272" key="GridCell.Tab.0.bottom" timestamp="1616112875128">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -178,14 +200,14 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="337" y="325" key="RollbackChangesDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323642137" />
-    <state x="781" y="342" width="1481" height="715" key="SettingsEditor" timestamp="1616404313696">
+    <state x="781" y="342" width="1481" height="715" key="SettingsEditor" timestamp="1616606762914">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="342" width="1481" height="715" key="SettingsEditor/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616404313696" />
-    <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616371379292">
+    <state x="781" y="342" width="1481" height="715" key="SettingsEditor/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616606762914" />
+    <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616606401841">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616371379292" />
+    <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616606401841" />
     <state x="662" y="395" key="new project wizard" timestamp="1616323056347">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

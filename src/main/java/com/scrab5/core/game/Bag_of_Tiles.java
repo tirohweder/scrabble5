@@ -1,35 +1,34 @@
 package com.scrab5.core.game;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Bag_of_Tiles {
-  private ArrayList<Tile> tiles = new ArrayList<>();
+  private ArrayList<Tile> bag = new ArrayList<>();
+
+  /*
+  Tiles need to be saved l
+  */
 
   // Constructor
   public Bag_of_Tiles() {}
 
   // Methods
   public void add(Tile t) {
-    this.tiles.add(t);
+    this.bag.add(t);
   }
 
-  public void remove(Tile t) {
-    this.tiles.remove(t);
+  public Tile pick() {
+    // picks last Tile in Bag of Tiles, returns it and removes it from bag
+    if (bag.isEmpty()) {
+      return null;
+    }
+
+    return bag.remove(new Random().nextInt(bag.size()));
   }
 
-  public ArrayList<Tile> getTiles() {
-    return this.tiles;
-  }
-
-  public void setTiles(ArrayList<Tile> tiles) {
-    this.tiles = tiles;
-  }
-
-  public int getSize() {
-    return this.tiles.size();
-  }
-
-  public Tile get(int index) {
-    return this.tiles.get(index);
+  public int get_Size() {
+    // returns how many Tiles are left in the Bag
+    return this.bag.size();
   }
 }
