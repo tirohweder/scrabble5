@@ -10,8 +10,19 @@ public class Client {
   private InetAddress ip;
   private String username;
   private Socket clientSocket;
+  private boolean running;
 
-  private Client() {
+  private Client(String username, InetAddress ip, int port) {
+    this.username = username;
+    this.running = true;
+    try {
+      this.clientSocket = new Socket(ip, port);
+    } catch (Exception e) {
+      // Exception handling
+    }
+  }
+
+  public void createClient() {
 
   }
 
