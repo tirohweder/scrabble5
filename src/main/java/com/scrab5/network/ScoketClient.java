@@ -1,5 +1,5 @@
 package com.scrab5.network;
 
-public class SocketClient {
+public class ScoketClient {
 
 }

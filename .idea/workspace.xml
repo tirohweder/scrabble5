@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="#26 Base Structure created">
-      <change afterPath="$PROJECT_DIR$/.idea/saveactions_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/Database.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
+    <list default="true" id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Bag_of_Tiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Bag_of_Tiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/PrimaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/SecondaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SecondaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/SuperMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/main/SuperMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/secondary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,14 +26,16 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="PREVIOUS_COMMIT_AUTHORS">
-      <list>
-        <option value="Timm Rohweder &lt;trohwede@mail.uni-mannheim.de&gt;" />
-      </list>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectId" id="1pwWtJDRehXmUZ0i73fj7fu624K" />
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1qGJJOixoDeHR3QDN9NlDhxBUni" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -39,26 +45,37 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="settings.saveactions" />
+    <property name="last_opened_file_path" value="$USER_HOME$/git/scrabble5" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.scrab5.socket" />
-      <recent name="com.scrab5.core.game" />
-      <recent name="com" />
+      <recent name="com.scrab5.ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main" />
+      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\resources\com\scrab5\ui" />
+      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="scrabble5 []" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+  <component name="RunManager" selected="Maven.Create JAR">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.ui.App" />
+      <module name="scrabble5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scrab5.ui.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Create JAR" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -68,7 +85,10 @@
               <set />
             </option>
             <option name="goals">
-              <list />
+              <list>
+                <option value="clean" />
+                <option value="package" />
+              </list>
             </option>
             <option name="pomFileName" />
             <option name="profilesMap">
@@ -81,47 +101,77 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <configuration name="scrabble5 [compile,javafx:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="compile" />
+                <option value="javafx:run" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="true" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.App" />
+      <item itemvalue="Maven.scrabble5 [compile,javafx:run]" />
+      <item itemvalue="Maven.Create JAR" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration>C:\Users\rohwe\AppData\Roaming\Subversion</configuration>
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="" />
-      <created>1616094845091</created>
+      <changelist id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="" />
+      <created>1616699920549</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1616094845091</updated>
-      <workItem from="1616094848839" duration="742000" />
-      <workItem from="1616095603668" duration="3694000" />
-      <workItem from="1616147145320" duration="2454000" />
-      <workItem from="1616321418590" duration="617000" />
-      <workItem from="1616322347142" duration="301000" />
-      <workItem from="1616322659650" duration="9642000" />
-      <workItem from="1616371096428" duration="391000" />
-      <workItem from="1616371498531" duration="763000" />
-      <workItem from="1616403728498" duration="2061000" />
+      <updated>1616699920549</updated>
+      <workItem from="1616699923200" duration="8000" />
+      <workItem from="1616708354575" duration="1048000" />
+      <workItem from="1616745834529" duration="1633000" />
     </task>
-    <task id="LOCAL-00001" summary="#26 Test commit 2. for base structure">
-      <created>1616096003309</created>
+    <task id="LOCAL-00001" summary="#30 reloaded class files">
+      <created>1616702256898</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1616096003309</updated>
+      <updated>1616702256898</updated>
     </task>
-    <task id="LOCAL-00002" summary="#26 Test commit 2. for base structure">
-      <created>1616337605195</created>
+    <task id="LOCAL-00002" summary="#33 excluded dependency but still shows up as duplicate">
+      <created>1616705303002</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1616337605195</updated>
+      <updated>1616705303002</updated>
     </task>
-    <task id="LOCAL-00003" summary="#26 Base Structure created">
-      <created>1616350503881</created>
+    <task id="LOCAL-00003" summary="#33 now we have a exceutable JAR">
+      <created>1616709393397</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1616350503881</updated>
+      <updated>1616709393397</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
@@ -130,75 +180,39 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="#26 Test commit 2. for base structure" />
-    <MESSAGE value="#26 Base Structure created" />
-    <option name="LAST_COMMIT_MESSAGE" value="#26 Base Structure created" />
+    <MESSAGE value="#30 reloaded class files" />
+    <MESSAGE value="#33 excluded dependency but still shows up as duplicate" />
+    <MESSAGE value="#33 now we have a exceutable JAR" />
+    <option name="LAST_COMMIT_MESSAGE" value="#33 now we have a exceutable JAR" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616095448208">
+    <state x="560" y="366" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616708664712">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="734" y="355" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616095448208" />
-    <state x="243" y="528" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1616350245279">
+    <state x="560" y="366" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616708664712" />
+    <state x="1076" y="585" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1616747377964">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="243" y="528" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616350245279" />
-    <state x="1076" y="559" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1616337520483">
+    <state x="1076" y="585" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747377964" />
+    <state x="849" y="294" key="CommitChangelistDialog2" timestamp="1616709392859">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1076" y="559" width="408" height="288" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616337520483" />
-    <state x="424" y="483" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1616323627169">
+    <state x="849" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616709392859" />
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1616747559232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="424" y="483" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323627169" />
-    <state x="852" y="294" key="CommitChangelistDialog2" timestamp="1616406269084">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1616747559232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="852" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616406269084" />
-    <state x="1060" y="454" key="FileChooserDialogImpl" timestamp="1616323423551">
+    <state width="2517" height="401" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1616747559232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="454" key="FileChooserDialogImpl/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323423551" />
-    <state width="1258" height="272" key="GridCell.Tab.0.bottom" timestamp="1616112875128">
+    <state width="2517" height="401" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1616747559232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1258" height="272" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616112875128" />
-    <state width="1258" height="272" key="GridCell.Tab.0.center" timestamp="1616112875128">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1258" height="272" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616112875128" />
-    <state width="1258" height="272" key="GridCell.Tab.0.left" timestamp="1616112875128">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1258" height="272" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616112875128" />
-    <state width="1258" height="272" key="GridCell.Tab.0.right" timestamp="1616112875128">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1258" height="272" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616112875128" />
-    <state x="337" y="325" key="RollbackChangesDialog" timestamp="1616323642137">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="337" y="325" key="RollbackChangesDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323642137" />
-    <state x="781" y="342" width="1481" height="715" key="SettingsEditor" timestamp="1616404313696">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="781" y="342" width="1481" height="715" key="SettingsEditor/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616404313696" />
-    <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1616371379292">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1089" y="617" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616371379292" />
-    <state x="662" y="395" key="new project wizard" timestamp="1616323056347">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="662" y="395" key="new project wizard/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616323056347" />
-    <state x="936" y="330" key="run.anything.popup" timestamp="1616095459226">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="936" y="330" key="run.anything.popup/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616095459226" />
-    <state x="943" y="315" key="search.everywhere.popup" timestamp="1616404124664">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="943" y="315" key="search.everywhere.popup/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616404124664" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
   </component>
 </project>
