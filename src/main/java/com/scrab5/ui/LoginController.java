@@ -1,5 +1,6 @@
 package com.scrab5.ui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -9,7 +10,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class SampleController implements Initializable {
+/*
+ * @author Markus
+ */
+
+public class LoginController extends Controller implements Initializable {
 
   @FXML
   private ImageView quitButton;
@@ -22,35 +27,23 @@ public class SampleController implements Initializable {
 
   }
 
-  @FXML
-  private void lighten(MouseEvent event) {
-    String id = ((ImageView) event.getSource()).getId();
 
-    if (id.equals("quitButton")) {
-      quitButton.setOpacity(1);
-
-    } else if (id.equals("createButton")) {
-      createButton.setOpacity(1);
-    }
-  }
-
+  /*
+   * @author Markus
+   */
   @FXML
   private void close(MouseEvent event) {
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();
   }
 
+  /*
+   * @author Markus
+   */
   @FXML
-  private void darken(MouseEvent event) {
-    ImageView iv = ((ImageView) event.getSource());
-    iv.setOpacity(0);
-  }
+  private void create(MouseEvent event) throws IOException {
+    App.setRoot("AccountCreation");
 
-
-  @FXML
-  private void create(MouseEvent event) {
-    Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
-    s.close();
   }
 
 }

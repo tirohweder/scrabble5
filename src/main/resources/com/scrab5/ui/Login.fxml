@@ -4,7 +4,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SampleController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.LoginController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -13,7 +13,7 @@
                   <Image url="@images/SB01_background.jpg" />
                </image>
             </ImageView>
-            <ImageView fx:id="createButton" fitHeight="81.0" fitWidth="238.0" layoutX="561.0" layoutY="444.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="createButton" fitHeight="81.0" fitWidth="238.0" layoutX="561.0" layoutY="444.0" onMouseClicked="#create" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB01_CreateButtonClicked.png" />
                </image>
