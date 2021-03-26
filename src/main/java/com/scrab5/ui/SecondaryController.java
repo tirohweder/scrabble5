@@ -1,4 +1,4 @@
-package com.scrab5;
+package com.scrab5.ui;
 
 import java.io.IOException;
 import javafx.fxml.FXML;

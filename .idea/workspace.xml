@@ -2,10 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/SuperMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/PrimaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/SecondaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SecondaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/SuperMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/main/SuperMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/secondary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,18 +46,28 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/git/scrabble5" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.scrab5.ui" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\resources\com\scrab5\ui" />
+      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\resources" />
+    </key>
+  </component>
   <component name="RunManager" selected="Maven.Create JAR">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.App" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.ui.App" />
       <module name="scrabble5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.scrab5.*" />
+          <option name="PATTERN" value="com.scrab5.ui.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -112,9 +128,9 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.App" />
       <item itemvalue="Maven.scrabble5 [compile,javafx:run]" />
       <item itemvalue="Maven.Create JAR" />
-      <item itemvalue="Application.App" />
     </list>
     <recent_temporary>
       <list>
@@ -133,7 +149,8 @@
       <option name="presentableId" value="Default" />
       <updated>1616699920549</updated>
       <workItem from="1616699923200" duration="8000" />
-      <workItem from="1616708354575" duration="975000" />
+      <workItem from="1616708354575" duration="1048000" />
+      <workItem from="1616745834529" duration="1633000" />
     </task>
     <task id="LOCAL-00001" summary="#30 reloaded class files">
       <created>1616702256898</created>
@@ -149,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1616705303002</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="#33 now we have a exceutable JAR">
+      <created>1616709393397</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1616709393397</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,32 +182,37 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="#30 reloaded class files" />
     <MESSAGE value="#33 excluded dependency but still shows up as duplicate" />
-    <option name="LAST_COMMIT_MESSAGE" value="#33 excluded dependency but still shows up as duplicate" />
+    <MESSAGE value="#33 now we have a exceutable JAR" />
+    <option name="LAST_COMMIT_MESSAGE" value="#33 now we have a exceutable JAR" />
   </component>
   <component name="WindowStateProjectService">
     <state x="560" y="366" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616708664712">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="560" y="366" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616708664712" />
-    <state x="849" y="294" key="CommitChangelistDialog2" timestamp="1616705302555">
+    <state x="1076" y="585" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1616747377964">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="849" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616705302555" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1616709366619">
+    <state x="1076" y="585" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747377964" />
+    <state x="849" y="294" key="CommitChangelistDialog2" timestamp="1616709392859">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616709366619" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1616709366619">
+    <state x="849" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616709392859" />
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1616747559232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616709366619" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1616709366619">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1616747559232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616709366619" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1616709366619">
+    <state width="2517" height="401" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1616747559232">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616709366619" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1616747559232">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="401" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
   </component>
 </project>
