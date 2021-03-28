@@ -10,6 +10,7 @@ public class CreateDatabase extends Database {
   private void createTable() {
     createTablePlayer();
     createTableServer();
+    createTableDictionary();
   }
 
   /* removes table if a re-start is intended */
@@ -37,6 +38,18 @@ public class CreateDatabase extends Database {
 
   /* Generation of server table */
   private void createTableServer() {
+    removeTable("Server");
+    try (Statement stm = connection.createStatement()) {
+      String sql = "";
+      stm.executeUpdate(sql);
+      System.out.println("Table for server generated!");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  /* Generation of server table */
+  private void createTableDictionary() {
     removeTable("Server");
     try (Statement stm = connection.createStatement()) {
       String sql = "";
