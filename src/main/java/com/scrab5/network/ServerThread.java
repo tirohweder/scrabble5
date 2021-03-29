@@ -5,6 +5,7 @@ package com.scrab5.network;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.Message;
@@ -52,8 +53,11 @@ public class ServerThread extends Threads {
             } else {
               deletePlayer(disconnect.getSenderIp());
             }
-
+          case CHAT:
+            ChatMessage chat = (ChatMessage) message;
+            sendMessageToAllClients(chat);
             break;
+
           default:
             break;
         }
@@ -89,6 +93,16 @@ public class ServerThread extends Threads {
       this.toClient.writeObject(message);
       this.toClient.flush();
       this.toClient.reset();
+    } catch (Exception e) {
+      // requires Exception handling
+    }
+  }
+
+  public void sendMessageToAllClients(Message message) {
+    try {
+      for (ServerThread toClient : this.server.getConnections().values()) {
+        toClient.sendMessageToClient(message);
+      }
     } catch (Exception e) {
       // requires Exception handling
     }

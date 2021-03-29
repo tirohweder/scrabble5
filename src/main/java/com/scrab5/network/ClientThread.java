@@ -16,7 +16,7 @@ public class ClientThread extends Threads {
   private ObjectOutputStream toServer;
   private ObjectInputStream fromServer;
   private Socket socketToServer;
-  private final String sender;
+  public final String sender;
 
   public ClientThread(Client client) {
     this.client = client;
@@ -33,6 +33,10 @@ public class ClientThread extends Threads {
 
           case DISCONNECT:
             this.closeConnection();
+          case CHAT:
+            // needs implementation
+          default:
+            break;
         }
       }
     } catch (Exception e) {

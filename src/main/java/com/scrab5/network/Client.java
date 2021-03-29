@@ -7,6 +7,8 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import com.scrab5.network.messages.ChatMessage;
+import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.GetServerDataMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.MessageType;
@@ -98,10 +100,14 @@ public class Client {
 
   public void disconnectFromServer() {
     if (clientThread.isAlive()) {
-      clientThread.closeConnection();
+      clientThread.sendMessageToServer(new DisconnectMessage(clientThread.sender, this.getIp()));
       clientThread = null;
       hostedServer = null;
     }
+  }
+
+  public void sendChatMessage(String text) {
+    this.clientThread.sendMessageToServer(new ChatMessage(clientThread.sender, text));
   }
 
   public String getUsername() {
