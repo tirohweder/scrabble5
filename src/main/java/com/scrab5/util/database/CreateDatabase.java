@@ -28,7 +28,11 @@ public class CreateDatabase extends Database {
   private void createTablePlayer() {
     removeTable("Player");
     try (Statement stm = connection.createStatement()) {
-      String sql = "CREATE TABLE Player ";
+      String sql = "CREATE TABLE Player (Name TEXT NOT NULL," + "Picture TEXT,"
+          + "TotalPoints INTEGER NOT NULL," + "PersonalHighscore INTEGER NOT NULL,"
+          + "LaidWords INTEGER NOT NULL," + "PointsPerWordRate INTEGER NOT NULL,"
+          + "LongestWord TEXT," + "TotalPlayedGames INTEGER NOT NULL,"
+          + "TotalWins INTEGER NOT NULL," + "WinRate REAL," + "FaveDic TEXT)";
       stm.executeUpdate(sql);
       System.out.println("Table for player generated!");
     } catch (SQLException e) {
@@ -40,7 +44,8 @@ public class CreateDatabase extends Database {
   private void createTableServer() {
     removeTable("Server");
     try (Statement stm = connection.createStatement()) {
-      String sql = "";
+      String sql = "CREATE TABLE Server (ServerListNames TEXT," + "Dictionaries TEST,"
+          + "VictoryRanking TEXT," + "GameRanking TEXT," + "VictoryLossRate TEXT)";
       stm.executeUpdate(sql);
       System.out.println("Table for server generated!");
     } catch (SQLException e) {
@@ -52,9 +57,9 @@ public class CreateDatabase extends Database {
   private void createTableDictionary() {
     removeTable("Server");
     try (Statement stm = connection.createStatement()) {
-      String sql = "";
+      String sql = "CREATE TABLE Dictionary (Words TEXT NOT NULL)";
       stm.executeUpdate(sql);
-      System.out.println("Table for server generated!");
+      System.out.println("Table for dictionary generated!");
     } catch (SQLException e) {
       e.printStackTrace();
     }
