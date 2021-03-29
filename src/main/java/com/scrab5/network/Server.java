@@ -1,94 +1,70 @@
 // @author nitterhe
+
 package com.scrab5.network;
 
-
-
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Enumeration;
+import java.util.HashMap;
+
 
 public class Server {
 
-  private Server server;
+  // private boolean running;
+  public final int serverPort = 1234;
   private ServerSocket serverSocket;
-  private boolean running;
-  public static final int serverPort = 1234;
-  private int playerNumber;
+  private boolean gameStart;
+  private HashMap<String, Client> players;
+  private HashMap<Client, ServerThread> connections;
 
+
+  // 1. sets up server 2. initializes ServerCollections 3. creates ServerSocket
   public Server() {
-    server = this;
-    server.runLobby();
-  }
-
-  public void startServer() {
-    server = new Server();
-  }
-
-  // runs the Server by setting up a ServerSocket and waits for Clients to connect
-  private void runLobby() {
-    running = true;
-    playerNumber = 0;
+    this.players = new HashMap<String, Client>();
+    this.connections = new HashMap<Client, ServerThread>();
+    this.gameStart = false;
     try {
-      serverSocket = new ServerSocket(serverPort);
-      while (running && playerNumber <= 4) {
-        Socket clientSocket = serverSocket.accept();
-        wait(50);
-      }
+      serverSocket = new ServerSocket(this.serverPort);
     } catch (Exception e) {
-      if (serverSocket.isClosed()) {
-        // Bedarf Exception handling
+      // requires Exception handling
+    }
+    this.acceptClients();
+  }
+
+  // allows maximum of 4 players to connect until gameStart == true
+  private void acceptClients() {
+    while (!gameStart && this.getPlayerCount() < 4) {
+      try {
+        Socket newClient = serverSocket.accept();
+        ServerThread clientConnection = new ServerThread(this, newClient);
+        clientConnection.start();
+        /*
+         * Client c = clientConnection.getClient(); players.put(c);
+         * connections.put(c,clientConnection);connections.add(clientConnection);
+         */
+      } catch (Exception e) {
+        // requires exception handling
       }
     }
   }
 
+  public void startGame() {
+    this.gameStart = true;
+  }
 
+  public void endGame() {
+    this.gameStart = false;
+    this.acceptClients();
+  }
 
-  // Kopiert aus altem PP Projekt, wo es aus Stackoverflow kopiert wurde
-  public static String getLocalHostIp4Address() {
-    String hostIP = "";
-    try {
+  public int getPlayerCount() {
+    return players.size();
+  }
 
-      InetAddress candidateAddress = null;
-      for (Enumeration<NetworkInterface> ifaces = NetworkInterface.getNetworkInterfaces(); ifaces
-          .hasMoreElements();) {
+  private void addPlayer() {
 
-        NetworkInterface iface = ifaces.nextElement();
+  }
 
-        for (Enumeration<InetAddress> inetAddrs = iface.getInetAddresses(); inetAddrs
-            .hasMoreElements();) {
+  private void deletePlayer() {
 
-          InetAddress inetAddr = inetAddrs.nextElement();
-
-          if (!inetAddr.isLoopbackAddress() && inetAddr instanceof Inet4Address) {
-            if (inetAddr.isSiteLocalAddress()) {
-              return inetAddr.getHostAddress();
-            } else if (candidateAddress == null) {
-              candidateAddress = inetAddr;
-            }
-          }
-        }
-      }
-      if (candidateAddress != null) {
-        return candidateAddress.getHostAddress();
-      }
-
-      InetAddress jdkSuppliedAddress = InetAddress.getLocalHost();
-      if (jdkSuppliedAddress == null) {
-        throw new UnknownHostException(
-            "The JDK InetAddress.getLocalHost() method unexpectedly returned null.");
-      }
-      return jdkSuppliedAddress.getHostAddress();
-    } catch (Exception e) {
-      // UnknownHostException unknownHostException =
-      // new UnknownHostException("Failed to determine LAN address: " + e);
-      // unknownHostException.initCause(e);
-      // throw unknownHostException;
-      hostIP = "unknown (failed to determine LAN address)";
-    }
-    return hostIP;
   }
 }
