@@ -2,6 +2,7 @@
 
 package com.scrab5.network;
 
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -9,8 +10,10 @@ import java.util.HashMap;
 
 public class Server {
 
-  // private boolean running;
+  public final int clientPort = 2345;
   public final int serverPort = 1234;
+  public final String host;
+  private String ip;
   private ServerSocket serverSocket;
   private boolean gameStart;
   private HashMap<String, Client> players;
@@ -18,11 +21,13 @@ public class Server {
 
 
   // 1. sets up server 2. initializes ServerCollections 3. creates ServerSocket
-  public Server() {
+  public Server(String host) {
     this.players = new HashMap<String, Client>();
     this.connections = new HashMap<Client, ServerThread>();
     this.gameStart = false;
+    this.host = host;
     try {
+      this.ip = InetAddress.getLocalHost().getHostAddress();
       serverSocket = new ServerSocket(this.serverPort);
     } catch (Exception e) {
       // requires Exception handling
@@ -56,15 +61,27 @@ public class Server {
     this.acceptClients();
   }
 
+  public String getIp() {
+    return this.ip;
+  }
+
   public int getPlayerCount() {
     return players.size();
   }
 
-  private void addPlayer() {
-
+  public HashMap<String, Client> getPlayers() {
+    return players;
   }
 
-  private void deletePlayer() {
+  public HashMap<Client, ServerThread> getConnections() {
+    return connections;
+  }
 
+  // maybe need to clear HashMaps, but i do not think so, cause new Lobby creates new Server
+  public void shutDownServer() {
+    for (ServerThread serverThread : connections.values()) {
+      serverThread.closeConnection();
+
+    }
   }
 }

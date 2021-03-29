@@ -14,39 +14,44 @@ import com.scrab5.network.messages.MessageType;
 public class Client {
 
   public final int clientPort = 2345;
-  private InetAddress ipAddress;
+  public final int serverPort = 1234;
   private String ip;
   private final String username;
   private ClientThread clientThread;
   private ArrayList<ServerData> serverList;
+  private Server hostedServer;
 
   public Client(String username) {
     this.username = username;
     serverList = new ArrayList<ServerData>();
     try {
-      this.ipAddress = InetAddress.getLocalHost();
-      this.ip = ipAddress.getHostAddress();
+      this.ip = InetAddress.getLocalHost().getHostAddress();
     } catch (Exception e) {
       // Exception handling required
     }
   }
 
+  public void hostServer() {
+    if (hostedServer == null) {
+      hostedServer = new Server(this.username);
+      connectToServer(ip);
+    }
+  }
 
   // @author from Stackoverflow
   // https://stackoverflow.com/questions/24082077/java-find-server-in-network
   public ArrayList<ServerData> searchServers() {
-    int port = 1234;
     for (int j = 1; j < 255; j++) {
       for (int k = 1; k < 255; k++) {
         final String ip4 = "192.168." + j + "." + k;
-        Thread connectionCheck = new Thread(new Runnable() {
+        new Thread(new Runnable() {
           public void run() {
             try {
               InetAddress serverCheck = InetAddress.getByName(ip4);
               if (!serverCheck.isReachable(10000))
                 return;
 
-              Socket getServerDataSocket = new Socket(ip4, port);
+              Socket getServerDataSocket = new Socket(ip4, serverPort);
               ObjectOutputStream out =
                   new ObjectOutputStream(getServerDataSocket.getOutputStream());
               ObjectInputStream in = new ObjectInputStream(getServerDataSocket.getInputStream());
@@ -55,9 +60,13 @@ public class Client {
               out.reset();
               Message m = (Message) in.readObject();
               if (m.getType() == MessageType.DEFAULT) {
-                ServerData serverdata = new ServerData(m.getSender() + "'s Server", ip4, port);
+                ServerData serverdata =
+                    new ServerData(m.getSender() + "'s Server", ip4, serverPort);
                 addServerToServerList(serverdata);
               }
+              getServerDataSocket.shutdownInput();
+              getServerDataSocket.shutdownOutput();
+              getServerDataSocket.close();
             } catch (Exception e) {
               // requires Exception handling
             }
@@ -76,10 +85,23 @@ public class Client {
     return this.serverList;
   }
 
-  public boolean connectToServer(ServerData serverdata) {
-    clientThread = new ClientThread(this);
-    clientThread.connectToServer(serverdata);
-    return true;
+  public void connectToServer(ServerData serverdata) {
+    if (clientThread == null) {
+      clientThread = new ClientThread(this);
+      clientThread.connectToServer(serverdata);
+    }
+  }
+
+  public void connectToServer(String ip4) {
+    connectToServer(new ServerData(null, ip4, serverPort));
+  }
+
+  public void disconnectFromServer() {
+    if (clientThread.isAlive()) {
+      clientThread.closeConnection();
+      clientThread = null;
+      hostedServer = null;
+    }
   }
 
   public String getUsername() {
@@ -88,10 +110,6 @@ public class Client {
 
   public String getIp() {
     return this.ip;
-  }
-
-  public InetAddress getIpAdress() {
-    return this.ipAddress;
   }
 
   public class ServerData {
