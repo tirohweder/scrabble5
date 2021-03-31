@@ -10,7 +10,7 @@ public class CreateDatabase extends Database {
   private void createTable() {
     createTablePlayer();
     createTableServer();
-    createTableDictionary();
+    createTableLetters();
   }
 
   /* removes table if a re-start is intended */
@@ -54,12 +54,12 @@ public class CreateDatabase extends Database {
   }
 
   /* Generation of server table */
-  private void createTableDictionary() {
+  private void createTableLetters() {
     removeTable("Server");
     try (Statement stm = connection.createStatement()) {
-      String sql = "CREATE TABLE Dictionary (Words TEXT NOT NULL)";
+      String sql = "CREATE TABLE Letters (Letter TEXT NOT NULL, Points INTEGER NOT NULL)";
       stm.executeUpdate(sql);
-      System.out.println("Table for dictionary generated!");
+      System.out.println("Table for letters generated!");
     } catch (SQLException e) {
       e.printStackTrace();
     }
