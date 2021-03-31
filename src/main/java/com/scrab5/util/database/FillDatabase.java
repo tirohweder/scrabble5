@@ -50,10 +50,8 @@ public class FillDatabase extends Database {
   public void fillServerComplete(String name) {}
 
   /* method to fill table dictionary from file */
-  public void fillDictionary(String name) {
-    // String filename: path to file in resources
-    String filename = null;
-    // create CSVReader for it?
+  public void fillLetters(String name) {
+    // read from intake
   }
 
   /*
