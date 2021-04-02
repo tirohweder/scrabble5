@@ -5,40 +5,45 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
+
 /* establish connection */
 
 public class Database {
 
-	protected Connection connection;
-	protected Properties properties;
+  protected Properties properties;
+  /* the jdbc connection object */
+  protected static Connection connection = null;
 
-	public Database() {
-		this.connect(System.getProperty("user.dir") + System.getProperty("file.separator") + "resources"
-				+ System.getProperty("file.separator") + "transfermarkt.db");
-		// c.setAutoCommit(false);
-		properties = new Properties();
-		properties.setProperty("PRAGMA foreign_keys", "ON");
-	}
+  /* connects to mysql database */
+  private static void connect() {
+    try {
+      Class.forName("com.mysql.cj.jdbc.Driver");
+      connection =
+          DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "Scrabble52021");
+      System.out.print("connected");
+    } catch (ClassNotFoundException e) {
+      System.out.print("Connection not possible" + e.getMessage());
+    } catch (SQLException se) {
+      System.out.println("Sql Exception:" + se.getMessage());
+      System.out.println("Sql State:" + se.getSQLState());
+      System.out.println("Sql Error:" + se.getErrorCode());
+      se.printStackTrace();
+    }
+  }
 
-	// Stellt die Verbindung zur Datenbank mit dem Pfad "file" her
-	private void connect(String file) {
-		try {
-			Class.forName("org.sqlite.JDBC");
-			this.connection = DriverManager.getConnection("jdbc:sqlite:" + file);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+  /* disconnects database */
+  protected void disconnect() {
+    try {
+      connection.close();
+    } catch (SQLException e) {
+      System.out.println("Problem with closing connection" + e.getMessage());
+    }
+  }
 
-	// Trennt die Verbindung zur Datenbank
-	protected void disconnect() {
-		try {
-			this.connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
+  /* main method to test connection */
+  public static void main(String args[]) {
+    System.out.println();
+    Database.connect();
+  }
 
 }
