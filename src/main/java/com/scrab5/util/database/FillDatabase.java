@@ -2,10 +2,10 @@ package com.scrab5.util.database;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Collection;
 
 import data.Player;
-import io.CSVReader;
 
 public class FillDatabase extends Database {
 	private static PreparedStatement pstmPlayer;
@@ -30,9 +30,16 @@ public class FillDatabase extends Database {
 		}
 	}
 
-	/* deletes all entries from table "name" */
+	// This method clears all entries from the Table in the parameter
 	private void deleteTable(String name) {
-
+		try {
+			Statement statement = connection.createStatement();
+			String sql = "DELETE FROM " + name + ';'; 
+			statement.execute(sql);
+		} catch (SQLException e){
+			System.out.println("Could not perform deletion in table " + name);
+			System.out.println(e);
+		}   
 	}
 
 	/* creates the preparedStatements to insert something in a table */

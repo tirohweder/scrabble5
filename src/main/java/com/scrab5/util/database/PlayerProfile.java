@@ -1,8 +1,5 @@
 package com.scrab5.util.database;
 
-import java.sql.SQLException;
-import java.sql.Statement;
-
 /* Charge all statistics */
 public class PlayerProfile extends Database {
   private int totalPoints;
@@ -41,50 +38,38 @@ public class PlayerProfile extends Database {
     return this.favoriteDictionary;
   }
 
-  /* setter methods with statements for database */
-  public void setTotalPoints() {
-    try (Statement stm = connection.createStatement()) {
-      String sql = "";
-      stm.executeUpdate(sql); /* is it execute update? */
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+  /*
+   * setter methods with statements for database for now default values --> waiting for fill methods
+   * to complete setter methods
+   */
+  /* update current value with int value delivered by parameter */
+  public void setTotalPoints(int points) {
+    FillDatabase.fillPlayer(0, null, null, 0);
+    this.totalPoints += points;
   }
 
-  public void setLaidWords() {
-    try (Statement stm = connection.createStatement()) {
-      String sql = "";
-      stm.executeUpdate(sql); /* is it execute update? */
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+  /* update current value with int value delivered by parameter */
+  public void setLaidWords(int words) {
+    FillDatabase.fillPlayer(0, null, null, 0);
+    this.laidWords += words;
   }
 
-  public void setTotalPlayedGames() {
-    try (Statement stm = connection.createStatement()) {
-      String sql = "";
-      stm.executeUpdate(sql); /* is it execute update? */
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+  /* update current value with int value delivered by parameter */
+  public void setTotalPlayedGames(int games) {
+    FillDatabase.fillPlayer(0, null, null, 0);
+    this.totalPlayedGames += games;
   }
 
-  public void setTotalWins() {
-    try (Statement stm = connection.createStatement()) {
-      String sql = "";
-      stm.executeUpdate(sql); /* is it execute update? */
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+  /* update current value with int value delivered by parameter */
+  public void setTotalWins(int wins) {
+    FillDatabase.fillPlayer(0, null, null, 0);
+    this.totalWins += wins;
   }
 
-  public void setFavoriteDictionary() {
-    try (Statement stm = connection.createStatement()) {
-      String sql = "";
-      stm.executeUpdate(sql); /* is it execute update? */
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+  /* replace current value with string value delivered by parameter */
+  public void setFavoriteDictionary(String language) {
+    FillDatabase.fillPlayer(0, null, null, 0);
+    this.favoriteDictionary = language;
   }
 
 }

@@ -8,19 +8,19 @@ import java.io.IOException;
 
 public class TxtReader {
 
-    private static void ladeDatei(String datName) {
+    private static void loadFile(String fileName) {
 
-        File file = new File(datName);
+        File file = new File(fileName);
 
         if (!file.canRead() || !file.isFile())
             System.exit(0);
 
             BufferedReader in = null;
         try {
-            in = new BufferedReader(new FileReader(datName));
-            String zeile = null;
-            while ((zeile = in.readLine()) != null) {
-                System.out.println("Gelesene Zeile: " + zeile);
+            in = new BufferedReader(new FileReader(fileName));
+            String line = null;
+            while ((line = in.readLine()) != null) {
+                System.out.println("read line: " + line);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -34,7 +34,7 @@ public class TxtReader {
     }
 
     public static void main(String[] args) {
-        String dateiName = "test.txt";
-        ladeDatei(dateiName);
+        String filName = "test.txt";
+        loadFile(filName);
     }
 }

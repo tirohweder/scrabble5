@@ -19,7 +19,6 @@ public class CreateDatabase extends Database {
       String sql = "DROP TABLE IF EXISTS " + name;
       stm.executeUpdate(sql);
     } catch (SQLException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
@@ -53,7 +52,7 @@ public class CreateDatabase extends Database {
     }
   }
 
-  /* Generation of server table */
+  /* Generation of letter table */
   private void createTableLetters() {
     removeTable("Letters");
     try (Statement stm = connection.createStatement()) {
@@ -67,10 +66,12 @@ public class CreateDatabase extends Database {
 
 
   /* for testing */
-  /*
-   * public static void main(String[] args) { CreateDatabase cdb = new CreateDatabase();
-   * cdb.createTables(); cdb.disconnect(); }
-   */
+  public static void main(String[] args) {
+    CreateDatabase db = new CreateDatabase();
+    System.out.println();
+    db.createTable();
+    // db.disconnect();
+  }
 
 
 

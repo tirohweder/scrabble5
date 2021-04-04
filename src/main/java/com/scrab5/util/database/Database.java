@@ -3,6 +3,7 @@ package com.scrab5.util.database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Properties;
 
 
@@ -12,14 +13,24 @@ public class Database {
 
   protected Properties properties;
   /* the jdbc connection object */
-  protected static Connection connection = null;
+  protected static Connection connection;
+  protected static Statement stm;
 
-  /* connects to mysql database */
+  /* Constructor to call from other classes */
+  public Database() {
+    connect();
+  }
+
+  /*
+   * connects to mysql database localhost because for development, the server is local. scrabble5 is
+   * the name of the local created database. root is the username and Scrabble52021 is the password
+   * to connect to the mysql database.
+   */
   private static void connect() {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
-      connection =
-          DriverManager.getConnection("jdbc:mysql://localhost:3306", "root", "Scrabble52021");
+      connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scrabble5", "root",
+          "Scrabble52021");
       System.out.print("connected");
     } catch (ClassNotFoundException e) {
       System.out.print("Connection not possible" + e.getMessage());
@@ -42,7 +53,7 @@ public class Database {
 
   /* main method to test connection */
   public static void main(String args[]) {
-    System.out.println();
+    // System.out.println();
     Database.connect();
   }
 
