@@ -44,7 +44,7 @@ public class CreateDatabase extends Database {
   private void createTableServer() {
     removeTable("Server");
     try (Statement stm = connection.createStatement()) {
-      String sql = "CREATE TABLE Server (ServerListNames TEXT," + "Dictionaries TEST,"
+      String sql = "CREATE TABLE Server (ServerListNames TEXT," + "Dictionaries TEXT,"
           + "VictoryRanking TEXT," + "GameRanking TEXT," + "VictoryLossRate TEXT)";
       stm.executeUpdate(sql);
       System.out.println("Table for server generated!");
@@ -55,7 +55,7 @@ public class CreateDatabase extends Database {
 
   /* Generation of server table */
   private void createTableLetters() {
-    removeTable("Server");
+    removeTable("Letters");
     try (Statement stm = connection.createStatement()) {
       String sql = "CREATE TABLE Letters (Letter TEXT NOT NULL, Points INTEGER NOT NULL)";
       stm.executeUpdate(sql);
