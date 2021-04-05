@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+    <list default="true" id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="#33 fixed project structure with module-info.java now connecting the right packages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/PrimaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/SecondaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SecondaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/SuperMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/main/SuperMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/primary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/secondary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +41,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/git/scrabble5" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../ServerProject/ArterionCopy" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
@@ -61,7 +53,7 @@
       <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.Create JAR">
+  <component name="RunManager" selected="Maven.scrabble5 [compile,javafx:run]">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.scrab5.ui.App" />
       <module name="scrabble5" />
@@ -151,6 +143,8 @@
       <workItem from="1616699923200" duration="8000" />
       <workItem from="1616708354575" duration="1048000" />
       <workItem from="1616745834529" duration="1633000" />
+      <workItem from="1616836263110" duration="116000" />
+      <workItem from="1617629157427" duration="2117000" />
     </task>
     <task id="LOCAL-00001" summary="#30 reloaded class files">
       <created>1616702256898</created>
@@ -198,21 +192,25 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="849" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616709392859" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1616747559232">
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1616836275547">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1616747559232">
+    <state x="1060" y="455" key="FileChooserDialogImpl/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616836275547" />
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1617656817689">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1616747559232">
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1617656817689" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1617656817689">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1616747559232">
+    <state width="2517" height="401" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1617656817689" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1617656817689">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1617656817689" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1617656817689">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="401" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1617656817689" />
   </component>
 </project>
