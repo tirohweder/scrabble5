@@ -13,7 +13,7 @@ public class Database {
 
   protected Properties properties;
   /* the jdbc connection object */
-  protected static Connection connection;
+  protected static Connection connection; 
   protected static Statement stm;
 
   /* Constructor to call from other classes */

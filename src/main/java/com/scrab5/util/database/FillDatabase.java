@@ -17,7 +17,7 @@ public class FillDatabase extends Database {
 				pstmServer.close();
 			}
 			if ((pstmDic != null) && (!pstmDic.isClosed())) {
-				pstmDic.close();
+				pstmDic.close(); 
 			}
 			if ((pstmPlayer != null) && (!pstmPlayer.isClosed())) {
 				pstmPlayer.close();

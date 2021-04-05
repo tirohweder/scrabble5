@@ -11,6 +11,7 @@ public class PlayerProfile extends Database {
 	public PlayerProfile(int totalPoints, int laidWords, int totalPlayedGames, int totalWins,
 			String favoriteDictionary) {
 		this.totalPoints = totalPoints;
+		this.laidWords = laidWords; 
 		this.laidWords = laidWords;
 		this.totalPlayedGames = totalPlayedGames;
 		this.totalWins = totalWins;
