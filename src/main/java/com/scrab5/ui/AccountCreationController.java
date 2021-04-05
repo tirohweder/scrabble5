@@ -7,22 +7,26 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
-/*
- * @author Markus
+/**
+ * @author marku
+ * 
  */
 public class AccountCreationController extends Controller implements Initializable {
 
-  @Override
-  public void initialize(URL location, ResourceBundle resources) {
-    // TODO Auto-generated method stub
-  }
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+	}
 
-  /*
-   * @author Markus
-   */
-  @FXML
-  private void back(MouseEvent event) throws IOException {
-    App.setRoot("Login");
-  }
+	/**
+	 * @author marku
+	 * 
+	 *         Event method that is called when the "Back"-button is clicked. Scene
+	 *         gets changed to the predecessor "Login" scene
+	 */
+	@FXML
+	private void back(MouseEvent event) throws IOException {
+		App.setRoot("Login");
+	}
 
 }
