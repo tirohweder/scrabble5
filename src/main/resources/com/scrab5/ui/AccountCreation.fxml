@@ -20,9 +20,9 @@
                   <Image url="@images/SB02_BackButtonClicked.png" />
                </image>
             </ImageView>
-            <TextField alignment="CENTER" layoutX="356.0" layoutY="584.0" prefHeight="49.0" prefWidth="647.0" style="-fx-background-color: transparent;" text="Nickname">
+            <TextField fx:id="nickname" alignment="CENTER" layoutX="356.0" layoutY="584.0" onKeyPressed="#enterPressed" prefHeight="49.0" prefWidth="647.0" style="-fx-background-color: transparent;" text="Nickname">
                <font>
-                  <Font name="Arial" size="26.0" />
+                  <Font name="Arial Bold" size="26.0" />
                </font>
             </TextField>
          </children>
