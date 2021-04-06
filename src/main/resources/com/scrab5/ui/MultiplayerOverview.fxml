@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MultiplayerOverviewController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="768.0" fitWidth="1360.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB04_background.jpg" />
+               </image>
+            </ImageView>
+            <Label fx:id="userPlaying" layoutX="930.0" layoutY="182.0" prefHeight="30.0" prefWidth="173.0" textFill="#fefff2">
+               <font>
+                  <Font name="Arial" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="55.0" fitWidth="127.0" layoutX="110.0" layoutY="657.0" onMouseClicked="#back" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB02_BackButtonClicked.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="78.0" fitWidth="472.0" layoutX="780.0" layoutY="547.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB04_StartButtonClicked.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="470.0" layoutX="159.0" layoutY="526.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB04_FindGameButtonButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="68.0" layoutX="616.0" layoutY="115.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB04_RefreshClicked.png" />
+               </image>
+            </ImageView>
+            <TextField layoutX="804.0" layoutY="235.0" prefWidth="420.0" style="-fx-background-color: transparent; -fx-text-fill: e51920;" text="Enter Server Name">
+               <font>
+                  <Font name="Arial" size="16.0" />
+               </font>
+            </TextField>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
