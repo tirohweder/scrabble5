@@ -77,7 +77,7 @@ public class AccountCreationController extends Controller implements Initializab
    *         Returns the generated username.
    */
   public String getCreatedUsername() {
-    return this.createdUsername;
+    return createdUsername;
   }
 
 }
