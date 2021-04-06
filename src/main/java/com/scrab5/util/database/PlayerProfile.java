@@ -1,76 +1,104 @@
 package com.scrab5.util.database;
 
+/*
+ * class to get and set the data for the player statistics and leaderboards
+ * 
+ * @author lengist
+ * 
+ */
 /* Charge all statistics */
 public class PlayerProfile extends Database {
-	private int totalPoints;
-	private int laidWords;
-	private int totalPlayedGames;
-	private int totalWins;
-	private String favoriteDictionary;
+  private String name;
+  private String picture;
+  private int totalPoints;
+  private int laidWords;
+  private int totalPlayedGames;
+  private int totalWins;
+  private String favoriteDictionary;
 
-	public PlayerProfile(int totalPoints, int laidWords, int totalPlayedGames, int totalWins,
-			String favoriteDictionary) {
-		this.totalPoints = totalPoints;
-		this.laidWords = laidWords; 
-		this.laidWords = laidWords;
-		this.totalPlayedGames = totalPlayedGames;
-		this.totalWins = totalWins;
-		this.favoriteDictionary = favoriteDictionary;
-	}
+  public PlayerProfile(String name, String picture, int totalPoints, int laidWords,
+      int totalPlayedGames, int totalWins, String favoriteDictionary) {
+    this.name = name;
+    this.picture = picture;
+    this.totalPoints = totalPoints;
+    this.laidWords = laidWords;
+    this.laidWords = laidWords;
+    this.totalPlayedGames = totalPlayedGames;
+    this.totalWins = totalWins;
+    this.favoriteDictionary = favoriteDictionary;
+  }
 
-	/* getter methods */
-	public int getTotalPoints() {
-		return this.totalPoints;
-	}
+  /* getter methods */
+  public String getName() {
+    return this.name;
+  }
 
-	public int getLaidWords() {
-		return this.laidWords;
-	}
+  public String getPicture() {
+    return this.picture;
+  }
 
-	public int getTotalPlayedGames() {
-		return this.totalPlayedGames;
-	}
+  public int getTotalPoints() {
+    return this.totalPoints;
+  }
 
-	public int getTotalWins() {
-		return this.totalWins;
-	}
+  public int getLaidWords() {
+    return this.laidWords;
+  }
 
-	public String getFavoriteDictionary() {
-		return this.favoriteDictionary;
-	}
+  public int getTotalPlayedGames() {
+    return this.totalPlayedGames;
+  }
 
-	/*
-	 * setter methods with statements for database for now default values -->
-	 * waiting for fill methods to complete setter methods
-	 */
-	/* update current value with int value delivered by parameter */
-	public void setLaidWords(int words) {
-		FillDatabase.updatePlayer(null, null, null, 0);
-		this.laidWords += words;
-	}
+  public int getTotalWins() {
+    return this.totalWins;
+  }
 
-	/* update current value with int value delivered by parameter */
-	public void setTotalPoints(int points) {
-		FillDatabase.updatePlayer(null, null, null, 0);
-		this.totalPoints += points;
-	}
+  public String getFavoriteDictionary() {
+    return this.favoriteDictionary;
+  }
 
-	/* update current value with int value delivered by parameter */
-	public void setTotalPlayedGames(int games) {
-		FillDatabase.updatePlayer(null, null, null, 0);
-		this.totalPlayedGames += games;
-	}
+  /*
+   * setter methods with statements for database for now default values --> waiting for fill methods
+   * to complete setter methods
+   */
+  /* update current value with int value delivered by parameter */
+  public void setName(String name) {
+    FillDatabase.updatePlayer(null, this.name, null, 0);
+    this.name = name;
+  }
 
-	/* update current value with int value delivered by parameter */
-	public void setTotalWins(int wins) {
-		FillDatabase.updatePlayer(null, null, null, 0);
-		this.totalWins += wins;
-	}
+  public void setPicture(String picture) {
+    FillDatabase.updatePlayer(null, this.name, null, 0);
+    this.picture = picture;
+  }
 
-	/* replace current value with string value delivered by parameter */
-	public void setFavoriteDictionary(String language) {
-		FillDatabase.updatePlayer(null, null, null, 0);
-		this.favoriteDictionary = language;
-	}
+  public void setLaidWords(int words) {
+    FillDatabase.updatePlayer(null, this.name, null, 0);
+    this.laidWords += words;
+  }
+
+  /* update current value with int value delivered by parameter */
+  public void setTotalPoints(int points) {
+    FillDatabase.updatePlayer(null, this.name, null, 0);
+    this.totalPoints += points;
+  }
+
+  /* update current value with int value delivered by parameter */
+  public void setTotalPlayedGames(int games) {
+    FillDatabase.updatePlayer(null, this.name, null, 0);
+    this.totalPlayedGames += games;
+  }
+
+  /* update current value with int value delivered by parameter */
+  public void setTotalWins(int wins) {
+    FillDatabase.updatePlayer(null, this.name, null, 0);
+    this.totalWins += wins;
+  }
+
+  /* replace current value with string value delivered by parameter */
+  public void setFavoriteDictionary(String language) {
+    FillDatabase.updatePlayer(null, this.name, null, 0);
+    this.favoriteDictionary = language;
+  }
 
 }
