@@ -10,6 +10,7 @@ import java.util.Properties;
  * entity to establish a connection to the database
  * 
  * @author lengist
+ * 
  */
 
 public class Database {
