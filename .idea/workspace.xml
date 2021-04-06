@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/com/srab5/util/database/DatabaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/PrimaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/PrimaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/SecondaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SecondaryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/SuperMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/main/SuperMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/primary.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/secondary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/secondary.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,8 +49,11 @@
       <recent name="com.scrab5.ui" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\test\com\srab5\util\database" />
+      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\test\com\srab5\util" />
+      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src" />
+      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\test\com\srab5" />
       <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\resources\com\scrab5\ui" />
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\resources" />
     </key>
   </component>
   <component name="RunManager" selected="Maven.Create JAR">
@@ -151,6 +146,7 @@
       <workItem from="1616699923200" duration="8000" />
       <workItem from="1616708354575" duration="1048000" />
       <workItem from="1616745834529" duration="1633000" />
+      <workItem from="1617706412251" duration="3248000" />
     </task>
     <task id="LOCAL-00001" summary="#30 reloaded class files">
       <created>1616702256898</created>
@@ -214,5 +210,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2517" height="401" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
+    <state x="2782" y="215" key="new project wizard" timestamp="1617715923756">
+      <screen x="2560" y="15" width="1680" height="1010" />
+    </state>
+    <state x="2782" y="215" key="new project wizard/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@2560.15.1680.1010" timestamp="1617715923756" />
   </component>
 </project>
