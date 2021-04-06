@@ -6,14 +6,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-
-/* establish connection */
+/*
+ * entity to establish a connection to the database
+ * 
+ * @author lengist
+ */
 
 public class Database {
 
   protected Properties properties;
   /* the jdbc connection object */
-  protected static Connection connection; 
+  protected static Connection connection;
   protected static Statement stm;
 
   /* Constructor to call from other classes */
