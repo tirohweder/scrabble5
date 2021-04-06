@@ -30,7 +30,7 @@ public class FillDatabase extends Database {
    * method to fill table player at specific index/column. If variable for column name is from type
    * integer, variable content is default.
    */
-  public void fillPlayer(int index, String name, String content, int content2) {}
+  public static void fillPlayer(int index, String name, String content, int content2) {}
 
   /*
    * method to fill table player completely. Used when a new player profile is created. Variables
