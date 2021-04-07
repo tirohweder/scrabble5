@@ -1,14 +1,23 @@
 package com.scrab5.ui;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
-public class MultiplayerOverviewController extends Controller {
+public class MultiplayerOverviewController extends Controller implements Initializable {
 
   @FXML
   private Label userPlaying;
+
+  @Override
+  public void initialize(URL arg0, ResourceBundle arg1) {
+    // TODO Auto-generated method stub
+
+  }
 
   /**
    * @author marku
@@ -22,7 +31,6 @@ public class MultiplayerOverviewController extends Controller {
   private void back(MouseEvent event) throws IOException {
     App.setRoot("AccountCreation"); // Placeholder
   }
-
 
 
 }

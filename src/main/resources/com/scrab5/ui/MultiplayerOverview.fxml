@@ -21,7 +21,7 @@
                   <Font name="Arial" size="20.0" />
                </font>
             </Label>
-            <ImageView fitHeight="55.0" fitWidth="127.0" layoutX="110.0" layoutY="657.0" onMouseClicked="#back" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="55.0" fitWidth="127.0" layoutX="110.0" layoutY="657.0" onMouseClicked="#back" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB02_BackButtonClicked.png" />
                </image>
