@@ -35,7 +35,7 @@ public class MainMenuController extends Controller implements Initializable {
    */
   @FXML
   private void multiplayerClicked(MouseEvent event) throws IOException {
-    App.setRoot("AccountCreation");
+    App.setRoot("MultiplayerOverview");
   }
 
   /**
