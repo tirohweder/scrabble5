@@ -45,7 +45,11 @@ public class AccountCreationController extends Controller implements Initializab
       case ENTER:
         if (nickname.getText().length() <= 12) {
           this.createdUsername = nickname.getText();
+
+          Data.setCurrentUser(this.createdUsername); // DUMMY
+
           App.setRoot("MultiplayerOverview");
+
         } else {
           // System.out.println("ERROR"); Placeholder
         }
@@ -64,6 +68,9 @@ public class AccountCreationController extends Controller implements Initializab
 
     if (nickname.getText().length() <= 12) {
       this.createdUsername = nickname.getText();
+
+      Data.setCurrentUser(this.createdUsername); // DUMMY
+
       App.setRoot("MultiplayerOverview");
     } else {
       // System.out.println("ERROR"); Placeholder

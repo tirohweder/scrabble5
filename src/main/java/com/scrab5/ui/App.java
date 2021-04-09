@@ -16,7 +16,7 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) throws IOException {
-    scene = new Scene(loadFXML("Profile"), 1360, 768);
+    scene = new Scene(loadFXML("Login"), 1360, 768);
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
     stage.setResizable(false);
@@ -24,10 +24,7 @@ public class App extends Application {
   }
 
   public static void setRoot(String fxml) throws IOException {
-
-
     scene.setRoot(loadFXML(fxml));
-
   }
 
   private static Parent loadFXML(String fxml) throws IOException {
