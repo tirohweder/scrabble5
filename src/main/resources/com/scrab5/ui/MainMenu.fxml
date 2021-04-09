@@ -13,19 +13,29 @@
                   <Image url="@images/Main%20MenuV4.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="768.0" fitWidth="345.0" layoutX="943.0" onMouseClicked="#multiplayerClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="79.0" fitWidth="288.0" layoutX="963.0" layoutY="350.0" onMouseClicked="#multiplayerClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#lighten" onMouseReleased="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/MM%20Multiplayer%20Clicked.jpg" />
+                  <Image url="@images/MM_Multiplayer_Clicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="768.0" fitWidth="355.0" layoutX="943.0" onMouseClicked="#singleplayerClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="71.0" fitWidth="288.0" layoutX="963.0" layoutY="415.0" onMouseClicked="#singleplayerClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/MM%20Singleplayer%20Clicked.jpg" />
+                  <Image url="@images/MM_Singleplayer_Clicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="768.0" fitWidth="343.0" layoutX="943.0" onMouseClicked="#tutorialClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="66.0" fitWidth="288.0" layoutX="963.0" layoutY="568.0" onMouseClicked="#tutorialClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/MM%20Tutorial%20Clicked.jpg" />
+                  <Image url="@images/MM_Tutorial_Clicked.jpg.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="57.0" fitWidth="51.0" layoutX="42.0" layoutY="684.0" onMouseClicked="#settingsClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/MM_Settings_Clicked.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="57.0" fitWidth="51.0" layoutX="112.0" layoutY="684.0" onMouseClicked="#statsClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/MM_Stats_Clicked.png" />
                </image>
             </ImageView>
          </children>
