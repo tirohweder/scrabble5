@@ -45,7 +45,7 @@ public class MainMenuController extends Controller implements Initializable {
    */
   @FXML
   private void singleplayerClicked(MouseEvent event) throws IOException {
-    App.setRoot("AccountCreation");
+    // App.setRoot("AccountCreation");
 
   }
 
@@ -56,19 +56,19 @@ public class MainMenuController extends Controller implements Initializable {
    */
   @FXML
   private void tutorialClicked(MouseEvent event) throws IOException {
-    App.setRoot("AccountCreation");
+    // App.setRoot("AccountCreation");
 
   }
 
   @FXML
   private void settingsClicked(MouseEvent event) throws IOException {
-    App.setRoot("AccountCreation");
+    // App.setRoot("AccountCreation");
 
   }
 
   @FXML
   private void statsClicked(MouseEvent event) throws IOException {
-    App.setRoot("AccountCreation");
+    App.setRoot("Profile");
 
   }
 

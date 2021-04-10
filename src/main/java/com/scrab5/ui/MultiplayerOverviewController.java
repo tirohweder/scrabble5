@@ -45,7 +45,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    App.setRoot("AccountCreation"); // Placeholder
+    App.setRoot("MainMenu"); // Placeholder
   }
 
   /**

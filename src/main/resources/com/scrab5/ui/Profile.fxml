@@ -13,7 +13,7 @@
                   <Image url="@images/SB03_background.jpg" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="125.0" layoutX="130.0" layoutY="90.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="125.0" layoutX="130.0" layoutY="90.0" onMouseClicked="#back" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB03_BackButtonClicked.png" />
                </image>

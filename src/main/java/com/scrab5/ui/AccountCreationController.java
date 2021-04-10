@@ -71,7 +71,7 @@ public class AccountCreationController extends Controller implements Initializab
 
       Data.setCurrentUser(this.createdUsername); // DUMMY
 
-      App.setRoot("MultiplayerOverview");
+      App.setRoot("MainMenu");
     } else {
       // System.out.println("ERROR"); Placeholder
     }
