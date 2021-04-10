@@ -28,11 +28,15 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   private int playerCount = 2;
 
-  @Override
+  /**
+   * @author marku
+   * 
+   *         Is called right after the scene is loaded. Sets the displayed username to the username
+   *         of the current selected user / logged in user.
+   */
   public void initialize(URL arg0, ResourceBundle arg1) {
-    // TODO Auto-generated method stub
-    this.userPlaying.setText(Data.getCurrentUser());
 
+    this.userPlaying.setText(Data.getCurrentUser());
   }
 
   /**
@@ -113,6 +117,15 @@ public class MultiplayerOverviewController extends Controller implements Initial
     }
   }
 
+  /**
+   * @author marku
+   * @param event
+   * @throws IOException
+   *
+   *         Is called when the "dropDownButton" Button is clicked. Opens the combo box displaying
+   *         all selectable dictionaries.
+   *
+   */
   @FXML
   private void clickComboBox(MouseEvent event) throws IOException {
 
@@ -120,6 +133,14 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   }
 
+  /**
+   * @author marku
+   * @param event
+   * @throws IOException
+   * 
+   *         Makes dictionarySelection only openable when the dropDownButton is clicked, not when
+   *         the combobox (dictionarySelection) is clicked.
+   */
   @FXML
   private void dontShow(MouseEvent event) throws IOException {
     dictionarySelection.hide();
