@@ -36,7 +36,11 @@ public class AccountCreationController extends Controller implements Initializab
    * @param event
    * @throws IOException
    * 
+   *         When "Enter" is pressed on the keyboard the nickname gets checked on validity (e.g.
+   *         maximum amount of chars, invalid chars,...). Sets the currentUser in Data.
+   * 
    *         TODO: Pop-Up why username is invalid
+   * 
    */
   @FXML
   private void enterPressed(KeyEvent event) throws IOException {
@@ -62,6 +66,11 @@ public class AccountCreationController extends Controller implements Initializab
    * @author marku
    * @param event
    * @throws IOException
+   * 
+   *         When "Enter" is clicked in the UI the nickname gets checked on validity (e.g. maximum
+   *         amount of chars, invalid chars,...). Sets the currentUser in Data.
+   * 
+   *         TODO: Pop-Up why username is invalid
    */
   @FXML
   private void enter(MouseEvent event) throws IOException {
