@@ -2,7 +2,6 @@ package com.scrab5.util.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -31,12 +30,13 @@ public class Database {
    * the name of the local created database. root is the username and Scrabble52021 is the password
    * to connect to the mysql database.
    */
-  private static void connect() {
+  protected void connect() {
     try {
       Class.forName("com.mysql.cj.jdbc.Driver");
       connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scrabble5", "root",
           "Scrabble52021");
       System.out.print("connected");
+      System.out.println();
     } catch (ClassNotFoundException e) {
       System.out.print("Connection not possible" + e.getMessage());
     } catch (SQLException se) {
@@ -57,37 +57,8 @@ public class Database {
   }
 
   /* main method to test connection */
-  public static void main(String args[]) {
-    // System.out.println();
-    Database.connect();
-    CreateDatabase db = new CreateDatabase();
-    db.createTable();
-    FillDatabase fdb = new FillDatabase();
-    fdb.prepareStatements();
-    fdb.createPlayer("Laura", "hallo");
-    Statement stm;
-    try {
-      stm = connection.createStatement();
-      ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-      /* empty ResultSet */
-      while (rs.next()) {
-
-        System.out.println("Name: " + rs.getString("Name") + ", ");
-        System.out.println("Picture: " + rs.getString("Picture") + ", ");
-        System.out.println("Total points: " + rs.getString("TotalPoints") + ", ");
-        System.out.println("Personal highscore: " + rs.getString("PersonalHighscore") + ", ");
-        System.out.println("Laid words: " + rs.getString("LaidWords") + ", ");
-        System.out.println("Points per word rate: " + rs.getString("PointsPerWordRate") + ", ");
-        System.out.println("Longest word: " + rs.getString("LongestWord") + ", ");
-        System.out.println("Total played games: " + rs.getString("TotalPlayedGames") + ", ");
-        System.out.println("Total wins: " + rs.getString("TotalWins") + ", ");
-        System.out.println("win rate: " + rs.getString("WinRate") + ", ");
-        System.out.println("Favorite dictionary: " + rs.getString("FaveDic") + ", ");
-      }
-    } catch (SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-  }
+  /*
+   * public static void main(String args[]) { // System.out.println(); }
+   */
 
 }
