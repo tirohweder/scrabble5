@@ -4,6 +4,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/*
+ * class to fill and update the tables in the database
+ * 
+ * @author lengist
+ * 
+ * @author hraza
+ * 
+ */
+
 public class FillDatabase extends Database {
   private static PreparedStatement pstmPlayer;
   private static PreparedStatement pstmServer;
@@ -28,7 +37,7 @@ public class FillDatabase extends Database {
   }
 
   // This method clears all entries from the Table in the parameter
-  private void deleteTable(String name) {
+  public static void deleteTable(String name) {
     try {
       Statement statement = connection.createStatement();
       String sql = "DELETE FROM " + name + ';';
@@ -36,22 +45,6 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       System.out.println("Could not perform deletion in table " + name);
       System.out.println(e);
-    }
-  }
-
-  /* creates the preparedStatements to insert something in a table */
-  // Preparedstatements ändern und in fill methoden einfügen
-  public void prepareStatements() {
-    try {
-      pstmPlayer = connection.prepareStatement(
-          "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
-              + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
-              + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
-      pstmServer = connection.prepareStatement("INSERT INTO Server (ServerNames, Dictionaries,"
-          + "VictoryRanking, GameRanking, VictoryLossRate) VALUE (?,?,?,?,?);");
-      pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUE (?,?);");
-    } catch (SQLException e) {
-      e.printStackTrace();
     }
   }
 
@@ -210,6 +203,11 @@ public class FillDatabase extends Database {
    */
   public static void createPlayer(String name, String picture) {
     try {
+      // CreateDatabase cdb = new CreateDatabase();
+      pstmPlayer = connection.prepareStatement(
+          "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
+              + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
+              + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
       pstmPlayer.setString(1, name);
       pstmPlayer.setString(2, picture);
       pstmPlayer.setInt(3, 0);
@@ -221,6 +219,7 @@ public class FillDatabase extends Database {
       pstmPlayer.setInt(9, 0);
       pstmPlayer.setInt(10, 0);
       pstmPlayer.setString(11, "");
+      pstmPlayer.executeUpdate();
     } catch (SQLException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -304,26 +303,29 @@ public class FillDatabase extends Database {
    */
   public static void createServer(String name) {
     try {
+      pstmServer = connection.prepareStatement("INSERT INTO Server (ServerListNames, Dictionaries,"
+          + "VictoryRanking, GameRanking, VictoryLossRate) VALUE (?,?,?,?,?);");
       pstmServer.setString(1, name);
       pstmServer.setString(2, "");
       pstmServer.setString(3, "");
       pstmServer.setString(4, "");
       pstmServer.setString(5, "");
-      pstmServer.setString(6, "");
+      pstmServer.executeUpdate();
     } catch (SQLException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
 
-  public static void fillLetters(String name) {
-    // read from intake
+  /* insert letters with corresponding points to calculate points per word */
+  public static void insertLetters(String letter, int point) {
+    try {
+      pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUE (?,?);");
+      pstmDic.setString(1, letter);
+      pstmDic.setInt(2, point);
+      pstmDic.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
-
-
-  /*
-   * for testing: public static void main(String[] args) { }
-   */
-
 
 }

@@ -12,6 +12,10 @@ import java.sql.Statement;
 
 public class CreateDatabase extends Database {
 
+  public CreateDatabase() {
+    createTable();
+  }
+
   /* requests methods to create tables */
   public void createTable() {
     createTablePlayer();
@@ -30,7 +34,7 @@ public class CreateDatabase extends Database {
   }
 
   /* Generation of player table */
-  private void createTablePlayer() {
+  public void createTablePlayer() {
     removeTable("Player");
     try (Statement stm = connection.createStatement()) {
       String sql = "CREATE TABLE Player (Name TEXT NOT NULL," + "Picture TEXT,"
@@ -72,12 +76,10 @@ public class CreateDatabase extends Database {
 
 
   /* for testing */
-  public static void main(String[] args) {
-    CreateDatabase db = new CreateDatabase();
-    System.out.println();
-    db.createTable();
-    // db.disconnect();
-  }
+  /*
+   * public static void main(String[] args) { CreateDatabase db = new CreateDatabase();
+   * System.out.println(); db.createTable(); // db.disconnect(); }
+   */
 
 
 
