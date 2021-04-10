@@ -41,10 +41,10 @@ public class FillDatabase extends Database {
 
   /* creates the preparedStatements to insert something in a table */
   // Preparedstatements ändern und in fill methoden einfügen
-  private void prepareStatements() {
+  public void prepareStatements() {
     try {
       pstmPlayer = connection.prepareStatement(
-          "UPDATE Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
+          "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
               + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
               + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
       pstmServer = connection.prepareStatement("INSERT INTO Server (ServerNames, Dictionaries,"
@@ -54,12 +54,6 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
   }
-
-  /*
-   * method to fill table player at specific index/column. If variable for column name is from type
-   * integer, variable content is default.
-   */
-  public static void fillPlayer(int index, String name, String content, int content2) {}
 
   /*
    * method to fill table player at specific index/column. If variable for column name is from type
@@ -326,8 +320,10 @@ public class FillDatabase extends Database {
     // read from intake
   }
 
+
   /*
-   * for testing: public static void main(String[] args) { new FillDatabase().fillPlayer(…); }
+   * for testing: public static void main(String[] args) { }
    */
+
 
 }

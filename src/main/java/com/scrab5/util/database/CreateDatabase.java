@@ -13,7 +13,7 @@ import java.sql.Statement;
 public class CreateDatabase extends Database {
 
   /* requests methods to create tables */
-  private void createTable() {
+  public void createTable() {
     createTablePlayer();
     createTableServer();
     createTableLetters();

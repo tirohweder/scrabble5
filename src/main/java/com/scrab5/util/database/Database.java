@@ -2,6 +2,7 @@ package com.scrab5.util.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
@@ -59,6 +60,34 @@ public class Database {
   public static void main(String args[]) {
     // System.out.println();
     Database.connect();
+    CreateDatabase db = new CreateDatabase();
+    db.createTable();
+    FillDatabase fdb = new FillDatabase();
+    fdb.prepareStatements();
+    fdb.createPlayer("Laura", "hallo");
+    Statement stm;
+    try {
+      stm = connection.createStatement();
+      ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+      /* empty ResultSet */
+      while (rs.next()) {
+
+        System.out.println("Name: " + rs.getString("Name") + ", ");
+        System.out.println("Picture: " + rs.getString("Picture") + ", ");
+        System.out.println("Total points: " + rs.getString("TotalPoints") + ", ");
+        System.out.println("Personal highscore: " + rs.getString("PersonalHighscore") + ", ");
+        System.out.println("Laid words: " + rs.getString("LaidWords") + ", ");
+        System.out.println("Points per word rate: " + rs.getString("PointsPerWordRate") + ", ");
+        System.out.println("Longest word: " + rs.getString("LongestWord") + ", ");
+        System.out.println("Total played games: " + rs.getString("TotalPlayedGames") + ", ");
+        System.out.println("Total wins: " + rs.getString("TotalWins") + ", ");
+        System.out.println("win rate: " + rs.getString("WinRate") + ", ");
+        System.out.println("Favorite dictionary: " + rs.getString("FaveDic") + ", ");
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 
 }
