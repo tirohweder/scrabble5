@@ -50,16 +50,33 @@ public class FillDatabase extends Database {
 
   /*
    * method to fill table player at specific index/column. If variable for column name is from type
-   * integer, variable content is default.
+   * integer, variable contentString is default.
    */
   public static void updatePlayer(String column, String name, String contentString,
       int contentInt) {
+    PreparedStatement pstm = null;
+
+    /* Beispiel wie richtig: */
+    if (column == "Name") {
+      try {
+        pstm = connection.prepareStatement("UPDATE Player SET Name = ? WHERE Name = ?");
+        pstm.setString(1, contentString);
+        pstm.setString(2, name);
+        pstm.executeUpdate();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    }
+
+    /*
+     * hier muessen die sql Strings verbessert werden. Siehe Beispiel hier oben.
+     * 
+     */
 
     if (column == "Name") {
       String sql = "UPDATE Player SET Name = ? , " + "WHERE Name = ?";
-
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        // set the corresponding param
+      try (PreparedStatement pstmt = connection.prepareStatement(sql)) { // set the corresponding
+                                                                         // param
         pstmt.setString(1, name);
         pstmt.setString(2, contentString);
         // update
@@ -69,123 +86,97 @@ public class FillDatabase extends Database {
       }
     } else if (column == "Picture") {
       String sql = "UPDATE Player SET Picture = ? , " + "WHERE Name = ?";
-
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        // set the corresponding param
+      try (PreparedStatement pstmt = connection.prepareStatement(sql)) { // set the corresponding
+                                                                         // param
         pstmt.setString(2, contentString);
-        pstmt.setString(1, name);
-        // update
+        pstmt.setString(1, name); // update
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "TotalPoints") {
       String sql = "UPDATE Player SET PersonalHighscore = ? , " + "WHERE Name = ?";
-
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        // set the corresponding param
+      try (PreparedStatement pstmt = connection.prepareStatement(sql)) { // set the corresponding
+                                                                         // param
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        // update
+        pstmt.setString(2, name); // update
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "PersonalHighscore") {
       String sql = "UPDATE Player SET TotalPoints = ? , " + "WHERE Name = ?";
-
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        // set the corresponding param
+      try (PreparedStatement pstmt = connection.prepareStatement(sql)) { // set the corresponding
+                                                                         // param
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        // update
+        pstmt.setString(2, name); // update
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "LaidWords") {
       String sql = "UPDATE Player SET Laidwords = ? , " + "WHERE Name = ?";
-
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
         // set the corresponding param
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        // update
+        pstmt.setString(2, name); //
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "PointsPerWordRate") {
       String sql = "UPDATE Player SET PointsPerWordRate = ? , " + "WHERE Name = ?";
-
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
         // set the corresponding param
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        // update
+        pstmt.setString(2, name); //
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "LongestWord") {
       String sql = "UPDATE Player SET LongestWord = ? , " + "WHERE Name = ?";
-
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
         // set the corresponding param
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        // update
+        pstmt.setString(2, name); // param
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "TotalPlayedGames") {
       String sql = "UPDATE Player SET TotalPlayedGames = ? , " + "WHERE Name = ?";
-
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
         // set the corresponding param
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        // update
+        pstmt.setString(2, name); // param
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "TotalWins") {
       String sql = "UPDATE Player SET TotalWins = ? , " + "WHERE Name = ?";
-
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
         // set the corresponding param
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        // update
+        pstmt.setString(2, name); // param
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "WinRate") {
       String sql = "UPDATE Player SET WinRate = ? , " + "WHERE Name = ?";
-
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
         // set the corresponding param
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        // update
+        pstmt.setString(2, name); // param
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "FavDic") {
       String sql = "UPDATE Player SET FaveDic = ? , " + "WHERE name = ?";
-
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-
         // set the corresponding param
         pstmt.setString(1, contentString);
         pstmt.setString(2, name);
@@ -195,6 +186,7 @@ public class FillDatabase extends Database {
         System.out.println(e.getMessage());
       }
     }
+
   }
 
   /*
@@ -202,8 +194,8 @@ public class FillDatabase extends Database {
    * for statistics get default values.
    */
   public static void createPlayer(String name, String picture) {
+    /* missing: check if name already exists!!! */
     try {
-      // CreateDatabase cdb = new CreateDatabase();
       pstmPlayer = connection.prepareStatement(
           "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
               + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
@@ -226,6 +218,7 @@ public class FillDatabase extends Database {
     }
   }
 
+  /* auch hier bitte die sql Strings verbessern. das Komma nach ? muss überall weg. */
   // This method updates the entries from the server table at specific column from a specific server
   public static void updateServer(String column, String name, String content) {
 
@@ -302,6 +295,7 @@ public class FillDatabase extends Database {
    * statistics get default values.
    */
   public static void createServer(String name) {
+    /* missing: check if name already exists!!! */
     try {
       pstmServer = connection.prepareStatement("INSERT INTO Server (ServerListNames, Dictionaries,"
           + "VictoryRanking, GameRanking, VictoryLossRate) VALUE (?,?,?,?,?);");
@@ -316,7 +310,12 @@ public class FillDatabase extends Database {
     }
   }
 
-  /* insert letters with corresponding points to calculate points per word */
+  /*
+   * insert letters with corresponding points to calculate points per word
+   * 
+   * --> check if letter exists needed???
+   * 
+   */
   public static void insertLetters(String letter, int point) {
     try {
       pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUE (?,?);");
