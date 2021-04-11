@@ -16,7 +16,7 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) throws IOException {
-    scene = new Scene(loadFXML("Login"), 1360, 768);
+    scene = new Scene(loadFXML("Singleplayer"), 1360, 768);
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
     stage.setResizable(false);
