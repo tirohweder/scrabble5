@@ -38,6 +38,16 @@
                   <Image url="@images/MM_Stats_Clicked.png" />
                </image>
             </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="117.0" layoutX="27.0" layoutY="14.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/MM_ExitButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="34.0" fitWidth="117.0" layoutX="27.0" layoutY="14.0" onMouseClicked="#close" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/MM_ExitButton_Clicked.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
