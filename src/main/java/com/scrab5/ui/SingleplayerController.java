@@ -12,9 +12,10 @@ import javafx.scene.input.MouseEvent;
  * @author apilgrim
  */
 
-public class SingleplayerController extends Controller implements Initializable {
+public class SingleplayerController implements Initializable {
 
   private boolean clicked = false;
+  private ImageView clickedTile;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -30,13 +31,36 @@ public class SingleplayerController extends Controller implements Initializable 
    */
   @FXML
   private void fieldClicked(MouseEvent event) throws IOException {
-    ImageView iv = ((ImageView) event.getSource());
-    iv.setOpacity(1);
-    clicked = true;
+    if (!clicked) {
+      lighten(event);
+      clickedTile = (ImageView) event.getSource();
+      clicked = true;
+    } else if (clicked && (clickedTile == (ImageView) event.getSource())) {
+      darken(event);
+      clicked = false;
+      clickedTile = null;
+    }
   }
 
-  public boolean getClicked() {
-    return clicked;
+  /**
+   * @author Aaron
+   */
+  @FXML
+  private void lighten(MouseEvent event) {
+    ImageView iv = ((ImageView) event.getSource());
+    iv.setOpacity(1);
+  }
+
+  /**
+   * @author Aaron
+   */
+  @FXML
+  private void darken(MouseEvent event) {
+
+    if (clickedTile != (ImageView) event.getSource()) {
+      ImageView iv = ((ImageView) event.getSource());
+      iv.setOpacity(0);
+    }
   }
 
 }
