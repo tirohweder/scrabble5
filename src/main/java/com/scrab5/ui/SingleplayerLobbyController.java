@@ -17,7 +17,7 @@ public class SingleplayerLobbyController extends Controller implements Initializ
 
   @FXML
   private void back(MouseEvent event) throws IOException {
-    App.setRoot("MainMenu");
+    App.setRoot("SinglePlayer");
   }
 
 }

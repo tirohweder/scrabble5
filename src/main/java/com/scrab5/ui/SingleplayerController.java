@@ -2,6 +2,7 @@ package com.scrab5.ui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +20,7 @@ public class SingleplayerController implements Initializable {
   private ImageView clickedTile;
   private ImageView clickedLetter;
   private Image markedTile;
+
   private ImageView ragPlace1;
   private ImageView ragPlace2;
   private ImageView ragPlace3;
@@ -26,6 +28,8 @@ public class SingleplayerController implements Initializable {
   private ImageView ragPlace5;
   private ImageView ragPlace6;
   private ImageView ragPlace7;
+
+  private ArrayList unavailableTiles = new ArrayList<String>();
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -88,7 +92,7 @@ public class SingleplayerController implements Initializable {
         if (!letterClicked) {
           lighten(event);
           tileClicked = true;
-        } else {
+        } else if (!iv.getImage().getUrl().contains("letter_Tiles")) {
           markedTile = clickedTile.getImage();
           clickedTile.setImage(clickedLetter.getImage());;
           clickedLetter.setOpacity(0);
@@ -355,6 +359,13 @@ public class SingleplayerController implements Initializable {
    */
   @FXML
   private void playClicked(MouseEvent event) throws IOException {
+    ragPlace1.setOpacity(1);
+    ragPlace2.setOpacity(1);
+    ragPlace3.setOpacity(1);
+    ragPlace4.setOpacity(1);
+    ragPlace5.setOpacity(1);
+    ragPlace6.setOpacity(1);
+    ragPlace7.setOpacity(1);
     ragPlace1 = null;
     ragPlace2 = null;
     ragPlace3 = null;
@@ -362,5 +373,10 @@ public class SingleplayerController implements Initializable {
     ragPlace5 = null;
     ragPlace6 = null;
     ragPlace7 = null;
+  }
+
+  private boolean correctPlacedLetters() {
+
+    return true;
   }
 }

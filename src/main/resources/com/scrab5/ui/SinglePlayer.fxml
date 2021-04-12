@@ -18,52 +18,52 @@
                   <Image url="@board_Images/Spielfeld.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f1" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g1" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h1tw" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i1" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e1" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f2tl" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
@@ -73,107 +73,102 @@
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j1" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o1tw" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n1" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m1" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k1" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l1dl" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i3dl" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g3dl" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c3dw" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n2dw" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/tile_markiert.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
@@ -183,7 +178,7 @@
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
@@ -193,967 +188,972 @@
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j2tl" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a1tw" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b1" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b2dw" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c1" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d1dl" fitHeight="42.0" fitWidth="42.0" layoutX="263.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d2" fitHeight="42.0" fitWidth="42.0" layoutX="305.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k5dw" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k4" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a4dl" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b4" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c4" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d4dw" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e4" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f4" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g4" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h4dl" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j4" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i4" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l4dw" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m4" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n4" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o4dl" fitHeight="42.0" fitWidth="42.0" layoutX="389.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m3dw" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l3" fitHeight="42.0" fitWidth="42.0" layoutX="347.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b6tl" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f6tl" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j6tl" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n6tl" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o6" fitHeight="42.0" fitWidth="42.0" layoutX="473.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c7dl" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g7dl" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i7dl" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m7dl" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o7" fitHeight="42.0" fitWidth="42.0" layoutX="515.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k8" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a8tw" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b8" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c8" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d8dl" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e8" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f8" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g8" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h8s" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j8" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i8" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l8dl" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m8" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n8" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o8tw" fitHeight="42.0" fitWidth="42.0" layoutX="557.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c9dl" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g9dl" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i9dl" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m9dl" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o9" fitHeight="42.0" fitWidth="42.0" layoutX="599.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b10dl" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f10tl" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j10tl" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n10tl" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o10" fitHeight="42.0" fitWidth="42.0" layoutX="641.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k11dw" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e11dw" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o11" fitHeight="42.0" fitWidth="42.0" layoutX="683.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k12" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a12dl" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b12" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c12" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d12dw" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e12" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f12" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g12" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h12dl" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j12" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i12" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l12dw" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m12" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n12" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o12dl" fitHeight="42.0" fitWidth="42.0" layoutX="725.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c13dw" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g13dl" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i13dl" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m13dw" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o13" fitHeight="42.0" fitWidth="42.0" layoutX="767.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b14dw" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f14tl" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j14tl" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n14dw" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o14" fitHeight="42.0" fitWidth="42.0" layoutX="809.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="k15" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="473.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a15tw" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b15" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c15" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d15dl" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e15" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f15" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g15" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h15tw" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="j15" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="431.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="i15" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="l15dl" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="515.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="m15" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="557.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="n15" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="599.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="o15tw" fitHeight="42.0" fitWidth="42.0" layoutX="851.0" layoutY="641.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="a5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="53.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="b5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="95.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="c5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="137.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="d5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="179.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="e5dw" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="221.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="f5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="263.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="g5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="305.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView id="h5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="347.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/tile_markiert.png" />
+               </image>
+            </ImageView>
+            <ImageView id="i5" fitHeight="42.0" fitWidth="42.0" layoutX="431.0" layoutY="389.0" onMouseClicked="#fieldClicked" onMouseEntered="#lighten" onMouseExited="#darken" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/tile_markiert.png" />
                </image>
