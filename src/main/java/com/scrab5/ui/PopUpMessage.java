@@ -18,7 +18,7 @@ public class PopUpMessage extends Controller implements Initializable {
 
     switch (messageType) {
       case ERROR:
-        s.setScene(new Scene(loadFXML("AccountCreationErrorMessage"), 400, 400));
+        s.setScene(new Scene(loadFXML("ErrorMessage"), 400, 400));
         break;
       default:
         break;
@@ -38,6 +38,8 @@ public class PopUpMessage extends Controller implements Initializable {
   public void show() {
     s.showAndWait();
   }
+
+
 
   private static Parent loadFXML(String fxml) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
