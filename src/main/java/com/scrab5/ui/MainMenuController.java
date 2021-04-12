@@ -64,7 +64,7 @@ public class MainMenuController extends Controller implements Initializable {
 
   @FXML
   private void settingsClicked(MouseEvent event) throws IOException {
-    // App.setRoot("AccountCreation");
+    App.setRoot("Settings");
 
   }
 
