@@ -27,7 +27,7 @@
                   <Image url="@images/SB02_BackButtonClicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="78.0" fitWidth="472.0" layoutX="780.0" layoutY="547.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="78.0" fitWidth="472.0" layoutX="780.0" layoutY="547.0" onMouseClicked="#start" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB04_StartButtonClicked.png" />
                </image>

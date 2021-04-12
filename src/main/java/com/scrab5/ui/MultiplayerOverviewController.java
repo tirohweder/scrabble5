@@ -39,6 +39,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.userPlaying.setText(Data.getCurrentUser());
   }
 
+  @FXML
+  private void start(MouseEvent event) throws IOException {
+    App.setRoot("MultiplayerLobby");
+  }
+
   /**
    * @author marku
    * @param event
@@ -123,7 +128,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @throws IOException
    *
    *         Is called when the "dropDownButton" Button is clicked. Opens the combo box displaying
-   *         all selectable dictionaries. 
+   *         all selectable dictionaries.
    *
    */
   @FXML
