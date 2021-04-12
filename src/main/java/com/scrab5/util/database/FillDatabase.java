@@ -57,7 +57,7 @@ public class FillDatabase extends Database {
 
 		if (column == "Name") {
 			String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
-			try (PreparedStatement pstmt = connection.prepareStatement(sql)) { 
+			try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
 				pstmt.setString(1, name);
 				pstmt.setString(2, contentString);
 				pstmt.executeUpdate();
@@ -66,7 +66,7 @@ public class FillDatabase extends Database {
 			}
 		} else if (column == "Picture") {
 			String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
-			try (PreparedStatement pstmt = connection.prepareStatement(sql)) { 
+			try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
 				pstmt.setString(2, contentString);
 				pstmt.setString(1, name); // update
 				pstmt.executeUpdate();
@@ -223,7 +223,7 @@ public class FillDatabase extends Database {
 			}
 		} else if (column == "GameRanking") {
 			String sql = "UPDATE Server SET GameRanking = ? WHERE ServerNames = ?";
-			
+
 			try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
 				pstmt.setString(1, content);
 				pstmt.setString(2, name);
@@ -234,7 +234,7 @@ public class FillDatabase extends Database {
 			}
 		} else if (column == "VictoryLossRate") {
 			String sql = "UPDATE Server SET VictoryLossRate = ? WHERE ServerNames = ?";
-			
+
 			try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
 				pstmt.setString(1, content);
 				pstmt.setString(2, name);
@@ -250,7 +250,7 @@ public class FillDatabase extends Database {
 	 * Variables for statistics get default values.
 	 */
 	public static void createServer(String name) {
-		
+
 		try {
 			pstmServer = connection.prepareStatement("INSERT INTO Server (ServerListNames, Dictionaries,"
 					+ "VictoryRanking, GameRanking, VictoryLossRate) VALUE (?,?,?,?,?);");
