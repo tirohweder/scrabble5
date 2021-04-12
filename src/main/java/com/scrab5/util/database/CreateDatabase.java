@@ -16,14 +16,23 @@ public class CreateDatabase extends Database {
     createTable();
   }
 
-  /* requests methods to create tables */
+  /**
+   * @author lengist
+   * 
+   *         Create all tables initialy.
+   */
   public void createTable() {
     createTablePlayer();
     createTableServer();
     createTableLetters();
   }
 
-  /* removes table if a re-start is intended */
+  /**
+   * @author lengist
+   * @param name
+   * 
+   *        Remove a table with the name "name". For example in case of a new start.
+   */
   private void removeTable(String name) {
     try (Statement stm = connection.createStatement()) {
       String sql = "DROP TABLE IF EXISTS " + name;
@@ -33,7 +42,11 @@ public class CreateDatabase extends Database {
     }
   }
 
-  /* Generation of player table */
+  /**
+   * @author lengist
+   * 
+   *         Generates the table "player" with all required columns.
+   */
   public void createTablePlayer() {
     removeTable("Player");
     try (Statement stm = connection.createStatement()) {
@@ -49,7 +62,11 @@ public class CreateDatabase extends Database {
     }
   }
 
-  /* Generation of server table */
+  /**
+   * @author lengist
+   * 
+   *         Generates the table "server" with all required columns.
+   */
   private void createTableServer() {
     removeTable("Server");
     try (Statement stm = connection.createStatement()) {
@@ -62,7 +79,11 @@ public class CreateDatabase extends Database {
     }
   }
 
-  /* Generation of letter table */
+  /**
+   * @author lengist
+   * 
+   *         Generates the table "letter" with all required columns.
+   */
   private void createTableLetters() {
     removeTable("Letters");
     try (Statement stm = connection.createStatement()) {
