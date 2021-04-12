@@ -92,9 +92,15 @@ public class AccountCreationController extends Controller implements Initializab
       App.setRoot("MainMenu");
 
     } else {
+
       Alert at = new Alert(AlertType.ERROR);
       at.show();
-      System.out.println("ERROR");// Placeholder
+
+
+      PopUpMessage pum = new PopUpMessage("HI", PopUpMessageType.ERROR);
+      pum.show();
+
+
     }
 
     return false;
