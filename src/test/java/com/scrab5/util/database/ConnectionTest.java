@@ -1,7 +1,5 @@
 package com.scrab5.util.database;
 
-import org.junit.Test;
-
 /*
  * class to test the creation of the connection to the database
  * 
@@ -11,9 +9,8 @@ import org.junit.Test;
 
 public class ConnectionTest {
 
-  @Test
-  public void connection() {
-    Database db = new Database();
-  }
+  /*
+   * @Test public void connection() { Database db = new Database(); }
+   */
 
 }

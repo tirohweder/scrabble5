@@ -11,9 +11,10 @@ public class TableTest {
   public void player() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
-    Statement stm;
+    // Statement stm;
+    Statement stm = null;
     try {
-      stm = Database.connection.createStatement();
+      // stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
       while (rs.next()) {
         System.out.println("Name: " + rs.getString("Name") + ", ");
@@ -38,9 +39,9 @@ public class TableTest {
   public void server() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createServer("Laura's server");
-    Statement stm;
+    Statement stm = null;
     try {
-      stm = Database.connection.createStatement();
+      // stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Server");
       while (rs.next()) {
         System.out.println("Server Name: " + rs.getString("ServerListNames") + ", ");
@@ -58,9 +59,9 @@ public class TableTest {
   public void letters() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.insertLetters("L", 4);
-    Statement stm;
+    Statement stm = null;
     try {
-      stm = Database.connection.createStatement();
+      // stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Letters");
       while (rs.next()) {
         System.out.println("Letter: " + rs.getString("Letter") + ", ");
@@ -76,9 +77,9 @@ public class TableTest {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     FillDatabase.deleteTable("Player");
-    Statement stm;
+    Statement stm = null;
     try {
-      stm = Database.connection.createStatement();
+      // stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
       if (!rs.next()) {
         System.out.println("Table Player is empty");
@@ -94,10 +95,10 @@ public class TableTest {
     FillDatabase.createPlayer("Laura", "Bild");
     /* update the name: */
     FillDatabase.updatePlayer("Name", "Laura", "Maria", 0);
-    Statement stm;
+    Statement stm = null;
     try {
       System.out.println("---------------CHANGE---------------");
-      stm = Database.connection.createStatement();
+      // stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
       while (rs.next()) {
         System.out.println("Name: " + rs.getString("Name") + ", ");
