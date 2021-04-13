@@ -34,6 +34,8 @@ public class MainMenuController extends Controller implements Initializable {
    * @author Aaron
    * @param event
    * @throws IOException
+   * 
+   *         Is called when "Multiplayer" - button is clicked, switches to the settings screen
    */
   @FXML
   private void multiplayerClicked(MouseEvent event) throws IOException {
@@ -44,6 +46,8 @@ public class MainMenuController extends Controller implements Initializable {
    * @author Aaron
    * @param event
    * @throws IOException
+   * 
+   *         Is called when "Singleplayer" - button is clicked, switches to the settings screen
    */
   @FXML
   private void singleplayerClicked(MouseEvent event) throws IOException {
@@ -55,6 +59,8 @@ public class MainMenuController extends Controller implements Initializable {
    * @author Aaron
    * @param event
    * @throws IOException
+   * 
+   *         Is called when "Play Tutorial" - button is clicked, switches to the settings screen
    */
   @FXML
   private void tutorialClicked(MouseEvent event) throws IOException {
@@ -62,12 +68,27 @@ public class MainMenuController extends Controller implements Initializable {
 
   }
 
+  /**
+   * @author Aaron
+   * @param event
+   * @throws IOException
+   * 
+   *         Is called when "Settings" - button is clicked, switches to the settings screen
+   */
   @FXML
   private void settingsClicked(MouseEvent event) throws IOException {
     App.setRoot("Settings");
 
   }
 
+
+  /**
+   * @author Aaron
+   * @param event
+   * @throws IOException
+   * 
+   *         Is called when "Stats" - button is clicked, switches to the game stats Screen
+   */
   @FXML
   private void statsClicked(MouseEvent event) throws IOException {
     App.setRoot("Profile");
