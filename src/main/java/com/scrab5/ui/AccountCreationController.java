@@ -5,8 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -83,23 +81,24 @@ public class AccountCreationController extends Controller implements Initializab
   public boolean isUsernameValid() throws IOException {
 
     String regex = "[a-zA-Z0-9_]{1,12}";
+    String message;
+    PopUpMessage pum;
 
     if (this.nickname.getText().matches(regex)) {
 
       this.createdUsername = nickname.getText();
+
       Data.setCurrentUser(this.createdUsername); // DUMMY
-                                                 // Pop Up dass Erstellung erfolgreich war
+
+      pum = new PopUpMessage("HELLO", PopUpMessageType.NOTIFICATION);
+      pum.show();
       App.setRoot("MainMenu");
 
     } else {
 
-      Alert at = new Alert(AlertType.ERROR);
-      at.show();
-
-
-      PopUpMessage pum = new PopUpMessage("HI", PopUpMessageType.ERROR);
+      message = "Please make sure your nickname consists only of letters, numbers and underscores";
+      pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
-
 
     }
 

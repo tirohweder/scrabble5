@@ -25,7 +25,7 @@
                   <Font name="Arial Rounded MT Bold" size="26.0" />
                </font>
             </TextField>
-            <ImageView fitHeight="55.0" fitWidth="127.0" layoutX="1123.0" layoutY="657.0" onMouseClicked="#enter" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="55.0" fitWidth="127.0" layoutX="1123.0" layoutY="657.0" onMouseClicked="#enter" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB02_EnterButtonClicked.png" />
                </image>

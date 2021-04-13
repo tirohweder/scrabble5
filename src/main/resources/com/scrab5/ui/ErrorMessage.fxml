@@ -1,8 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.ErrorMessageController">
+   <children>
+      <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" style="-fx-background-color: #014538;">
+         <children>
+            <Text fx:id="message" fill="WHITE" layoutX="108.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="378.0">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="69.0" fitWidth="77.0" layoutX="21.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Error_WarningIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="42.0" fitWidth="114.0" layoutX="200.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Error_OkayButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="42.0" fitWidth="114.0" layoutX="200.0" layoutY="125.0" onMouseClicked="#okay" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Error_OkayButtonClicked.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+   </children>
 </AnchorPane>
-
