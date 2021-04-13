@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -29,7 +30,8 @@ public class SingleplayerController implements Initializable {
   private ImageView ragPlace6;
   private ImageView ragPlace7;
 
-  private ArrayList unavailableTiles = new ArrayList<String>();
+  private ArrayList<String> unavailableTiles = new ArrayList<String>();
+  private ArrayList<String> choosenTiles = new ArrayList<String>();
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -49,7 +51,7 @@ public class SingleplayerController implements Initializable {
     ImageView iv = ((ImageView) event.getSource());
 
     // check if the field clicked is a letter to remove
-    if (iv.getImage().getUrl().contains("letter_Tiles")) {
+    if (iv.getImage().getUrl().contains("letter_Tiles") && !placeTaken(iv)) {
 
       // check which ragPlace to replace and turn back to rag
       if (ragPlace1 != null
@@ -81,20 +83,21 @@ public class SingleplayerController implements Initializable {
           && ragPlace7.getOpacity() == 0) {
         ragPlace7.setOpacity(1);
       }
-
+      choosenTiles.remove(iv.getId());
       iv.setImage(markedTile);
       clickedTile = null;
       clickedLetter = null;
     } else {
       // check if no tiles has been clicked
-      if (!tileClicked) {
+      if (!tileClicked && !placeTaken(iv)) {
         clickedTile = (ImageView) event.getSource();
         if (!letterClicked) {
           lighten(event);
           tileClicked = true;
         } else if (!iv.getImage().getUrl().contains("letter_Tiles")) {
           markedTile = clickedTile.getImage();
-          clickedTile.setImage(clickedLetter.getImage());;
+          clickedTile.setImage(clickedLetter.getImage());
+          choosenTiles.add(clickedTile.getId());
           clickedLetter.setOpacity(0);
           letterClicked = false;
         }
@@ -147,10 +150,11 @@ public class SingleplayerController implements Initializable {
         letterClicked = true;
 
         // destination chosen
-      } else {
+      } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
         clickedTile.setImage(ragPlace1.getImage());
+        choosenTiles.add(clickedTile.getId());
         ragPlace1.setOpacity(0);
       }
 
@@ -179,10 +183,11 @@ public class SingleplayerController implements Initializable {
         letterClicked = true;
 
         // destination chosen
-      } else {
+      } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
         clickedTile.setImage(ragPlace2.getImage());
+        choosenTiles.add(clickedTile.getId());
         ragPlace2.setOpacity(0);
       }
 
@@ -211,10 +216,11 @@ public class SingleplayerController implements Initializable {
         letterClicked = true;
 
         // destination chosen
-      } else {
+      } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
         clickedTile.setImage(ragPlace3.getImage());
+        choosenTiles.add(clickedTile.getId());
         ragPlace3.setOpacity(0);
       }
 
@@ -243,10 +249,11 @@ public class SingleplayerController implements Initializable {
         letterClicked = true;
 
         // destination chosen
-      } else {
+      } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
         clickedTile.setImage(ragPlace4.getImage());
+        choosenTiles.add(clickedTile.getId());
         ragPlace4.setOpacity(0);
       }
 
@@ -275,10 +282,11 @@ public class SingleplayerController implements Initializable {
         letterClicked = true;
 
         // destination chosen
-      } else {
+      } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
         clickedTile.setImage(ragPlace5.getImage());
+        choosenTiles.add(clickedTile.getId());
         ragPlace5.setOpacity(0);
       }
 
@@ -307,10 +315,11 @@ public class SingleplayerController implements Initializable {
         letterClicked = true;
 
         // destination chosen
-      } else {
+      } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
         clickedTile.setImage(ragPlace6.getImage());
+        choosenTiles.add(clickedTile.getId());
         ragPlace6.setOpacity(0);
       }
 
@@ -343,6 +352,7 @@ public class SingleplayerController implements Initializable {
         markedTile = clickedTile.getImage();
         tileClicked = false;
         clickedTile.setImage(ragPlace7.getImage());
+        choosenTiles.add(clickedTile.getId());
         ragPlace7.setOpacity(0);
       }
 
@@ -359,13 +369,33 @@ public class SingleplayerController implements Initializable {
    */
   @FXML
   private void playClicked(MouseEvent event) throws IOException {
-    ragPlace1.setOpacity(1);
-    ragPlace2.setOpacity(1);
-    ragPlace3.setOpacity(1);
-    ragPlace4.setOpacity(1);
-    ragPlace5.setOpacity(1);
-    ragPlace6.setOpacity(1);
-    ragPlace7.setOpacity(1);
+
+    // add choosenTiles to Placed Tiles, so they are not available for the next anymore
+    Iterator<String> it = choosenTiles.iterator();
+    while (it.hasNext()) {
+      String s = it.next();
+      unavailableTiles.add(s);
+    }
+
+    choosenTiles.clear();
+
+    // reset Opacity on the Rag Board if not null
+    if (ragPlace1 != null)
+      ragPlace1.setOpacity(1);
+    if (ragPlace2 != null)
+      ragPlace2.setOpacity(1);
+    if (ragPlace3 != null)
+      ragPlace3.setOpacity(1);
+    if (ragPlace4 != null)
+      ragPlace4.setOpacity(1);
+    if (ragPlace5 != null)
+      ragPlace5.setOpacity(1);
+    if (ragPlace6 != null)
+      ragPlace6.setOpacity(1);
+    if (ragPlace7 != null)
+      ragPlace7.setOpacity(1);
+
+    // delete the ragplaces for new tiles
     ragPlace1 = null;
     ragPlace2 = null;
     ragPlace3 = null;
@@ -375,8 +405,16 @@ public class SingleplayerController implements Initializable {
     ragPlace7 = null;
   }
 
-  private boolean correctPlacedLetters() {
-
-    return true;
+  private boolean placeTaken(ImageView iv) {
+    Iterator<String> it = unavailableTiles.iterator();
+    while (it.hasNext()) {
+      String s = it.next();
+      if (s.equals(iv.getId())) {
+        return true;
+      } else {
+        continue;
+      }
+    }
+    return false;
   }
 }
