@@ -40,6 +40,7 @@ public class SingleplayerController implements Initializable {
   }
 
 
+
   /**
    * @author Aaron
    * @param event
@@ -49,6 +50,10 @@ public class SingleplayerController implements Initializable {
   private void fieldClicked(MouseEvent event) throws IOException {
 
     ImageView iv = ((ImageView) event.getSource());
+
+    String cordinate = iv.getId();
+    String xCord = cordinate.substring(0, 1);
+    String yCord = cordinate.substring(1, 2);
 
     // check if the field clicked is a letter to remove
     if (iv.getImage().getUrl().contains("letter_Tiles") && !placeTaken(iv)) {
