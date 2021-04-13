@@ -27,6 +27,10 @@ public class BagOfTiles {
     return bag.remove(new Random().nextInt(bag.size()));
   }
 
+  /**
+   * @author trohwede
+   * @return bag Size
+   */
   public int getSize() {
     // returns how many Tiles are left in the Bag
     return this.bag.size();
