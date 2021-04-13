@@ -1,14 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/com/srab5/util/database/DatabaseTest.java" afterDir="false" />
+    <list default="true" id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/LoginScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/PrimaryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SampleController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SecondaryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/Sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_QuitButtonClicked.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_QuitButtonClicked.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_background.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/primary.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/secondary.fxml" beforeDir="false" />
     </list>
+    <list id="93e9ba16-48c4-4e9f-aa6b-0f5285f1c56f" name="New changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager">
+    <option name="groupingKeys">
+      <option value="module" />
+    </option>
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -18,45 +53,41 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Timm Rohweder &lt;trohwede@mail.uni-mannheim.de&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="1qGJJOixoDeHR3QDN9NlDhxBUni" />
+  <component name="ProjectId" id="1pwWtJDRehXmUZ0i73fj7fu624K" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/git/scrabble5" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="settings.saveactions" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="com.scrab5.ui" />
+      <recent name="com.scrab5.socket" />
+      <recent name="com.scrab5.core.game" />
+      <recent name="com" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\test\com\srab5\util\database" />
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\test\com\srab5\util" />
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src" />
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\test\com\srab5" />
-      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main\resources\com\scrab5\ui" />
+      <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.Create JAR">
+  <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.scrab5.ui.App" />
       <module name="scrabble5" />
@@ -70,7 +101,60 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Create JAR" type="MavenRunConfiguration" factoryName="Maven">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.main.Main" />
+      <module name="scrabble5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scrab5.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Download Dependency" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="mvn" />
+                <option value="dependency:copy-dependencies" />
+                <option value="-Dclassifier=sources" />
+                <option value="-DoutputDirectory=./src/main/resources/lib" />
+                <option value="-Dhttps.protocols=TLSv1.2" />
+              </list>
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="Export Jar" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -96,123 +180,105 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
-    <configuration name="scrabble5 [compile,javafx:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
-      <MavenSettings>
-        <option name="myGeneralSettings" />
-        <option name="myRunnerSettings" />
-        <option name="myRunnerParameters">
-          <MavenRunnerParameters>
-            <option name="profiles">
-              <set />
-            </option>
-            <option name="goals">
-              <list>
-                <option value="compile" />
-                <option value="javafx:run" />
-              </list>
-            </option>
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="resolveToWorkspace" value="true" />
-            <option name="workingDirPath" value="$PROJECT_DIR$" />
-          </MavenRunnerParameters>
-        </option>
-      </MavenSettings>
-      <method v="2" />
-    </configuration>
     <list>
+      <item itemvalue="Application.Main" />
       <item itemvalue="Application.App" />
-      <item itemvalue="Maven.scrabble5 [compile,javafx:run]" />
-      <item itemvalue="Maven.Create JAR" />
+      <item itemvalue="Maven.Export Jar" />
+      <item itemvalue="Maven.Download Dependency" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\rohwe\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="" />
-      <created>1616699920549</created>
+      <changelist id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="" />
+      <created>1616094845091</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1616699920549</updated>
-      <workItem from="1616699923200" duration="8000" />
-      <workItem from="1616708354575" duration="1048000" />
-      <workItem from="1616745834529" duration="1633000" />
-      <workItem from="1617706412251" duration="3248000" />
+      <updated>1616094845091</updated>
+      <workItem from="1616094848839" duration="742000" />
+      <workItem from="1616095603668" duration="3694000" />
+      <workItem from="1616147145320" duration="2454000" />
+      <workItem from="1616321418590" duration="617000" />
+      <workItem from="1616322347142" duration="301000" />
+      <workItem from="1616322659650" duration="9642000" />
+      <workItem from="1616371096428" duration="391000" />
+      <workItem from="1616371498531" duration="763000" />
+      <workItem from="1616403728498" duration="2061000" />
+      <workItem from="1616693316880" duration="786000" />
     </task>
-    <task id="LOCAL-00001" summary="#30 reloaded class files">
-      <created>1616702256898</created>
+    <task id="LOCAL-00001" summary="#26 Test commit 2. for base structure">
+      <created>1616096003309</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1616702256898</updated>
+      <updated>1616096003309</updated>
     </task>
-    <task id="LOCAL-00002" summary="#33 excluded dependency but still shows up as duplicate">
-      <created>1616705303002</created>
+    <task id="LOCAL-00002" summary="#26 Test commit 2. for base structure">
+      <created>1616337605195</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1616705303002</updated>
+      <updated>1616337605195</updated>
     </task>
-    <task id="LOCAL-00003" summary="#33 now we have a exceutable JAR">
-      <created>1616709393397</created>
+    <task id="LOCAL-00003" summary="#26 Base Structure created">
+      <created>1616350503881</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1616709393397</updated>
+      <updated>1616350503881</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="#52 Merge branch 'ui' into develop&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <created>1618314553383</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1618314553383</updated>
+    </task>
+    <task id="LOCAL-00005" summary="#52 Merge branch 'database' into develop&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;pom.xml&#10;#&#9;src/main/java/com/scrab5/core/game/BagOfTiles.java&#10;#&#9;src/main/java/module-info.java">
+      <created>1618328744673</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1618328744673</updated>
+    </task>
+    <task id="LOCAL-00006" summary="#52 Merge branch 'database' into develop&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;pom.xml&#10;#&#9;src/main/java/com/scrab5/core/game/BagOfTiles.java&#10;#&#9;src/main/java/module-info.java">
+      <created>1618329082866</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1618329082866</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="#30 reloaded class files" />
-    <MESSAGE value="#33 excluded dependency but still shows up as duplicate" />
-    <MESSAGE value="#33 now we have a exceutable JAR" />
-    <option name="LAST_COMMIT_MESSAGE" value="#33 now we have a exceutable JAR" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
-  <component name="WindowStateProjectService">
-    <state x="560" y="366" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616708664712">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="560" y="366" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616708664712" />
-    <state x="1076" y="585" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1616747377964">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1076" y="585" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747377964" />
-    <state x="849" y="294" key="CommitChangelistDialog2" timestamp="1616709392859">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="849" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616709392859" />
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1616747559232">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1616747559232">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1616747559232">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1616747559232">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747559232" />
-    <state x="2782" y="215" key="new project wizard" timestamp="1617715923756">
-      <screen x="2560" y="15" width="1680" height="1010" />
-    </state>
-    <state x="2782" y="215" key="new project wizard/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@2560.15.1680.1010" timestamp="1617715923756" />
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="#26 Test commit 2. for base structure" />
+    <MESSAGE value="#26 Base Structure created" />
+    <MESSAGE value="#52 Merge branch 'ui' into develop&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="#52 Merge branch 'database' into develop&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;pom.xml&#10;#&#9;src/main/java/com/scrab5/core/game/BagOfTiles.java&#10;#&#9;src/main/java/module-info.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="#52 Merge branch 'database' into develop&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;pom.xml&#10;#&#9;src/main/java/com/scrab5/core/game/BagOfTiles.java&#10;#&#9;src/main/java/module-info.java" />
   </component>
 </project>
