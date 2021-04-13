@@ -39,7 +39,7 @@ public class ServerThread extends Threads {
         switch (message.getType()) {
 
           case GETSERVERDATA:
-            Message reply = new Message(server.host);
+            Message reply = new Message(server.getHost());
             sendMessageToClient(reply);
             break;
           case CONNECT:
@@ -48,7 +48,7 @@ public class ServerThread extends Threads {
             break;
           case DISCONNECT:
             DisconnectMessage disconnect = (DisconnectMessage) message;
-            if (disconnect.getSender().equals(server.host)) {
+            if (disconnect.getSender().equals(server.getHost())) {
               server.shutDownServer();
             } else {
               deletePlayer(disconnect.getSenderIp());
@@ -109,7 +109,7 @@ public class ServerThread extends Threads {
   }
 
   public synchronized void closeConnection() {
-    sendMessageToClient(new DisconnectMessage(server.host, server.getIp()));
+    sendMessageToClient(new DisconnectMessage(server.getHost(), server.getIp()));
     this.running = false;
     try {
       this.socketToClient.shutdownInput();

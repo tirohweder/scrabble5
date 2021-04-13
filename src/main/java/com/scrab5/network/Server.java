@@ -12,7 +12,7 @@ public class Server {
 
   public final int clientPort = 2345;
   public final int serverPort = 1234;
-  public final String host;
+  private final String host;
   private String ip;
   private ServerSocket serverSocket;
   private boolean gameStart;
@@ -32,6 +32,7 @@ public class Server {
     } catch (Exception e) {
       // requires Exception handling
     }
+    // maybe in try{}
     this.acceptClients();
   }
 
@@ -63,6 +64,10 @@ public class Server {
 
   public String getIp() {
     return this.ip;
+  }
+
+  public String getHost() {
+    return this.host;
   }
 
   public int getPlayerCount() {

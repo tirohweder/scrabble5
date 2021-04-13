@@ -1,5 +1,9 @@
-// @author nitterhe
-
+/**
+ * Thread for the client sided client-server communication. Exchanges messages with the server and
+ * executes methods based on the incoming messages.
+ *
+ * @author nitterhe
+ */
 package com.scrab5.network;
 
 import java.io.ObjectInputStream;
@@ -18,11 +22,22 @@ public class ClientThread extends Threads {
   private Socket socketToServer;
   public final String sender;
 
+  /**
+   * Creates a Client Thread. Thread is started when the Client connects to a server.
+   * 
+   * @author nitterhe
+   * @param client - references to the client the thread belongs to
+   */
   public ClientThread(Client client) {
     this.client = client;
     sender = client.getUsername();
   }
 
+  /**
+   * Runs the thread. Receives messages from the server and handles actions.
+   * 
+   * @author nitterhe
+   */
   public void run() {
     this.running = true;
     try {
@@ -44,10 +59,17 @@ public class ClientThread extends Threads {
     }
   }
 
+  /**
+   * Connects to the server. Opens streams and then starts the thread => run() starts.
+   * 
+   * @author nitterhe
+   * @param serverdata - object with given data to
+   * @return
+   */
   public boolean connectToServer(ServerData serverdata) {
     boolean success = false;
     try {
-      this.socketToServer = new Socket(serverdata.ip4, serverdata.port);
+      this.socketToServer = new Socket(serverdata.getIP4Address(), serverdata.getPort());
       this.toServer = new ObjectOutputStream(socketToServer.getOutputStream());
       this.fromServer = new ObjectInputStream(socketToServer.getInputStream());
       sendMessageToServer(new ConnectMessage(this.client.getUsername(), this.client));
