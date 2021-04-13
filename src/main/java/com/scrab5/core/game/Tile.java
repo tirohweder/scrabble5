@@ -1,35 +1,28 @@
 package com.scrab5.core.game;
 
 public class Tile {
-  private char letter; // a-z
 
-  private boolean joker;
+  private String letter;
+  private int value;
 
-  // Constructor
-
-  public Tile() {}
-
-  public Tile(char letter, boolean joker) {
+  public Tile(String letter, int value) {
     this.letter = letter;
-
-    this.joker = joker;
+    this.value = value;
   }
 
-  // Methods
-
-  public char getLetter() {
+  public String getLetter() {
     return letter;
   }
 
-  public void setLetter(char letter) {
+  public void setLetter(String letter) {
     this.letter = letter;
   }
 
-  public boolean isJoker() {
-    return joker;
+  public int getValue() {
+    return value;
   }
 
-  public void setJoker(boolean joker) {
-    this.joker = joker;
+  public void setValue(int value) {
+    this.value = value;
   }
 }

@@ -1,22 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/hamcrest-core-1.3-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-base-16-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-controls-16-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-fxml-16-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-graphics-16-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-media-16-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-swing-16-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/javafx-web-16-sources.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/lib/junit-4.11-sources.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/scrabble5-1.0-SNAPSHOT-tests.jar" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.classpath.orig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.8/fileChanges/last-build.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/6.8/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/configuration-cache/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/main/SuperMain.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/AccountCreationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/Data.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MainMenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerOverviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/PopUpMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/PopUpMessageType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/ProfileController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SettingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SingleplayerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SingleplayerLobbyController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/TutorialController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/AccountCreation.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/ErrorMessage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/Login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/MainMenu.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/MultiplayerLobby.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/MultiplayerOverview.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/Profile.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/Settings.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/SinglePlayer.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/SingleplayerLobby.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/Singleplayer_Background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/Singleplayer_Exchange_Clicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/Singleplayer_GiveUp_Clicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/Singleplayer_Play_Clicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/Singleplayer_Profile_Bright.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/Singleplayer_Profile_Dark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/Singleplayer_Shuffle_Clicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/Singleplayer_TopContainer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/Singleplayer_bottomContainer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/Spielfeld.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/board_Images/tile_markiert.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/MM_ExitButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/MM_ExitButton_Clicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/MM_Multiplayer_Clicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/MM_Settings_Clicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/MM_Singleplayer_Clicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/MM_Stats_Clicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/MM_Tutorial_Clicked.jpg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/Main MenuV4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/Multiplayer Shadow.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_CreateButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_CreateButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_QuitButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_QuitButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB02_BackButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB02_EnterButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB02_background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB03_BackButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB03_ButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB03_background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB04_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB04_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB04_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB04_ArrowButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB04_ArrowButtonNotClickable.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB04_FindGameButtonButton.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB04_RefreshClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB04_StartButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB04_background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB05_background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB06_AddPlayerButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB06_ChatButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB06_ReadyButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB06_background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB07_background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/Sb05_CustomizeButtonClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/Singleplayer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _A_ .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _B_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _C_.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _D_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _E_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _F_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _G_.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _H_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _I_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _J_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _K_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _L_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _M_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _N_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _O_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _P_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _Q_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _R_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _S_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _T_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _U_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _V_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _W_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _X_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _Y_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/letter_Tiles/Tile _Z_  .png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/stylesheets/application.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" afterPath="$PROJECT_DIR$/.classpath" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/google-java-format.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/google-java-format.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/saveactions_settings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.core.resources.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" beforeDir="false" afterPath="$PROJECT_DIR$/.settings/org.eclipse.jdt.core.prefs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Bag_of_Tiles.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AIPlayer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/PlayerProfile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/SocketClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/ScoketClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/LoginScreen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/AppTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +143,16 @@
   </component>
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -41,20 +169,12 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="importAutomatically" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="1pwWtJDRehXmUZ0i73fj7fu624K" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
