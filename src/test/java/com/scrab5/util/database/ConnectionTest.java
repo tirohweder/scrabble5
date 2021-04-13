@@ -2,13 +2,12 @@ package com.scrab5.util.database;
 
 import org.junit.Test;
 
-/*
- * class to test the creation of the connection to the database
- * 
+/**
  * @author lengist
  * 
+ *         Class to test the creation of the connection to the database.
+ *
  */
-
 public class ConnectionTest {
 
   @Test

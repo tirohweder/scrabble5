@@ -3,13 +3,6 @@ package com.scrab5.util.database;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/*
- * Class to create the different tables in the database.
- * 
- * @author lengist
- */
-
-
 public class CreateDatabase extends Database {
 
   public CreateDatabase() {
@@ -94,14 +87,5 @@ public class CreateDatabase extends Database {
       e.printStackTrace();
     }
   }
-
-
-  /* for testing */
-  /*
-   * public static void main(String[] args) { CreateDatabase db = new CreateDatabase();
-   * System.out.println(); db.createTable(); // db.disconnect(); }
-   */
-
-
 
 }

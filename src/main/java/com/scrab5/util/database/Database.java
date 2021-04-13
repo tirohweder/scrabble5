@@ -13,8 +13,8 @@ import java.sql.SQLException;
 
 public class Database {
 
-  private static final Database db = new Database();
   protected static Connection connection;
+  protected static boolean data = false;
 
 
   /**
@@ -24,8 +24,7 @@ public class Database {
    *         the database file.
    */
   public Database() {
-    this.connect(
-        System.getProperty("user.dir") + "/src/main/resources/com/scrab5/database/myDatabase.db");
+    this.connect("myDatabase.db");
   }
 
   /**
@@ -63,8 +62,10 @@ public class Database {
     }
   }
 
-  /*
-   * for testing: public static void main(String[] args) { Database newDb = new Database(); }
-   */
+
+  public static void main(String[] args) {
+    Database newDb = new Database();
+  }
+
 
 }

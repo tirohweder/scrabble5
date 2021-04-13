@@ -5,16 +5,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import org.junit.Test;
 
+/**
+ * @author lengist
+ * 
+ *         Class to test the filling, updating and deleting of tables.
+ *
+ */
 public class TableTest {
 
+  /**
+   * @author lengist
+   * 
+   *         Creates a table player initally.
+   */
   @Test
   public void player() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
-    // Statement stm;
-    Statement stm = null;
+    Statement stm;
     try {
-      // stm = Database.connection.createStatement();
+      System.out.println("\n-----------------CREATE-PLAYER-Laura-----------");
+      stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
       while (rs.next()) {
         System.out.println("Name: " + rs.getString("Name") + ", ");
@@ -29,6 +40,7 @@ public class TableTest {
         System.out.println("Win rate: " + rs.getString("WinRate") + ", ");
         System.out.println("Favorite dictionary: " + rs.getString("FaveDic") + ", ");
       }
+      System.out.println("-----------------CREATED-PLAYER-Laura-----------");
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -39,9 +51,10 @@ public class TableTest {
   public void server() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createServer("Laura's server");
-    Statement stm = null;
+    Statement stm;
     try {
-      // stm = Database.connection.createStatement();
+      System.out.println("\n-----------------CREATE-SERVER-Laura's server-----------");
+      stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Server");
       while (rs.next()) {
         System.out.println("Server Name: " + rs.getString("ServerListNames") + ", ");
@@ -50,6 +63,7 @@ public class TableTest {
         System.out.println("Game Ranking: " + rs.getString("GameRanking") + ", ");
         System.out.println("Victory Loss Rate: " + rs.getString("VictoryLossRate") + ", ");
       }
+      System.out.println("-----------------CREATED-SERVER-Laura's server-----------");
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -59,14 +73,16 @@ public class TableTest {
   public void letters() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.insertLetters("L", 4);
-    Statement stm = null;
+    Statement stm;
     try {
-      // stm = Database.connection.createStatement();
+      System.out.println("\n-----------------CREATE-Letter-FOR-L----------");
+      stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Letters");
       while (rs.next()) {
         System.out.println("Letter: " + rs.getString("Letter") + ", ");
         System.out.println("Points: " + rs.getInt("Points") + ", ");
       }
+      System.out.println("-----------------CREATED-Letter-FOR-L----------");
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -77,13 +93,15 @@ public class TableTest {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     FillDatabase.deleteTable("Player");
-    Statement stm = null;
+    Statement stm;
     try {
-      // stm = Database.connection.createStatement();
+      System.out.println("\n-----------------DELETE-TABLE-PLAYER-----------");
+      stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
       if (!rs.next()) {
         System.out.println("Table Player is empty");
       }
+      System.out.println("-----------------DELETED-TABLE-PLAYER-----------");
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -95,10 +113,10 @@ public class TableTest {
     FillDatabase.createPlayer("Laura", "Bild");
     /* update the name: */
     FillDatabase.updatePlayer("Name", "Laura", "Maria", 0);
-    Statement stm = null;
+    Statement stm;
     try {
-      System.out.println("---------------CHANGE---------------");
-      // stm = Database.connection.createStatement();
+      System.out.println("\n---------------CHANGE-IN-PLAYER-FROM-Laura-To-Maria---------");
+      stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
       while (rs.next()) {
         System.out.println("Name: " + rs.getString("Name") + ", ");
@@ -113,31 +131,59 @@ public class TableTest {
         System.out.println("Win rate: " + rs.getString("WinRate") + ", ");
         System.out.println("Favorite dictionary: " + rs.getString("FaveDic") + ", ");
       }
+      System.out.println("---------------CHANGE-IN-PLAYER-FINISHED------------");
     } catch (SQLException e) {
       e.printStackTrace();
     }
   }
 
-  /*
-   * hedi muss erst in Methoden sql Strings verbessern
-   * 
-   * @Test public void updateServer() { CreateDatabase db = new CreateDatabase();
-   * FillDatabase.createServer("Laura's server"); /* update the server name
-   */
-  /*
-   * FillDatabase.updateServer("Name", "Laura's server", "Maria's server"); Statement stm; try { stm
-   * = Database.connection.createStatement(); ResultSet rs =
-   * stm.executeQuery("SELECT * FROM Server"); while (rs.next()) {
-   * System.out.println("Server Name: " + rs.getString("ServerListNames") + ", ");
-   * System.out.println("Dictionaries: " + rs.getString("Dictionaries") + ", ");
-   * System.out.println("Victory Ranking: " + rs.getString("VictoryRanking") + ", ");
-   * System.out.println("Game Ranking: " + rs.getString("GameRanking") + ", ");
-   * System.out.println("Victory Loss Rate: " + rs.getString("VictoryLossRate") + ", "); } } catch
-   * (SQLException e) { e.printStackTrace(); } }
-   */
+
 
   @Test
-  public void updateLetters() {}
+  public void updateServer() {
+    CreateDatabase db = new CreateDatabase();
+    FillDatabase.createServer("Laura's server");
+    /* update the server name */
+    FillDatabase.updateServer("ServerListNames", "Laura's server", "Maria's server");
+    Statement stm;
+    try {
+      System.out.println("\n---------------CHANGE-IN-SERVER-FROM-Laura-To-Maria---------");
+      stm = Database.connection.createStatement();
+      ResultSet rs = stm.executeQuery("SELECT * FROM Server");
+      while (rs.next()) {
+        System.out.println("Server Name: " + rs.getString("ServerListNames") + ", ");
+        System.out.println("Dictionaries: " + rs.getString("Dictionaries") + ", ");
+        System.out.println("Victory Ranking: " + rs.getString("VictoryRanking") + ", ");
+        System.out.println("Game Ranking: " + rs.getString("GameRanking") + ", ");
+        System.out.println("Victory Loss Rate: " + rs.getString("VictoryLossRate") + ", ");
+      }
+      System.out.println("---------------CHANGE-IN-SERVER-FINISHED------------");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+
+  @Test
+  public void updateLetters() {
+    CreateDatabase db = new CreateDatabase();
+    FillDatabase.insertLetters("L", 4);
+    /* updating: */
+    FillDatabase.updateLetters("L", 2);
+    Statement stm;
+    try {
+      System.out.println("\n---------------CHANGE-IN-LETTERS-FROM-4-To-2---------");
+      stm = Database.connection.createStatement();
+      ResultSet rs = stm.executeQuery("SELECT * FROM Letters");
+      while (rs.next()) {
+        System.out.println("Letter: " + rs.getString("Letter") + ", ");
+        System.out.println("Points: " + rs.getInt("Points") + ", ");
+      }
+      System.out.println("---------------CHANGE-IN-LETTERS-FINISHED------------");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
 
 
 }
