@@ -32,7 +32,6 @@ public class BagOfTiles {
    * @return bag Size
    */
   public int getSize() {
-    // returns how many Tiles are left in the Bag
     return this.bag.size();
   }
 }
