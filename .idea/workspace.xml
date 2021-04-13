@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="847101da-9e80-496c-9cb6-3faf3780f349" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/.classpath.orig" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/build.fxbuild" afterDir="false" />
@@ -118,8 +119,12 @@
       <change afterPath="$PROJECT_DIR$/src/main/resources/ui/loginScreen/images/SB01_QuitButtonClicked.png" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/resources/ui/loginScreen/images/SB01_background.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+=======
+    <list default="true" id="8a79f7d8-49bf-416d-9e44-6e6f55498ce1" name="Default Changelist" comment="#33 fixed project structure with module-info.java now connecting the right packages">
+>>>>>>> refs/heads/network
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/LoginScreen.java" beforeDir="false" />
@@ -132,6 +137,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_background.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/images/SB01_background.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/primary.fxml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/secondary.fxml" beforeDir="false" />
+=======
+>>>>>>> refs/heads/network
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,8 +187,13 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="settings.saveactions" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../../ServerProject/ArterionCopy" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+>>>>>>> refs/heads/network
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -193,7 +205,11 @@
       <recent name="C:\Daten\Uni\Uni_Mannheim\21_FSS\Software_Engineering\scrabble5\src\main" />
     </key>
   </component>
+<<<<<<< HEAD
   <component name="RunManager" selected="Application.App">
+=======
+  <component name="RunManager" selected="Maven.scrabble5 [compile,javafx:run]">
+>>>>>>> refs/heads/network
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.scrab5.ui.App" />
       <module name="scrabble5" />
@@ -308,6 +324,7 @@
       <created>1616094845091</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
       <updated>1616094845091</updated>
       <workItem from="1616094848839" duration="742000" />
       <workItem from="1616095603668" duration="3694000" />
@@ -319,6 +336,14 @@
       <workItem from="1616371498531" duration="763000" />
       <workItem from="1616403728498" duration="2061000" />
       <workItem from="1616693316880" duration="786000" />
+=======
+      <updated>1616699920549</updated>
+      <workItem from="1616699923200" duration="8000" />
+      <workItem from="1616708354575" duration="1048000" />
+      <workItem from="1616745834529" duration="1633000" />
+      <workItem from="1616836263110" duration="116000" />
+      <workItem from="1617629157427" duration="2117000" />
+>>>>>>> refs/heads/network
     </task>
     <task id="LOCAL-00001" summary="#26 Test commit 2. for base structure">
       <created>1616096003309</created>
@@ -355,10 +380,51 @@
     <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
+<<<<<<< HEAD
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="#26 Test commit 2. for base structure" />
     <MESSAGE value="#26 Base Structure created" />
     <MESSAGE value="#52 Merge branch 'ui' into develop&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <option name="LAST_COMMIT_MESSAGE" value="#52 Merge branch 'ui' into develop&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+=======
+    <MESSAGE value="#30 reloaded class files" />
+    <MESSAGE value="#33 excluded dependency but still shows up as duplicate" />
+    <MESSAGE value="#33 now we have a exceutable JAR" />
+    <option name="LAST_COMMIT_MESSAGE" value="#33 now we have a exceutable JAR" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="560" y="366" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1616708664712">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="560" y="366" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616708664712" />
+    <state x="1076" y="585" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1616747377964">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1076" y="585" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616747377964" />
+    <state x="849" y="294" key="CommitChangelistDialog2" timestamp="1616709392859">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="849" y="294" key="CommitChangelistDialog2/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616709392859" />
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1616836275547">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1616836275547" />
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1617656817689">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="401" key="GridCell.Tab.0.bottom/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1617656817689" />
+    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1617656817689">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="401" key="GridCell.Tab.0.center/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1617656817689" />
+    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1617656817689">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="401" key="GridCell.Tab.0.left/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1617656817689" />
+    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1617656817689">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state width="2517" height="401" key="GridCell.Tab.0.right/-1920.-14.1920.1040/2560.15.1680.1010/0.0.2560.1400@0.0.2560.1400" timestamp="1617656817689" />
+>>>>>>> refs/heads/network
   </component>
 </project>
