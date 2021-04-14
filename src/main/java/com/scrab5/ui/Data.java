@@ -4,6 +4,7 @@ public class Data {
 
   private static String currentUser;
   private static String popUpMessage;
+  private static PopUpMessageType messageType;
 
   public static void setCurrentUser(String username) {
     currentUser = username;
@@ -19,5 +20,13 @@ public class Data {
 
   public static String getMessage() {
     return popUpMessage;
+  }
+
+  public static void setMessageType(PopUpMessageType popUpType) {
+    messageType = popUpType;
+  }
+
+  public static PopUpMessageType getMessageType() {
+    return messageType;
   }
 }

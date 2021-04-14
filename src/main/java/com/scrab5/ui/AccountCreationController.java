@@ -89,8 +89,9 @@ public class AccountCreationController extends Controller implements Initializab
       this.createdUsername = nickname.getText();
 
       Data.setCurrentUser(this.createdUsername); // DUMMY
-
-      pum = new PopUpMessage("HELLO", PopUpMessageType.NOTIFICATION);
+      
+      message = "Congratulations! Your account has been created";
+      pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
       pum.show();
       App.setRoot("MainMenu");
 

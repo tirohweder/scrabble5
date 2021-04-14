@@ -28,7 +28,7 @@
                   <Image url="@images/SB04_ArrowButtonClicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="321.0" layoutX="733.0" layoutY="528.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="321.0" layoutX="732.0" layoutY="528.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/Sb05_CustomizeButtonClicked.png" />
                </image>
