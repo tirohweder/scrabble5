@@ -29,8 +29,8 @@ public class Database {
     this.databaseExists = true;
   }
 
-  public boolean getExistance() {
-    return this.databaseExists;
+  public static boolean getExistance() {
+    return databaseExists;
   }
 
   /**

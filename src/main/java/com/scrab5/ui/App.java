@@ -1,6 +1,7 @@
 package com.scrab5.ui;
 
 import java.io.IOException;
+import com.scrab5.util.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,10 +14,16 @@ import javafx.stage.Stage;
 public class App extends Application {
 
   private static Scene scene;
+  private Database db;
 
   @Override
   public void start(Stage stage) throws IOException {
 
+    if (!Database.getExistance()) {
+      db = new Database();
+    } else {
+
+    }
 
     scene = new Scene(loadFXML("Login"), 1360, 768);
     stage.setScene(scene);
@@ -37,6 +44,7 @@ public class App extends Application {
   public static void main(String[] args) {
     launch();
   }
+
 
 
 }
