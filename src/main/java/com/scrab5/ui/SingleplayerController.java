@@ -1,12 +1,12 @@
 package com.scrab5.ui;
 
-import com.scrab5.core.game.GameBoard;
-import com.scrab5.core.game.GameSession;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import com.scrab5.core.game.GameBoard;
+import com.scrab5.core.game.GameSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -58,14 +58,11 @@ public class SingleplayerController implements Initializable {
 
 
   /**
-<<<<<<< HEAD
+   * <<<<<<< HEAD
+   * 
    * @author apilgirm
    * @param event - MouseEvent
-=======
-   * @param event
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    * @throws IOException
-<<<<<<< HEAD
    * 
    *         this method is called when a tile on the board is clicked. It checks 1. if the field
    *         already contained a letter which than is removed (backToRack) 2. else, if no other tile
@@ -73,19 +70,12 @@ public class SingleplayerController implements Initializable {
    *         is clicked as well, the Letter is placed. 3. last if another tile has been clicked
    *         before it is unclicked an reseted from the clickedTile
    * 
-=======
-   * @author Aaron
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    */
   @FXML
   private void fieldClicked(MouseEvent event) throws IOException {
 
     ImageView iv = ((ImageView) event.getSource());
     String cordinate = iv.getId();
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
     GameBoard current = GameSession.getGameBoard();
 
     boolean isFree =
@@ -142,22 +132,15 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-<<<<<<< HEAD
    * @author apilgirm
-=======
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    * @param event
    * @throws IOException
-<<<<<<< HEAD
    * 
    *         method which is called when the rack Place One is clicked and checks 1. if another
    *         letter is clicked/marked 2. if not, it checks if a destination tile is already marked
    *         on the field and therefore is replaced with this letter, otherwise it is marked and is
    *         locked in the clicked Letter attribute. Or 3. least if it was already the marked letter
    *         in the rack it is unmarked and unclicked
-=======
-   * @author Aaron
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    */
   @FXML
   private void ragPlace1clicked(MouseEvent event) throws IOException {
@@ -184,19 +167,12 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-<<<<<<< HEAD
    * @author apilgirm
-=======
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    * @param event
    * @throws IOException
-<<<<<<< HEAD
    * 
    *         method to check different options to handle the clicked Letter in rack Place 2 like in
    *         rackPlace1Clicked
-=======
-   * @author Aaron
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    */
   @FXML
   private void ragPlace2clicked(MouseEvent event) throws IOException {
@@ -223,19 +199,12 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-<<<<<<< HEAD
    * @author apilgirm
-=======
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    * @param event
    * @throws IOException
-<<<<<<< HEAD
    * 
    *         method to check different options to handle the clicked Letter in rack Place 3 like in
    *         rackPlace1Clicked
-=======
-   * @author Aaron
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    */
   @FXML
   private void ragPlace3clicked(MouseEvent event) throws IOException {
@@ -262,19 +231,12 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-<<<<<<< HEAD
    * @author apilgirm
-=======
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    * @param event
    * @throws IOException
-<<<<<<< HEAD
    * 
    *         method to check different options to handle the clicked Letter in rack Place 4 like in
    *         rackPlace1Clicked
-=======
-   * @author Aaron
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    */
   @FXML
   private void ragPlace4clicked(MouseEvent event) throws IOException {
@@ -301,19 +263,12 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-<<<<<<< HEAD
    * @author apilgirm
-=======
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    * @param event
    * @throws IOException
-<<<<<<< HEAD
    * 
    *         method to check different options to handle the clicked Letter in rack Place 5 like in
    *         rackPlace1Clicked
-=======
-   * @author Aaron
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    */
   @FXML
   private void ragPlace5clicked(MouseEvent event) throws IOException {
@@ -340,19 +295,12 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-<<<<<<< HEAD
    * @author apilgirm
-=======
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    * @param event
    * @throws IOException
-<<<<<<< HEAD
    * 
    *         method to check different options to handle the clicked Letter in rack Place 6 like in
    *         rackPlace1Clicked
-=======
-   * @author Aaron
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    */
   @FXML
   private void ragPlace6clicked(MouseEvent event) throws IOException {
@@ -379,19 +327,13 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-<<<<<<< HEAD
    * @author apilgirm
-=======
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    * @param event
    * @throws IOException
-<<<<<<< HEAD
    * 
    *         method to check different options to handle the clicked Letter in rack Place 7 like in
    *         rackPlace1Clicked
-=======
    * @author Aaron
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    */
   @FXML
   private void ragPlace7clicked(MouseEvent event) throws IOException {
@@ -419,18 +361,11 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-<<<<<<< HEAD
    * @author apilgirm
-=======
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    * @param event
    * @throws IOException
-<<<<<<< HEAD
    * 
    *         method to refill rack where letters have been placed and to permanently lock
-=======
-   * @author Aaron
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
    */
   @FXML
   private void playClicked(MouseEvent event) throws IOException {
