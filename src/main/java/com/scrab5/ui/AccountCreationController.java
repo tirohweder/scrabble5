@@ -72,7 +72,7 @@ public class AccountCreationController extends Controller implements Initializab
   private void enter(MouseEvent event) throws IOException {
     if (this.isUsernameValid()) {
       FillDatabase.createPlayer(this.createdUsername, null);
-
+      System.out.println(this.createdUsername);
     }
   }
 

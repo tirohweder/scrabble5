@@ -69,9 +69,9 @@ public class Database {
   }
 
 
-  public static void main(String[] args) {
-    Database newDb = new Database();
-  }
+  /*
+   * public static void main(String[] args) { Database newDb = new Database(); }
+   */
 
 
 }
