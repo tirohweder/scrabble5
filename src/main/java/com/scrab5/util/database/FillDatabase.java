@@ -318,6 +318,12 @@ public class FillDatabase extends Database {
     }
   }
 
+  /**
+   * @author lengist
+   * @return ResultSet
+   * 
+   *         Displaying the content of current table Letters.
+   */
   public static ResultSet viewLetters() {
     ResultSet rs = null;
     try {

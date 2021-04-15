@@ -7,7 +7,7 @@ package com.scrab5.util.database;
  * 
  */
 /* Charge all statistics */
-public class PlayerProfile extends Database {
+public class PlayerProfileDatabase extends Database {
   private String name;
   private String picture;
   private int totalPoints;
@@ -16,44 +16,29 @@ public class PlayerProfile extends Database {
   private int totalWins;
   private String favoriteDictionary;
 
-  public PlayerProfile(String name, String picture, int totalPoints, int laidWords,
-      int totalPlayedGames, int totalWins, String favoriteDictionary) {
-    this.name = name;
-    this.picture = picture;
-    this.totalPoints = totalPoints;
-    this.laidWords = laidWords;
-    this.laidWords = laidWords;
-    this.totalPlayedGames = totalPlayedGames;
-    this.totalWins = totalWins;
-    this.favoriteDictionary = favoriteDictionary;
-  }
-
   /* getter methods */
-  public String getName() {
-    return this.name;
-  }
 
-  public String getPicture() {
+  public String getPicture(String name) {
     return this.picture;
   }
 
-  public int getTotalPoints() {
+  public int getTotalPoints(String name) {
     return this.totalPoints;
   }
 
-  public int getLaidWords() {
+  public int getLaidWords(String name) {
     return this.laidWords;
   }
 
-  public int getTotalPlayedGames() {
+  public int getTotalPlayedGames(String name) {
     return this.totalPlayedGames;
   }
 
-  public int getTotalWins() {
+  public int getTotalWins(String name) {
     return this.totalWins;
   }
 
-  public String getFavoriteDictionary() {
+  public String getFavoriteDictionary(String name) {
     return this.favoriteDictionary;
   }
 
