@@ -21,8 +21,6 @@ public class App extends Application {
 
     if (!Database.getExistance()) {
       db = new Database();
-    } else {
-
     }
 
     scene = new Scene(loadFXML("Login"), 1360, 768);
