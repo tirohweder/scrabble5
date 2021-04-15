@@ -25,8 +25,9 @@ public class Database {
    *         the database file.
    */
   public Database() {
-    this.connect("myDatabase.db");
     this.databaseExists = true;
+    this.connect("myDatabase.db");
+
     // CreateDatabase cdb = new CreateDatabase();
   }
 
