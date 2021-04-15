@@ -23,6 +23,8 @@ public class App extends Application {
     if (!Database.databaseExistance()) {
       db = new Database();
       CreateDatabase cdb = new CreateDatabase();
+    } else {
+      Database.reconnect();
     }
 
     scene = new Scene(loadFXML("Login"), 1360, 768);
