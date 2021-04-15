@@ -3,6 +3,63 @@ package com.scrab5.core.game;
 import com.scrab5.core.player.Player;
 
 public class GameSession {
+
+  public GameBoard getGameBoard() {
+    return gameBoard;
+  }
+
+  public void setGameBoard(GameBoard gameBoard) {
+    this.gameBoard = gameBoard;
+  }
+
+  public BagOfTiles getBag() {
+    return bag;
+  }
+
+  public void setBag(BagOfTiles bag) {
+    this.bag = bag;
+  }
+
+  public Player[] getList_of_players() {
+    return list_of_players;
+  }
+
+  public void setList_of_players(Player[] list_of_players) {
+    this.list_of_players = list_of_players;
+  }
+
+  public int getSkipped_turn() {
+    return skipped_turn;
+  }
+
+  public void setSkipped_turn(int skipped_turn) {
+    this.skipped_turn = skipped_turn;
+  }
+
+  public int getRound_number() {
+    return round_number;
+  }
+
+  public void setRound_number(int round_number) {
+    this.round_number = round_number;
+  }
+
+  public boolean isCan_end() {
+    return can_end;
+  }
+
+  public void setCan_end(boolean can_end) {
+    this.can_end = can_end;
+  }
+
+  public Player getCurrent_Player() {
+    return current_Player;
+  }
+
+  public void setCurrent_Player(Player current_Player) {
+    this.current_Player = current_Player;
+  }
+
   private GameBoard gameBoard = new GameBoard();
   private BagOfTiles bag = new BagOfTiles();
   private Player[] list_of_players;
