@@ -16,6 +16,7 @@ public class Database {
 
   protected static Connection connection;
   protected static boolean data = false;
+  protected static String databaseFileName = "myDatabase.db";
 
 
   /**
@@ -25,7 +26,7 @@ public class Database {
    *         the database file.
    */
   public Database() {
-    this.connect("myDatabase.db");
+    this.connect(this.databaseFileName);
 
     // CreateDatabase cdb = new CreateDatabase();
   }
@@ -33,6 +34,21 @@ public class Database {
   /*
    * public static boolean getExistance() { return databaseExists; }
    */
+
+  public static void reconnect() {
+    try {
+      Class.forName("org.sqlite.JDBC");
+      connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
+      System.out.println("connected");
+    } catch (ClassNotFoundException e) {
+      System.out.println("Connection not possible" + e.getMessage());
+    } catch (SQLException e1) {
+      System.out.println("Sql Exception: " + e1.getMessage());
+      System.out.println("Sql State: " + e1.getSQLState());
+      System.out.println("Sql Error: " + e1.getErrorCode());
+      e1.printStackTrace();
+    }
+  }
 
   public static boolean databaseExistance() {
     File file = new File("jdbc:sqlite:myDatabase.db");
