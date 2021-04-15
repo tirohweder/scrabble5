@@ -27,6 +27,7 @@ public class Database {
   public Database() {
     this.connect("myDatabase.db");
     this.databaseExists = true;
+    CreateDatabase cdb = new CreateDatabase();
   }
 
   public static boolean getExistance() {
