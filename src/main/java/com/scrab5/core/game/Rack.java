@@ -3,20 +3,14 @@ package com.scrab5.core.game;
 import java.util.ArrayList;
 
 public class Rack {
-  private static String player;
+
   private ArrayList<Tile> rack = new ArrayList<>();
 
-  public Rack(String player) {
-    this.player = player;
+  public Rack() {
+
   }
 
-  public static String getPlayer() {
-    return player;
-  }
 
-  public static void setPlayer(String player) {
-    Rack.player = player;
-  }
 
   /* if Rack is not full add more tiles from bag till full
    but only add if the bag is not empty.
