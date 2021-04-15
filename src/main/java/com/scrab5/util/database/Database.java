@@ -36,7 +36,7 @@ public class Database {
 
   public static boolean databaseExistance() {
     File file = new File("jdbc:sqlite:myDatabase.db");
-    return file.exists();
+    return true;
   }
 
   /**
