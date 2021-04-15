@@ -15,6 +15,7 @@ public class Database {
 
   protected static Connection connection;
   protected static boolean data = false;
+  protected static boolean databaseExists = false;
 
 
   /**
@@ -25,6 +26,11 @@ public class Database {
    */
   public Database() {
     this.connect("myDatabase.db");
+    this.databaseExists = true;
+  }
+
+  public boolean getExistance() {
+    return this.databaseExists;
   }
 
   /**
