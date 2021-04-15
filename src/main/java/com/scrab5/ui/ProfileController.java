@@ -43,6 +43,7 @@ public class ProfileController extends Controller implements Initializable {
     pum.show();
     FillDatabase.updatePlayer("Name", Data.getCurrentUser(), Data.getInputFieldText(), 0);
     Data.setCurrentUser(Data.getInputFieldText());
+    App.setRoot("Profile");
 
   }
 
