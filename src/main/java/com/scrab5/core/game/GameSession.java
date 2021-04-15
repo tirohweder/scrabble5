@@ -4,11 +4,11 @@ import com.scrab5.core.player.Player;
 
 public class GameSession {
 
-  public GameBoard getGameBoard() {
+  public static GameBoard getGameBoard() {
     return gameBoard;
   }
 
-  public void setGameBoard(GameBoard gameBoard) {
+  public static void setGameBoard(GameBoard gameBoard) {
     this.gameBoard = gameBoard;
   }
 
@@ -60,7 +60,7 @@ public class GameSession {
     this.current_Player = current_Player;
   }
 
-  private GameBoard gameBoard = new GameBoard();
+  private static GameBoard gameBoard = new GameBoard();
   private BagOfTiles bag = new BagOfTiles();
   private Player[] list_of_players;
   private int skipped_turn = 0;
