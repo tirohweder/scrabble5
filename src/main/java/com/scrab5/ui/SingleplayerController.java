@@ -5,6 +5,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import com.scrab5.core.game.GameBoard;
+import com.scrab5.core.game.GameSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -22,13 +24,13 @@ public class SingleplayerController implements Initializable {
   private ImageView clickedLetter;
   private Image markedTile;
 
-  private ImageView ragPlace1;
-  private ImageView ragPlace2;
-  private ImageView ragPlace3;
-  private ImageView ragPlace4;
-  private ImageView ragPlace5;
-  private ImageView ragPlace6;
-  private ImageView ragPlace7;
+  private ImageView rackPlace1;
+  private ImageView rackPlace2;
+  private ImageView rackPlace3;
+  private ImageView rackPlace4;
+  private ImageView rackPlace5;
+  private ImageView rackPlace6;
+  private ImageView rackPlace7;
 
   private ArrayList<String> unavailableTiles = new ArrayList<String>();
   private ArrayList<String> choosenTiles = new ArrayList<String>();
@@ -45,6 +47,8 @@ public class SingleplayerController implements Initializable {
    * @author Aaron
    * @param event
    * @throws IOException
+   * 
+   * 
    */
   @FXML
   private void fieldClicked(MouseEvent event) throws IOException {
@@ -52,41 +56,45 @@ public class SingleplayerController implements Initializable {
     ImageView iv = ((ImageView) event.getSource());
 
     String cordinate = iv.getId();
-    String xCord = cordinate.substring(0, 1);
-    String yCord = cordinate.substring(1, 2);
+
+
+    GameBoard current = GameSession.getGameBoard();
+
+    boolean isFree =
+        current.is_spot_free(rowTransformation(cordinate), columnTransformation(cordinate));
 
     // check if the field clicked is a letter to remove
     if (iv.getImage().getUrl().contains("letter_Tiles") && !placeTaken(iv)) {
 
-      // check which ragPlace to replace and turn back to rag
-      if (ragPlace1 != null
-          && iv.getImage().getUrl().equalsIgnoreCase(ragPlace1.getImage().getUrl())
-          && ragPlace1.getOpacity() == 0) {
-        ragPlace1.setOpacity(1);
-      } else if (ragPlace2 != null
-          && iv.getImage().getUrl().equalsIgnoreCase(ragPlace2.getImage().getUrl())
-          && ragPlace2.getOpacity() == 0) {
-        ragPlace2.setOpacity(1);
-      } else if (ragPlace3 != null
-          && iv.getImage().getUrl().equalsIgnoreCase(ragPlace3.getImage().getUrl())
-          && ragPlace3.getOpacity() == 0) {
-        ragPlace3.setOpacity(1);
-      } else if (ragPlace4 != null
-          && iv.getImage().getUrl().equalsIgnoreCase(ragPlace4.getImage().getUrl())
-          && ragPlace4.getOpacity() == 0) {
-        ragPlace4.setOpacity(1);
-      } else if (ragPlace5 != null
-          && iv.getImage().getUrl().equalsIgnoreCase(ragPlace5.getImage().getUrl())
-          && ragPlace5.getOpacity() == 0) {
-        ragPlace5.setOpacity(1);
-      } else if (ragPlace6 != null
-          && iv.getImage().getUrl().equalsIgnoreCase(ragPlace6.getImage().getUrl())
-          && ragPlace6.getOpacity() == 0) {
-        ragPlace6.setOpacity(1);
-      } else if (ragPlace7 != null
-          && iv.getImage().getUrl().equalsIgnoreCase(ragPlace7.getImage().getUrl())
-          && ragPlace7.getOpacity() == 0) {
-        ragPlace7.setOpacity(1);
+      // check which ragPlace to replace and turn back to rack
+      if (rackPlace1 != null
+          && iv.getImage().getUrl().equalsIgnoreCase(rackPlace1.getImage().getUrl())
+          && rackPlace1.getOpacity() == 0) {
+        rackPlace1.setOpacity(1);
+      } else if (rackPlace2 != null
+          && iv.getImage().getUrl().equalsIgnoreCase(rackPlace2.getImage().getUrl())
+          && rackPlace2.getOpacity() == 0) {
+        rackPlace2.setOpacity(1);
+      } else if (rackPlace3 != null
+          && iv.getImage().getUrl().equalsIgnoreCase(rackPlace3.getImage().getUrl())
+          && rackPlace3.getOpacity() == 0) {
+        rackPlace3.setOpacity(1);
+      } else if (rackPlace4 != null
+          && iv.getImage().getUrl().equalsIgnoreCase(rackPlace4.getImage().getUrl())
+          && rackPlace4.getOpacity() == 0) {
+        rackPlace4.setOpacity(1);
+      } else if (rackPlace5 != null
+          && iv.getImage().getUrl().equalsIgnoreCase(rackPlace5.getImage().getUrl())
+          && rackPlace5.getOpacity() == 0) {
+        rackPlace5.setOpacity(1);
+      } else if (rackPlace6 != null
+          && iv.getImage().getUrl().equalsIgnoreCase(rackPlace6.getImage().getUrl())
+          && rackPlace6.getOpacity() == 0) {
+        rackPlace6.setOpacity(1);
+      } else if (rackPlace7 != null
+          && iv.getImage().getUrl().equalsIgnoreCase(rackPlace7.getImage().getUrl())
+          && rackPlace7.getOpacity() == 0) {
+        rackPlace7.setOpacity(1);
       }
       choosenTiles.remove(iv.getId());
       iv.setImage(markedTile);
@@ -144,28 +152,28 @@ public class SingleplayerController implements Initializable {
   @FXML
   private void ragPlace1clicked(MouseEvent event) throws IOException {
     ImageView iv = (ImageView) event.getSource();
-    ragPlace1 = iv;
+    rackPlace1 = iv;
     // no other letter is clicked
     if (!letterClicked && iv.getOpacity() != 0) {
 
       // no destination tile chosen
       if (!tileClicked) {
-        clickedLetter = ragPlace1;
-        ragPlace1.setOpacity(0.9);
+        clickedLetter = rackPlace1;
+        rackPlace1.setOpacity(0.9);
         letterClicked = true;
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
-        clickedTile.setImage(ragPlace1.getImage());
+        clickedTile.setImage(rackPlace1.getImage());
         choosenTiles.add(clickedTile.getId());
-        ragPlace1.setOpacity(0);
+        rackPlace1.setOpacity(0);
       }
 
-    } else if (letterClicked && (ragPlace1 == (ImageView) event.getSource())) {
+    } else if (letterClicked && (rackPlace1 == (ImageView) event.getSource())) {
       letterClicked = false;
-      ragPlace1.setOpacity(1);
+      rackPlace1.setOpacity(1);
     }
   }
 
@@ -177,28 +185,28 @@ public class SingleplayerController implements Initializable {
   @FXML
   private void ragPlace2clicked(MouseEvent event) throws IOException {
     ImageView iv = (ImageView) event.getSource();
-    ragPlace2 = iv;
+    rackPlace2 = iv;
     // no other letter is clicked
     if (!letterClicked && iv.getOpacity() != 0) {
 
       // no destination tile chosen
       if (!tileClicked) {
-        clickedLetter = ragPlace2;
-        ragPlace2.setOpacity(0.9);
+        clickedLetter = rackPlace2;
+        rackPlace2.setOpacity(0.9);
         letterClicked = true;
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
-        clickedTile.setImage(ragPlace2.getImage());
+        clickedTile.setImage(rackPlace2.getImage());
         choosenTiles.add(clickedTile.getId());
-        ragPlace2.setOpacity(0);
+        rackPlace2.setOpacity(0);
       }
 
-    } else if (letterClicked && (ragPlace2 == (ImageView) event.getSource())) {
+    } else if (letterClicked && (rackPlace2 == (ImageView) event.getSource())) {
       letterClicked = false;
-      ragPlace2.setOpacity(1);
+      rackPlace2.setOpacity(1);
     }
   }
 
@@ -210,28 +218,28 @@ public class SingleplayerController implements Initializable {
   @FXML
   private void ragPlace3clicked(MouseEvent event) throws IOException {
     ImageView iv = (ImageView) event.getSource();
-    ragPlace3 = iv;
-    // no other letter is ragPlace3
+    rackPlace3 = iv;
+    // no other letter is rackPlace3
     if (!letterClicked && iv.getOpacity() != 0) {
 
       // no destination tile chosen
       if (!tileClicked) {
-        clickedLetter = ragPlace3;
-        ragPlace3.setOpacity(0.9);
+        clickedLetter = rackPlace3;
+        rackPlace3.setOpacity(0.9);
         letterClicked = true;
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
-        clickedTile.setImage(ragPlace3.getImage());
+        clickedTile.setImage(rackPlace3.getImage());
         choosenTiles.add(clickedTile.getId());
-        ragPlace3.setOpacity(0);
+        rackPlace3.setOpacity(0);
       }
 
-    } else if (letterClicked && (ragPlace3 == (ImageView) event.getSource())) {
+    } else if (letterClicked && (rackPlace3 == (ImageView) event.getSource())) {
       letterClicked = false;
-      ragPlace3.setOpacity(1);
+      rackPlace3.setOpacity(1);
     }
   }
 
@@ -243,28 +251,28 @@ public class SingleplayerController implements Initializable {
   @FXML
   private void ragPlace4clicked(MouseEvent event) throws IOException {
     ImageView iv = (ImageView) event.getSource();
-    ragPlace4 = iv;
+    rackPlace4 = iv;
     // no other letter is clicked
     if (!letterClicked && iv.getOpacity() != 0) {
 
       // no destination tile chosen
       if (!tileClicked) {
-        clickedLetter = ragPlace4;
-        ragPlace4.setOpacity(0.9);
+        clickedLetter = rackPlace4;
+        rackPlace4.setOpacity(0.9);
         letterClicked = true;
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
-        clickedTile.setImage(ragPlace4.getImage());
+        clickedTile.setImage(rackPlace4.getImage());
         choosenTiles.add(clickedTile.getId());
-        ragPlace4.setOpacity(0);
+        rackPlace4.setOpacity(0);
       }
 
-    } else if (letterClicked && (ragPlace4 == (ImageView) event.getSource())) {
+    } else if (letterClicked && (rackPlace4 == (ImageView) event.getSource())) {
       letterClicked = false;
-      ragPlace4.setOpacity(1);
+      rackPlace4.setOpacity(1);
     }
   }
 
@@ -276,28 +284,28 @@ public class SingleplayerController implements Initializable {
   @FXML
   private void ragPlace5clicked(MouseEvent event) throws IOException {
     ImageView iv = (ImageView) event.getSource();
-    ragPlace5 = iv;
+    rackPlace5 = iv;
     // no other letter is clicked
     if (!letterClicked && iv.getOpacity() != 0) {
 
       // no destination tile chosen
       if (!tileClicked) {
-        clickedLetter = ragPlace5;
-        ragPlace5.setOpacity(0.9);
+        clickedLetter = rackPlace5;
+        rackPlace5.setOpacity(0.9);
         letterClicked = true;
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
-        clickedTile.setImage(ragPlace5.getImage());
+        clickedTile.setImage(rackPlace5.getImage());
         choosenTiles.add(clickedTile.getId());
-        ragPlace5.setOpacity(0);
+        rackPlace5.setOpacity(0);
       }
 
-    } else if (letterClicked && (ragPlace5 == (ImageView) event.getSource())) {
+    } else if (letterClicked && (rackPlace5 == (ImageView) event.getSource())) {
       letterClicked = false;
-      ragPlace5.setOpacity(1);
+      rackPlace5.setOpacity(1);
     }
   }
 
@@ -309,28 +317,28 @@ public class SingleplayerController implements Initializable {
   @FXML
   private void ragPlace6clicked(MouseEvent event) throws IOException {
     ImageView iv = (ImageView) event.getSource();
-    ragPlace6 = iv;
+    rackPlace6 = iv;
     // no other letter is clicked
     if (!letterClicked && iv.getOpacity() != 0) {
 
       // no destination tile chosen
       if (!tileClicked) {
-        clickedLetter = ragPlace6;
-        ragPlace6.setOpacity(0.9);
+        clickedLetter = rackPlace6;
+        rackPlace6.setOpacity(0.9);
         letterClicked = true;
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
         markedTile = clickedTile.getImage();
         tileClicked = false;
-        clickedTile.setImage(ragPlace6.getImage());
+        clickedTile.setImage(rackPlace6.getImage());
         choosenTiles.add(clickedTile.getId());
-        ragPlace6.setOpacity(0);
+        rackPlace6.setOpacity(0);
       }
 
-    } else if (letterClicked && (ragPlace6 == (ImageView) event.getSource())) {
+    } else if (letterClicked && (rackPlace6 == (ImageView) event.getSource())) {
       letterClicked = false;
-      ragPlace6.setOpacity(1);
+      rackPlace6.setOpacity(1);
     }
   }
 
@@ -342,28 +350,28 @@ public class SingleplayerController implements Initializable {
   @FXML
   private void ragPlace7clicked(MouseEvent event) throws IOException {
     ImageView iv = (ImageView) event.getSource();
-    ragPlace7 = iv;
+    rackPlace7 = iv;
     // no other letter is clicked
     if (!letterClicked && iv.getOpacity() != 0) {
 
       // no destination tile chosen
       if (!tileClicked) {
-        clickedLetter = ragPlace7;
-        ragPlace7.setOpacity(0.9);
+        clickedLetter = rackPlace7;
+        rackPlace7.setOpacity(0.9);
         letterClicked = true;
 
         // destination chosen
       } else {
         markedTile = clickedTile.getImage();
         tileClicked = false;
-        clickedTile.setImage(ragPlace7.getImage());
+        clickedTile.setImage(rackPlace7.getImage());
         choosenTiles.add(clickedTile.getId());
-        ragPlace7.setOpacity(0);
+        rackPlace7.setOpacity(0);
       }
 
-    } else if (letterClicked && (ragPlace7 == (ImageView) event.getSource())) {
+    } else if (letterClicked && (rackPlace7 == (ImageView) event.getSource())) {
       letterClicked = false;
-      ragPlace7.setOpacity(1);
+      rackPlace7.setOpacity(1);
     }
   }
 
@@ -385,29 +393,29 @@ public class SingleplayerController implements Initializable {
     choosenTiles.clear();
 
     // reset Opacity on the Rag Board if not null
-    if (ragPlace1 != null)
-      ragPlace1.setOpacity(1);
-    if (ragPlace2 != null)
-      ragPlace2.setOpacity(1);
-    if (ragPlace3 != null)
-      ragPlace3.setOpacity(1);
-    if (ragPlace4 != null)
-      ragPlace4.setOpacity(1);
-    if (ragPlace5 != null)
-      ragPlace5.setOpacity(1);
-    if (ragPlace6 != null)
-      ragPlace6.setOpacity(1);
-    if (ragPlace7 != null)
-      ragPlace7.setOpacity(1);
+    if (rackPlace1 != null)
+      rackPlace1.setOpacity(1);
+    if (rackPlace2 != null)
+      rackPlace2.setOpacity(1);
+    if (rackPlace3 != null)
+      rackPlace3.setOpacity(1);
+    if (rackPlace4 != null)
+      rackPlace4.setOpacity(1);
+    if (rackPlace5 != null)
+      rackPlace5.setOpacity(1);
+    if (rackPlace6 != null)
+      rackPlace6.setOpacity(1);
+    if (rackPlace7 != null)
+      rackPlace7.setOpacity(1);
 
     // delete the ragplaces for new tiles
-    ragPlace1 = null;
-    ragPlace2 = null;
-    ragPlace3 = null;
-    ragPlace4 = null;
-    ragPlace5 = null;
-    ragPlace6 = null;
-    ragPlace7 = null;
+    rackPlace1 = null;
+    rackPlace2 = null;
+    rackPlace3 = null;
+    rackPlace4 = null;
+    rackPlace5 = null;
+    rackPlace6 = null;
+    rackPlace7 = null;
   }
 
   private boolean placeTaken(ImageView iv) {
@@ -421,5 +429,33 @@ public class SingleplayerController implements Initializable {
       }
     }
     return false;
+  }
+
+  private int rowTransformation(String s) {
+
+    // check if column number
+    char xCord = s.charAt(0);
+    int x = ((int) xCord) - 96;
+    return x;
+  }
+
+  private int columnTransformation(String s) {
+
+    char yCord = s.charAt(1);
+    int y = ((int) yCord) - 48;
+
+    // if length of s is two, there is only the row and column number of length one -> nothing to
+    // check
+    if (s.length() > 2) {
+
+      // if length is > 2 and the 3. char is a number, the column number has the length of two
+      if (47 < ((int) s.charAt(2)) && ((int) s.charAt(2)) < 58) {
+        char yCord2 = s.charAt(2);
+        int y2 = ((int) yCord2) - 48;
+        y *= 10;
+        y += y2;
+      }
+    }
+    return y;
   }
 }
