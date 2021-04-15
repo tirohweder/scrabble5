@@ -21,6 +21,21 @@ public class ProfileController extends Controller implements Initializable {
   }
 
   @FXML
+  private void deleteProfile(MouseEvent event) {
+
+  }
+
+  @FXML
+  private void editName(MouseEvent event) {
+
+  }
+
+  @FXML
+  private void createNewPlayerProfile(MouseEvent event) {
+
+  }
+
+  @FXML
   private void back(MouseEvent event) throws IOException {
     App.setRoot("MainMenu");
   }
