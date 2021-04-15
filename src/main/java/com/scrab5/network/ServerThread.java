@@ -1,5 +1,9 @@
-// @author nitterhe
-
+/**
+ * Thread for the server sided client-server communication. Exchanges messages with the client and
+ * executes methods based on the incoming messages.
+ *
+ * @author nitterhe
+ */
 package com.scrab5.network;
 
 import java.io.ObjectInputStream;

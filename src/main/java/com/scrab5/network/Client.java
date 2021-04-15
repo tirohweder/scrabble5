@@ -16,6 +16,7 @@ import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.GetServerDataMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.MessageType;
+import com.scrab5.network.*;
 
 public class Client {
 
@@ -54,6 +55,7 @@ public class Client {
   public void hostServer() {
     if (hostedServer == null) {
       hostedServer = new Server(this.username);
+      asdsasd
       connectToServer(ip);
     } else {
       // Exception handling required

@@ -1,5 +1,10 @@
-// @author nitterhe
-
+/**
+ * Class to implement the server sided client-server-communication. Starts the ServerThread Class.
+ * Provides methods for the server to communicate with the clients. Also provides methods to get
+ * server information.
+ * 
+ * @author nitterhe
+ */
 package com.scrab5.network;
 
 import java.net.InetAddress;
@@ -19,8 +24,13 @@ public class Server {
   private HashMap<String, Client> players;
   private HashMap<Client, ServerThread> connections;
 
-
-  // 1. sets up server 2. initializes ServerCollections 3. creates ServerSocket
+  /**
+   * Construtor for the Server. Sets up the server settings by initializing the Collections and
+   * creating the server socket.
+   * 
+   * @author nitterhe
+   * @param host - the name of the server host
+   */
   public Server(String host) {
     this.players = new HashMap<String, Client>();
     this.connections = new HashMap<Client, ServerThread>();
@@ -29,14 +39,19 @@ public class Server {
     try {
       this.ip = InetAddress.getLocalHost().getHostAddress();
       serverSocket = new ServerSocket(this.serverPort);
+      //could cause deadlock
+      this.acceptClients();
     } catch (Exception e) {
       // requires Exception handling
     }
-    // maybe in try{}
-    this.acceptClients();
   }
 
-  // allows maximum of 4 players to connect until gameStart == true
+
+  /**
+   * Allows a maximum of 4 players to connect to the server while game has not been started.
+   * 
+   * @author nitterhe
+   */
   private void acceptClients() {
     while (!gameStart && this.getPlayerCount() < 4) {
       try {
@@ -53,6 +68,9 @@ public class Server {
     }
   }
 
+  /**
+   * Starts the lobby. N
+   */
   public void startGame() {
     this.gameStart = true;
   }
