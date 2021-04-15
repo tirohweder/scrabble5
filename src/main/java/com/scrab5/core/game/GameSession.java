@@ -1,7 +1,7 @@
 package com.scrab5.core.game;
 
-import com.scrab5.util.database.*;
 import com.scrab5.core.player.Player;
+import com.scrab5.util.database.FillDatabase;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -65,7 +65,6 @@ public class GameSession {
   }
 
 
-
   private static GameBoard gameBoard = new GameBoard();
   private static BagOfTiles bag = new BagOfTiles();
   private static Player[] list_of_players;
@@ -74,31 +73,35 @@ public class GameSession {
   private static boolean can_end = false;
   private static Player current_Player;
 
-
   // initialize bag fills the bag with the selected tiles
 
-  public GameSession(String[] gamePlayer) throws SQLException {
+  /**
+   * Starts GameSession with up to 4 Players.
+   *
+   * @param gamePlayer
+   * @throws SQLException
+   * @author trohwede
+   */
+  public GameSession(Player[] gamePlayer) throws SQLException {
     list_of_players = new Player[gamePlayer.length];
-    current_Player= list_of_players[0];
+    current_Player = list_of_players[0];
 
     initializeBag();
-
-    for (int i=0; i< gamePlayer.length; i++) {
-        list_of_players[i].getRack().fill(bag);
-
+    
+    for (int i = 0; i < gamePlayer.length; i++) {
+      list_of_players[i].getRack().fill(bag);
     }
 
   }
 
 
   /**
-   *
    * @author trohwede
    */
   public void initializeBag() throws SQLException {
     ResultSet rs = FillDatabase.viewLetters();
     while (rs.next()) {
-      this.bag.add(new Tile(rs.getString("Letter"),rs.getInt("Points")));
+      this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
     }
   }
 
@@ -106,5 +109,6 @@ public class GameSession {
 
   }
 
-  public void endGame() {}
+  public void endGame() {
+  }
 }

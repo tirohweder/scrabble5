@@ -1,12 +1,12 @@
 package com.scrab5.ui;
 
+import com.scrab5.core.game.GameBoard;
+import com.scrab5.core.game.GameSession;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
-import com.scrab5.core.game.GameBoard;
-import com.scrab5.core.game.GameSession;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -42,13 +42,10 @@ public class SingleplayerController implements Initializable {
   }
 
 
-
   /**
-   * @author Aaron
    * @param event
    * @throws IOException
-   * 
-   * 
+   * @author Aaron
    */
   @FXML
   private void fieldClicked(MouseEvent event) throws IOException {
@@ -57,11 +54,10 @@ public class SingleplayerController implements Initializable {
 
     String cordinate = iv.getId();
 
-
     GameBoard current = GameSession.getGameBoard();
 
     boolean isFree =
-        current.is_spot_free(rowTransformation(cordinate), columnTransformation(cordinate));
+        current.isSpotFree(rowTransformation(cordinate), columnTransformation(cordinate));
 
     // check if the field clicked is a letter to remove
     if (iv.getImage().getUrl().contains("letter_Tiles") && !placeTaken(iv)) {
@@ -145,9 +141,9 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-   * @author Aaron
    * @param event
    * @throws IOException
+   * @author Aaron
    */
   @FXML
   private void ragPlace1clicked(MouseEvent event) throws IOException {
@@ -178,9 +174,9 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-   * @author Aaron
    * @param event
    * @throws IOException
+   * @author Aaron
    */
   @FXML
   private void ragPlace2clicked(MouseEvent event) throws IOException {
@@ -211,9 +207,9 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-   * @author Aaron
    * @param event
    * @throws IOException
+   * @author Aaron
    */
   @FXML
   private void ragPlace3clicked(MouseEvent event) throws IOException {
@@ -244,9 +240,9 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-   * @author Aaron
    * @param event
    * @throws IOException
+   * @author Aaron
    */
   @FXML
   private void ragPlace4clicked(MouseEvent event) throws IOException {
@@ -277,9 +273,9 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-   * @author Aaron
    * @param event
    * @throws IOException
+   * @author Aaron
    */
   @FXML
   private void ragPlace5clicked(MouseEvent event) throws IOException {
@@ -310,9 +306,9 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-   * @author Aaron
    * @param event
    * @throws IOException
+   * @author Aaron
    */
   @FXML
   private void ragPlace6clicked(MouseEvent event) throws IOException {
@@ -343,9 +339,9 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-   * @author Aaron
    * @param event
    * @throws IOException
+   * @author Aaron
    */
   @FXML
   private void ragPlace7clicked(MouseEvent event) throws IOException {
@@ -376,9 +372,9 @@ public class SingleplayerController implements Initializable {
   }
 
   /**
-   * @author Aaron
    * @param event
    * @throws IOException
+   * @author Aaron
    */
   @FXML
   private void playClicked(MouseEvent event) throws IOException {
@@ -393,20 +389,27 @@ public class SingleplayerController implements Initializable {
     choosenTiles.clear();
 
     // reset Opacity on the Rag Board if not null
-    if (rackPlace1 != null)
+    if (rackPlace1 != null) {
       rackPlace1.setOpacity(1);
-    if (rackPlace2 != null)
+    }
+    if (rackPlace2 != null) {
       rackPlace2.setOpacity(1);
-    if (rackPlace3 != null)
+    }
+    if (rackPlace3 != null) {
       rackPlace3.setOpacity(1);
-    if (rackPlace4 != null)
+    }
+    if (rackPlace4 != null) {
       rackPlace4.setOpacity(1);
-    if (rackPlace5 != null)
+    }
+    if (rackPlace5 != null) {
       rackPlace5.setOpacity(1);
-    if (rackPlace6 != null)
+    }
+    if (rackPlace6 != null) {
       rackPlace6.setOpacity(1);
-    if (rackPlace7 != null)
+    }
+    if (rackPlace7 != null) {
       rackPlace7.setOpacity(1);
+    }
 
     // delete the ragplaces for new tiles
     rackPlace1 = null;
