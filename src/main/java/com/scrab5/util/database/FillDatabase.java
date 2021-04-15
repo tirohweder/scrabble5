@@ -1,6 +1,7 @@
 package com.scrab5.util.database;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -315,6 +316,17 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  public static ResultSet viewLetters() {
+    ResultSet rs = null;
+    try {
+      Statement stm = connection.createStatement();
+      rs = stm.executeQuery("SELECT * FROM Letters");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return rs;
   }
 
 }
