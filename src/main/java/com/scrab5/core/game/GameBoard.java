@@ -159,6 +159,13 @@ public class GameBoard {
    * @author trohwede
    */
   public int countScore() {
+    for (int i = 0; i < currentChanges.size(); i++) {
+
+      int row = currentChanges.get(i).getRow();
+      int column = currentChanges.get(i).getColumn();
+
+
+    }
 
     return 1;
   }
