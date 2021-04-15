@@ -110,15 +110,17 @@ public class AccountCreationController extends Controller implements Initializab
       pum.show();
       App.setRoot("MainMenu");
 
+      return true;
+
     } else {
 
       message = "Please make sure your nickname consists only of letters, numbers and underscores";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
+      return false;
 
     }
 
-    return false;
   }
 
 }

@@ -1,6 +1,7 @@
 package com.scrab5.ui;
 
 import java.io.IOException;
+import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ public class App extends Application {
 
     if (!Database.getExistance()) {
       db = new Database();
+      CreateDatabase cdb = new CreateDatabase();
     }
 
     scene = new Scene(loadFXML("Login"), 1360, 768);
