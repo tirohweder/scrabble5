@@ -12,8 +12,9 @@ public class Rack {
 
 
 
-  /* if Rack is not full add more tiles from bag till full
-   but only add if the bag is not empty.
+  /**
+   *  if Rack is not full add more tiles from bag till full but only add if the bag is not empty.
+   *
   */
   public void fill(BagOfTiles bag) {
     for (int i = 0; i < 7; i++) {
