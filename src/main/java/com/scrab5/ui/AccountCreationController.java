@@ -9,6 +9,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * The AccountCreationController class is supposed to control the components of the
+ * AccountCreation.fxml.
+ * 
+ * @author mherre
+ *
+ */
 public class AccountCreationController extends Controller implements Initializable {
 
   @FXML
@@ -21,10 +28,12 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * @author marku
+   * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
+   * predecessor "Login" scene
    * 
-   *         Event method that is called when the "Back"-button is clicked. Scene gets changed to
-   *         the predecessor "Login" scene
+   * @author mherre
+   * @param event
+   * 
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -32,15 +41,12 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * @author marku
+   * In case that "Enter" is pressed on the keyboard the entered nickname gets checked on validity
+   * 
+   * @author mherre
    * @param event
    * @throws IOException
-   * 
-   *         When "Enter" is pressed on the keyboard the nickname gets checked on validity (e.g.
-   *         maximum amount of chars, invalid chars,...). Sets the currentUser in Data.
-   * 
-   *         TODO: Pop-Up why username is invalid
-   * 
+   *
    */
   @FXML
   private void enterPressed(KeyEvent event) throws IOException {
@@ -54,30 +60,37 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * @author marku
+   * In case that "Enter" is clicked in the UI the entered nickname gets checked on validity
+   * 
+   * @author mherre
    * @param event
    * @throws IOException
    * 
-   *         When "Enter" is clicked in the UI the nickname gets checked on validity (e.g. maximum
-   *         amount of chars, invalid chars,...). Sets the currentUser in Data.
-   * 
-   *         TODO: Pop-Up why username is invalid
    */
   @FXML
   private void enter(MouseEvent event) throws IOException {
-    this.isUsernameValid();
+    if (this.isUsernameValid()) {
+
+    }
   }
 
   /**
-   * @author marku
+   * Returns the generated username.
+   * 
+   * @author mherre
    * @return
    * 
-   *         Returns the generated username.
    */
   public String getCreatedUsername() {
     return createdUsername;
   }
 
+  /**
+   * 
+   * @author mherre
+   * @return
+   * @throws IOException
+   */
   public boolean isUsernameValid() throws IOException {
 
     String regex = "[a-zA-Z0-9_]{1,12}";
@@ -89,7 +102,7 @@ public class AccountCreationController extends Controller implements Initializab
       this.createdUsername = nickname.getText();
 
       Data.setCurrentUser(this.createdUsername); // DUMMY
-      
+
       message = "Congratulations! Your account has been created";
       pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
       pum.show();
