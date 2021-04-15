@@ -13,6 +13,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * The PopUpMessageController class is supposed to control the components of all kind of
+ * PopUpMessages
+ * 
+ * @author mherre
+ */
+
 public class PopUpMessageController extends Controller implements Initializable {
 
   @FXML
@@ -30,7 +37,21 @@ public class PopUpMessageController extends Controller implements Initializable 
   @FXML
   private TextField textfield;
 
-  @Override
+  /**
+   * The initialize method is called once the scene of this controller is loaded. Depending on what
+   * kind of Pop-Up got opened the different cases come ino play.
+   * 
+   * In case of an "INPUT" PopUp the nickname of the current user gets placed in the textfield,
+   * furthermore the opacity of the textfield gets set to "1".
+   * 
+   * In case of an "ERROR" PopUp the original icon of the PopUp message gets changed to a warning
+   * symbol.
+   * 
+   * In case of a "CONFIRMATION" PopUp
+   * 
+   * 
+   * @author mherre
+   */
   public void initialize(URL location, ResourceBundle resources) {
     Image img = null;
 
@@ -70,12 +91,20 @@ public class PopUpMessageController extends Controller implements Initializable 
 
   }
 
+  /**
+   * This method will be called if the "Okay"- or "Cancel"-Button is clicked (this can be the case
+   * for all PopUpMessageTypes). In case the Pop-Up is from the type "INPUT", "currentUser" in
+   * "Data" gets updated. In any case: The Pop-Up will close afterwards
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void okay(MouseEvent event) {
 
     switch (Data.getMessageType()) {
       case INPUT:
-        Data.setCurrentUser(textfield.getText());
+        Data.setInputFieldText(textfield.getText());
       default:
         break;
     }
@@ -84,6 +113,14 @@ public class PopUpMessageController extends Controller implements Initializable 
     s.close();
   }
 
+  /**
+   * This method will only be called if the Pop-Up is from the PopUpMessageType "CONFIRMATION" and
+   * the user presses the button "Confirm". If called the boolean "confirmed" in "Data" is set to
+   * true and the Pop-Up gets closed.
+   * 
+   * @param event
+   * @throws IOException
+   */
   @FXML
   private void confirm(MouseEvent event) throws IOException {
     Data.setConfirmed(true);

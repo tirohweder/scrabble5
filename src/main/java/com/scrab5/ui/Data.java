@@ -3,6 +3,7 @@ package com.scrab5.ui;
 public class Data {
 
   private static String currentUser;
+  private static String inputFieldText;
 
   private static String popUpMessage;
   private static PopUpMessageType messageType;
@@ -38,5 +39,13 @@ public class Data {
 
   public static boolean isConfirmed() {
     return confirmed;
+  }
+
+  public static void setInputFieldText(String ipft) {
+    inputFieldText = ipft;
+  }
+
+  public static String getInputFieldText() {
+    return inputFieldText;
   }
 }
