@@ -1,5 +1,6 @@
 package com.scrab5.util.database;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,7 +16,6 @@ public class Database {
 
   protected static Connection connection;
   protected static boolean data = false;
-  protected static boolean databaseExists = false;
 
 
   /**
@@ -25,14 +25,18 @@ public class Database {
    *         the database file.
    */
   public Database() {
-    this.databaseExists = true;
     this.connect("myDatabase.db");
 
     // CreateDatabase cdb = new CreateDatabase();
   }
 
-  public static boolean getExistance() {
-    return databaseExists;
+  /*
+   * public static boolean getExistance() { return databaseExists; }
+   */
+
+  public static boolean databaseExistance() {
+    File file = new File("jdbc:sqlite:myDatabase.db");
+    return file.exists();
   }
 
   /**

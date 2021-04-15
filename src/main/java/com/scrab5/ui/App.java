@@ -20,7 +20,7 @@ public class App extends Application {
   @Override
   public void start(Stage stage) throws IOException {
 
-    if (!Database.getExistance()) {
+    if (!Database.databaseExistance()) {
       db = new Database();
       CreateDatabase cdb = new CreateDatabase();
     }
