@@ -51,10 +51,21 @@ public class FillDatabase extends Database {
   public static void deleteTable(String name) {
     try {
       Statement statement = connection.createStatement();
-      String sql = "DELETE FROM " + name + ';';
+      String sql = "DELETE FROM " + name;
       statement.execute(sql);
     } catch (SQLException e) {
       System.out.println("Could not perform deletion in table " + name);
+      System.out.println(e);
+    }
+  }
+
+  public static void deletePlayer(String name) {
+    try {
+      Statement statement = connection.createStatement();
+      String sql = "DELETE FROM Player WHERE Name = " + name;
+      statement.execute(sql);
+    } catch (SQLException e) {
+      System.out.println("Could not perform deletion from player " + name);
       System.out.println(e);
     }
   }
@@ -318,6 +329,12 @@ public class FillDatabase extends Database {
     }
   }
 
+  /**
+   * @author lengist
+   * @return ResultSet
+   * 
+   *         Displaying the content of current table Letters.
+   */
   public static ResultSet viewLetters() {
     ResultSet rs = null;
     try {
@@ -328,5 +345,45 @@ public class FillDatabase extends Database {
     }
     return rs;
   }
+
+
+  /*
+   * public static void main(String[] args) { FillDatabase fb = new FillDatabase();
+   * fb.createPlayer("Laura", null);
+   * 
+   * Statement stm; try { System.out.println("\n-----------------CREATE-PLAYER-Laura-----------");
+   * stm = Database.connection.createStatement(); ResultSet rs =
+   * stm.executeQuery("SELECT * FROM Player"); while (rs.next()) { System.out.println("Name: " +
+   * rs.getString("Name") + ", "); System.out.println("Picture: " + rs.getString("Picture") + ", ");
+   * System.out.println("Total points: " + rs.getString("TotalPoints") + ", ");
+   * System.out.println("Personal Highscore: " + rs.getString("PersonalHighscore") + ", ");
+   * System.out.println("Laid words: " + rs.getString("LaidWords") + ", ");
+   * System.out.println("Points per word rate: " + rs.getString("PointsPerWordRate") + ", ");
+   * System.out.println("Longest word: " + rs.getString("LongestWord") + ", ");
+   * System.out.println("Total played games: " + rs.getString("TotalPlayedGames") + ", ");
+   * System.out.println("Total wins: " + rs.getString("TotalWins") + ", ");
+   * System.out.println("Win rate: " + rs.getString("WinRate") + ", ");
+   * System.out.println("Favorite dictionary: " + rs.getString("FaveDic") + ", "); }
+   * System.out.println("-----------------CREATED-PLAYER-Laura-----------"); } catch (SQLException
+   * e) { e.printStackTrace(); }
+   * 
+   * fb.deletePlayer("Laura"); try {
+   * System.out.println("\n-----------------DELETE-PLAYER-Laura-----------"); stm =
+   * Database.connection.createStatement(); ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+   * while (rs.next()) { System.out.println("Name: " + rs.getString("Name") + ", ");
+   * System.out.println("Picture: " + rs.getString("Picture") + ", ");
+   * System.out.println("Total points: " + rs.getString("TotalPoints") + ", ");
+   * System.out.println("Personal Highscore: " + rs.getString("PersonalHighscore") + ", ");
+   * System.out.println("Laid words: " + rs.getString("LaidWords") + ", ");
+   * System.out.println("Points per word rate: " + rs.getString("PointsPerWordRate") + ", ");
+   * System.out.println("Longest word: " + rs.getString("LongestWord") + ", ");
+   * System.out.println("Total played games: " + rs.getString("TotalPlayedGames") + ", ");
+   * System.out.println("Total wins: " + rs.getString("TotalWins") + ", ");
+   * System.out.println("Win rate: " + rs.getString("WinRate") + ", ");
+   * System.out.println("Favorite dictionary: " + rs.getString("FaveDic") + ", "); }
+   * System.out.println("-----------------DELETED-PLAYER-Laura-----------"); } catch (SQLException
+   * e) { e.printStackTrace(); } }
+   */
+
 
 }
