@@ -8,6 +8,7 @@ package com.scrab5.network;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.Socket;
 import com.scrab5.network.Client.ServerData;
 import com.scrab5.network.messages.ConnectMessage;
@@ -60,18 +61,23 @@ public class ClientThread extends Threads {
   }
 
   /**
-   * Connects to the server. Opens streams and then starts the thread => run() starts.
+   * Checks if server is still reachable then connects to the server. Opens streams and then starts
+   * the thread => run() starts.
    * 
    * @author nitterhe
    * @param serverdata - object with given serverdata to connect to
    */
   public void connectToServer(ServerData serverdata) {
     try {
-      this.socketToServer = new Socket(serverdata.getIP4Address(), serverdata.getPort());
-      this.toServer = new ObjectOutputStream(socketToServer.getOutputStream());
-      this.fromServer = new ObjectInputStream(socketToServer.getInputStream());
-      sendMessageToServer(new ConnectMessage(this.client.getUsername(), this.client));
-      this.start();
+      if (InetAddress.getByName(serverdata.getIP4Address()).isReachable(10000)) {
+        this.socketToServer = new Socket(serverdata.getIP4Address(), serverdata.getPort());
+        this.toServer = new ObjectOutputStream(socketToServer.getOutputStream());
+        this.fromServer = new ObjectInputStream(socketToServer.getInputStream());
+        this.start();
+        sendMessageToServer(new ConnectMessage(this.client.getUsername(), this.client));
+      } else {
+        // requires Exception handling
+      }
     } catch (Exception e) {
       // requires Exception handling
     }
@@ -94,13 +100,15 @@ public class ClientThread extends Threads {
   }
 
   /**
-   * Closes the current connection and streams to the server.
+   * Closes the current connection and streams to the server. Executed only after server sent
+   * DisconnectMessage.
    * 
    * @author nitterhe
    */
-  public void closeConnection() {
-    sendMessageToServer(new DisconnectMessage(sender, client.getIp()));
+  private void closeConnection() {
+    sendMessageToServer(new DisconnectMessage(sender));
     running = false;
+    // popup: you have been disconnected
     try {
       this.socketToServer.shutdownInput();
       this.socketToServer.shutdownOutput();

@@ -22,7 +22,14 @@ public class ServerThread extends Threads {
   private ObjectInputStream fromClient;
   private Client connectedClient;
 
-  // sets up Socket and ServerThread for 1 client and handles the server side communication
+  /**
+   * Construtor for the ServerThread. Sets up the socket for 1 client and opens streams and handles
+   * the server side communication.
+   * 
+   * @author nitterhe
+   * @param server - the server object this Thread belongs to
+   * @param socketToClient - the clients's socket the ServerThread connects to.
+   */
   public ServerThread(Server server, Socket socketToClient) {
     this.server = server;
     this.socketToClient = socketToClient;
@@ -34,6 +41,11 @@ public class ServerThread extends Threads {
     }
   }
 
+  /**
+   * Runs the thread. Receives messages from the client and handles actions.
+   * 
+   * @author nitterhe
+   */
   public void run() {
     this.running = true;
     try {
@@ -45,21 +57,23 @@ public class ServerThread extends Threads {
           case GETSERVERDATA:
             Message reply = new Message(server.getHost());
             sendMessageToClient(reply);
+            this.closeConnection();
             break;
           case CONNECT:
             ConnectMessage connect = (ConnectMessage) message;
-            addPlayer(connect.getClient());
+            addClient(connect.getClient());
             break;
           case DISCONNECT:
             DisconnectMessage disconnect = (DisconnectMessage) message;
             if (disconnect.getSender().equals(server.getHost())) {
               server.shutDownServer();
             } else {
-              deletePlayer(disconnect.getSenderIp());
+              deleteClient(disconnect.getSender());
             }
+            // send an update message to the clients, so they know someone left the lobby
           case CHAT:
             ChatMessage chat = (ChatMessage) message;
-            sendMessageToAllClients(chat);
+            server.sendMessageToAllClients(chat);
             break;
 
           default:
@@ -71,27 +85,57 @@ public class ServerThread extends Threads {
     }
   }
 
-  private void addPlayer(Client player) {
-    if (null == server.getPlayers().get(player.getIp())) {
-      server.getPlayers().put(player.getIp(), player);
-      server.getConnections().put(player, this);
+  /**
+   * Adds the given client to the servers client list with username as key. Declared private and in
+   * this class so that no client can join the server without setting up a connection. Reduces
+   * failures.
+   * 
+   * @author nitterhe
+   * @param client
+   */
+  private void addClient(Client client) {
+    if (null == server.getClients().get(client.getUsername())) {
+      server.getClients().put(client.getUsername(), client);
+      server.getConnections().put(client, this);
+    } else {
+      // requires Exception handling
     }
-
   }
 
-  private void deletePlayer(String senderIp) {
-    Client player = server.getPlayers().get(senderIp);
-    if (null != player) {
-      server.getConnections().remove(player);
-      server.getPlayers().remove(player.getIp());
+  /**
+   * Adds the given client to the servers client list. Declared private and in this class so that no
+   * external class can manipulate the client list. Reduces failures.
+   * 
+   * @author nitterhe
+   * @param sender
+   */
+  private void deleteClient(String sender) {
+    Client client = server.getClients().get(sender);
+    if (null != client) {
+      server.getConnections().remove(client);
+      server.getClients().remove(client.getUsername());
       this.closeConnection();
+    } else {
+      // requires Exception handling
     }
   }
 
+  /**
+   * Returns the client this ServerThread is connected to.
+   * 
+   * @author nitterhe
+   * @return connectedClient - the connected client
+   */
   public Client getClient() {
     return this.connectedClient;
   }
 
+  /**
+   * Sends the given message to the connected client.
+   * 
+   * @author nitterhe
+   * @param message - the message to send
+   */
   public void sendMessageToClient(Message message) {
     try {
       this.toClient.writeObject(message);
@@ -102,18 +146,13 @@ public class ServerThread extends Threads {
     }
   }
 
-  public void sendMessageToAllClients(Message message) {
-    try {
-      for (ServerThread toClient : this.server.getConnections().values()) {
-        toClient.sendMessageToClient(message);
-      }
-    } catch (Exception e) {
-      // requires Exception handling
-    }
-  }
-
+  /**
+   * Sends a DisconnectMessage to the connected client and closes the streams.
+   * 
+   * @author nitterhe
+   */
   public synchronized void closeConnection() {
-    sendMessageToClient(new DisconnectMessage(server.getHost(), server.getIp()));
+    sendMessageToClient(new DisconnectMessage(server.getHost()));
     this.running = false;
     try {
       this.socketToClient.shutdownInput();
