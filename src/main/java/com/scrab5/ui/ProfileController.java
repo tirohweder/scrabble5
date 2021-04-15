@@ -41,11 +41,9 @@ public class ProfileController extends Controller implements Initializable {
     String message = "Enter your changes and click 'Okay'";
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.INPUT);
     pum.show();
-    // String name = "Bier";
-    // FillDatabase.updatePlayer("Name", Data.getCurrentUser(), name, 0);
-    // System.out.println("CurrentUser: " + Data.getCurrentUser());
-    // System.out.println("neuer Name: " + name);
-    // Data.setCurrentUser(name);
+    FillDatabase.updatePlayer("Name", Data.getCurrentUser(), Data.getInputFieldText(), 0);
+    Data.setCurrentUser(Data.getInputFieldText());
+
   }
 
   @FXML
