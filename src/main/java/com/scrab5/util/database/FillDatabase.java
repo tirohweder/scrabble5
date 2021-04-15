@@ -61,9 +61,11 @@ public class FillDatabase extends Database {
 
   public static void deletePlayer(String name) {
     try {
-      Statement statement = connection.createStatement();
-      String sql = "DELETE FROM Player WHERE Name = " + name;
-      statement.execute(sql);
+      String sql = "DELETE FROM Player WHERE Name = ?";
+      PreparedStatement pstm = connection.prepareStatement(sql);
+      pstm.setString(1, name);
+      pstm.executeUpdate();
+
     } catch (SQLException e) {
       System.out.println("Could not perform deletion from player " + name);
       System.out.println(e);
@@ -90,6 +92,12 @@ public class FillDatabase extends Database {
         pstmt.setString(1, contentString);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+        while (rs.next()) {
+          System.out.println("Name: " + rs.getString("Name") + ", ");
+          System.out.println();
+        }
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
@@ -213,6 +221,19 @@ public class FillDatabase extends Database {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
+    Statement stm;
+    try {
+      stm = connection.createStatement();
+      ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+      while (rs.next()) {
+        System.out.println("Name: " + rs.getString("Name") + ", ");
+        System.out.println();
+      }
+    } catch (SQLException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+
   }
 
   // This method updates the entries from the server table at specific column from

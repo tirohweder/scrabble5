@@ -102,6 +102,7 @@ public class AccountCreationController extends Controller implements Initializab
       Data.setCurrentUser(this.createdUsername);
       FillDatabase.createPlayer(this.createdUsername, null);
 
+
       message = "Congratulations! Your account has been created";
       pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
       pum.show();

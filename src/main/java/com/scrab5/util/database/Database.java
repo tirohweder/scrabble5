@@ -54,6 +54,7 @@ public class Database {
     // File file = new File("jdbc:sqlite:myDatabase.db");
     // return file.exists();
     return new File("myDatabase.db").isFile();
+    // return false;
   }
 
   /**

@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.scrab5.util.database.FillDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -28,9 +29,8 @@ public class ProfileController extends Controller implements Initializable {
     pum.show();
 
     if (Data.isConfirmed()) {
-
-      // Hier muss das Profile gelöscht werden @Laura
-
+      FillDatabase.deletePlayer(Data.getCurrentUser());
+      System.out.println("Current: " + Data.getCurrentUser());
       App.setRoot("AccountCreation");
     }
   }
@@ -41,9 +41,11 @@ public class ProfileController extends Controller implements Initializable {
     String message = "Enter your changes and click 'Okay'";
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.INPUT);
     pum.show();
-
-    // Mit Data.getCurrentUser holst du dir den aktualisierten Benutzernamen, den solltest du dann
-    // auch hier ändern
+    // String name = "Bier";
+    // FillDatabase.updatePlayer("Name", Data.getCurrentUser(), name, 0);
+    // System.out.println("CurrentUser: " + Data.getCurrentUser());
+    // System.out.println("neuer Name: " + name);
+    // Data.setCurrentUser(name);
   }
 
   @FXML
@@ -55,5 +57,12 @@ public class ProfileController extends Controller implements Initializable {
   private void back(MouseEvent event) throws IOException {
     App.setRoot("MainMenu");
   }
+
+  /*
+   * public static void main(String[] args) { Database db = new Database();
+   * FillDatabase.deleteTable("Player"); FillDatabase.createPlayer("aura", null);
+   * FillDatabase.deletePlayer("aura"); // FillDatabase.updatePlayer("Name", "aura", "paulaner", 0);
+   * }
+   */
 
 }

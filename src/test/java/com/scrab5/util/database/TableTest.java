@@ -19,7 +19,7 @@ public class TableTest {
    *         Creates a table player initally.
    */
   @Test
-  public void player() {
+  public void playerTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     Statement stm;
@@ -48,7 +48,7 @@ public class TableTest {
   }
 
   @Test
-  public void server() {
+  public void serverTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createServer("Laura's server");
     Statement stm;
@@ -70,7 +70,7 @@ public class TableTest {
   }
 
   @Test
-  public void letters() {
+  public void lettersTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.insertLetters("L", 4);
     Statement stm;
@@ -89,7 +89,7 @@ public class TableTest {
   }
 
   @Test
-  public void delete() {
+  public void deleteTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     FillDatabase.deleteTable("Player");
@@ -107,8 +107,9 @@ public class TableTest {
     }
   }
 
+
   @Test
-  public void updatePlayer() {
+  public void updatePlayerTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     /* update the name: */
@@ -140,7 +141,7 @@ public class TableTest {
 
 
   @Test
-  public void updateServer() {
+  public void updateServerTEst() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createServer("Laura's server");
     /* update the server name */
@@ -165,7 +166,7 @@ public class TableTest {
 
 
   @Test
-  public void updateLetters() {
+  public void updateLettersTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.insertLetters("L", 4);
     /* updating: */
