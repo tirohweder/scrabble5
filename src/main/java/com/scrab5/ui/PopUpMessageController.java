@@ -47,7 +47,8 @@ public class PopUpMessageController extends Controller implements Initializable 
    * In case of an "ERROR" PopUp the original icon of the PopUp message gets changed to a warning
    * symbol.
    * 
-   * In case of a "CONFIRMATION" PopUp
+   * In case of a "CONFIRMATION" PopUp the "Okay"-button gets changed to a "Cancel"-button and the
+   * icon to a questionmark. A "Confirm"-button is also added.
    * 
    * 
    * @author mherre
