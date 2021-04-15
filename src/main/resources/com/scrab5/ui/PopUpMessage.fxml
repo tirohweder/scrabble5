@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,7 +11,7 @@
    <children>
       <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="500.0" style="-fx-background-color: #014538;">
          <children>
-            <ImageView fitHeight="42.0" fitWidth="114.0" layoutX="200.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="okayButton" fitHeight="42.0" fitWidth="114.0" layoutX="200.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/Error_OkayButton.png" />
                </image>
@@ -20,16 +21,31 @@
                   <Image url="@images/Notification_InfoIcon.png" />
                </image>
             </ImageView>
-            <Text fx:id="message" fill="WHITE" layoutX="108.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="380.13671875">
+            <Text fx:id="message" fill="WHITE" layoutX="120.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="360.13671875">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Text>
-            <ImageView fitHeight="42.0" fitWidth="114.0" layoutX="200.0" layoutY="125.0" onMouseClicked="#okay" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="okayButtonClicked" fitHeight="42.0" fitWidth="114.0" layoutX="200.0" layoutY="125.0" onMouseClicked="#okay" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/Error_OkayButtonClicked.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="confirmButton" fitHeight="42.0" fitWidth="114.0" layoutX="339.0" layoutY="125.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Confirmation_ConfirmButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="confirmButtonClicked" fitHeight="42.0" fitWidth="114.0" layoutX="339.0" layoutY="125.0" onMouseClicked="#confirm" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Confirmation_ConfirmButtonClicked.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="textfield" layoutX="124.0" layoutY="88.0" opacity="0.0" prefHeight="25.0" prefWidth="253.0">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
    </children>

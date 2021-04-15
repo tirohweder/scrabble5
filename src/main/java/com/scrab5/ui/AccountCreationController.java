@@ -70,10 +70,7 @@ public class AccountCreationController extends Controller implements Initializab
    */
   @FXML
   private void enter(MouseEvent event) throws IOException {
-    if (this.isUsernameValid()) {
-      FillDatabase.createPlayer(this.createdUsername, null);
-      System.out.println(this.createdUsername);
-    }
+    this.isUsernameValid();
   }
 
   /**
@@ -102,8 +99,8 @@ public class AccountCreationController extends Controller implements Initializab
     if (this.nickname.getText().matches(regex)) {
 
       this.createdUsername = nickname.getText();
-
-      Data.setCurrentUser(this.createdUsername); // DUMMY
+      Data.setCurrentUser(this.createdUsername);
+      FillDatabase.createPlayer(this.createdUsername, null);
 
       message = "Congratulations! Your account has been created";
       pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
@@ -117,10 +114,8 @@ public class AccountCreationController extends Controller implements Initializab
       message = "Please make sure your nickname consists only of letters, numbers and underscores";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
+
       return false;
-
     }
-
   }
-
 }

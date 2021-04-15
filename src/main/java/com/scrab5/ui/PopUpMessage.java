@@ -17,19 +17,21 @@ public class PopUpMessage {
     Data.setMessage(message);
 
     switch (type) {
+      case INPUT:
+        Data.setMessageType(PopUpMessageType.INPUT);
+        break;
       case ERROR:
-        Data.setMessageType(PopUpMessageType.ERROR); 
+        Data.setMessageType(PopUpMessageType.ERROR);
         break;
       case CONFIRMATION:
-        this.popUp.setScene(new Scene(loadFXML("ConfirmationMessage"), 500, 200));
+        Data.setMessageType(PopUpMessageType.CONFIRMATION);
         break;
       case NOTIFICATION:
-        Data.setMessageType(PopUpMessageType.NOTIFICATION); 
-        
+        Data.setMessageType(PopUpMessageType.NOTIFICATION);
         break;
       default:
     }
-    
+
     this.popUp.setScene(new Scene(loadFXML("PopUpMessage"), 500, 200));
     this.popUp.initModality(Modality.APPLICATION_MODAL);
     this.popUp.setResizable(false);
