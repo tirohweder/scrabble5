@@ -34,51 +34,34 @@ public class TutorialController extends Controller implements Initializable {
    * @author Aaron
    * @param event
    * @throws IOException
+   * 
+   *         is called when "got it" button is clicked as soon as an explanation is understood, next
+   *         explanation will be displayed
    */
   @FXML
-  private void multiplayerClicked(MouseEvent event) throws IOException {
-    App.setRoot("MultiplayerOverview");
+  private void gotItClicked(MouseEvent event) throws IOException {
+    // App.setRoot("nextExplanation");
   }
 
   /**
    * @author Aaron
    * @param event
    * @throws IOException
+   * 
+   *         is called when "back" button is clicked and previous explanation is displayed
    */
   @FXML
-  private void singleplayerClicked(MouseEvent event) throws IOException {
-    App.setRoot("SinglePlayer");
-
+  private void backClicked(MouseEvent event) throws IOException {
+    // App.setRoot("nextExplanation");
   }
 
-  /**
-   * @author Aaron
-   * @param event
-   * @throws IOException
-   */
-  @FXML
-  private void tutorialClicked(MouseEvent event) throws IOException {
-    // App.setRoot("AccountCreation");
 
-  }
-
-  @FXML
-  private void settingsClicked(MouseEvent event) throws IOException {
-    // App.setRoot("AccountCreation");
-
-  }
-
-  @FXML
-  private void statsClicked(MouseEvent event) throws IOException {
-    App.setRoot("Profile");
-
-  }
 
   /**
    * @author Aaron
    * @param event
    * 
-   *        Is called when "Exit" - button is clicked, closes the application and ends the programm
+   *        Is called when "Back to Main Menu" - button is clicked, returns to the Main Menu
    */
   @FXML
   private void close(MouseEvent event) {
