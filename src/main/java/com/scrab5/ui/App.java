@@ -44,6 +44,18 @@ public class App extends Application {
     scene.setRoot(loadFXML(fxml));
   }
 
+  public static void setRoot(String fxml, String predescessor) throws IOException {
+
+    switch (predescessor) {
+      case "Profile":
+        AccountCreationController.setPredecessor("Profile");
+      default:
+        break;
+
+    }
+    scene.setRoot(loadFXML(fxml));
+  }
+
   /**
    * @author trohwede
    * @param fxml

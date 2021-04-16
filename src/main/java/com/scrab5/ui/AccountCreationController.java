@@ -22,10 +22,12 @@ public class AccountCreationController extends Controller implements Initializab
   @FXML
   private TextField nickname;
   private String createdUsername;
+  private static String predecessor;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // TODO Auto-generated method stub
+
+
   }
 
   /**
@@ -38,7 +40,18 @@ public class AccountCreationController extends Controller implements Initializab
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    App.setRoot("Login");
+
+    switch (predecessor) {
+
+      case "Profile":
+        App.setRoot("Profile");
+        break;
+
+      default:
+        App.setRoot("Login");
+        break;
+    }
+
   }
 
   /**
@@ -118,5 +131,10 @@ public class AccountCreationController extends Controller implements Initializab
 
       return false;
     }
+  }
+
+  public static void setPredecessor(String predecessorPara) {
+    predecessor = predecessorPara;
+
   }
 }

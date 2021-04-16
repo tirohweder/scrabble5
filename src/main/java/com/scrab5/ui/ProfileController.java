@@ -48,8 +48,8 @@ public class ProfileController extends Controller implements Initializable {
   }
 
   @FXML
-  private void createNewPlayerProfile(MouseEvent event) {
-
+  private void createNewPlayerProfile(MouseEvent event) throws IOException {
+    App.setRoot("AccountCreation", "Profile");
   }
 
   @FXML
