@@ -5,13 +5,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/*
- * entity to create a new database and establish the connection to it
- * 
+/**
  * @author lengist
  * 
+ *         entity to create a new database and establish the connection to it.
+ *
  */
-
 public class Database {
 
   protected static Connection connection;
@@ -27,14 +26,13 @@ public class Database {
    */
   public Database() {
     this.connect(this.databaseFileName);
-
-    // CreateDatabase cdb = new CreateDatabase();
   }
 
-  /*
-   * public static boolean getExistance() { return databaseExists; }
+  /**
+   * @author lengist
+   * 
+   *         Establishes the connection to an existing database file.
    */
-
   public static void reconnect() {
     try {
       Class.forName("org.sqlite.JDBC");
@@ -50,11 +48,15 @@ public class Database {
     }
   }
 
+
+  /**
+   * @author lengist
+   * @return boolean
+   * 
+   *         Returns true if the local database file exists to check if a database already exists.
+   */
   public static boolean databaseExistance() {
-    // File file = new File("jdbc:sqlite:myDatabase.db");
-    // return file.exists();
     return new File("myDatabase.db").isFile();
-    // return false;
   }
 
   /**

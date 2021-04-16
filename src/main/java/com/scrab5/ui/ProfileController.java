@@ -59,6 +59,7 @@ public class ProfileController extends Controller implements Initializable {
    * from the database.
    * 
    * @author mherre
+   * @author lengist
    * @param event
    * @throws IOException
    */
@@ -82,6 +83,7 @@ public class ProfileController extends Controller implements Initializable {
    * username criteria then name will be updated in the database.
    * 
    * @author mherre
+   * @author lengist
    * @param event
    * @throws IOException
    */
@@ -163,7 +165,16 @@ public class ProfileController extends Controller implements Initializable {
    */
   private void setupStats() {
 
-    // @Laura, ich denke du weißt wies geht :D
+    // @Laura, ich denke du weißt wies geht :D --> Danke für dein Vertrauen :D
+    String name;
+    String picture;
+    int totalPoints;
+    int laidWords;
+    int totalPlayedGames;
+    int totalWins;
+    String favoriteDictionary;
+
+
     this.totalPoints.setText("0");
     this.averagePointsGame.setText("0");
     this.mostPoints.setText("0");

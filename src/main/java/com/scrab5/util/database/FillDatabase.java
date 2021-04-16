@@ -10,34 +10,49 @@ import java.sql.Statement;
  * @author lengist
  * @author hraza
  * 
- *         class to fill all tables in the database
+ *         class with methods to fill all tables, edit certain entries or delete a table or certain
+ *         entries in the database.
  *
  */
 public class FillDatabase extends Database {
   private static PreparedStatement pstmPlayer;
   private static PreparedStatement pstmServer;
   private static PreparedStatement pstmDic;
+  private static PreparedStatement pstmDelete;
 
   /**
    * @author lengist
    * @author hraza
    * 
-   *         Closes the statement streams.
+   *         Closes the statement stream for preparedSatetements with "name" in its notation.
    */
-  private void closeStatements() {
+  private static void closeStatement(String name) {
     try {
-      if ((pstmServer != null) && (!pstmServer.isClosed())) {
-        pstmServer.close();
-      }
-      if ((pstmDic != null) && (!pstmDic.isClosed())) {
-        pstmDic.close();
-      }
-      if ((pstmPlayer != null) && (!pstmPlayer.isClosed())) {
-        pstmPlayer.close();
+      switch (name) {
+        case "delete":
+          if ((pstmDelete != null) && (!pstmDelete.isClosed())) {
+            pstmDelete.close();
+          } ;
+          break;
+        case "player":
+          if ((pstmPlayer != null) && (!pstmPlayer.isClosed())) {
+            pstmPlayer.close();
+          } ;
+          break;
+        case "server":
+          if ((pstmServer != null) && (!pstmServer.isClosed())) {
+            pstmServer.close();
+          } ;
+          break;
+        case "dic":
+          if ((pstmDic != null) && (!pstmDic.isClosed())) {
+            pstmDic.close();
+          } ;
+          break;
       }
     } catch (Exception e) {
       System.out.println(e);
-      System.out.println("Problem beim Schliessen der Prepared Statements aufgetreten.");
+      System.out.println("Problem with closing statement " + name + "!");
     }
   }
 
@@ -59,17 +74,24 @@ public class FillDatabase extends Database {
     }
   }
 
+  /**
+   * @author lengist
+   * @param name
+   * 
+   *        Deletes a certain player with name "name" in the table Player.
+   */
   public static void deletePlayer(String name) {
     try {
       String sql = "DELETE FROM Player WHERE Name = ?";
-      PreparedStatement pstm = connection.prepareStatement(sql);
-      pstm.setString(1, name);
-      pstm.executeUpdate();
+      pstmDelete = connection.prepareStatement(sql);
+      pstmDelete.setString(1, name);
+      pstmDelete.executeUpdate();
 
     } catch (SQLException e) {
       System.out.println("Could not perform deletion from player " + name);
       System.out.println(e);
     }
+    closeStatement("delete");
   }
 
   /**
@@ -84,6 +106,7 @@ public class FillDatabase extends Database {
    */
   public static void updatePlayer(String column, String name, String contentString,
       int contentInt) {
+    /* missing: closing statements */
     PreparedStatement pstm = null;
 
     if (column == "Name") {
@@ -194,50 +217,78 @@ public class FillDatabase extends Database {
     }
   }
 
-  /*
-   * method to fill table player completely. Used when a new player profile is created. Variables
-   * for statistics get default values.
+  /**
+   * @author lengist
+   * @author hraza
+   * @param name
+   * @param picture
+   * 
+   *        Method to fill table player completely. Used when a new player profile is created.
+   *        Variables for statistics get default values.
    */
   public static void createPlayer(String name, String picture) {
-    /* missing: check if name already exists!!! */
+    boolean alreadyExists = false;
     try {
-      pstmPlayer = connection.prepareStatement(
-          "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
-              + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
-              + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
-      pstmPlayer.setString(1, name);
-      pstmPlayer.setString(2, picture);
-      pstmPlayer.setInt(3, 0);
-      pstmPlayer.setInt(4, 0);
-      pstmPlayer.setInt(5, 0);
-      pstmPlayer.setInt(6, 0);
-      pstmPlayer.setInt(7, 0);
-      pstmPlayer.setInt(8, 0);
-      pstmPlayer.setInt(9, 0);
-      pstmPlayer.setInt(10, 0);
-      pstmPlayer.setString(11, "");
-      pstmPlayer.executeUpdate();
-    } catch (SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-    Statement stm;
-    try {
-      stm = connection.createStatement();
-      ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+      Statement test = connection.createStatement();
+      ResultSet rs = test.executeQuery("SELECT Name FROM Player");
       while (rs.next()) {
-        System.out.println("Name: " + rs.getString("Name") + ", ");
-        System.out.println();
+        if (rs.getString("Name").equals(name)) {
+          alreadyExists = true;
+        }
       }
-    } catch (SQLException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
+    } catch (SQLException e1) {
+      e1.printStackTrace();
     }
 
+    if (!alreadyExists) {
+      try {
+        pstmPlayer = connection.prepareStatement(
+            "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
+                + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
+                + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+        pstmPlayer.setString(1, name);
+        pstmPlayer.setString(2, picture);
+        pstmPlayer.setInt(3, 0);
+        pstmPlayer.setInt(4, 0);
+        pstmPlayer.setInt(5, 0);
+        pstmPlayer.setInt(6, 0);
+        pstmPlayer.setInt(7, 0);
+        pstmPlayer.setInt(8, 0);
+        pstmPlayer.setInt(9, 0);
+        pstmPlayer.setInt(10, 0);
+        pstmPlayer.setString(11, "");
+        pstmPlayer.executeUpdate();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+      Statement stm;
+      try {
+        stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+        while (rs.next()) {
+          System.out.println("Name: " + rs.getString("Name") + ", ");
+          System.out.println();
+        }
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    } else {
+      /* error message needs to be displayed via UI: */
+      System.out
+          .println("Player with name: " + name + "already exists. Please choose different name");
+    }
+    closeStatement("player");
   }
 
-  // This method updates the entries from the server table at specific column from
-  // a specific server
+  /**
+   * @author hraza
+   * @param column
+   * @param name
+   * @param content
+   * 
+   *        Updates the entries from the table server at a specific column from a specific
+   *        serverListName.
+   */
   public static void updateServer(String column, String name, String content) {
 
     if (column == "ServerListNames") {
@@ -294,41 +345,86 @@ public class FillDatabase extends Database {
     }
   }
 
-  /*
-   * method to fill table server completely. Used when a new server is created. Variables for
-   * statistics get default values.
+  /**
+   * @author lengist
+   * @author hraza
+   * @param name
+   * 
+   *        Method to fill table server completely. Used when a new server is created. Variables for
+   *        statistics get default values.
    */
   public static void createServer(String name) {
-    /* missing: check if name already exists in database */
+    boolean alreadyExists = false;
     try {
-      pstmServer = connection.prepareStatement("INSERT INTO Server (ServerListNames, Dictionaries,"
-          + "VictoryRanking, GameRanking, VictoryLossRate) VALUES (?,?,?,?,?);");
-      pstmServer.setString(1, name);
-      pstmServer.setString(2, "");
-      pstmServer.setString(3, "");
-      pstmServer.setString(4, "");
-      pstmServer.setString(5, "");
-      pstmServer.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
+      Statement test = connection.createStatement();
+      ResultSet rs = test.executeQuery("SELECT ServerListNames FROM Server");
+      while (rs.next()) {
+        if (rs.getString("ServerListNames").equals(name)) {
+          alreadyExists = true;
+        }
+      }
+    } catch (SQLException e1) {
+      e1.printStackTrace();
     }
+
+    if (!alreadyExists) {
+      try {
+        pstmServer =
+            connection.prepareStatement("INSERT INTO Server (ServerListNames, Dictionaries,"
+                + "VictoryRanking, GameRanking, VictoryLossRate) VALUES (?,?,?,?,?);");
+        pstmServer.setString(1, name);
+        pstmServer.setString(2, "");
+        pstmServer.setString(3, "");
+        pstmServer.setString(4, "");
+        pstmServer.setString(5, "");
+        pstmServer.executeUpdate();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    } else {
+      /* error message needs to be displayed via UI: */
+      System.out
+          .println("Server with name: " + name + "already exists. Please choose different name");
+    }
+    closeStatement("server");
   }
 
-  /*
-   * insert letters with corresponding points to calculate points per word
+  /**
+   * @author lengist
+   * @author hraza
+   * @param letter
+   * @param point
    * 
-   * --> check if letter exists needed???
-   * 
+   *        Inserts letters with corresponding points to calculate points per word.
    */
   public static void insertLetters(String letter, int point) {
+    boolean alreadyExists = false;
     try {
-      pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUES (?,?);");
-      pstmDic.setString(1, letter);
-      pstmDic.setInt(2, point);
-      pstmDic.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
+      Statement test = connection.createStatement();
+      ResultSet rs = test.executeQuery("SELECT Letter FROM Letters");
+      while (rs.next()) {
+        if (rs.getString("Letter").equals(letter)) {
+          alreadyExists = true;
+        }
+      }
+    } catch (SQLException e1) {
+      e1.printStackTrace();
     }
+
+    if (!alreadyExists) {
+      try {
+        pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUES (?,?);");
+        pstmDic.setString(1, letter);
+        pstmDic.setInt(2, point);
+        pstmDic.executeUpdate();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    } else {
+      /* connection to UI? --> display error and need to update and not insert. */
+      System.out.println("Letter already exists. Please update");
+    }
+    closeStatement("dic");
   }
 
 
@@ -348,6 +444,7 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    closeStatement("dic");
   }
 
   /**
@@ -366,45 +463,5 @@ public class FillDatabase extends Database {
     }
     return rs;
   }
-
-
-  /*
-   * public static void main(String[] args) { FillDatabase fb = new FillDatabase();
-   * fb.createPlayer("Laura", null);
-   * 
-   * Statement stm; try { System.out.println("\n-----------------CREATE-PLAYER-Laura-----------");
-   * stm = Database.connection.createStatement(); ResultSet rs =
-   * stm.executeQuery("SELECT * FROM Player"); while (rs.next()) { System.out.println("Name: " +
-   * rs.getString("Name") + ", "); System.out.println("Picture: " + rs.getString("Picture") + ", ");
-   * System.out.println("Total points: " + rs.getString("TotalPoints") + ", ");
-   * System.out.println("Personal Highscore: " + rs.getString("PersonalHighscore") + ", ");
-   * System.out.println("Laid words: " + rs.getString("LaidWords") + ", ");
-   * System.out.println("Points per word rate: " + rs.getString("PointsPerWordRate") + ", ");
-   * System.out.println("Longest word: " + rs.getString("LongestWord") + ", ");
-   * System.out.println("Total played games: " + rs.getString("TotalPlayedGames") + ", ");
-   * System.out.println("Total wins: " + rs.getString("TotalWins") + ", ");
-   * System.out.println("Win rate: " + rs.getString("WinRate") + ", ");
-   * System.out.println("Favorite dictionary: " + rs.getString("FaveDic") + ", "); }
-   * System.out.println("-----------------CREATED-PLAYER-Laura-----------"); } catch (SQLException
-   * e) { e.printStackTrace(); }
-   * 
-   * fb.deletePlayer("Laura"); try {
-   * System.out.println("\n-----------------DELETE-PLAYER-Laura-----------"); stm =
-   * Database.connection.createStatement(); ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-   * while (rs.next()) { System.out.println("Name: " + rs.getString("Name") + ", ");
-   * System.out.println("Picture: " + rs.getString("Picture") + ", ");
-   * System.out.println("Total points: " + rs.getString("TotalPoints") + ", ");
-   * System.out.println("Personal Highscore: " + rs.getString("PersonalHighscore") + ", ");
-   * System.out.println("Laid words: " + rs.getString("LaidWords") + ", ");
-   * System.out.println("Points per word rate: " + rs.getString("PointsPerWordRate") + ", ");
-   * System.out.println("Longest word: " + rs.getString("LongestWord") + ", ");
-   * System.out.println("Total played games: " + rs.getString("TotalPlayedGames") + ", ");
-   * System.out.println("Total wins: " + rs.getString("TotalWins") + ", ");
-   * System.out.println("Win rate: " + rs.getString("WinRate") + ", ");
-   * System.out.println("Favorite dictionary: " + rs.getString("FaveDic") + ", "); }
-   * System.out.println("-----------------DELETED-PLAYER-Laura-----------"); } catch (SQLException
-   * e) { e.printStackTrace(); } }
-   */
-
 
 }

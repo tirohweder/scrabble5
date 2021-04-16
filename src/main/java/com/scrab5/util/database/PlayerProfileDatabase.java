@@ -1,5 +1,8 @@
 package com.scrab5.util.database;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /*
  * class to get and set the data for the player statistics and leaderboards
  * 
@@ -19,6 +22,15 @@ public class PlayerProfileDatabase extends Database {
   /* getter methods */
 
   public String getPicture(String name) {
+    try {
+      PreparedStatement pstm =
+          connection.prepareStatement("SELECT Picture FROM Player WHERE Name = ?");
+      pstm.setString(1, name);
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
     return this.picture;
   }
 
