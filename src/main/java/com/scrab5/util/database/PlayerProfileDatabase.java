@@ -216,7 +216,7 @@ public class PlayerProfileDatabase extends Database {
     String dic = null;
     try {
       PreparedStatement pstm =
-          connection.prepareStatement("SELECT FavoriteDictionary FROM Player WHERE Name = ?");
+          connection.prepareStatement("SELECT FaveDic FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
       dic = rs.getString(1);
@@ -345,7 +345,7 @@ public class PlayerProfileDatabase extends Database {
    *        Updates current value of FavoriteDictionary with String value delivered by parameter.
    */
   public static void setFavoriteDictionary(String name, String language) {
-    FillDatabase.updatePlayer("FavoriteDictionary", name, language, 0, 0.0);
+    FillDatabase.updatePlayer("FaveDic", name, language, 0, 0.0);
   }
 
 

@@ -113,7 +113,7 @@ public class TableTest {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     /* update the name: */
-    FillDatabase.updatePlayer("Name", "Laura", "Maria", 0);
+    FillDatabase.updatePlayer("Name", "Laura", "Maria", 0, 0.0);
     Statement stm;
     try {
       System.out.println("\n---------------CHANGE-IN-PLAYER-FROM-Laura-To-Maria---------");

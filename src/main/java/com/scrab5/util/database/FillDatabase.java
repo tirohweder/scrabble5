@@ -118,7 +118,7 @@ public class FillDatabase extends Database {
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery("SELECT * FROM Player");
         while (rs.next()) {
-          System.out.println("Name: " + rs.getString("Name") + ", ");
+          System.out.println("Namen jetzt: " + rs.getString("Name") + ", ");
           System.out.println();
         }
       } catch (SQLException e) {

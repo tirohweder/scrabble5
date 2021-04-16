@@ -97,7 +97,6 @@ public class ProfileController extends Controller implements Initializable {
 
     if (this.isUsernameValid(Data.getInputFieldText())) {
       PlayerProfileDatabase.setName(Data.getCurrentUser(), Data.getInputFieldText());
-      // FillDatabase.updatePlayer("Name", Data.getCurrentUser(), Data.getInputFieldText(), 0);
       Data.setCurrentUser(Data.getInputFieldText());
       App.setRoot("Profile");
     }
@@ -167,25 +166,31 @@ public class ProfileController extends Controller implements Initializable {
   private void setupStats() {
 
     // @Laura, ich denke du weißt wies geht :D --> Danke für dein Vertrauen :D
-    String name;
-    String picture;
-    int totalPoints;
-    int laidWords;
-    int totalPlayedGames;
-    int totalWins;
-    String favoriteDictionary;
+    String name = Data.getCurrentUser();
+    String picture = PlayerProfileDatabase.getPicture(name);
+    int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
+    int personalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
+    int laidWords = PlayerProfileDatabase.getLaidWords(name);
+    int pointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
+    String longestWord = PlayerProfileDatabase.getLongestWord(name);
+    int totalPlayedGames = PlayerProfileDatabase.getTotalPlayedGames(name);
+    int totalWins = PlayerProfileDatabase.getTotalWins(name);
+    double winRate = PlayerProfileDatabase.getWinRate(name);
+    String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
+    int averagePointsPerGame = totalPoints / totalPlayedGames;
 
 
-    this.totalPoints.setText("0");
+    this.totalPoints.setText(String.valueOf(totalPoints));
+    // this.averagePointsGame.setText(String.valueOf(averagePointsPerGame));
     this.averagePointsGame.setText("0");
-    this.mostPoints.setText("0");
-    this.laidWords.setText("0");
-    this.averagePointsWord.setText("0");
-    this.longestWord.setText("-");
-    this.totalGames.setText("0");
-    this.totalWins.setText("0");
-    this.winPercentage.setText("0");
-    this.favDic.setText("-");
+    this.mostPoints.setText(String.valueOf(personalHighscore));
+    this.laidWords.setText(String.valueOf(laidWords));
+    this.averagePointsWord.setText(String.valueOf(pointsPerWordRate));
+    this.longestWord.setText(longestWord);
+    this.totalGames.setText(String.valueOf(totalPlayedGames));
+    this.totalWins.setText(String.valueOf(totalWins));
+    this.winPercentage.setText(String.valueOf(winRate));
+    this.favDic.setText(favoriteDictionary);
 
   }
 }
