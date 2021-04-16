@@ -91,7 +91,7 @@ public class FillDatabase extends Database {
       System.out.println("Could not perform deletion from player " + name);
       System.out.println(e);
     }
-    closeStatement("delete");
+    // closeStatement("delete");
   }
 
   /**
@@ -277,7 +277,7 @@ public class FillDatabase extends Database {
       System.out
           .println("Player with name: " + name + "already exists. Please choose different name");
     }
-    closeStatement("player");
+    // closeStatement("player");
   }
 
   /**
@@ -386,7 +386,7 @@ public class FillDatabase extends Database {
       System.out
           .println("Server with name: " + name + "already exists. Please choose different name");
     }
-    closeStatement("server");
+    // closeStatement("server");
   }
 
   /**
@@ -424,7 +424,7 @@ public class FillDatabase extends Database {
       /* connection to UI? --> display error and need to update and not insert. */
       System.out.println("Letter already exists. Please update");
     }
-    closeStatement("dic");
+    // closeStatement("dic");
   }
 
 
@@ -444,7 +444,7 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    closeStatement("dic");
+    // closeStatement("dic");
   }
 
   /**

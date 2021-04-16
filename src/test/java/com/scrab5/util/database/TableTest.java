@@ -16,7 +16,7 @@ public class TableTest {
   /**
    * @author lengist
    * 
-   *         Creates a table player initally.
+   *         Tests the inital creation of a column for a new player.
    */
   @Test
   public void playerTest() {
@@ -47,6 +47,11 @@ public class TableTest {
 
   }
 
+  /**
+   * @author lengist
+   * 
+   *         Tests the inital creation of a column for a new server.
+   */
   @Test
   public void serverTest() {
     CreateDatabase db = new CreateDatabase();
@@ -69,6 +74,11 @@ public class TableTest {
     }
   }
 
+  /**
+   * @author lengist
+   * 
+   *         Tests the inital creation of a column for a new Letter.
+   */
   @Test
   public void lettersTest() {
     CreateDatabase db = new CreateDatabase();
@@ -88,6 +98,11 @@ public class TableTest {
     }
   }
 
+  /**
+   * @author lengist
+   * 
+   *         Tests the deletion of a whole table.
+   */
   @Test
   public void deleteTest() {
     CreateDatabase db = new CreateDatabase();
@@ -108,6 +123,11 @@ public class TableTest {
   }
 
 
+  /**
+   * @author lengist
+   * 
+   *         Tests the update/edit function for the table player.
+   */
   @Test
   public void updatePlayerTest() {
     CreateDatabase db = new CreateDatabase();
@@ -139,7 +159,11 @@ public class TableTest {
   }
 
 
-
+  /**
+   * @author lengist
+   * 
+   *         Tests the update/edit function for the table server.
+   */
   @Test
   public void updateServerTEst() {
     CreateDatabase db = new CreateDatabase();
@@ -165,6 +189,11 @@ public class TableTest {
   }
 
 
+  /**
+   * @author lengist
+   * 
+   *         Tests the update/edit function for the table Letters.
+   */
   @Test
   public void updateLettersTest() {
     CreateDatabase db = new CreateDatabase();
@@ -185,6 +214,4 @@ public class TableTest {
       e.printStackTrace();
     }
   }
-
-
 }
