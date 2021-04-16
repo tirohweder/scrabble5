@@ -177,7 +177,7 @@ public class ProfileController extends Controller implements Initializable {
     int totalWins = PlayerProfileDatabase.getTotalWins(name);
     double winRate = PlayerProfileDatabase.getWinRate(name);
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
-    int averagePointsPerGame = totalPoints / totalPlayedGames;
+    // int averagePointsPerGame = totalPoints / totalPlayedGames;
 
 
     this.totalPoints.setText(String.valueOf(totalPoints));
