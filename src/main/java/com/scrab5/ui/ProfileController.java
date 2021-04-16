@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.PlayerProfileDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -95,8 +96,8 @@ public class ProfileController extends Controller implements Initializable {
     pum.show();
 
     if (this.isUsernameValid(Data.getInputFieldText())) {
-
-      FillDatabase.updatePlayer("Name", Data.getCurrentUser(), Data.getInputFieldText(), 0);
+      PlayerProfileDatabase.setName(Data.getCurrentUser(), Data.getInputFieldText());
+      // FillDatabase.updatePlayer("Name", Data.getCurrentUser(), Data.getInputFieldText(), 0);
       Data.setCurrentUser(Data.getInputFieldText());
       App.setRoot("Profile");
     }

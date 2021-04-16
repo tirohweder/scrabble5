@@ -104,8 +104,8 @@ public class FillDatabase extends Database {
    *        Filling the table player at specific index/column. If variable for column name is from
    *        type integer, variable contentString is default.
    */
-  public static void updatePlayer(String column, String name, String contentString,
-      int contentInt) {
+  public static void updatePlayer(String column, String name, String contentString, int contentInt,
+      double rate) {
     /* missing: closing statements */
     PreparedStatement pstm = null;
 
@@ -199,7 +199,7 @@ public class FillDatabase extends Database {
     } else if (column == "WinRate") {
       String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        pstmt.setInt(1, contentInt);
+        pstmt.setDouble(1, rate);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
       } catch (SQLException e) {
@@ -462,6 +462,30 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     return rs;
+  }
+
+  /**
+   * @author lengist
+   * @return boolean
+   * 
+   *         checks whether the table Player is empty or with entries.
+   */
+  public static boolean tablePlayerIsEmpty() {
+    boolean empty = false;
+    int anzahl = 0;
+    try {
+      Statement stm = connection.createStatement();
+      String sql = "SELECT COUNT(*) FROM Player";
+      ResultSet rs = stm.executeQuery(sql);
+      anzahl = rs.getInt(1);
+      if (anzahl == 0) {
+        empty = true;
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    return empty;
   }
 
 }
