@@ -31,11 +31,12 @@ public class MainMenuController extends Controller implements Initializable {
 
 
   /**
-   * @author Aaron
+   * @author apilgrim
    * @param event
    * @throws IOException
    * 
-   *         Is called when "Multiplayer" - button is clicked, switches to the settings screen
+   *         Is called when "Multiplayer" - button is clicked, switches to the "Multiplayer Lobby"
+   *         screen
    */
   @FXML
   private void multiplayerClicked(MouseEvent event) throws IOException {
@@ -43,11 +44,12 @@ public class MainMenuController extends Controller implements Initializable {
   }
 
   /**
-   * @author Aaron
+   * @author apilgrim
    * @param event
    * @throws IOException
    * 
-   *         Is called when "Singleplayer" - button is clicked, switches to the settings screen
+   *         Is called when "Singleplayer" - button is clicked, switches to the "Singleplayer Lobby"
+   *         screen
    */
   @FXML
   private void singleplayerClicked(MouseEvent event) throws IOException {
@@ -56,11 +58,11 @@ public class MainMenuController extends Controller implements Initializable {
   }
 
   /**
-   * @author Aaron
+   * @author apilgrim
    * @param event
    * @throws IOException
    * 
-   *         Is called when "Play Tutorial" - button is clicked, switches to the settings screen
+   *         Is called when "Play Tutorial" - button is clicked, switches to the "Tutorial" screen
    */
   @FXML
   private void tutorialClicked(MouseEvent event) throws IOException {
@@ -69,7 +71,7 @@ public class MainMenuController extends Controller implements Initializable {
   }
 
   /**
-   * @author Aaron
+   * @author apilgrim
    * @param event
    * @throws IOException
    * 
@@ -83,11 +85,11 @@ public class MainMenuController extends Controller implements Initializable {
 
 
   /**
-   * @author Aaron
+   * @author apilgrim
    * @param event
    * @throws IOException
    * 
-   *         Is called when "Stats" - button is clicked, switches to the game stats Screen
+   *         Is called when "Stats" - button is clicked, switches to the game "stats" Screen
    */
   @FXML
   private void statsClicked(MouseEvent event) throws IOException {
@@ -96,7 +98,7 @@ public class MainMenuController extends Controller implements Initializable {
   }
 
   /**
-   * @author Aaron
+   * @author apilgrim
    * @param event
    * 
    *        Is called when "Exit" - button is clicked, closes the application and ends the programm

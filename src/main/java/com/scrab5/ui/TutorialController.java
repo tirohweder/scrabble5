@@ -31,7 +31,7 @@ public class TutorialController extends Controller implements Initializable {
 
 
   /**
-   * @author Aaron
+   * @author apilgrim
    * @param event
    * @throws IOException
    * 
@@ -44,7 +44,7 @@ public class TutorialController extends Controller implements Initializable {
   }
 
   /**
-   * @author Aaron
+   * @author apilgrim
    * @param event
    * @throws IOException
    * 
@@ -58,7 +58,7 @@ public class TutorialController extends Controller implements Initializable {
 
 
   /**
-   * @author Aaron
+   * @author apilgrim
    * @param event
    * 
    *        Is called when "Back to Main Menu" - button is clicked, returns to the Main Menu
