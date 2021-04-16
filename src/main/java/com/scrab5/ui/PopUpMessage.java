@@ -7,10 +7,24 @@ import javafx.scene.Scene;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * The PopUpMessage class is used to create various PopUp messages
+ * 
+ * @author mherre
+ *
+ */
 public class PopUpMessage {
 
   private Stage popUp;
 
+  /**
+   * Creates different kinds of PopUp messages
+   * 
+   * @author mherre
+   * @param message
+   * @param type
+   * @throws IOException
+   */
   public PopUpMessage(String message, PopUpMessageType type) throws IOException {
 
     this.popUp = new Stage();
@@ -37,10 +51,21 @@ public class PopUpMessage {
     this.popUp.setResizable(false);
   }
 
+  /**
+   * {@link javafx.stage.Stage#showAndWait()}
+   * 
+   * @author mherre
+   */
   public void show() {
     this.popUp.showAndWait();
   }
 
+  /**
+   * @author trohwede
+   * @param fxml
+   * @return
+   * @throws IOException
+   */
   private static Parent loadFXML(String fxml) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
     return fxmlLoader.load();

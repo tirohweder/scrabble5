@@ -22,7 +22,7 @@ public class AccountCreationController extends Controller implements Initializab
   @FXML
   private TextField nickname;
   private String createdUsername;
-  private static String predecessor;
+  private static String predecessor = "";
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {

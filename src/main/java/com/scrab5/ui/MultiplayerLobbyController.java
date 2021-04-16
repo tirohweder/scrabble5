@@ -7,6 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * The MultiplayerLobbyController class is supposed to control the of the MultiplayerLobby screen
+ * 
+ * @author mherre
+ *
+ */
 public class MultiplayerLobbyController extends Controller implements Initializable {
 
   @Override
@@ -15,6 +21,14 @@ public class MultiplayerLobbyController extends Controller implements Initializa
 
   }
 
+  /**
+   * This method is called when the "Back"-button is clicked. It sets the scene to
+   * "MultiplayerOverview"
+   * 
+   * @author mherre
+   * @param event
+   * @throws IOException
+   */
   @FXML
   private void back(MouseEvent event) throws IOException {
     App.setRoot("MultiplayerOverview");

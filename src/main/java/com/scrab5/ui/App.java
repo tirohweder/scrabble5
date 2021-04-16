@@ -10,14 +10,26 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * JavaFX App
+ * The App class contains some methods changing the scene seen and the sets the app up for the first
+ * time it gets started.
+ * 
+ * @author trohwede
+ * @author mherre
  */
 public class App extends Application {
 
   private static Scene scene;
   private Database db;
 
-  @Override
+  /**
+   * This method is called when ever the app gets startet. First it checks whether a database
+   * already exists if not a new database gets created.
+   * 
+   * Then it sets up the app screen and shows the first scene
+   * 
+   * @author mherre
+   * @param stage
+   */
   public void start(Stage stage) throws IOException {
 
     if (!Database.databaseExistance()) {
@@ -44,6 +56,14 @@ public class App extends Application {
     scene.setRoot(loadFXML(fxml));
   }
 
+  /**
+   * Changes the current shown scene depending on the predescessor scene
+   * 
+   * @author mherre
+   * @param fxml
+   * @param predescessor
+   * @throws IOException
+   */
   public static void setRoot(String fxml, String predescessor) throws IOException {
 
     switch (predescessor) {
