@@ -165,7 +165,6 @@ public class ProfileController extends Controller implements Initializable {
    */
   private void setupStats() {
 
-    // @Laura, ich denke du weißt wies geht :D --> Danke für dein Vertrauen :D
     String name = Data.getCurrentUser();
     String picture = PlayerProfileDatabase.getPicture(name);
     int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
@@ -177,11 +176,14 @@ public class ProfileController extends Controller implements Initializable {
     int totalWins = PlayerProfileDatabase.getTotalWins(name);
     double winRate = PlayerProfileDatabase.getWinRate(name);
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
-    // int averagePointsPerGame = totalPoints / totalPlayedGames;
-
+    if (totalPoints == 0 || totalPlayedGames == 0) {
+      this.averagePointsGame.setText("0");
+    } else {
+      int averagePointsPerGame = totalPoints / totalPlayedGames;
+      this.averagePointsGame.setText(String.valueOf(averagePointsPerGame));
+    }
 
     this.totalPoints.setText(String.valueOf(totalPoints));
-    // this.averagePointsGame.setText(String.valueOf(averagePointsPerGame));
     this.averagePointsGame.setText("0");
     this.mostPoints.setText(String.valueOf(personalHighscore));
     this.laidWords.setText(String.valueOf(laidWords));
