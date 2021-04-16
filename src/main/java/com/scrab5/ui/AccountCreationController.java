@@ -125,7 +125,8 @@ public class AccountCreationController extends Controller implements Initializab
 
     } else {
 
-      message = "Please make sure your nickname consists only of letters, numbers and underscores";
+      message =
+          "Please make sure your nickname consists only of letters, numbers, underscores and is only 12 signs long";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
 

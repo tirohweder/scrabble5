@@ -149,7 +149,8 @@ public class ProfileController extends Controller implements Initializable {
 
     } else {
 
-      message = "Please make sure your nickname consists only of letters, numbers and underscores";
+      message =
+          "Please make sure your nickname consists only of letters, numbers, underscores and is only 12 signs long";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
 
@@ -167,15 +168,21 @@ public class ProfileController extends Controller implements Initializable {
 
     String name = Data.getCurrentUser();
     String picture = PlayerProfileDatabase.getPicture(name);
+
     int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
     int personalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
     int laidWords = PlayerProfileDatabase.getLaidWords(name);
     int pointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
+
     String longestWord = PlayerProfileDatabase.getLongestWord(name);
+
     int totalPlayedGames = PlayerProfileDatabase.getTotalPlayedGames(name);
     int totalWins = PlayerProfileDatabase.getTotalWins(name);
+
     double winRate = PlayerProfileDatabase.getWinRate(name);
+
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
+
     if (totalPoints == 0 || totalPlayedGames == 0) {
       this.averagePointsGame.setText("0");
     } else {
