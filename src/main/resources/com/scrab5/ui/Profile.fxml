@@ -9,73 +9,95 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0"
-	prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="com.scrab5.ui.ProfileController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.ProfileController">
 	<children>
 		<AnchorPane prefHeight="768.0" prefWidth="1360.0">
 			<children>
-				<ImageView fitHeight="768.0" fitWidth="1360.0"
-					pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="768.0" fitWidth="1360.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@images/SB03_background.jpg" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="150.0" fitWidth="125.0"
-					layoutX="130.0" layoutY="90.0" onMouseClicked="#back"
-					onMouseEntered="#lighten" onMouseExited="#darken"
-					onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0"
-					pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="150.0" fitWidth="125.0" layoutX="130.0" layoutY="90.0" onMouseClicked="#back" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@images/SB03_BackButtonClicked.png" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="150.0" fitWidth="198.0"
-					layoutX="190.0" layoutY="499.0" onMouseClicked="#deleteProfile"
-					onMouseEntered="#lighten" onMouseExited="#darken"
-					onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0"
-					pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="150.0" fitWidth="198.0" layoutX="190.0" layoutY="499.0" onMouseClicked="#deleteProfile" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@images/SB03_ButtonClicked.png" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="150.0" fitWidth="198.0"
-					layoutX="190.0" layoutY="554.0" onMouseEntered="#lighten"
-					onMouseExited="#darken" onMousePressed="#darken"
-					onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true"
-					preserveRatio="true">
+				<ImageView fitHeight="150.0" fitWidth="198.0" layoutX="190.0" layoutY="554.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@images/SB03_ButtonClicked.png" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="150.0" fitWidth="198.0"
-					layoutX="190.0" layoutY="443.0" onMouseClicked="#editName"
-					onMouseEntered="#lighten" onMouseExited="#darken"
-					onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0"
-					pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="150.0" fitWidth="198.0" layoutX="190.0" layoutY="443.0" onMouseClicked="#editName" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@images/SB03_ButtonClicked.png" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="150.0" fitWidth="198.0"
-					layoutX="190.0" layoutY="607.0"
-					onMouseClicked="#createNewPlayerProfile" onMouseEntered="#lighten"
-					onMouseExited="#darken" onMousePressed="#darken"
-					onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true"
-					preserveRatio="true">
+				<ImageView fitHeight="150.0" fitWidth="198.0" layoutX="190.0" layoutY="607.0" onMouseClicked="#createNewPlayerProfile" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@images/SB03_ButtonClicked.png" />
 					</image>
 				</ImageView>
-				<Label fx:id="nicknameLabel" alignment="CENTER"
-					layoutX="166.0" layoutY="356.0" prefHeight="28.0" prefWidth="247.0"
-					textAlignment="CENTER" textFill="WHITE">
+				<Label fx:id="nicknameLabel" alignment="CENTER" layoutX="166.0" layoutY="356.0" prefHeight="28.0" prefWidth="247.0" textAlignment="CENTER" textFill="WHITE">
 					<font>
 						<Font name="Arial Rounded MT Bold" size="24.0" />
 					</font>
 				</Label>
+            <Label fx:id="totalPoints" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="256.0" prefHeight="20.0" prefWidth="138.0" text="20 000" textAlignment="RIGHT" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="averagePointsGame" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="295.0" prefHeight="20.0" prefWidth="138.0" text="2 000" textAlignment="RIGHT" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="mostPoints" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="333.0" prefHeight="20.0" prefWidth="138.0" text="4 500" textAlignment="RIGHT" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="laidWords" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="371.0" prefHeight="20.0" prefWidth="138.0" text="340" textAlignment="RIGHT" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="averagePointsWord" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="410.0" prefHeight="20.0" prefWidth="138.0" text="36" textAlignment="RIGHT" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="longestWord" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="448.0" prefHeight="20.0" prefWidth="138.0" text="Condescending" textAlignment="RIGHT" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalGames" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="487.0" prefHeight="20.0" prefWidth="138.0" text="20" textAlignment="RIGHT" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="totalWins" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="525.0" prefHeight="20.0" prefWidth="138.0" text="13" textAlignment="RIGHT" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="winPercentage" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="563.0" prefHeight="20.0" prefWidth="138.0" text="65" textAlignment="RIGHT" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="favDic" alignment="CENTER_RIGHT" layoutX="875.0" layoutY="602.0" prefHeight="20.0" prefWidth="282.0" text="Built-In Standard Dictionary" textAlignment="RIGHT" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
 			</children>
 		</AnchorPane>
 	</children>

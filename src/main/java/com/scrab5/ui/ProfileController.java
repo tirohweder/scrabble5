@@ -19,9 +19,29 @@ public class ProfileController extends Controller implements Initializable {
 
   @FXML
   private Label nicknameLabel;
+  @FXML
+  private Label totalPoints;
+  @FXML
+  private Label averagePointsGame;
+  @FXML
+  private Label mostPoints;
+  @FXML
+  private Label laidWords;
+  @FXML
+  private Label averagePointsWord;
+  @FXML
+  private Label longestWord;
+  @FXML
+  private Label totalGames;
+  @FXML
+  private Label totalWins;
+  @FXML
+  private Label winPercentage;
+  @FXML
+  private Label favDic;
 
   /**
-   * Sets the current username on the Label
+   * Sets the current username on the Label and shows stats
    * 
    * @author mherre
    */
@@ -29,6 +49,7 @@ public class ProfileController extends Controller implements Initializable {
   public void initialize(URL arg0, ResourceBundle arg1) {
 
     this.nicknameLabel.setText(Data.getCurrentUser());
+    this.setupStats();
 
   }
 
@@ -134,4 +155,25 @@ public class ProfileController extends Controller implements Initializable {
     }
   }
 
+  /**
+   * Gather all data from the database to display it on the UI
+   * 
+   * @author mherre
+   * @author lengist
+   */
+  private void setupStats() {
+
+    // @Laura, ich denke du weißt wies geht :D
+    this.totalPoints.setText("0");
+    this.averagePointsGame.setText("0");
+    this.mostPoints.setText("0");
+    this.laidWords.setText("0");
+    this.averagePointsWord.setText("0");
+    this.longestWord.setText("-");
+    this.totalGames.setText("0");
+    this.totalWins.setText("0");
+    this.winPercentage.setText("0");
+    this.favDic.setText("-");
+
+  }
 }
