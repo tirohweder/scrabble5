@@ -46,7 +46,8 @@ public class Client {
   }
 
   /**
-   * Hosts a server. In application: starts a MultiPlayerLobby.
+   * Hosts a server and accepts clients. Automatically joins the server. In application: starts a
+   * MultiPlayerLobby.
    * 
    * @author nitterhe
    * @throws xyz
@@ -54,6 +55,7 @@ public class Client {
   public void hostServer() {
     if (hostedServer == null) {
       hostedServer = new Server(this.username);
+      hostedServer.acceptClients();
       connectToServer(ip);
     } else {
       // Exception handling required
@@ -65,7 +67,6 @@ public class Client {
    * 
    * @author from stackoverflow -
    *         https://stackoverflow.com/questions/24082077/java-find-server-in-network
-   * @return
    */
   // UI must refresh the shown servers from the serverList with a Thread due to the long time the
   // method needs
@@ -87,11 +88,18 @@ public class Client {
               out.writeObject(new GetServerDataMessage(username));
               out.flush();
               out.reset();
-              Message m = (Message) in.readObject();
-              if (m.getType() == MessageType.DEFAULT) {
-                ServerData serverdata =
-                    new ServerData(m.getSender() + "'s Server", ip4, serverPort);
-                addServerToServerList(serverdata);
+              Message m;
+              for (int i = 0; i < 20; i++) {
+                m = (Message) in.readObject();
+                if (m.getType() == MessageType.DEFAULT) {
+                  ServerData serverdata =
+                      new ServerData(m.getSender() + "'s Server", ip4, serverPort);
+                  addServerToServerList(serverdata);
+                  i = 20;
+                } else {
+                  wait(100);
+                }
+
               }
               getServerDataSocket.shutdownInput();
               getServerDataSocket.shutdownOutput();
@@ -150,13 +158,17 @@ public class Client {
   }
 
   /**
-   * Disconnects the ClientThread from the ServerThread.
+   * Disconnects the ClientThread from the ServerThread. Does not execute the closeConnection method
+   * of the ServerThread, because closeConnection would need to send a message to the server, but if
+   * the server closes the connection the closeConnection method is executed. This would cause
+   * closeConnection to send a message back to the server that already closed the connection and
+   * closeConnection would throw an Exception.
    * 
    * @author nitterhe
    */
   public void disconnectFromServer() {
     if (clientThread.isAlive()) {
-      clientThread.sendMessageToServer(new DisconnectMessage(clientThread.sender, this.getIp()));
+      clientThread.sendMessageToServer(new DisconnectMessage(clientThread.sender));
       clientThread = null;
       hostedServer = null;
     }
@@ -173,20 +185,20 @@ public class Client {
   }
 
   /**
-   * Returns the client's username.
+   * Returns the client's username as a String.
    * 
    * @author nitterhe
-   * @return username of the client
+   * @return username - username of the client
    */
   public String getUsername() {
     return this.username;
   }
 
   /**
-   * Returns the client's IP4Address.
+   * Returns the client's IP4Address as a String.
    * 
    * @author nitterhe
-   * @return ip - the IP4Address as a String
+   * @return ip - the IP4Address of the client
    */
   public String getIp() {
     return this.ip;
@@ -217,7 +229,7 @@ public class Client {
     }
 
     /**
-     * Returns the servername.
+     * Returns the servername as a String.
      * 
      * @author nitterhe
      * @return servername - the name of the server
@@ -227,7 +239,7 @@ public class Client {
     }
 
     /**
-     * Returns the IP4Address of the server.
+     * Returns the IP4Address of the server as a String.
      * 
      * @author nitterhe
      * @return ip4 - the IP4Address as a String
@@ -237,7 +249,7 @@ public class Client {
     }
 
     /**
-     * Returns the server's port.
+     * Returns the server's port as an integer.
      * 
      * @author nitterhe
      * @return port - the server's port
