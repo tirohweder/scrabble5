@@ -166,28 +166,33 @@ public class ProfileController extends Controller implements Initializable {
    */
   private void setupStats() {
 
-    String name = Data.getCurrentUser();
-    String picture = PlayerProfileDatabase.getPicture(name);
+    String name, picture, longestWord, favoriteDictionary;
+    int totalPoints, personalHighscore, pointsPerWordRate, totalPlayedGames, totalWins, laidWords;
 
-    int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
-    int personalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
-    int laidWords = PlayerProfileDatabase.getLaidWords(name);
-    int pointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
+    name = Data.getCurrentUser();
+    picture = PlayerProfileDatabase.getPicture(name);
 
-    String longestWord = PlayerProfileDatabase.getLongestWord(name);
+    totalPoints = PlayerProfileDatabase.getTotalPoints(name);
+    personalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
+    laidWords = PlayerProfileDatabase.getLaidWords(name);
+    pointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
 
-    int totalPlayedGames = PlayerProfileDatabase.getTotalPlayedGames(name);
-    int totalWins = PlayerProfileDatabase.getTotalWins(name);
+    longestWord = PlayerProfileDatabase.getLongestWord(name);
+
+    totalPlayedGames = PlayerProfileDatabase.getTotalPlayedGames(name);
+    totalWins = PlayerProfileDatabase.getTotalWins(name);
 
     double winRate = PlayerProfileDatabase.getWinRate(name);
 
-    String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
+    favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
 
     if (totalPoints == 0 || totalPlayedGames == 0) {
       this.averagePointsGame.setText("0");
+
     } else {
       int averagePointsPerGame = totalPoints / totalPlayedGames;
       this.averagePointsGame.setText(String.valueOf(averagePointsPerGame));
+
     }
 
     this.totalPoints.setText(String.valueOf(totalPoints));
