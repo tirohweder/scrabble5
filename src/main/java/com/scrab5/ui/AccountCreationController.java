@@ -98,6 +98,13 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
+   * Checks if a nickname only consists of letters, numbers and underscores, also is the maximum
+   * amount of chars set to 12. In case the User types in nothing or doesn't fullfill the other
+   * criteria, the game will show an error message explaining why the username could not be valid.
+   * 
+   * In case the nickname fullfills the criteria a new profile gets generated in the database and
+   * the user gets shown a confirmation message.
+   * 
    * 
    * @author mherre
    * @return
@@ -134,6 +141,11 @@ public class AccountCreationController extends Controller implements Initializab
     }
   }
 
+  /**
+   * Sets the predescessor scene of AccountCreationController.
+   * 
+   * @param predecessorPara
+   */
   public static void setPredecessor(String predecessorPara) {
     predecessor = predecessorPara;
 
