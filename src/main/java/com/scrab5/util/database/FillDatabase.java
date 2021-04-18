@@ -119,12 +119,12 @@ public class FillDatabase extends Database {
         pstmt.setString(1, contentString);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
-        Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-        while (rs.next()) {
-          System.out.println("Namen jetzt: " + rs.getString("Name") + ", ");
-          System.out.println();
-        }
+        /*
+         * Statement stm = connection.createStatement(); ResultSet rs =
+         * stm.executeQuery("SELECT * FROM Player"); while (rs.next()) {
+         * System.out.println("Namen jetzt: " + rs.getString("Name") + ", "); System.out.println();
+         * }
+         */
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
@@ -132,7 +132,7 @@ public class FillDatabase extends Database {
       String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
         pstmt.setString(2, contentString);
-        pstmt.setString(1, name); // update
+        pstmt.setString(1, name);
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
@@ -141,7 +141,7 @@ public class FillDatabase extends Database {
       String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name); // update
+        pstmt.setString(2, name);
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());

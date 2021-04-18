@@ -5,10 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 /*
  * @author apilgrim
@@ -16,12 +13,6 @@ import javafx.stage.Stage;
 
 public class TutorialController extends Controller implements Initializable {
 
-  @FXML
-  private ImageView multiplayerButton;
-  @FXML
-  private ImageView singleplayerButton;
-  @FXML
-  private ImageView tutorialButton;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -62,11 +53,11 @@ public class TutorialController extends Controller implements Initializable {
    * @param event
    * 
    *        Is called when "Back to Main Menu" - button is clicked, returns to the Main Menu
+   * @throws IOException
    */
   @FXML
-  private void close(MouseEvent event) {
-    Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
-    s.close();
+  private void toMainClicked(MouseEvent event) throws IOException {
+    App.setRoot("MainMenu");
   }
 
 }

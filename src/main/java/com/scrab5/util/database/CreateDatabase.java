@@ -49,7 +49,7 @@ public class CreateDatabase extends Database {
           + "LongestWord TEXT," + "TotalPlayedGames INTEGER NOT NULL,"
           + "TotalWins INTEGER NOT NULL," + "WinRate REAL," + "FaveDic TEXT)";
       stm.executeUpdate(sql);
-      System.out.println("Table for player generated!");
+      // System.out.println("Table for player generated!");
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -66,7 +66,7 @@ public class CreateDatabase extends Database {
       String sql = "CREATE TABLE Server (ServerListNames TEXT," + "Dictionaries TEXT,"
           + "VictoryRanking TEXT," + "GameRanking TEXT," + "VictoryLossRate TEXT)";
       stm.executeUpdate(sql);
-      System.out.println("Table for server generated!");
+      // System.out.println("Table for server generated!");
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -82,7 +82,7 @@ public class CreateDatabase extends Database {
     try (Statement stm = connection.createStatement()) {
       String sql = "CREATE TABLE Letters (Letter TEXT NOT NULL, Points INTEGER NOT NULL)";
       stm.executeUpdate(sql);
-      System.out.println("Table for letters generated!");
+      // System.out.println("Table for letters generated!");
     } catch (SQLException e) {
       e.printStackTrace();
     }
