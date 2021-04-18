@@ -15,6 +15,12 @@ import java.sql.Statement;
  *
  */
 public class FillDatabase extends Database {
+  /*
+   * to-do for this class:
+   * 
+   * @hraza: closing statements for all statements in FillDatabase UI: view errors if name of
+   * server/player or a letter already exists in the corresponding table.
+   */
   private static PreparedStatement pstmPlayer;
   private static PreparedStatement pstmServer;
   private static PreparedStatement pstmDic;
@@ -91,7 +97,6 @@ public class FillDatabase extends Database {
       System.out.println("Could not perform deletion from player " + name);
       System.out.println(e);
     }
-    // closeStatement("delete");
   }
 
   /**
@@ -106,7 +111,6 @@ public class FillDatabase extends Database {
    */
   public static void updatePlayer(String column, String name, String contentString, int contentInt,
       double rate) {
-    /* missing: closing statements */
     PreparedStatement pstm = null;
 
     if (column == "Name") {
@@ -261,23 +265,11 @@ public class FillDatabase extends Database {
       } catch (SQLException e) {
         e.printStackTrace();
       }
-      Statement stm;
-      try {
-        stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-        while (rs.next()) {
-          System.out.println("Name: " + rs.getString("Name") + ", ");
-          System.out.println();
-        }
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
     } else {
-      /* error message needs to be displayed via UI: */
+      /* to-do: error message needs to be displayed via UI: */
       System.out
           .println("Player with name: " + name + "already exists. Please choose different name");
     }
-    // closeStatement("player");
   }
 
   /**
@@ -290,7 +282,6 @@ public class FillDatabase extends Database {
    *        serverListName.
    */
   public static void updateServer(String column, String name, String content) {
-
     if (column == "ServerListNames") {
       String sql = "UPDATE Server SET ServerListNames = ? WHERE ServerListNames = ?";
 
@@ -327,7 +318,6 @@ public class FillDatabase extends Database {
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
         pstmt.setString(1, content);
         pstmt.setString(2, name);
-        // update
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
@@ -382,11 +372,10 @@ public class FillDatabase extends Database {
         e.printStackTrace();
       }
     } else {
-      /* error message needs to be displayed via UI: */
+      /* to-do: error message needs to be displayed via UI: */
       System.out
           .println("Server with name: " + name + "already exists. Please choose different name");
     }
-    // closeStatement("server");
   }
 
   /**
@@ -421,10 +410,9 @@ public class FillDatabase extends Database {
         e.printStackTrace();
       }
     } else {
-      /* connection to UI? --> display error and need to update and not insert. */
+      /* to-do: connection to UI? --> display error and need to update and not insert. */
       System.out.println("Letter already exists. Please update");
     }
-    // closeStatement("dic");
   }
 
 
@@ -444,7 +432,6 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    // closeStatement("dic");
   }
 
   /**
@@ -484,7 +471,6 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
     return empty;
   }
 

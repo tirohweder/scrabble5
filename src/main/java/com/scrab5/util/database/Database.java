@@ -93,11 +93,4 @@ public class Database {
       e.printStackTrace();
     }
   }
-
-
-  /*
-   * public static void main(String[] args) { Database newDb = new Database(); }
-   */
-
-
 }
