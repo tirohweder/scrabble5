@@ -20,7 +20,7 @@ public class BagOfTiles {
   /**
    * adds tile to bag
    *
-   * @return
+   * @param t
    * @author trohwede
    */
   public void add(Tile t) {
