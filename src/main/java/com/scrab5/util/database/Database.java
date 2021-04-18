@@ -1,20 +1,21 @@
 package com.scrab5.util.database;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/*
- * entity to create a new database and establish the connection to it
- * 
+/**
  * @author lengist
  * 
+ *         entity to create a new database and establish the connection to it.
+ *
  */
-
 public class Database {
 
   protected static Connection connection;
   protected static boolean data = false;
+  protected static String databaseFileName = "myDatabase.db";
 
 
   /**
@@ -24,7 +25,38 @@ public class Database {
    *         the database file.
    */
   public Database() {
-    this.connect("myDatabase.db");
+    this.connect(this.databaseFileName);
+  }
+
+  /**
+   * @author lengist
+   * 
+   *         Establishes the connection to an existing database file.
+   */
+  public static void reconnect() {
+    try {
+      Class.forName("org.sqlite.JDBC");
+      connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
+      System.out.println("connected");
+    } catch (ClassNotFoundException e) {
+      System.out.println("Connection not possible" + e.getMessage());
+    } catch (SQLException e1) {
+      System.out.println("Sql Exception: " + e1.getMessage());
+      System.out.println("Sql State: " + e1.getSQLState());
+      System.out.println("Sql Error: " + e1.getErrorCode());
+      e1.printStackTrace();
+    }
+  }
+
+
+  /**
+   * @author lengist
+   * @return boolean
+   * 
+   *         Returns true if the local database file exists to check if a database already exists.
+   */
+  public static boolean databaseExistance() {
+    return new File("myDatabase.db").isFile();
   }
 
   /**
@@ -61,11 +93,4 @@ public class Database {
       e.printStackTrace();
     }
   }
-
-
-  public static void main(String[] args) {
-    Database newDb = new Database();
-  }
-
-
 }

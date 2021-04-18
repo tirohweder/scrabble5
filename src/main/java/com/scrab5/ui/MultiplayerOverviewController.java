@@ -29,10 +29,10 @@ public class MultiplayerOverviewController extends Controller implements Initial
   private int playerCount = 2;
 
   /**
-   * @author marku
+   * Is called right after the scene is loaded. Sets the displayed username to the username of the
+   * current selected user / logged in user.
    * 
-   *         Is called right after the scene is loaded. Sets the displayed username to the username
-   *         of the current selected user / logged in user.
+   * @author mherre
    */
   public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -45,12 +45,13 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * @author marku
+   * 
+   * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
+   * predecessor "Main Menu" scene
+   * 
+   * @author mherre
    * @param event
    * @throws IOException
-   * 
-   *         Event method that is called when the "Back"-button is clicked. Scene gets changed to
-   *         the predecessor "Main Menu" scene
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -58,13 +59,13 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * @author marku
+   * Event method that is called when the "Right Arrow"-button is clicked. The "Number of Players"
+   * number gets increased by one.Changes "Right Arrow"-button to a greyed out image of it which
+   * can't be clicked.
+   * 
+   * @author mherre
    * @param event
    * @throws IOException
-   * 
-   *         Event method that is called when the "Right Arrow"-button is clicked. The "Number of
-   *         Players" number gets increased by one.Changes "Right Arrow"-button to a greyed out
-   *         image of it which can't be clicked.
    */
   @FXML
   private void nextNumber(MouseEvent event) throws IOException {
@@ -91,13 +92,14 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * @author marku
+   * Event method that is called when the "Left Arrow"-button is clicked. The "Number of Players"
+   * number gets decreased by one. Changes "Left Arrow"-button to a greyed out image of it which
+   * can't be clicked.
+   * 
+   * @author mherre
    * @param event
    * @throws IOException
    * 
-   *         Event method that is called when the "Left Arrow"-button is clicked. The "Number of
-   *         Players" number gets decreased by one. Changes "Left Arrow"-button to a greyed out
-   *         image of it which can't be clicked.
    */
   @FXML
   private void previousNumber(MouseEvent event) throws IOException {
@@ -123,13 +125,15 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * @author marku
+   *
+   * Is called when the "dropDownButton" Button is clicked. Opens the combo box displaying all
+   * selectable dictionaries.
+   * 
+   * @author mherre
    * @param event
    * @throws IOException
-   *
-   *         Is called when the "dropDownButton" Button is clicked. Opens the combo box displaying
-   *         all selectable dictionaries.
-   *
+   * 
+   * 
    */
   @FXML
   private void clickComboBox(MouseEvent event) throws IOException {
@@ -139,12 +143,14 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * @author marku
+   * 
+   * Makes dictionarySelection only openable when the dropDownButton is clicked, not when the
+   * combobox (dictionarySelection) is clicked.
+   * 
+   * @author mherre
    * @param event
    * @throws IOException
    * 
-   *         Makes dictionarySelection only openable when the dropDownButton is clicked, not when
-   *         the combobox (dictionarySelection) is clicked.
    */
   @FXML
   private void dontShow(MouseEvent event) throws IOException {
@@ -152,9 +158,10 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * @author marku
    * 
-   *         Changes the image of the current playerCount.
+   * Changes the image of the current playerCount.
+   * 
+   * @author mherre
    */
   private void changeNumberImage() {
     Image img = null;

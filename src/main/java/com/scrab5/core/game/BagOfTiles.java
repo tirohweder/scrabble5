@@ -4,18 +4,24 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class BagOfTiles {
+
   private ArrayList<Tile> bag = new ArrayList<>();
 
   /**
-   * @author trohwede
+   * Empty Constructor
+   *
    * @return
+   * @author trohwede
    */
-  public BagOfTiles() {}
+  public BagOfTiles() {
+  }
 
 
   /**
+   * adds tile to bag
+   *
+   * @param t
    * @author trohwede
-   * @return
    */
   public void add(Tile t) {
     this.bag.add(t);
@@ -23,8 +29,8 @@ public class BagOfTiles {
 
 
   /**
-   * @author trohwede
    * @return
+   * @author trohwede
    */
   public Tile pick() {
     // picks last Tile in Bag of Tiles, returns it and removes it from bag
@@ -37,8 +43,8 @@ public class BagOfTiles {
 
 
   /**
-   * @author trohwede
    * @return
+   * @author trohwede
    */
   public int getSize() {
     // returns how many Tiles are left in the Bag

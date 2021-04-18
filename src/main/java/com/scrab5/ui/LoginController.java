@@ -10,7 +10,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-
+/**
+ * The LoginController class controls the components of the "Login" scene
+ * 
+ * @author mherre
+ *
+ */
 
 public class LoginController extends Controller implements Initializable {
 
@@ -27,10 +32,10 @@ public class LoginController extends Controller implements Initializable {
 
 
   /**
-   * @author marku
-   * @param event
+   * Is called when "Quit" is clicked, closes the App
    * 
-   *        Is called when "Quit" - button is clicked, closes the application and ends the programm
+   * @author mherre
+   * @param event
    */
   @FXML
   private void close(MouseEvent event) {
@@ -39,11 +44,11 @@ public class LoginController extends Controller implements Initializable {
   }
 
   /**
-   * @author marku
+   * Is called when "Create" is clicked. Sets the next scene to "AccountCreation"
+   * 
+   * @author mherre
    * @param event
    * @throws IOException
-   * 
-   *         Is called when the "Create" - button is clicked. Passes on to the next scene.
    */
   @FXML
   private void create(MouseEvent event) throws IOException {

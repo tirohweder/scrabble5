@@ -1,36 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!-- @author mherre Every used image file was created by myself with Adobe 
+	Photoshop 2017 -->
+
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.AccountCreationController">
-   <children>
-      <AnchorPane prefHeight="768.0" prefWidth="1360.0">
-         <children>
-            <ImageView fitHeight="768.0" fitWidth="1360.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/SB02_background.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="127.0" layoutX="110.0" layoutY="657.0" onMouseClicked="#back" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/SB02_BackButtonClicked.png" />
-               </image>
-            </ImageView>
-            <TextField fx:id="nickname" alignment="CENTER" layoutX="356.0" layoutY="584.0" onKeyPressed="#enterPressed" prefHeight="49.0" prefWidth="647.0" style="-fx-background-color: transparent;" text="Nickname">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="26.0" />
-               </font>
-            </TextField>
-            <ImageView fitHeight="55.0" fitWidth="127.0" layoutX="1123.0" layoutY="657.0" onMouseClicked="#enter" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/SB02_EnterButtonClicked.png" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0"
+	prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.scrab5.ui.AccountCreationController">
+	<children>
+		<AnchorPane prefHeight="768.0" prefWidth="1360.0">
+			<children>
+				<ImageView fitHeight="768.0" fitWidth="1360.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@images/SB02_background.jpg" />
+					</image>
+				</ImageView>
+				<ImageView fitHeight="54.0" fitWidth="127.0"
+					layoutX="110.0" layoutY="657.0" onMouseClicked="#back"
+					onMouseEntered="#lighten" onMouseExited="#darken"
+					onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@images/SB02_BackButtonClicked.png" />
+					</image>
+				</ImageView>
+				<TextField fx:id="nickname" alignment="CENTER"
+					layoutX="356.0" layoutY="584.0" onKeyPressed="#enterPressed"
+					prefHeight="49.0" prefWidth="647.0"
+					style="-fx-background-color: transparent;" text="Nickname">
+					<font>
+						<Font name="Arial Rounded MT Bold" size="26.0" />
+					</font>
+				</TextField>
+				<ImageView fitHeight="55.0" fitWidth="127.0"
+					layoutX="1123.0" layoutY="657.0" onMouseClicked="#enter"
+					onMouseEntered="#lighten" onMouseExited="#darken"
+					onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@images/SB02_EnterButtonClicked.png" />
+					</image>
+				</ImageView>
+			</children>
+		</AnchorPane>
+	</children>
 </AnchorPane>

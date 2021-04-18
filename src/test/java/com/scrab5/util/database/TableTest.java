@@ -16,10 +16,10 @@ public class TableTest {
   /**
    * @author lengist
    * 
-   *         Creates a table player initally.
+   *         Tests the inital creation of a column for a new player.
    */
   @Test
-  public void player() {
+  public void playerTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     Statement stm;
@@ -47,8 +47,13 @@ public class TableTest {
 
   }
 
+  /**
+   * @author lengist
+   * 
+   *         Tests the inital creation of a column for a new server.
+   */
   @Test
-  public void server() {
+  public void serverTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createServer("Laura's server");
     Statement stm;
@@ -69,8 +74,13 @@ public class TableTest {
     }
   }
 
+  /**
+   * @author lengist
+   * 
+   *         Tests the inital creation of a column for a new Letter.
+   */
   @Test
-  public void letters() {
+  public void lettersTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.insertLetters("L", 4);
     Statement stm;
@@ -88,8 +98,13 @@ public class TableTest {
     }
   }
 
+  /**
+   * @author lengist
+   * 
+   *         Tests the deletion of a whole table.
+   */
   @Test
-  public void delete() {
+  public void deleteTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     FillDatabase.deleteTable("Player");
@@ -107,12 +122,18 @@ public class TableTest {
     }
   }
 
+
+  /**
+   * @author lengist
+   * 
+   *         Tests the update/edit function for the table player.
+   */
   @Test
-  public void updatePlayer() {
+  public void updatePlayerTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     /* update the name: */
-    FillDatabase.updatePlayer("Name", "Laura", "Maria", 0);
+    FillDatabase.updatePlayer("Name", "Laura", "Maria", 0, 0.0);
     Statement stm;
     try {
       System.out.println("\n---------------CHANGE-IN-PLAYER-FROM-Laura-To-Maria---------");
@@ -138,9 +159,13 @@ public class TableTest {
   }
 
 
-
+  /**
+   * @author lengist
+   * 
+   *         Tests the update/edit function for the table server.
+   */
   @Test
-  public void updateServer() {
+  public void updateServerTEst() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createServer("Laura's server");
     /* update the server name */
@@ -164,8 +189,13 @@ public class TableTest {
   }
 
 
+  /**
+   * @author lengist
+   * 
+   *         Tests the update/edit function for the table Letters.
+   */
   @Test
-  public void updateLetters() {
+  public void updateLettersTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.insertLetters("L", 4);
     /* updating: */
@@ -184,6 +214,4 @@ public class TableTest {
       e.printStackTrace();
     }
   }
-
-
 }

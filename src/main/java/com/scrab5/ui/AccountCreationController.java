@@ -3,44 +3,64 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.scrab5.util.database.FillDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * The AccountCreationController class is supposed to control the components of the
+ * AccountCreation.fxml.
+ * 
+ * @author mherre
+ *
+ */
 public class AccountCreationController extends Controller implements Initializable {
 
   @FXML
   private TextField nickname;
   private String createdUsername;
+  private static String predecessor = "";
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // TODO Auto-generated method stub
+
+
   }
 
   /**
-   * @author marku
+   * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
+   * predecessor "Login" scene
    * 
-   *         Event method that is called when the "Back"-button is clicked. Scene gets changed to
-   *         the predecessor "Login" scene
+   * @author mherre
+   * @param event
+   * 
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    App.setRoot("Login");
+
+    switch (predecessor) {
+
+      case "Profile":
+        App.setRoot("Profile");
+        break;
+
+      default:
+        App.setRoot("Login");
+        break;
+    }
+
   }
 
   /**
-   * @author marku
+   * In case that "Enter" is pressed on the keyboard the entered nickname gets checked on validity
+   * 
+   * @author mherre
    * @param event
    * @throws IOException
-   * 
-   *         When "Enter" is pressed on the keyboard the nickname gets checked on validity (e.g.
-   *         maximum amount of chars, invalid chars,...). Sets the currentUser in Data.
-   * 
-   *         TODO: Pop-Up why username is invalid
-   * 
+   *
    */
   @FXML
   private void enterPressed(KeyEvent event) throws IOException {
@@ -54,14 +74,12 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * @author marku
+   * In case that "Enter" is clicked in the UI the entered nickname gets checked on validity
+   * 
+   * @author mherre
    * @param event
    * @throws IOException
    * 
-   *         When "Enter" is clicked in the UI the nickname gets checked on validity (e.g. maximum
-   *         amount of chars, invalid chars,...). Sets the currentUser in Data.
-   * 
-   *         TODO: Pop-Up why username is invalid
    */
   @FXML
   private void enter(MouseEvent event) throws IOException {
@@ -69,15 +87,29 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * @author marku
+   * Returns the generated username.
+   * 
+   * @author mherre
    * @return
    * 
-   *         Returns the generated username.
    */
   public String getCreatedUsername() {
     return createdUsername;
   }
 
+  /**
+   * Checks if a nickname only consists of letters, numbers and underscores, also is the maximum
+   * amount of chars set to 12. In case the User types in nothing or doesn't fullfill the other
+   * criteria, the game will show an error message explaining why the username could not be valid.
+   * 
+   * In case the nickname fullfills the criteria a new profile gets generated in the database and
+   * the user gets shown a confirmation message.
+   * 
+   * 
+   * @author mherre
+   * @return
+   * @throws IOException
+   */
   public boolean isUsernameValid() throws IOException {
 
     String regex = "[a-zA-Z0-9_]{1,12}";
@@ -87,22 +119,35 @@ public class AccountCreationController extends Controller implements Initializab
     if (this.nickname.getText().matches(regex)) {
 
       this.createdUsername = nickname.getText();
+      Data.setCurrentUser(this.createdUsername);
+      FillDatabase.createPlayer(this.createdUsername, null);
 
-      Data.setCurrentUser(this.createdUsername); // DUMMY
 
-      pum = new PopUpMessage("HELLO", PopUpMessageType.NOTIFICATION);
+      message = "Congratulations! Your account has been created";
+      pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
       pum.show();
       App.setRoot("MainMenu");
 
+      return true;
+
     } else {
 
-      message = "Please make sure your nickname consists only of letters, numbers and underscores";
+      message =
+          "Please make sure your nickname consists only of letters, numbers, underscores and is only 12 signs long";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
 
+      return false;
     }
-
-    return false;
   }
 
+  /**
+   * Sets the predescessor scene of AccountCreationController.
+   * 
+   * @param predecessorPara
+   */
+  public static void setPredecessor(String predecessorPara) {
+    predecessor = predecessorPara;
+
+  }
 }

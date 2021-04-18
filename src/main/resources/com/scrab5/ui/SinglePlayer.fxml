@@ -4,6 +4,14 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<!-- 
+@author apilgrim
+
+fxml file which contains all images and information for the UI screen of the Singleplayer. Furthermore the ID contains the information about the clicked row (a-o) and column (1-15) 
+on the Gameboard, and as well the bonus point specification (dw- double word, dl - double letter, tw- tripple word, tl- tripple letter). 
+The method specification which implements what to do when a field is clicked/ entered/ excited... is decleared in the SingleplayerController
+ -->
+
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SingleplayerController">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1404.0">

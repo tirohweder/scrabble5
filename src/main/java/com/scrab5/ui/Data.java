@@ -1,23 +1,119 @@
 package com.scrab5.ui;
 
+/**
+ * The Data class is supposed to save temporary information that is needed between controller
+ * classes
+ * 
+ * @author mherre
+ *
+ */
+
 public class Data {
 
   private static String currentUser;
-  private static String popUpMessage;
+  private static String inputFieldText;
 
+  private static String popUpMessage;
+  private static PopUpMessageType messageType;
+  private static boolean confirmed;
+
+  /**
+   * Saves which user is currently logged in.
+   * 
+   * @author mherre
+   * @param username
+   */
   public static void setCurrentUser(String username) {
     currentUser = username;
   }
 
+  /**
+   * Returns the user who is currently logged in
+   * 
+   * @author mherre
+   * @return
+   */
   public static String getCurrentUser() {
     return currentUser;
   }
 
+  /**
+   * Saves the text message that gets displayed on the currently opened PopUp message
+   * 
+   * @author mherre
+   * @param message
+   */
   public static void setMessage(String message) {
     popUpMessage = message;
   }
 
+  /**
+   * Returns the text message of the currently opened PopUp message
+   * 
+   * @author mherre
+   * @return
+   */
   public static String getMessage() {
     return popUpMessage;
+  }
+
+  /**
+   * Saves the type of the currently opened PopUp message
+   * 
+   * @author mherre
+   * @param popUpType
+   */
+  public static void setMessageType(PopUpMessageType popUpType) {
+    messageType = popUpType;
+  }
+
+  /**
+   * Returns what kind of PopUp message is opened right now
+   * 
+   * @author mherre
+   * @return
+   */
+  public static PopUpMessageType getMessageType() {
+    return messageType;
+  }
+
+  /**
+   * Saves if a the "Confirm" button of a CONFIRMATION PopUp message was clicked
+   * 
+   * @author mherre
+   * @param cf
+   */
+  public static void setConfirmed(boolean cf) {
+    confirmed = cf;
+  }
+
+  /**
+   * Returns the value if the "Confirm" button was clicked
+   * 
+   * @author mherre
+   * @return
+   */
+  public static boolean isConfirmed() {
+    return confirmed;
+  }
+
+  /**
+   * Sets the text of the textfield of a INPUT PopUp message
+   * 
+   * @author mherre
+   * @param ipft
+   */
+  public static void setInputFieldText(String ipft) {
+    inputFieldText = ipft;
+  }
+
+  /**
+   * Returns the text of the textfield of a INPUT PopUp message
+   * 
+   * @author mherre
+   * @return
+   */
+  public static String getInputFieldText() {
+    return inputFieldText;
   }
 }
