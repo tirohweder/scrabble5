@@ -1,5 +1,8 @@
 package com.scrab5.core.player;
 
+/**
+ * @author trohwede
+ */
 public class PlayerProfile {
 
   private String name;

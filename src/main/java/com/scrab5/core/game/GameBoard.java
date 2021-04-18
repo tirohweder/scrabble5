@@ -5,12 +5,6 @@ import java.util.Iterator;
 
 public class GameBoard {
 
-  /*
-   TW: Tripple Word
-   DW: Double Word
-   TL: Tripple Letter
-   DL: Double Letter
-  */
   private String[][] gameBoard_bonus =
       new String[][]{
           {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ",
@@ -49,26 +43,45 @@ public class GameBoard {
   private ArrayList<Tile> currentChanges = new ArrayList<>();
 
   /**
+   * Constructor dont know if i need it
+   *
    * @author trohwede
    */
   public GameBoard() {
   }
 
+
   /**
-   * @return
+   * Place Tile, will place a Tile on the gameBoard
+   *
+   * @param row
+   * @param column
    * @author trohwede
    */
   public void placeTile(int row, int column) {
   }
 
   /**
-   * @return
+   * Will check if a position is already used by a Tile
+   *
+   * @param row
+   * @param column
+   * @return boolean
    * @author trohwede
    */
   public boolean isSpotFree(int row, int column) {
     return gameBoard[row][column] == null;
   }
 
+
+  /**
+   * Checks if a Spot is above, below, right or left of the first Tile placed.
+   *
+   * @param row
+   * @param column
+   * @return
+   * @author trohwede
+   */
   public boolean isSpotNext(int row, int column) {
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
@@ -76,6 +89,15 @@ public class GameBoard {
         column == column1 + 1 && row == row1) || (column == column1 - 1 && row == row1));
   }
 
+  /**
+   * Checks wether the Spot is in line with the other placed tiles this turn. And if the tile is
+   * free in generall
+   *
+   * @param row
+   * @param column
+   * @return
+   * @author trohwede
+   */
   public boolean isSpotInLine(int row, int column) {
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
@@ -105,6 +127,14 @@ public class GameBoard {
     return false;
   }
 
+  /**
+   * Checks wether a tile is legal or not
+   *
+   * @param row
+   * @param column
+   * @return
+   * @author trohwede
+   */
   public boolean isTileLegal(int row, int column) {
     if (currentChanges.size() == 0) {
       return isSpotFree(row, column);
@@ -122,7 +152,8 @@ public class GameBoard {
   }
 
   /**
-   * @return
+   * Clears the board of all Tiles and sets them to null
+   *
    * @author trohwede
    */
   public void clearBoard() {
@@ -134,6 +165,11 @@ public class GameBoard {
   }
 
   /**
+   * Places a tile at specific location
+   *
+   * @param t
+   * @param row
+   * @param column
    * @return
    * @author trohwede
    */
@@ -147,6 +183,8 @@ public class GameBoard {
   }
 
   /**
+   * Checks wether the board as it is right now is legal.
+   *
    * @return
    * @author trohwede
    */
@@ -155,6 +193,8 @@ public class GameBoard {
   }
 
   /**
+   * Will count the score of all the layed tiles.
+   *
    * @return
    * @author trohwede
    */
