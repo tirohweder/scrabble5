@@ -100,6 +100,76 @@ public class FillDatabase extends Database {
   }
 
   /**
+   * @author lengist
+   * @param name
+   * 
+   *        Deletes a certain server with name "name" in the table Server.
+   */
+  public static void deleteServer(String name) {
+    try {
+      String sql = "DELETE FROM Server WHERE ServerListNames = ?";
+      pstmDelete = connection.prepareStatement(sql);
+      pstmDelete.setString(1, name);
+      pstmDelete.executeUpdate();
+
+    } catch (SQLException e) {
+      System.out.println("Could not perform deletion from server " + name);
+      System.out.println(e);
+    }
+  }
+
+  /**
+   * @author lengist
+   * @author hraza
+   * @param name
+   * @param picture
+   * 
+   *        Method to fill table player completely. Used when a new player profile is created.
+   *        Variables for statistics get default values.
+   */
+  public static void createPlayer(String name, String picture) {
+    boolean alreadyExists = false;
+    try {
+      Statement test = connection.createStatement();
+      ResultSet rs = test.executeQuery("SELECT Name FROM Player");
+      while (rs.next()) {
+        if (rs.getString("Name").equals(name)) {
+          alreadyExists = true;
+        }
+      }
+    } catch (SQLException e1) {
+      e1.printStackTrace();
+    }
+
+    if (!alreadyExists) {
+      try {
+        pstmPlayer = connection.prepareStatement(
+            "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
+                + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
+                + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+        pstmPlayer.setString(1, name);
+        pstmPlayer.setString(2, picture);
+        pstmPlayer.setInt(3, 0);
+        pstmPlayer.setInt(4, 0);
+        pstmPlayer.setInt(5, 0);
+        pstmPlayer.setInt(6, 0);
+        pstmPlayer.setInt(7, 0);
+        pstmPlayer.setInt(8, 0);
+        pstmPlayer.setInt(9, 0);
+        pstmPlayer.setInt(10, 0);
+        pstmPlayer.setString(11, "");
+        pstmPlayer.executeUpdate();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
+    } else {
+      /* to-do: error message needs to be displayed via UI: */
+      System.out
+          .println("Player with name: " + name + "already exists. Please choose different name");
+    }
+  }
+
+  /**
    * @author hraza
    * @param column
    * @param name
@@ -225,18 +295,17 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author hraza
    * @param name
-   * @param picture
    * 
-   *        Method to fill table player completely. Used when a new player profile is created.
-   *        Variables for statistics get default values.
+   *        Method to fill table server completely. Used when a new server is created. Variables for
+   *        statistics get default values.
    */
-  public static void createPlayer(String name, String picture) {
+  public static void createServer(String name) {
     boolean alreadyExists = false;
     try {
       Statement test = connection.createStatement();
-      ResultSet rs = test.executeQuery("SELECT Name FROM Player");
+      ResultSet rs = test.executeQuery("SELECT ServerListNames FROM Server");
       while (rs.next()) {
-        if (rs.getString("Name").equals(name)) {
+        if (rs.getString("ServerListNames").equals(name)) {
           alreadyExists = true;
         }
       }
@@ -246,29 +315,22 @@ public class FillDatabase extends Database {
 
     if (!alreadyExists) {
       try {
-        pstmPlayer = connection.prepareStatement(
-            "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
-                + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
-                + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
-        pstmPlayer.setString(1, name);
-        pstmPlayer.setString(2, picture);
-        pstmPlayer.setInt(3, 0);
-        pstmPlayer.setInt(4, 0);
-        pstmPlayer.setInt(5, 0);
-        pstmPlayer.setInt(6, 0);
-        pstmPlayer.setInt(7, 0);
-        pstmPlayer.setInt(8, 0);
-        pstmPlayer.setInt(9, 0);
-        pstmPlayer.setInt(10, 0);
-        pstmPlayer.setString(11, "");
-        pstmPlayer.executeUpdate();
+        pstmServer =
+            connection.prepareStatement("INSERT INTO Server (ServerListNames, Dictionaries,"
+                + "VictoryRanking, GameRanking, VictoryLossRate) VALUES (?,?,?,?,?);");
+        pstmServer.setString(1, name);
+        pstmServer.setString(2, "");
+        pstmServer.setString(3, "");
+        pstmServer.setString(4, "");
+        pstmServer.setString(5, "");
+        pstmServer.executeUpdate();
       } catch (SQLException e) {
         e.printStackTrace();
       }
     } else {
       /* to-do: error message needs to be displayed via UI: */
       System.out
-          .println("Player with name: " + name + "already exists. Please choose different name");
+          .println("Server with name: " + name + "already exists. Please choose different name");
     }
   }
 
@@ -338,49 +400,6 @@ public class FillDatabase extends Database {
   /**
    * @author lengist
    * @author hraza
-   * @param name
-   * 
-   *        Method to fill table server completely. Used when a new server is created. Variables for
-   *        statistics get default values.
-   */
-  public static void createServer(String name) {
-    boolean alreadyExists = false;
-    try {
-      Statement test = connection.createStatement();
-      ResultSet rs = test.executeQuery("SELECT ServerListNames FROM Server");
-      while (rs.next()) {
-        if (rs.getString("ServerListNames").equals(name)) {
-          alreadyExists = true;
-        }
-      }
-    } catch (SQLException e1) {
-      e1.printStackTrace();
-    }
-
-    if (!alreadyExists) {
-      try {
-        pstmServer =
-            connection.prepareStatement("INSERT INTO Server (ServerListNames, Dictionaries,"
-                + "VictoryRanking, GameRanking, VictoryLossRate) VALUES (?,?,?,?,?);");
-        pstmServer.setString(1, name);
-        pstmServer.setString(2, "");
-        pstmServer.setString(3, "");
-        pstmServer.setString(4, "");
-        pstmServer.setString(5, "");
-        pstmServer.executeUpdate();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    } else {
-      /* to-do: error message needs to be displayed via UI: */
-      System.out
-          .println("Server with name: " + name + "already exists. Please choose different name");
-    }
-  }
-
-  /**
-   * @author lengist
-   * @author hraza
    * @param letter
    * @param point
    * 
@@ -434,44 +453,6 @@ public class FillDatabase extends Database {
     }
   }
 
-  /**
-   * @author lengist
-   * @return ResultSet
-   * 
-   *         Displaying the content of current table Letters.
-   */
-  public static ResultSet viewLetters() {
-    ResultSet rs = null;
-    try {
-      Statement stm = connection.createStatement();
-      rs = stm.executeQuery("SELECT * FROM Letters");
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return rs;
-  }
 
-  /**
-   * @author lengist
-   * @return boolean
-   * 
-   *         checks whether the table Player is empty or with entries.
-   */
-  public static boolean tablePlayerIsEmpty() {
-    boolean empty = false;
-    int anzahl = 0;
-    try {
-      Statement stm = connection.createStatement();
-      String sql = "SELECT COUNT(*) FROM Player";
-      ResultSet rs = stm.executeQuery(sql);
-      anzahl = rs.getInt(1);
-      if (anzahl == 0) {
-        empty = true;
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return empty;
-  }
 
 }
