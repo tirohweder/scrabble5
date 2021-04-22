@@ -1,9 +1,9 @@
 package com.scrab5.core.game;
 
-import com.scrab5.core.player.Player;
-import com.scrab5.util.database.FillDatabase;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import com.scrab5.core.player.Player;
+import com.scrab5.util.database.UseDatabase;
 
 public class GameSession {
 
@@ -154,7 +154,7 @@ public class GameSession {
    * @author trohwede
    */
   public void initializeBag() throws SQLException {
-    ResultSet rs = FillDatabase.viewLetters();
+    ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
       this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
     }
@@ -173,6 +173,5 @@ public class GameSession {
   /**
    * @author trohwede
    */
-  public void endGame() {
-  }
+  public void endGame() {}
 }
