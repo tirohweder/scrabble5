@@ -1,8 +1,10 @@
 package com.scrab5.ui;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 /**
  * The Controller class contains some basic methods to create buttons using ImageView objects
@@ -40,11 +42,11 @@ public abstract class Controller {
     iv.setOpacity(0);
   }
 
-  public void attach() {
-
+  @FXML
+  private void close(MouseEvent event) {
+    Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+    s.close();
   }
 
-  public void detach() {
 
-  }
 }

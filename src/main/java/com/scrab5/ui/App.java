@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import java.io.IOException;
 import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.Database;
+import com.scrab5.util.database.UseDatabase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,6 +28,8 @@ public class App extends Application {
    * 
    * Then it sets up the app screen and shows the first scene
    * 
+   * TODO: Update Comments
+   * 
    * @author mherre
    * @param stage
    */
@@ -39,7 +42,12 @@ public class App extends Application {
       Database.reconnect();
     }
 
-    scene = new Scene(loadFXML("Login"), 1360, 768);
+    if (UseDatabase.tablePlayerIsEmpty()) {
+      scene = new Scene(loadFXML("Login"), 1360, 768);
+    } else {
+      scene = new Scene(loadFXML("RealLogin"), 1360, 768);
+    }
+
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
     stage.setResizable(false);

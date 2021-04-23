@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.RealLoginController">
+   <children>
+      <AnchorPane prefHeight="768.0" prefWidth="1360.0">
+         <children>
+            <ImageView fitHeight="768.0" fitWidth="1360.0" pickOnBounds="true">
+               <image>
+                  <Image url="@images/SB08_background.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="53.0" fitWidth="127.0" layoutX="110.0" layoutY="657.0" onMouseClicked="#close" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB01_QuitButtonClicked.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="53.0" fitWidth="127.0" layoutX="1123.0" layoutY="657.0" onMouseClicked="#login" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB08_LoginButtonClicked.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="47.0" fitWidth="47.0" layoutX="837.0" layoutY="432.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB08_ArrowButtonClicked.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="profileSelection" layoutX="478.0" layoutY="434.0" prefHeight="43.0" prefWidth="376.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
