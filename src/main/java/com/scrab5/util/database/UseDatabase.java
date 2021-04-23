@@ -3,6 +3,8 @@ package com.scrab5.util.database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class UseDatabase extends Database {
 
@@ -52,15 +54,22 @@ public class UseDatabase extends Database {
    * @author lengist
    * @return ResultSet
    */
-  public static ResultSet getAllPlayer() {
+  public static ObservableList<String> getAllPlayer() {
     ResultSet rs = null;
+    ObservableList<String> ol = FXCollections.observableArrayList();
     try {
       Statement stm = connection.createStatement();
       rs = stm.executeQuery("SELECT Name FROM Player");
+
+      while (rs.next()) {
+        ol.add(rs.getString(1));
+        System.out.println(rs.getString(1));
+
+      }
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return rs;
+    return ol;
   }
 
 }

@@ -29,7 +29,7 @@
                   <Image url="@images/SB08_ArrowButtonClicked.png" />
                </image>
             </ImageView>
-            <ComboBox fx:id="profileSelection" layoutX="478.0" layoutY="434.0" prefHeight="43.0" prefWidth="376.0" />
+            <ComboBox fx:id="profileSelection" layoutX="478.0" layoutY="434.0" onAction="#setSelectedProfile" prefHeight="43.0" prefWidth="376.0" />
          </children>
       </AnchorPane>
    </children>
