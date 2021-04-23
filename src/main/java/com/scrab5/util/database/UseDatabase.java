@@ -54,6 +54,25 @@ public class UseDatabase extends Database {
    * @author lengist
    * @return ResultSet
    */
+  public static ResultSet getAllPlayerRS() {
+    ResultSet rs = null;
+    try {
+
+      Statement stm = connection.createStatement();
+      rs = stm.executeQuery("SELECT Name FROM Player");
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return rs;
+  }
+
+  /**
+   * Returns a ObservableList so all player profiles can be displayed in a ComboBox
+   * 
+   * @author mherre
+   * @return
+   */
   public static ObservableList<String> getAllPlayer() {
     ResultSet rs = null;
     ObservableList<String> ol = FXCollections.observableArrayList();

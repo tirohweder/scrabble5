@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.PlayerProfileDatabase;
+import com.scrab5.util.database.UseDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -67,6 +68,8 @@ public class ProfileController extends Controller implements Initializable {
   @FXML
   private void deleteProfile(MouseEvent event) throws IOException {
 
+    playSound("ButtonClicked.mp3");
+
     String message = "Are you sure you want to delete this profile? (You can't undo this)";
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.CONFIRMATION);
     pum.show();
@@ -74,7 +77,12 @@ public class ProfileController extends Controller implements Initializable {
     if (Data.isConfirmed()) {
       FillDatabase.deletePlayer(Data.getCurrentUser());
       System.out.println("Current: " + Data.getCurrentUser());
-      App.setRoot("AccountCreation");
+
+      if (UseDatabase.tablePlayerIsEmpty()) {
+        App.setRoot("AccountCreation");
+      } else {
+        App.setRoot("RealLogin");
+      }
     }
   }
 
@@ -91,6 +99,8 @@ public class ProfileController extends Controller implements Initializable {
   @FXML
   private void editName(MouseEvent event) throws IOException {
 
+    playSound("ButtonClicked.mp3");
+
     String message = "Enter your changes and click 'Okay'";
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.INPUT);
     pum.show();
@@ -104,7 +114,8 @@ public class ProfileController extends Controller implements Initializable {
 
   @FXML
   private void changeProfile(MouseEvent event) throws IOException {
-    App.setRoot("RealLogin");
+    playSound("ButtonClicked.mp3");
+    App.setRoot("RealLogin", "Profile");
   }
 
   /**
@@ -117,6 +128,7 @@ public class ProfileController extends Controller implements Initializable {
    */
   @FXML
   private void createNewPlayerProfile(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
     App.setRoot("AccountCreation", "Profile");
   }
 
@@ -129,6 +141,7 @@ public class ProfileController extends Controller implements Initializable {
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
     App.setRoot("MainMenu");
   }
 

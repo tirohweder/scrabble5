@@ -17,6 +17,10 @@ import javafx.stage.Stage;
 
 public abstract class Controller {
 
+  private ImageView iv;
+  private MediaPlayer mediaPlayer;
+  private Media sound;
+
   /**
    * 
    * Method that changes opacity of an image to 1. Image is usally a copy of a button image but with
@@ -41,22 +45,22 @@ public abstract class Controller {
    */
   @FXML
   private void darken(MouseEvent event) {
-    ImageView iv = ((ImageView) event.getSource());
+    iv = ((ImageView) event.getSource());
     iv.setOpacity(0);
   }
 
   @FXML
   private void close(MouseEvent event) {
-    // Controller.playSound("ButtonClicked.mp3");
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();
   }
 
 
-  protected static void playSound(String file) {
-    Media sound = new Media(
+
+  protected void playSound(String file) {
+    sound = new Media(
         Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file).toExternalForm());
-    MediaPlayer mediaPlayer = new MediaPlayer(sound);
+    mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.play();
   }
 

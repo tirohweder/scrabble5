@@ -8,6 +8,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 /**
@@ -21,6 +23,9 @@ public class App extends Application {
 
   private static Scene scene;
   private Database db;
+  private Media sound;
+  private MediaPlayer mediaplayer;
+
 
   /**
    * This method is called when ever the app gets startet. First it checks whether a database
@@ -47,6 +52,12 @@ public class App extends Application {
     } else {
       scene = new Scene(loadFXML("RealLogin"), 1360, 768);
     }
+
+    sound = new Media(Controller.class
+        .getResource("/com/scrab5/ui/sound_effects/BackgroundMusic.mp3").toExternalForm());
+    mediaplayer = new MediaPlayer(sound);
+    mediaplayer.setCycleCount(MediaPlayer.INDEFINITE);
+    mediaplayer.play();
 
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
@@ -75,8 +86,18 @@ public class App extends Application {
   public static void setRoot(String fxml, String predescessor) throws IOException {
 
     switch (predescessor) {
+
       case "Profile":
-        AccountCreationController.setPredecessor("Profile");
+        switch (fxml) {
+          case "AccountCreation":
+            AccountCreationController.setPredecessor("Profile");
+            break;
+          case "RealLogin":
+            RealLoginController.setPredecessor("Profile");
+          default:
+            break;
+        }
+
       default:
         break;
 
