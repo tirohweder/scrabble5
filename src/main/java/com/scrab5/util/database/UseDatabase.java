@@ -63,8 +63,6 @@ public class UseDatabase extends Database {
 
       while (rs.next()) {
         ol.add(rs.getString(1));
-        System.out.println(rs.getString(1));
-
       }
     } catch (SQLException e) {
       e.printStackTrace();

@@ -102,6 +102,11 @@ public class ProfileController extends Controller implements Initializable {
     }
   }
 
+  @FXML
+  private void changeProfile(MouseEvent event) throws IOException {
+    App.setRoot("RealLogin");
+  }
+
   /**
    * Method that is called when the "Create New Profile" - button is clicked, changes the scene to
    * the "AccountCreation" screen
@@ -207,4 +212,6 @@ public class ProfileController extends Controller implements Initializable {
     this.favDic.setText(favoriteDictionary);
 
   }
+
+
 }
