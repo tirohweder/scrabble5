@@ -39,7 +39,7 @@ public class PopUpMessageController extends Controller implements Initializable 
 
   /**
    * The initialize method is called once the scene of this controller is loaded. Depending on what
-   * kind of Pop-Up got opened the different cases come ino play.
+   * kind of Pop-Up got opened the different cases come into play.
    * 
    * In case of an "INPUT" PopUp the nickname of the current user gets placed in the textfield,
    * furthermore the opacity of the textfield gets set to "1".
@@ -102,6 +102,7 @@ public class PopUpMessageController extends Controller implements Initializable 
    */
   @FXML
   private void okay(MouseEvent event) {
+    playSound("ButtonClicked.mp3");
 
     switch (Data.getMessageType()) {
       case INPUT:
@@ -124,6 +125,7 @@ public class PopUpMessageController extends Controller implements Initializable 
    */
   @FXML
   private void confirm(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
     Data.setConfirmed(true);
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();

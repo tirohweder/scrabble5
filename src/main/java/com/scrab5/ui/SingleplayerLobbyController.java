@@ -32,6 +32,7 @@ public class SingleplayerLobbyController extends Controller implements Initializ
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
     App.setRoot("MainMenu");
   }
 
@@ -44,6 +45,7 @@ public class SingleplayerLobbyController extends Controller implements Initializ
    */
   @FXML
   private void ready(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
     App.setRoot("SinglePlayer");
   }
 }

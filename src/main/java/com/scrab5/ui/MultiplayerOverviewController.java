@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -25,6 +26,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
   private ComboBox<String> dictionarySelection;
   @FXML
   private ImageView dropDownButton;
+  @FXML
+  private TextField serverName;
 
   private int playerCount = 2;
 
@@ -35,13 +38,21 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    */
   public void initialize(URL arg0, ResourceBundle arg1) {
+    this.serverName.setFocusTraversable(false);
     this.userPlaying.setText(Data.getCurrentUser());
   }
 
   @FXML
   private void start(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    App.setRoot("MultiplayerLobby");
+
+    if (serverName.getText().isEmpty()) {
+      String message = "You must enter a server name to continue";
+      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+      pum.show();
+    } else {
+      App.setRoot("MultiplayerLobby");
+    }
   }
 
   /**

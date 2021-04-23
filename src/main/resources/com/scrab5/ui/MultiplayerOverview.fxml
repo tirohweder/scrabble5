@@ -45,7 +45,7 @@
                   <Image url="@images/SB04_RefreshClicked.png" />
                </image>
             </ImageView>
-            <TextField layoutX="804.0" layoutY="235.0" prefWidth="420.0" style="-fx-background-color: transparent; -fx-text-fill: e51920;" text="Enter Server Name...">
+            <TextField fx:id="serverName" layoutX="804.0" layoutY="235.0" prefWidth="420.0" promptText="Enter Server Name..." style="-fx-background-color: transparent; -fx-text-fill: e51920;">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>

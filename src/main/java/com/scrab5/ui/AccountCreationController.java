@@ -39,6 +39,7 @@ public class AccountCreationController extends Controller implements Initializab
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
 
     switch (predecessor) {
 
@@ -82,6 +83,7 @@ public class AccountCreationController extends Controller implements Initializab
    */
   @FXML
   private void enter(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
     this.isUsernameValid();
   }
 
