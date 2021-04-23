@@ -10,6 +10,7 @@ module com.scrab5.main {
     requires java.desktop;
     requires java.sql;
     requires javafx.base;
+    requires javafx.media;
 
     opens com.scrab5.ui to javafx.fxml;
 

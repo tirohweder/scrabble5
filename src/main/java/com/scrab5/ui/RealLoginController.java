@@ -27,6 +27,9 @@ public class RealLoginController extends Controller implements Initializable {
 
   @FXML
   private void login(MouseEvent event) throws IOException {
+
+    Controller.playSound("ButtonClicked.mp3");
+
     if (this.isProfileSelected) {
       App.setRoot("MainMenu");
     } else {
@@ -47,6 +50,7 @@ public class RealLoginController extends Controller implements Initializable {
 
   @FXML
   private void clickComboBox(MouseEvent event) throws IOException {
+    Controller.playSound("ButtonClicked.mp3");
     this.profileSelection.show();
   }
 
