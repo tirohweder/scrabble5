@@ -30,6 +30,7 @@ public class SettingsController extends Controller implements Initializable {
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
     App.setRoot("MainMenu");
   }
 

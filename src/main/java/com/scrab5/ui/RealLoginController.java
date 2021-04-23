@@ -72,7 +72,6 @@ public class RealLoginController extends Controller implements Initializable {
         s.close();
         break;
     }
-
   }
 
   /**

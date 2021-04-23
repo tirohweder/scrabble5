@@ -35,12 +35,12 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    */
   public void initialize(URL arg0, ResourceBundle arg1) {
-
     this.userPlaying.setText(Data.getCurrentUser());
   }
 
   @FXML
   private void start(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
     App.setRoot("MultiplayerLobby");
   }
 
@@ -55,7 +55,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    App.setRoot("MainMenu"); // Placeholder
+    playSound("ButtonClicked.mp3");
+    App.setRoot("MainMenu");
   }
 
   /**
@@ -69,8 +70,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void nextNumber(MouseEvent event) throws IOException {
-
     playerCount++;
+    playSound("ButtonClicked.mp3");
 
     if (playerCount > 4) {
       playerCount--;
@@ -104,6 +105,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void previousNumber(MouseEvent event) throws IOException {
     playerCount--;
+    playSound("ButtonClicked.mp3");
 
     if (playerCount < 2) {
       playerCount++;
@@ -137,8 +139,26 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void clickComboBox(MouseEvent event) throws IOException {
-
+    playSound("ButtonClicked.mp3");
     dictionarySelection.show();
+
+  }
+
+  /**
+   * 
+   * 
+   * @author mherre
+   * @param event
+   */
+  @FXML
+  private void refresh(MouseEvent event) {
+    playSound("ButtonClicked.mp3");
+
+  }
+
+  @FXML
+  private void findGame(MouseEvent event) {
+    playSound("ButtonClicked.mp3");
 
   }
 

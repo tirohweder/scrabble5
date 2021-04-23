@@ -26,8 +26,7 @@ public class AccountCreationController extends Controller implements Initializab
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
-
+    this.nickname.setFocusTraversable(false);
   }
 
   /**

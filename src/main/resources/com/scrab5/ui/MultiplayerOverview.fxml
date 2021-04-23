@@ -35,12 +35,12 @@
                   <Image url="@images/SB04_StartButtonClicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="470.0" layoutX="159.0" layoutY="526.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="470.0" layoutX="159.0" layoutY="526.0" onMouseClicked="#findGame" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB04_FindGameButtonButton.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="68.0" layoutX="616.0" layoutY="115.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="68.0" layoutX="616.0" layoutY="115.0" onMouseClicked="#refresh" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB04_RefreshClicked.png" />
                </image>
