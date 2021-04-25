@@ -1,9 +1,13 @@
 package com.scrab5.util.database;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import com.scrab5.network.Server;
+import com.scrab5.ui.PopUpMessage;
+import com.scrab5.ui.PopUpMessageType;
 
 
 /**
@@ -15,10 +19,7 @@ import java.sql.Statement;
  */
 public class FillDatabase extends Database {
   /*
-   * to-do for this class:
-   * 
-   * @hraza: closing statements for all statements in FillDatabase UI: view errors if name of
-   * server/player or a letter already exists in the corresponding table.
+   * to-do for this class: close statements for all preparedStatements.
    */
   private static PreparedStatement pstmPlayer;
   private static PreparedStatement pstmServer;
@@ -58,6 +59,31 @@ public class FillDatabase extends Database {
     } catch (Exception e) {
       System.out.println(e);
       System.out.println("Problem with closing statement " + name + "!");
+    }
+  }
+
+
+  /**
+   * Closes all prepared statements when the application gets closed.
+   * 
+   * @author lengist
+   */
+  public static void closeAllStatements() {
+    try {
+      if ((pstmDelete != null) && (!pstmDelete.isClosed())) {
+        pstmDelete.close();
+      }
+      if ((pstmPlayer != null) && (!pstmPlayer.isClosed())) {
+        pstmPlayer.close();
+      }
+      if ((pstmServer != null) && (!pstmServer.isClosed())) {
+        pstmServer.close();
+      }
+      if ((pstmDic != null) && (!pstmDic.isClosed())) {
+        pstmDic.close();
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
   }
 
@@ -125,20 +151,10 @@ public class FillDatabase extends Database {
    * @author hraza
    * @param name
    * @param picture
+   * @throws IOException
    */
-  public static void createPlayer(String name, String picture) {
-    boolean alreadyExists = false;
-    try {
-      Statement test = connection.createStatement();
-      ResultSet rs = test.executeQuery("SELECT Name FROM Player");
-      while (rs.next()) {
-        if (rs.getString("Name").equals(name)) {
-          alreadyExists = true;
-        }
-      }
-    } catch (SQLException e1) {
-      e1.printStackTrace();
-    }
+  public static void createPlayer(String name, String picture) throws IOException {
+    boolean alreadyExists = UseDatabase.playerExists(name);
 
     if (!alreadyExists) {
       try {
@@ -162,9 +178,9 @@ public class FillDatabase extends Database {
         e.printStackTrace();
       }
     } else {
-      /* to-do: error message needs to be displayed via UI: */
-      System.out
-          .println("Player with name: " + name + "already exists. Please choose different name");
+      String message = "This username alread exists. Please choose a different name!";
+      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.PLAYEREXISTANCE);
+      pum.show();
     }
   }
 
@@ -177,31 +193,38 @@ public class FillDatabase extends Database {
    * @param name
    * @param contentString
    * @param contentInt
+   * @throws IOException
    */
   public static void updatePlayer(String column, String name, String contentString, int contentInt,
-      double rate) {
+      double rate) throws IOException {
     PreparedStatement pstm = null;
 
     if (column == "Name") {
-      String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        pstmt.setString(1, contentString);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-        Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-        while (rs.next()) {
-          System.out.println("Namen jetzt: " + rs.getString("Name") + ", ");
-          System.out.println();
+      if (!UseDatabase.playerExists(contentString)) {
+        String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+          pstmt.setString(1, contentString);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
+          Statement stm = connection.createStatement();
+          ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+          while (rs.next()) {
+            System.out.println("Namen jetzt: " + rs.getString("Name") + ", ");
+            System.out.println();
+          }
+        } catch (SQLException e) {
+          System.out.println(e.getMessage());
         }
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
+      } else {
+        String message = "This username alread exists. Please choose another one!";
+        PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.PLAYEREXISTANCE);
+        pum.show();
       }
     } else if (column == "Picture") {
       String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
         pstmt.setString(2, contentString);
-        pstmt.setString(1, name); // update
+        pstmt.setString(1, name);
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
@@ -210,7 +233,7 @@ public class FillDatabase extends Database {
       String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name); // update
+        pstmt.setString(2, name);
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
@@ -291,107 +314,39 @@ public class FillDatabase extends Database {
   }
 
   /**
-   * Method to fill table server completely. Used when a new server is created. Variables for
-   * statistics get default values.
+   * Method to fill table server completely. Used when a new server is created.
    * 
    * @author lengist
-   * @author hraza
    * @param name
    */
-  public static void createServer(String name) {
-    boolean alreadyExists = false;
+  public static void createServer(Server serverObject) {
     try {
-      Statement test = connection.createStatement();
-      ResultSet rs = test.executeQuery("SELECT ServerListNames FROM Server");
-      while (rs.next()) {
-        if (rs.getString("ServerListNames").equals(name)) {
-          alreadyExists = true;
-        }
-      }
-    } catch (SQLException e1) {
-      e1.printStackTrace();
-    }
-
-    if (!alreadyExists) {
-      try {
-        pstmServer =
-            connection.prepareStatement("INSERT INTO Server (ServerListNames, Dictionaries,"
-                + "VictoryRanking, GameRanking, VictoryLossRate) VALUES (?,?,?,?,?);");
-        pstmServer.setString(1, name);
-        pstmServer.setString(2, "");
-        pstmServer.setString(3, "");
-        pstmServer.setString(4, "");
-        pstmServer.setString(5, "");
-        pstmServer.executeUpdate();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    } else {
-      /* to-do: error message needs to be displayed via UI: */
-      System.out
-          .println("Server with name: " + name + "already exists. Please choose different name");
+      pstmServer = connection
+          .prepareStatement("INSERT INTO Server (ServerHostName, Information) VALUES (?,?);");
+      pstmServer.setString(1, serverObject.getHost());
+      pstmServer.setObject(2, serverObject);
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
   }
 
   /**
-   * Updates the entries from the table server at a specific column from a specific serverListName.
+   * Updates the entries from the table server at a specific serverHostName.
    * 
-   * @author hraza
+   * @author lengist
    * @param column
    * @param name
    * @param content
    */
-  public static void updateServer(String column, String name, String content) {
-    if (column == "ServerListNames") {
-      String sql = "UPDATE Server SET ServerListNames = ? WHERE ServerListNames = ?";
-
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        pstmt.setString(1, content);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "Dictionaries") {
-      String sql = "UPDATE Server SET Dictionaries = ? WHERE ServerNames = ?";
-
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        pstmt.setString(1, content);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "VictoryRanking") {
-      String sql = "UPDATE Server SET VictoryRanking = ? WHERE ServerNames = ?";
-
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        pstmt.setString(1, content);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "GameRanking") {
-      String sql = "UPDATE Server SET GameRanking = ? WHERE ServerNames = ?";
-
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        pstmt.setString(1, content);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "VictoryLossRate") {
-      String sql = "UPDATE Server SET VictoryLossRate = ? WHERE ServerNames = ?";
-
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        pstmt.setString(1, content);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
+  public static void updateServer(Server serverObject) {
+    String sql = "UPDATE Server SET Information = ? WHERE ServerHostName = ?";
+    PreparedStatement pstm;
+    try {
+      pstm = connection.prepareStatement(sql);
+      pstm.setObject(1, serverObject);
+      pstm.setString(2, serverObject.getHost());
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
   }
 
@@ -402,8 +357,9 @@ public class FillDatabase extends Database {
    * @author hraza
    * @param letter
    * @param point
+   * @throws IOException
    */
-  public static void insertLetters(String letter, int point) {
+  public static void insertLetters(String letter, int point) throws IOException {
     boolean alreadyExists = false;
     try {
       Statement test = connection.createStatement();
@@ -427,8 +383,10 @@ public class FillDatabase extends Database {
         e.printStackTrace();
       }
     } else {
-      /* to-do: connection to UI? --> display error and need to update and not insert. */
-      System.out.println("Letter already exists. Please update");
+      String message =
+          "This letter alread exists. Please update the points or choose another letter!";
+      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.LETTEREXISTANCE);
+      pum.show();
     }
   }
 
@@ -454,3 +412,4 @@ public class FillDatabase extends Database {
 
 
 }
+
