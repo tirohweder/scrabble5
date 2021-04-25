@@ -1,5 +1,6 @@
 package com.scrab5.core.player;
 
+import java.io.IOException;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.PlayerProfileDatabase;
 
@@ -42,7 +43,7 @@ public class PlayerProfile {
    * @author lengist
    * @param points
    */
-  public static void addPoints(int points) {
+  public static void addPoints(int points) throws IOException {
     int currentPoints = PlayerProfileDatabase.getTotalPoints(name);
     int newPoints = currentPoints + points;
     PlayerProfileDatabase.setTotalPoints(name, newPoints);
@@ -55,7 +56,7 @@ public class PlayerProfile {
    * @author lengist
    * @param words
    */
-  public static void addWords(int words) {
+  public static void addWords(int words) throws IOException {
     int currentWords = PlayerProfileDatabase.getLaidWords(name);
     int newWords = currentWords + words;
     PlayerProfileDatabase.setLaidWords(name, newWords);
@@ -68,7 +69,7 @@ public class PlayerProfile {
    * @author lengist
    * @param games
    */
-  public static void addGames(int games) {
+  public static void addGames(int games) throws IOException {
     int currentGames = PlayerProfileDatabase.getTotalPlayedGames(name);
     int newGames = currentGames + games;
     PlayerProfileDatabase.setTotalPlayedGames(name, newGames);
@@ -81,7 +82,7 @@ public class PlayerProfile {
    * @author lengist
    * @param wins
    */
-  public static void addWins(int wins) {
+  public static void addWins(int wins) throws IOException {
     int currentWins = PlayerProfileDatabase.getTotalWins(name);
     int newWins = currentWins + wins;
     PlayerProfileDatabase.setTotalWins(name, newWins);
@@ -94,7 +95,7 @@ public class PlayerProfile {
    * @author lengist
    * @param dictionary
    */
-  public static void changeDictionary(String dictionary) {
+  public static void changeDictionary(String dictionary) throws IOException {
     PlayerProfileDatabase.setFavoriteDictionary(name, dictionary);
     // favoriteDictionary = dictionary;
   }
