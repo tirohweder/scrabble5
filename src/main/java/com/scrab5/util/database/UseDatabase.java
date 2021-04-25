@@ -9,10 +9,10 @@ import javafx.collections.ObservableList;
 public class UseDatabase extends Database {
 
   /**
+   * Displaying the content of current table Letters.
+   * 
    * @author lengist
    * @return ResultSet
-   * 
-   *         Displaying the content of current table Letters.
    */
   public static ResultSet viewLetters() {
     ResultSet rs = null;
@@ -26,10 +26,10 @@ public class UseDatabase extends Database {
   }
 
   /**
+   * Checks whether the table Player is empty or with entries.
+   * 
    * @author lengist
    * @return boolean
-   * 
-   *         checks whether the table Player is empty or with entries.
    */
   public static boolean tablePlayerIsEmpty() {
     boolean empty = false;

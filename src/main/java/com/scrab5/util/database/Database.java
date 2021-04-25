@@ -19,19 +19,19 @@ public class Database {
 
 
   /**
-   * @author lengist
+   * Constructor to create a new Database and call the method to establish a connection to the
+   * database file.
    * 
-   *         Constructor to create a new Database and call the method to establish a connection to
-   *         the database file.
+   * @author lengist
    */
   public Database() {
     this.connect(this.databaseFileName);
   }
 
   /**
-   * @author lengist
+   * Establishes the connection to an existing database file.
    * 
-   *         Establishes the connection to an existing database file.
+   * @author lengist
    */
   public static void reconnect() {
     try {
@@ -50,20 +50,20 @@ public class Database {
 
 
   /**
+   * Returns true if the local database file exists to check if a database already exists.
+   * 
    * @author lengist
    * @return boolean
-   * 
-   *         Returns true if the local database file exists to check if a database already exists.
    */
   public static boolean databaseExistance() {
     return new File("myDatabase.db").isFile();
   }
 
   /**
+   * Method to establish the connection to the database file given in the parameter file.
+   * 
    * @author lengist
    * @param file
-   * 
-   *        Method to establish the connection to the database file given in the parameter file.
    */
   protected void connect(String file) {
     try {
@@ -81,9 +81,9 @@ public class Database {
   }
 
   /**
-   * @author lengist
+   * Method to disconnect from the database.
    * 
-   *         Method to disconnect from the database.
+   * @author lengist
    */
   protected void disconnect() {
     try {

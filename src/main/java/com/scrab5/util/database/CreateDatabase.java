@@ -10,9 +10,9 @@ public class CreateDatabase extends Database {
   }
 
   /**
-   * @author lengist
+   * Create all tables initialy.
    * 
-   *         Create all tables initialy.
+   * @author lengist
    */
   public void createTable() {
     createTablePlayer();
@@ -21,10 +21,10 @@ public class CreateDatabase extends Database {
   }
 
   /**
+   * Remove a table with the name "name". For example in case of a new start.
+   * 
    * @author lengist
    * @param name
-   * 
-   *        Remove a table with the name "name". For example in case of a new start.
    */
   private void removeTable(String name) {
     try (Statement stm = connection.createStatement()) {
@@ -36,9 +36,9 @@ public class CreateDatabase extends Database {
   }
 
   /**
-   * @author lengist
+   * Generates the table "player" with all required columns.
    * 
-   *         Generates the table "player" with all required columns.
+   * @author lengist
    */
   public void createTablePlayer() {
     removeTable("Player");
@@ -56,9 +56,9 @@ public class CreateDatabase extends Database {
   }
 
   /**
-   * @author lengist
+   * Generates the table "server" with all required columns.
    * 
-   *         Generates the table "server" with all required columns.
+   * @author lengist
    */
   private void createTableServer() {
     removeTable("Server");
@@ -73,9 +73,9 @@ public class CreateDatabase extends Database {
   }
 
   /**
-   * @author lengist
+   * Generates the table "letter" with all required columns.
    * 
-   *         Generates the table "letter" with all required columns.
+   * @author lengist
    */
   private void createTableLetters() {
     removeTable("Letters");

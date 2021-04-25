@@ -7,12 +7,11 @@ import java.sql.Statement;
 
 
 /**
+ * class with methods to fill all tables, edit certain entries or delete a table or certain entries
+ * in the database.
+ * 
  * @author lengist
  * @author hraza
- * 
- *         class with methods to fill all tables, edit certain entries or delete a table or certain
- *         entries in the database.
- *
  */
 public class FillDatabase extends Database {
   /*
@@ -27,10 +26,10 @@ public class FillDatabase extends Database {
   private static PreparedStatement pstmDelete;
 
   /**
+   * Closes the statement stream for preparedSatetements with "name" in its notation.
+   * 
    * @author lengist
    * @author hraza
-   * 
-   *         Closes the statement stream for preparedSatetements with "name" in its notation.
    */
   private static void closeStatement(String name) {
     try {
@@ -63,11 +62,11 @@ public class FillDatabase extends Database {
   }
 
   /**
+   * Deleting all entries from the table "name".
+   * 
    * @author lengist
    * @author hraza
    * @param name
-   * 
-   *        Deleting all entries from the table "name".
    */
   public static void deleteTable(String name) {
     try {
@@ -81,10 +80,10 @@ public class FillDatabase extends Database {
   }
 
   /**
+   * Deletes a certain player with name "name" in the table Player.
+   * 
    * @author lengist
    * @param name
-   * 
-   *        Deletes a certain player with name "name" in the table Player.
    */
   public static void deletePlayer(String name) {
     try {
@@ -100,10 +99,10 @@ public class FillDatabase extends Database {
   }
 
   /**
+   * Deletes a certain server with name "name" in the table Server.
+   * 
    * @author lengist
    * @param name
-   * 
-   *        Deletes a certain server with name "name" in the table Server.
    */
   public static void deleteServer(String name) {
     try {
@@ -119,13 +118,13 @@ public class FillDatabase extends Database {
   }
 
   /**
+   * Method to fill table player completely. Used when a new player profile is created. Variables
+   * for statistics get default values.
+   * 
    * @author lengist
    * @author hraza
    * @param name
    * @param picture
-   * 
-   *        Method to fill table player completely. Used when a new player profile is created.
-   *        Variables for statistics get default values.
    */
   public static void createPlayer(String name, String picture) {
     boolean alreadyExists = false;
@@ -170,14 +169,14 @@ public class FillDatabase extends Database {
   }
 
   /**
+   * Filling the table player at specific index/column. If variable for column name is from type
+   * integer, variable contentString is default.
+   * 
    * @author hraza
    * @param column
    * @param name
    * @param contentString
    * @param contentInt
-   * 
-   *        Filling the table player at specific index/column. If variable for column name is from
-   *        type integer, variable contentString is default.
    */
   public static void updatePlayer(String column, String name, String contentString, int contentInt,
       double rate) {
@@ -292,12 +291,12 @@ public class FillDatabase extends Database {
   }
 
   /**
+   * Method to fill table server completely. Used when a new server is created. Variables for
+   * statistics get default values.
+   * 
    * @author lengist
    * @author hraza
    * @param name
-   * 
-   *        Method to fill table server completely. Used when a new server is created. Variables for
-   *        statistics get default values.
    */
   public static void createServer(String name) {
     boolean alreadyExists = false;
@@ -335,13 +334,12 @@ public class FillDatabase extends Database {
   }
 
   /**
+   * Updates the entries from the table server at a specific column from a specific serverListName.
+   * 
    * @author hraza
    * @param column
    * @param name
    * @param content
-   * 
-   *        Updates the entries from the table server at a specific column from a specific
-   *        serverListName.
    */
   public static void updateServer(String column, String name, String content) {
     if (column == "ServerListNames") {
@@ -398,12 +396,12 @@ public class FillDatabase extends Database {
   }
 
   /**
+   * Inserts letters with corresponding points to calculate points per word.
+   * 
    * @author lengist
    * @author hraza
    * @param letter
    * @param point
-   * 
-   *        Inserts letters with corresponding points to calculate points per word.
    */
   public static void insertLetters(String letter, int point) {
     boolean alreadyExists = false;
@@ -436,11 +434,11 @@ public class FillDatabase extends Database {
 
 
   /**
+   * Updates the point for a particular letter if a change is needed.
+   * 
    * @author lengist
    * @param letter
    * @param point
-   * 
-   *        Updates the point for a particular letter if a change is needed.
    */
   public static void updateLetters(String letter, int point) {
     try {
