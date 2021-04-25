@@ -89,4 +89,50 @@ public class UseDatabase extends Database {
     return ol;
   }
 
+  /**
+   * Returns a boolean if the player "name" already exists.
+   * 
+   * @author lengist
+   * @param name
+   * @return boolean
+   */
+  public static boolean playerExists(String name) {
+    boolean exists = false;
+    try {
+      Statement test = connection.createStatement();
+      ResultSet rs = test.executeQuery("SELECT Name FROM Player");
+      while (rs.next()) {
+        if (rs.getString("Name").equals(name)) {
+          exists = true;
+        }
+      }
+    } catch (SQLException e1) {
+      e1.printStackTrace();
+    }
+    return exists;
+  }
+
+  /**
+   * Returns a boolean if the server "name" already exists.
+   * 
+   * @author lengist
+   * @param name
+   * @return boolean
+   */
+  public static boolean serverExists(String name) {
+    boolean exists = false;
+    try {
+      Statement test = connection.createStatement();
+      ResultSet rs = test.executeQuery("SELECT ServerListNames FROM Server");
+      while (rs.next()) {
+        if (rs.getString("ServerListNames").equals(name)) {
+          exists = true;
+        }
+      }
+    } catch (SQLException e1) {
+      e1.printStackTrace();
+    }
+    return exists;
+  }
+
 }

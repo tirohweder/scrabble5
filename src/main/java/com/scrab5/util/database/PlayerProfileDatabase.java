@@ -1,8 +1,11 @@
 package com.scrab5.util.database;
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import com.scrab5.ui.PopUpMessage;
+import com.scrab5.ui.PopUpMessageType;
 
 /**
  * Class to get and set the data for the player statistics and leaderboards.
@@ -232,9 +235,16 @@ public class PlayerProfileDatabase extends Database {
    * @author lengist
    * @param name
    * @param newName
+   * @throws IOException
    */
-  public static void setName(String name, String newName) {
-    FillDatabase.updatePlayer("Name", name, newName, 0, 0.0);
+  public static void setName(String name, String newName) throws IOException {
+    if (!UseDatabase.playerExists(newName)) {
+      FillDatabase.updatePlayer("Name", name, newName, 0, 0.0);
+    } else {
+      String message = "This username alread exists. Please choose a different name!";
+      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.PLAYEREXISTANCE);
+      pum.show();
+    }
   }
 
   /**
@@ -243,8 +253,9 @@ public class PlayerProfileDatabase extends Database {
    * @author lengist
    * @param name
    * @param picture
+   * @throws IOException
    */
-  public static void setPicture(String name, String picture) {
+  public static void setPicture(String name, String picture) throws IOException {
     FillDatabase.updatePlayer("Picture", name, picture, 0, 0.0);
   }
 
@@ -255,7 +266,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name
    * @param points
    */
-  public static void setTotalPoints(String name, int points) {
+  public static void setTotalPoints(String name, int points) throws IOException {
     FillDatabase.updatePlayer("TotalPoints", name, null, points, 0.0);
   }
 
@@ -266,7 +277,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name
    * @param highscore
    */
-  public static void setPersonalHighscore(String name, int highscore) {
+  public static void setPersonalHighscore(String name, int highscore) throws IOException {
     FillDatabase.updatePlayer("PersonalHighscore", name, null, highscore, 0.0);
   }
 
@@ -277,7 +288,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name
    * @param words
    */
-  public static void setLaidWords(String name, int words) {
+  public static void setLaidWords(String name, int words) throws IOException {
     FillDatabase.updatePlayer("LaidWords", name, null, words, 0.0);
   }
 
@@ -288,7 +299,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name
    * @param pPWord
    */
-  public static void setPointsPerWordRate(String name, int pPWord) {
+  public static void setPointsPerWordRate(String name, int pPWord) throws IOException {
     FillDatabase.updatePlayer("PointsPerWordRate", name, null, pPWord, 0.0);
   }
 
@@ -299,7 +310,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name
    * @param longestWord
    */
-  public static void setLongestWord(String name, String longestWord) {
+  public static void setLongestWord(String name, String longestWord) throws IOException {
     FillDatabase.updatePlayer("LongestWord", name, longestWord, 0, 0.0);
   }
 
@@ -310,7 +321,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name
    * @param games
    */
-  public static void setTotalPlayedGames(String name, int games) {
+  public static void setTotalPlayedGames(String name, int games) throws IOException {
     FillDatabase.updatePlayer("TotalPlayedGames", name, null, games, 0.0);
   }
 
@@ -321,7 +332,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name
    * @param wins
    */
-  public static void setTotalWins(String name, int wins) {
+  public static void setTotalWins(String name, int wins) throws IOException {
     FillDatabase.updatePlayer("TotalWins", name, null, wins, 0.0);
   }
 
@@ -332,7 +343,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name
    * @param rate
    */
-  public static void setWinRate(String name, double rate) {
+  public static void setWinRate(String name, double rate) throws IOException {
     FillDatabase.updatePlayer("WinRate", name, null, 0, rate);
   }
 
@@ -343,7 +354,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name
    * @param language
    */
-  public static void setFavoriteDictionary(String name, String language) {
+  public static void setFavoriteDictionary(String name, String language) throws IOException {
     FillDatabase.updatePlayer("FaveDic", name, language, 0, 0.0);
   }
 

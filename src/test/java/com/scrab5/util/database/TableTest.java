@@ -1,25 +1,26 @@
 package com.scrab5.util.database;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import org.junit.Test;
 
 /**
- * @author lengist
+ * Class to test the filling, updating and deleting of tables.
  * 
- *         Class to test the filling, updating and deleting of tables.
- *
+ * @author lengist
  */
 public class TableTest {
 
   /**
-   * @author lengist
+   * Tests the inital creation of a column for a new player.
    * 
-   *         Tests the inital creation of a column for a new player.
+   * @author lengist
+   * @throws IOException
    */
   @Test
-  public void playerTest() {
+  public void playerTest() throws IOException {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     Statement stm;
@@ -48,39 +49,22 @@ public class TableTest {
   }
 
   /**
-   * @author lengist
+   * Tests the inital creation of a column for a new server.
    * 
-   *         Tests the inital creation of a column for a new server.
+   * @author lengist
    */
   @Test
   public void serverTest() {
-    CreateDatabase db = new CreateDatabase();
-    FillDatabase.createServer("Laura's server");
-    Statement stm;
-    try {
-      System.out.println("\n-----------------CREATE-SERVER-Laura's server-----------");
-      stm = Database.connection.createStatement();
-      ResultSet rs = stm.executeQuery("SELECT * FROM Server");
-      while (rs.next()) {
-        System.out.println("Server Name: " + rs.getString("ServerListNames") + ", ");
-        System.out.println("Dictionaries: " + rs.getString("Dictionaries") + ", ");
-        System.out.println("Victory Ranking: " + rs.getString("VictoryRanking") + ", ");
-        System.out.println("Game Ranking: " + rs.getString("GameRanking") + ", ");
-        System.out.println("Victory Loss Rate: " + rs.getString("VictoryLossRate") + ", ");
-      }
-      System.out.println("-----------------CREATED-SERVER-Laura's server-----------");
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    /* not yet implemented */
   }
 
   /**
-   * @author lengist
+   * Tests the inital creation of a column for a new Letter.
    * 
-   *         Tests the inital creation of a column for a new Letter.
+   * @author lengist
    */
   @Test
-  public void lettersTest() {
+  public void lettersTest() throws IOException {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.insertLetters("L", 4);
     Statement stm;
@@ -99,12 +83,13 @@ public class TableTest {
   }
 
   /**
-   * @author lengist
+   * Tests the deletion of a whole table.
    * 
-   *         Tests the deletion of a whole table.
+   * @author lengist
+   * @throws IOException
    */
   @Test
-  public void deleteTest() {
+  public void deleteTest() throws IOException {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     FillDatabase.deleteTable("Player");
@@ -124,12 +109,13 @@ public class TableTest {
 
 
   /**
-   * @author lengist
+   * Tests the update/edit function for the table player.
    * 
-   *         Tests the update/edit function for the table player.
+   * @author lengist
+   * @throws IOException
    */
   @Test
-  public void updatePlayerTest() {
+  public void updatePlayerTest() throws IOException {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     /* update the name: */
@@ -160,42 +146,23 @@ public class TableTest {
 
 
   /**
-   * @author lengist
+   * Tests the update/edit function for the table server.
    * 
-   *         Tests the update/edit function for the table server.
+   * @author lengist
    */
   @Test
-  public void updateServerTEst() {
-    CreateDatabase db = new CreateDatabase();
-    FillDatabase.createServer("Laura's server");
-    /* update the server name */
-    FillDatabase.updateServer("ServerListNames", "Laura's server", "Maria's server");
-    Statement stm;
-    try {
-      System.out.println("\n---------------CHANGE-IN-SERVER-FROM-Laura-To-Maria---------");
-      stm = Database.connection.createStatement();
-      ResultSet rs = stm.executeQuery("SELECT * FROM Server");
-      while (rs.next()) {
-        System.out.println("Server Name: " + rs.getString("ServerListNames") + ", ");
-        System.out.println("Dictionaries: " + rs.getString("Dictionaries") + ", ");
-        System.out.println("Victory Ranking: " + rs.getString("VictoryRanking") + ", ");
-        System.out.println("Game Ranking: " + rs.getString("GameRanking") + ", ");
-        System.out.println("Victory Loss Rate: " + rs.getString("VictoryLossRate") + ", ");
-      }
-      System.out.println("---------------CHANGE-IN-SERVER-FINISHED------------");
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+  public void updateServerTest() {
+    /* not yet implemented */
   }
 
 
   /**
-   * @author lengist
+   * Tests the update/edit function for the table Letters.
    * 
-   *         Tests the update/edit function for the table Letters.
+   * @author lengist
    */
   @Test
-  public void updateLettersTest() {
+  public void updateLettersTest() throws IOException {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.insertLetters("L", 4);
     /* updating: */

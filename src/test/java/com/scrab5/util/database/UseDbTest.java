@@ -1,5 +1,6 @@
 package com.scrab5.util.database;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -15,7 +16,7 @@ public class UseDbTest {
    * @author lengist
    */
   @Test
-  public void vieLettersTest() {
+  public void vieLettersTest() throws IOException {
     FillDatabase.insertLetters("A", 4);
     FillDatabase.insertLetters("B", 1);
     FillDatabase.insertLetters("C", 2);
@@ -50,7 +51,7 @@ public class UseDbTest {
    * @author lengist
    */
   @Test
-  public void getAllPlayerRSTest() {
+  public void getAllPlayerRSTest() throws IOException {
     FillDatabase.createPlayer("Alpha", null);
     FillDatabase.createPlayer("Beta", null);
 
@@ -69,7 +70,7 @@ public class UseDbTest {
    * 
    * @author lengist
    */
-  public void getAllPlayerTest() {
+  public void getAllPlayerTest() throws IOException {
     FillDatabase.createPlayer("Gamma", null);
     FillDatabase.createPlayer("Delta", null);
     ObservableList<String> list = UseDatabase.getAllPlayer();
