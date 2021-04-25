@@ -17,7 +17,7 @@ public class PlayerProfile {
    */
 
   /**
-   * Returns he name of the current user.
+   * Returns the name of the current user.
    * 
    * @author lengist
    * @return String
