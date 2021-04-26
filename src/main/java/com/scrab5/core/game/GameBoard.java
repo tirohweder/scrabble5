@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class GameBoard {
 
-  private String[][] gameBoard_bonus =
+  private String[][] gameBoardSpecial =
       new String[][]{
           {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ",
               "TW"},
@@ -41,6 +41,7 @@ public class GameBoard {
   private Tile[][] gameBoard = new Tile[15][15];
   private Tile[][] gameBoardCurrent = new Tile[15][15];
   private ArrayList<Tile> currentChanges = new ArrayList<>();
+  private ArrayList<String> gameBoardWords = new ArrayList<>();
 
   /**
    * Constructor dont know if i need it
@@ -113,9 +114,7 @@ public class GameBoard {
           return true;
         }
       }
-
     } else if ((column == column1 + 1 && row == row1) || (column == column1 - 1 && row == row1)) {
-
       Iterator<Tile> iter = currentChanges.iterator();
       while (iter.hasNext()) {
         int iterColumn = iter.next().getColumn();
@@ -199,14 +198,101 @@ public class GameBoard {
    * @author trohwede
    */
   public int countScore() {
-    for (int i = 0; i < currentChanges.size(); i++) {
+    int score = 0;
+    boolean tws = false;
+    boolean dws = false;
 
+    //main word;
+    for (int i = 0; i < currentChanges.size(); i++) {
       int row = currentChanges.get(i).getRow();
       int column = currentChanges.get(i).getColumn();
 
-
+      if (gameBoardSpecial[row][column] == "TL") {
+        score += currentChanges.get(i).getValue() * 3;
+      } else if (gameBoardSpecial[row][column] == "DL") {
+        score += currentChanges.get(i).getValue() * 2;
+      } else if (gameBoardSpecial[row][column] == "TW") {
+        tws = true;
+      } else if (gameBoardSpecial[row][column] == "DW") {
+        dws = true;
+      }
+    }
+    if (tws) {
+      score *= 3;
+    } else if (dws) {
+      score *= 2;
     }
 
-    return 1;
+    //other words
+
+    return score;
   }
+
+  /**
+   * Checks if the word layed changed anything on the board
+   *
+   * @return
+   * @author trohwede
+   */
+  public boolean didTouchOther() {
+    for (int i = 0; i < currentChanges.size(); i++) {
+      int row = currentChanges.get(i).getRow();
+      int col = currentChanges.get(i).getColumn();
+
+      if (gameBoard[row - 1][col] != null) {
+        return true;
+      } else if (gameBoard[row + 1][col] != null) {
+        return true;
+      } else if (gameBoard[row][col - 1] != null) {
+        return true;
+      } else if (gameBoard[row][col + 1] != null) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+    return false;
+  }
+
+
+  public ArrayList<String> getWords() {
+    ArrayList<String> listOfWords = new ArrayList<>();
+    StringBuilder word = new StringBuilder();
+
+    for (int i = 0; i <= 15; i++) {
+      for (int j = 0; j <= 15; j++) {
+        if (gameBoard[i][j] != null) {
+
+          word.append(gameBoard[i][j]);
+        } else if (gameBoard[i][j - 1] != null) {
+          listOfWords.add(word.toString());
+          word.setLength(0);
+        }
+      }
+      if (word.length() > 0) {
+        listOfWords.add(word.toString());
+        word.setLength(0);
+      }
+    }
+
+    for (int i = 0; i <= 15; i++) {
+      for (int j = 0; j <= 15; j++) {
+        if (gameBoard[j][i] != null) {
+
+          word.append(gameBoard[i][j]);
+        } else if (gameBoard[j - 1][i] != null) {
+          listOfWords.add(word.toString());
+          word.setLength(0);
+        }
+      }
+      if (word.length() > 0) {
+        listOfWords.add(word.toString());
+        word.setLength(0);
+      }
+    }
+
+    return listOfWords;
+  }
+
+
 }
