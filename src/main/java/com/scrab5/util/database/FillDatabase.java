@@ -153,8 +153,9 @@ public class FillDatabase extends Database {
    * @param picture
    * @throws IOException
    */
-  public static void createPlayer(String name, String picture) throws IOException {
+  public static boolean createPlayer(String name, String picture) throws IOException {
     boolean alreadyExists = UseDatabase.playerExists(name);
+    boolean created = false;
 
     if (!alreadyExists) {
       try {
@@ -174,6 +175,7 @@ public class FillDatabase extends Database {
         pstmPlayer.setInt(10, 0);
         pstmPlayer.setString(11, "");
         pstmPlayer.executeUpdate();
+        created = true;
       } catch (SQLException e) {
         e.printStackTrace();
       }
@@ -182,6 +184,7 @@ public class FillDatabase extends Database {
       PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.PLAYEREXISTANCE);
       pum.show();
     }
+    return created;
   }
 
   /**
