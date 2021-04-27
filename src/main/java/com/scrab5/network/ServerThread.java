@@ -13,6 +13,7 @@ import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.Message;
+import com.scrab5.network.messages.SendServerDataMessage;
 
 public class ServerThread extends Threads {
 
@@ -55,8 +56,8 @@ public class ServerThread extends Threads {
         switch (message.getType()) {
 
           case GETSERVERDATA:
-            Message reply = new Message(server.getHost());
-            sendMessageToClient(reply);
+            SendServerDataMessage ssdMessage = (SendServerDataMessage) message;
+            sendMessageToClient(ssdMessage);
             this.closeConnection();
             break;
           case CONNECT:
@@ -99,6 +100,7 @@ public class ServerThread extends Threads {
     if (null == server.getClients().get(client.getUsername())) {
       server.getClients().put(client.getUsername(), client);
       server.getConnections().put(client, this);
+      server.setClientCount();
     } else {
       // requires Exception handling
     }
@@ -116,6 +118,7 @@ public class ServerThread extends Threads {
     if (null != client) {
       server.getConnections().remove(client);
       server.getClients().remove(client.getUsername());
+      server.setClientCount();
       this.closeConnection();
     } else {
       // requires Exception handling
