@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.scrab5.util.database.PlayerProfileDatabase;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -22,6 +23,9 @@ public class SettingsController extends Controller implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+    String user = Data.getCurrentUser();
+    this.sliderMusic.setValue(PlayerProfileDatabase.getMusicVolume(user));
+    this.sliderSFX.setValue(PlayerProfileDatabase.getSoundEffectVolume(user));
     this.setupListeners();
   }
 
@@ -48,6 +52,7 @@ public class SettingsController extends Controller implements Initializable {
       public void changed(ObservableValue<? extends Number> observable, Number oldValue,
           Number newValue) {
         App.setMusicVolume((double) newValue / 100);
+        PlayerProfileDatabase.setMusicVolume(Data.getCurrentUser(), (double) newValue);
       }
     });
 
@@ -57,6 +62,7 @@ public class SettingsController extends Controller implements Initializable {
       public void changed(ObservableValue<? extends Number> observable, Number oldValue,
           Number newValue) {
         Data.setSFXVolume((double) newValue / 100);
+        PlayerProfileDatabase.setSoundEffectVolume(Data.getCurrentUser(), (double) newValue);
       }
     }));
   }

@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,7 +34,10 @@ public class RealLoginController extends Controller implements Initializable {
     playSound("ButtonClicked.mp3");
 
     if (this.isProfileSelected) {
+      Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()) / 100);
+      App.setMusicVolume(PlayerProfileDatabase.getMusicVolume(Data.getCurrentUser()) / 100);
       App.setRoot("MainMenu");
+
     } else {
       PopUpMessage pum = new PopUpMessage(
           "You must select a profile to continue. Click on the 'Arrow Down' button and select a profile",
