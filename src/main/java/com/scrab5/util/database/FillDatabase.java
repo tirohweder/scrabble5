@@ -55,6 +55,9 @@ public class FillDatabase extends Database {
             pstmDic.close();
           } ;
           break;
+        default:
+          // create default case
+          break;
       }
     } catch (Exception e) {
       System.out.println(e);

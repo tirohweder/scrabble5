@@ -15,9 +15,9 @@ public class PlayerProfileDatabase extends Database {
   /**
    * Returns the content in column Picture at Player name.
    * 
-   * @author lengist
-   * @param name
-   * @return String
+   * @author lengist.
+   * @param name String to insert into preparedStatement
+   * @return String with path to picture
    */
   public static String getPicture(String name) {
     String picture = null;
@@ -105,17 +105,17 @@ public class PlayerProfileDatabase extends Database {
    * @return int
    */
   public static int getPointsPerWordRate(String name) {
-    int pPWord = 0;
+    int pPerWord = 0;
     try {
       PreparedStatement pstm =
           connection.prepareStatement("SELECT PointsPerWordRate FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      pPWord = rs.getInt(1);
+      pPerWord = rs.getInt(1);
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    return pPWord;
+    return pPerWord;
   }
 
 
@@ -295,10 +295,10 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name
-   * @param pPWord
+   * @param pPerWord
    */
-  public static void setPointsPerWordRate(String name, int pPWord) throws IOException {
-    FillDatabase.updatePlayer("PointsPerWordRate", name, null, pPWord, 0.0);
+  public static void setPointsPerWordRate(String name, int pPerWord) throws IOException {
+    FillDatabase.updatePlayer("PointsPerWordRate", name, null, pPerWord, 0.0);
   }
 
   /**
