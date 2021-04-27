@@ -47,7 +47,8 @@ public class CreateDatabase extends Database {
           + "TotalPoints INTEGER NOT NULL," + "PersonalHighscore INTEGER NOT NULL,"
           + "LaidWords INTEGER NOT NULL," + "PointsPerWordRate INTEGER NOT NULL,"
           + "LongestWord TEXT," + "TotalPlayedGames INTEGER NOT NULL,"
-          + "TotalWins INTEGER NOT NULL," + "WinRate REAL," + "FaveDic TEXT)";
+          + "TotalWins INTEGER NOT NULL," + "WinRate REAL," + "FaveDic TEXT," + "Music REAL,"
+          + "SoundEffect REAL)";
       stm.executeUpdate(sql);
       System.out.println("Table for player generated!");
     } catch (SQLException e) {

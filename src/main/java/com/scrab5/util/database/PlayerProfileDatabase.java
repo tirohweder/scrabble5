@@ -225,6 +225,47 @@ public class PlayerProfileDatabase extends Database {
     return dic;
   }
 
+  /**
+   * Returns the current value of the music volume for player "name".
+   * 
+   * @author lengits
+   * @param name String name of the user where the music volume needs to be returned
+   * @return double value of the music volume
+   */
+  public static double getMusicVolume(String name) {
+    double music = 0.0;
+    try {
+      PreparedStatement pstm =
+          connection.prepareStatement("SELECT Music FROM Player WHERE Name = ?");
+      pstm.setString(1, name);
+      ResultSet rs = pstm.executeQuery();
+      music = rs.getDouble(1);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return music;
+  }
+
+  /**
+   * Returns the current value of the sound effect volume for player "name".
+   * 
+   * @author lengist
+   * @param name String name of the user where the sound effect volume needs to be returned
+   * @return double value of the sound effect volume
+   */
+  public static double getSoundEffectVolume(String name) {
+    double soundEffect = 0.0;
+    try {
+      PreparedStatement pstm =
+          connection.prepareStatement("SELECT SoundEffect FROM Player WHERE Name = ?");
+      pstm.setString(1, name);
+      ResultSet rs = pstm.executeQuery();
+      soundEffect = rs.getDouble(1);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return soundEffect;
+  }
 
   /**
    * Updates current value of Name with String value delivered by parameter.
@@ -349,6 +390,27 @@ public class PlayerProfileDatabase extends Database {
     FillDatabase.updatePlayer("FaveDic", name, language, 0, 0.0);
   }
 
+  /**
+   * Updates current value of music volume for player "name".
+   * 
+   * @author lengist
+   * @param name String name of the user where the music volume needs to be set
+   * @param music double value of the music volume
+   */
+  public static void setMusicVolume(String name, Double music) {
+    FillDatabase.updatePlayer("Music", name, null, 0, music);
+  }
+
+  /**
+   * Updates current value of sound effect volume for player "name".
+   * 
+   * @author lengist
+   * @param name String name of the user where the sound effect volume needs to be set
+   * @param soundeffect double value of the sound effect volume
+   */
+  public static void setSoundEffectVolume(String name, Double soundEffect) {
+    FillDatabase.updatePlayer("Music", name, null, 0, soundEffect);
+  }
 
 
 }

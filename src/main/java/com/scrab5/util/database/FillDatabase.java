@@ -160,7 +160,7 @@ public class FillDatabase extends Database {
       pstmPlayer = connection.prepareStatement(
           "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
               + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
-              + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+              + "WinRate, FaveDic, Music, SoundEffect) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
       pstmPlayer.setString(1, name);
       pstmPlayer.setString(2, picture);
       pstmPlayer.setInt(3, 0);
@@ -172,6 +172,8 @@ public class FillDatabase extends Database {
       pstmPlayer.setInt(9, 0);
       pstmPlayer.setInt(10, 0);
       pstmPlayer.setString(11, "");
+      pstmPlayer.setDouble(12, 0.0);
+      pstmPlayer.setDouble(13, 0.0);
       pstmPlayer.executeUpdate();
       created = true;
     } catch (SQLException e) {
@@ -194,12 +196,10 @@ public class FillDatabase extends Database {
    *        database
    */
   public static void updatePlayer(String column, String name, String contentString, int contentInt,
-      double rate) {
+      double doubleValues) {
     PreparedStatement pstm = null;
 
     if (column == "Name") {
-      // UseDatabase.playerExists(contentString)
-
       String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
         pstmt.setString(1, contentString);
@@ -207,10 +207,6 @@ public class FillDatabase extends Database {
         pstmt.executeUpdate();
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-        while (rs.next()) {
-          System.out.println("Namen jetzt: " + rs.getString("Name") + ", ");
-          System.out.println();
-        }
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
@@ -289,7 +285,7 @@ public class FillDatabase extends Database {
     } else if (column == "WinRate") {
       String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        pstmt.setDouble(1, rate);
+        pstmt.setDouble(1, doubleValues);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
       } catch (SQLException e) {
@@ -299,6 +295,24 @@ public class FillDatabase extends Database {
       String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
         pstmt.setString(1, contentString);
+        pstmt.setString(2, name);
+        pstmt.executeUpdate();
+      } catch (SQLException e) {
+        System.out.println(e.getMessage());
+      }
+    } else if (column == "Music") {
+      String sql = "UPDATE Player SET Music = ? WHERE name = ?";
+      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        pstmt.setDouble(1, doubleValues);
+        pstmt.setString(2, name);
+        pstmt.executeUpdate();
+      } catch (SQLException e) {
+        System.out.println(e.getMessage());
+      }
+    } else if (column == "SoundEffect") {
+      String sql = "UPDATE Player SET SoundEffect = ? WHERE name = ?";
+      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        pstmt.setDouble(1, doubleValues);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
       } catch (SQLException e) {
@@ -369,7 +383,7 @@ public class FillDatabase extends Database {
    * @author lengist
    * @throws IOException Exception from insertLetters
    */
-  public static void fillLetters() throws IOException {
+  public static void fillLetters() {
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
         "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
