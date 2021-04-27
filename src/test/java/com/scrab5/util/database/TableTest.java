@@ -17,10 +17,9 @@ public class TableTest {
    * Tests the inital creation of a column for a new player.
    * 
    * @author lengist
-   * @throws IOException
    */
   @Test
-  public void playerTest() throws IOException {
+  public void playerTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     Statement stm;
@@ -86,10 +85,9 @@ public class TableTest {
    * Tests the deletion of a whole table.
    * 
    * @author lengist
-   * @throws IOException
    */
   @Test
-  public void deleteTest() throws IOException {
+  public void deleteTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     FillDatabase.deleteTable("Player");
@@ -112,10 +110,9 @@ public class TableTest {
    * Tests the update/edit function for the table player.
    * 
    * @author lengist
-   * @throws IOException
    */
   @Test
-  public void updatePlayerTest() throws IOException {
+  public void updatePlayerTest() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     /* update the name: */
@@ -156,10 +153,12 @@ public class TableTest {
   }
 
 
+
   /**
    * Tests the update/edit function for the table Letters.
    * 
    * @author lengist
+   * @throws IOException Exception if letter already exists when filling.
    */
   @Test
   public void updateLettersTest() throws IOException {

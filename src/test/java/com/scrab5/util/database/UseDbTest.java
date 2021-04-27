@@ -51,7 +51,7 @@ public class UseDbTest {
    * @author lengist
    */
   @Test
-  public void getAllPlayerRSTest() throws IOException {
+  public void getAllPlayerRSTest() {
     FillDatabase.createPlayer("Alpha", null);
     FillDatabase.createPlayer("Beta", null);
 
@@ -70,7 +70,7 @@ public class UseDbTest {
    * 
    * @author lengist
    */
-  public void getAllPlayerTest() throws IOException {
+  public void getAllPlayerTest() {
     FillDatabase.createPlayer("Gamma", null);
     FillDatabase.createPlayer("Delta", null);
     ObservableList<String> list = UseDatabase.getAllPlayer();
@@ -79,7 +79,6 @@ public class UseDbTest {
     while (it.hasNext()) {
       System.out.println(it.next());
     }
-    /* not yet implemented */
   }
 
 }

@@ -1,6 +1,5 @@
 package com.scrab5.util.database;
 
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,13 +8,12 @@ import org.junit.Test;
 public class DeletePlayerTest {
 
   /**
-   * @author lengist
+   * Tests the deletion of a certain player in the table Player.
    * 
-   *         Tests the deletion of a certain player in the table Player.
-   * @throws IOException
+   * @author lengist
    */
   @Test
-  public void testDeletion() throws IOException {
+  public void testDeletion() {
     CreateDatabase db = new CreateDatabase();
 
     FillDatabase.createPlayer("Laura", "Bild");
