@@ -170,7 +170,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void findGame(MouseEvent event) {
     playSound("ButtonClicked.mp3");
-
   }
 
   /**

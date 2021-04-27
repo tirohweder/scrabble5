@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -13,6 +14,9 @@ import javafx.scene.input.MouseEvent;
  * @author mherre
  */
 public class SettingsController extends Controller implements Initializable {
+
+  @FXML
+  private Slider sliderSFX, sliderMusic;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -32,6 +36,11 @@ public class SettingsController extends Controller implements Initializable {
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     App.setRoot("MainMenu");
+  }
+
+  @FXML
+  private void setMusic() {
+
   }
 
 

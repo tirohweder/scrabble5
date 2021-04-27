@@ -24,7 +24,7 @@ public class App extends Application {
   private static Scene scene;
   private Database db;
   private Media sound;
-  private MediaPlayer mediaplayer;
+  private static MediaPlayer mediaplayer;
 
 
   /**
@@ -58,6 +58,7 @@ public class App extends Application {
     mediaplayer = new MediaPlayer(sound);
     mediaplayer.setCycleCount(MediaPlayer.INDEFINITE);
     mediaplayer.play();
+
 
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
@@ -122,6 +123,10 @@ public class App extends Application {
    */
   public static void main(String[] args) {
     launch();
+  }
+
+  public static void setMusicVolume(double volume) {
+    mediaplayer.setVolume(volume);
   }
 
 
