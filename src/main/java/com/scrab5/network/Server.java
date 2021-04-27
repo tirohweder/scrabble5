@@ -18,10 +18,14 @@ public class Server {
 
   public final int clientPort = 54321;
   public final int serverPort = 61234;
+
   private final String host;
   private String ip;
   private ServerSocket serverSocket;
   private boolean gameStart;
+  private static int clientCounter = 0;
+  private final int clientMaximum;
+
   private HashMap<String, Client> clients;
   private HashMap<Client, ServerThread> connections;
 
@@ -31,12 +35,14 @@ public class Server {
    * 
    * @author nitterhe
    * @param host - the name of the server host
+   * @param clientMaximum - the maximum amount of clients allowed to connect to the server
    */
-  public Server(String host) {
+  public Server(String host, int clientMaximum) {
     this.clients = new HashMap<String, Client>();
     this.connections = new HashMap<Client, ServerThread>();
     this.gameStart = false;
     this.host = host;
+    this.clientMaximum = clientMaximum;
     try {
       this.ip = InetAddress.getLocalHost().getHostAddress();
       serverSocket = new ServerSocket(this.serverPort);
@@ -67,12 +73,13 @@ public class Server {
    * @author nitterhe
    */
   private void accept() {
-    while (!gameStart && this.getClientCount() < 4) {
+    while (!gameStart && this.clientCounter < 4) {
       try {
         Socket newClient = serverSocket.accept();
         ServerThread clientConnection = new ServerThread(this, newClient);
         clientConnection.start();
       } catch (Exception e) {
+        e.printStackTrace();
         System.out.println("Error");
         // requires exception handling
       }
@@ -153,7 +160,16 @@ public class Server {
    * @return client count - number of connected clients
    */
   public int getClientCount() {
-    return clients.size();
+    return this.clientCounter;
+  }
+
+  /**
+   * Sets clientCounter to the current size of the clients ArrayList.
+   * 
+   * @author nitterhe
+   */
+  public synchronized void setClientCount() {
+    this.clientCounter = clients.size();
   }
 
   /**

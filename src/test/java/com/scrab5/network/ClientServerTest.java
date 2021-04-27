@@ -35,7 +35,7 @@ public class ClientServerTest {
 
   @Ignore
   public void ServerTest() {
-    testServer = new Server("serverTest");
+    testServer = new Server("serverTest", 4);
 
     assertEquals(testServer.getHost(), "serverTest");
     assertNotNull(testServer.getServerSocket());
@@ -52,7 +52,7 @@ public class ClientServerTest {
   public void ClientThreadTest() {
     try {
       testClient = new Client("networkTest");
-      testClient.hostServer();
+      testClient.hostServer(4);
       testServer = testClient.getHostedServer();
 
       assertNotNull(testServer.getClients().get("networkTest"));

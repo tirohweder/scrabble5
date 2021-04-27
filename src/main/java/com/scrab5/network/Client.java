@@ -16,6 +16,7 @@ import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.GetServerDataMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.MessageType;
+import com.scrab5.network.messages.SendServerDataMessage;
 
 public class Client {
 
@@ -51,11 +52,12 @@ public class Client {
    * MultiPlayerLobby.
    * 
    * @author nitterhe
+   * @param clientMaximum - the maximum number of clients allowed to connect to the server
    * @throws xyz
    */
-  public void hostServer() {
+  public void hostServer(int clientMaximum) {
     if (hostedServer == null) {
-      hostedServer = new Server(this.username);
+      hostedServer = new Server(this.username, clientMaximum);
       hostedServer.acceptClients();
       connectToServer(ip);
     } else {
@@ -93,15 +95,16 @@ public class Client {
               Message m;
               for (int i = 0; i < 20; i++) {
                 m = (Message) in.readObject();
-                if (m.getType() == MessageType.DEFAULT) {
-                  ServerData serverdata =
-                      new ServerData(m.getSender() + "'s Server", ip4, serverPort);
+                if (m.getType() == MessageType.SENDSERVERDATA) {
+                  SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
+                  ServerData serverdata = new ServerData(ssdMessage.getSender() + "'s Server", ip4,
+                      serverPort, ssdMessage.getClientCounter(), ssdMessage.getClientMaximum(),
+                      ssdMessage.getStatus());
                   addServerToServerList(serverdata);
                   i = 20;
                 } else {
                   wait(100);
                 }
-
               }
               getServerDataSocket.shutdownInput();
               getServerDataSocket.shutdownOutput();
@@ -157,7 +160,7 @@ public class Client {
    * @param ip4 The ip4 which should be connected to.
    */
   public void connectToServer(String ip4) {
-    connectToServer(new ServerData(null, ip4, serverPort));
+    connectToServer(new ServerData(null, ip4, serverPort, 0, 0, false));
   }
 
   /**
@@ -236,6 +239,9 @@ public class Client {
     private String servername;
     private String ip4;
     private int port;
+    private int clientCounter;
+    private int clientMaximum;
+    private boolean status;
 
     /**
      * Constructor for ServerData object. The serverList saves server information as ServerData
@@ -244,11 +250,18 @@ public class Client {
      * @param servername - The name of the server
      * @param ip4 - The IP4Address of the server
      * @param port - The port of the server
+     * @param clientCounter - the number of clients connected to the server
+     * @param clientMaximum - the maximum amount of clients allowed to connect to the server
+     * @param status - the server's status (true = in game/ false = waiting for clients)
      */
-    public ServerData(String servername, String ip4, int port) {
+    public ServerData(String servername, String ip4, int port, int clientCounter, int clientMaximum,
+        boolean status) {
       this.servername = servername;
       this.ip4 = ip4;
       this.port = port;
+      this.clientCounter = clientCounter;
+      this.clientMaximum = clientMaximum;
+      this.status = status;
     }
 
     /**
@@ -279,6 +292,37 @@ public class Client {
      */
     public int getPort() {
       return this.port;
+    }
+
+    /**
+     * Returns the server's counter of connected clients.
+     * 
+     * @author nitterhe
+     * @return clientCounter - the server's number of connected clients
+     */
+    public int getClientCounter() {
+      return this.clientCounter;
+    }
+
+    /**
+     * Returns the maximum of players allowed to connect to the server.
+     * 
+     * @author nitterhe
+     * @return clientMaximum - the maximum of players allowed to connect to the server
+     */
+    public int getClientMaximum() {
+      return this.clientMaximum;
+    }
+
+    /**
+     * Returns the server's current status as a boolean (true = in game/ false = waiting for
+     * clients).
+     * 
+     * @author nitterhe
+     * @return status - the server's current status
+     */
+    public boolean getServerStatus() {
+      return this.status;
     }
   }
 }
