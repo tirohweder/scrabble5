@@ -36,7 +36,7 @@ public class CreateDatabase extends Database {
   }
 
   /**
-   * Generates the table "player" with all required columns.
+   * Generates the table "Player" with all required columns.
    * 
    * @author lengist
    */
