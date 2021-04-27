@@ -55,12 +55,11 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * In case that "Enter" is pressed on the keyboard the entered nickname gets checked on validity
+   * In case that "Enter" is pressed on the keyboard the entered nickname gets checked on validity.
    * 
    * @author mherre
-   * @param event
-   * @throws IOException
-   *
+   * @param event the KeyEvent triggering this method
+   * @throws IOException If an input or output exception occurred
    */
   @FXML
   private void enterPressed(KeyEvent event) throws IOException {
@@ -68,18 +67,18 @@ public class AccountCreationController extends Controller implements Initializab
     switch (event.getCode()) {
       case ENTER:
         this.isUsernameValid();
+        break;
       default:
         break;
     }
   }
 
   /**
-   * In case that "Enter" is clicked in the UI the entered nickname gets checked on validity
+   * In case that "Enter" is clicked in the UI the entered nickname gets checked on validity.
    * 
    * @author mherre
-   * @param event
-   * @throws IOException
-   * 
+   * @param event the MouseEvent triggering this method
+   * @throws IOException If an input or output exception occurred
    */
   @FXML
   private void enter(MouseEvent event) throws IOException {
@@ -88,11 +87,11 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * Returns the generated username.
+   * Returns a String containing the last created username that has been entered in the nickname
+   * textfield.
    * 
    * @author mherre
-   * @return
-   * 
+   * @return returns <code>createdUsername</code>
    */
   public String getCreatedUsername() {
     return createdUsername;
@@ -133,8 +132,8 @@ public class AccountCreationController extends Controller implements Initializab
 
     } else {
 
-      message =
-          "Please make sure your nickname consists only of letters, numbers, underscores and is only 12 signs long";
+      message = "Please make sure your nickname consists only of letters, numbers, "
+          + "underscores and is only 12 signs long";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
 

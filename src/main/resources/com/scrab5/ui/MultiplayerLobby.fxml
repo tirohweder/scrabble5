@@ -3,11 +3,13 @@
 <!-- @author mherre Every used image file was created by myself with Adobe 
 	Photoshop 2017 -->
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MultiplayerLobbyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MultiplayerLobbyController">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1360.0">
          <children>
@@ -21,7 +23,7 @@
                   <Image url="@images/SB02_BackButtonClicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="127.0" layoutX="1121.0" layoutY="657.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="127.0" layoutX="1121.0" layoutY="657.0" onMouseClicked="#ready" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB06_ReadyButtonClicked.png" />
                </image>
@@ -36,6 +38,46 @@
                   <Image url="@images/SB06_ChatButtonClicked.png" />
                </image>
             </ImageView>
+            <Label fx:id="player1" layoutX="299.0" layoutY="183.0" prefHeight="25.0" prefWidth="132.0" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="299.0" layoutY="222.0" prefHeight="25.0" prefWidth="132.0" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="299.0" layoutY="260.0" prefHeight="25.0" prefWidth="132.0" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="299.0" layoutY="299.0" prefHeight="25.0" prefWidth="132.0" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="ready1" layoutX="925.0" layoutY="183.0" prefHeight="25.0" prefWidth="96.0" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="925.0" layoutY="222.0" prefHeight="25.0" prefWidth="96.0" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="925.0" layoutY="260.0" prefHeight="25.0" prefWidth="96.0" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="925.0" layoutY="299.0" prefHeight="25.0" prefWidth="96.0" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

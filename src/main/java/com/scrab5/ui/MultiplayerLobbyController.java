@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -15,10 +16,15 @@ import javafx.scene.input.MouseEvent;
  */
 public class MultiplayerLobbyController extends Controller implements Initializable {
 
+  @FXML
+  private Label player1, ready1;
+
+  private boolean isReady1 = false;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // TODO Auto-generated method stub
-
+    this.player1.setText(Data.getCurrentUser());
+    this.ready1.setText("Not Ready");
   }
 
   /**
@@ -33,6 +39,21 @@ public class MultiplayerLobbyController extends Controller implements Initializa
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     App.setRoot("MultiplayerOverview");
+  }
+
+  @FXML
+  private void ready(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    if (!isReady1) {
+      this.ready1.setText("Ready");
+      this.isReady1 = true;
+
+    } else {
+      this.ready1.setText("Not Ready");
+      this.isReady1 = false;
+
+    }
+
   }
 
 }
