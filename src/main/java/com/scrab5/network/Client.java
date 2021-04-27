@@ -19,8 +19,8 @@ import com.scrab5.network.messages.MessageType;
 
 public class Client {
 
-  public final int clientPort = 2345;
-  public final int serverPort = 1234;
+  public final int clientPort = 54321;
+  public final int serverPort = 61234;
   private String ip;
   private final String username;
   private ClientThread clientThread;
@@ -38,6 +38,7 @@ public class Client {
   public Client(String username) {
     this.username = username;
     serverList = new ArrayList<ServerData>();
+    this.hostedServer = null; // needs connection to database
     try {
       this.ip = InetAddress.getLocalHost().getHostAddress();
     } catch (Exception e) {
@@ -58,6 +59,7 @@ public class Client {
       hostedServer.acceptClients();
       connectToServer(ip);
     } else {
+      System.out.println("hosting failed");
       // Exception handling required
     }
   }
@@ -143,6 +145,7 @@ public class Client {
     if (clientThread == null) {
       clientThread = new ClientThread(this);
       clientThread.connectToServer(serverdata);
+      clientThread.start();
     }
   }
 
@@ -202,6 +205,26 @@ public class Client {
    */
   public String getIp() {
     return this.ip;
+  }
+
+  /**
+   * Returns this client's ClientThread.
+   * 
+   * @author nitterhe
+   * @return clientThread - this client's ClientThread.
+   */
+  public ClientThread getClientThread() {
+    return this.clientThread;
+  }
+
+  /**
+   * Returns the client's server as a Server object. Null if no server was hosted by the client.
+   * 
+   * @author nitterhe
+   * @return hostedServer - the client's server
+   */
+  public Server getHostedServer() {
+    return this.hostedServer;
   }
 
   /**

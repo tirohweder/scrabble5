@@ -67,4 +67,3 @@ public class NetworkError extends Error {
     CONNECTION, COMMUNICATION
   }
 }
-

@@ -16,8 +16,8 @@ import com.scrab5.network.messages.Message;
 
 public class Server {
 
-  public final int clientPort = 2345;
-  public final int serverPort = 1234;
+  public final int clientPort = 54321;
+  public final int serverPort = 61234;
   private final String host;
   private String ip;
   private ServerSocket serverSocket;
@@ -53,16 +53,27 @@ public class Server {
    * @author nitterhe
    */
   public void acceptClients() {
+    Runnable r = new Runnable() {
+      public void run() {
+        accept();
+      }
+    };
+    new Thread(r).start();
+  }
+
+  /**
+   * Method run by the Thread in the method acceptClients() above.
+   * 
+   * @author nitterhe
+   */
+  private void accept() {
     while (!gameStart && this.getClientCount() < 4) {
       try {
         Socket newClient = serverSocket.accept();
         ServerThread clientConnection = new ServerThread(this, newClient);
         clientConnection.start();
-        /*
-         * Client c = clientConnection.getClient(); clients.put(c);
-         * connections.put(c,clientConnection);connections.add(clientConnection);
-         */
       } catch (Exception e) {
+        System.out.println("Error");
         // requires exception handling
       }
     }
@@ -116,6 +127,16 @@ public class Server {
   }
 
   /**
+   * Returns the ServerSocket of the server as a ServerSocket object.
+   * 
+   * @author nitterhe
+   * @return serverSocket - the ServerSocket of the server
+   */
+  public ServerSocket getServerSocket() {
+    return this.serverSocket;
+  }
+
+  /**
    * Returns the server's host as a String.
    * 
    * @author nitterhe
@@ -166,7 +187,6 @@ public class Server {
   public void shutDownServer() {
     for (ServerThread serverThread : connections.values()) {
       serverThread.closeConnection();
-
     }
   }
 }

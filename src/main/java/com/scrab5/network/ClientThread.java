@@ -11,6 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import com.scrab5.network.Client.ServerData;
+import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.Message;
@@ -50,10 +51,14 @@ public class ClientThread extends Threads {
           case DISCONNECT:
             this.closeConnection();
           case CHAT:
+            ChatMessage chatMessage = (ChatMessage) message;
+            String text = chatMessage.getText();
+            System.out.println(text);
             // needs implementation
           default:
             break;
         }
+        wait(50);
       }
     } catch (Exception e) {
       // requires Exception handling
@@ -73,7 +78,6 @@ public class ClientThread extends Threads {
         this.socketToServer = new Socket(serverdata.getIP4Address(), serverdata.getPort());
         this.toServer = new ObjectOutputStream(socketToServer.getOutputStream());
         this.fromServer = new ObjectInputStream(socketToServer.getInputStream());
-        this.start();
         sendMessageToServer(new ConnectMessage(this.client.getUsername(), this.client));
       } else {
         // requires Exception handling
@@ -107,14 +111,12 @@ public class ClientThread extends Threads {
    */
   private void closeConnection() {
     sendMessageToServer(new DisconnectMessage(sender));
-    running = false;
     // popup: you have been disconnected
     try {
-      this.socketToServer.shutdownInput();
-      this.socketToServer.shutdownOutput();
       this.socketToServer.close();
     } catch (Exception e) {
       // requires Exception handling
     }
+    running = false;
   }
 }

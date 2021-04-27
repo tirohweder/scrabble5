@@ -9,6 +9,15 @@ package com.scrab5.network;
 public abstract class Threads extends Thread {
 
   protected boolean running;
+
+  /**
+   * Mostly for JUnit Tests. Stops the thread.
+   * 
+   * @author nitterhe
+   */
+  public void stopThread() {
+    this.running = false;
+  }
   /*
    * // stops Thread until this.wake() is executed public synchronized void sleep() { try {
    * this.wait(); } catch (Exception e) { // requires Exception handling } }
@@ -17,4 +26,3 @@ public abstract class Threads extends Thread {
    * catch (Exception e) { // requires Exception handling } }
    */
 }
-

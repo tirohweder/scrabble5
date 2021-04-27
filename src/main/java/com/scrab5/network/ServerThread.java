@@ -74,11 +74,13 @@ public class ServerThread extends Threads {
           case CHAT:
             ChatMessage chat = (ChatMessage) message;
             server.sendMessageToAllClients(chat);
+            System.out.println(chat.getText());
             break;
 
           default:
             break;
         }
+        wait(50);
       }
     } catch (Exception e) {
       // requires Exception handling
@@ -153,13 +155,11 @@ public class ServerThread extends Threads {
    */
   public synchronized void closeConnection() {
     sendMessageToClient(new DisconnectMessage(server.getHost()));
-    this.running = false;
     try {
-      this.socketToClient.shutdownInput();
-      this.socketToClient.shutdownOutput();
       this.socketToClient.close();
     } catch (Exception e) {
       // requires Exception handling
     }
+    this.running = false;
   }
 }
