@@ -1,9 +1,5 @@
 package com.scrab5.ui;
 
-import java.util.ArrayList;
-import com.scrab5.network.Client;
-import com.scrab5.network.Server;
-
 /**
  * The Data class is supposed to save temporary information that is needed between controller
  * classes
@@ -20,11 +16,6 @@ public class Data {
   private static String popUpMessage;
   private static PopUpMessageType messageType;
   private static boolean confirmed;
-
-  private static Client playerClient;
-  private static Server playerServer;
-  private static ArrayList<Client.ServerData> serverList;
-  private static boolean isSearching = false;
 
   /**
    * Saves which user is currently logged in.
@@ -124,46 +115,5 @@ public class Data {
    */
   public static String getInputFieldText() {
     return inputFieldText;
-  }
-
-  public static Client getPlayerClient() {
-    return playerClient;
-  }
-
-  public static void setPlayerClient(Client client) {
-    if (playerClient == null) {
-      playerClient = client;
-    } else {
-      System.out.println("ERROR");
-
-    }
-  }
-
-  public static void setPlayerServer(Server server) {
-    if (playerServer == null) {
-      playerServer = server;
-    } else {
-      System.out.println("ErRoR");
-    }
-  }
-
-  public static Server getPlayerServer() {
-    return playerServer;
-  }
-
-  public static ArrayList<Client.ServerData> getServerList() {
-    return serverList;
-  }
-
-  public static void setServerList(ArrayList<Client.ServerData> slist) {
-    serverList = slist;
-  }
-
-  public static boolean getIsSearching() {
-    return isSearching;
-  }
-
-  public static void setIsSearching(boolean searching) {
-    isSearching = searching;
   }
 }
