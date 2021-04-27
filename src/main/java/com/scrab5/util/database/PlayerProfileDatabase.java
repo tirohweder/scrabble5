@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.scrab5.ui.PopUpMessage;
-import com.scrab5.ui.PopUpMessageType;
 
 /**
  * Class to get and set the data for the player statistics and leaderboards.
@@ -241,9 +239,9 @@ public class PlayerProfileDatabase extends Database {
     if (!UseDatabase.playerExists(newName)) {
       FillDatabase.updatePlayer("Name", name, newName, 0, 0.0);
     } else {
-      String message = "This username alread exists. Please choose a different name!";
-      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.PLAYEREXISTANCE);
-      pum.show();
+      // String message = "This username already exists. Please choose a different name!";
+      // PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+      // pum.show();
     }
   }
 

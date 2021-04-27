@@ -163,12 +163,21 @@ public class ProfileController extends Controller implements Initializable {
 
     if (username.matches(regex)) {
 
-      return true;
+      if (!(UseDatabase.playerExists(username) && !(username.equals(Data.getCurrentUser())))) {
+        return true;
+
+      } else {
+        message = "This username already exists. Please choose a different name!";
+        pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+        pum.show();
+
+        return false;
+      }
 
     } else {
 
-      message =
-          "Please make sure your nickname consists only of letters, numbers, underscores and is only 12 signs long";
+      message = "Please make sure your nickname consists only of letters, numbers, "
+          + "underscores and is only 12 signs long";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
 

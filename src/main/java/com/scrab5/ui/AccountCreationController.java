@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -110,7 +111,7 @@ public class AccountCreationController extends Controller implements Initializab
    * @return
    * @throws IOException
    */
-  public boolean isUsernameValid() throws IOException {
+  private boolean isUsernameValid() throws IOException {
 
     String regex = "[a-zA-Z0-9_]{1,12}";
     String message;
@@ -118,17 +119,25 @@ public class AccountCreationController extends Controller implements Initializab
 
     if (this.nickname.getText().matches(regex)) {
 
-      this.createdUsername = nickname.getText();
-      Data.setCurrentUser(this.createdUsername);
-      FillDatabase.createPlayer(this.createdUsername, null);
+      if (!UseDatabase.playerExists(this.nickname.getText())) {
+        this.createdUsername = nickname.getText();
+        Data.setCurrentUser(this.createdUsername);
+        FillDatabase.createPlayer(this.createdUsername, null);
 
+        message = "Congratulations! Your account has been created";
+        pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
+        pum.show();
+        App.setRoot("MainMenu");
 
-      message = "Congratulations! Your account has been created";
-      pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
-      pum.show();
-      App.setRoot("MainMenu");
+        return true;
 
-      return true;
+      } else {
+        message = "This username already exists. Please choose a different name!";
+        pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+        pum.show();
+
+        return false;
+      }
 
     } else {
 

@@ -180,9 +180,9 @@ public class FillDatabase extends Database {
         e.printStackTrace();
       }
     } else {
-      String message = "This username alread exists. Please choose a different name!";
-      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.PLAYEREXISTANCE);
-      pum.show();
+      // String message = "This username already exists. Please choose a different name!";
+      // PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+      // pum.show();
     }
     return created;
   }
@@ -219,9 +219,9 @@ public class FillDatabase extends Database {
           System.out.println(e.getMessage());
         }
       } else {
-        String message = "This username alread exists. Please choose another one!";
-        PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.PLAYEREXISTANCE);
-        pum.show();
+        // String message = "This username already exists. Please choose another one!";
+        // PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+        // pum.show();
       }
     } else if (column == "Picture") {
       String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
@@ -388,7 +388,7 @@ public class FillDatabase extends Database {
     } else {
       String message =
           "This letter alread exists. Please update the points or choose another letter!";
-      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.LETTEREXISTANCE);
+      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
     }
   }
