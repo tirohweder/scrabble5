@@ -258,5 +258,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
       };
       new Thread(r).start();
     }
+    // somewhere isSearching must be set back to false after searching
   }
 }

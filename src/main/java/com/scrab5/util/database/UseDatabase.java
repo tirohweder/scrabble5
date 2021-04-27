@@ -134,5 +134,4 @@ public class UseDatabase extends Database {
     }
     return exists;
   }
-
 }
