@@ -71,13 +71,14 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
    * predecessor "Main Menu" scene
    * 
-   * @author mherre
+   * @author mherre @author nitterhe
    * @param event
    * @throws IOException
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
+    Data.getPlayerClient().stopClientThread();
     App.setRoot("MainMenu");
   }
 
@@ -225,6 +226,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
     Data.getPlayerClient().hostServer(playerCount);
     Data.setPlayerServer(Data.getPlayerClient().getHostedServer());
   }
+
+  // @author mherre @author nitterhe :^)
 
   private void searchServers() {
     if (!Data.getIsSearching()) {

@@ -134,7 +134,7 @@ public class Data {
     if (playerClient == null) {
       playerClient = client;
     } else {
-      System.out.println("ERROR");
+      System.out.println("Error at setPlayerClient");
 
     }
   }
@@ -143,7 +143,7 @@ public class Data {
     if (playerServer == null) {
       playerServer = server;
     } else {
-      System.out.println("ErRoR");
+      System.out.println("Error at setPlayerServer");
     }
   }
 

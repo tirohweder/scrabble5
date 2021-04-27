@@ -11,7 +11,6 @@ package com.scrab5.network;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.InetAddress;
-import org.junit.Ignore;
 import org.junit.Test;
 
 public class ClientServerTest {
@@ -33,19 +32,19 @@ public class ClientServerTest {
     }
   }
 
-  @Ignore
+  @Test
   public void ServerTest() {
     testServer = new Server("serverTest", 4);
 
     assertEquals(testServer.getHost(), "serverTest");
     assertNotNull(testServer.getServerSocket());
 
-    testServer = null; // so ports are unbound
     try {
       assertEquals(testServer.getIp(), InetAddress.getLocalHost().getHostAddress());
     } catch (Exception e) {
       e.printStackTrace();
     }
+    testServer.shutDownServer();
   }
 
   @Test
@@ -59,10 +58,9 @@ public class ClientServerTest {
       assertNotNull(testServer);
       assertNotNull(testClient.getClientThread());
 
+      testClient.sendChatMessage("hallo");
 
       testServer.shutDownServer();
-      testServer.startGame();
-      // testClient.sendChatMessage("hallo");
       testClient.getClientThread().stopThread();
 
       // testClient.disconnectFromServer();
