@@ -170,7 +170,7 @@ public class FillDatabase extends Database {
       pstmPlayer.setInt(7, 0);
       pstmPlayer.setInt(8, 0);
       pstmPlayer.setInt(9, 0);
-      pstmPlayer.setInt(10, 0);
+      pstmPlayer.setDouble(10, 0.0);
       pstmPlayer.setString(11, "");
       pstmPlayer.setDouble(12, 0.0);
       pstmPlayer.setDouble(13, 0.0);
