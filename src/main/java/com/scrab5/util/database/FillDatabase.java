@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import com.scrab5.network.Server;
-import com.scrab5.ui.PopUpMessage;
-import com.scrab5.ui.PopUpMessageType;
 
 
 /**
@@ -56,7 +54,7 @@ public class FillDatabase extends Database {
           }
           break;
         default:
-          // create default case
+          /* not yet implemented */
           break;
       }
     } catch (Exception e) {
@@ -347,45 +345,39 @@ public class FillDatabase extends Database {
   }
 
   /**
-   * Inserts letters with corresponding points to calculate points per word.
+   * Inserts letters with corresponding points.
    * 
    * @author lengist
    * @author hraza
    * @param letter String with the letter that needs to be inserted in the database
    * @param point Integer with the correpsonding points for the given letter
-   * @throws IOException Exception if the letter already exists. Shows a popUpMessage
    */
-  public static void insertLetters(String letter, int point) throws IOException {
-    boolean alreadyExists = false;
+  public static void insertLetters(String letter, int point) {
     try {
-      Statement test = connection.createStatement();
-      ResultSet rs = test.executeQuery("SELECT Letter FROM Letters");
-      while (rs.next()) {
-        if (rs.getString("Letter").equals(letter)) {
-          alreadyExists = true;
-        }
-      }
-    } catch (SQLException e1) {
-      e1.printStackTrace();
-    }
-
-    if (!alreadyExists) {
-      try {
-        pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUES (?,?);");
-        pstmDic.setString(1, letter);
-        pstmDic.setInt(2, point);
-        pstmDic.executeUpdate();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    } else {
-      String message =
-          "This letter alread exists. Please update the points or choose another letter!";
-      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-      pum.show();
+      pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUES (?,?);");
+      pstmDic.setString(1, letter);
+      pstmDic.setInt(2, point);
+      pstmDic.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
   }
 
+  /**
+   * Fills table letters initial.
+   * 
+   * @author lengist
+   * @throws IOException Exception from insertLetters
+   */
+  public static void fillLetters() throws IOException {
+    String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+    for (int i = 0; i < 26; i++) {
+      insertLetters(letter[i], points[i]);
+    }
+
+  }
 
   /**
    * Updates the point for a particular letter if a change is needed.
@@ -403,6 +395,11 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+  }
+
+  public static void main(String[] args) throws IOException {
+    CreateDatabase cb = new CreateDatabase();
+    fillLetters();
   }
 
 
