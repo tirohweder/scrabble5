@@ -38,22 +38,22 @@ public class FillDatabase extends Database {
         case "delete":
           if ((pstmDelete != null) && (!pstmDelete.isClosed())) {
             pstmDelete.close();
-          } ;
+          }
           break;
         case "player":
           if ((pstmPlayer != null) && (!pstmPlayer.isClosed())) {
             pstmPlayer.close();
-          } ;
+          }
           break;
         case "server":
           if ((pstmServer != null) && (!pstmServer.isClosed())) {
             pstmServer.close();
-          } ;
+          }
           break;
         case "dic":
           if ((pstmDic != null) && (!pstmDic.isClosed())) {
             pstmDic.close();
-          } ;
+          }
           break;
         default:
           // create default case
@@ -95,7 +95,7 @@ public class FillDatabase extends Database {
    * 
    * @author lengist
    * @author hraza
-   * @param name
+   * @param name String with name of the user
    */
   public static void deleteTable(String name) {
     try {
@@ -112,7 +112,7 @@ public class FillDatabase extends Database {
    * Deletes a certain player with name "name" in the table Player.
    * 
    * @author lengist
-   * @param name
+   * @param name String with name of the user
    */
   public static void deletePlayer(String name) {
     try {
@@ -131,7 +131,7 @@ public class FillDatabase extends Database {
    * Deletes a certain server with name "name" in the table Server.
    * 
    * @author lengist
-   * @param name
+   * @param name String with name of the user
    */
   public static void deleteServer(String name) {
     try {
@@ -152,14 +152,11 @@ public class FillDatabase extends Database {
    * 
    * @author lengist
    * @author hraza
-   * @param name
-   * @param picture
-   * @throws IOException
+   * @param name String with name of the user
+   * @param picture String with the path to the picture
    */
-  public static boolean createPlayer(String name, String picture) throws IOException {
-    boolean alreadyExists = UseDatabase.playerExists(name);
+  public static boolean createPlayer(String name, String picture) {
     boolean created = false;
-
 
     try {
       pstmPlayer = connection.prepareStatement(
@@ -191,14 +188,15 @@ public class FillDatabase extends Database {
    * integer, variable contentString is default.
    * 
    * @author hraza
-   * @param column
-   * @param name
-   * @param contentString
-   * @param contentInt
-   * @throws IOException
+   * @param column String with the name of the column in the table where a change needs to be done
+   * @param name String with name of the user
+   * @param contentString String that contains the new information that needs to be stored in the
+   *        database
+   * @param contentInt Integer that contains the new information that needs to be stored in the
+   *        database
    */
   public static void updatePlayer(String column, String name, String contentString, int contentInt,
-      double rate) throws IOException {
+      double rate) {
     PreparedStatement pstm = null;
 
     if (column == "Name") {
@@ -315,7 +313,7 @@ public class FillDatabase extends Database {
    * Method to fill table server completely. Used when a new server is created.
    * 
    * @author lengist
-   * @param name
+   * @param name String with name of the user
    */
   public static void createServer(Server serverObject) {
     try {
@@ -328,13 +326,13 @@ public class FillDatabase extends Database {
     }
   }
 
+
   /**
    * Updates the entries from the table server at a specific serverHostName.
    * 
    * @author lengist
-   * @param column
-   * @param name
-   * @param content
+   * @param serverObject an object received from the server with all information needed for the
+   *        statistics in a hosted game
    */
   public static void updateServer(Server serverObject) {
     String sql = "UPDATE Server SET Information = ? WHERE ServerHostName = ?";
@@ -353,9 +351,9 @@ public class FillDatabase extends Database {
    * 
    * @author lengist
    * @author hraza
-   * @param letter
-   * @param point
-   * @throws IOException
+   * @param letter String with the letter that needs to be inserted in the database
+   * @param point Integer with the correpsonding points for the given letter
+   * @throws IOException Exception if the letter already exists. Shows a popUpMessage
    */
   public static void insertLetters(String letter, int point) throws IOException {
     boolean alreadyExists = false;
@@ -393,8 +391,8 @@ public class FillDatabase extends Database {
    * Updates the point for a particular letter if a change is needed.
    * 
    * @author lengist
-   * @param letter
-   * @param point
+   * @param letter String with the letter which points need to be updated in the database
+   * @param point Integer with the correpsonding points for the given letter
    */
   public static void updateLetters(String letter, int point) {
     try {
@@ -410,4 +408,5 @@ public class FillDatabase extends Database {
 
 
 }
+
 

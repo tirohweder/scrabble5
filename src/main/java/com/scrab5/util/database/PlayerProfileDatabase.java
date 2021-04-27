@@ -1,6 +1,5 @@
 package com.scrab5.util.database;
 
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +15,7 @@ public class PlayerProfileDatabase extends Database {
    * Returns the content in column Picture at Player name.
    * 
    * @author lengist.
-   * @param name String to insert into preparedStatement
+   * @param name String name of the user to insert into preparedStatement
    * @return String with path to picture
    */
   public static String getPicture(String name) {
@@ -37,8 +36,8 @@ public class PlayerProfileDatabase extends Database {
    * Returns the content in column TotalPoints at Player name.
    * 
    * @author lengist
-   * @param name
-   * @return int
+   * @param name String name of the user to insert into preparedStatement
+   * @return int Integer value of the total points from user "name" in the database
    */
   public static int getTotalPoints(String name) {
     int points = 0;
@@ -58,8 +57,8 @@ public class PlayerProfileDatabase extends Database {
    * Returns the content in column PersonalHighscore at Player name.
    * 
    * @author lengist
-   * @param name
-   * @return int
+   * @param name String name of the user to insert into preparedStatement
+   * @return int Integer value of the personal highscore stored in the database
    */
   public static int getPersonalHighscore(String name) {
     int highscore = 0;
@@ -80,8 +79,8 @@ public class PlayerProfileDatabase extends Database {
    * Returns the content in column LaidWords at Player name.
    * 
    * @author lengist
-   * @param name
-   * @return int
+   * @param name String name of the user to insert into preparedStatement
+   * @return int Integer value of the count of laid words stored in the database
    */
   public static int getLaidWords(String name) {
     int words = 0;
@@ -101,8 +100,8 @@ public class PlayerProfileDatabase extends Database {
    * Returns the content in column PointsPerWordRate at Player name.
    * 
    * @author lengist
-   * @param name
-   * @return int
+   * @param name String name of the user to insert into preparedStatement
+   * @return int Integer value of the points per word rate stored in the database
    */
   public static int getPointsPerWordRate(String name) {
     int pPerWord = 0;
@@ -123,8 +122,8 @@ public class PlayerProfileDatabase extends Database {
    * Returns the content in column LongestWord at Player name.
    * 
    * @author lengist
-   * @param name
-   * @return String
+   * @param name String name of the user to insert into preparedStatement
+   * @return String with the longest word stored in the database
    */
   public static String getLongestWord(String name) {
     String word = null;
@@ -145,8 +144,8 @@ public class PlayerProfileDatabase extends Database {
    * Returns the content in column TotalPlayedGames at Player name.
    * 
    * @author lengist
-   * @param name
-   * @return int
+   * @param name String name of the user to insert into preparedStatement
+   * @return int Integer value of the total played games stored in the database
    */
   public static int getTotalPlayedGames(String name) {
     int games = 0;
@@ -166,8 +165,8 @@ public class PlayerProfileDatabase extends Database {
    * Returns the content in column TotalWins at Player name.
    * 
    * @author lengist
-   * @param name
-   * @return int
+   * @param name String name of the user to insert into preparedStatement
+   * @return int Integer value of the total wins stored in the database
    */
   public static int getTotalWins(String name) {
     int wins = 0;
@@ -188,8 +187,8 @@ public class PlayerProfileDatabase extends Database {
    * Returns the content in column WinRate at Player name.
    * 
    * @author lengist
-   * @param name
-   * @return Double
+   * @param name String name of the user to insert into preparedStatement
+   * @return Double value of the win rate stored in the database
    */
   public static double getWinRate(String name) {
     double rate = 0.0;
@@ -209,8 +208,8 @@ public class PlayerProfileDatabase extends Database {
    * Returns the content in column FavoriteDictionary at Player name.
    * 
    * @author lengist
-   * @param name
-   * @return String
+   * @param name String name of the user to insert into preparedStatement
+   * @return String representing the favorite dictionary of the player name stored in the database
    */
   public static String getFavoriteDictionary(String name) {
     String dic = null;
@@ -231,29 +230,22 @@ public class PlayerProfileDatabase extends Database {
    * Updates current value of Name with String value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param newName
-   * @throws IOException
+   * @param name String name of the user where the name needs to be set
+   * @param newName String representing the new name to be stored in the database
    */
-  public static void setName(String name, String newName) throws IOException {
-    if (!UseDatabase.playerExists(newName)) {
-      FillDatabase.updatePlayer("Name", name, newName, 0, 0.0);
-    } else {
-      // String message = "This username already exists. Please choose a different name!";
-      // PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-      // pum.show();
-    }
+  public static void setName(String name, String newName) {
+    // !UseDatabase.playerExists(newName))
+    FillDatabase.updatePlayer("Name", name, newName, 0, 0.0);
   }
 
   /**
    * Updates current value of Picture with String value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param picture
-   * @throws IOException
+   * @param name String name of the user where the picture needs to be set
+   * @param picture String representing the new picture path to be stored in the database
    */
-  public static void setPicture(String name, String picture) throws IOException {
+  public static void setPicture(String name, String picture) {
     FillDatabase.updatePlayer("Picture", name, picture, 0, 0.0);
   }
 
@@ -261,10 +253,10 @@ public class PlayerProfileDatabase extends Database {
    * Updates current value of TotalPoints with int value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param points
+   * @param name String name of the user where the points needs to be set
+   * @param points Integer representing the new points to be stored in the database
    */
-  public static void setTotalPoints(String name, int points) throws IOException {
+  public static void setTotalPoints(String name, int points) {
     FillDatabase.updatePlayer("TotalPoints", name, null, points, 0.0);
   }
 
@@ -272,10 +264,10 @@ public class PlayerProfileDatabase extends Database {
    * Updates current value of PersonalHighscore with int value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param highscore
+   * @param name String name of the user where the highscore needs to be set
+   * @param highscore Integer representing the new highscore to be stored in the database
    */
-  public static void setPersonalHighscore(String name, int highscore) throws IOException {
+  public static void setPersonalHighscore(String name, int highscore) {
     FillDatabase.updatePlayer("PersonalHighscore", name, null, highscore, 0.0);
   }
 
@@ -283,10 +275,10 @@ public class PlayerProfileDatabase extends Database {
    * Updates current value of LaidWords with int value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param words
+   * @param name String name of the user where the laid words needs to be set
+   * @param words Integer representing the new count for laid words to be stored in the database
    */
-  public static void setLaidWords(String name, int words) throws IOException {
+  public static void setLaidWords(String name, int words) {
     FillDatabase.updatePlayer("LaidWords", name, null, words, 0.0);
   }
 
@@ -294,10 +286,11 @@ public class PlayerProfileDatabase extends Database {
    * Updates current value of PointsPerWordRate with int value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param pPerWord
+   * @param name String name of the user where the points per word rate needs to be set
+   * @param pPerWord Integer representing the new count for points per word rate to be stored in the
+   *        database
    */
-  public static void setPointsPerWordRate(String name, int pPerWord) throws IOException {
+  public static void setPointsPerWordRate(String name, int pPerWord) {
     FillDatabase.updatePlayer("PointsPerWordRate", name, null, pPerWord, 0.0);
   }
 
@@ -305,10 +298,10 @@ public class PlayerProfileDatabase extends Database {
    * Updates current value of LongestWord with String value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param longestWord
+   * @param name String name of the user where the longest word needs to be set
+   * @param longestWord String representing the new longest word to be stored in the database
    */
-  public static void setLongestWord(String name, String longestWord) throws IOException {
+  public static void setLongestWord(String name, String longestWord) {
     FillDatabase.updatePlayer("LongestWord", name, longestWord, 0, 0.0);
   }
 
@@ -316,10 +309,10 @@ public class PlayerProfileDatabase extends Database {
    * Updates current value of TotalPlayedGames with int value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param games
+   * @param name String name of the user where the total played games need to be set
+   * @param games Integer representing the new count for played games to be stored in the database
    */
-  public static void setTotalPlayedGames(String name, int games) throws IOException {
+  public static void setTotalPlayedGames(String name, int games) {
     FillDatabase.updatePlayer("TotalPlayedGames", name, null, games, 0.0);
   }
 
@@ -327,10 +320,10 @@ public class PlayerProfileDatabase extends Database {
    * Updates current value of TotalWins with int value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param wins
+   * @param name String name of the user where the total wins need to be set
+   * @param wins Integer representing the new count for total wins to be stored in the database
    */
-  public static void setTotalWins(String name, int wins) throws IOException {
+  public static void setTotalWins(String name, int wins) {
     FillDatabase.updatePlayer("TotalWins", name, null, wins, 0.0);
   }
 
@@ -338,10 +331,10 @@ public class PlayerProfileDatabase extends Database {
    * Updates current value of WinRate with double value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param rate
+   * @param name String name of the user where the win rate needs to be set
+   * @param rate Integer representing the new count for win rate to be stored in the database
    */
-  public static void setWinRate(String name, double rate) throws IOException {
+  public static void setWinRate(String name, double rate) {
     FillDatabase.updatePlayer("WinRate", name, null, 0, rate);
   }
 
@@ -349,10 +342,10 @@ public class PlayerProfileDatabase extends Database {
    * Updates current value of FavoriteDictionary with String value delivered by parameter.
    * 
    * @author lengist
-   * @param name
-   * @param language
+   * @param name String name of the user where the favorite dictionary needs to be set
+   * @param language String representing the new favorite dictionary to be stored in the database
    */
-  public static void setFavoriteDictionary(String name, String language) throws IOException {
+  public static void setFavoriteDictionary(String name, String language) {
     FillDatabase.updatePlayer("FaveDic", name, language, 0, 0.0);
   }
 

@@ -53,7 +53,7 @@ public class Database {
    * Returns true if the local database file exists to check if a database already exists.
    * 
    * @author lengist
-   * @return boolean
+   * @return boolean returning true if a database file already exists
    */
   public static boolean databaseExistance() {
     return new File("myDatabase.db").isFile();
@@ -63,7 +63,7 @@ public class Database {
    * Method to establish the connection to the database file given in the parameter file.
    * 
    * @author lengist
-   * @param file
+   * @param file String of the path to the database file
    */
   protected void connect(String file) {
     try {

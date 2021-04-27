@@ -24,7 +24,7 @@ public class CreateDatabase extends Database {
    * Remove a table with the name "name". For example in case of a new start.
    * 
    * @author lengist
-   * @param name
+   * @param name String representing the name of the player who's column needs to be deleted
    */
   private void removeTable(String name) {
     try (Statement stm = connection.createStatement()) {
