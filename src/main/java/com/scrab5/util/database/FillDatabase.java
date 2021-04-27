@@ -157,33 +157,29 @@ public class FillDatabase extends Database {
     boolean alreadyExists = UseDatabase.playerExists(name);
     boolean created = false;
 
-    if (!alreadyExists) {
-      try {
-        pstmPlayer = connection.prepareStatement(
-            "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
-                + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
-                + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
-        pstmPlayer.setString(1, name);
-        pstmPlayer.setString(2, picture);
-        pstmPlayer.setInt(3, 0);
-        pstmPlayer.setInt(4, 0);
-        pstmPlayer.setInt(5, 0);
-        pstmPlayer.setInt(6, 0);
-        pstmPlayer.setInt(7, 0);
-        pstmPlayer.setInt(8, 0);
-        pstmPlayer.setInt(9, 0);
-        pstmPlayer.setInt(10, 0);
-        pstmPlayer.setString(11, "");
-        pstmPlayer.executeUpdate();
-        created = true;
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    } else {
-      // String message = "This username already exists. Please choose a different name!";
-      // PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-      // pum.show();
+
+    try {
+      pstmPlayer = connection.prepareStatement(
+          "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
+              + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
+              + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+      pstmPlayer.setString(1, name);
+      pstmPlayer.setString(2, picture);
+      pstmPlayer.setInt(3, 0);
+      pstmPlayer.setInt(4, 0);
+      pstmPlayer.setInt(5, 0);
+      pstmPlayer.setInt(6, 0);
+      pstmPlayer.setInt(7, 0);
+      pstmPlayer.setInt(8, 0);
+      pstmPlayer.setInt(9, 0);
+      pstmPlayer.setInt(10, 0);
+      pstmPlayer.setString(11, "");
+      pstmPlayer.executeUpdate();
+      created = true;
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+
     return created;
   }
 
