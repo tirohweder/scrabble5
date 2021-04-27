@@ -3,6 +3,8 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
@@ -20,9 +22,7 @@ public class SettingsController extends Controller implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // TODO Auto-generated method stub
-    App.setMusicVolume(0);
-
+    this.setupListeners();
   }
 
   /**
@@ -39,10 +39,26 @@ public class SettingsController extends Controller implements Initializable {
     App.setRoot("MainMenu");
   }
 
-  @FXML
-  private void setMusic() {
 
+  private void setupListeners() {
 
+    sliderMusic.valueProperty().addListener(new ChangeListener<Number>() {
+
+      @Override
+      public void changed(ObservableValue<? extends Number> observable, Number oldValue,
+          Number newValue) {
+        App.setMusicVolume((double) newValue / 100);
+      }
+    });
+
+    sliderSFX.valueProperty().addListener((new ChangeListener<Number>() {
+
+      @Override
+      public void changed(ObservableValue<? extends Number> observable, Number oldValue,
+          Number newValue) {
+        Data.setSFXVolume((double) newValue / 100);
+      }
+    }));
   }
 
 

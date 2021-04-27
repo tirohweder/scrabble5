@@ -61,6 +61,7 @@ public abstract class Controller {
     sound = new Media(
         Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file).toExternalForm());
     mediaPlayer = new MediaPlayer(sound);
+    mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();
   }
 
