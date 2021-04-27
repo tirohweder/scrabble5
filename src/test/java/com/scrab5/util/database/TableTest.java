@@ -152,6 +152,30 @@ public class TableTest {
     /* not yet implemented */
   }
 
+  /**
+   * Tests the inital filling of the table letters.
+   * 
+   * @author lengist
+   * @throws IOException from insertLetters
+   */
+  @Test
+  public void fillLettersTest() throws IOException {
+    CreateDatabase cb = new CreateDatabase();
+    FillDatabase.fillLetters();
+    Statement stm;
+    try {
+      System.out.println("\n---------------View all content of table letters---------");
+      stm = Database.connection.createStatement();
+      ResultSet rs = stm.executeQuery("SELECT * FROM Letters");
+      while (rs.next()) {
+        System.out.print("Letter: " + rs.getString("Letter") + ",  ");
+        System.out.println("Points: " + rs.getInt("Points") + ", ");
+      }
+      System.out.println("-----------------------------------------------------------");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
 
 
   /**
