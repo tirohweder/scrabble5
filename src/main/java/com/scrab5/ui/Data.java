@@ -26,6 +26,8 @@ public class Data {
   private static ArrayList<Client.ServerData> serverList;
   private static boolean isSearching = false;
 
+  private static double sfxVolume = 1.0;
+
   /**
    * Saves which user is currently logged in.
    * 
@@ -134,7 +136,7 @@ public class Data {
     if (playerClient == null) {
       playerClient = client;
     } else {
-      System.out.println("ERROR");
+      System.out.println("Error at setPlayerClient");
 
     }
   }
@@ -143,7 +145,7 @@ public class Data {
     if (playerServer == null) {
       playerServer = server;
     } else {
-      System.out.println("ErRoR");
+      System.out.println("Error at setPlayerServer");
     }
   }
 
@@ -165,5 +167,13 @@ public class Data {
 
   public static void setIsSearching(boolean searching) {
     isSearching = searching;
+  }
+
+  public static void setSFXVolume(double newVolume) {
+    sfxVolume = newVolume;
+  }
+
+  public static double getSFXVolume() {
+    return sfxVolume;
   }
 }

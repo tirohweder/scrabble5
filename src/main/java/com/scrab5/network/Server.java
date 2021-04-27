@@ -7,6 +7,7 @@
  */
 package com.scrab5.network;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -16,12 +17,12 @@ import com.scrab5.network.messages.Message;
 
 public class Server {
 
-  public final int clientPort = 54321;
-  public final int serverPort = 61234;
+  public final int clientPort = 50000;
+  public final int serverPort = 60000;
 
   private final String host;
   private String ip;
-  private ServerSocket serverSocket;
+  private static ServerSocket serverSocket;
   private boolean gameStart;
   private static int clientCounter = 0;
   private final int clientMaximum;
@@ -47,6 +48,8 @@ public class Server {
       this.ip = InetAddress.getLocalHost().getHostAddress();
       serverSocket = new ServerSocket(this.serverPort);
     } catch (Exception e) {
+      e.printStackTrace();
+      System.out.println("error at Server constructor, seversocket failed to setup");
       // requires Exception handling
     }
   }
@@ -68,19 +71,23 @@ public class Server {
   }
 
   /**
-   * Method run by the Thread in the method acceptClients() above.
+   * Method run by the Thread in the method acceptClients() above. Usually throws 1 Exception since
+   * closing the sockets while the Thread is running ends in a SocketException. Could be changed
+   * with a flag but there is no need since this Exception does not effect anything.
    * 
    * @author nitterhe
    */
-  private void accept() {
-    while (!gameStart && this.clientCounter < 4) {
+  private synchronized void accept() {
+    int i = 0;
+    while (!gameStart && clientCounter < clientMaximum && !serverSocket.isClosed() && i < 5) {
       try {
+        i++;
         Socket newClient = serverSocket.accept();
         ServerThread clientConnection = new ServerThread(this, newClient);
         clientConnection.start();
       } catch (Exception e) {
         e.printStackTrace();
-        System.out.println("Error");
+        System.out.println("Error at acceptClients()");
         // requires exception handling
       }
     }
@@ -134,13 +141,23 @@ public class Server {
   }
 
   /**
+   * Returns the server's status (true = in game/ false = waiting for clients)
+   * 
+   * @author nitterhe
+   * @return gameStart - the server's status
+   */
+  public boolean getStatus() {
+    return this.gameStart;
+  }
+
+  /**
    * Returns the ServerSocket of the server as a ServerSocket object.
    * 
    * @author nitterhe
    * @return serverSocket - the ServerSocket of the server
    */
   public ServerSocket getServerSocket() {
-    return this.serverSocket;
+    return serverSocket;
   }
 
   /**
@@ -154,13 +171,23 @@ public class Server {
   }
 
   /**
+   * Returns the maximum amount of clients allowed to connect.
+   * 
+   * @author nitterhe
+   * @return clientMaximum- number of connected clients
+   */
+  public int getClientMaximum() {
+    return this.clientMaximum;
+  }
+
+  /**
    * Returns the number of connected clients as an int.
    * 
    * @author nitterhe
    * @return client count - number of connected clients
    */
-  public int getClientCount() {
-    return this.clientCounter;
+  public int getClientCounter() {
+    return clientCounter;
   }
 
   /**
@@ -169,7 +196,7 @@ public class Server {
    * @author nitterhe
    */
   public synchronized void setClientCount() {
-    this.clientCounter = clients.size();
+    clientCounter = clients.size();
   }
 
   /**
@@ -195,7 +222,7 @@ public class Server {
   }
 
   /**
-   * Shuts down the server by closing all connections to the clients.
+   * Shuts down the server by closing all connections to the clients and closing the server socket.
    * 
    * @author nitterhe
    */
@@ -204,5 +231,11 @@ public class Server {
     for (ServerThread serverThread : connections.values()) {
       serverThread.closeConnection();
     }
+    try {
+      serverSocket.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    // save server to database
   }
 }

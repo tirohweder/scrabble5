@@ -56,8 +56,9 @@ public class ServerThread extends Threads {
         switch (message.getType()) {
 
           case GETSERVERDATA:
-            SendServerDataMessage ssdMessage = (SendServerDataMessage) message;
-            sendMessageToClient(ssdMessage);
+            sendMessageToClient(
+                new SendServerDataMessage(this.server.getHost(), this.server.getClientCounter(),
+                    this.server.getClientMaximum(), this.server.getStatus()));
             this.closeConnection();
             break;
           case CONNECT:
@@ -163,6 +164,6 @@ public class ServerThread extends Threads {
     } catch (Exception e) {
       // requires Exception handling
     }
-    this.running = false;
+    this.stopThread();
   }
 }

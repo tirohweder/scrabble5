@@ -20,8 +20,8 @@ import com.scrab5.network.messages.SendServerDataMessage;
 
 public class Client {
 
-  public final int clientPort = 54321;
-  public final int serverPort = 61234;
+  public final int clientPort = 50000;
+  public final int serverPort = 60000;
   private String ip;
   private final String username;
   private ClientThread clientThread;
@@ -61,7 +61,7 @@ public class Client {
       hostedServer.acceptClients();
       connectToServer(ip);
     } else {
-      System.out.println("hosting failed");
+      System.out.println("error at hostServer()");
       // Exception handling required
     }
   }
@@ -179,6 +179,16 @@ public class Client {
       hostedServer = null;
     }
   }
+
+  /**
+   * Stops the client by simply switching the Thread attribute running to false
+   * 
+   * @author nitterhe
+   */
+  public void stopClientThread() {
+    this.clientThread.stopThread();
+  }
+
 
   /**
    * Sends ChatMessage to the server. Server will send it to all clients in the lobby.
