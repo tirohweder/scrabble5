@@ -199,25 +199,21 @@ public class FillDatabase extends Database {
     PreparedStatement pstm = null;
 
     if (column == "Name") {
-      if (!UseDatabase.playerExists(contentString)) {
-        String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
-        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-          pstmt.setString(1, contentString);
-          pstmt.setString(2, name);
-          pstmt.executeUpdate();
-          Statement stm = connection.createStatement();
-          ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-          while (rs.next()) {
-            System.out.println("Namen jetzt: " + rs.getString("Name") + ", ");
-            System.out.println();
-          }
-        } catch (SQLException e) {
-          System.out.println(e.getMessage());
+      // UseDatabase.playerExists(contentString)
+
+      String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
+      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        pstmt.setString(1, contentString);
+        pstmt.setString(2, name);
+        pstmt.executeUpdate();
+        Statement stm = connection.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+        while (rs.next()) {
+          System.out.println("Namen jetzt: " + rs.getString("Name") + ", ");
+          System.out.println();
         }
-      } else {
-        // String message = "This username already exists. Please choose another one!";
-        // PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-        // pum.show();
+      } catch (SQLException e) {
+        System.out.println(e.getMessage());
       }
     } else if (column == "Picture") {
       String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
