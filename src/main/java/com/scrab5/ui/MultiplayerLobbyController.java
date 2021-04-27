@@ -51,7 +51,7 @@ public class MultiplayerLobbyController extends Controller implements Initializa
     } else {
       this.ready1.setText("Not Ready");
       this.isReady1 = false;
-
+      Data.getPlayerServer().startGame();
     }
 
   }

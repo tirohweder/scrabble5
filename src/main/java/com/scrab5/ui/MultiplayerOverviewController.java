@@ -46,6 +46,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.serverName.setFocusTraversable(false);
     this.userPlaying.setText(Data.getCurrentUser());
 
+    Data.setPlayerClient(new Client(Data.getCurrentUser()));
     this.searchServers();
   }
 
@@ -61,7 +62,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     // App.setRoot("MultiplayerLobby");
     // }
 
-    this.setupServer();
+    this.setupServer(playerCount);
     App.setRoot("MultiplayerLobby");
   }
 
@@ -220,9 +221,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
     playerNumber.setImage(img);
   }
 
-  private void setupServer() {
-    Data.setPlayerClient(new Client(Data.getCurrentUser()));
-    Data.getPlayerClient().hostServer();
+  private void setupServer(int playerCount) {
+    Data.getPlayerClient().hostServer(playerCount);
     Data.setPlayerServer(Data.getPlayerClient().getHostedServer());
   }
 
@@ -233,7 +233,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
       Runnable r = new Runnable() {
 
-        public void run() {
+        public synchronized void run() {
           for (int i = 0; i < 25; i++) {
             Data.setServerList(Data.getPlayerClient().getServerList());
             if (!Data.getServerList().isEmpty()) {
