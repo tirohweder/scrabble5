@@ -26,7 +26,6 @@ public class ClientServerTest {
       assertEquals(testClient.getIp(), InetAddress.getLocalHost().getHostAddress());
       assertEquals(testClient.getUsername(), "clientTest");
 
-      testClient = null; // so ports are unbound
     } catch (Exception e) {
       e.printStackTrace();
     }
