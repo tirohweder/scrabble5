@@ -172,8 +172,8 @@ public class FillDatabase extends Database {
       pstmPlayer.setInt(9, 0);
       pstmPlayer.setDouble(10, 0.0);
       pstmPlayer.setString(11, "");
-      pstmPlayer.setDouble(12, 1.0);
-      pstmPlayer.setDouble(13, 1.0);
+      pstmPlayer.setDouble(12, 100.0);
+      pstmPlayer.setDouble(13, 100.0);
       pstmPlayer.executeUpdate();
       created = true;
     } catch (SQLException e) {
