@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.scrab5.network.Client;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -11,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class MultiplayerOverviewController extends Controller implements Initializable {
 
@@ -29,6 +31,9 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private TextField serverName;
 
+  @FXML
+  private Text servername;
+
   private int playerCount = 2;
 
   /**
@@ -40,19 +45,25 @@ public class MultiplayerOverviewController extends Controller implements Initial
   public void initialize(URL arg0, ResourceBundle arg1) {
     this.serverName.setFocusTraversable(false);
     this.userPlaying.setText(Data.getCurrentUser());
+
+    Data.setPlayerClient(new Client(Data.getCurrentUser()));
+    this.searchServers();
   }
 
   @FXML
   private void start(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
 
-    if (serverName.getText().isEmpty()) {
-      String message = "You must enter a server name to continue";
-      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-      pum.show();
-    } else {
-      App.setRoot("MultiplayerLobby");
-    }
+    // if (serverName.getText().isEmpty()) {
+    // String message = "You must enter a server name to continue";
+    // PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+    // pum.show();
+    // } else {
+    // App.setRoot("MultiplayerLobby");
+    // }
+
+    this.setupServer(playerCount);
+    App.setRoot("MultiplayerLobby");
   }
 
   /**
@@ -60,13 +71,14 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
    * predecessor "Main Menu" scene
    * 
-   * @author mherre
+   * @author mherre @author nitterhe
    * @param event
    * @throws IOException
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
+    Data.getPlayerClient().stopClientThread();
     App.setRoot("MainMenu");
   }
 
@@ -164,7 +176,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void refresh(MouseEvent event) {
     playSound("ButtonClicked.mp3");
-
+    this.searchServers();
   }
 
   @FXML
@@ -210,4 +222,42 @@ public class MultiplayerOverviewController extends Controller implements Initial
     playerNumber.setImage(img);
   }
 
+  private void setupServer(int playerCount) {
+    Data.getPlayerClient().hostServer(playerCount);
+    Data.setPlayerServer(Data.getPlayerClient().getHostedServer());
+  }
+
+  // @author mherre @author nitterhe :^)
+
+  private void searchServers() {
+    if (!Data.getIsSearching()) {
+      Data.setIsSearching(true);
+      Data.getPlayerClient().searchServers();
+
+      Runnable r = new Runnable() {
+
+        public synchronized void run() {
+          for (int i = 0; i < 25; i++) {
+            Data.setServerList(Data.getPlayerClient().getServerList());
+            if (!Data.getServerList().isEmpty()) {
+              int j = 0;
+              while (j < Data.getServerList().size()) {
+                MultiplayerOverviewController.this.servername
+                    .setText(Data.getServerList().get(j).getServername() + " ");
+                j++;
+              }
+            }
+            try {
+              wait(2000);
+            } catch (InterruptedException e) {
+              System.out.println("error searching servers");
+              e.printStackTrace();
+            }
+          }
+        }
+      };
+      new Thread(r).start();
+    }
+    // somewhere isSearching must be set back to false after searching
+  }
 }

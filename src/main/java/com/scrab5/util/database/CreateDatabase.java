@@ -24,7 +24,7 @@ public class CreateDatabase extends Database {
    * Remove a table with the name "name". For example in case of a new start.
    * 
    * @author lengist
-   * @param name
+   * @param name String representing the name of the player who's column needs to be deleted
    */
   private void removeTable(String name) {
     try (Statement stm = connection.createStatement()) {
@@ -36,7 +36,7 @@ public class CreateDatabase extends Database {
   }
 
   /**
-   * Generates the table "player" with all required columns.
+   * Generates the table "Player" with all required columns.
    * 
    * @author lengist
    */
@@ -47,7 +47,8 @@ public class CreateDatabase extends Database {
           + "TotalPoints INTEGER NOT NULL," + "PersonalHighscore INTEGER NOT NULL,"
           + "LaidWords INTEGER NOT NULL," + "PointsPerWordRate INTEGER NOT NULL,"
           + "LongestWord TEXT," + "TotalPlayedGames INTEGER NOT NULL,"
-          + "TotalWins INTEGER NOT NULL," + "WinRate REAL," + "FaveDic TEXT)";
+          + "TotalWins INTEGER NOT NULL," + "WinRate REAL," + "FaveDic TEXT," + "Music REAL,"
+          + "SoundEffect REAL)";
       stm.executeUpdate(sql);
       System.out.println("Table for player generated!");
     } catch (SQLException e) {

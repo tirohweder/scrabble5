@@ -10,9 +10,9 @@ public class UseDatabase extends Database {
 
   /**
    * Displaying the content of current table Letters.
-   *
-   * @return ResultSet
+   * 
    * @author lengist
+   * @return ResultSet including the content from the table letters
    */
   public static ResultSet viewLetters() {
     ResultSet rs = null;
@@ -27,9 +27,9 @@ public class UseDatabase extends Database {
 
   /**
    * Checks whether the table Player is empty or with entries.
-   *
-   * @return boolean
+   * 
    * @author lengist
+   * @return boolean returning true if there is no entry in the table player
    */
   public static boolean tablePlayerIsEmpty() {
     boolean empty = false;
@@ -50,9 +50,9 @@ public class UseDatabase extends Database {
 
   /**
    * Returns all player names from the table Player.
-   *
-   * @return ResultSet
+   * 
    * @author lengist
+   * @return ResultSet returning the content of the table player
    */
   public static ResultSet getAllPlayerRS() {
     ResultSet rs = null;
@@ -69,9 +69,9 @@ public class UseDatabase extends Database {
 
   /**
    * Returns a ObservableList so all player profiles can be displayed in a ComboBox
-   *
-   * @return
+   * 
    * @author mherre
+   * @return ObservableList including the content of the table player
    */
   public static ObservableList<String> getAllPlayer() {
     ResultSet rs = null;
@@ -91,10 +91,10 @@ public class UseDatabase extends Database {
 
   /**
    * Returns a boolean if the player "name" already exists.
-   *
-   * @param name
-   * @return boolean
+   * 
    * @author lengist
+   * @param name String of the name of the user to use in the prepared Statement
+   * @return boolean returning true if player with name "name" already exists
    */
   public static boolean playerExists(String name) {
     boolean exists = false;
@@ -114,10 +114,10 @@ public class UseDatabase extends Database {
 
   /**
    * Returns a boolean if the server "name" already exists.
-   *
-   * @param name
-   * @return boolean
+   * 
    * @author lengist
+   * @param name String of the name of the user to use in the prepared Statement
+   * @return boolean returning true if a server with name "name" already exists in the table server
    */
   public static boolean serverExists(String name) {
     boolean exists = false;
@@ -134,11 +134,4 @@ public class UseDatabase extends Database {
     }
     return exists;
   }
-
-
-  //TO-DO
-  public static boolean wordExists(String word) {
-    return true;
-  }
-
 }

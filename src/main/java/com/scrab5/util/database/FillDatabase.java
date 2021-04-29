@@ -6,8 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import com.scrab5.network.Server;
-import com.scrab5.ui.PopUpMessage;
-import com.scrab5.ui.PopUpMessageType;
 
 
 /**
@@ -38,25 +36,25 @@ public class FillDatabase extends Database {
         case "delete":
           if ((pstmDelete != null) && (!pstmDelete.isClosed())) {
             pstmDelete.close();
-          } ;
+          }
           break;
         case "player":
           if ((pstmPlayer != null) && (!pstmPlayer.isClosed())) {
             pstmPlayer.close();
-          } ;
+          }
           break;
         case "server":
           if ((pstmServer != null) && (!pstmServer.isClosed())) {
             pstmServer.close();
-          } ;
+          }
           break;
         case "dic":
           if ((pstmDic != null) && (!pstmDic.isClosed())) {
             pstmDic.close();
-          } ;
+          }
           break;
         default:
-          // create default case
+          /* not yet implemented */
           break;
       }
     } catch (Exception e) {
@@ -95,7 +93,7 @@ public class FillDatabase extends Database {
    * 
    * @author lengist
    * @author hraza
-   * @param name
+   * @param name String with name of the user
    */
   public static void deleteTable(String name) {
     try {
@@ -112,7 +110,7 @@ public class FillDatabase extends Database {
    * Deletes a certain player with name "name" in the table Player.
    * 
    * @author lengist
-   * @param name
+   * @param name String with name of the user
    */
   public static void deletePlayer(String name) {
     try {
@@ -131,7 +129,7 @@ public class FillDatabase extends Database {
    * Deletes a certain server with name "name" in the table Server.
    * 
    * @author lengist
-   * @param name
+   * @param name String with name of the user
    */
   public static void deleteServer(String name) {
     try {
@@ -152,20 +150,17 @@ public class FillDatabase extends Database {
    * 
    * @author lengist
    * @author hraza
-   * @param name
-   * @param picture
-   * @throws IOException
+   * @param name String with name of the user
+   * @param picture String with the path to the picture
    */
-  public static boolean createPlayer(String name, String picture) throws IOException {
-    boolean alreadyExists = UseDatabase.playerExists(name);
+  public static boolean createPlayer(String name, String picture) {
     boolean created = false;
-
 
     try {
       pstmPlayer = connection.prepareStatement(
           "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
               + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
-              + "WinRate, FaveDic) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
+              + "WinRate, FaveDic, Music, SoundEffect) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
       pstmPlayer.setString(1, name);
       pstmPlayer.setString(2, picture);
       pstmPlayer.setInt(3, 0);
@@ -175,8 +170,10 @@ public class FillDatabase extends Database {
       pstmPlayer.setInt(7, 0);
       pstmPlayer.setInt(8, 0);
       pstmPlayer.setInt(9, 0);
-      pstmPlayer.setInt(10, 0);
+      pstmPlayer.setDouble(10, 0.0);
       pstmPlayer.setString(11, "");
+      pstmPlayer.setDouble(12, 100.0);
+      pstmPlayer.setDouble(13, 100.0);
       pstmPlayer.executeUpdate();
       created = true;
     } catch (SQLException e) {
@@ -191,19 +188,18 @@ public class FillDatabase extends Database {
    * integer, variable contentString is default.
    * 
    * @author hraza
-   * @param column
-   * @param name
-   * @param contentString
-   * @param contentInt
-   * @throws IOException
+   * @param column String with the name of the column in the table where a change needs to be done
+   * @param name String with name of the user
+   * @param contentString String that contains the new information that needs to be stored in the
+   *        database
+   * @param contentInt Integer that contains the new information that needs to be stored in the
+   *        database
    */
   public static void updatePlayer(String column, String name, String contentString, int contentInt,
-      double rate) throws IOException {
+      double doubleValues) {
     PreparedStatement pstm = null;
 
     if (column == "Name") {
-      // UseDatabase.playerExists(contentString)
-
       String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
         pstmt.setString(1, contentString);
@@ -211,10 +207,6 @@ public class FillDatabase extends Database {
         pstmt.executeUpdate();
         Statement stm = connection.createStatement();
         ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-        while (rs.next()) {
-          System.out.println("Namen jetzt: " + rs.getString("Name") + ", ");
-          System.out.println();
-        }
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
@@ -293,7 +285,7 @@ public class FillDatabase extends Database {
     } else if (column == "WinRate") {
       String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        pstmt.setDouble(1, rate);
+        pstmt.setDouble(1, doubleValues);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
       } catch (SQLException e) {
@@ -308,6 +300,24 @@ public class FillDatabase extends Database {
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
+    } else if (column == "Music") {
+      String sql = "UPDATE Player SET Music = ? WHERE name = ?";
+      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        pstmt.setDouble(1, doubleValues);
+        pstmt.setString(2, name);
+        pstmt.executeUpdate();
+      } catch (SQLException e) {
+        System.out.println(e.getMessage());
+      }
+    } else if (column == "SoundEffect") {
+      String sql = "UPDATE Player SET SoundEffect = ? WHERE name = ?";
+      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        pstmt.setDouble(1, doubleValues);
+        pstmt.setString(2, name);
+        pstmt.executeUpdate();
+      } catch (SQLException e) {
+        System.out.println(e.getMessage());
+      }
     }
   }
 
@@ -315,7 +325,7 @@ public class FillDatabase extends Database {
    * Method to fill table server completely. Used when a new server is created.
    * 
    * @author lengist
-   * @param name
+   * @param name String with name of the user
    */
   public static void createServer(Server serverObject) {
     try {
@@ -328,13 +338,13 @@ public class FillDatabase extends Database {
     }
   }
 
+
   /**
    * Updates the entries from the table server at a specific serverHostName.
    * 
    * @author lengist
-   * @param column
-   * @param name
-   * @param content
+   * @param serverObject an object received from the server with all information needed for the
+   *        statistics in a hosted game
    */
   public static void updateServer(Server serverObject) {
     String sql = "UPDATE Server SET Information = ? WHERE ServerHostName = ?";
@@ -349,52 +359,46 @@ public class FillDatabase extends Database {
   }
 
   /**
-   * Inserts letters with corresponding points to calculate points per word.
+   * Inserts letters with corresponding points.
    * 
    * @author lengist
    * @author hraza
-   * @param letter
-   * @param point
-   * @throws IOException
+   * @param letter String with the letter that needs to be inserted in the database
+   * @param point Integer with the correpsonding points for the given letter
    */
-  public static void insertLetters(String letter, int point) throws IOException {
-    boolean alreadyExists = false;
+  public static void insertLetters(String letter, int point) {
     try {
-      Statement test = connection.createStatement();
-      ResultSet rs = test.executeQuery("SELECT Letter FROM Letters");
-      while (rs.next()) {
-        if (rs.getString("Letter").equals(letter)) {
-          alreadyExists = true;
-        }
-      }
-    } catch (SQLException e1) {
-      e1.printStackTrace();
-    }
-
-    if (!alreadyExists) {
-      try {
-        pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUES (?,?);");
-        pstmDic.setString(1, letter);
-        pstmDic.setInt(2, point);
-        pstmDic.executeUpdate();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    } else {
-      String message =
-          "This letter alread exists. Please update the points or choose another letter!";
-      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-      pum.show();
+      pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUES (?,?);");
+      pstmDic.setString(1, letter);
+      pstmDic.setInt(2, point);
+      pstmDic.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
   }
 
+  /**
+   * Fills table letters initial.
+   * 
+   * @author lengist
+   * @throws IOException Exception from insertLetters
+   */
+  public static void fillLetters() {
+    String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+    for (int i = 0; i < 26; i++) {
+      insertLetters(letter[i], points[i]);
+    }
+
+  }
 
   /**
    * Updates the point for a particular letter if a change is needed.
    * 
    * @author lengist
-   * @param letter
-   * @param point
+   * @param letter String with the letter which points need to be updated in the database
+   * @param point Integer with the correpsonding points for the given letter
    */
   public static void updateLetters(String letter, int point) {
     try {
@@ -407,7 +411,13 @@ public class FillDatabase extends Database {
     }
   }
 
+  public static void main(String[] args) throws IOException {
+    CreateDatabase cb = new CreateDatabase();
+    fillLetters();
+  }
+
 
 
 }
+
 

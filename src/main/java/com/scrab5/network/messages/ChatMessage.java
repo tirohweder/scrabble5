@@ -27,7 +27,7 @@ public class ChatMessage extends Message {
    * Returns the text of the ChatMessage.
    * 
    * @author nitterhe
-   * @return text -t the text of the ChatMessage
+   * @return text - the text of the ChatMessage
    */
   public String getText() {
     return this.text;

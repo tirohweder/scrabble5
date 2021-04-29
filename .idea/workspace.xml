@@ -5,12 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0743928f-0e9f-486e-853e-547738433791" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/SendServerDataMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/DictionaryParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/ConnectTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/CreateTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/DeleteTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/UpdateTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/UseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/ServerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/ChatMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/ChatMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/MessageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/MessageType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerOverviewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerOverviewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/RealLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/RealLoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SettingsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SettingsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/CreateDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/CreateDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/FillDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/FillDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/PlayerProfileDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/PlayerProfileDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/UseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/UseDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/network/ClientServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/network/ClientServerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/ConnectionTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/DeletePlayerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/TableTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/UseDbTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,12 +226,24 @@
       <updated>1619520589833</updated>
       <workItem from="1619520593395" duration="3247000" />
       <workItem from="1619525107952" duration="15233000" />
-      <workItem from="1619681407555" duration="60000" />
+      <workItem from="1619681407555" duration="433000" />
     </task>
+    <task id="LOCAL-00001" summary="#66 check all words">
+      <created>1619681784142</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1619681784142</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="#66 check all words" />
+    <option name="LAST_COMMIT_MESSAGE" value="#66 check all words" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

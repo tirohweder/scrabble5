@@ -31,13 +31,14 @@ public class MultiplayerLobbyController extends Controller implements Initializa
    * This method is called when the "Back"-button is clicked. It sets the scene to
    * "MultiplayerOverview"
    * 
-   * @author mherre
+   * @author mherre @author nitterhe
    * @param event
    * @throws IOException
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
+    Data.getPlayerServer().shutDownServer();
     App.setRoot("MultiplayerOverview");
   }
 
@@ -51,7 +52,7 @@ public class MultiplayerLobbyController extends Controller implements Initializa
     } else {
       this.ready1.setText("Not Ready");
       this.isReady1 = false;
-
+      Data.getPlayerServer().startGame();
     }
 
   }
