@@ -96,10 +96,12 @@ public class FillDatabase extends Database {
    * @param name String with name of the user
    */
   public static void deleteTable(String name) {
+    Statement statement;
     try {
-      Statement statement = connection.createStatement();
+      statement = connection.createStatement();
       String sql = "DELETE FROM " + name;
       statement.execute(sql);
+      statement.close();
     } catch (SQLException e) {
       System.out.println("Could not perform deletion in table " + name);
       System.out.println(e);
@@ -118,11 +120,11 @@ public class FillDatabase extends Database {
       pstmDelete = connection.prepareStatement(sql);
       pstmDelete.setString(1, name);
       pstmDelete.executeUpdate();
-
     } catch (SQLException e) {
       System.out.println("Could not perform deletion from player " + name);
       System.out.println(e);
     }
+    closeStatement("delete");
   }
 
   /**
@@ -142,6 +144,7 @@ public class FillDatabase extends Database {
       System.out.println("Could not perform deletion from server " + name);
       System.out.println(e);
     }
+    closeStatement("delete");
   }
 
   /**
@@ -155,7 +158,6 @@ public class FillDatabase extends Database {
    */
   public static boolean createPlayer(String name, String picture) {
     boolean created = false;
-
     try {
       pstmPlayer = connection.prepareStatement(
           "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
@@ -179,7 +181,7 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
+    closeStatement("player");
     return created;
   }
 
@@ -319,6 +321,7 @@ public class FillDatabase extends Database {
         System.out.println(e.getMessage());
       }
     }
+    closeStatement("player");
   }
 
   /**
@@ -336,6 +339,7 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    closeStatement("server");
   }
 
 
@@ -356,6 +360,7 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    closeStatement("server");
   }
 
   /**
@@ -375,6 +380,7 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    closeStatement("dic");
   }
 
   /**
@@ -390,7 +396,6 @@ public class FillDatabase extends Database {
     for (int i = 0; i < 26; i++) {
       insertLetters(letter[i], points[i]);
     }
-
   }
 
   /**
@@ -409,15 +414,8 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    closeStatement("dic");
   }
-
-  public static void main(String[] args) throws IOException {
-    CreateDatabase cb = new CreateDatabase();
-    fillLetters();
-  }
-
-
-
 }
 
 
