@@ -1,5 +1,6 @@
 package com.scrab5.core.game;
 
+import com.scrab5.util.database.UseDatabase;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -51,15 +52,31 @@ public class GameBoard {
   public GameBoard() {
   }
 
-
   /**
-   * Place Tile, will place a Tile on the gameBoard
+   * Places a tile at specific location
    *
+   * @param t
    * @param row
    * @param column
+   * @return
    * @author trohwede
    */
-  public void placeTile(int row, int column) {
+  public boolean placeTile(Tile t, int row, int column) {
+    if (isSpotFree(row, column)) {
+      gameBoardCurrent[row][column] = t;
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public boolean removeTile(int row, int column) {
+    if (isSpotFree(row, column)) {
+      gameBoardCurrent[row][column] = null;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /**
@@ -71,7 +88,11 @@ public class GameBoard {
    * @author trohwede
    */
   public boolean isSpotFree(int row, int column) {
-    return gameBoard[row][column] == null;
+    return gameBoardCurrent[row][column] == null;
+  }
+
+  public void finishTurn() {
+    gameBoard = gameBoardCurrent.clone();
   }
 
 
@@ -83,7 +104,7 @@ public class GameBoard {
    * @return
    * @author trohwede
    */
-  public boolean isSpotNext(int row, int column) {
+  public boolean isSpotNextFree(int row, int column) {
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
     return ((row == row1 + 1 && column == column1) || (row == row1 - 1 && column == column1) || (
@@ -141,7 +162,7 @@ public class GameBoard {
       if (!(isSpotFree(row, column))) {
         return false;
       }
-      return isSpotNext(row, column);
+      return isSpotNextFree(row, column);
     } else {
       if (!(isSpotFree(row, column))) {
         return false;
@@ -150,46 +171,6 @@ public class GameBoard {
     }
   }
 
-  /**
-   * Clears the board of all Tiles and sets them to null
-   *
-   * @author trohwede
-   */
-  public void clearBoard() {
-    for (int i = 0; i < 15; i++) {
-      for (int j = 0; j < 15; j++) {
-        gameBoard[i][j] = null;
-      }
-    }
-  }
-
-  /**
-   * Places a tile at specific location
-   *
-   * @param t
-   * @param row
-   * @param column
-   * @return
-   * @author trohwede
-   */
-  public boolean placeTile(Tile t, int row, int column) {
-    if (isSpotFree(row, column)) {
-      gameBoard[row][column] = t;
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  /**
-   * Checks wether the board as it is right now is legal.
-   *
-   * @return
-   * @author trohwede
-   */
-  public boolean isBoardLegal() {
-    return true;
-  }
 
   /**
    * Will count the score of all the layed tiles.
@@ -254,45 +235,100 @@ public class GameBoard {
     return false;
   }
 
+  /**
+   * Returns the Value of Tile at the given coordinates of the GameBoard
+   *
+   * @param row
+   * @param column
+   * @return
+   */
+  public String getTile(int row, int column) {
+    return gameBoardCurrent[row][column].getLetter();
+  }
 
+  /**
+   * Returns a list of all the words placed on the gameBoard 1. add als words left to right then
+   * from top to bottom
+   *
+   * @return List of all Words in the Game
+   * @author trohwede
+   */
   public ArrayList<String> getWords() {
     ArrayList<String> listOfWords = new ArrayList<>();
     StringBuilder word = new StringBuilder();
 
-    for (int i = 0; i <= 15; i++) {
-      for (int j = 0; j <= 15; j++) {
-        if (gameBoard[i][j] != null) {
-
-          word.append(gameBoard[i][j]);
-        } else if (gameBoard[i][j - 1] != null) {
-          listOfWords.add(word.toString());
+    for (int i = 0; i < 15; i++) {
+      for (int j = 0; j < 15; j++) {
+        if (gameBoardCurrent[i][j] != null) {
+          word.append(getTile(i, j));
+        } else {
+          if (word.length() > 1) {
+            listOfWords.add(word.toString());
+          }
           word.setLength(0);
         }
       }
-      if (word.length() > 0) {
+      if (word.length() > 1) {
         listOfWords.add(word.toString());
-        word.setLength(0);
       }
+      word.setLength(0);
+    }
+    if (word.length() > 1) {
+      listOfWords.add(word.toString());
+      word.setLength(0);
     }
 
-    for (int i = 0; i <= 15; i++) {
-      for (int j = 0; j <= 15; j++) {
-        if (gameBoard[j][i] != null) {
-
-          word.append(gameBoard[i][j]);
-        } else if (gameBoard[j - 1][i] != null) {
-          listOfWords.add(word.toString());
+    for (int j = 0; j < 15; j++) {
+      for (int i = 0; i < 15; i++) {
+        if (gameBoardCurrent[i][j] != null) {
+          word.append(getTile(i, j));
+        } else {
+          if (word.length() > 1) {
+            listOfWords.add(word.toString());
+          }
           word.setLength(0);
         }
       }
-      if (word.length() > 0) {
+      if (word.length() > 1) {
         listOfWords.add(word.toString());
-        word.setLength(0);
       }
+      word.setLength(0);
     }
-
+    if (word.length() > 1) {
+      listOfWords.add(word.toString());
+    }
     return listOfWords;
   }
 
+  /**
+   * Checks if all the words of the Board are legit
+   *
+   * @return boolean
+   * @author trohwede
+   */
+  public boolean checkWordsLegit() {
+    ArrayList<String> gameWords = getWords();
+    Iterator<String> iter = gameWords.iterator();
 
+    while (iter.hasNext()) {
+      if (!UseDatabase.wordExists(iter.next())) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+
+  /**
+   * Clears the board of all Tiles and sets them to null
+   *
+   * @author trohwede
+   */
+  public void clearBoard() {
+    for (int i = 0; i < 15; i++) {
+      for (int j = 0; j < 15; j++) {
+        gameBoard[i][j] = null;
+      }
+    }
+  }
 }

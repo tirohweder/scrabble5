@@ -10,9 +10,9 @@ public class UseDatabase extends Database {
 
   /**
    * Displaying the content of current table Letters.
-   * 
-   * @author lengist
+   *
    * @return ResultSet
+   * @author lengist
    */
   public static ResultSet viewLetters() {
     ResultSet rs = null;
@@ -27,9 +27,9 @@ public class UseDatabase extends Database {
 
   /**
    * Checks whether the table Player is empty or with entries.
-   * 
-   * @author lengist
+   *
    * @return boolean
+   * @author lengist
    */
   public static boolean tablePlayerIsEmpty() {
     boolean empty = false;
@@ -50,9 +50,9 @@ public class UseDatabase extends Database {
 
   /**
    * Returns all player names from the table Player.
-   * 
-   * @author lengist
+   *
    * @return ResultSet
+   * @author lengist
    */
   public static ResultSet getAllPlayerRS() {
     ResultSet rs = null;
@@ -69,9 +69,9 @@ public class UseDatabase extends Database {
 
   /**
    * Returns a ObservableList so all player profiles can be displayed in a ComboBox
-   * 
-   * @author mherre
+   *
    * @return
+   * @author mherre
    */
   public static ObservableList<String> getAllPlayer() {
     ResultSet rs = null;
@@ -91,10 +91,10 @@ public class UseDatabase extends Database {
 
   /**
    * Returns a boolean if the player "name" already exists.
-   * 
-   * @author lengist
+   *
    * @param name
    * @return boolean
+   * @author lengist
    */
   public static boolean playerExists(String name) {
     boolean exists = false;
@@ -114,10 +114,10 @@ public class UseDatabase extends Database {
 
   /**
    * Returns a boolean if the server "name" already exists.
-   * 
-   * @author lengist
+   *
    * @param name
    * @return boolean
+   * @author lengist
    */
   public static boolean serverExists(String name) {
     boolean exists = false;
@@ -133,6 +133,12 @@ public class UseDatabase extends Database {
       e1.printStackTrace();
     }
     return exists;
+  }
+
+
+  //TO-DO
+  public static boolean wordExists(String word) {
+    return true;
   }
 
 }
