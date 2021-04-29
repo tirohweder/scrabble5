@@ -1,6 +1,5 @@
 package com.scrab5.core.game;
 
-import com.scrab5.util.database.UseDatabase;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -310,11 +309,11 @@ public class GameBoard {
     ArrayList<String> gameWords = getWords();
     Iterator<String> iter = gameWords.iterator();
 
-    while (iter.hasNext()) {
-      if (!UseDatabase.wordExists(iter.next())) {
-        return false;
-      }
-    }
+    //while (iter.hasNext()) {
+    //  if (!UseDatabase.wordExists(iter.next())) {
+    //    return false;
+    //  }
+    //}
     return true;
   }
 
