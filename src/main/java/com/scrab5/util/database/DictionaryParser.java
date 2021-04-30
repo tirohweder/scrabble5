@@ -11,6 +11,49 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 public class DictionaryParser {
+  static BufferedWriter bufWriter = null;
+  static String newFileName = null;
+
+  /**
+   * Sets the name of the new file dependent on the new dictionary that needs to be inserted.
+   * 
+   * @author lengist
+   * @param name
+   */
+  public static void setFileName(String name) {
+    newFileName = name;
+  }
+
+  public static String getFileName() {
+    return newFileName;
+  }
+
+  /**
+   * Creates a new file with all the words that can be scanned now.
+   * 
+   * @author lengist
+   * @param DictionaryFile The file the user inserts as new dictionary
+   */
+  public static void createSearchableFile(String DictionaryFile) {
+    File file = new File(
+        System.getProperty("user.dir") + System.getProperty("file.separator") + newFileName);
+    try {
+      if (!file.exists()) {
+        file.createNewFile();
+      } else {
+        System.out.println("File already exists!");
+      }
+      bufWriter = new BufferedWriter(new FileWriter(file));
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    loadFile(DictionaryFile);
+    try {
+      bufWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   /**
    * Loads a file from the path and passes the lines of the document on to filterWords.
@@ -60,21 +103,17 @@ public class DictionaryParser {
    * @param word A String representing the proofed word to insert into the new document
    */
   public static void createDoc(String word) {
-    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "separatewords.txt");
     try {
-      file.createNewFile();
-      BufferedWriter bufWriter = new BufferedWriter(new FileWriter(file));
       bufWriter.write(word);
       bufWriter.newLine();
-      bufWriter.close();
     } catch (IOException e1) {
       e1.printStackTrace();
     }
   }
 
   public static void main(String[] args) {
-    loadFile("words.txt");
+    setFileName("english.txt");
+    createSearchableFile("words.txt");
   }
 
 }
