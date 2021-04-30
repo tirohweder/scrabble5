@@ -24,19 +24,19 @@ class UpdateTest {
     try {
       stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-      assertEquals(rs.getString("Name"), "Maria");
-      assertEquals(rs.getString("Picture"), "Bild");
-      assertEquals(rs.getInt("TotalPoints"), 0);
-      assertEquals(rs.getInt("PersonalHighscore"), 0);
-      assertEquals(rs.getInt("LaidWords"), 0);
-      assertEquals(rs.getInt("PointsPerWordRate"), 0);
-      assertEquals(rs.getInt("LongestWord"), 0);
-      assertEquals(rs.getInt("TotalPlayedGames"), 0);
-      assertEquals(rs.getInt("TotalWins"), 0);
-      assertEquals(rs.getDouble("WinRate"), 0.0);
-      assertEquals(rs.getString("FaveDic"), "");
-      assertEquals(rs.getDouble("Music"), 50.0);
-      assertEquals(rs.getDouble("SoundEffect"), 50.0);
+      assertEquals("Maria", rs.getString("Name"));
+      assertEquals("Bild", rs.getString("Picture"));
+      assertEquals(0, rs.getInt("TotalPoints"));
+      assertEquals(0, rs.getInt("PersonalHighscore"));
+      assertEquals(0, rs.getInt("LaidWords"));
+      assertEquals(0, rs.getInt("PointsPerWordRate"));
+      assertEquals(0, rs.getInt("LongestWord"));
+      assertEquals(0, rs.getInt("TotalPlayedGames"));
+      assertEquals(0, rs.getInt("TotalWins"));
+      assertEquals(0.0, rs.getDouble("WinRate"));
+      assertEquals("", rs.getString("FaveDic"));
+      assertEquals(50.0, rs.getDouble("Music"));
+      assertEquals(50.0, rs.getDouble("SoundEffect"));
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -62,8 +62,8 @@ class UpdateTest {
     try {
       stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Letters");
-      assertEquals(rs.getString("Letter"), "L");
-      assertEquals(rs.getInt("Points"), 2);
+      assertEquals("L", rs.getString("Letter"));
+      assertEquals(2, rs.getInt("Points"));
     } catch (SQLException e) {
       e.printStackTrace();
     }

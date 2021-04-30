@@ -37,6 +37,6 @@ class ConnectTest {
    */
   @Test
   void testDatabaseExistance() {
-    assertEquals(Database.databaseExistance(), true);
+    assertEquals(true, Database.databaseExistance());
   }
 }

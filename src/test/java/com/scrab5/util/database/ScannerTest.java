@@ -1,7 +1,6 @@
 package com.scrab5.util.database;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
 class ScannerTest {
@@ -16,8 +15,8 @@ class ScannerTest {
     DictionaryParser.setFileName("testScan.txt");
     DictionaryParser.createSearchableFile("words.txt");
 
-    assertEquals(DictionaryScanner.scan("ZZZ"), true);
-    assertEquals(DictionaryScanner.scan("XXXX"), false);
+    assertEquals(true, DictionaryScanner.scan("ZZZ"));
+    assertEquals(false, DictionaryScanner.scan("XXXX"));
   }
 
 }

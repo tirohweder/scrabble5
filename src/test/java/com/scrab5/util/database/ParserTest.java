@@ -17,7 +17,7 @@ class ParserTest {
     DictionaryParser.createSearchableFile("words.txt");
     File file = new File(
         System.getProperty("user.dir") + System.getProperty("file.separator") + "test.txt");
-    assertEquals(file.exists(), true);
+    assertEquals(true, file.exists());
   }
 
 }
