@@ -1,8 +1,6 @@
 package com.scrab5.util.textParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.scrab5.util.database.DictionaryParser;
 import java.io.File;
 import org.junit.jupiter.api.Test;
 

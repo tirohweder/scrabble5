@@ -1,8 +1,8 @@
 package com.scrab5.core.game;
 
-import com.scrab5.util.database.DictionaryScanner;
 import java.util.ArrayList;
 import java.util.Iterator;
+import com.scrab5.util.textParser.DictionaryScanner;
 
 public class GameBoard {
 

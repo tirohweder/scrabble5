@@ -1,4 +1,4 @@
-package com.scrab5.util.database;
+package com.scrab5.util.textParser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,10 +15,10 @@ public class DictionaryScanner {
    * @author lengist
    */
 
-  //TO-DO gameSession.getCurrentDic();
+  // TO-DO gameSession.getCurrentDic();
   public static boolean scan(String searchedWord) {
-    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "eng.txt");
+    File file =
+        new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "eng.txt");
     boolean found = false;
 
     try {
