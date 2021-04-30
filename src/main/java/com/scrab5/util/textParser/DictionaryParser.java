@@ -36,14 +36,29 @@ public class DictionaryParser {
   }
 
   /**
+   * Parses given file and creates a parsed file while using all methods of this class. Made for
+   * initial call.
+   * 
+   * @author lengist
+   * @param originalFile String name of the file from the inserted dictionary
+   */
+  public static void parseFiles(String originalFile) {
+    StringBuilder sb = new StringBuilder(originalFile);
+    sb.setLength(sb.length() - 4);
+    newFileName = sb.toString() + "Parsed.txt";
+    createSearchableFile(originalFile);
+  }
+
+  /**
    * Creates a new file with all the words that can be scanned now.
    * 
    * @author lengist
    * @param DictionaryFile The file the user inserts as new dictionary
    */
   public static void createSearchableFile(String DictionaryFile) {
-    File file = new File(
-        System.getProperty("user.dir") + System.getProperty("file.separator") + newFileName);
+    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
+
     try {
       if (!file.exists()) {
         file.createNewFile();
@@ -69,10 +84,11 @@ public class DictionaryParser {
    * @param file with the name of the file for the dictionary
    */
   private static void loadFile(String file) {
-
     try {
-      FileInputStream fileInput = new FileInputStream(
-          System.getProperty("user.dir") + System.getProperty("file.separator") + file);
+      File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+          + "src/main/resources/com/scrab5/util/textParser/" + file);
+      FileInputStream fileInput = new FileInputStream(fileOne);
+
       BufferedReader buf =
           new BufferedReader(new InputStreamReader(fileInput, StandardCharsets.UTF_8));
       String line;
@@ -94,6 +110,7 @@ public class DictionaryParser {
    * @param line A String representation of a line from the document
    */
   private static void filterWords(String line) {
+    /* TO DO: edit regex for ae etc. */
     String regex = "[A-Za-z]+";
     String[] word = line.split("\\W+");
     for (int i = 0; i < word.length; i++) {
@@ -119,8 +136,9 @@ public class DictionaryParser {
   }
 
   public static void main(String[] args) {
-    setFileName("english.txt");
-    createSearchableFile("words.txt");
+    parseFiles("words.txt");
+    // setFileName("english.txt");
+    // createSearchableFile("words.txt");
   }
 
 }
