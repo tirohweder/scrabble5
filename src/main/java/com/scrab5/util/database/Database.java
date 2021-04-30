@@ -85,7 +85,7 @@ public class Database {
    * 
    * @author lengist
    */
-  public void disconnect() {
+  public static void disconnect() {
     try {
       FillDatabase.closeAllStatements();
       connection.close();
