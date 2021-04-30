@@ -1,9 +1,9 @@
 package com.scrab5.core.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
-import com.scrab5.util.textParser.DictionaryParser;
 
 class GameBoardTest {
 
@@ -107,17 +107,17 @@ class GameBoardTest {
 
   @Test
   void checkWordsLegit() {
-    DictionaryParser.setFileName("testScan.txt");
-    DictionaryParser.createSearchableFile("words.txt");
-
     gameBoardTest.placeTile(new Tile("H", 3), 0, 0);
     gameBoardTest.placeTile(new Tile("E", 3), 0, 1);
     gameBoardTest.placeTile(new Tile("L", 3), 0, 2);
     gameBoardTest.placeTile(new Tile("L", 3), 0, 3);
 
-    //ArrayList<String> test = gameBoardTest.getWords();
-    // System.out.println(test.get(0));
-    //System.out.println(gameBoardTest.checkWordsLegit());
+    assertEquals(true, gameBoardTest.checkWordsLegit());
+
+    gameBoardTest.placeTile(new Tile("W", 3), 2, 0);
+    gameBoardTest.placeTile(new Tile("E", 3), 2, 1);
+    gameBoardTest.placeTile(new Tile("L", 3), 2, 2);
+    gameBoardTest.placeTile(new Tile("L", 3), 2, 3);
 
     assertEquals(true, gameBoardTest.checkWordsLegit());
 
@@ -125,9 +125,6 @@ class GameBoardTest {
     gameBoardTest.placeTile(new Tile("X", 3), 4, 1);
     gameBoardTest.placeTile(new Tile("X", 3), 4, 2);
     gameBoardTest.placeTile(new Tile("X", 3), 4, 3);
-
-    //test = gameBoardTest.getWords();
-    //System.out.println(test.get(1));
 
     assertEquals(false, gameBoardTest.checkWordsLegit());
 

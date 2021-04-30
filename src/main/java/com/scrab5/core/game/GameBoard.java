@@ -308,17 +308,12 @@ public class GameBoard {
    */
   public boolean checkWordsLegit() {
     ArrayList<String> gameWords = getWords();
-    Iterator<String> iter = gameWords.iterator();
-    System.out.println(gameWords.toString());
-
-    return DictionaryScanner.scan((gameWords.get(0)));
-    //while (iter.hasNext()) {
-    // if (DictionaryScanner.scan(iter.next())) {
-    //   return false;
-    //  }
-    //}
-    //return true;
-
+    for (int i = 0; i < gameWords.size(); i++) {
+      if (!DictionaryScanner.scan((gameWords.get(i)))) {
+        return false;
+      }
+    }
+    return true;
   }
 
 
