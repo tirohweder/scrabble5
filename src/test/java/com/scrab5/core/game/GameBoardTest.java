@@ -1,10 +1,9 @@
 package com.scrab5.core.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.scrab5.util.database.DictionaryParser;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
+import com.scrab5.util.textParser.DictionaryParser;
 
 class GameBoardTest {
 
