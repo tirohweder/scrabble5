@@ -18,12 +18,19 @@ public class DictionaryParser {
    * Sets the name of the new file dependent on the new dictionary that needs to be inserted.
    * 
    * @author lengist
-   * @param name
+   * @param name String representing the new file name. For example name = english, if a english
+   *        dictionary is inserted.
    */
   public static void setFileName(String name) {
     newFileName = name;
   }
 
+  /**
+   * Returns the name of the new file to scan.
+   * 
+   * @author lengist
+   * @return String representation of the new file name
+   */
   public static String getFileName() {
     return newFileName;
   }
