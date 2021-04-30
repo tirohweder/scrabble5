@@ -18,6 +18,54 @@ public class GameSession {
     GameSession.gameBoard = gameBoard;
   }
 
+  public static BagOfTiles getBag() {
+    return bag;
+  }
+
+  public static void setBag(BagOfTiles bag) {
+    GameSession.bag = bag;
+  }
+
+  public static ArrayList<Player> getListOfPlayers() {
+    return listOfPlayers;
+  }
+
+  public static void setListOfPlayers(ArrayList<Player> listOfPlayers) {
+    GameSession.listOfPlayers = listOfPlayers;
+  }
+
+  public static int getSkippedTurn() {
+    return skippedTurn;
+  }
+
+  public static void setSkippedTurn(int skippedTurn) {
+    GameSession.skippedTurn = skippedTurn;
+  }
+
+  public static int getRoundNumber() {
+    return roundNumber;
+  }
+
+  public static void setRoundNumber(int roundNumber) {
+    GameSession.roundNumber = roundNumber;
+  }
+
+  public static boolean isCanEnd() {
+    return canEnd;
+  }
+
+  public static void setCanEnd(boolean canEnd) {
+    GameSession.canEnd = canEnd;
+  }
+
+  public static Player getCurrentPlayer() {
+    return currentPlayer;
+  }
+
+  public static void setCurrentPlayer(Player currentPlayer) {
+    GameSession.currentPlayer = currentPlayer;
+  }
+
   private static GameBoard gameBoard = new GameBoard();
   private static BagOfTiles bag = new BagOfTiles();
   private static ArrayList<Player> listOfPlayers = new ArrayList<>();

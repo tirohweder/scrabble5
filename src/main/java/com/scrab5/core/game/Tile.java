@@ -5,6 +5,15 @@ public class Tile {
   private String letter;
   private int value;
 
+
+  public int getRackPlace() {
+    return rackPlace;
+  }
+
+  public void setRackPlace(int rackPlace) {
+    this.rackPlace = rackPlace;
+  }
+  
   /**
    * @return
    * @author trohwede
@@ -39,6 +48,7 @@ public class Tile {
 
   private int column;
   private int row;
+  private int rackPlace;
 
 
   /**

@@ -20,7 +20,6 @@ class GameBoardTest<gameBoardTest> {
   @Test
   void isSpotNextFree() {
 
-    assertEquals(gameBoardTest.isSpotNextFree(1, 0), false);
   }
 
   @Test
@@ -38,7 +37,7 @@ class GameBoardTest<gameBoardTest> {
   @Test
   void testPlaceTile() {
   }
-  
+
   @Test
   void countScore() {
   }
