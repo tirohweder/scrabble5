@@ -1,5 +1,6 @@
 package com.scrab5.core.game;
 
+import com.scrab5.util.database.DictionaryScanner;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -308,13 +309,14 @@ public class GameBoard {
   public boolean checkWordsLegit() {
     ArrayList<String> gameWords = getWords();
     Iterator<String> iter = gameWords.iterator();
-
-    //while (iter.hasNext()) {
-    //  if (!UseDatabase.wordExists(iter.next())) {
-    //    return false;
-    //  }
-    //}
+    System.out.println(gameWords.toString());
+    while (iter.hasNext()) {
+      if (DictionaryScanner.scan(iter.next())) {
+        return false;
+      }
+    }
     return true;
+
   }
 
 

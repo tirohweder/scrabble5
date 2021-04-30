@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0743928f-0e9f-486e-853e-547738433791" name="Default Changelist" comment="">
+    <list default="true" id="df04cde6-6401-4dbb-8e47-e95a11bfc242" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/DictionaryScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/DictionaryScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/ScannerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/ScannerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +32,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
-  <component name="RunManager" selected="JUnit.GameBoardTest.isSpotNextFree">
+  <component name="RunManager" selected="JUnit.GameBoardTest.checkWordsLegit">
     <configuration name="App" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.scrab5.ui.App" />
       <module name="scrabble5" />
@@ -41,12 +46,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SuperMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.main.SuperMain" />
+    <configuration name="DictionaryScanner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.util.database.DictionaryScanner" />
       <module name="scrabble5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.scrab5.main.*" />
+          <option name="PATTERN" value="com.scrab5.util.database.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -54,7 +59,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameBoardTest.getTile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameBoardTest.checkWordsLegit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
         <pattern>
@@ -64,23 +80,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
       <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
-      <option name="METHOD_NAME" value="getTile" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameBoardTest.getWords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="scrabble5" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.scrab5.core.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
-      <option name="METHOD_NAME" value="getWords" />
+      <option name="METHOD_NAME" value="checkWordsLegit" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -113,6 +113,22 @@
       <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
       <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
       <option name="METHOD_NAME" value="isSpotNextFree" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScannerTest.testScan" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="scrabble5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scrab5.util.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.scrab5.util.database" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.util.database.ScannerTest" />
+      <option name="METHOD_NAME" value="testScan" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -171,21 +187,21 @@
     </configuration>
     <list>
       <item itemvalue="Application.App" />
-      <item itemvalue="Application.SuperMain" />
-      <item itemvalue="JUnit.GameBoardTest.getWords" />
-      <item itemvalue="JUnit.GameBoardTest.getTile" />
       <item itemvalue="JUnit.GameBoardTest.isSpotFree" />
       <item itemvalue="JUnit.GameBoardTest.isSpotNextFree" />
       <item itemvalue="Maven.depencyTest" />
       <item itemvalue="Maven.scrabble5 [clean,package]" />
+      <item itemvalue="JUnit.ScannerTest.testScan" />
+      <item itemvalue="JUnit.GameBoardTest.checkWordsLegit" />
+      <item itemvalue="Application.DictionaryScanner" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameBoardTest.checkWordsLegit" />
+        <item itemvalue="Application.DictionaryScanner" />
+        <item itemvalue="JUnit.ScannerTest.testScan" />
         <item itemvalue="JUnit.GameBoardTest.isSpotNextFree" />
         <item itemvalue="JUnit.GameBoardTest.isSpotFree" />
-        <item itemvalue="JUnit.GameBoardTest.getWords" />
-        <item itemvalue="JUnit.GameBoardTest.getTile" />
-        <item itemvalue="Application.SuperMain" />
       </list>
     </recent_temporary>
   </component>
@@ -215,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619681874835</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/util/database/UseDatabase.java">
+      <created>1619781258739</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1619781258739</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -9,14 +9,16 @@ public class DictionaryScanner {
   /**
    * Scans the created file of the dictionary for the word searchedWord and returns if its
    * contained.
-   * 
-   * @author lengist
+   *
    * @param searchedWord the String of the laid Word to check
    * @return boolean of the file contains a searched word
+   * @author lengist
    */
+
+  //TO-DO gameSession.getCurrentDic();
   public static boolean scan(String searchedWord) {
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + DictionaryParser.getFileName());
+        + "eng.txt");
     boolean found = false;
 
     try {

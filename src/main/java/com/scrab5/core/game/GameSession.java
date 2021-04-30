@@ -73,6 +73,7 @@ public class GameSession {
   private static int roundNumber = 0;
   private static boolean canEnd = false;
   private static Player currentPlayer;
+  private static String currentDic;
 
   // initialize bag fills the bag with the selected tiles
 
