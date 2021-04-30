@@ -60,7 +60,7 @@
             </Label>
             <Label fx:id="ready1" layoutX="925.0" layoutY="183.0" prefHeight="25.0" prefWidth="96.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label layoutX="925.0" layoutY="222.0" prefHeight="25.0" prefWidth="96.0" textFill="#fefff2">
@@ -76,6 +76,31 @@
             <Label layoutX="925.0" layoutY="299.0" prefHeight="25.0" prefWidth="96.0" textFill="#fefff2">
                <font>
                   <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="playerNameStats1" layoutX="301.0" layoutY="495.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="301.0" layoutY="523.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="301.0" layoutY="552.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="301.0" layoutY="581.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="422.0" layoutY="495.0" prefHeight="15.0" prefWidth="68.0" text="Chandlerking" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
          </children>

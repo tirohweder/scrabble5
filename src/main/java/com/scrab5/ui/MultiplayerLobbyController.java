@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 public class MultiplayerLobbyController extends Controller implements Initializable {
 
   @FXML
-  private Label player1, ready1;
+  private Label player1, ready1, playerNameStats1;
 
   private boolean isReady1 = false;
 
