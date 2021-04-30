@@ -1,6 +1,8 @@
-package com.scrab5.util.database;
+package com.scrab5.util.textParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.scrab5.util.database.DictionaryParser;
 import java.io.File;
 import org.junit.jupiter.api.Test;
 
@@ -8,7 +10,7 @@ class ParserTest {
 
   /**
    * Tests the creation of the new filtered file
-   * 
+   *
    * @author lengist
    */
   @Test

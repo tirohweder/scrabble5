@@ -118,7 +118,7 @@ class GameBoardTest {
 
     //ArrayList<String> test = gameBoardTest.getWords();
     // System.out.println(test.get(0));
-    System.out.println(gameBoardTest.checkWordsLegit());
+    //System.out.println(gameBoardTest.checkWordsLegit());
 
     assertEquals(true, gameBoardTest.checkWordsLegit());
 

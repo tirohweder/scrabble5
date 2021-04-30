@@ -310,12 +310,14 @@ public class GameBoard {
     ArrayList<String> gameWords = getWords();
     Iterator<String> iter = gameWords.iterator();
     System.out.println(gameWords.toString());
-    while (iter.hasNext()) {
-      if (DictionaryScanner.scan(iter.next())) {
-        return false;
-      }
-    }
-    return true;
+
+    return DictionaryScanner.scan((gameWords.get(0)));
+    //while (iter.hasNext()) {
+    // if (DictionaryScanner.scan(iter.next())) {
+    //   return false;
+    //  }
+    //}
+    //return true;
 
   }
 
