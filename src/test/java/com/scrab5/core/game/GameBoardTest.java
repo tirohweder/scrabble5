@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
-class GameBoardTest<gameBoardTest> {
+class GameBoardTest {
 
-  GameBoard gameBoardTest = new GameBoard();
+  private GameBoard gameBoardTest = new GameBoard();
 
 
   @Test
@@ -102,6 +102,31 @@ class GameBoardTest<gameBoardTest> {
     gameBoardTest.placeTile(new Tile("w", 3), 6, 14);
 
     assertEquals(resultArray, gameBoardTest.getWords());
+
+  }
+
+  @Test
+  void checkWordsLegit() {
+    gameBoardTest.placeTile(new Tile("H", 3), 0, 0);
+    gameBoardTest.placeTile(new Tile("E", 3), 0, 1);
+    gameBoardTest.placeTile(new Tile("L", 3), 0, 2);
+    gameBoardTest.placeTile(new Tile("L", 3), 0, 3);
+
+    assertEquals(true, gameBoardTest.checkWordsLegit());
+
+    gameBoardTest.placeTile(new Tile("W", 3), 2, 0);
+    gameBoardTest.placeTile(new Tile("E", 3), 2, 1);
+    gameBoardTest.placeTile(new Tile("L", 3), 2, 2);
+    gameBoardTest.placeTile(new Tile("L", 3), 2, 3);
+
+    assertEquals(true, gameBoardTest.checkWordsLegit());
+
+    gameBoardTest.placeTile(new Tile("X", 3), 4, 0);
+    gameBoardTest.placeTile(new Tile("X", 3), 4, 1);
+    gameBoardTest.placeTile(new Tile("X", 3), 4, 2);
+    gameBoardTest.placeTile(new Tile("X", 3), 4, 3);
+
+    assertEquals(false, gameBoardTest.checkWordsLegit());
 
   }
 

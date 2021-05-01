@@ -23,7 +23,7 @@ class DeleteTest {
     try {
       stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-      assertEquals(rs.next(), false);
+      assertEquals(false, rs.next());
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -46,7 +46,7 @@ class DeleteTest {
     try {
       stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-      assertEquals(rs.next(), false);
+      assertEquals(false, rs.next());
     } catch (SQLException e) {
       e.printStackTrace();
     }

@@ -32,12 +32,12 @@ class UseTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    assertEquals(letter[0], "A");
-    assertEquals(point[0], 4);
-    assertEquals(letter[1], "B");
-    assertEquals(point[1], 1);
-    assertEquals(letter[2], "C");
-    assertEquals(point[2], 2);
+    assertEquals("A", letter[0]);
+    assertEquals(4, point[0]);
+    assertEquals("B", letter[1]);
+    assertEquals(1, point[1]);
+    assertEquals("C", letter[2]);
+    assertEquals(2, point[2]);
     cdb.disconnect();
   }
 
@@ -49,7 +49,7 @@ class UseTest {
   @Test
   void testTablePlayerIsEmpty() {
     CreateDatabase cdb = new CreateDatabase();
-    assertEquals(UseDatabase.tablePlayerIsEmpty(), true);
+    assertEquals(true, UseDatabase.tablePlayerIsEmpty());
     cdb.disconnect();
   }
 
@@ -75,8 +75,8 @@ class UseTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    assertEquals(name[0], "Alpha");
-    assertEquals(name[1], "Beta");
+    assertEquals("Alpha", name[0]);
+    assertEquals("Beta", name[1]);
     cdb.disconnect();
   }
 
@@ -95,7 +95,8 @@ class UseTest {
   void testPlayerExists() {
     CreateDatabase cdb = new CreateDatabase();
     FillDatabase.createPlayer("Laura", null);
-    assertEquals(UseDatabase.playerExists("Laura"), true);
+    assertEquals(true, UseDatabase.playerExists("Laura"));
+    assertEquals(false, UseDatabase.playerExists("Peter"));
     cdb.disconnect();
   }
 
