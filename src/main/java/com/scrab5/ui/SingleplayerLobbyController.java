@@ -3,7 +3,6 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
@@ -14,38 +13,88 @@ import javafx.scene.input.MouseEvent;
  * @author mherre
  */
 
-public class SingleplayerLobbyController extends Controller implements Initializable {
+public class SingleplayerLobbyController extends LobbyController implements Initializable {
+
+  private int playerAmount = 1;
+  private boolean[] freeSpaces = {true, true, true};
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // TODO Auto-generated method stub
+    this.player1.setText(Data.getCurrentUser());
+    this.ready1.setText("Not Ready");
 
   }
 
-  /**
-   * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
-   * predecessor "MainMenu" scene
-   * 
-   * @author mherre
-   * @param event
-   * @throws IOException
-   */
-  @FXML
-  private void back(MouseEvent event) throws IOException {
+  @Override
+  protected void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     App.setRoot("MainMenu");
+
   }
 
-  /**
-   * Event method that is called when the "Ready"-button is clicked.
-   * 
-   * @author mherre
-   * @param event
-   * @throws IOException
-   */
-  @FXML
-  private void ready(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
-    App.setRoot("SinglePlayer");
+  @Override
+  protected void addPlayer(MouseEvent event) {
+    this.playerAmount++;
+
+    for (int i = 0; i < freeSpaces.length; i++) {
+      if (freeSpaces[i]) {
+        switch (i) {
+          case 0:
+            this.player2.setText("CPU 2");
+            this.ready2.setText("Ready");
+            this.kick2.setOpacity(1.0);
+            break;
+          case 1:
+            this.player3.setText("CPU 3");
+            this.ready3.setText("Ready");
+            this.kick3.setOpacity(1.0);
+            break;
+          case 2:
+            this.player4.setText("CPU 4");
+            this.ready4.setText("Ready");
+            this.kick4.setOpacity(1.0);
+            break;
+          default:
+            break;
+        }
+        this.freeSpaces[i] = false;
+
+        break;
+      }
+    }
+
   }
+
+  @Override
+  protected void kickPlayer2(MouseEvent event) {
+
+    this.player2.setText("");
+    this.ready2.setText("");
+    this.kick2.setOpacity(0);
+    this.playerAmount--;
+    this.freeSpaces[0] = true;
+  }
+
+  @Override
+  protected void kickPlayer3(MouseEvent event) {
+    this.player3.setText("");
+    this.ready3.setText("");
+    this.kick3.setOpacity(0);
+    this.playerAmount--;
+    this.freeSpaces[1] = true;
+
+
+  }
+
+  @Override
+  protected void kickPlayer4(MouseEvent event) {
+
+    this.player4.setText("");
+    this.ready4.setText("");
+    this.kick4.setOpacity(0);
+    this.playerAmount--;
+    this.freeSpaces[2] = true;
+
+  }
+
 }
