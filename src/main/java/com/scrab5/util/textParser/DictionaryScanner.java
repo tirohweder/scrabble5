@@ -17,12 +17,12 @@ public class DictionaryScanner {
 
   // TO-DO gameSession.getCurrentDic();
   public static boolean scan(String searchedWord) {
-    File file =
-        new File(System.getProperty("user.dir") + System.getProperty("file.separator") + "eng.txt");
+    File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + "src/main/resources/com/scrab5/util/textParser/" + "eng.txt");
     boolean found = false;
 
     try {
-      Scanner scanner = new Scanner(file);
+      Scanner scanner = new Scanner(fileOne);
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
         if (line.contains(searchedWord)) {
