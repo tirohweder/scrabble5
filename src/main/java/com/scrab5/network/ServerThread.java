@@ -48,7 +48,7 @@ public class ServerThread extends Threads {
    * @author nitterhe
    */
   public void run() {
-    System.out.println("s");
+
     this.running = true;
     try {
       Message message;
@@ -84,7 +84,6 @@ public class ServerThread extends Threads {
           default:
             break;
         }
-        wait(50);
       }
     } catch (Exception e) {
       // requires Exception handling

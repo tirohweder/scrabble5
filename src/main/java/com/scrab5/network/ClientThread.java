@@ -42,7 +42,7 @@ public class ClientThread extends Threads {
    */
   public void run() {
     this.running = true;
-    System.out.println("c");
+
     try {
       Message message;
       while (running) {
@@ -59,7 +59,6 @@ public class ClientThread extends Threads {
           default:
             break;
         }
-        wait(50);
       }
     } catch (Exception e) {
       // requires Exception handling
