@@ -1,14 +1,16 @@
 package com.scrab5.ui;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
-import com.scrab5.core.game.GameBoard;
-import com.scrab5.core.game.GameSession;
+import com.scrab5.core.game.*;
+import com.scrab5.core.player.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -31,7 +33,10 @@ public class SingleplayerController implements Initializable {
   private ImageView clickedLetter;
 
   private Image markedTile;
-
+  
+  public ArrayList<Player> playersList = new ArrayList<>();
+  
+  
 
   /**
    * @author apilgrim
@@ -46,19 +51,41 @@ public class SingleplayerController implements Initializable {
   private ImageView rackPlace5;
   private ImageView rackPlace6;
   private ImageView rackPlace7;
+  
+  Player owner;
 
   private ArrayList<String> unavailableTiles = new ArrayList<String>();
   private ArrayList<String> choosenTiles = new ArrayList<String>();
+  
+  private ArrayList<TextField> players = new ArrayList<TextField>();
+  
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     // TODO Auto-generated method stub
 
   }
+  
+  public void test() {
+    playersList.add(new Player("peter"));
+    playersList.add(new Player("karl"));
+    playersList.add(new Player("marta"));
+    playersList.add(new Player("Aaron"));
+  }
+  
+  private void initPlayers() {
+    Iterator<Player> it = playersList.iterator();
+    Iterator<TextField> pIt = players.iterator();
+    while (it.hasNext()) {
+      players.add(new TextField());
+      pIt.next().setText(it.next().getName());
+      pIt.next().localToScene(50, 700);
+      pIt.next().setFocusTraversable(false);
+    }
+  }
 
 
   /**
-   * <<<<<<< HEAD
    * 
    * @author apilgirm
    * @param event - MouseEvent
