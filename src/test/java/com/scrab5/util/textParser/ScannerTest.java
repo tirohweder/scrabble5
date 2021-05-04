@@ -13,8 +13,8 @@ class ScannerTest {
    */
   @Test
   void testScan() {
-    DictionaryParser.setFileName("testScan.txt");
-    DictionaryParser.createSearchableFile("words.txt");
+    DictionaryParser.setCurrentDictionary("words.txt");
+    DictionaryParser.parseFiles("words.txt");
 
     Assertions.assertEquals(true, DictionaryScanner.scan("ZZZ"));
     assertEquals(false, DictionaryScanner.scan("XXXX"));

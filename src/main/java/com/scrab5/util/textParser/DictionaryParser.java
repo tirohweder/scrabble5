@@ -12,17 +12,27 @@ import java.nio.charset.StandardCharsets;
 
 public class DictionaryParser {
   static BufferedWriter bufWriter = null;
-  static String newFileName = null;
+  private static String currentDictionary = "words.txt";
+  private static String newFileName = null;
 
   /**
-   * Sets the name of the new file dependent on the new dictionary that needs to be inserted.
+   * Sets the name of the current dictionary based on the new dictionary that needs to be inserted.
    * 
    * @author lengist
-   * @param name String representing the new file name. For example name = english, if a english
-   *        dictionary is inserted.
+   * @param name String representing the dictionary file name.
    */
-  public static void setFileName(String name) {
-    newFileName = name;
+  public static void setCurrentDictionary(String dictionary) {
+    currentDictionary = dictionary;
+  }
+
+  /**
+   * Returns the name of the current inserted and used dictionary file
+   * 
+   * @author lengist
+   * @return String representation of the current inserted dictionary file name
+   */
+  public static String getFileName() {
+    return currentDictionary;
   }
 
   /**
@@ -31,7 +41,7 @@ public class DictionaryParser {
    * @author lengist
    * @return String representation of the new file name
    */
-  public static String getFileName() {
+  public static String getNewFileName() {
     return newFileName;
   }
 

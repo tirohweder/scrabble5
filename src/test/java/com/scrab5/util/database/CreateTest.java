@@ -56,7 +56,7 @@ class CreateTest {
   @Test
   void testInsertLetters() {
     CreateDatabase cdb = new CreateDatabase();
-    FillDatabase.insertLetters("L", 4);
+    FillDatabase.insertLetters("L", 4, 5);
     Statement stm;
 
     try {
@@ -64,6 +64,7 @@ class CreateTest {
       ResultSet rs = stm.executeQuery("SELECT * FROM Letters");
       assertEquals("L", rs.getString("Letter"));
       assertEquals(4, rs.getInt("Points"));
+      assertEquals(5, rs.getInt("Occurrence"));
     } catch (SQLException e) {
       e.printStackTrace();
     }
