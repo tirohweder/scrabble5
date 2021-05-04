@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class RealLoginController extends Controller implements Initializable {
 
   @FXML
-  private ComboBox profileSelection;
+  private ComboBox<String> profileSelection;
   @FXML
   private Label nameDisplaying;
   private boolean isProfileSelected = false;

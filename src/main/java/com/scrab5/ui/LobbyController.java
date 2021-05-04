@@ -8,13 +8,14 @@ import javafx.scene.input.MouseEvent;
 
 public abstract class LobbyController extends Controller {
   @FXML
-  protected ImageView kick2, kick3, kick4;
+  protected ImageView kick2, kick3, kick4, addPlayerButton;
   @FXML
   protected Label player1, player2, player3, player4;
   @FXML
   protected Label ready1, ready2, ready3, ready4;
 
-  private boolean isReady1 = false;
+  protected boolean isReady[] = {false, false, false, false};
+  protected boolean isDictionarySelected = false;
 
 
 
@@ -28,13 +29,24 @@ public abstract class LobbyController extends Controller {
   @FXML
   private void ready(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    if (!isReady1) {
+    if (!isReady[0]) {
       this.ready1.setText("Ready");
-      this.isReady1 = true;
+      this.isReady[0] = true;
+
+      if (this.isReady[1] && this.isReady[2] && this.isReady[3] && this.isDictionarySelected) {
+        App.setRoot("SinglePlayer");
+
+      } else {
+        String message = "You must select a dictionary in order to play the game!";
+        PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+        pum.show();
+
+      }
 
     } else {
       this.ready1.setText("Not Ready");
-      this.isReady1 = false;
+      this.isReady[0] = false;
+
     }
   }
 
