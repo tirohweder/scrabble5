@@ -57,7 +57,9 @@ class UpdateTest {
   void testUpdateLetters() {
     CreateDatabase db = new CreateDatabase();
     FillDatabase.insertLetters("L", 4, 6);
-    FillDatabase.updateLetters("L", 2, 7);
+    FillDatabase.updatePointLetters("L", 2);
+    FillDatabase.updateOccurrenceLetters("L", 7);
+
     Statement stm;
     try {
       stm = Database.connection.createStatement();
