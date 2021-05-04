@@ -3,6 +3,7 @@ package com.scrab5.util.database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -87,6 +88,82 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     return ol;
+  }
+
+  /**
+   * Returns all the letters as array
+   * 
+   * @author lengist
+   * @return String array containing all letters saved in the database
+   */
+  public static String[] getAllLetter() {
+    ResultSet rs = null;
+    Statement stm;
+    ArrayList<String> letter = new ArrayList<String>();
+    try {
+      stm = connection.createStatement();
+      rs = stm.executeQuery("SELECT Letter FROM Letters");
+      while (rs.next()) {
+        letter.add(rs.getString(1));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    String[] letters = new String[letter.size()];
+    letters = letter.toArray(letters);
+    return letters;
+  }
+
+  /**
+   * Returns all the points of the letters as array
+   * 
+   * @author lengist
+   * @return integer array containing all points saved in the database
+   * 
+   *         code line to convert list to array from:
+   *         https://www.techiedelight.com/convert-list-integer-array-int/
+   */
+  public static int[] getAllPointsPerLetter() {
+    ResultSet rs = null;
+    Statement stm;
+    ArrayList<Integer> point = new ArrayList<Integer>();
+    try {
+      stm = connection.createStatement();
+      rs = stm.executeQuery("SELECT Points FROM Letters");
+      while (rs.next()) {
+        point.add(rs.getInt(1));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    int[] points = point.stream().mapToInt(Integer::intValue).toArray();
+    return points;
+  }
+
+  /**
+   * Returns all the Occurrences of the letters as array
+   * 
+   * @author lengist
+   * @return integer array containing all occurrences saved in the database
+   * 
+   *         code line to convert list to array from:
+   *         https://www.techiedelight.com/convert-list-integer-array-int/
+   */
+  public static int[] getAllOccurrences() {
+    ResultSet rs = null;
+    Statement stm;
+    ArrayList<Integer> occurrence = new ArrayList<Integer>();
+    try {
+      stm = connection.createStatement();
+      rs = stm.executeQuery("SELECT Occurrence FROM Letters");
+      while (rs.next()) {
+        occurrence.add(rs.getInt(1));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    int[] occurrences = occurrence.stream().mapToInt(Integer::intValue).toArray();
+    return occurrences;
   }
 
   /**

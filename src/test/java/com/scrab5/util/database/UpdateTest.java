@@ -56,14 +56,15 @@ class UpdateTest {
   @Test
   void testUpdateLetters() {
     CreateDatabase db = new CreateDatabase();
-    FillDatabase.insertLetters("L", 4);
-    FillDatabase.updateLetters("L", 2);
+    FillDatabase.insertLetters("L", 4, 6);
+    FillDatabase.updateLetters("L", 2, 7);
     Statement stm;
     try {
       stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Letters");
       assertEquals("L", rs.getString("Letter"));
       assertEquals(2, rs.getInt("Points"));
+      assertEquals(7, rs.getInt("Occurrence"));
     } catch (SQLException e) {
       e.printStackTrace();
     }
