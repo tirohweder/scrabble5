@@ -1,5 +1,11 @@
 package com.scrab5.util.database;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import org.junit.jupiter.api.Test;
+
 class UpdateTest {
 
   /**
@@ -7,31 +13,37 @@ class UpdateTest {
    * 
    * @author lengist
    */
+
+  @Test
+  void testUpdatePlayer() {
+    CreateDatabase db = new CreateDatabase();
+    FillDatabase.createPlayer("Laura", "Bild");
+    FillDatabase.updatePlayer("Name", "Laura", "Maria", 0, 0.0);
+    Statement stm;
+
+    try {
+      stm = Database.connection.createStatement();
+      ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+      assertEquals("Maria", rs.getString("Name"));
+      assertEquals("Bild", rs.getString("Picture"));
+      assertEquals(0, rs.getInt("TotalPoints"));
+      assertEquals(0, rs.getInt("PersonalHighscore"));
+      assertEquals(0, rs.getInt("LaidWords"));
+      assertEquals(0, rs.getInt("PointsPerWordRate"));
+      assertEquals(0, rs.getInt("LongestWord"));
+      assertEquals(0, rs.getInt("TotalPlayedGames"));
+      assertEquals(0, rs.getInt("TotalWins"));
+      assertEquals(0.0, rs.getDouble("WinRate"));
+      assertEquals("", rs.getString("FaveDic"));
+      assertEquals(50.0, rs.getDouble("Music"));
+      assertEquals(50.0, rs.getDouble("SoundEffect"));
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    db.disconnect();
+  }
+
   /*
-   * @Test void testUpdatePlayer() { CreateDatabase db = new CreateDatabase();
-   * FillDatabase.createPlayer("Laura", "Bild"); /* update the name:
-   */
-  /*
-   * FillDatabase.updatePlayer("Name", "Laura", "Maria", 0, 0.0); Statement stm; try {
-   * System.out.println("\n---------------CHANGE-IN-PLAYER-FROM-Laura-To-Maria---------"); stm =
-   * Database.connection.createStatement(); ResultSet rs = stm.executeQuery("SELECT * FROM Player");
-   * while (rs.next()) { System.out.println("Name: " + rs.getString("Name") + ", ");
-   * System.out.println("Picture: " + rs.getString("Picture") + ", ");
-   * System.out.println("Total points: " + rs.getString("TotalPoints") + ", ");
-   * System.out.println("Personal Highscore: " + rs.getString("PersonalHighscore") + ", ");
-   * System.out.println("Laid words: " + rs.getString("LaidWords") + ", ");
-   * System.out.println("Points per word rate: " + rs.getString("PointsPerWordRate") + ", ");
-   * System.out.println("Longest word: " + rs.getString("LongestWord") + ", ");
-   * System.out.println("Total played games: " + rs.getString("TotalPlayedGames") + ", ");
-   * System.out.println("Total wins: " + rs.getString("TotalWins") + ", ");
-   * System.out.println("Win rate: " + rs.getString("WinRate") + ", ");
-   * System.out.println("Favorite dictionary: " + rs.getString("FaveDic") + ", ");
-   * System.out.println("Music: " + rs.getString("Music") + ", ");
-   * System.out.println("Sound Effect: " + rs.getString("SoundEffect") + ", "); }
-   * System.out.println("---------------CHANGE-IN-PLAYER-FINISHED------------"); } catch
-   * (SQLException e) { e.printStackTrace(); } }
-   * 
-   * /*
    * 
    * @Test void testUpdateServer() { fail("Not yet implemented"); }
    */
@@ -41,17 +53,22 @@ class UpdateTest {
    * 
    * @author lengist
    */
-  /*
-   * @Test void testUpdateLetters() { CreateDatabase db = new CreateDatabase();
-   * FillDatabase.insertLetters("L", 4); /* updating:
-   */
-  /*
-   * FillDatabase.updateLetters("L", 2); Statement stm; try {
-   * System.out.println("\n---------------CHANGE-IN-LETTERS-FROM-4-To-2---------"); stm =
-   * Database.connection.createStatement(); ResultSet rs =
-   * stm.executeQuery("SELECT * FROM Letters"); while (rs.next()) { System.out.println("Letter: " +
-   * rs.getString("Letter") + ", "); System.out.println("Points: " + rs.getInt("Points") + ", "); }
-   * System.out.println("---------------CHANGE-IN-LETTERS-FINISHED------------"); } catch
-   * (SQLException e) { e.printStackTrace(); } }
-   */
+  @Test
+  void testUpdateLetters() {
+    CreateDatabase db = new CreateDatabase();
+    FillDatabase.insertLetters("L", 4, 6);
+    FillDatabase.updateLetters("L", 2, 7);
+    Statement stm;
+    try {
+      stm = Database.connection.createStatement();
+      ResultSet rs = stm.executeQuery("SELECT * FROM Letters");
+      assertEquals("L", rs.getString("Letter"));
+      assertEquals(2, rs.getInt("Points"));
+      assertEquals(7, rs.getInt("Occurrence"));
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    db.disconnect();
+  }
+
 }

@@ -5,10 +5,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 /*
  * @author apilgrim
@@ -95,17 +93,4 @@ public class MainMenuController extends Controller implements Initializable {
     App.setRoot("Profile");
 
   }
-
-  /**
-   * @author apilgrim
-   * @param event
-   * 
-   *        Is called when "Exit" - button is clicked, closes the application and ends the programm
-   */
-  @FXML
-  private void close(MouseEvent event) {
-    Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
-    s.close();
-  }
-
 }

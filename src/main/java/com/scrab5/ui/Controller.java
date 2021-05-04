@@ -1,5 +1,6 @@
 package com.scrab5.ui;
 
+import com.scrab5.util.database.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -51,6 +52,7 @@ public abstract class Controller {
 
   @FXML
   private void close(MouseEvent event) {
+    Database.disconnect();
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();
   }

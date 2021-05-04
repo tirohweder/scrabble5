@@ -41,24 +41,29 @@ public class Rack {
    * @param pos
    * @author trohwede
    */
-  public void add_to_rack(Tile t, int pos) {
+  public void addToRack(Tile t, int pos) {
     this.rack[pos] = t;
   }
 
 
   /**
-   * @param t
    * @param pos
    * @author trohwede
    */
-  public void remove_tile_from_rack(Tile t, int pos) {
-    this.rack[pos] = null;
+  public boolean removeTileFromRack(int pos) {
+    if (this.rack[pos] != null) {
+      this.rack[pos] = null;
+      return true;
+    } else {
+      return false;
+    }
+
   }
 
   /**
    * @author trohwede
    */
-  public void reset_rack() {
+  public void resetRack() {
     for (int i = 6; i >= 0; i--) {
       this.rack[i] = null;
     }

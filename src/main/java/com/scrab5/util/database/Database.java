@@ -85,8 +85,9 @@ public class Database {
    * 
    * @author lengist
    */
-  protected void disconnect() {
+  public static void disconnect() {
     try {
+      FillDatabase.closeAllStatements();
       connection.close();
     } catch (SQLException e) {
       System.out.println("Problem with closing connection: " + e.getMessage());

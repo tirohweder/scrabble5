@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.RealLoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.RealLoginController">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1360.0">
          <children>
@@ -34,7 +34,7 @@
             <ComboBox fx:id="profileSelection" layoutX="478.0" layoutY="432.0" onAction="#setSelectedProfile" onMouseClicked="#dontShow" opacity="0.0" prefHeight="50.0" prefWidth="353.0" />
             <Label fx:id="nameDisplaying" layoutX="484.0" layoutY="442.0" prefHeight="27.0" prefWidth="335.0" textFill="#fefff2">
                <font>
-                  <Font name="Arial" size="24.0" />
+                  <Font name="Arial Rounded MT Bold" size="24.0" />
                </font>
             </Label>
          </children>

@@ -10,7 +10,7 @@
 fxml file which contains all images and information for the UI screen of the Main Menu. It also links all Lobbys and Information after the first Login/ Acoount Creation
  -->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MainMenuController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MainMenuController">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1360.0">
          <children>
@@ -49,7 +49,7 @@ fxml file which contains all images and information for the UI screen of the Mai
                   <Image url="@images/MM_ExitButton.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="34.0" fitWidth="117.0" layoutX="27.0" layoutY="14.0" onMouseClicked="#close" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="close" fitHeight="34.0" fitWidth="117.0" layoutX="27.0" layoutY="14.0" onMouseClicked="#close" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/MM_ExitButton_Clicked.png" />
                </image>

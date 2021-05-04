@@ -1,158 +1,101 @@
 package com.scrab5.core.game;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import com.scrab5.core.player.Player;
 import com.scrab5.util.database.UseDatabase;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class GameSession {
 
 
-  /**
-   * @return
-   */
   public static GameBoard getGameBoard() {
     return gameBoard;
   }
 
-  /**
-   * @param gameBoard
-   * @author trohwede
-   */
   public static void setGameBoard(GameBoard gameBoard) {
     GameSession.gameBoard = gameBoard;
   }
 
-  /**
-   * @return
-   * @author trohwede
-   */
   public static BagOfTiles getBag() {
     return bag;
   }
 
-  /**
-   * @param bag
-   * @author trohwede
-   */
   public static void setBag(BagOfTiles bag) {
     GameSession.bag = bag;
   }
 
-  /**
-   * @return
-   * @author trohwede
-   */
-  public static Player[] getList_of_players() {
-    return list_of_players;
+  public static ArrayList<Player> getListOfPlayers() {
+    return listOfPlayers;
   }
 
-  /**
-   * @param list_of_players
-   * @author trohwede
-   */
-  public static void setList_of_players(Player[] list_of_players) {
-    GameSession.list_of_players = list_of_players;
+  public static void setListOfPlayers(ArrayList<Player> listOfPlayers) {
+    GameSession.listOfPlayers = listOfPlayers;
   }
 
-  /**
-   * @return
-   * @author trohwede
-   */
-  public static int getSkipped_turn() {
-    return skipped_turn;
+  public static int getSkippedTurn() {
+    return skippedTurn;
   }
 
-  /**
-   * @param skipped_turn
-   * @author trohwede
-   */
-  public static void setSkipped_turn(int skipped_turn) {
-    GameSession.skipped_turn = skipped_turn;
+  public static void setSkippedTurn(int skippedTurn) {
+    GameSession.skippedTurn = skippedTurn;
   }
 
-  /**
-   * @return
-   * @author trohwede
-   */
-  public static int getRound_number() {
-    return round_number;
+  public static int getRoundNumber() {
+    return roundNumber;
   }
 
-  /**
-   * @param round_number
-   * @author trohwede
-   */
-  public static void setRound_number(int round_number) {
-    GameSession.round_number = round_number;
+  public static void setRoundNumber(int roundNumber) {
+    GameSession.roundNumber = roundNumber;
   }
 
-  /**
-   * @return
-   * @author trohwede
-   */
-  public static boolean isCan_end() {
-    return can_end;
+  public static boolean isCanEnd() {
+    return canEnd;
   }
 
-  /**
-   * @param can_end
-   * @author trohwede
-   */
-  public static void setCan_end(boolean can_end) {
-    GameSession.can_end = can_end;
+  public static void setCanEnd(boolean canEnd) {
+    GameSession.canEnd = canEnd;
   }
 
-  /**
-   * @return
-   * @author trohwede
-   */
-  public static Player getCurrent_Player() {
-    return current_Player;
+  public static Player getCurrentPlayer() {
+    return currentPlayer;
   }
 
-  /**
-   * @param current_Player
-   * @author trohwede
-   */
-  public static void setCurrent_Player(Player current_Player) {
-    GameSession.current_Player = current_Player;
+  public static void setCurrentPlayer(Player currentPlayer) {
+    GameSession.currentPlayer = currentPlayer;
   }
-
 
   private static GameBoard gameBoard = new GameBoard();
   private static BagOfTiles bag = new BagOfTiles();
-  private static Player[] list_of_players;
-  private static int skipped_turn = 0;
-  private static int round_number = 0;
-  private static boolean can_end = false;
-  private static Player current_Player;
+  private static ArrayList<Player> listOfPlayers = new ArrayList<>();
+  private static int skippedTurn = 0;
+  private static int roundNumber = 0;
+  private static boolean canEnd = false;
+  private static Player currentPlayer;
+  private static String currentDic;
 
   // initialize bag fills the bag with the selected tiles
 
   /**
    * Starts GameSession with up to 4 Players.
    *
-   * @param gamePlayer
    * @throws SQLException
    * @author trohwede
    */
-  public GameSession(Player[] gamePlayer) throws SQLException {
-    list_of_players = new Player[gamePlayer.length];
-    current_Player = list_of_players[0];
+  public GameSession(ArrayList<Player> listOfPlayers) throws SQLException {
+    this.listOfPlayers = listOfPlayers;
+    currentPlayer = listOfPlayers.get(0);
 
     initializeBag();
-
-    for (int i = 0; i < gamePlayer.length; i++) {
-      list_of_players[i].getRack().fill(bag);
+    Iterator<Player> iter = listOfPlayers.iterator();
+    while (iter.hasNext()) {
+      iter.next().getRack().fill(bag);
     }
+
 
   }
 
-
-  /**
-   * @author trohwede
-   */
   public void initializeBag() throws SQLException {
     ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
@@ -160,18 +103,24 @@ public class GameSession {
     }
   }
 
-  /**
-   * @param bag
-   * @param p
-   * @param gameBoard
-   * @author trohwede
-   */
-  public void turn(BagOfTiles bag, Player p, GameBoard gameBoard) {
 
+  public boolean play(Tile t, int rackNumber, int row, int column) {
+    if (gameBoard.checkWordsLegit()) {
+      int points = gameBoard.countScore();
+      roundNumber++;
+      setCurrentPlayer();
+      gameBoard.finishTurn();
+
+
+    }
+    return true;
   }
 
-  /**
-   * @author trohwede
-   */
-  public void endGame() {}
+  public void setCurrentPlayer() {
+    currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
+  }
+
+
+  public void endGame() {
+  }
 }

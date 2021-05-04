@@ -96,10 +96,12 @@ public class FillDatabase extends Database {
    * @param name String with name of the user
    */
   public static void deleteTable(String name) {
+    Statement statement;
     try {
-      Statement statement = connection.createStatement();
+      statement = connection.createStatement();
       String sql = "DELETE FROM " + name;
       statement.execute(sql);
+      statement.close();
     } catch (SQLException e) {
       System.out.println("Could not perform deletion in table " + name);
       System.out.println(e);
@@ -118,11 +120,11 @@ public class FillDatabase extends Database {
       pstmDelete = connection.prepareStatement(sql);
       pstmDelete.setString(1, name);
       pstmDelete.executeUpdate();
-
     } catch (SQLException e) {
       System.out.println("Could not perform deletion from player " + name);
       System.out.println(e);
     }
+    closeStatement("delete");
   }
 
   /**
@@ -142,6 +144,7 @@ public class FillDatabase extends Database {
       System.out.println("Could not perform deletion from server " + name);
       System.out.println(e);
     }
+    closeStatement("delete");
   }
 
   /**
@@ -155,7 +158,6 @@ public class FillDatabase extends Database {
    */
   public static boolean createPlayer(String name, String picture) {
     boolean created = false;
-
     try {
       pstmPlayer = connection.prepareStatement(
           "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
@@ -172,14 +174,14 @@ public class FillDatabase extends Database {
       pstmPlayer.setInt(9, 0);
       pstmPlayer.setDouble(10, 0.0);
       pstmPlayer.setString(11, "");
-      pstmPlayer.setDouble(12, 100.0);
-      pstmPlayer.setDouble(13, 100.0);
+      pstmPlayer.setDouble(12, 50.0);
+      pstmPlayer.setDouble(13, 50.0);
       pstmPlayer.executeUpdate();
       created = true;
     } catch (SQLException e) {
       e.printStackTrace();
     }
-
+    closeStatement("player");
     return created;
   }
 
@@ -319,6 +321,7 @@ public class FillDatabase extends Database {
         System.out.println(e.getMessage());
       }
     }
+    closeStatement("player");
   }
 
   /**
@@ -336,6 +339,7 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    closeStatement("server");
   }
 
 
@@ -356,6 +360,7 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    closeStatement("server");
   }
 
   /**
@@ -366,15 +371,18 @@ public class FillDatabase extends Database {
    * @param letter String with the letter that needs to be inserted in the database
    * @param point Integer with the correpsonding points for the given letter
    */
-  public static void insertLetters(String letter, int point) {
+  public static void insertLetters(String letter, int point, int occurrence) {
     try {
-      pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUES (?,?);");
+      pstmDic = connection
+          .prepareStatement("INSERT INTO Letters (Letter, Points, Occurrence) VALUES (?,?, ?);");
       pstmDic.setString(1, letter);
       pstmDic.setInt(2, point);
+      pstmDic.setInt(3, occurrence);
       pstmDic.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    closeStatement("dic");
   }
 
   /**
@@ -387,10 +395,11 @@ public class FillDatabase extends Database {
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
         "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+    int[] occurrence =
+        {9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1};
     for (int i = 0; i < 26; i++) {
-      insertLetters(letter[i], points[i]);
+      insertLetters(letter[i], points[i], occurrence[i]);
     }
-
   }
 
   /**
@@ -400,24 +409,19 @@ public class FillDatabase extends Database {
    * @param letter String with the letter which points need to be updated in the database
    * @param point Integer with the correpsonding points for the given letter
    */
-  public static void updateLetters(String letter, int point) {
+  public static void updateLetters(String letter, int point, int occurrence) {
     try {
-      pstmDic = connection.prepareStatement("UPDATE Letters SET Points = ? WHERE Letter = ?");
+      pstmDic = connection
+          .prepareStatement("UPDATE Letters SET Points = ?, Occurrence = ? WHERE Letter = ?");
       pstmDic.setInt(1, point);
       pstmDic.setString(2, letter);
+      pstmDic.setInt(3, occurrence);
       pstmDic.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    closeStatement("dic");
   }
-
-  public static void main(String[] args) throws IOException {
-    CreateDatabase cb = new CreateDatabase();
-    fillLetters();
-  }
-
-
-
 }
 
 
