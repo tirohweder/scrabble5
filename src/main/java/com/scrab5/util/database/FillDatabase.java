@@ -373,7 +373,7 @@ public class FillDatabase extends Database {
    */
   public static void insertLetters(String letter, int point, int occurrence) {
     try {
-      pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points, Occurrence) VALUES (?,?,?);");
+      pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points, Occurrence) VALUES (?,?, ?);");
       pstmDic.setString(1, letter);
       pstmDic.setInt(2, point);
       pstmDic.setInt(3, occurrence);
@@ -400,38 +400,21 @@ public class FillDatabase extends Database {
       insertLetters(letter[i], points[i], occurrence[i]);
     }
   }
-
+  
   /**
-   * Updates the occurrence for a particular letter if a change is needed.
+   * Updates the point for a particular letter if a change is needed.
    * 
    * @author lengist
-   * @param letter String with the letter where the occurrence needs to be updated in the database
-   * @param occurrence Integer with the new occurrence for the given letter
+   * @param letter String with the letter which points need to be updated in the database
+   * @param point Integer with the correpsonding points for the given letter
    */
-  public static void updateOccurrenceLetters(String letter, int occurrence) {
+  public static void updateLetters(String letter, int point, int occurrence) {
     try {
-      pstmDic = connection.prepareStatement("UPDATE Letters SET Occurrence = ? WHERE Letter = ?");
-      pstmDic.setInt(1, occurrence);
-      pstmDic.setString(2, letter);
-      pstmDic.executeUpdate();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    closeStatement("dic");
-  }
-
-  /**
-   * Updates the points for a particular letter if a change is needed.
-   * 
-   * @author lengist
-   * @param letter String with the letter where the points need to be updated in the database
-   * @param point Integer with the new points for the given letter
-   */
-  public static void updatePointLetters(String letter, int point) {
-    try {
-      pstmDic = connection.prepareStatement("UPDATE Letters SET Points = ? WHERE Letter = ?");
+      pstmDic = connection
+          .prepareStatement("UPDATE Letters SET Points = ?, Occurrence = ? WHERE Letter = ?");
       pstmDic.setInt(1, point);
       pstmDic.setString(2, letter);
+      pstmDic.setInt(3, occurrence);
       pstmDic.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();

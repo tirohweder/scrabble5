@@ -45,6 +45,7 @@ public class MultiplayerLobbyController extends Controller implements Initializa
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     Data.getPlayerServer().shutDownServer();
+    Data.getPlayerClient().stopClientThread();
     App.setRoot("MultiplayerOverview");
   }
 

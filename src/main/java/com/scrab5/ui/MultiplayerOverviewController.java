@@ -78,7 +78,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    Data.getPlayerClient().stopClientThread();
     App.setRoot("MainMenu");
   }
 

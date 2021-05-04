@@ -42,6 +42,7 @@ public class ClientThread extends Threads {
    */
   public void run() {
     this.running = true;
+    System.out.println("c");
     try {
       Message message;
       while (running) {
@@ -78,6 +79,7 @@ public class ClientThread extends Threads {
         this.socketToServer = new Socket(serverdata.getIP4Address(), serverdata.getPort());
         this.toServer = new ObjectOutputStream(socketToServer.getOutputStream());
         this.fromServer = new ObjectInputStream(socketToServer.getInputStream());
+        this.start();
         sendMessageToServer(new ConnectMessage(this.client.getUsername(), this.client));
       } else {
         // requires Exception handling
@@ -104,19 +106,20 @@ public class ClientThread extends Threads {
   }
 
   /**
-   * Closes the current connection and streams to the server. Executed only after server sent
-   * DisconnectMessage.
+   * Sets the Thread attribute running = false. Closes the current connection and streams to the
+   * server.
    * 
    * @author nitterhe
    */
-  private void closeConnection() {
+  void closeConnection() {
     sendMessageToServer(new DisconnectMessage(sender));
     // popup: you have been disconnected
+    this.stopThread();
     try {
       this.socketToServer.close();
     } catch (Exception e) {
       // requires Exception handling
     }
-    running = false;
+
   }
 }

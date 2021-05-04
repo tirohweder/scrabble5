@@ -148,7 +148,6 @@ public class Client {
     if (clientThread == null) {
       clientThread = new ClientThread(this);
       clientThread.connectToServer(serverdata);
-      clientThread.start();
     }
   }
 
@@ -181,14 +180,14 @@ public class Client {
   }
 
   /**
-   * Stops the client by simply switching the Thread attribute running to false
+   * Stops the client by calling the disconnect method of the ClientThread.
    * 
    * @author nitterhe
    */
   public void stopClientThread() {
-    this.clientThread.stopThread();
+    if (this.clientThread.running)
+      this.clientThread.closeConnection();
   }
-
 
   /**
    * Sends ChatMessage to the server. Server will send it to all clients in the lobby.
