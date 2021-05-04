@@ -1,5 +1,9 @@
 package com.scrab5.ui;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -8,8 +12,15 @@ public class TileImage {
   private ImageView letterImage;
 
   public ImageView createTileImage(String letter) {
-//    Image picture = new Image(
-//        "file:resources/com/scrab5/ui/letter_Tiles/Tile _" + letter.toUpperCase() + "_.png");
+
+    System.out.println();
+    Image i = new Image(this.getClass().getResource("/com/scrab5/ui/images/Singleplayer.png").toString());
+    File f = new File(this.getClass().getResource("/com/scrab5/ui/images/Singleplayer.png").toString());
+    BufferedImage img = null;
+    try {
+        img = ImageIO.read(f);
+    } catch (IOException e) {
+    }
 //    letterImage.setImage(picture);
 //    letterImage.setFitHeight(0);
 //    letterImage.setFitWidth(0);
