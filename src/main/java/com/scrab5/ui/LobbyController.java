@@ -38,6 +38,11 @@ public abstract class LobbyController extends Controller {
     }
   }
 
+  @FXML
+  private void customize(MouseEvent event) {
+
+  }
+
   /**
    * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
    * predecessor "MainMenu" scene

@@ -3,7 +3,9 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -15,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 
 public class SingleplayerLobbyController extends LobbyController implements Initializable {
 
+  @FXML
+  private ImageView addPlayerButton;
   private int playerAmount = 1;
   private boolean[] freeSpaces = {true, true, true};
 
@@ -25,15 +29,17 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   }
 
-  @Override
+  @FXML
   protected void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     App.setRoot("MainMenu");
 
   }
 
-  @Override
+  @FXML
   protected void addPlayer(MouseEvent event) {
+
+    playSound("ButtonClicked.mp3");
     this.playerAmount++;
 
     for (int i = 0; i < freeSpaces.length; i++) {
@@ -58,14 +64,16 @@ public class SingleplayerLobbyController extends LobbyController implements Init
             break;
         }
         this.freeSpaces[i] = false;
-
         break;
       }
     }
-
+    if (playerAmount >= 4) {
+      this.addPlayerButton.setY(400);
+      this.addPlayerButton.setOpacity(1);
+    }
   }
 
-  @Override
+  @FXML
   protected void kickPlayer2(MouseEvent event) {
 
     this.player2.setText("");
@@ -75,7 +83,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     this.freeSpaces[0] = true;
   }
 
-  @Override
+  @FXML
   protected void kickPlayer3(MouseEvent event) {
     this.player3.setText("");
     this.ready3.setText("");
@@ -86,7 +94,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   }
 
-  @Override
+  @FXML
   protected void kickPlayer4(MouseEvent event) {
 
     this.player4.setText("");

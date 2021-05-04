@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SingleplayerLobbyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SingleplayerLobbyController">
 	<children>
 		<AnchorPane prefHeight="768.0" prefWidth="1360.0">
 			<children>
@@ -96,6 +96,11 @@
             <ImageView fx:id="kick4" fitHeight="33.0" fitWidth="33.0" layoutX="1084.0" layoutY="293.0" onMouseClicked="#kickPlayer4" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB05_KickIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="addPlayerButton" fitHeight="150.0" fitWidth="940.0" layoutX="210.0" layoutY="395.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB05_AddPlayerButtonNotClickable.png" />
                </image>
             </ImageView>
 			</children>
