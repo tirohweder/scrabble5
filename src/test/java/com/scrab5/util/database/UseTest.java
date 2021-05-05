@@ -95,7 +95,7 @@ class UseTest {
     CreateDatabase cdb = new CreateDatabase();
     FillDatabase.fillLetters();
 
-    String[] letter = UseDatabase.getAllLetter();
+    String[] letter = UseDatabase.getAllLetters();
     assertEquals("A", letter[0]);
     assertEquals("E", letter[4]);
   }

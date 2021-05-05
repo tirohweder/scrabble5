@@ -52,10 +52,11 @@ public class DictionaryParser {
    * @author lengist
    * @param originalFile String name of the file from the inserted dictionary
    */
-  public static void parseFiles(String originalFile) {
+  public static void parseFile(String originalFile) {
     StringBuilder sb = new StringBuilder(originalFile);
     sb.setLength(sb.length() - 4);
     newFileName = sb.toString() + "Parsed.txt";
+    System.out.println(newFileName);
     createSearchableFile(originalFile);
   }
 
@@ -96,7 +97,7 @@ public class DictionaryParser {
   private static void loadFile(String file) {
     try {
       File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-          + "src/main/resources/com/scrab5/util/textParser/" + file);
+          + "src/main/resources/com/scrab5/util/textParser/" + "words.txt");
       FileInputStream fileInput = new FileInputStream(fileOne);
 
       BufferedReader buf =
@@ -104,6 +105,7 @@ public class DictionaryParser {
       String line;
       while ((line = buf.readLine()) != null) {
         filterWords(line);
+
       }
     } catch (FileNotFoundException e1) {
       e1.printStackTrace();
@@ -120,10 +122,15 @@ public class DictionaryParser {
    * @param line A String representation of a line from the document
    */
   private static void filterWords(String line) {
-    /* TO DO: edit regex for ae etc. */
-    String regex = "[A-Za-z]+";
+    /* regex: only words with at least two letters */
+    String regex = "[A-Za-z]{2,}";
     String[] word = line.split("\\W+");
+    String[] toCorrect = {"Ä", "ä", "Ö", "ö", "Ü", "ü", "ß"};
+    String[] correct = {"Ae", "ae", "Oe", "oe", "Ue", "ue", "ss"};
     for (int i = 0; i < word.length; i++) {
+      for (int j = 0; j < toCorrect.length; j++) {
+        word[i] = word[i].replaceAll(toCorrect[j], correct[j]);
+      }
       if (word[i].matches(regex)) {
         createDoc(word[i]);
       }
@@ -146,9 +153,7 @@ public class DictionaryParser {
   }
 
   public static void main(String[] args) {
-    parseFiles("words.txt");
-    // setFileName("english.txt");
-    // createSearchableFile("words.txt");
+    parseFile(currentDictionary);
   }
 
 }

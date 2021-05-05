@@ -11,7 +11,7 @@ public abstract class Threads extends Thread {
   protected boolean running;
 
   /**
-   * Mostly for JUnit Tests. Stops the thread.
+   * Mainly for JUnit Tests. Stops the thread.
    * 
    * @author nitterhe
    */

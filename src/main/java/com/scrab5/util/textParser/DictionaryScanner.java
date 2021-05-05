@@ -37,8 +37,8 @@ public class DictionaryScanner {
   }
 
   public static void main(String[] args) {
-    DictionaryParser.setFileName("eng.txt");
-    DictionaryParser.createSearchableFile("words.txt");
+    DictionaryParser.setCurrentDictionary("words.txt");
+    DictionaryParser.parseFile("words.txt");
     System.out.println(scan("ZZZ"));
   }
 }

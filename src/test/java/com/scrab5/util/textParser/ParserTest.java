@@ -13,10 +13,10 @@ class ParserTest {
    */
   @Test
   void testCreateSearchableFile() {
-    DictionaryParser.setFileName("testParse.txt");
-    DictionaryParser.createSearchableFile("words.txt");
-    File file = new File(
-        System.getProperty("user.dir") + System.getProperty("file.separator") + "test.txt");
+    // load file
+    DictionaryParser.parseFile(DictionaryParser.getFileName());
+    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
     assertEquals(true, file.exists());
   }
 
