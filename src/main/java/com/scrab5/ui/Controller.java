@@ -1,6 +1,5 @@
 package com.scrab5.ui;
 
-import com.scrab5.util.database.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -52,12 +51,16 @@ public abstract class Controller {
 
   @FXML
   private void close(MouseEvent event) {
-    Database.disconnect();
+    // Database.disconnect();
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+
+    if (Data.getPlayerServer() != null)
+      Data.getPlayerServer().shutDownServer();
+    if (Data.getPlayerClient() != null)
+      Data.getPlayerClient().stopClientThread();
+
     s.close();
   }
-
-
 
   protected void playSound(String file) {
     sound = new Media(

@@ -56,15 +56,12 @@ public class Client {
    * @throws xyz
    */
   public void hostServer(int clientMaximum) {
-    if (hostedServer == null) {
+    if (hostedServer == null)
       hostedServer = new Server(this.username, clientMaximum);
-      hostedServer.acceptClients();
-      connectToServer(ip);
-    } else {
-      System.out.println("error at hostServer()");
-      // Exception handling required
-    }
+    hostedServer.acceptClients();
+    connectToServer(ip);
   }
+
 
   /**
    * Searches for Servers in the local network and adds them to the serverList.

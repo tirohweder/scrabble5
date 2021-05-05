@@ -83,6 +83,17 @@ public class SingleplayerController implements Initializable {
       pIt.next().setFocusTraversable(false);
     }
   }
+  
+  
+  private void initRackPlaces() {
+    rackPlace1.setFitHeight(0);
+    rackPlace1.setFitWidth(0);
+    rackPlace1.setLayoutX(0);
+    rackPlace1.setLayoutY(0);
+    rackPlace1.setOnMouseClicked(null);
+    rackPlace1.setPickOnBounds(true);
+    rackPlace1.setPreserveRatio(true);
+  }
 
 
   /**
@@ -583,4 +594,11 @@ public class SingleplayerController implements Initializable {
     }
     return y;
   }
+  
+  
+  private void setNewTile(String letter, String points) {
+    Image i = new Image(this.getClass().getResource("/com/scrab5/ui/images/Singleplayer.png").toString());
+    System.out.println("Done");
+  }
+  
 }
