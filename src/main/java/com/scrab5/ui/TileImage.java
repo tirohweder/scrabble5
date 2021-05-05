@@ -16,11 +16,6 @@ public class TileImage {
     System.out.println();
     Image i = new Image(this.getClass().getResource("/com/scrab5/ui/images/Singleplayer.png").toString());
     File f = new File(this.getClass().getResource("/com/scrab5/ui/images/Singleplayer.png").toString());
-    BufferedImage img = null;
-    try {
-        img = ImageIO.read(f);
-    } catch (IOException e) {
-    }
 //    letterImage.setImage(picture);
 //    letterImage.setFitHeight(0);
 //    letterImage.setFitWidth(0);

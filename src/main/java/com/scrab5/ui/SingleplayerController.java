@@ -583,4 +583,10 @@ public class SingleplayerController implements Initializable {
     }
     return y;
   }
+  
+  
+  private void setNewTile(String letter, String points) {
+    Image i = new Image(this.getClass().getResource("/com/scrab5/ui/images/Singleplayer.png").toString());
+    System.out.println("Done");
+  }
 }
