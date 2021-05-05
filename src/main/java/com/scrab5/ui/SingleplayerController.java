@@ -14,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /*
  * @author apilgrim
@@ -33,10 +35,10 @@ public class SingleplayerController implements Initializable {
   private ImageView clickedLetter;
 
   private Image markedTile;
-  
+
   public ArrayList<Player> playersList = new ArrayList<>();
-  
-  
+
+
 
   /**
    * @author apilgrim
@@ -51,28 +53,83 @@ public class SingleplayerController implements Initializable {
   private ImageView rackPlace5;
   private ImageView rackPlace6;
   private ImageView rackPlace7;
-  
+
   Player owner;
 
   private ArrayList<String> unavailableTiles = new ArrayList<String>();
   private ArrayList<String> choosenTiles = new ArrayList<String>();
-  
+
   private ArrayList<TextField> players = new ArrayList<TextField>();
-  
+
+  private AnchorPane rack = new AnchorPane();
+
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    // TODO Auto-generated method stub
+    // initRacks();
 
   }
   
+  @FXML
+  private void drawTile1Clicked(MouseEvent event) throws IOException {
+    ImageView iv = ((ImageView) event.getSource());
+    if(iv.getImage().getUrl().contains("draw")) {
+      iv.setImage(setNewTile("A", null));
+    }else {
+      
+    }
+    
+  }
+  
+  @FXML
+  private void drawTile2Clicked(MouseEvent event) throws IOException {
+
+    ImageView iv = ((ImageView) event.getSource());
+    iv.setImage(rackPlace1.getImage());
+  }
+  
+  @FXML
+  private void drawTile3Clicked(MouseEvent event) throws IOException {
+
+    ImageView iv = ((ImageView) event.getSource());
+    iv.setImage(rackPlace1.getImage());
+  }
+  
+  @FXML
+  private void drawTile4Clicked(MouseEvent event) throws IOException {
+
+    ImageView iv = ((ImageView) event.getSource());
+    iv.setImage(rackPlace1.getImage());
+  }
+  
+  @FXML
+  private void drawTile5Clicked(MouseEvent event) throws IOException {
+
+    ImageView iv = ((ImageView) event.getSource());
+    iv.setImage(rackPlace1.getImage());
+  }
+  
+  @FXML
+  private void drawTile6Clicked(MouseEvent event) throws IOException {
+
+    ImageView iv = ((ImageView) event.getSource());
+    iv.setImage(rackPlace1.getImage());
+  }
+  
+  @FXML
+  private void drawTile7Clicked(MouseEvent event) throws IOException {
+
+    ImageView iv = ((ImageView) event.getSource());
+    iv.setImage(rackPlace1.getImage());
+  }
+
   public void test() {
     playersList.add(new Player("peter"));
     playersList.add(new Player("karl"));
     playersList.add(new Player("marta"));
     playersList.add(new Player("Aaron"));
   }
-  
+
   private void initPlayers() {
     Iterator<Player> it = playersList.iterator();
     Iterator<TextField> pIt = players.iterator();
@@ -82,17 +139,6 @@ public class SingleplayerController implements Initializable {
       pIt.next().localToScene(50, 700);
       pIt.next().setFocusTraversable(false);
     }
-  }
-  
-  
-  private void initRackPlaces() {
-    rackPlace1.setFitHeight(0);
-    rackPlace1.setFitWidth(0);
-    rackPlace1.setLayoutX(0);
-    rackPlace1.setLayoutY(0);
-    rackPlace1.setOnMouseClicked(null);
-    rackPlace1.setPickOnBounds(true);
-    rackPlace1.setPreserveRatio(true);
   }
 
 
@@ -113,6 +159,7 @@ public class SingleplayerController implements Initializable {
   private void fieldClicked(MouseEvent event) throws IOException {
 
     ImageView iv = ((ImageView) event.getSource());
+    
     String cordinate = iv.getId();
     GameBoard current = GameSession.getGameBoard();
 
@@ -407,7 +454,7 @@ public class SingleplayerController implements Initializable {
    */
   @FXML
   private void playClicked(MouseEvent event) throws IOException {
-
+    ImageView iv = (ImageView) event.getSource();
     // add choosenTiles to Placed Tiles, so they are not available for the next anymore
     Iterator<String> it = choosenTiles.iterator();
     while (it.hasNext()) {
@@ -441,13 +488,13 @@ public class SingleplayerController implements Initializable {
     }
 
     // delete the ragplaces for new tiles
-    rackPlace1 = null;
-    rackPlace2 = null;
-    rackPlace3 = null;
-    rackPlace4 = null;
-    rackPlace5 = null;
-    rackPlace6 = null;
-    rackPlace7 = null;
+    // rackPlace1 = null;
+    // rackPlace2 = null;
+    // rackPlace3 = null;
+    // rackPlace4 = null;
+    // rackPlace5 = null;
+    // rackPlace6 = null;
+    // rackPlace7 = null;
   }
 
   /**
@@ -594,11 +641,13 @@ public class SingleplayerController implements Initializable {
     }
     return y;
   }
-  
-  
-  private void setNewTile(String letter, String points) {
-    Image i = new Image(this.getClass().getResource("/com/scrab5/ui/images/Singleplayer.png").toString());
-    System.out.println("Done");
+
+
+
+  private Image setNewTile(String letter, String points) {
+    Image letterImage =
+        new Image(this.getClass().getResource("/com/scrab5/ui/letter_Images/tile"+letter.toUpperCase()+".png").toString());
+    return letterImage;
   }
-  
+
 }
