@@ -50,13 +50,19 @@ public abstract class Controller {
     iv.setOpacity(0);
   }
 
+  // @author nitterhe - Server and Client only need to exist, not run since the methods also close
+  // the sockets.
   @FXML
   private void close(MouseEvent event) {
     Database.disconnect();
+    System.out.println("closed");
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+    if (Data.getPlayerServer() != null)
+      Data.getPlayerServer().shutDownServer();
+    if (Data.getPlayerClient() != null)
+      Data.getPlayerClient().stopClientThread();
     s.close();
   }
-
 
 
   protected void playSound(String file) {

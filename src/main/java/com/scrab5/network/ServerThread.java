@@ -48,6 +48,7 @@ public class ServerThread extends Threads {
    * @author nitterhe
    */
   public void run() {
+
     this.running = true;
     try {
       Message message;
@@ -64,6 +65,7 @@ public class ServerThread extends Threads {
           case CONNECT:
             ConnectMessage connect = (ConnectMessage) message;
             addClient(connect.getClient());
+            // send new client list to all clients
             break;
           case DISCONNECT:
             DisconnectMessage disconnect = (DisconnectMessage) message;
@@ -82,7 +84,6 @@ public class ServerThread extends Threads {
           default:
             break;
         }
-        wait(50);
       }
     } catch (Exception e) {
       // requires Exception handling

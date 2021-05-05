@@ -133,12 +133,8 @@ public class Data {
   }
 
   public static void setPlayerClient(Client client) {
-    if (playerClient == null) {
+    if (playerClient == null)
       playerClient = client;
-    } else {
-      System.out.println("Error at setPlayerClient");
-
-    }
   }
 
   public static void setPlayerServer(Server server) {

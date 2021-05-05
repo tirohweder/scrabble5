@@ -26,7 +26,6 @@ public class App extends Application {
   private Media sound;
   private static MediaPlayer mediaplayer;
 
-
   /**
    * This method is called when ever the app gets startet. First it checks whether a database
    * already exists if not a new database gets created.
@@ -65,7 +64,6 @@ public class App extends Application {
     stage.setResizable(false);
     stage.show();
   }
-
 
   /**
    * @author trohwede

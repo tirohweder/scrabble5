@@ -371,11 +371,13 @@ public class FillDatabase extends Database {
    * @param letter String with the letter that needs to be inserted in the database
    * @param point Integer with the correpsonding points for the given letter
    */
-  public static void insertLetters(String letter, int point) {
+  public static void insertLetters(String letter, int point, int occurrence) {
     try {
-      pstmDic = connection.prepareStatement("INSERT INTO Letters (Letter, Points) VALUES (?,?);");
+      pstmDic = connection
+          .prepareStatement("INSERT INTO Letters (Letter, Points, Occurrence) VALUES (?,?, ?);");
       pstmDic.setString(1, letter);
       pstmDic.setInt(2, point);
+      pstmDic.setInt(3, occurrence);
       pstmDic.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -393,19 +395,40 @@ public class FillDatabase extends Database {
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
         "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
     int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+    int[] occurrence =
+        {9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1};
     for (int i = 0; i < 26; i++) {
-      insertLetters(letter[i], points[i]);
+      insertLetters(letter[i], points[i], occurrence[i]);
     }
   }
 
   /**
-   * Updates the point for a particular letter if a change is needed.
+   * Updates the occurrence for a particular letter if a change is needed.
    * 
    * @author lengist
-   * @param letter String with the letter which points need to be updated in the database
-   * @param point Integer with the correpsonding points for the given letter
+   * @param letter String with the letter where the occurrence needs to be updated in the database
+   * @param occurrence Integer with the new occurrence for the given letter
    */
-  public static void updateLetters(String letter, int point) {
+  public static void updateOccurrenceLetters(String letter, int occurrence) {
+    try {
+      pstmDic = connection.prepareStatement("UPDATE Letters SET Occurrence = ? WHERE Letter = ?");
+      pstmDic.setInt(1, occurrence);
+      pstmDic.setString(2, letter);
+      pstmDic.executeUpdate();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    closeStatement("dic");
+  }
+
+  /**
+   * Updates the points for a particular letter if a change is needed.
+   * 
+   * @author lengist
+   * @param letter String with the letter where the points need to be updated in the database
+   * @param point Integer with the new points for the given letter
+   */
+  public static void updatePointLetters(String letter, int point) {
     try {
       pstmDic = connection.prepareStatement("UPDATE Letters SET Points = ? WHERE Letter = ?");
       pstmDic.setInt(1, point);

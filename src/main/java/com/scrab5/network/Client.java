@@ -56,15 +56,12 @@ public class Client {
    * @throws xyz
    */
   public void hostServer(int clientMaximum) {
-    if (hostedServer == null) {
+    if (hostedServer == null)
       hostedServer = new Server(this.username, clientMaximum);
-      hostedServer.acceptClients();
-      connectToServer(ip);
-    } else {
-      System.out.println("error at hostServer()");
-      // Exception handling required
-    }
+    hostedServer.acceptClients();
+    connectToServer(ip);
   }
+
 
   /**
    * Searches for Servers in the local network and adds them to the serverList.
@@ -148,7 +145,6 @@ public class Client {
     if (clientThread == null) {
       clientThread = new ClientThread(this);
       clientThread.connectToServer(serverdata);
-      clientThread.start();
     }
   }
 
@@ -181,14 +177,14 @@ public class Client {
   }
 
   /**
-   * Stops the client by simply switching the Thread attribute running to false
+   * Stops the client by calling the disconnect method of the ClientThread.
    * 
    * @author nitterhe
    */
   public void stopClientThread() {
-    this.clientThread.stopThread();
+    if (this.clientThread.running)
+      this.clientThread.closeConnection();
   }
-
 
   /**
    * Sends ChatMessage to the server. Server will send it to all clients in the lobby.

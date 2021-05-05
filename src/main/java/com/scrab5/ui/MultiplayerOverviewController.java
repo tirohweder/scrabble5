@@ -46,7 +46,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.serverName.setFocusTraversable(false);
     this.userPlaying.setText(Data.getCurrentUser());
 
-    Data.setPlayerClient(new Client(Data.getCurrentUser()));
+    if (Data.getPlayerClient() == null)
+      Data.setPlayerClient(new Client(Data.getCurrentUser()));
     this.searchServers();
   }
 
@@ -78,7 +79,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    Data.getPlayerClient().stopClientThread();
     App.setRoot("MainMenu");
   }
 
@@ -223,6 +223,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   private void setupServer(int playerCount) {
+    Data.setPlayerClient(new Client(Data.getCurrentUser()));
     Data.getPlayerClient().hostServer(playerCount);
     Data.setPlayerServer(Data.getPlayerClient().getHostedServer());
   }

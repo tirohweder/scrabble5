@@ -18,7 +18,7 @@ public class DictionaryScanner {
   // TO-DO gameSession.getCurrentDic();
   public static boolean scan(String searchedWord) {
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/" + "eng.txt");
+        + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
     boolean found = false;
 
     try {
@@ -37,8 +37,8 @@ public class DictionaryScanner {
   }
 
   public static void main(String[] args) {
-    DictionaryParser.setFileName("eng.txt");
-    DictionaryParser.createSearchableFile("words.txt");
+    DictionaryParser.setCurrentDictionary("words.txt");
+    DictionaryParser.parseFile("words.txt");
     System.out.println(scan("ZZZ"));
   }
 }
