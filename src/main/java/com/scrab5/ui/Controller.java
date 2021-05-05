@@ -57,7 +57,7 @@ public abstract class Controller {
     if (Data.getPlayerServer() != null)
       Data.getPlayerServer().shutDownServer();
     if (Data.getPlayerClient() != null)
-      Data.getPlayerClient().stopClientThread();
+      Data.getPlayerClient().disconnectFromServer();
 
     s.close();
   }

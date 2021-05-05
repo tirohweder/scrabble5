@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import java.util.ArrayList;
 import com.scrab5.network.Client;
 import com.scrab5.network.Server;
+import com.scrab5.network.ServerData;
 
 /**
  * The Data class is supposed to save temporary information that is needed between controller
@@ -23,7 +24,7 @@ public class Data {
 
   private static Client playerClient;
   private static Server playerServer;
-  private static ArrayList<Client.ServerData> serverList;
+  private static ArrayList<ServerData> serverList;
 
   private static ArrayList<Integer> occurrencyDistribution;
   private static ArrayList<Integer> pointsDistribution;
@@ -154,11 +155,11 @@ public class Data {
     return playerServer;
   }
 
-  public static ArrayList<Client.ServerData> getServerList() {
+  public static ArrayList<ServerData> getServerList() {
     return serverList;
   }
 
-  public static void setServerList(ArrayList<Client.ServerData> slist) {
+  public static void setServerList(ArrayList<ServerData> slist) {
     serverList = slist;
   }
 

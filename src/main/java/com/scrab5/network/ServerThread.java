@@ -52,7 +52,7 @@ public class ServerThread extends Threads {
     this.running = true;
     try {
       Message message;
-      while (running) {
+      while (this.running) {
         message = (Message) this.fromClient.readObject();
         switch (message.getType()) {
 
@@ -64,7 +64,7 @@ public class ServerThread extends Threads {
             break;
           case CONNECT:
             ConnectMessage connect = (ConnectMessage) message;
-            addClient(connect.getClient());
+            addClient(connect.getClientData());
             // send new client list to all clients
             break;
           case DISCONNECT:
@@ -78,7 +78,6 @@ public class ServerThread extends Threads {
           case CHAT:
             ChatMessage chat = (ChatMessage) message;
             server.sendMessageToAllClients(chat);
-            System.out.println(chat.getText());
             break;
 
           default:
@@ -98,11 +97,11 @@ public class ServerThread extends Threads {
    * @author nitterhe
    * @param client
    */
-  private void addClient(Client client) {
-    if (null == server.getClients().get(client.getUsername())) {
-      server.getClients().put(client.getUsername(), client);
-      server.getConnections().put(client, this);
-      server.setClientCount();
+  private void addClient(ClientData clientData) {
+    if (null == server.getClients().get(clientData.getUsername())) {
+      server.getClients().put(clientData.getUsername(), clientData);
+      server.getConnections().put(clientData, this);
+      server.updateClientCount();
     } else {
       // requires Exception handling
     }
@@ -116,11 +115,11 @@ public class ServerThread extends Threads {
    * @param sender
    */
   private void deleteClient(String sender) {
-    Client client = server.getClients().get(sender);
+    ClientData client = server.getClients().get(sender);
     if (null != client) {
       server.getConnections().remove(client);
       server.getClients().remove(client.getUsername());
-      server.setClientCount();
+      server.updateClientCount();
       this.closeConnection();
     } else {
       // requires Exception handling
