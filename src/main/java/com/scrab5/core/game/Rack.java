@@ -36,6 +36,10 @@ public class Rack {
   }
 
 
+  public boolean exchangeRack() {
+    return false;
+  }
+
   /**
    * @param t
    * @param pos

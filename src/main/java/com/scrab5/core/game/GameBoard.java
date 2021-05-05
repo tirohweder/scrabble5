@@ -1,10 +1,17 @@
 package com.scrab5.core.game;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import com.scrab5.util.textParser.DictionaryScanner;
+import java.util.ArrayList;
 
 public class GameBoard {
+
+  public ArrayList<Tile> getCurrentChanges() {
+    return currentChanges;
+  }
+
+  public void setCurrentChanges(ArrayList<Tile> currentChanges) {
+    this.currentChanges = currentChanges;
+  }
 
   private String[][] gameBoardSpecial =
       new String[][]{
@@ -41,8 +48,11 @@ public class GameBoard {
 
   private Tile[][] gameBoard = new Tile[15][15];
   private Tile[][] gameBoardCurrent = new Tile[15][15];
+
+
   private ArrayList<Tile> currentChanges = new ArrayList<>();
   private ArrayList<String> gameBoardWords = new ArrayList<>();
+  private boolean firstTile = true;
 
   /**
    * Constructor dont know if i need it
@@ -64,15 +74,23 @@ public class GameBoard {
   public boolean placeTile(Tile t, int row, int column) {
     if (isSpotFree(row, column)) {
       gameBoardCurrent[row][column] = t;
+      t.setRow(row);
+      t.setColumn(column);
+      t.setRackPlace(null);
+      currentChanges.add(t);
+      firstTile = false;
       return true;
     } else {
       return false;
     }
   }
 
+
   public boolean removeTile(int row, int column) {
-    if (isSpotFree(row, column)) {
+    if (!isSpotFree(row, column) && currentChanges.size() > 0) {
+      Tile t = gameBoardCurrent[row][column];
       gameBoardCurrent[row][column] = null;
+      currentChanges.remove(t);
       return true;
     } else {
       return false;
@@ -93,6 +111,7 @@ public class GameBoard {
 
   public void finishTurn() {
     gameBoard = gameBoardCurrent.clone();
+    currentChanges.clear();
   }
 
 
@@ -104,16 +123,16 @@ public class GameBoard {
    * @return
    * @author trohwede
    */
-  public boolean isSpotNextFree(int row, int column) {
+  public boolean isSpotNext(int row, int column) {
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
-    return ((row == row1 + 1 && column == column1) || (row == row1 - 1 && column == column1) || (
-        column == column1 + 1 && row == row1) || (column == column1 - 1 && row == row1));
+
+    return (row == row1 + 1 && column == column1) || (row == row1 - 1 && column == column1) || (
+        row == row1 && column == column1 + 1) || (row == row1 && column == column1 - 1);
   }
 
   /**
-   * Checks wether the Spot is in line with the other placed tiles this turn. And if the tile is
-   * free in generall
+   * Checks if the given coordinates would be legal to play a tile there
    *
    * @param row
    * @param column
@@ -128,21 +147,25 @@ public class GameBoard {
 
     if ((row1 == row2 + 1 && column1 == column2) || (row1 == row2 - 1 && column1 == column2)) {
 
-      Iterator<Tile> iter = currentChanges.iterator();
-      while (iter.hasNext()) {
-        int iterRow = iter.next().getRow();
-        if (iterRow == row + 1 || iterRow == row - 1) {
+      for (int i = 0; i < currentChanges.size(); i++) {
+        if (((row == currentChanges.get(i).getRow() - 1) && column == column1) || ((row
+            == currentChanges.get(i).getRow() + 1) && column == column1)) {
           return true;
         }
       }
-    } else if ((column == column1 + 1 && row == row1) || (column == column1 - 1 && row == row1)) {
-      Iterator<Tile> iter = currentChanges.iterator();
-      while (iter.hasNext()) {
-        int iterColumn = iter.next().getColumn();
-        if (iterColumn == row + 1 || iterColumn == row - 1) {
+      return false;
+
+
+    } else if ((row1 == row2 && column1 == column2 + 1) || (row1 == row2
+        && column1 == column2 - 1)) {
+
+      for (int i = 0; i < currentChanges.size(); i++) {
+        if (((column == currentChanges.get(i).getColumn() - 1) && row == row1) || ((column
+            == currentChanges.get(i).getColumn() + 1) && row == row1)) {
           return true;
         }
       }
+      return false;
     }
     return false;
   }
@@ -156,18 +179,23 @@ public class GameBoard {
    * @author trohwede
    */
   public boolean isTileLegal(int row, int column) {
-    if (currentChanges.size() == 0) {
-      return isSpotFree(row, column);
-    } else if (currentChanges.size() == 1) {
-      if (!(isSpotFree(row, column))) {
-        return false;
-      }
-      return isSpotNextFree(row, column);
+
+    if (firstTile) {
+      return (row == 7 && column == 7);
     } else {
-      if (!(isSpotFree(row, column))) {
-        return false;
+      if (currentChanges.size() == 0) {
+        return isSpotFree(row, column);
+      } else if (currentChanges.size() == 1) {
+        if (!(isSpotFree(row, column))) {
+          return false;
+        }
+        return isSpotNext(row, column);
+      } else {
+        if (!(isSpotFree(row, column))) {
+          return false;
+        }
+        return isSpotInLine(row, column);
       }
-      return isSpotInLine(row, column);
     }
   }
 
@@ -209,6 +237,56 @@ public class GameBoard {
     return score;
   }
 
+
+  /**
+   * Returns an array of only the new added Tiles.
+   *
+   * @return Array of only new added Tiles
+   * @author trohwede
+   */
+  public Tile[][] getTouchedWords() {
+
+    Tile[][] touchedTiles = new Tile[15][15];
+
+    for (int i = 0; i < currentChanges.size(); i++) {
+      int row = currentChanges.get(i).getRow();
+      int column = currentChanges.get(i).getColumn();
+
+      touchedTiles[row][column] = currentChanges.get(i);
+
+      //Wenn drunter
+      int count = 1;
+
+      while ((row - count >= 0) && gameBoard[row - count][column] != null) {
+        touchedTiles[row - count][column] = gameBoard[row - count][column];
+        count++;
+      }
+
+      count = 1;
+      //Wenn drüber
+      while ((row + count < 15) && gameBoard[row + count][column] != null) {
+        touchedTiles[row + count][column] = gameBoard[row + count][column];
+        count++;
+      }
+      count = 1;
+      //Wenn rechts
+      while ((column - count >= 0) && gameBoard[row][column - count] != null) {
+        touchedTiles[row][column - count] = gameBoard[row][column - count];
+        count++;
+      }
+      count = 1;
+      //Wenn rechts
+      while ((column - count < 15) && gameBoard[row][column + count] != null) {
+        touchedTiles[row][column + count] = gameBoard[row][column + count];
+        count++;
+      }
+
+
+    }
+    return touchedTiles;
+  }
+
+
   /**
    * Checks if the word layed changed anything on the board
    *
@@ -242,8 +320,11 @@ public class GameBoard {
    * @param column
    * @return
    */
-  public String getTile(int row, int column) {
-    return gameBoardCurrent[row][column].getLetter();
+  public Tile getTile(int row, int column) {
+    if (gameBoardCurrent[row][column] != null) {
+      return gameBoardCurrent[row][column];
+    }
+    return null;
   }
 
   /**
@@ -260,7 +341,7 @@ public class GameBoard {
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
         if (gameBoardCurrent[i][j] != null) {
-          word.append(getTile(i, j));
+          word.append(getTile(i, j).getLetter());
         } else {
           if (word.length() > 1) {
             listOfWords.add(word.toString());
@@ -281,7 +362,7 @@ public class GameBoard {
     for (int j = 0; j < 15; j++) {
       for (int i = 0; i < 15; i++) {
         if (gameBoardCurrent[i][j] != null) {
-          word.append(getTile(i, j));
+          word.append(getTile(i, j).getLetter());
         } else {
           if (word.length() > 1) {
             listOfWords.add(word.toString());
@@ -303,7 +384,7 @@ public class GameBoard {
   /**
    * Checks if all the words of the Board are legit
    *
-   * @return boolean
+   * @return Returns if the words are legit
    * @author trohwede
    */
   public boolean checkWordsLegit() {
@@ -325,8 +406,10 @@ public class GameBoard {
   public void clearBoard() {
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
-        gameBoard[i][j] = null;
+        gameBoardCurrent[i][j] = null;
       }
     }
+    currentChanges.clear();
+    firstTile = true;
   }
 }
