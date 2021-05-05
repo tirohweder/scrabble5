@@ -11,32 +11,99 @@ class GameBoardTest {
 
 
   @Test
+  void placeTile() {
+    gameBoardTest.placeTile(new Tile("T", 3), 6, 5);
+
+    Tile test = gameBoardTest.getTile(6, 5);
+    assertEquals("T", test.getLetter());
+    assertEquals(6, test.getRow());
+    assertEquals(5, test.getColumn());
+    assertEquals(null, test.getRackPlace());
+    assertEquals(test, gameBoardTest.getCurrentChanges().get(0));
+
+  }
+
+  @Test
   void isSpotFree() {
     gameBoardTest.placeTile(new Tile("T", 3), 0, 0);
     assertEquals(gameBoardTest.isSpotFree(0, 0), false);
     assertEquals(gameBoardTest.isSpotFree(1, 0), true);
   }
 
-  @Test
-  void isSpotNextFree() {
 
+  @Test
+  void removeTile() {
+    Tile x = new Tile("T", 3);
+    gameBoardTest.placeTile(x, 0, 1);
+    gameBoardTest.placeTile(new Tile("T", 3), 0, 0);
+    gameBoardTest.removeTile(0, 0);
+    assertEquals(null, gameBoardTest.getTile(0, 0));
+    assertEquals(x, gameBoardTest.getCurrentChanges().get(0));
+  }
+
+  @Test
+  void isSpotNext() {
+    gameBoardTest.placeTile(new Tile("T", 3), 2, 4);
+    assertEquals(true, gameBoardTest.isSpotNext(3, 4));
+    assertEquals(true, gameBoardTest.isSpotNext(1, 4));
+    assertEquals(true, gameBoardTest.isSpotNext(2, 5));
+    assertEquals(true, gameBoardTest.isSpotNext(2, 3));
+
+    assertEquals(false, gameBoardTest.isSpotNext(3, 5));
   }
 
   @Test
   void isSpotInLine() {
+    gameBoardTest.placeTile(new Tile("T", 3), 7, 2);
+    gameBoardTest.placeTile(new Tile("T", 3), 8, 2);
+
+    assertEquals(true, gameBoardTest.isSpotInLine(9, 2));
+    assertEquals(true, gameBoardTest.isSpotInLine(6, 2));
+
+    assertEquals(false, gameBoardTest.isSpotInLine(8, 1));
+
+    gameBoardTest.placeTile(new Tile("T", 3), 6, 2);
+
+    assertEquals(true, gameBoardTest.isSpotInLine(5, 2));
+    assertEquals(false, gameBoardTest.isSpotInLine(4, 2));
+
+    gameBoardTest.clearBoard();
+
+    gameBoardTest.placeTile(new Tile("T", 3), 8, 2);
+    gameBoardTest.placeTile(new Tile("T", 3), 8, 3);
+
+    assertEquals(true, gameBoardTest.isSpotInLine(8, 1));
+    assertEquals(true, gameBoardTest.isSpotInLine(8, 4));
+
+    assertEquals(false, gameBoardTest.isSpotInLine(9, 2));
+
+    gameBoardTest.placeTile(new Tile("T", 3), 8, 4);
+    assertEquals(true, gameBoardTest.isSpotInLine(8, 5));
+    assertEquals(false, gameBoardTest.isSpotInLine(8, 6));
   }
 
   @Test
   void isTileLegal() {
+
+    assertEquals(true, gameBoardTest.isTileLegal(7, 7));
+    assertEquals(false, gameBoardTest.isTileLegal(8, 7));
+
+    gameBoardTest.placeTile(new Tile("T", 3), 7, 7);
+    assertEquals(true, gameBoardTest.isTileLegal(7, 8));
+    assertEquals(true, gameBoardTest.isTileLegal(7, 6));
+    assertEquals(true, gameBoardTest.isTileLegal(6, 7));
+    assertEquals(true, gameBoardTest.isTileLegal(8, 7));
+
+    assertEquals(false, gameBoardTest.isTileLegal(10, 10));
+
+    gameBoardTest.placeTile(new Tile("T", 3), 7, 6);
+    assertEquals(true, gameBoardTest.isTileLegal(7, 5));
+    assertEquals(true, gameBoardTest.isTileLegal(7, 8));
+
+    assertEquals(false, gameBoardTest.isTileLegal(8, 9));
+
   }
 
-  @Test
-  void clearBoard() {
-  }
-
-  @Test
-  void testPlaceTile() {
-  }
 
   @Test
   void countScore() {
@@ -47,11 +114,18 @@ class GameBoardTest {
 
   }
 
-
   @Test
-  void getTile() {
-    gameBoardTest.placeTile(new Tile("T", 3), 0, 0);
-    assertEquals(gameBoardTest.getTile(0, 0), "T");
+  void getTouchedWords() {
+    gameBoardTest.placeTile(new Tile("T", 3), 7, 7);
+    gameBoardTest.placeTile(new Tile("W", 3), 7, 8);
+    gameBoardTest.placeTile(new Tile("X", 3), 7, 9);
+
+    gameBoardTest.finishTurn();
+
+    gameBoardTest.placeTile(new Tile("X", 3), 6, 8);
+    gameBoardTest.placeTile(new Tile("X", 3), 8, 8);
+
+    System.out.println(gameBoardTest.getTouchedWords().toString());
   }
 
   @Test
@@ -128,6 +202,15 @@ class GameBoardTest {
 
     assertEquals(false, gameBoardTest.checkWordsLegit());
 
+  }
+
+
+  @Test
+  void clearBoard() {
+    gameBoardTest.placeTile(new Tile("X", 3), 4, 0);
+    gameBoardTest.clearBoard();
+
+    assertEquals(null, gameBoardTest.getTile(4, 0));
   }
 
 
