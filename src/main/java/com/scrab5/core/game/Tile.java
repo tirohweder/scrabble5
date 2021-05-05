@@ -2,18 +2,15 @@ package com.scrab5.core.game;
 
 public class Tile {
 
-  private String letter;
-  private int value;
 
-
-  public int getRackPlace() {
+  public Integer getRackPlace() {
     return rackPlace;
   }
 
-  public void setRackPlace(int rackPlace) {
+  public void setRackPlace(Integer rackPlace) {
     this.rackPlace = rackPlace;
   }
-  
+
   /**
    * @return
    * @author trohwede
@@ -46,9 +43,12 @@ public class Tile {
     this.row = row;
   }
 
+
+  private String letter;
+  private int value;
   private int column;
   private int row;
-  private int rackPlace;
+  private Integer rackPlace;
 
 
   /**
