@@ -25,7 +25,6 @@ public class SettingsController extends Controller implements Initializable {
   public void initialize(URL location, ResourceBundle resources) {
     String user = Data.getCurrentUser();
     this.sliderMusic.setValue(PlayerProfileDatabase.getMusicVolume(user));
-    System.out.println(PlayerProfileDatabase.getSoundEffectVolume(user));
     this.sliderSFX.setValue(PlayerProfileDatabase.getSoundEffectVolume(user));
     this.setupListeners();
   }
