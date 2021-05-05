@@ -1,13 +1,16 @@
 package com.scrab5.ui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import com.scrab5.util.database.UseDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class LetterCustomizationController extends Controller implements Initializable {
 
@@ -18,27 +21,63 @@ public class LetterCustomizationController extends Controller implements Initial
   private TextField aP, bP, cP, dP, eP, fP, gP, hP, iP, jP, kP, lP, mP, nP, oP, pP, qP, rP, sP, tP,
       uP, vP, wP, xP, yP, zP, spaceP;
 
+  private ArrayList<TextField> al, alP;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
     int[] occurrencies = UseDatabase.getAllOccurrences();
     int[] pointsDistribution = UseDatabase.getAllPointsPerLetter();
 
-    ArrayList<TextField> al = this.createListO();
-    ArrayList<TextField> alP = this.createListP();
+    al = this.createListO();
+    alP = this.createListP();
 
+    if (!Data.getHasBeenEdited()) {
 
-    for (int i = 0; i < 27; i++) {
-      al.get(i).setText(occurrencies[i] + "");
-      alP.get(i).setText(pointsDistribution[i] + "");
+      for (int i = 0; i < 27; i++) {
+        al.get(i).setText(occurrencies[i] + "");
+        alP.get(i).setText(pointsDistribution[i] + "");
+      }
+
+    } else {
+
+      ArrayList<Integer> listO, listP;
+      listO = Data.getOccurrencyDistribution();
+      listP = Data.getPointsDistribution();
+
+      for (int i = 0; i < 27; i++) {
+        al.get(i).setText(listO.get(i) + "");
+        alP.get(i).setText(listP.get(i) + "");
+      }
     }
+
   }
 
 
 
   @FXML
-  private void confirm(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+  private void confirm(MouseEvent event) throws IOException {
+
+    if (this.areValuesValid()) {
+
+      ArrayList<Integer> listO, listP;
+      listO = new ArrayList<Integer>();
+      listP = new ArrayList<Integer>();
+
+      for (int i = 0; i < 27; i++) {
+        listO.add(Integer.parseInt(al.get(i).getText()));
+        listP.add(Integer.parseInt(alP.get(i).getText()));
+      }
+
+      Data.setOccurrencyDistribution(listO);
+      Data.setPointsDistribution(listP);
+      Data.setHasBeenEdited(true);
+
+      Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+      s.close();
+    }
+
+
   }
 
   private ArrayList<TextField> createListO() {
@@ -107,5 +146,16 @@ public class LetterCustomizationController extends Controller implements Initial
     return al;
   }
 
+  private boolean areValuesValid() throws IOException {
 
+    for (int i = 0; i < 27; i++) {
+      if (!al.get(i).getText().matches("[0-9]+") || !alP.get(i).getText().matches("[0-9]+")) {
+        String message = "Please make sure your values only consist of numbers!";
+        PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+        pum.show();
+        return false;
+      }
+    }
+    return true;
+  }
 }

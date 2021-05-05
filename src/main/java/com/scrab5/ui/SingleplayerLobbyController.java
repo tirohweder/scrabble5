@@ -189,6 +189,9 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     }
   }
 
+  /**
+   * https://stackabuse.com/java-list-files-in-a-directory/
+   */
   private void setUpDicitionaryBox() {
 
     File dir = new File(System.getProperty("user.dir"));

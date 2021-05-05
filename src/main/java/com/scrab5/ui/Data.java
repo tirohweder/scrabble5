@@ -24,6 +24,11 @@ public class Data {
   private static Client playerClient;
   private static Server playerServer;
   private static ArrayList<Client.ServerData> serverList;
+
+  private static ArrayList<Integer> occurrencyDistribution;
+  private static ArrayList<Integer> pointsDistribution;
+  private static boolean hasBeenEdited = false;
+
   private static boolean isSearching = false;
 
   private static double sfxVolume = 1.0;
@@ -173,6 +178,28 @@ public class Data {
     return sfxVolume;
   }
 
+  public static void setOccurrencyDistribution(ArrayList<Integer> al) {
+    occurrencyDistribution = al;
+  }
 
+  public static ArrayList<Integer> getOccurrencyDistribution() {
+    return occurrencyDistribution;
+  }
+
+  public static void setPointsDistribution(ArrayList<Integer> al) {
+    pointsDistribution = al;
+  }
+
+  public static ArrayList<Integer> getPointsDistribution() {
+    return pointsDistribution;
+  }
+
+  public static void setHasBeenEdited(boolean b) {
+    hasBeenEdited = b;
+  }
+
+  public static boolean getHasBeenEdited() {
+    return hasBeenEdited;
+  }
 
 }
