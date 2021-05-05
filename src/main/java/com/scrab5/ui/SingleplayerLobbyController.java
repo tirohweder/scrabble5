@@ -29,7 +29,6 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   private ImageView dropDownButton;
   @FXML
   private Label dicDisplaying;
-  private int playerAmount = 1;
   private boolean[] freeSpaces = {true, true, true};
 
   @Override
