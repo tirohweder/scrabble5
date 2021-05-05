@@ -374,7 +374,7 @@ public class FillDatabase extends Database {
   public static void insertLetters(String letter, int point, int occurrence) {
     try {
       pstmDic = connection
-          .prepareStatement("INSERT INTO Letters (Letter, Points, Occurrence) VALUES (?,?, ?);");
+          .prepareStatement("INSERT INTO Letters (Letter, Points, Occurrence) VALUES (?,?,?);");
       pstmDic.setString(1, letter);
       pstmDic.setInt(2, point);
       pstmDic.setInt(3, occurrence);
