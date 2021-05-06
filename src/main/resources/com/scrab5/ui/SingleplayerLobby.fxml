@@ -115,10 +115,50 @@
                   <Image url="@images/SB05_DarkerBackground.png" />
                </image>
             </ImageView>
-            <ComboBox layoutX="208.0" layoutY="183.0" opacity="0.0" prefHeight="25.0" prefWidth="5.0" />
-            <ComboBox layoutX="208.0" layoutY="220.0" opacity="0.0" prefHeight="25.0" prefWidth="5.0" />
-            <ComboBox layoutX="208.0" layoutY="259.0" prefHeight="25.0" prefWidth="5.0" />
-            <ComboBox layoutX="208.0" layoutY="297.0" prefHeight="25.0" prefWidth="5.0" />
+            <Label fx:id="vote1" layoutX="215.0" layoutY="185.0" text="1" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="vote2" layoutX="215.0" layoutY="223.0" text="2" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="vote3" layoutX="215.0" layoutY="262.0" text="3" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="vote4" layoutX="215.0" layoutY="300.0" text="4" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="13.0" fitWidth="14.0" layoutX="234.0" layoutY="189.0" onMouseClicked="#clickComboBox1" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB05_PlayerVoteButtonClicked.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="13.0" fitWidth="14.0" layoutX="234.0" layoutY="227.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB05_PlayerVoteButtonClicked.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="13.0" fitWidth="14.0" layoutX="234.0" layoutY="266.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB05_PlayerVoteButtonClicked.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="13.0" fitWidth="14.0" layoutX="234.0" layoutY="304.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB05_PlayerVoteButtonClicked.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="voteSelection1" layoutX="158.0" layoutY="158.0" onAction="#setPlayerVote" opacity="0.0" prefHeight="11.0" prefWidth="50.0" />
+            <ComboBox fx:id="voteSelection2" layoutX="158.0" layoutY="196.0" onAction="#setPlayerVote" opacity="0.0" prefHeight="11.0" prefWidth="50.0" />
+            <ComboBox fx:id="voteSelection3" layoutX="158.0" layoutY="236.0" onAction="#setPlayerVote" opacity="0.0" prefHeight="11.0" prefWidth="50.0" />
+            <ComboBox fx:id="voteSelection4" layoutX="158.0" layoutY="273.0" onAction="#setPlayerVote" opacity="0.0" prefHeight="11.0" prefWidth="50.0" />
 			</children>
 		</AnchorPane>
 	</children>
