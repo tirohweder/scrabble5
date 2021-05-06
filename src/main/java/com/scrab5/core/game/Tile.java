@@ -44,6 +44,10 @@ public class Tile {
   }
 
 
+  public boolean isNull() {
+    return (this.letter == null);
+  }
+
   private String letter;
   private int value;
   private int column;

@@ -54,6 +54,7 @@ public class GameBoard {
   private ArrayList<String> gameBoardWords = new ArrayList<>();
   private boolean firstTile = true;
 
+
   /**
    * Constructor dont know if i need it
    *
@@ -110,7 +111,11 @@ public class GameBoard {
   }
 
   public void finishTurn() {
-    gameBoard = gameBoardCurrent.clone();
+    for (int i = 0; i < 15; i++) {
+      for (int j = 0; j < 15; j++) {
+        gameBoard[i][j] = gameBoardCurrent[i][j];
+      }
+    }
     currentChanges.clear();
   }
 
@@ -238,6 +243,47 @@ public class GameBoard {
   }
 
 
+  public Tile[][] getTouchedWordsv2() {
+    Tile[][] touchedTiles = new Tile[15][15];
+
+    for (int i = 0; i < currentChanges.size(); i++) {
+      boolean drunter = false;
+      boolean drueber = false;
+      boolean rechts = false;
+      boolean links = false;
+
+      int row = currentChanges.get(i).getRow();
+      int column = currentChanges.get(i).getColumn();
+
+      int count = 1;
+
+      System.out.println("Current Tile: " + currentChanges.get(i).getLetter());
+      if (gameBoard[row - count][column] != null) {
+        drueber = true;
+        System.out.println("Drüber: " + gameBoard[row - count][column].getLetter());
+      }
+
+      if (gameBoard[row + count][column] != null) {
+        drunter = true;
+        System.out.println("Drunter: " + gameBoard[row + count][column].getLetter());
+      }
+
+      if (gameBoard[row][column + count] != null) {
+        rechts = true;
+        System.out.println("Rechts: " + gameBoard[row][column + count].getLetter());
+      }
+
+      if (gameBoard[row][column - count] != null) {
+        links = true;
+        System.out.println("Links: " + gameBoard[row][column - count].getLetter());
+      }
+
+    }
+
+    return touchedTiles;
+  }
+
+
   /**
    * Returns an array of only the new added Tiles.
    *
@@ -249,39 +295,97 @@ public class GameBoard {
     Tile[][] touchedTiles = new Tile[15][15];
 
     for (int i = 0; i < currentChanges.size(); i++) {
+      boolean drunter = false;
+      boolean drueber = false;
+      boolean rechts = false;
+      boolean links = false;
+      int count = 1;
+
       int row = currentChanges.get(i).getRow();
       int column = currentChanges.get(i).getColumn();
 
-      touchedTiles[row][column] = currentChanges.get(i);
+      System.out.println(
+          "Current Tile looked at is: " + currentChanges.get(i).getLetter() + " Row: " + row
+              + " Column: " + column + " Count: " + count);
+      System.out.println(gameBoard[row][column - count].getLetter());
 
-      //Wenn drunter
-      int count = 1;
+      if ((row - count >= 0) && gameBoard[row - count][column] != null) {
+        System.out.println("Tile drüber: " + gameBoard[row - count][column].getLetter());
+        drueber = true;
 
-      while ((row - count >= 0) && gameBoard[row - count][column] != null) {
-        touchedTiles[row - count][column] = gameBoard[row - count][column];
-        count++;
+      } else if ((row + count <= 14) && gameBoard[row + count][column] != null) {
+        System.out.println("Tile drunter: " + gameBoard[row + count][column].getLetter());
+        drunter = true;
+
+      } else if ((column - count >= 0) && gameBoard[row][column - count] != null) {
+        System.out.println("Tile links: " + gameBoard[row][column - count].getLetter());
+        links = true;
+
+      } else if ((column + count <= 14) && gameBoard[row][column + count] != null) {
+        System.out.println("Tile rechts: " + gameBoard[row][column + count].getLetter());
+        rechts = true;
       }
 
+      while (drueber) {
+        if (gameBoard[row - count][column] != null) {
+          drueber = false;
+        }
+        touchedTiles[row - count][column] = gameBoard[row - count][column];
+
+        count++;
+
+        if (row - count < 0) {
+          drueber = false;
+        }
+      }
       count = 1;
-      //Wenn drüber
-      while ((row + count < 15) && gameBoard[row + count][column] != null) {
+
+      while (drunter) {
+        if (gameBoard[row + count][column] != null) {
+          drunter = false;
+        }
         touchedTiles[row + count][column] = gameBoard[row + count][column];
         count++;
+        if (row + count > 14) {
+          drunter = false;
+        }
       }
       count = 1;
-      //Wenn rechts
-      while ((column - count >= 0) && gameBoard[row][column - count] != null) {
+
+      while (links) {
+        if (gameBoard[row][column - count] != null) {
+          links = false;
+        }
         touchedTiles[row][column - count] = gameBoard[row][column - count];
         count++;
+        if (column - count < 0) {
+          links = false;
+        }
       }
       count = 1;
-      //Wenn rechts
-      while ((column - count < 15) && gameBoard[row][column + count] != null) {
+
+      while (rechts) {
+        if (gameBoard[row][column + count] != null) {
+          rechts = false;
+        }
         touchedTiles[row][column + count] = gameBoard[row][column + count];
         count++;
+
+        if (column + count > 14) {
+          rechts = false;
+        }
       }
+    }
 
-
+    for (int i = 0; i < 15; i++) {
+      for (int j = 0; j < 15; j++) {
+        if (touchedTiles[i][j] != null) {
+          System.out.print(touchedTiles[i][j].getLetter() + "  ");
+        } else {
+          System.out.print("  ");
+        }
+      }
+      System.out.print("");
     }
     return touchedTiles;
   }

@@ -114,18 +114,69 @@ class GameBoardTest {
 
   }
 
+
   @Test
-  void getTouchedWords() {
-    gameBoardTest.placeTile(new Tile("T", 3), 7, 7);
-    gameBoardTest.placeTile(new Tile("W", 3), 7, 8);
-    gameBoardTest.placeTile(new Tile("X", 3), 7, 9);
+  void getTouchedWordsv2() {
+    Tile t1 = new Tile("1", 3);
+    Tile t2 = new Tile("2", 3);
+    Tile t3 = new Tile("3", 3);
+
+    Tile t4 = new Tile("4", 3);
+    Tile t5 = new Tile("5", 3);
+
+    gameBoardTest.placeTile(t1, 7, 7);
+    gameBoardTest.placeTile(t2, 7, 8);
+    gameBoardTest.placeTile(t3, 7, 9);
+
+    gameBoardTest.placeTile(t4, 5, 6);
+    gameBoardTest.placeTile(t5, 5, 7);
 
     gameBoardTest.finishTurn();
 
-    gameBoardTest.placeTile(new Tile("X", 3), 6, 8);
-    gameBoardTest.placeTile(new Tile("X", 3), 8, 8);
+    Tile t6 = new Tile("6", 3);
+    Tile t7 = new Tile("7", 3);
+    Tile t8 = new Tile("8", 3);
+    gameBoardTest.placeTile(t6, 5, 8);
+    gameBoardTest.placeTile(t7, 6, 8);
+    gameBoardTest.placeTile(t8, 8, 8);
 
-    System.out.println(gameBoardTest.getTouchedWords().toString());
+    Tile[][] test = new Tile[15][15];
+    test = gameBoardTest.getTouchedWordsv2();
+  }
+
+  @Test
+  void getTouchedWords() {
+    Tile t1 = new Tile("1", 3);
+    Tile t2 = new Tile("2", 3);
+    Tile t3 = new Tile("3", 3);
+
+    Tile t4 = new Tile("4", 3);
+    Tile t5 = new Tile("5", 3);
+
+    gameBoardTest.placeTile(t1, 7, 7);
+    gameBoardTest.placeTile(t2, 7, 8);
+    gameBoardTest.placeTile(t3, 7, 9);
+
+    gameBoardTest.placeTile(t4, 5, 6);
+    gameBoardTest.placeTile(t5, 5, 7);
+
+    gameBoardTest.finishTurn();
+
+    Tile t6 = new Tile("6", 3);
+    Tile t7 = new Tile("7", 3);
+    Tile t8 = new Tile("8", 3);
+    gameBoardTest.placeTile(t6, 5, 8);
+    gameBoardTest.placeTile(t7, 6, 8);
+    gameBoardTest.placeTile(t8, 8, 8);
+
+    Tile[][] comparrison = new Tile[15][15];
+
+    comparrison[6][8] = t4;
+    comparrison[7][8] = t2;
+
+    Tile[][] testResult = gameBoardTest.getTouchedWords();
+
+
   }
 
   @Test
