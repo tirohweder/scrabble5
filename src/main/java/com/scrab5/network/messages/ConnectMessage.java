@@ -5,12 +5,12 @@
  */
 package com.scrab5.network.messages;
 
-import com.scrab5.network.Client;
+import com.scrab5.network.ClientData;
 
 public class ConnectMessage extends Message {
-
   private static final long serialVersionUID = 1L;
-  private Client client;
+
+  private ClientData clientData;
 
   /**
    * Constructor to create ConnectionMessages.
@@ -19,10 +19,10 @@ public class ConnectMessage extends Message {
    * @param sender - the username of the connecting client
    * @param client - the instance of the connecting client
    */
-  public ConnectMessage(String sender, Client client) {
+  public ConnectMessage(String sender, ClientData clientData) {
     super(sender);
     this.type = MessageType.CONNECT;
-    this.client = client;
+    this.clientData = clientData;
   }
 
   /**
@@ -31,7 +31,7 @@ public class ConnectMessage extends Message {
    * @author nitterhe
    * @return client - object of the connecting client
    */
-  public Client getClient() {
-    return this.client;
+  public ClientData getClientData() {
+    return this.clientData;
   }
 }

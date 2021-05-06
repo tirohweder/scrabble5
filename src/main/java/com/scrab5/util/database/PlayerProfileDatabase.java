@@ -409,7 +409,7 @@ public class PlayerProfileDatabase extends Database {
    * @param soundeffect double value of the sound effect volume
    */
   public static void setSoundEffectVolume(String name, Double soundEffect) {
-    FillDatabase.updatePlayer("Music", name, null, 0, soundEffect);
+    FillDatabase.updatePlayer("SoundEffect", name, null, 0, soundEffect);
   }
 
 

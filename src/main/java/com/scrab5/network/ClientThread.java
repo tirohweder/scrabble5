@@ -8,20 +8,21 @@ package com.scrab5.network;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
-import com.scrab5.network.Client.ServerData;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.Message;
 
-public class ClientThread extends Threads {
+public class ClientThread extends Threads implements Serializable {
+  private static final long serialVersionUID = 1L;
 
-  private Client client;
-  private ObjectOutputStream toServer;
-  private ObjectInputStream fromServer;
-  private Socket socketToServer;
+  transient private Client client;
+  transient private ObjectOutputStream toServer;
+  transient private ObjectInputStream fromServer;
+  transient private Socket socketToServer;
   public final String sender;
 
   /**
@@ -45,7 +46,7 @@ public class ClientThread extends Threads {
 
     try {
       Message message;
-      while (running) {
+      while (this.running) {
         message = (Message) this.fromServer.readObject();
         switch (message.getType()) {
 
@@ -79,11 +80,12 @@ public class ClientThread extends Threads {
         this.toServer = new ObjectOutputStream(socketToServer.getOutputStream());
         this.fromServer = new ObjectInputStream(socketToServer.getInputStream());
         this.start();
-        sendMessageToServer(new ConnectMessage(this.client.getUsername(), this.client));
+        sendMessageToServer(new ConnectMessage(this.sender, this.client.getClientData()));
       } else {
         // requires Exception handling
       }
     } catch (Exception e) {
+      System.out.println("connection error");
       // requires Exception handling
     }
   }
@@ -100,6 +102,8 @@ public class ClientThread extends Threads {
       this.toServer.flush();
       this.toServer.reset();
     } catch (Exception e) {
+      e.printStackTrace();
+      System.out.println("message sending to sever error");
       // requires Exception handling
     }
   }

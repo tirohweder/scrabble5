@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import java.io.IOException;
 import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.Database;
+import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * The App class contains some methods changing the scene seen and the sets the app up for the first
@@ -22,6 +24,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
   private static Scene scene;
+  private static Stage mainStage;
   private Database db;
   private Media sound;
   private static MediaPlayer mediaplayer;
@@ -42,6 +45,7 @@ public class App extends Application {
     if (!Database.databaseExistance()) {
       db = new Database();
       CreateDatabase cdb = new CreateDatabase();
+      FillDatabase.fillLetters();
     } else {
       Database.reconnect();
     }
@@ -58,7 +62,8 @@ public class App extends Application {
     mediaplayer.setCycleCount(MediaPlayer.INDEFINITE);
     mediaplayer.play();
 
-
+    this.mainStage = stage;
+    stage.initStyle(StageStyle.UNDECORATED);
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
     stage.setResizable(false);
@@ -125,6 +130,10 @@ public class App extends Application {
 
   public static void setMusicVolume(double volume) {
     mediaplayer.setVolume(volume);
+  }
+
+  public static Stage getMainStage() {
+    return mainStage;
   }
 
 

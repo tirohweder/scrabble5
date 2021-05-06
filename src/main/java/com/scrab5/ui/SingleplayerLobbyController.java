@@ -29,14 +29,13 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   private ImageView dropDownButton;
   @FXML
   private Label dicDisplaying;
+
   private boolean[] freeSpaces = {true, true, true};
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.player1.setText(Data.getCurrentUser());
-    this.ready1.setText("Not Ready");
+    setUpInit();
     this.setUpDicitionaryBox();
-
   }
 
   @FXML
@@ -164,7 +163,6 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   private void clickComboBox(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     dictionarySelection.show();
-
   }
 
   @FXML
@@ -189,6 +187,9 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     }
   }
 
+  /**
+   * https://stackabuse.com/java-list-files-in-a-directory/
+   */
   private void setUpDicitionaryBox() {
 
     File dir = new File(System.getProperty("user.dir"));

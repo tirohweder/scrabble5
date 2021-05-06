@@ -8,14 +8,17 @@
 package com.scrab5.network;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.HashMap;
 import com.scrab5.network.messages.Message;
 
 
-public class Server {
+public class Server implements Serializable {
+  private static final long serialVersionUID = 1L;
 
   public final int clientPort = 50000;
   public final int serverPort = 60000;
@@ -24,11 +27,11 @@ public class Server {
   private String ip;
   private static ServerSocket serverSocket;
   private boolean gameStart;
-  private static int clientCounter = 0;
+  private static int clientCounter;
   private final int clientMaximum;
 
-  private HashMap<String, Client> clients;
-  private HashMap<Client, ServerThread> connections;
+  private HashMap<String, ClientData> clients;
+  private HashMap<ClientData, ServerThread> connections;
 
   /**
    * Construtor for the Server. Sets up the server settings by initializing the Collections and
@@ -39,11 +42,12 @@ public class Server {
    * @param clientMaximum - the maximum amount of clients allowed to connect to the server
    */
   public Server(String host, int clientMaximum) {
-    this.clients = new HashMap<String, Client>();
-    this.connections = new HashMap<Client, ServerThread>();
+    this.clients = new HashMap<String, ClientData>();
+    this.connections = new HashMap<ClientData, ServerThread>();
     this.gameStart = false;
     this.host = host;
     this.clientMaximum = clientMaximum;
+    clientCounter = 0;
     try {
       this.ip = InetAddress.getLocalHost().getHostAddress();
       serverSocket = new ServerSocket(this.serverPort);
@@ -78,19 +82,21 @@ public class Server {
    * @author nitterhe
    */
   private synchronized void accept() {
-    int i = 0;
-    while (!gameStart && clientCounter < clientMaximum && !serverSocket.isClosed() && i < 5) {
+
+    while (!gameStart && clientCounter < clientMaximum && !serverSocket.isClosed()) {
       try {
-        i++;
         Socket newClient = serverSocket.accept();
         ServerThread clientConnection = new ServerThread(this, newClient);
         clientConnection.start();
+      } catch (SocketException e) {
+        // does nothing so closing the server socket does not result in a SocketException error
       } catch (Exception e) {
         e.printStackTrace();
         System.out.println("Error at acceptClients()");
         // requires exception handling
       }
     }
+
   }
 
   /**
@@ -195,18 +201,18 @@ public class Server {
    * 
    * @author nitterhe
    */
-  public synchronized void setClientCount() {
+  public void updateClientCount() {
     clientCounter = clients.size();
   }
 
   /**
    * Returns all connected clients as a HashMap. Keys are the usernames as Strings and values are
-   * the clients as Client objects.
+   * the clients as ClientData objects.
    * 
    * @author nitterhe
    * @return clients - HashMap with the Strings as keys and Clients as values
    */
-  public HashMap<String, Client> getClients() {
+  public HashMap<String, ClientData> getClients() {
     return clients;
   }
 
@@ -217,7 +223,7 @@ public class Server {
    * @author nitterhe
    * @return connections - HashMap with Clients as keys and ServerThreads as values
    */
-  public HashMap<Client, ServerThread> getConnections() {
+  public HashMap<ClientData, ServerThread> getConnections() {
     return connections;
   }
 
@@ -226,7 +232,6 @@ public class Server {
    * 
    * @author nitterhe
    */
-  // maybe need to clear HashMaps, but i do not think so, cause new Lobby creates new Server
   public void shutDownServer() {
     for (ServerThread serverThread : connections.values()) {
       serverThread.closeConnection();

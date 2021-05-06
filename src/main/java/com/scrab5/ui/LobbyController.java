@@ -1,10 +1,12 @@
 package com.scrab5.ui;
 
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -19,6 +21,10 @@ public abstract class LobbyController extends Controller {
   protected Label player1, player2, player3, player4;
   @FXML
   protected Label ready1, ready2, ready3, ready4;
+  @FXML
+  protected Label vote1, vote2, vote3, vote4;
+  @FXML
+  protected ComboBox<Integer> voteSelection1, voteSelection2, voteSelection3, voteSelection4;
 
   protected int playerAmount = 1;
   protected boolean isReady[] = {false, true, true, true};
@@ -91,6 +97,48 @@ public abstract class LobbyController extends Controller {
     this.darkBackground.setOpacity(0);
   }
 
+  @FXML
+  private void clickComboBox1(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    this.voteSelection1.show();
+  }
+
+  @FXML
+  private void clickComboBox2(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    this.voteSelection2.show();
+  }
+
+  @FXML
+  private void clickComboBox3(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    this.voteSelection3.show();
+  }
+
+  @FXML
+  private void clickComboBox4(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    this.voteSelection4.show();
+  }
+
+  @FXML
+  private void setPlayerVote(ActionEvent event) {
+    ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
+    this.vote1.setText(temp.getValue() + "");
+  }
+
+  protected void setUpInit() {
+    this.player1.setText(Data.getCurrentUser());
+    this.ready1.setText("Not Ready");
+
+    for (int i = 1; i <= 4; i++) {
+      voteSelection1.getItems().add(i);
+      voteSelection2.getItems().add(i);
+      voteSelection3.getItems().add(i);
+      voteSelection4.getItems().add(i);
+    }
+  }
+
   /**
    * @author trohwede
    * @param fxml
@@ -102,14 +150,7 @@ public abstract class LobbyController extends Controller {
     return fxmlLoader.load();
   }
 
-  /**
-   * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
-   * predecessor "MainMenu" scene
-   * 
-   * @author mherre
-   * @param event
-   * @throws IOException
-   */
+
   @FXML
   abstract protected void back(MouseEvent event) throws IOException;
 

@@ -1191,41 +1191,80 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@board_Images/Singleplayer_Exchange_Clicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="302.0" layoutY="695.0" onMouseClicked="#ragPlace1clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Tiles/Tile%20_E_%20%20.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="380.0" layoutY="695.0" onMouseClicked="#ragPlace2clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Tiles/Tile%20_X_%20%20.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="459.0" layoutY="695.0" onMouseClicked="#ragPlace3clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Tiles/Tile%20_A_%20.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="538.0" layoutY="696.0" onMouseClicked="#ragPlace4clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Tiles/Tile%20_M_%20%20.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="615.0" layoutY="695.0" onMouseClicked="#ragPlace5clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Tiles/Tile%20_P_%20%20.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="692.0" layoutY="695.0" onMouseClicked="#ragPlace6clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Tiles/Tile%20_L_%20%20.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="768.0" layoutY="694.0" onMouseClicked="#ragPlace7clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Tiles/Tile%20_E_%20%20.png" />
-               </image>
-            </ImageView>
+            <AnchorPane layoutX="289.0" layoutY="689.0" prefHeight="80.0" prefWidth="561.0">
+               <children>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="249.0" layoutY="7.0" onMouseClicked="#drawTile1Clicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTile.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" onMouseClicked="#drawTile2Clicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTile.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" onMouseClicked="#drawTile3Clicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTile.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" onMouseClicked="#drawTile4Clicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTile.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" onMouseClicked="#drawTile5Clicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTile.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" onMouseClicked="#drawTile6Clicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTile.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" onMouseClicked="#drawTile7Clicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTile.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTileClicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTileClicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTileClicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="249.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTileClicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTileClicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTileClicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/drawTileClicked.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
