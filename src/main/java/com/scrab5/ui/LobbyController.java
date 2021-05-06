@@ -122,9 +122,27 @@ public abstract class LobbyController extends Controller {
   }
 
   @FXML
-  private void setPlayerVote(ActionEvent event) {
+  private void setPlayerVote1(ActionEvent event) {
     ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
     this.vote1.setText(temp.getValue() + "");
+  }
+
+  @FXML
+  private void setPlayerVote2(ActionEvent event) {
+    ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
+    this.vote2.setText(temp.getValue() + "");
+  }
+
+  @FXML
+  private void setPlayerVote3(ActionEvent event) {
+    ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
+    this.vote3.setText(temp.getValue() + "");
+  }
+
+  @FXML
+  private void setPlayerVote4(ActionEvent event) {
+    ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
+    this.vote4.setText(temp.getValue() + "");
   }
 
   protected void setUpInit() {
