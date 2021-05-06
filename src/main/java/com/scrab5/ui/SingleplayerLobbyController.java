@@ -10,7 +10,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -57,19 +56,28 @@ public class SingleplayerLobbyController extends LobbyController implements Init
           case 0:
             this.player2.setText("CPU 2");
             this.ready2.setText("Ready");
+            this.difficulty2.setOpacity(1.0);
             this.kick2.setOpacity(1.0);
+            this.diffSelection2.setOpacity(1.0);
+            this.diffButton1.setOpacity(1.0);
             isReady[i + 1] = true;
             break;
           case 1:
             this.player3.setText("CPU 3");
             this.ready3.setText("Ready");
+            this.difficulty3.setOpacity(1.0);
             this.kick3.setOpacity(1.0);
+            this.diffSelection3.setOpacity(1.0);
+            this.diffButton2.setOpacity(1.0);
             isReady[i + 1] = true;
             break;
           case 2:
             this.player4.setText("CPU 4");
             this.ready4.setText("Ready");
+            this.difficulty4.setOpacity(1.0);
             this.kick4.setOpacity(1.0);
+            this.diffSelection4.setOpacity(1.0);
+            this.diffButton3.setOpacity(1.0);
             isReady[i + 1] = true;
             break;
           default:
@@ -88,6 +96,9 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     playSound("ButtonClicked.mp3");
     this.player2.setText("");
     this.ready2.setText("");
+    this.difficulty2.setOpacity(0);
+    this.diffSelection2.setOpacity(0);
+    this.diffButton1.setOpacity(0);
     this.kick2.setOpacity(0);
     this.playerAmount--;
     this.freeSpaces[0] = true;
@@ -100,6 +111,9 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     playSound("ButtonClicked.mp3");
     this.player3.setText("");
     this.ready3.setText("");
+    this.difficulty3.setOpacity(0);
+    this.diffSelection3.setOpacity(0);
+    this.diffButton2.setOpacity(0);
     this.kick3.setOpacity(0);
     this.playerAmount--;
     this.freeSpaces[1] = true;
@@ -114,6 +128,9 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     playSound("ButtonClicked.mp3");
     this.player4.setText("");
     this.ready4.setText("");
+    this.difficulty4.setOpacity(0);
+    this.diffSelection4.setOpacity(0);
+    this.diffButton3.setOpacity(0);
     this.kick4.setOpacity(0);
     this.playerAmount--;
     this.freeSpaces[2] = true;
@@ -121,17 +138,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   }
 
-  @FXML
-  private void lightenKickIcon(MouseEvent event) {
-    ImageView iv = (ImageView) event.getSource();
-    iv.setImage(new Image("/com/scrab5/ui/images/SB05_KickIconClicked.png"));
-  }
 
-  @FXML
-  private void darkenKickIcon(MouseEvent event) {
-    ImageView iv = (ImageView) event.getSource();
-    iv.setImage(new Image("/com/scrab5/ui/images/SB05_KickIcon.png"));
-  }
 
   /**
    * 
@@ -146,6 +153,13 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   @FXML
   private void dontShow(MouseEvent event) throws IOException {
     dictionarySelection.hide();
+    voteSelection1.hide();
+    voteSelection2.hide();
+    voteSelection3.hide();
+    voteSelection4.hide();
+    diffBox1.hide();
+    diffBox2.hide();
+    diffBox3.hide();
   }
 
   /**
@@ -168,7 +182,6 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   @FXML
   private void setSelectedDictionary(ActionEvent event) {
     String selected = (String) this.dictionarySelection.getValue();
-    Data.setCurrentUser(selected);
     this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
     isDictionarySelected = true;
   }

@@ -8,6 +8,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
@@ -18,13 +19,20 @@ public abstract class LobbyController extends Controller {
   @FXML
   protected ImageView kick2, kick3, kick4, addPlayerButton, darkBackground;
   @FXML
+  protected ImageView diffSelection2, diffSelection3, diffSelection4, diffButton1, diffButton2,
+      diffButton3;
+  @FXML
   protected Label player1, player2, player3, player4;
   @FXML
   protected Label ready1, ready2, ready3, ready4;
   @FXML
   protected Label vote1, vote2, vote3, vote4;
   @FXML
+  protected Label difficulty2, difficulty3, difficulty4;
+  @FXML
   protected ComboBox<Integer> voteSelection1, voteSelection2, voteSelection3, voteSelection4;
+  @FXML
+  protected ComboBox<String> diffBox1, diffBox2, diffBox3;
 
   protected int playerAmount = 1;
   protected boolean isReady[] = {false, true, true, true};
@@ -122,6 +130,44 @@ public abstract class LobbyController extends Controller {
   }
 
   @FXML
+  private void clickDiffBox1(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    this.diffBox1.show();
+  }
+
+  @FXML
+  private void clickDiffBox2(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    this.diffBox2.show();
+  }
+
+  @FXML
+  private void clickDiffBox3(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    this.diffBox3.show();
+  }
+
+  @FXML
+  private void setDifficulty1(ActionEvent event) {
+    ComboBox<String> temp = (ComboBox<String>) event.getSource();
+    this.difficulty2.setText(temp.getValue() + "");
+  }
+
+  @FXML
+  private void setDifficulty2(ActionEvent event) {
+    ComboBox<String> temp = (ComboBox<String>) event.getSource();
+    this.difficulty3.setText(temp.getValue() + "");
+  }
+
+  @FXML
+  private void setDifficulty3(ActionEvent event) {
+    ComboBox<String> temp = (ComboBox<String>) event.getSource();
+    this.difficulty4.setText(temp.getValue() + "");
+  }
+
+
+
+  @FXML
   private void setPlayerVote1(ActionEvent event) {
     ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
     this.vote1.setText(temp.getValue() + "");
@@ -145,16 +191,55 @@ public abstract class LobbyController extends Controller {
     this.vote4.setText(temp.getValue() + "");
   }
 
+  @FXML
+  private void lightenKickIcon(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+    iv.setImage(new Image("/com/scrab5/ui/images/SB05_KickIconClicked.png"));
+  }
+
+  @FXML
+  private void darkenKickIcon(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+    iv.setImage(new Image("/com/scrab5/ui/images/SB05_KickIcon.png"));
+  }
+
+  @FXML
+  private void lightenArrow(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+    iv.setImage(new Image("/com/scrab5/ui/images/SB05_PlayerVoteButtonClicked.png"));
+  }
+
+  @FXML
+  private void darkenArrow(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+    iv.setImage(new Image("/com/scrab5/ui/images/SB05_PlayerVoteButton.png"));
+  }
+
   protected void setUpInit() {
     this.player1.setText(Data.getCurrentUser());
     this.ready1.setText("Not Ready");
-
     for (int i = 1; i <= 4; i++) {
-      voteSelection1.getItems().add(i);
-      voteSelection2.getItems().add(i);
-      voteSelection3.getItems().add(i);
-      voteSelection4.getItems().add(i);
+      this.voteSelection1.getItems().add(i);
+      this.voteSelection2.getItems().add(i);
+      this.voteSelection3.getItems().add(i);
+      this.voteSelection4.getItems().add(i);
     }
+    this.voteSelection1.getSelectionModel().select(0);
+    this.voteSelection2.getSelectionModel().select(1);
+    this.voteSelection3.getSelectionModel().select(2);
+    this.voteSelection4.getSelectionModel().select(3);
+
+    this.diffBox1.getItems().add("Easy");
+    this.diffBox1.getItems().add("Difficult");
+    this.diffBox2.getItems().add("Easy");
+    this.diffBox2.getItems().add("Difficult");
+    this.diffBox3.getItems().add("Easy");
+    this.diffBox3.getItems().add("Difficult");
+
+    this.diffBox1.getSelectionModel().select(0);
+    this.diffBox2.getSelectionModel().select(0);
+    this.diffBox3.getSelectionModel().select(0);
+
   }
 
   /**

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -67,7 +68,11 @@ public class AccountCreationController extends Controller implements Initializab
 
     switch (event.getCode()) {
       case ENTER:
-        this.isUsernameValid();
+        if (this.isUsernameValid()) {
+          App.setMusicVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
+          Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
+          App.setRoot("MainMenu");
+        }
         break;
       default:
         break;
@@ -84,7 +89,11 @@ public class AccountCreationController extends Controller implements Initializab
   @FXML
   private void enter(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    this.isUsernameValid();
+    if (this.isUsernameValid()) {
+      App.setMusicVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
+      Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
+      App.setRoot("MainMenu");
+    }
   }
 
   /**
@@ -127,7 +136,6 @@ public class AccountCreationController extends Controller implements Initializab
         message = "Congratulations! Your account has been created";
         pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
         pum.show();
-        App.setRoot("MainMenu");
 
         return true;
 
