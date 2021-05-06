@@ -173,7 +173,7 @@ public class Client implements Serializable {
    * @author nitterhe
    */
   public void disconnectFromServer() {
-    if (clientThread.isAlive()) {
+    if (clientThread.running) {
       clientThread.sendMessageToServer(new DisconnectMessage(clientThread.sender));
       clientThread = null;
       hostedServer = null; // connection to database must be saved
