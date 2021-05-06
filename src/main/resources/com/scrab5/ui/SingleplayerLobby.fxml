@@ -115,6 +115,10 @@
                   <Image url="@images/SB05_DarkerBackground.png" />
                </image>
             </ImageView>
+            <ComboBox layoutX="208.0" layoutY="183.0" opacity="0.0" prefHeight="25.0" prefWidth="5.0" />
+            <ComboBox layoutX="208.0" layoutY="220.0" opacity="0.0" prefHeight="25.0" prefWidth="5.0" />
+            <ComboBox layoutX="208.0" layoutY="259.0" prefHeight="25.0" prefWidth="5.0" />
+            <ComboBox layoutX="208.0" layoutY="297.0" prefHeight="25.0" prefWidth="5.0" />
 			</children>
 		</AnchorPane>
 	</children>
