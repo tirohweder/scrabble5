@@ -1,5 +1,6 @@
 package com.scrab5.ui;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -10,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Slider;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 
 /**
  * The SettingsController class is supposed to control the components of the Settings.fxml
@@ -41,6 +43,24 @@ public class SettingsController extends Controller implements Initializable {
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     App.setRoot("MainMenu");
+  }
+
+  @FXML
+  private void addDictionary(MouseEvent event) {
+    playSound("ButtonClicked.mp3");
+
+    FileChooser fc = new FileChooser();
+    fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Dictionaries", "*.txt"));
+    File f = fc.showOpenDialog(App.getMainStage());
+    // Files.copy(f.toPath();
+  }
+
+  @FXML
+  private void editDictionaries(MouseEvent event) {
+    FileChooser fc = new FileChooser();
+    fc.setInitialDirectory(new File("src"));
+    fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Dictionaries", "*.txt"));
+    fc.showOpenDialog(App.getMainStage());
   }
 
 

@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SettingsController">
 	<children>
 		<AnchorPane prefHeight="768.0" prefWidth="1360.0">
 			<children>
@@ -22,12 +22,12 @@
 						<Image url="@images/SB03_BackButtonClicked.png" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="150.0" fitWidth="198.0" layoutX="455.0" layoutY="534.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="150.0" fitWidth="198.0" layoutX="455.0" layoutY="534.0" onMouseClicked="#addDictionary" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@images/SB03_ButtonClicked.png" />
 					</image>
 				</ImageView>
-				<ImageView fitHeight="150.0" fitWidth="198.0" layoutX="707.0" layoutY="535.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+				<ImageView fitHeight="150.0" fitWidth="198.0" layoutX="707.0" layoutY="535.0" onMouseClicked="#editDictionaries" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
 					<image>
 						<Image url="@images/SB03_ButtonClicked.png" />
 					</image>

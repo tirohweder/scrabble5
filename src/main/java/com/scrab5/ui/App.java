@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
   private static Scene scene;
+  private static Stage mainStage;
   private Database db;
   private Media sound;
   private static MediaPlayer mediaplayer;
@@ -60,7 +61,7 @@ public class App extends Application {
     mediaplayer.setCycleCount(MediaPlayer.INDEFINITE);
     mediaplayer.play();
 
-
+    this.mainStage = stage;
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
     stage.setResizable(false);
@@ -127,6 +128,10 @@ public class App extends Application {
 
   public static void setMusicVolume(double volume) {
     mediaplayer.setVolume(volume);
+  }
+
+  public static Stage getMainStage() {
+    return mainStage;
   }
 
 
