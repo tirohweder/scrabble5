@@ -63,6 +63,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     // App.setRoot("MultiplayerLobby");
     // }
 
+    Data.setIsSearching(false);
     this.setupServer(playerCount);
     App.setRoot("MultiplayerLobby");
   }
@@ -79,6 +80,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
+    Data.setIsSearching(false);
     App.setRoot("MainMenu");
   }
 
@@ -238,7 +240,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
       Runnable r = new Runnable() {
 
         public synchronized void run() {
-          for (int i = 0; i < 25; i++) {
+          for (int i = 0; i < 25 && Data.getIsSearching(); i++) {
             Data.setServerList(Data.getPlayerClient().getServerList());
             if (!Data.getServerList().isEmpty()) {
               try {
