@@ -1,6 +1,9 @@
 package com.scrab5.ui;
 
+import java.awt.Desktop;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -46,21 +49,32 @@ public class SettingsController extends Controller implements Initializable {
   }
 
   @FXML
-  private void addDictionary(MouseEvent event) {
+  private void addDictionary(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
 
     FileChooser fc = new FileChooser();
     fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Dictionaries", "*.txt"));
-    File f = fc.showOpenDialog(App.getMainStage());
-    // Files.copy(f.toPath();
+    File source = fc.showOpenDialog(App.getMainStage());
+
+    if (source != null) {
+      String fileName = source.getName();
+      File destination = new File(System.getProperty("user.dir") + "\\" + fileName);
+      this.copyFile(source, destination);
+    }
+
   }
 
+
+
   @FXML
-  private void editDictionaries(MouseEvent event) {
+  private void editDictionaries(MouseEvent event) throws IOException {
     FileChooser fc = new FileChooser();
-    fc.setInitialDirectory(new File("src"));
+    fc.setInitialDirectory(new File(System.getProperty("user.dir")));
     fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Dictionaries", "*.txt"));
-    fc.showOpenDialog(App.getMainStage());
+    File source = fc.showOpenDialog(App.getMainStage());
+    if (source != null) {
+      Desktop.getDesktop().open(source);
+    }
   }
 
 
@@ -85,6 +99,30 @@ public class SettingsController extends Controller implements Initializable {
         PlayerProfileDatabase.setSoundEffectVolume(Data.getCurrentUser(), (double) newValue);
       }
     }));
+  }
+
+  /**
+   * https://stackoverflow.com/questions/16433915/how-to-copy-file-from-one-location-to-another-location
+   * 
+   * @param source
+   * @param dest
+   * @throws IOException
+   */
+  private void copyFile(File source, File dest) throws IOException {
+    FileInputStream is = null;
+    FileOutputStream os = null;
+    try {
+      is = new FileInputStream(source);
+      os = new FileOutputStream(dest);
+      byte[] buffer = new byte[1024];
+      int length;
+      while ((length = is.read(buffer)) > 0) {
+        os.write(buffer, 0, length);
+      }
+    } finally {
+      is.close();
+      os.close();
+    }
   }
 
 
