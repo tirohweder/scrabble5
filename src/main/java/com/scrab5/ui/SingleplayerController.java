@@ -12,6 +12,7 @@ import com.scrab5.util.database.Database;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -49,13 +50,45 @@ public class SingleplayerController implements Initializable {
    *         first representation of the rack places which later will be connected to the game core
    *         and linked to the bag of tiles
    */
+  @FXML
   private ImageView rackPlace1;
+  @FXML
   private ImageView rackPlace2;
+  @FXML
   private ImageView rackPlace3;
+  @FXML
   private ImageView rackPlace4;
+  @FXML
   private ImageView rackPlace5;
+  @FXML
   private ImageView rackPlace6;
+  @FXML
   private ImageView rackPlace7;
+  
+  @FXML
+  private Label pointsRack1;
+  @FXML
+  private Label pointsRack2;
+  @FXML
+  private Label pointsRack3;
+  @FXML
+  private Label pointsRack4;
+  @FXML
+  private Label pointsRack5;
+  @FXML
+  private Label pointsRack6;
+  @FXML
+  private Label pointsRack7;
+  
+  @FXML
+  private Label player1;
+  @FXML
+  private Label player2;
+  @FXML
+  private Label player3;
+  @FXML
+  private Label player4;
+  
 
 
   private ArrayList<String> unavailableTiles = new ArrayList<String>();
@@ -66,7 +99,17 @@ public class SingleplayerController implements Initializable {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    // initRacks();
+    player1.setText("Aaron");
+    player2.setText("Peter");
+    player2.setOpacity(1);
+    player3.setText("Peter");
+    player3.setOpacity(1);
+    player4.setText("Peter");
+    player4.setOpacity(1);
+    
+    if(rackPlace1 == null) {
+      rackPlace1.setImage(setNewTile("A", null));
+    }
 
   }
 
@@ -75,7 +118,7 @@ public class SingleplayerController implements Initializable {
     ImageView iv = ((ImageView) event.getSource());
 
     if (iv.getImage().getUrl().contains("draw")) {
-      iv.setImage(setNewTile("A", null));
+      rackPlace1.setImage(setNewTile("A", null));
     } else {
       ragPlace1clicked(event);
     }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <!-- 
 @author apilgrim
@@ -1193,76 +1195,76 @@ The method specification which implements what to do when a field is clicked/ en
             </ImageView>
             <AnchorPane layoutX="289.0" layoutY="689.0" prefHeight="80.0" prefWidth="561.0">
                <children>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="249.0" layoutY="7.0" onMouseClicked="#drawTile1Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace1" fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@board_Images/drawTile.png" />
+                        <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace2" fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@board_Images/drawTile.png" />
+                        <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace3" fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@board_Images/drawTile.png" />
+                        <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace4" fitHeight="70.0" fitWidth="65.0" layoutX="249.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@board_Images/drawTile.png" />
+                        <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace5" fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@board_Images/drawTile.png" />
+                        <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace6" fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@board_Images/drawTile.png" />
+                        <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace7" fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@board_Images/drawTile.png" />
+                        <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" onMouseClicked="#drawTile7Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@board_Images/drawTileClicked.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" onMouseClicked="#drawTile6Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@board_Images/drawTileClicked.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" onMouseClicked="#drawTile5Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@board_Images/drawTileClicked.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="249.0" layoutY="7.0" onMouseClicked="#drawTile4Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@board_Images/drawTileClicked.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" onMouseClicked="#drawTile3Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@board_Images/drawTileClicked.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" onMouseClicked="#drawTile2Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@board_Images/drawTileClicked.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" onMouseClicked="#drawTile1Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@board_Images/drawTileClicked.png" />
-                     </image>
-                  </ImageView>
+                  <Label fx:id="pointsRack1" layoutX="38.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Candara" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pointsRack2" layoutX="117.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Candara" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pointsRack3" layoutX="195.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Candara" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pointsRack4" layoutX="275.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Candara" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pointsRack5" layoutX="352.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Candara" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pointsRack6" layoutX="430.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Candara" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="pointsRack7" layoutX="508.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                     <font>
+                        <Font name="Candara" size="14.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <ImageView fitHeight="34.0" fitWidth="117.0" layoutX="15.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
@@ -1275,6 +1277,26 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@images/MM_ExitButton_Clicked.png" />
                </image>
             </ImageView>
+            <Label fx:id="player1" layoutX="242.0" layoutY="-3.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="player2" layoutX="997.0" layoutY="-3.0" opacity="0.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="player3" layoutX="758.0" layoutY="-3.0" opacity="0.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="player4" layoutX="494.0" layoutY="-3.0" opacity="0.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
