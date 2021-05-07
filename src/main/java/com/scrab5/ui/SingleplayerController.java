@@ -8,14 +8,17 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import com.scrab5.core.game.*;
 import com.scrab5.core.player.*;
+import com.scrab5.util.database.Database;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /*
  * @author apilgrim
@@ -54,14 +57,11 @@ public class SingleplayerController implements Initializable {
   private ImageView rackPlace6;
   private ImageView rackPlace7;
 
-  Player owner;
 
   private ArrayList<String> unavailableTiles = new ArrayList<String>();
   private ArrayList<String> choosenTiles = new ArrayList<String>();
 
   private ArrayList<TextField> players = new ArrayList<TextField>();
-
-  private AnchorPane rack = new AnchorPane();
 
 
   @Override
@@ -69,58 +69,85 @@ public class SingleplayerController implements Initializable {
     // initRacks();
 
   }
-  
+
   @FXML
   private void drawTile1Clicked(MouseEvent event) throws IOException {
     ImageView iv = ((ImageView) event.getSource());
-    if(iv.getImage().getUrl().contains("draw")) {
+
+    if (iv.getImage().getUrl().contains("draw")) {
       iv.setImage(setNewTile("A", null));
-    }else {
-      
+    } else {
+      ragPlace1clicked(event);
     }
-    
+
   }
-  
+
   @FXML
   private void drawTile2Clicked(MouseEvent event) throws IOException {
-
     ImageView iv = ((ImageView) event.getSource());
-    iv.setImage(rackPlace1.getImage());
+
+    if (iv.getImage().getUrl().contains("draw")) {
+      iv.setImage(setNewTile("A", null));
+    } else {
+      ragPlace2clicked(event);
+    }
   }
-  
+
   @FXML
   private void drawTile3Clicked(MouseEvent event) throws IOException {
 
     ImageView iv = ((ImageView) event.getSource());
-    iv.setImage(rackPlace1.getImage());
+
+    if (iv.getImage().getUrl().contains("draw")) {
+      iv.setImage(setNewTile("A", null));
+    } else {
+      ragPlace3clicked(event);
+    }
   }
-  
+
   @FXML
   private void drawTile4Clicked(MouseEvent event) throws IOException {
-
     ImageView iv = ((ImageView) event.getSource());
-    iv.setImage(rackPlace1.getImage());
+
+    if (iv.getImage().getUrl().contains("draw")) {
+      iv.setImage(setNewTile("A", null));
+    } else {
+      ragPlace4clicked(event);
+    }
   }
-  
+
   @FXML
   private void drawTile5Clicked(MouseEvent event) throws IOException {
 
     ImageView iv = ((ImageView) event.getSource());
-    iv.setImage(rackPlace1.getImage());
+
+    if (iv.getImage().getUrl().contains("draw")) {
+      iv.setImage(setNewTile("A", null));
+    } else {
+      ragPlace5clicked(event);
+    }
   }
-  
+
   @FXML
   private void drawTile6Clicked(MouseEvent event) throws IOException {
-
     ImageView iv = ((ImageView) event.getSource());
-    iv.setImage(rackPlace1.getImage());
+
+    if (iv.getImage().getUrl().contains("draw")) {
+      iv.setImage(setNewTile("A", null));
+    } else {
+      ragPlace6clicked(event);
+    }
   }
-  
+
   @FXML
   private void drawTile7Clicked(MouseEvent event) throws IOException {
-
     ImageView iv = ((ImageView) event.getSource());
-    iv.setImage(rackPlace1.getImage());
+
+    if (iv.getImage().getUrl().contains("draw")) {
+      iv.setImage(setNewTile("A", null));
+    } else {
+      ragPlace7clicked(event);
+    }
   }
 
   public void test() {
@@ -159,7 +186,7 @@ public class SingleplayerController implements Initializable {
   private void fieldClicked(MouseEvent event) throws IOException {
 
     ImageView iv = ((ImageView) event.getSource());
-    
+
     String cordinate = iv.getId();
     GameBoard current = GameSession.getGameBoard();
 
@@ -211,7 +238,7 @@ public class SingleplayerController implements Initializable {
 
     ImageView iv = ((ImageView) event.getSource());
     // check that Tile is not clicked and isnt a letter
-    if (clickedTile != iv && !iv.getImage().getUrl().contains("letter_Tiles")) {
+    if (clickedTile != iv && !iv.getImage().getUrl().contains("letter_Images")) {
       iv.setOpacity(0);
     }
   }
@@ -639,15 +666,29 @@ public class SingleplayerController implements Initializable {
         y += y2;
       }
     }
-    return y;
+    return y-1;
   }
 
 
 
   private Image setNewTile(String letter, String points) {
-    Image letterImage =
-        new Image(this.getClass().getResource("/com/scrab5/ui/letter_Images/tile"+letter.toUpperCase()+".png").toString());
+    Image letterImage = new Image(this.getClass()
+        .getResource("/com/scrab5/ui/letter_Images/tile" + letter.toUpperCase() + ".png")
+        .toString());
     return letterImage;
   }
 
+  @FXML
+  private void closeGame(MouseEvent event) {
+    Database.disconnect();
+    Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+
+    if (Data.getPlayerServer() != null)
+      Data.getPlayerServer().shutDownServer();
+    if (Data.getPlayerClient() != null)
+      Data.getPlayerClient().disconnectFromServer();
+
+    s.close();
+  }
 }
+

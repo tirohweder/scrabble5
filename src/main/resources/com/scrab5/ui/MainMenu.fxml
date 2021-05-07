@@ -44,7 +44,7 @@ fxml file which contains all images and information for the UI screen of the Mai
                   <Image url="@images/MM_Stats_Clicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="34.0" fitWidth="117.0" layoutX="27.0" layoutY="14.0" onMouseClicked="#close" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="34.0" fitWidth="117.0" layoutX="27.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/MM_ExitButton.png" />
                </image>

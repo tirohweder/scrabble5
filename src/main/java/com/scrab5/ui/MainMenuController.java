@@ -14,13 +14,6 @@ import javafx.scene.input.MouseEvent;
 
 public class MainMenuController extends Controller implements Initializable {
 
-  @FXML
-  private ImageView multiplayerButton;
-  @FXML
-  private ImageView singleplayerButton;
-  @FXML
-  private ImageView tutorialButton;
-
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     // TODO Auto-generated method stub

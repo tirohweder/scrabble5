@@ -1198,73 +1198,83 @@ The method specification which implements what to do when a field is clicked/ en
                         <Image url="@board_Images/drawTile.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" onMouseClicked="#drawTile2Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTile.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" onMouseClicked="#drawTile3Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTile.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" onMouseClicked="#drawTile4Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTile.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" onMouseClicked="#drawTile5Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTile.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" onMouseClicked="#drawTile6Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTile.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" onMouseClicked="#drawTile7Clicked" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTile.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" onMouseClicked="#drawTile7Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTileClicked.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" onMouseClicked="#drawTile6Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTileClicked.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" onMouseClicked="#drawTile5Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTileClicked.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="249.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="249.0" layoutY="7.0" onMouseClicked="#drawTile4Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTileClicked.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" onMouseClicked="#drawTile3Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTileClicked.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" onMouseClicked="#drawTile2Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTileClicked.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" onMouseClicked="#drawTile1Clicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/drawTileClicked.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
+            <ImageView fitHeight="34.0" fitWidth="117.0" layoutX="15.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/MM_ExitButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="close" fitHeight="34.0" fitWidth="117.0" layoutX="15.0" layoutY="7.0" onMouseClicked="#closeGame" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/MM_ExitButton_Clicked.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
