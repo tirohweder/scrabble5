@@ -16,8 +16,6 @@ import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
-import com.scrab5.ui.PopUpMessage;
-import com.scrab5.ui.PopUpMessageType;
 
 public class ClientThread extends Threads implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -131,20 +129,9 @@ public class ClientThread extends Threads implements Serializable {
   protected void closeConnection() {
     this.stopThread();
     try {
-<<<<<<< HEAD
-      // new PopUpMessage("The connection has been closed", PopUpMessageType.NOTIFICATION);
-=======
-      new PopUpMessage("The connection has been closed", PopUpMessageType.NOTIFICATION);
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
       this.socketToServer.close();
     } catch (Exception e) {
-<<<<<<< HEAD
-      e.printStackTrace();
-      // new NetworkError(NetworkErrorType.CLOSECONNECTION);
-=======
       new NetworkError(NetworkErrorType.CLOSECONNECTION);
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
     }
-
   }
 }

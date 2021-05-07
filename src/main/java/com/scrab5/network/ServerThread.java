@@ -71,7 +71,7 @@ public class ServerThread extends Threads {
               sendMessageToClient(
                   new ConnectMessage(this.server.getHost(), connect.getClientData()));
             }
-            // send new client list to all clients
+            this.server.sendUpdateMessage();
             break;
           case DISCONNECT:
             DisconnectMessage disconnect = (DisconnectMessage) message;
@@ -80,11 +80,8 @@ public class ServerThread extends Threads {
             } else {
               deleteClient(disconnect.getSender());
             }
-<<<<<<< HEAD
             this.stopThread();
-=======
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
-            // send an update message to the clients, so they know someone left the lobby#
+            this.server.sendUpdateMessage();
             break;
           case CHAT:
             ChatMessage chat = (ChatMessage) message;
@@ -128,14 +125,8 @@ public class ServerThread extends Threads {
   private void deleteClient(String sender) {
     ClientData client = server.getClients().get(sender);
     if (null != client) {
-<<<<<<< HEAD
       this.server.getConnections().remove(client);
       this.server.getClients().remove(client.getUsername());
-=======
-      server.getConnections().remove(client);
-      server.getClients().remove(client.getUsername());
-      server.updateClientCount();
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
       this.server.updateClientCount();
       this.closeConnection();
     }
