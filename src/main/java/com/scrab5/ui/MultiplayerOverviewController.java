@@ -244,7 +244,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
               int j = 0;
               while (j < Data.getServerList().size()) {
                 MultiplayerOverviewController.this.servername
-                    .setText(Data.getServerList().get(j).getServername() + " ");
+                    .setText(Data.getServerList().get(j).getServerHost() + "'s server ");
                 j++;
               }
             }

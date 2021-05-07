@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class ServerData implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private String servername;
+  private String serverHost;
   private String ip4;
   private int port;
   private int clientCounter;
@@ -22,16 +22,16 @@ public class ServerData implements Serializable {
    * objects.
    * 
    * @author nitterhe
-   * @param servername - The name of the server
+   * @param serverHost - The name of the server host
    * @param ip4 - The IP4Address of the server
    * @param port - The port of the server
    * @param clientCounter - the number of clients connected to the server
    * @param clientMaximum - the maximum amount of clients allowed to connect to the server
    * @param status - the server's status (true = in game/ false = waiting for clients)
    */
-  public ServerData(String servername, String ip4, int port, int clientCounter, int clientMaximum,
+  public ServerData(String serverHost, String ip4, int port, int clientCounter, int clientMaximum,
       boolean status) {
-    this.servername = servername;
+    this.serverHost = serverHost;
     this.ip4 = ip4;
     this.port = port;
     this.clientCounter = clientCounter;
@@ -40,13 +40,13 @@ public class ServerData implements Serializable {
   }
 
   /**
-   * Returns the servername as a String.
+   * Returns the server's host as a String
    * 
    * @author nitterhe
-   * @return servername - the name of the server
+   * @return servername - the name of the host
    */
-  public String getServername() {
-    return this.servername;
+  public String getServerHost() {
+    return this.serverHost;
   }
 
   /**

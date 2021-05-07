@@ -37,7 +37,7 @@ public class ClientServerTest {
 
   @Ignore
   public void ServerTest() {
-    testServer = new Server("serverTest", 4);
+    testServer = new Server("serverTest", 4, false);
 
     assertEquals(testServer.getHost(), "serverTest");
     assertNotNull(testServer.getServerSocket());
@@ -65,8 +65,8 @@ public class ClientServerTest {
 
       testClient.sendChatMessage("hallo");
 
+      testClient.disconnectFromServer();
       testServer.shutDownServer();
-      testClient.getClientThread().stopThread();
 
       // testClient.disconnectFromServer();
 

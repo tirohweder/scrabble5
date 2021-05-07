@@ -11,10 +11,13 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
+import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
-import com.scrab5.network.messages.DisconnectMessage;
+import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
+import com.scrab5.ui.PopUpMessage;
+import com.scrab5.ui.PopUpMessageType;
 
 public class ClientThread extends Threads implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -51,18 +54,34 @@ public class ClientThread extends Threads implements Serializable {
         switch (message.getType()) {
 
           case DISCONNECT:
+            // switch layer to lobby overwiew
             this.closeConnection();
+            break;
           case CHAT:
             ChatMessage chatMessage = (ChatMessage) message;
             String text = chatMessage.getText();
             System.out.println(text);
             // needs implementation
+            break;
+          case CONNECT:
+            new NetworkError(NetworkErrorType.CONNECTION);
+            break;
+          case LOBBYUPDATE:
+            LobbyUpdateMessage lum = (LobbyUpdateMessage) message;
+            if (this.client.getCurrentServer() == null) {
+              this.client.initializeCurrentServer(
+                  new Server(lum.getSender(), lum.getClientMaximum(), true));
+            }
+            this.client.getCurrentServer().setGameStart(lum.getGameStart());
+            this.client.getCurrentServer().setClients(lum.getClients());
+            this.client.getCurrentServer().updateClientCount();
+            this.client.updateCurrentServer();
           default:
             break;
         }
       }
     } catch (Exception e) {
-      // requires Exception handling
+      new NetworkError(NetworkErrorType.CLIENTRUN);
     }
   }
 
@@ -81,12 +100,9 @@ public class ClientThread extends Threads implements Serializable {
         this.fromServer = new ObjectInputStream(socketToServer.getInputStream());
         this.start();
         sendMessageToServer(new ConnectMessage(this.sender, this.client.getClientData()));
-      } else {
-        // requires Exception handling
       }
     } catch (Exception e) {
-      System.out.println("connection error");
-      // requires Exception handling
+      new NetworkError(NetworkErrorType.CONNECTION);
     }
   }
 
@@ -102,9 +118,7 @@ public class ClientThread extends Threads implements Serializable {
       this.toServer.flush();
       this.toServer.reset();
     } catch (Exception e) {
-      e.printStackTrace();
-      System.out.println("message sending to sever error");
-      // requires Exception handling
+      new NetworkError(NetworkErrorType.COMMUNICATION);
     }
   }
 
@@ -114,14 +128,13 @@ public class ClientThread extends Threads implements Serializable {
    * 
    * @author nitterhe
    */
-  void closeConnection() {
-    sendMessageToServer(new DisconnectMessage(sender));
-    // popup: you have been disconnected
+  protected void closeConnection() {
     this.stopThread();
     try {
+      new PopUpMessage("The connection has been closed", PopUpMessageType.NOTIFICATION);
       this.socketToServer.close();
     } catch (Exception e) {
-      // requires Exception handling
+      new NetworkError(NetworkErrorType.CLOSECONNECTION);
     }
 
   }

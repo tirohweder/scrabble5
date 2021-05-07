@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.GetServerDataMessage;
@@ -30,11 +31,14 @@ public class Client implements Serializable {
   private final String username;
   private ClientThread clientThread;
   private ArrayList<ServerData> serverList;
+  private Server currentServer;
   private Server hostedServer;
 
   /**
    * Implements a new Client with the given username. Constructs an empty list for all servers in
-   * the network and saves the users IP4Address.
+   * the network and saves the users IP4Address. CurrentServer is only used for UI communication.
+   * Server constantly changes every connected client's currentServer attribute (i.e. ChatMessages,
+   * new Clients joined ....).
    * 
    * @author nitterhe
    * @param username This is the client's name other clients will see in a MultiPlayerLobby.
@@ -47,7 +51,7 @@ public class Client implements Serializable {
     try {
       this.ip = InetAddress.getLocalHost().getHostAddress();
     } catch (Exception e) {
-      // Exception handling required
+      new NetworkError(NetworkErrorType.IP);
     }
   }
 
@@ -61,7 +65,7 @@ public class Client implements Serializable {
    */
   public void hostServer(int clientMaximum) {
     if (hostedServer == null)
-      hostedServer = new Server(this.username, clientMaximum);
+      hostedServer = new Server(this.username, clientMaximum, false);
     hostedServer.acceptClients();
     connectToServer(ip);
   }
@@ -73,8 +77,6 @@ public class Client implements Serializable {
    * @author from stackoverflow -
    *         https://stackoverflow.com/questions/24082077/java-find-server-in-network
    */
-  // UI must refresh the shown servers from the serverList with a Thread due to the long time the
-  // method needs
   public void searchServers() {
     for (int j = 1; j < 255; j++) {
       for (int k = 1; k < 255; k++) {
@@ -111,7 +113,7 @@ public class Client implements Serializable {
               getServerDataSocket.shutdownOutput();
               getServerDataSocket.close();
             } catch (Exception e) {
-              // requires Exception handling
+              new NetworkError(NetworkErrorType.SEARCHSERVERS);
             }
           }
         });
@@ -140,7 +142,8 @@ public class Client implements Serializable {
   }
 
   /**
-   * Connects the ClientThread to the given ServerThread by starting the ClientThread.
+   * Connects the ClientThread to the given ServerThread by starting the ClientThread. For the
+   * currentServer a new Server instance is created that is updated by the server via messages.
    * 
    * @author nitterhe
    * @param serverdata Includes the IP4Address and
@@ -148,6 +151,8 @@ public class Client implements Serializable {
   public void connectToServer(ServerData serverdata) {
     if (clientThread == null) {
       clientThread = new ClientThread(this);
+      this.currentServer =
+          new Server(serverdata.getServerHost(), serverdata.getClientMaximum(), true);
       clientThread.connectToServer(serverdata);
     }
   }
@@ -164,11 +169,8 @@ public class Client implements Serializable {
   }
 
   /**
-   * Disconnects the ClientThread from the ServerThread. Does not execute the closeConnection method
-   * of the ServerThread, because closeConnection would need to send a message to the server, but if
-   * the server closes the connection the closeConnection method is executed. This would cause
-   * closeConnection to send a message back to the server that already closed the connection and
-   * closeConnection would throw an Exception.
+   * Disconnects the ClientThread from the ServerThread. Server shuts down if the client is the
+   * server's host.
    * 
    * @author nitterhe
    */
@@ -181,7 +183,7 @@ public class Client implements Serializable {
   }
 
   /**
-   * Stops the client by calling the disconnect method of the ClientThread.
+   * Stops the client by calling the closeConnection method of the client's thread.
    * 
    * @author nitterhe
    */
@@ -242,5 +244,38 @@ public class Client implements Serializable {
    */
   public Server getHostedServer() {
     return this.hostedServer;
+  }
+
+  /**
+   * Used to first set an empty sever instance that is filled by the conencted server and the
+   * changes are displayed by the UI.
+   * 
+   * @author nitterhe
+   * @param currentServer - the server that is now the new currentServer
+   */
+  public void initializeCurrentServer(Server currentServer) {
+    this.currentServer = currentServer;
+  }
+
+  /**
+   * Returns the client's current server that the client is connected to. Used for controlling what
+   * the UI shall show. CurrentServer is constantly updated by the server.
+   * 
+   * @author nitterhe
+   * @return currentServer - the server the client is connected to
+   */
+  public Server getCurrentServer() {
+    return this.currentServer;
+  }
+
+  /**
+   * Simply refreshes the UI for the lobby with the values of currentServer.
+   * 
+   * @author nitterhe
+   */
+  public void updateCurrentServer() {
+
+    // this.currentServer;
+    // needs to refresh the UI
   }
 }

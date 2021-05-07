@@ -1,11 +1,12 @@
 /**
- * Class for creating MessageDialogs with error notifications.
+ * Class for c reating MessageDialogs with error notifications.
  * 
  * @author nitterhe
  */
 package com.scrab5.network;
 
-import javax.swing.JOptionPane;
+import com.scrab5.ui.PopUpMessage;
+import com.scrab5.ui.PopUpMessageType;
 
 public class NetworkError extends Error {
   private static final long serialVersionUID = 1L;
@@ -35,16 +36,37 @@ public class NetworkError extends Error {
     switch (this.errorType) {
 
       case CONNECTION:
-        dialog = "Could not connect to the Server";
+        dialog = "Could not connect to the Server, try refreshing the server list";
         break;
       case COMMUNICATION:
-        dialog = "Could not reach server, try again";
+        dialog =
+            "Could not reach server. Server could have been closed, try again or try to reconnect";
+        break;
+      case IP:
+        dialog = "Could not identify IP";
+        break;
+      case SEARCHSERVERS:
+        dialog = "Could not search for servers in the local network";
+        break;
+      case CLIENTRUN:
+        dialog = "Could not read incoming message from the server";
+        break;
+      case CLOSECONNECTION:
+        dialog = "Closing the connection failed, maybe sockets already have been closed";
+        break;
+      case SERVERCREATION:
+        dialog = "Could not host server";
         break;
       default:
         break;
     }
     if (!dialog.isEmpty()) {
-      JOptionPane.showMessageDialog(null, dialog);
+      try {
+        PopUpMessage npm = new PopUpMessage(dialog, PopUpMessageType.ERROR);
+        npm.show();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
   }
 
@@ -64,6 +86,6 @@ public class NetworkError extends Error {
    * @author Niklas
    */
   public enum NetworkErrorType {
-    CONNECTION, COMMUNICATION
+    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, CLOSECONNECTION, SERVERCREATION
   }
 }

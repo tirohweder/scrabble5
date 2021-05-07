@@ -9,6 +9,7 @@ package com.scrab5.network;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
@@ -64,7 +65,12 @@ public class ServerThread extends Threads {
             break;
           case CONNECT:
             ConnectMessage connect = (ConnectMessage) message;
-            addClient(connect.getClientData());
+            try {
+              addClient(connect.getClientData());
+            } catch (Exception e) {
+              sendMessageToClient(
+                  new ConnectMessage(this.server.getHost(), connect.getClientData()));
+            }
             // send new client list to all clients
             break;
           case DISCONNECT:
@@ -74,18 +80,18 @@ public class ServerThread extends Threads {
             } else {
               deleteClient(disconnect.getSender());
             }
-            // send an update message to the clients, so they know someone left the lobby
+            // send an update message to the clients, so they know someone left the lobby#
+            break;
           case CHAT:
             ChatMessage chat = (ChatMessage) message;
             server.sendMessageToAllClients(chat);
             break;
-
           default:
             break;
         }
       }
     } catch (Exception e) {
-      // requires Exception handling
+      new NetworkError(NetworkErrorType.COMMUNICATION);
     }
   }
 
@@ -97,13 +103,14 @@ public class ServerThread extends Threads {
    * @author nitterhe
    * @param client
    */
-  private void addClient(ClientData clientData) {
+  private void addClient(ClientData clientData) throws Exception {
     if (null == server.getClients().get(clientData.getUsername())) {
       server.getClients().put(clientData.getUsername(), clientData);
       server.getConnections().put(clientData, this);
       server.updateClientCount();
+      this.server.sendUpdateMessage();
     } else {
-      // requires Exception handling
+      throw new Exception();
     }
   }
 
@@ -120,10 +127,10 @@ public class ServerThread extends Threads {
       server.getConnections().remove(client);
       server.getClients().remove(client.getUsername());
       server.updateClientCount();
+      this.server.updateClientCount();
       this.closeConnection();
-    } else {
-      // requires Exception handling
     }
+    // maybe else, idk doesnt feel necessary
   }
 
   /**
@@ -157,12 +164,12 @@ public class ServerThread extends Threads {
    * 
    * @author nitterhe
    */
-  public synchronized void closeConnection() {
+  protected synchronized void closeConnection() {
     sendMessageToClient(new DisconnectMessage(server.getHost()));
     try {
       this.socketToClient.close();
     } catch (Exception e) {
-      // requires Exception handling
+      new NetworkError(NetworkErrorType.CLOSECONNECTION);
     }
     this.stopThread();
   }

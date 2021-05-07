@@ -14,6 +14,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.HashMap;
+import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
 
 
@@ -35,26 +37,31 @@ public class Server implements Serializable {
 
   /**
    * Construtor for the Server. Sets up the server settings by initializing the Collections and
-   * creating the server socket.
+   * creating the server socket. ServerSocket only opens if this is not a Server instance that is
+   * used for communication with the UI. The boolean UIServerInstance states if this Server is saved
+   * as a currentServer in the Client class.
    * 
    * @author nitterhe
    * @param host - the name of the server host
    * @param clientMaximum - the maximum amount of clients allowed to connect to the server
+   * @param UIServerInstance - boolean to handle if sockets must be opened
    */
-  public Server(String host, int clientMaximum) {
+  public Server(String host, int clientMaximum, boolean UIServerInstance) {
     this.clients = new HashMap<String, ClientData>();
     this.connections = new HashMap<ClientData, ServerThread>();
     this.gameStart = false;
     this.host = host;
     this.clientMaximum = clientMaximum;
     clientCounter = 0;
-    try {
-      this.ip = InetAddress.getLocalHost().getHostAddress();
-      serverSocket = new ServerSocket(this.serverPort);
-    } catch (Exception e) {
-      e.printStackTrace();
-      System.out.println("error at Server constructor, seversocket failed to setup");
-      // requires Exception handling
+    if (!UIServerInstance) {
+      try {
+        this.ip = InetAddress.getLocalHost().getHostAddress();
+        serverSocket = new ServerSocket(this.serverPort);
+      } catch (Exception e) {
+        e.printStackTrace();
+        System.out.println("error at Server constructor, seversocket failed to setup");
+        new NetworkError(NetworkErrorType.SERVERCREATION);
+      }
     }
   }
 
@@ -91,9 +98,7 @@ public class Server implements Serializable {
       } catch (SocketException e) {
         // does nothing so closing the server socket does not result in a SocketException error
       } catch (Exception e) {
-        e.printStackTrace();
-        System.out.println("Error at acceptClients()");
-        // requires exception handling
+        // no error message?
       }
     }
 
@@ -107,6 +112,7 @@ public class Server implements Serializable {
   // must be called by Game logic when game board is set up
   public void startGame() {
     this.gameStart = true;
+    this.sendUpdateMessage();
   }
 
   /**
@@ -117,6 +123,7 @@ public class Server implements Serializable {
   // must be called by Game logic after game ends
   public void endGame() {
     this.gameStart = false;
+    this.sendUpdateMessage();
     this.acceptClients();
   }
 
@@ -132,7 +139,7 @@ public class Server implements Serializable {
         toClient.sendMessageToClient(message);
       }
     } catch (Exception e) {
-      // requires Exception handling
+      new NetworkError(NetworkErrorType.COMMUNICATION);
     }
   }
 
@@ -203,6 +210,15 @@ public class Server implements Serializable {
    */
   public void updateClientCount() {
     clientCounter = clients.size();
+    this.sendUpdateMessage();
+  }
+
+  /**
+   * 
+   */
+  public void sendUpdateMessage() {
+    this.sendMessageToAllClients(new LobbyUpdateMessage(this.getHost(), this.getStatus(),
+        this.getClients(), this.getClientMaximum()));
   }
 
   /**
@@ -236,11 +252,33 @@ public class Server implements Serializable {
     for (ServerThread serverThread : connections.values()) {
       serverThread.closeConnection();
     }
+    this.clients.clear();
+    this.connections.clear();
     try {
       serverSocket.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
     // save server to database
+  }
+
+  /**
+   * Updates the attribute gameStart with the given parameter.
+   * 
+   * @author nitterhe
+   * @param gameStart - the new value for gameStart
+   */
+  public void setGameStart(boolean gameStart) {
+    this.gameStart = gameStart;
+  }
+
+  /**
+   * Overrides the client list.
+   * 
+   * @author nitterhe
+   * @param clients - the new HashMap of the clients
+   */
+  public void setClients(HashMap<String, ClientData> clients) {
+    this.clients = clients;
   }
 }

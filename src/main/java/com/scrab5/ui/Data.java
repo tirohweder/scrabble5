@@ -146,8 +146,6 @@ public class Data {
   public static void setPlayerServer(Server server) {
     if (playerServer == null) {
       playerServer = server;
-    } else {
-      System.out.println("Error at setPlayerServer");
     }
   }
 
