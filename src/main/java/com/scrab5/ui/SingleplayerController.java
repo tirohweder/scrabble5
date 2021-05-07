@@ -64,7 +64,7 @@ public class SingleplayerController implements Initializable {
   private ImageView rackPlace6;
   @FXML
   private ImageView rackPlace7;
-  
+
   @FXML
   private Label pointsRack1;
   @FXML
@@ -79,7 +79,7 @@ public class SingleplayerController implements Initializable {
   private Label pointsRack6;
   @FXML
   private Label pointsRack7;
-  
+
   @FXML
   private Label player1;
   @FXML
@@ -88,7 +88,7 @@ public class SingleplayerController implements Initializable {
   private Label player3;
   @FXML
   private Label player4;
-  
+
 
 
   private ArrayList<String> unavailableTiles = new ArrayList<String>();
@@ -106,91 +106,10 @@ public class SingleplayerController implements Initializable {
     player3.setOpacity(1);
     player4.setText("Peter");
     player4.setOpacity(1);
-    
-    if(rackPlace1 == null) {
-      rackPlace1.setImage(setNewTile("A", null));
-    }
 
-  }
+    setRack();
 
-  @FXML
-  private void drawTile1Clicked(MouseEvent event) throws IOException {
-    ImageView iv = ((ImageView) event.getSource());
 
-    if (iv.getImage().getUrl().contains("draw")) {
-      rackPlace1.setImage(setNewTile("A", null));
-    } else {
-      ragPlace1clicked(event);
-    }
-
-  }
-
-  @FXML
-  private void drawTile2Clicked(MouseEvent event) throws IOException {
-    ImageView iv = ((ImageView) event.getSource());
-
-    if (iv.getImage().getUrl().contains("draw")) {
-      iv.setImage(setNewTile("A", null));
-    } else {
-      ragPlace2clicked(event);
-    }
-  }
-
-  @FXML
-  private void drawTile3Clicked(MouseEvent event) throws IOException {
-
-    ImageView iv = ((ImageView) event.getSource());
-
-    if (iv.getImage().getUrl().contains("draw")) {
-      iv.setImage(setNewTile("A", null));
-    } else {
-      ragPlace3clicked(event);
-    }
-  }
-
-  @FXML
-  private void drawTile4Clicked(MouseEvent event) throws IOException {
-    ImageView iv = ((ImageView) event.getSource());
-
-    if (iv.getImage().getUrl().contains("draw")) {
-      iv.setImage(setNewTile("A", null));
-    } else {
-      ragPlace4clicked(event);
-    }
-  }
-
-  @FXML
-  private void drawTile5Clicked(MouseEvent event) throws IOException {
-
-    ImageView iv = ((ImageView) event.getSource());
-
-    if (iv.getImage().getUrl().contains("draw")) {
-      iv.setImage(setNewTile("A", null));
-    } else {
-      ragPlace5clicked(event);
-    }
-  }
-
-  @FXML
-  private void drawTile6Clicked(MouseEvent event) throws IOException {
-    ImageView iv = ((ImageView) event.getSource());
-
-    if (iv.getImage().getUrl().contains("draw")) {
-      iv.setImage(setNewTile("A", null));
-    } else {
-      ragPlace6clicked(event);
-    }
-  }
-
-  @FXML
-  private void drawTile7Clicked(MouseEvent event) throws IOException {
-    ImageView iv = ((ImageView) event.getSource());
-
-    if (iv.getImage().getUrl().contains("draw")) {
-      iv.setImage(setNewTile("A", null));
-    } else {
-      ragPlace7clicked(event);
-    }
   }
 
   public void test() {
@@ -211,6 +130,21 @@ public class SingleplayerController implements Initializable {
     }
   }
 
+  private void setRack() {
+    setNewTile(rackPlace1, pointsRack1, "A", "1");;
+
+    setNewTile(rackPlace2, pointsRack2, "B", "12");
+
+    setNewTile(rackPlace3, pointsRack3, "C", "3");
+
+    setNewTile(rackPlace4, pointsRack4, "D", "3");
+
+    setNewTile(rackPlace5, pointsRack5, "E", "2");
+
+    setNewTile(rackPlace6, pointsRack6, "F", "   3");
+
+    setNewTile(rackPlace7, pointsRack7, "G", "32");
+  }
 
   /**
    * 
@@ -298,7 +232,7 @@ public class SingleplayerController implements Initializable {
    *         in the rack it is unmarked and unclicked
    */
   @FXML
-  private void ragPlace1clicked(MouseEvent event) throws IOException {
+  private void rackPlace1clicked(MouseEvent event) throws IOException {
     rackPlace1 = (ImageView) event.getSource();
     // no other letter is clicked
     if (!letterClicked && rackPlace1.getOpacity() != 0) {
@@ -330,7 +264,7 @@ public class SingleplayerController implements Initializable {
    *         rackPlace1Clicked
    */
   @FXML
-  private void ragPlace2clicked(MouseEvent event) throws IOException {
+  private void rackPlace2clicked(MouseEvent event) throws IOException {
     rackPlace2 = (ImageView) event.getSource();
     // no other letter is clicked
     if (!letterClicked && rackPlace2.getOpacity() != 0) {
@@ -362,7 +296,7 @@ public class SingleplayerController implements Initializable {
    *         rackPlace1Clicked
    */
   @FXML
-  private void ragPlace3clicked(MouseEvent event) throws IOException {
+  private void rackPlace3clicked(MouseEvent event) throws IOException {
     rackPlace3 = (ImageView) event.getSource();
     // no other letter is clicked
     if (!letterClicked && rackPlace3.getOpacity() != 0) {
@@ -394,7 +328,7 @@ public class SingleplayerController implements Initializable {
    *         rackPlace1Clicked
    */
   @FXML
-  private void ragPlace4clicked(MouseEvent event) throws IOException {
+  private void rackPlace4clicked(MouseEvent event) throws IOException {
     rackPlace4 = (ImageView) event.getSource();
     // no other letter is clicked
     if (!letterClicked && rackPlace4.getOpacity() != 0) {
@@ -426,7 +360,7 @@ public class SingleplayerController implements Initializable {
    *         rackPlace1Clicked
    */
   @FXML
-  private void ragPlace5clicked(MouseEvent event) throws IOException {
+  private void rackPlace5clicked(MouseEvent event) throws IOException {
     rackPlace5 = (ImageView) event.getSource();
     // no other letter is clicked
     if (!letterClicked && rackPlace5.getOpacity() != 0) {
@@ -458,7 +392,7 @@ public class SingleplayerController implements Initializable {
    *         rackPlace1Clicked
    */
   @FXML
-  private void ragPlace6clicked(MouseEvent event) throws IOException {
+  private void rackPlace6clicked(MouseEvent event) throws IOException {
     rackPlace6 = (ImageView) event.getSource();
     // no other letter is clicked
     if (!letterClicked && rackPlace6.getOpacity() != 0) {
@@ -491,7 +425,7 @@ public class SingleplayerController implements Initializable {
    * @author Aaron
    */
   @FXML
-  private void ragPlace7clicked(MouseEvent event) throws IOException {
+  private void rackPlace7clicked(MouseEvent event) throws IOException {
     rackPlace7 = (ImageView) event.getSource();
     // no other letter is clicked
     if (!letterClicked && rackPlace7.getOpacity() != 0) {
@@ -709,16 +643,18 @@ public class SingleplayerController implements Initializable {
         y += y2;
       }
     }
-    return y-1;
+    return y - 1;
   }
 
 
-
-  private Image setNewTile(String letter, String points) {
+  private void setNewTile(ImageView rackPlace, Label point, String letter, String points) {
     Image letterImage = new Image(this.getClass()
         .getResource("/com/scrab5/ui/letter_Images/tile" + letter.toUpperCase() + ".png")
         .toString());
-    return letterImage;
+    rackPlace.setImage(letterImage);
+    rackPlace.setOpacity(1);
+    point.setText(points);
+    point.setOpacity(1);
   }
 
   @FXML

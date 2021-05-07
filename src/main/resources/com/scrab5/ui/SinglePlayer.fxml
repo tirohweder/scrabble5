@@ -1195,74 +1195,74 @@ The method specification which implements what to do when a field is clicked/ en
             </ImageView>
             <AnchorPane layoutX="289.0" layoutY="689.0" prefHeight="80.0" prefWidth="561.0">
                <children>
-                  <ImageView fx:id="rackPlace1" fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace1" fitHeight="70.0" fitWidth="65.0" layoutX="12.0" layoutY="7.0" onMouseClicked="#rackPlace1clicked" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="rackPlace2" fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace2" fitHeight="70.0" fitWidth="65.0" layoutX="91.0" layoutY="7.0" onMouseClicked="#rackPlace2clicked" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="rackPlace3" fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace3" fitHeight="70.0" fitWidth="65.0" layoutX="170.0" layoutY="7.0" onMouseClicked="#rackPlace3clicked" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="rackPlace4" fitHeight="70.0" fitWidth="65.0" layoutX="249.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace4" fitHeight="70.0" fitWidth="65.0" layoutX="249.0" layoutY="7.0" onMouseClicked="#rackPlace4clicked" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="rackPlace5" fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace5" fitHeight="70.0" fitWidth="65.0" layoutX="326.0" layoutY="7.0" onMouseClicked="#rackPlace5clicked" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="rackPlace6" fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace6" fitHeight="70.0" fitWidth="65.0" layoutX="404.0" layoutY="7.0" onMouseClicked="#rackPlace6clicked" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="rackPlace7" fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rackPlace7" fitHeight="70.0" fitWidth="65.0" layoutX="482.0" layoutY="7.0" onMouseClicked="#rackPlace7clicked" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@letter_Images/placeHolder.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="pointsRack1" layoutX="38.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                  <Label fx:id="pointsRack1" alignment="CENTER_RIGHT" layoutX="38.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
                      <font>
                         <Font name="Candara" size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pointsRack2" layoutX="117.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                  <Label fx:id="pointsRack2" alignment="CENTER_RIGHT" layoutX="117.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
                      <font>
-                        <Font name="Candara" size="14.0" />
+                        <Font name="Candara" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pointsRack3" layoutX="195.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                  <Label fx:id="pointsRack3" alignment="CENTER_RIGHT" layoutX="195.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
                      <font>
-                        <Font name="Candara" size="14.0" />
+                        <Font name="Candara" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pointsRack4" layoutX="275.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                  <Label fx:id="pointsRack4" alignment="CENTER_RIGHT" layoutX="275.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
                      <font>
-                        <Font name="Candara" size="14.0" />
+                        <Font name="Candara" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pointsRack5" layoutX="352.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                  <Label fx:id="pointsRack5" alignment="CENTER_RIGHT" layoutX="352.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
                      <font>
-                        <Font name="Candara" size="14.0" />
+                        <Font name="Candara" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pointsRack6" layoutX="430.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                  <Label fx:id="pointsRack6" alignment="CENTER_RIGHT" layoutX="430.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
                      <font>
-                        <Font name="Candara" size="14.0" />
+                        <Font name="Candara" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="pointsRack7" layoutX="508.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
+                  <Label fx:id="pointsRack7" alignment="CENTER_RIGHT" layoutX="508.0" layoutY="54.0" opacity="0.0" text="points" textAlignment="RIGHT">
                      <font>
-                        <Font name="Candara" size="14.0" />
+                        <Font name="Candara" size="16.0" />
                      </font>
                   </Label>
                </children>
@@ -1272,7 +1272,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@images/MM_ExitButton.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="close" fitHeight="34.0" fitWidth="117.0" layoutX="15.0" layoutY="7.0" onMouseClicked="#closeGame" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="34.0" fitWidth="117.0" layoutX="15.0" layoutY="7.0" onMouseClicked="#closeGame" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/MM_ExitButton_Clicked.png" />
                </image>
