@@ -1,5 +1,6 @@
 package com.scrab5.ui;
 
+import java.util.Set;
 import com.scrab5.util.database.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -61,10 +62,17 @@ public abstract class Controller {
     Database.disconnect();
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
 
-    if (Data.getPlayerServer() != null)
-      Data.getPlayerServer().shutDownServer();
-    if (Data.getPlayerClient() != null)
-      Data.getPlayerClient().disconnectFromServer();
+    Set<Thread> threads = Thread.getAllStackTraces().keySet();
+    for (Thread t : threads) {
+      System.out.println(t);
+    }
+
+    // if (Data.getPlayerServer() != null)
+    // Data.getPlayerServer().shutDownServer();
+    // if (Data.getPlayerClient() != null)
+    // Data.getPlayerClient().disconnectFromServer();
+
+    // we will not need this anymore since we hid the exit bar on the top
 
     s.close();
   }

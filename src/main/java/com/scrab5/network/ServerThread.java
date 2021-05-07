@@ -80,6 +80,10 @@ public class ServerThread extends Threads {
             } else {
               deleteClient(disconnect.getSender());
             }
+<<<<<<< HEAD
+            this.stopThread();
+=======
+>>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
             // send an update message to the clients, so they know someone left the lobby#
             break;
           case CHAT:
@@ -124,9 +128,14 @@ public class ServerThread extends Threads {
   private void deleteClient(String sender) {
     ClientData client = server.getClients().get(sender);
     if (null != client) {
+<<<<<<< HEAD
+      this.server.getConnections().remove(client);
+      this.server.getClients().remove(client.getUsername());
+=======
       server.getConnections().remove(client);
       server.getClients().remove(client.getUsername());
       server.updateClientCount();
+>>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
       this.server.updateClientCount();
       this.closeConnection();
     }
@@ -166,11 +175,12 @@ public class ServerThread extends Threads {
    */
   protected synchronized void closeConnection() {
     sendMessageToClient(new DisconnectMessage(server.getHost()));
+    this.stopThread();
     try {
       this.socketToClient.close();
     } catch (Exception e) {
       new NetworkError(NetworkErrorType.CLOSECONNECTION);
     }
-    this.stopThread();
+
   }
 }

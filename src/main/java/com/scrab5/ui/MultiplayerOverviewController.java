@@ -241,6 +241,10 @@ public class MultiplayerOverviewController extends Controller implements Initial
           for (int i = 0; i < 25; i++) {
             Data.setServerList(Data.getPlayerClient().getServerList());
             if (!Data.getServerList().isEmpty()) {
+              try {
+                new PopUpMessage("server found pog", PopUpMessageType.NOTIFICATION);
+              } catch (Exception e) {
+              }
               int j = 0;
               while (j < Data.getServerList().size()) {
                 MultiplayerOverviewController.this.servername

@@ -44,9 +44,8 @@ public class MultiplayerLobbyController extends Controller implements Initializa
   @FXML
   private void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    if (Data.getPlayerServer() != null)
-      Data.getPlayerServer().shutDownServer();
-    Data.getPlayerClient().stopClientThread();
+    if (Data.getPlayerClient().disconnectFromServer())
+      new PopUpMessage("The connection has been closed", PopUpMessageType.NOTIFICATION);;
     App.setRoot("MultiplayerOverview");
   }
 

@@ -150,10 +150,8 @@ public class Client implements Serializable {
    */
   public void connectToServer(ServerData serverdata) {
     if (clientThread == null) {
-      clientThread = new ClientThread(this);
-      this.currentServer =
-          new Server(serverdata.getServerHost(), serverdata.getClientMaximum(), true);
-      clientThread.connectToServer(serverdata);
+      this.clientThread = new ClientThread(this);
+      this.clientThread.connectToServer(serverdata);
     }
   }
 
@@ -174,12 +172,13 @@ public class Client implements Serializable {
    * 
    * @author nitterhe
    */
-  public void disconnectFromServer() {
-    if (clientThread.running) {
+  public boolean disconnectFromServer() {
+    if (this.clientThread.running) {
+      // save hostedServer to database
       clientThread.sendMessageToServer(new DisconnectMessage(clientThread.sender));
-      clientThread = null;
-      hostedServer = null; // connection to database must be saved
+      return true;
     }
+    return false;
   }
 
   /**
