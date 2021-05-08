@@ -31,6 +31,7 @@ public class Server implements Serializable {
   private boolean gameStart;
   private static int clientCounter;
   private final int clientMaximum;
+  private ServerStatistics serverStatistics;
 
   private HashMap<String, ClientData> clients;
   private HashMap<ClientData, ServerThread> connections;
@@ -53,6 +54,7 @@ public class Server implements Serializable {
     this.host = host;
     this.clientMaximum = clientMaximum;
     clientCounter = 0;
+    this.serverStatistics = new ServerStatistics();
     if (!UIServerInstance) {
       try {
         this.ip = InetAddress.getLocalHost().getHostAddress();
@@ -121,7 +123,7 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   // must be called by Game logic after game ends
-  public void endGame() {
+  public void endGame(String winner) {
     this.gameStart = false;
     this.sendUpdateMessage();
     this.acceptClients();
@@ -218,7 +220,7 @@ public class Server implements Serializable {
    */
   public void sendUpdateMessage() {
     this.sendMessageToAllClients(new LobbyUpdateMessage(this.getHost(), this.getStatus(),
-        this.getClients(), this.getClientMaximum()));
+        this.getClients(), this.getClientMaximum(), this.getServerStatistics()));
   }
 
   /**
@@ -241,6 +243,27 @@ public class Server implements Serializable {
    */
   public HashMap<ClientData, ServerThread> getConnections() {
     return connections;
+  }
+
+  /**
+   * Returns this server's statistics as a ServerStatistics object.
+   * 
+   * @author nitterhe
+   * @return serverStatistics - this server's ServerStatistics object
+   */
+  public ServerStatistics getServerStatistics() {
+    return this.serverStatistics;
+  }
+
+  /**
+   * Sets the serverStatistics to the given ServerStatistics instance. Only used for the
+   * currentServer in the Client class to display the statistics correctly at every client.
+   * 
+   * @author nitterhe
+   * @param serverStatistics - the new ServerStatistics object
+   */
+  public void setServerStatistics(ServerStatistics serverStatistics) {
+    this.serverStatistics = serverStatistics;
   }
 
   /**

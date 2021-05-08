@@ -74,10 +74,7 @@ public class ClientThread extends Threads implements Serializable {
               this.client.initializeCurrentServer(
                   new Server(lum.getSender(), lum.getClientMaximum(), true));
             }
-            this.client.getCurrentServer().setGameStart(lum.getGameStart());
-            this.client.getCurrentServer().setClients(lum.getClients());
-            this.client.getCurrentServer().updateClientCount();
-            this.client.updateCurrentServer();
+            this.client.updateCurrentServer(lum);
           default:
             break;
         }

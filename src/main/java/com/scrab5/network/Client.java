@@ -18,6 +18,7 @@ import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.GetServerDataMessage;
+import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.MessageType;
 import com.scrab5.network.messages.SendServerDataMessage;
@@ -257,6 +258,20 @@ public class Client implements Serializable {
   }
 
   /**
+   * Updates the current Server instance and refreshes the UI
+   * 
+   * @author nitterhe
+   * @param lum - the message from the server with the updated values
+   */
+  public void updateCurrentServer(LobbyUpdateMessage lum) {
+    this.getCurrentServer().setGameStart(lum.getGameStart());
+    this.getCurrentServer().setClients(lum.getClients());
+    this.getCurrentServer().updateClientCount();
+    this.getCurrentServer().setServerStatistics(lum.getServerStatistics());
+    // needs to refresh UI
+  }
+
+  /**
    * Returns the client's current server that the client is connected to. Used for controlling what
    * the UI shall show. CurrentServer is constantly updated by the server.
    * 
@@ -266,15 +281,6 @@ public class Client implements Serializable {
   public Server getCurrentServer() {
     return this.currentServer;
   }
-
-  /**
-   * Simply refreshes the UI for the lobby with the values of currentServer.
-   * 
-   * @author nitterhe
-   */
-  public void updateCurrentServer() {
-
-    // this.currentServer;
-    // needs to refresh the UI
-  }
 }
+
+
