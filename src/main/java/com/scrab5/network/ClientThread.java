@@ -6,6 +6,7 @@
  */
 package com.scrab5.network;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
@@ -18,6 +19,7 @@ import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
+import javafx.application.Platform;
 
 public class ClientThread extends Threads implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -126,12 +128,23 @@ public class ClientThread extends Threads implements Serializable {
    * Sets the Thread attribute running = false. Closes the current connection and streams to the
    * server.
    * 
-   * @author nitterhe
+   * @author nitterhe @mherre :^)
    */
   protected void closeConnection() {
     this.stopThread();
     try {
-      new PopUpMessage("The connection was closed", PopUpMessageType.NOTIFICATION);
+      Platform.runLater(new Runnable() {
+        public void run() {
+          try {
+            PopUpMessage pum =
+                new PopUpMessage("The connection was closed", PopUpMessageType.NOTIFICATION);
+            pum.show();
+          } catch (IOException e) {
+            e.printStackTrace();
+          }
+        }
+      });
+
       this.socketToServer.close();
     } catch (Exception e) {
       new NetworkError(NetworkErrorType.CLOSECONNECTION);

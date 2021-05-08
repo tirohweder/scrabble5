@@ -1,5 +1,7 @@
 package com.scrab5.ui;
 
+import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,6 +47,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   public void initialize(URL arg0, ResourceBundle arg1) {
     this.serverName.setFocusTraversable(false);
     this.userPlaying.setText(Data.getCurrentUser());
+    this.setUpDicitionaryBox();
 
     if (Data.getPlayerClient() == null)
       Data.setPlayerClient(new Client(Data.getCurrentUser()));
@@ -228,6 +231,32 @@ public class MultiplayerOverviewController extends Controller implements Initial
     Data.setPlayerClient(new Client(Data.getCurrentUser()));
     Data.getPlayerClient().hostServer(playerCount);
     Data.setPlayerServer(Data.getPlayerClient().getHostedServer());
+  }
+
+  /**
+   * https://stackabuse.com/java-list-files-in-a-directory/
+   */
+  private void setUpDicitionaryBox() {
+
+    File dir = new File(System.getProperty("user.dir"));
+    FilenameFilter filter = new FilenameFilter() {
+
+      public boolean accept(File dir, String name) {
+        return name.endsWith(".txt");
+      }
+
+    };
+
+    String[] fileNames = dir.list(filter);
+
+    if (fileNames == null) {
+      System.out.println("JCOMBO BOX Directory is INCORRECT or does not exist!");
+    } else {
+      for (int i = 0; i < fileNames.length; i++) {
+        String filename = fileNames[i];
+        this.dictionarySelection.getItems().add(filename);
+      }
+    }
   }
 
   // @author mherre @author nitterhe :^)
