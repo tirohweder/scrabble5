@@ -113,7 +113,10 @@ public class GameBoard {
   public void finishTurn() {
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
-        gameBoard[i][j] = gameBoardCurrent[i][j];
+        if (gameBoardCurrent[i][j] != null) {
+          gameBoard[i][j] = gameBoardCurrent[i][j];
+        }
+
       }
     }
     currentChanges.clear();
@@ -206,9 +209,11 @@ public class GameBoard {
 
 
   /**
-   * Will count the score of all the layed tiles.
+   * Will count the score of all the placed tiles of one turn. The copied the code from getting all
+   * the Words. So I go through first rows then columns, add points for everyword, and if its a
+   * tripple or double letter word i can multiply the word like this
    *
-   * @return
+   * @return the Score that was achived during the players turn
    * @author trohwede
    */
   public int countScore() {
@@ -216,34 +221,128 @@ public class GameBoard {
     boolean tws = false;
     boolean dws = false;
 
-    //main word;
-    for (int i = 0; i < currentChanges.size(); i++) {
-      int row = currentChanges.get(i).getRow();
-      int column = currentChanges.get(i).getColumn();
+    StringBuilder word = new StringBuilder();
+    Tile[][] changedWords = getTouchedWords();
 
-      if (gameBoardSpecial[row][column] == "TL") {
-        score += currentChanges.get(i).getValue() * 3;
-      } else if (gameBoardSpecial[row][column] == "DL") {
-        score += currentChanges.get(i).getValue() * 2;
-      } else if (gameBoardSpecial[row][column] == "TW") {
-        tws = true;
-      } else if (gameBoardSpecial[row][column] == "DW") {
-        dws = true;
+    int scoreToBe = 0;
+
+    for (int i = 0; i < 15; i++) {
+      for (int j = 0; j < 15; j++) {
+        if (changedWords[i][j] != null) { //Tile is empty
+          word.append(getTile(i, j).getLetter());
+          if (gameBoardSpecial[i][j] == "TL") {
+            scoreToBe += changedWords[i][j].getValue() * 3;
+          } else if (gameBoardSpecial[i][j] == "DL") {
+            scoreToBe += changedWords[i][j].getValue() * 2;
+          } else if (gameBoardSpecial[i][j] == "TW") {
+            scoreToBe += changedWords[i][j].getValue();
+            tws = true;
+          } else if (gameBoardSpecial[i][j] == "DW") {
+            scoreToBe += changedWords[i][j].getValue();
+            dws = true;
+          } else {
+            scoreToBe += changedWords[i][j].getValue();
+          }
+          
+        } else {  //Tile is empty
+          if (word.length() > 1) {
+            if (tws) {
+              scoreToBe *= 3;
+            } else if (dws) {
+              scoreToBe *= 2;
+            }
+            score += scoreToBe;
+          }
+          scoreToBe = 0;
+          word.setLength(0);
+        }
+      }  //End of second for loop
+
+      if (word.length() > 1) {
+        if (tws) {
+          scoreToBe *= 3;
+        } else if (dws) {
+          scoreToBe *= 2;
+        }
+        score += scoreToBe;
       }
-    }
-    if (tws) {
-      score *= 3;
-    } else if (dws) {
-      score *= 2;
+      scoreToBe = 0;
+      word.setLength(0);
     }
 
-    //other words
+    if (word.length() > 1) {
+      if (tws) {
+        scoreToBe *= 3;
+      } else if (dws) {
+        scoreToBe *= 2;
+      }
+      score += scoreToBe;
+    }
 
+    scoreToBe = 0;
+    word.setLength(0);
+
+    for (int j = 0; j < 15; j++) {
+      for (int i = 0; i < 15; i++) {
+        if (changedWords[i][j] != null) { //Tile is empty
+          word.append(getTile(i, j).getLetter());
+          if (gameBoardSpecial[i][j] == "TL") {
+            scoreToBe += changedWords[i][j].getValue() * 3;
+          } else if (gameBoardSpecial[i][j] == "DL") {
+            scoreToBe += changedWords[i][j].getValue() * 2;
+          } else if (gameBoardSpecial[i][j] == "TW") {
+            scoreToBe += changedWords[i][j].getValue();
+            tws = true;
+          } else if (gameBoardSpecial[i][j] == "DW") {
+            scoreToBe += changedWords[i][j].getValue();
+            dws = true;
+          } else {
+            scoreToBe += changedWords[i][j].getValue();
+          }
+
+        } else {  //Tile is empty
+          if (word.length() > 1) {
+            if (tws) {
+              scoreToBe *= 3;
+            } else if (dws) {
+              scoreToBe *= 2;
+            }
+            score += scoreToBe;
+          }
+          scoreToBe = 0;
+          word.setLength(0);
+        }
+      }  //End of second for loop
+
+      if (word.length() > 1) {
+        if (tws) {
+          scoreToBe *= 3;
+        } else if (dws) {
+          scoreToBe *= 2;
+        }
+        score += scoreToBe;
+      }
+      scoreToBe = 0;
+      word.setLength(0);
+    }
+
+    if (word.length() > 1) {
+      if (tws) {
+        scoreToBe *= 3;
+      } else if (dws) {
+        scoreToBe *= 2;
+      }
+      score += scoreToBe;
+    }
+
+    if (currentChanges.size() == 7) {
+      score += 50;
+    }
     return score;
   }
 
 
-  public Tile[][] getTouchedWordsv2() {
+  public Tile[][] getTouchedWords() {
     Tile[][] touchedTiles = new Tile[15][15];
 
     for (int i = 0; i < currentChanges.size(); i++) {
@@ -255,167 +354,83 @@ public class GameBoard {
       int row = currentChanges.get(i).getRow();
       int column = currentChanges.get(i).getColumn();
 
+      touchedTiles[row][column] = currentChanges.get(i);
+
       int count = 1;
 
-      System.out.println("Current Tile: " + currentChanges.get(i).getLetter());
+      //System.out.println("Current Tile: " + currentChanges.get(i).getLetter());
       if (gameBoard[row - count][column] != null) {
         drueber = true;
-        System.out.println("Drüber: " + gameBoard[row - count][column].getLetter());
+        //System.out.println("Drüber: " + gameBoard[row - count][column].getLetter());
       }
 
       if (gameBoard[row + count][column] != null) {
         drunter = true;
-        System.out.println("Drunter: " + gameBoard[row + count][column].getLetter());
+        //System.out.println("Drunter: " + gameBoard[row + count][column].getLetter());
       }
 
       if (gameBoard[row][column + count] != null) {
         rechts = true;
-        System.out.println("Rechts: " + gameBoard[row][column + count].getLetter());
+        //System.out.println("Rechts: " + gameBoard[row][column + count].getLetter());
       }
 
       if (gameBoard[row][column - count] != null) {
         links = true;
-        System.out.println("Links: " + gameBoard[row][column - count].getLetter());
+        //System.out.println("Links: " + gameBoard[row][column - count].getLetter());
       }
 
-    }
-
-    return touchedTiles;
-  }
-
-
-  /**
-   * Returns an array of only the new added Tiles.
-   *
-   * @return Array of only new added Tiles
-   * @author trohwede
-   */
-  public Tile[][] getTouchedWords() {
-
-    Tile[][] touchedTiles = new Tile[15][15];
-
-    for (int i = 0; i < currentChanges.size(); i++) {
-      boolean drunter = false;
-      boolean drueber = false;
-      boolean rechts = false;
-      boolean links = false;
-      int count = 1;
-
-      int row = currentChanges.get(i).getRow();
-      int column = currentChanges.get(i).getColumn();
-
-      System.out.println(
-          "Current Tile looked at is: " + currentChanges.get(i).getLetter() + " Row: " + row
-              + " Column: " + column + " Count: " + count);
-      System.out.println(gameBoard[row][column - count].getLetter());
-
-      if ((row - count >= 0) && gameBoard[row - count][column] != null) {
-        System.out.println("Tile drüber: " + gameBoard[row - count][column].getLetter());
-        drueber = true;
-
-      } else if ((row + count <= 14) && gameBoard[row + count][column] != null) {
-        System.out.println("Tile drunter: " + gameBoard[row + count][column].getLetter());
-        drunter = true;
-
-      } else if ((column - count >= 0) && gameBoard[row][column - count] != null) {
-        System.out.println("Tile links: " + gameBoard[row][column - count].getLetter());
-        links = true;
-
-      } else if ((column + count <= 14) && gameBoard[row][column + count] != null) {
-        System.out.println("Tile rechts: " + gameBoard[row][column + count].getLetter());
-        rechts = true;
-      }
-
-      while (drueber) {
+      while (row - count >= 0 && drueber) {
         if (gameBoard[row - count][column] != null) {
-          drueber = false;
-        }
-        touchedTiles[row - count][column] = gameBoard[row - count][column];
-
-        count++;
-
-        if (row - count < 0) {
-          drueber = false;
-        }
-      }
-      count = 1;
-
-      while (drunter) {
-        if (gameBoard[row + count][column] != null) {
-          drunter = false;
-        }
-        touchedTiles[row + count][column] = gameBoard[row + count][column];
-        count++;
-        if (row + count > 14) {
-          drunter = false;
-        }
-      }
-      count = 1;
-
-      while (links) {
-        if (gameBoard[row][column - count] != null) {
-          links = false;
-        }
-        touchedTiles[row][column - count] = gameBoard[row][column - count];
-        count++;
-        if (column - count < 0) {
-          links = false;
-        }
-      }
-      count = 1;
-
-      while (rechts) {
-        if (gameBoard[row][column + count] != null) {
-          rechts = false;
-        }
-        touchedTiles[row][column + count] = gameBoard[row][column + count];
-        count++;
-
-        if (column + count > 14) {
-          rechts = false;
-        }
-      }
-    }
-
-    for (int i = 0; i < 15; i++) {
-      for (int j = 0; j < 15; j++) {
-        if (touchedTiles[i][j] != null) {
-          System.out.print(touchedTiles[i][j].getLetter() + "  ");
+          touchedTiles[row - count][column] = gameBoard[row - count][column];
+          //System.out.println("druebersucces");
+          count++;
         } else {
-          System.out.print("  ");
+          drueber = false;
         }
       }
-      System.out.print("");
+
+      count = 1;
+
+      while (row + count <= 14 && drunter) {
+        if (gameBoard[row + count][column] != null) {
+          touchedTiles[row + count][column] = gameBoard[row + count][column];
+          //System.out.println("druntersucces");
+          count++;
+        } else {
+          drunter = false;
+        }
+      }
+
+      count = 1;
+
+      while (column + count <= 14 && rechts) {
+        if (gameBoard[row][column + count] != null) {
+          touchedTiles[row][column + count] = gameBoard[row][column + count];
+          //System.out.println("rechts succes");
+          count++;
+        } else {
+          rechts = false;
+        }
+      }
+
+      count = 1;
+
+      while (column - count >= 0 && links) {
+        if (gameBoard[row][column - count] != null) {
+          touchedTiles[row][column - count] = gameBoard[row][column - count];
+          //System.out.println("links succes");
+          count++;
+        } else {
+          links = false;
+        }
+      }
+
+
     }
+
     return touchedTiles;
   }
 
-
-  /**
-   * Checks if the word layed changed anything on the board
-   *
-   * @return
-   * @author trohwede
-   */
-  public boolean didTouchOther() {
-    for (int i = 0; i < currentChanges.size(); i++) {
-      int row = currentChanges.get(i).getRow();
-      int col = currentChanges.get(i).getColumn();
-
-      if (gameBoard[row - 1][col] != null) {
-        return true;
-      } else if (gameBoard[row + 1][col] != null) {
-        return true;
-      } else if (gameBoard[row][col - 1] != null) {
-        return true;
-      } else if (gameBoard[row][col + 1] != null) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    return false;
-  }
 
   /**
    * Returns the Value of Tile at the given coordinates of the GameBoard

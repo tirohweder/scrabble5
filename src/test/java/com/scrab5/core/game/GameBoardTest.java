@@ -107,16 +107,6 @@ class GameBoardTest {
 
   @Test
   void countScore() {
-  }
-
-  @Test
-  void didTouchOther() {
-
-  }
-
-
-  @Test
-  void getTouchedWordsv2() {
     Tile t1 = new Tile("1", 3);
     Tile t2 = new Tile("2", 3);
     Tile t3 = new Tile("3", 3);
@@ -140,9 +130,9 @@ class GameBoardTest {
     gameBoardTest.placeTile(t7, 6, 8);
     gameBoardTest.placeTile(t8, 8, 8);
 
-    Tile[][] test = new Tile[15][15];
-    test = gameBoardTest.getTouchedWordsv2();
+    System.out.println(gameBoardTest.countScore());
   }
+
 
   @Test
   void getTouchedWords() {
@@ -169,15 +159,26 @@ class GameBoardTest {
     gameBoardTest.placeTile(t7, 6, 8);
     gameBoardTest.placeTile(t8, 8, 8);
 
-    Tile[][] comparrison = new Tile[15][15];
+    Tile[][] test = new Tile[15][15];
+    test[5][6] = t4;
+    test[5][7] = t5;
+    test[5][8] = t6;
 
-    comparrison[6][8] = t4;
-    comparrison[7][8] = t2;
+    test[6][8] = t7;
+    test[7][8] = t2;
+    test[8][8] = t8;
+    Tile[][] result = gameBoardTest.getTouchedWords();
+    assertEquals(test[5][6].getLetter(), result[5][6].getLetter());
+    assertEquals(test[5][7].getLetter(), result[5][7].getLetter());
+    assertEquals(test[5][8].getLetter(), result[5][8].getLetter());
 
-    Tile[][] testResult = gameBoardTest.getTouchedWords();
+    assertEquals(test[6][8].getLetter(), result[6][8].getLetter());
+    assertEquals(test[7][8].getLetter(), result[7][8].getLetter());
+    assertEquals(test[8][8].getLetter(), result[8][8].getLetter());
 
-
+    //assertEquals("456", gameBoardTest.getWords().get(0).toString());
   }
+
 
   @Test
   void getWords() {
@@ -252,6 +253,7 @@ class GameBoardTest {
     gameBoardTest.placeTile(new Tile("X", 3), 4, 3);
 
     assertEquals(false, gameBoardTest.checkWordsLegit());
+
 
   }
 
