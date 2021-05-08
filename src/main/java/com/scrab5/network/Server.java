@@ -30,7 +30,8 @@ public class Server implements Serializable {
   private static ServerSocket serverSocket;
   private boolean gameStart;
   private static int clientCounter;
-  private final int clientMaximum;
+  private static int clientMaximum;
+  private ServerStatistics serverStatistics;
 
   private HashMap<String, ClientData> clients;
   private HashMap<ClientData, ServerThread> connections;
@@ -51,20 +52,23 @@ public class Server implements Serializable {
     this.connections = new HashMap<ClientData, ServerThread>();
     this.gameStart = false;
     this.host = host;
-    this.clientMaximum = clientMaximum;
+    Server.clientMaximum = clientMaximum;
     clientCounter = 0;
+    this.serverStatistics = new ServerStatistics();
     if (!UIServerInstance) {
-      try {
-        this.ip = InetAddress.getLocalHost().getHostAddress();
-        serverSocket = new ServerSocket(this.serverPort);
-      } catch (Exception e) {
-        e.printStackTrace();
-        System.out.println("error at Server constructor, seversocket failed to setup");
-        new NetworkError(NetworkErrorType.SERVERCREATION);
-      }
+      this.openServerSocket();
     }
   }
 
+  public void openServerSocket() {
+    try {
+      this.ip = InetAddress.getLocalHost().getHostAddress();
+      serverSocket = new ServerSocket(this.serverPort);
+    } catch (Exception e) {
+      e.printStackTrace();
+      new NetworkError(NetworkErrorType.SERVERCREATION);
+    }
+  }
 
   /**
    * Allows a maximum of 4 clients to connect to the server while the game session has not been
@@ -90,7 +94,8 @@ public class Server implements Serializable {
    */
   private synchronized void accept() {
 
-    while (!gameStart && clientCounter < clientMaximum && !serverSocket.isClosed()) {
+    while (!this.gameStart && Server.clientCounter < Server.clientMaximum
+        && !serverSocket.isClosed()) {
       try {
         Socket newClient = serverSocket.accept();
         ServerThread clientConnection = new ServerThread(this, newClient);
@@ -121,7 +126,7 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   // must be called by Game logic after game ends
-  public void endGame() {
+  public void endGame(String winner) {
     this.gameStart = false;
     this.sendUpdateMessage();
     this.acceptClients();
@@ -190,7 +195,7 @@ public class Server implements Serializable {
    * @return clientMaximum- number of connected clients
    */
   public int getClientMaximum() {
-    return this.clientMaximum;
+    return Server.clientMaximum;
   }
 
   /**
@@ -218,7 +223,7 @@ public class Server implements Serializable {
    */
   public void sendUpdateMessage() {
     this.sendMessageToAllClients(new LobbyUpdateMessage(this.getHost(), this.getStatus(),
-        this.getClients(), this.getClientMaximum()));
+        this.getClients(), this.getClientMaximum(), this.getServerStatistics()));
   }
 
   /**
@@ -244,6 +249,27 @@ public class Server implements Serializable {
   }
 
   /**
+   * Returns this server's statistics as a ServerStatistics object.
+   * 
+   * @author nitterhe
+   * @return serverStatistics - this server's ServerStatistics object
+   */
+  public ServerStatistics getServerStatistics() {
+    return this.serverStatistics;
+  }
+
+  /**
+   * Sets the serverStatistics to the given ServerStatistics instance. Only used for the
+   * currentServer in the Client class to display the statistics correctly at every client.
+   * 
+   * @author nitterhe
+   * @param serverStatistics - the new ServerStatistics object
+   */
+  public void setServerStatistics(ServerStatistics serverStatistics) {
+    this.serverStatistics = serverStatistics;
+  }
+
+  /**
    * Shuts down the server by closing all connections to the clients and closing the server socket.
    * 
    * @author nitterhe
@@ -254,6 +280,8 @@ public class Server implements Serializable {
     }
     this.clients.clear();
     this.connections.clear();
+    this.updateClientCount();
+    this.gameStart = false;
     try {
       serverSocket.close();
     } catch (IOException e) {
@@ -280,5 +308,10 @@ public class Server implements Serializable {
    */
   public void setClients(HashMap<String, ClientData> clients) {
     this.clients = clients;
+  }
+
+
+  public void setClientMaximum(int clientMaximum) {
+    Server.clientMaximum = clientMaximum;
   }
 }

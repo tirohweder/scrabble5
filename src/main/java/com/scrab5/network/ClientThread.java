@@ -74,10 +74,7 @@ public class ClientThread extends Threads implements Serializable {
               this.client.initializeCurrentServer(
                   new Server(lum.getSender(), lum.getClientMaximum(), true));
             }
-            this.client.getCurrentServer().setGameStart(lum.getGameStart());
-            this.client.getCurrentServer().setClients(lum.getClients());
-            this.client.getCurrentServer().updateClientCount();
-            this.client.updateCurrentServer();
+            this.client.updateCurrentServer(lum);
           default:
             break;
         }
@@ -133,19 +130,22 @@ public class ClientThread extends Threads implements Serializable {
   protected void closeConnection() {
     this.stopThread();
     try {
-      Platform.runLater(new Runnable() {
-        public void run() {
-          try {
-            PopUpMessage pum =
-                new PopUpMessage("The connection was closed", PopUpMessageType.NOTIFICATION);
-            pum.show();
-          } catch (IOException e) {
-            e.printStackTrace();
-          }
-        }
-      });
-
       this.socketToServer.close();
+      try {
+        Platform.runLater(new Runnable() {
+          public void run() {
+            try {
+              PopUpMessage npm = new PopUpMessage("The connection has been closed.",
+                  PopUpMessageType.NOTIFICATION);
+              npm.show();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
+        });
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     } catch (Exception e) {
       new NetworkError(NetworkErrorType.CLOSECONNECTION);
     }

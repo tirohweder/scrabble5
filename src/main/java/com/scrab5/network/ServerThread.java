@@ -49,8 +49,8 @@ public class ServerThread extends Threads {
    * @author nitterhe
    */
   public void run() {
-
     this.running = true;
+
     try {
       Message message;
       while (this.running) {
@@ -71,6 +71,8 @@ public class ServerThread extends Threads {
               sendMessageToClient(
                   new ConnectMessage(this.server.getHost(), connect.getClientData()));
             }
+            this.server.getServerStatistics().addClient(connect.getSender(),
+                connect.getClientData().getIp());
             this.server.sendUpdateMessage();
             break;
           case DISCONNECT:

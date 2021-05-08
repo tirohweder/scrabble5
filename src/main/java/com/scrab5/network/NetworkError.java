@@ -5,13 +5,16 @@
  */
 package com.scrab5.network;
 
+import java.io.IOException;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
+import javafx.application.Platform;
 
 public class NetworkError extends Error {
   private static final long serialVersionUID = 1L;
 
   private NetworkErrorType errorType;
+  protected String dialog;
 
   /**
    * Constructor for the NetworkError. Sets ErrorType and handles the Error by popping up a
@@ -22,6 +25,7 @@ public class NetworkError extends Error {
    */
   public NetworkError(NetworkErrorType errorType) {
     this.errorType = errorType;
+    dialog = "";
     this.handleError();
   }
 
@@ -31,39 +35,46 @@ public class NetworkError extends Error {
    * @author nitterhe
    */
   public void handleError() {
-    String dialog = "";
 
     switch (this.errorType) {
 
       case CONNECTION:
-        dialog = "Could not connect to the Server, try refreshing the server list";
+        this.dialog = "Could not connect to the Server, try refreshing the server list";
         break;
       case COMMUNICATION:
-        dialog =
+        this.dialog =
             "Could not reach server. Server could have been closed, try again or try to reconnect";
         break;
       case IP:
-        dialog = "Could not identify IP";
+        this.dialog = "Could not identify IP";
         break;
       case SEARCHSERVERS:
-        dialog = "Could not search for servers in the local network";
+        this.dialog = "Could not search for servers in the local network";
         break;
       case CLIENTRUN:
-        dialog = "Could not read incoming message from the server";
+        this.dialog = "Could not read incoming message from the server";
         break;
       case CLOSECONNECTION:
-        dialog = "Closing the connection failed, maybe sockets already have been closed";
+        this.dialog = "Closing the connection failed, maybe sockets already have been closed";
         break;
       case SERVERCREATION:
-        dialog = "Could not host server";
+        this.dialog = "Could not host server";
         break;
       default:
         break;
     }
-    if (!dialog.isEmpty()) {
+    if (!this.dialog.isEmpty()) {
       try {
-        PopUpMessage npm = new PopUpMessage(dialog, PopUpMessageType.ERROR);
-        npm.show();
+        Platform.runLater(new Runnable() {
+          public void run() {
+            try {
+              PopUpMessage npm = new PopUpMessage(NetworkError.this.dialog, PopUpMessageType.ERROR);
+              npm.show();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
+        });
       } catch (Exception e) {
         e.printStackTrace();
       }
