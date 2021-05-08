@@ -3,9 +3,12 @@ package com.scrab5.ui;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.scrab5.network.Client;
+import com.scrab5.network.NetworkError;
+import com.scrab5.network.NetworkError.NetworkErrorType;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -181,12 +184,29 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void refresh(MouseEvent event) {
     playSound("ButtonClicked.mp3");
+    Data.setIsSearching(false);
     this.searchServers();
   }
 
+  /**
+   * Randomly joins a server from the local network.
+   * 
+   * @author nitterhe
+   * @author mherre
+   * @param event
+   * @throws IOException
+   */
   @FXML
-  private void findGame(MouseEvent event) {
+  private void findGame(MouseEvent event) throws IOException {
+    String ip4 = Data.getServerList().get((int) (Data.getServerList().size() * Math.random()))
+        .getIP4Address();
+    if (joinServer(ip4)) {
+      App.setRoot("MultiplayerLobby");
+    } else {
+      new NetworkError(NetworkErrorType.CONNECTION);
+    }
     playSound("ButtonClicked.mp3");
+
   }
 
   /**
@@ -272,14 +292,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
           for (int i = 0; i < 25 && Data.getIsSearching(); i++) {
             Data.setServerList(Data.getPlayerClient().getServerList());
             if (!Data.getServerList().isEmpty()) {
-              try {
-                new PopUpMessage("server found pog", PopUpMessageType.NOTIFICATION);
-              } catch (Exception e) {
-              }
               int j = 0;
               while (j < Data.getServerList().size()) {
-                MultiplayerOverviewController.this.servername
-                    .setText(Data.getServerList().get(j).getServerHost() + "'s server ");
+                // MultiplayerOverviewController.this.servername
+                // .setText(Data.getServerList().get(j).getServerHost() + "'s server ");
+                // Markus mach mal UI
                 j++;
               }
             }
@@ -294,6 +311,23 @@ public class MultiplayerOverviewController extends Controller implements Initial
       };
       new Thread(r).start();
     }
-    // somewhere isSearching must be set back to false after searching
+  }
+
+  /**
+   * Joins a server with the given IPAddress.
+   * 
+   * @author nitterhe
+   * @param IPAddress - the IPAddress of the server that should be joined as a String
+   */
+  private boolean joinServer(String IPAddress) {
+    try {
+      if (InetAddress.getByName(IPAddress).isReachable(5000)) {
+        Data.getPlayerClient().connectToServer(IPAddress);
+        return true;
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return false;
   }
 }

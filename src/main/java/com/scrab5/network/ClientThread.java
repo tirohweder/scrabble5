@@ -17,6 +17,7 @@ import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
+import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
 import javafx.application.Platform;
@@ -57,6 +58,7 @@ public class ClientThread extends Threads implements Serializable {
 
           case DISCONNECT:
             // switch layer to lobby overwiew
+            MultiplayerLobbyController.lobbyClosed();
             this.closeConnection();
             break;
           case CHAT:

@@ -93,7 +93,6 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   private synchronized void accept() {
-
     while (!this.gameStart && Server.clientCounter < Server.clientMaximum
         && !serverSocket.isClosed()) {
       try {
@@ -106,7 +105,6 @@ public class Server implements Serializable {
         // no error message?
       }
     }
-
   }
 
   /**
@@ -128,6 +126,11 @@ public class Server implements Serializable {
   // must be called by Game logic after game ends
   public void endGame(String winner) {
     this.gameStart = false;
+    boolean win = false;
+    for (String client : this.clients.keySet()) {
+      win = client.equals(winner);
+      this.serverStatistics.gamePlayed(client, win);
+    }
     this.sendUpdateMessage();
     this.acceptClients();
   }

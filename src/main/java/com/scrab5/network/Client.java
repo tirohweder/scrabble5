@@ -11,6 +11,7 @@ package com.scrab5.network;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.MessageType;
 import com.scrab5.network.messages.SendServerDataMessage;
+import com.scrab5.ui.Data;
 
 public class Client implements Serializable {
   private static final long serialVersionUID = 1L;
@@ -84,47 +86,104 @@ public class Client implements Serializable {
    *         https://stackoverflow.com/questions/24082077/java-find-server-in-network
    */
   public void searchServers() {
-    for (int j = 1; j < 255; j++) {
-      for (int k = 1; k < 255; k++) {
-        final String ip4 = "192.168." + j + "." + k;
-        new Thread(new Runnable() {
-          public void run() {
-            try {
-              InetAddress serverCheck = InetAddress.getByName(ip4);
-              if (!serverCheck.isReachable(10000))
-                return;
-
-              Socket getServerDataSocket = new Socket(ip4, serverPort);
-              ObjectOutputStream out =
-                  new ObjectOutputStream(getServerDataSocket.getOutputStream());
-              ObjectInputStream in = new ObjectInputStream(getServerDataSocket.getInputStream());
-              out.writeObject(new GetServerDataMessage(username));
-              out.flush();
-              out.reset();
-              Message m;
-              for (int i = 0; i < 20; i++) {
-                m = (Message) in.readObject();
-                if (m.getType() == MessageType.SENDSERVERDATA) {
-                  SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
-                  ServerData serverdata = new ServerData(ssdMessage.getSender() + "'s Server", ip4,
-                      serverPort, ssdMessage.getClientCounter(), ssdMessage.getClientMaximum(),
-                      ssdMessage.getStatus());
-                  addServerToServerList(serverdata);
-                  i = 20;
-                } else {
-                  wait(100);
+    Thread t1 = new Thread(new Runnable() {
+      public void run() {
+        for (int j = 1; j < 3; j++) {
+          for (int k = 1; k < 256 && Data.getIsSearching(); k++) {
+            final String ip4 = "192.168." + j + "." + k;
+            Thread t = new Thread(new Runnable() {
+              public void run() {
+                try {
+                  InetAddress serverCheck = InetAddress.getByName(ip4);
+                  if (serverCheck.isReachable(1000)) {
+                    Socket getServerDataSocket = new Socket(ip4, serverPort);
+                    ObjectOutputStream out =
+                        new ObjectOutputStream(getServerDataSocket.getOutputStream());
+                    ObjectInputStream in =
+                        new ObjectInputStream(getServerDataSocket.getInputStream());
+                    out.writeObject(new GetServerDataMessage(username));
+                    out.flush();
+                    out.reset();
+                    Message m;
+                    for (int i = 0; i < 10; i++) {
+                      m = (Message) in.readObject();
+                      if (m.getType() == MessageType.SENDSERVERDATA) {
+                        SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
+                        ServerData serverdata = new ServerData(ssdMessage.getSender() + "'s Server",
+                            ip4, serverPort, ssdMessage.getClientCounter(),
+                            ssdMessage.getClientMaximum(), ssdMessage.getStatus());
+                        addServerToServerList(serverdata);
+                        i = 20;
+                      }
+                    }
+                    getServerDataSocket.shutdownInput();
+                    getServerDataSocket.shutdownOutput();
+                    getServerDataSocket.close();
+                  }
+                } catch (ConnectException e) {
+                  // does nothing, this is thrown when the local address is reachable, but no server
+                  // is listening on the IP4 + Port
+                } catch (Exception e) {
+                  e.printStackTrace();
+                  // new NetworkError(NetworkErrorType.SEARCHSERVERS);
                 }
               }
-              getServerDataSocket.shutdownInput();
-              getServerDataSocket.shutdownOutput();
-              getServerDataSocket.close();
-            } catch (Exception e) {
-              new NetworkError(NetworkErrorType.SEARCHSERVERS);
+            });
+            t.start();
+            synchronized (this) {
+              try {
+                this.wait(10);
+              } catch (InterruptedException e) {
+                e.printStackTrace();
+              }
             }
           }
-        });
+        }
       }
-    }
+    });
+    t1.start();
+    /*
+     * Thread t2 = new Thread(new Runnable() { public void run() { for (int j = 2; j < 256; j += 2)
+     * { for (int k = 2; k < 256; k += 2) { final String ip4 = "192.168." + j + "." + k; try {
+     * InetAddress serverCheck = InetAddress.getByName(ip4); System.out.println("new Thread"); if
+     * (!serverCheck.isReachable(10000))
+     * 
+     * return;
+     * 
+     * Socket getServerDataSocket = new Socket(ip4, serverPort); ObjectOutputStream out = new
+     * ObjectOutputStream(getServerDataSocket.getOutputStream()); ObjectInputStream in = new
+     * ObjectInputStream(getServerDataSocket.getInputStream()); out.writeObject(new
+     * GetServerDataMessage(username)); out.flush(); out.reset(); Message m; for (int i = 0; i < 10;
+     * i++) { m = (Message) in.readObject(); if (m.getType() == MessageType.SENDSERVERDATA) {
+     * SendServerDataMessage ssdMessage = (SendServerDataMessage) m; ServerData serverdata = new
+     * ServerData(ssdMessage.getSender() + "'s Server", ip4, serverPort,
+     * ssdMessage.getClientCounter(), ssdMessage.getClientMaximum(), ssdMessage.getStatus());
+     * addServerToServerList(serverdata); i = 20; } } getServerDataSocket.shutdownInput();
+     * getServerDataSocket.shutdownOutput(); getServerDataSocket.close(); } catch (Exception e) {
+     * new NetworkError(NetworkErrorType.SEARCHSERVERS); } } } } });
+     * 
+     * t1.start(); t2.start();
+     * 
+     * 
+     * /* Thread lastThread = new Thread(); for (int j = 1; j < 256; j++) { for (int k = 1; k < 256;
+     * k++) { final String ip4 = "192.168." + j + "." + k; Thread t = new Thread(new Runnable() {
+     * public void run() { try { InetAddress serverCheck = InetAddress.getByName(ip4);
+     * System.out.println("new Thread"); if (!serverCheck.isReachable(10000)) return;
+     * 
+     * Socket getServerDataSocket = new Socket(ip4, serverPort); ObjectOutputStream out = new
+     * ObjectOutputStream(getServerDataSocket.getOutputStream()); ObjectInputStream in = new
+     * ObjectInputStream(getServerDataSocket.getInputStream()); out.writeObject(new
+     * GetServerDataMessage(username)); out.flush(); out.reset(); Message m; for (int i = 0; i < 10;
+     * i++) { m = (Message) in.readObject(); if (m.getType() == MessageType.SENDSERVERDATA) {
+     * SendServerDataMessage ssdMessage = (SendServerDataMessage) m; ServerData serverdata = new
+     * ServerData(ssdMessage.getSender() + "'s Server", ip4, serverPort,
+     * ssdMessage.getClientCounter(), ssdMessage.getClientMaximum(), ssdMessage.getStatus());
+     * addServerToServerList(serverdata); i = 20; } } getServerDataSocket.shutdownInput();
+     * getServerDataSocket.shutdownOutput(); getServerDataSocket.close(); } catch (Exception e) {
+     * new NetworkError(NetworkErrorType.SEARCHSERVERS); } } }); while (lastThread.isAlive()) { try
+     * { wait(100); } catch (InterruptedException e) { e.printStackTrace(); } } lastThread = t;
+     * t.start(); } }
+     */
   }
 
   /**

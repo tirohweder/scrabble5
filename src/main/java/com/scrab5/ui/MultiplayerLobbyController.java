@@ -34,6 +34,16 @@ public class MultiplayerLobbyController extends Controller implements Initializa
   }
 
   /**
+   * Called when the lobby was closed by the host.
+   * 
+   * @author nitterhe
+   * @throws IOException
+   */
+  public static void lobbyClosed() throws IOException {
+    App.setRoot("MultiplayerOverview");
+  }
+
+  /**
    * This method is called when the "Back"-button is clicked. It sets the scene to
    * "MultiplayerOverview"
    * 
