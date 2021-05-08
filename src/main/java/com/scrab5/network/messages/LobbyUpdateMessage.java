@@ -7,6 +7,7 @@ package com.scrab5.network.messages;
 
 import java.util.HashMap;
 import com.scrab5.network.ClientData;
+import com.scrab5.network.ServerStatistics;
 
 public class LobbyUpdateMessage extends Message {
   private static final long serialVersionUID = 1L;
@@ -14,6 +15,7 @@ public class LobbyUpdateMessage extends Message {
   private boolean gameStart;
   private HashMap<String, ClientData> clients;
   private int clientMaximum;
+  private ServerStatistics serverStatistics;
 
   /**
    * Constructor for creating LobbyUpdateMessages
@@ -22,12 +24,13 @@ public class LobbyUpdateMessage extends Message {
    * @param sender - the LobbyUpdateMessage sender (always server's host)
    */
   public LobbyUpdateMessage(String sender, boolean gameStart, HashMap<String, ClientData> clients,
-      int clientMaximum) {
+      int clientMaximum, ServerStatistics serverStatistics) {
     super(sender);
     this.type = MessageType.LOBBYUPDATE;
     this.gameStart = gameStart;
     this.clients = clients;
     this.clientMaximum = clientMaximum;
+    this.serverStatistics = serverStatistics;
   }
 
   /**
@@ -58,5 +61,15 @@ public class LobbyUpdateMessage extends Message {
    */
   public int getClientMaximum() {
     return this.clientMaximum;
+  }
+
+  /**
+   * Returns the server's statistics overview.
+   * 
+   * @author nitterhe
+   * @return serverStatistics - this server's ServerStatistics object
+   */
+  public ServerStatistics getServerStatistics() {
+    return this.serverStatistics;
   }
 }

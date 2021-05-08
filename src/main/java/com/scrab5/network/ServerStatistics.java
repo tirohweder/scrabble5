@@ -14,7 +14,7 @@ public class ServerStatistics implements Serializable {
   private HashMap<String, ClientStatistic> serverStatistics;
 
   /**
-   * Construcotr for creating a new ServerStatistics instance. Creates an empty HashMap.
+   * Constructor for creating a new ServerStatistics instance. Creates an empty HashMap.
    * 
    * @author nitterhe
    */
@@ -34,6 +34,35 @@ public class ServerStatistics implements Serializable {
   }
 
   /**
+   * Adds the client to serverStatistics if the client is new. Double if is used to avoid
+   * NullpointerExceptions.
+   * 
+   * @author nitterhe
+   * @param clientname - the username of the client as a String
+   */
+  public void addClient(String clientname, String IPAddress) {
+    if (serverStatistics.containsKey(clientname)) {
+      if (serverStatistics.get(clientname).getIPAddress().equals(IPAddress)) {
+        return;
+      }
+    }
+    this.serverStatistics.put(clientname, new ClientStatistic(clientname, IPAddress));
+  }
+
+  /**
+   * Increases the clients gamesPlayed and also gamesWon when the boolean winner is true.
+   * 
+   * @author nitterhe
+   * @param clientname - the name of the client that has played
+   * @param winner - the client that won the game
+   */
+  public void gamePlayed(String clientname, boolean winner) {
+    this.serverStatistics.get(clientname).gamePlayed();
+    if (winner)
+      this.serverStatistics.get(clientname).gameWon();
+  }
+
+  /**
    * Helping class to save every clients statistics in one object.
    * 
    * @author Niklas
@@ -42,6 +71,7 @@ public class ServerStatistics implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String clientname;
+    private String IPAddress;
     private int gamesPlayed;
     private int gamesWon;
 
@@ -51,8 +81,9 @@ public class ServerStatistics implements Serializable {
      * @author nitterhe
      * @param clientname
      */
-    public ClientStatistic(String clientname) {
+    public ClientStatistic(String clientname, String IPAddress) {
       this.clientname = clientname;
+      this.IPAddress = IPAddress;
       this.gamesPlayed = 0;
       this.gamesWon = 0;
     }
@@ -65,6 +96,16 @@ public class ServerStatistics implements Serializable {
      */
     public String getClientName() {
       return this.clientname;
+    }
+
+    /**
+     * Returns this client's IPAddress.
+     * 
+     * @author nitterhe
+     * @return IPAddress - this client's IPAddress as a String
+     */
+    public String getIPAddress() {
+      return this.IPAddress;
     }
 
     /**
