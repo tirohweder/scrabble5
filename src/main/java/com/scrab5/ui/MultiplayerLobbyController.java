@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
  * @author mherre
  *
  */
-public class MultiplayerLobbyController extends Controller implements Initializable {
+public class MultiplayerLobbyController extends LobbyController implements Initializable {
 
   @FXML
   private Label player1, ready1, playerNameStats1, played1, won1, score1;
@@ -52,7 +52,7 @@ public class MultiplayerLobbyController extends Controller implements Initializa
    * @throws IOException
    */
   @FXML
-  private void back(MouseEvent event) throws IOException {
+  protected void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     Data.getPlayerClient().disconnectFromServer();
     App.setRoot("MultiplayerOverview");
@@ -70,5 +70,31 @@ public class MultiplayerLobbyController extends Controller implements Initializa
       this.isReady1 = false;
       Data.getPlayerServer().startGame();
     }
+  }
+
+
+
+  @Override
+  protected void addPlayer(MouseEvent event) throws IOException {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  protected void kickPlayer2(MouseEvent event) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  protected void kickPlayer3(MouseEvent event) {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  protected void kickPlayer4(MouseEvent event) {
+    // TODO Auto-generated method stub
+
   }
 }

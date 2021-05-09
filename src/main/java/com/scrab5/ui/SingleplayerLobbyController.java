@@ -92,50 +92,52 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   @FXML
   protected void kickPlayer2(MouseEvent event) {
-
-    playSound("ButtonClicked.mp3");
-    this.player2.setText("");
-    this.ready2.setText("");
-    this.difficulty2.setOpacity(0);
-    this.diffSelection2.setOpacity(0);
-    this.diffButton1.setOpacity(0);
-    this.kick2.setOpacity(0);
-    this.playerAmount--;
-    this.freeSpaces[0] = true;
-    this.isClickable();
+    if (kick2.getOpacity() == 1.0) {
+      playSound("ButtonClicked.mp3");
+      this.player2.setText("");
+      this.ready2.setText("");
+      this.difficulty2.setOpacity(0);
+      this.diffSelection2.setOpacity(0);
+      this.diffButton1.setOpacity(0);
+      this.kick2.setOpacity(0);
+      this.playerAmount--;
+      this.freeSpaces[0] = true;
+      this.isClickable();
+    }
   }
 
   @FXML
   protected void kickPlayer3(MouseEvent event) {
 
-    playSound("ButtonClicked.mp3");
-    this.player3.setText("");
-    this.ready3.setText("");
-    this.difficulty3.setOpacity(0);
-    this.diffSelection3.setOpacity(0);
-    this.diffButton2.setOpacity(0);
-    this.kick3.setOpacity(0);
-    this.playerAmount--;
-    this.freeSpaces[1] = true;
-    this.isClickable();
-
-
+    if (kick3.getOpacity() == 1.0) {
+      playSound("ButtonClicked.mp3");
+      this.player3.setText("");
+      this.ready3.setText("");
+      this.difficulty3.setOpacity(0);
+      this.diffSelection3.setOpacity(0);
+      this.diffButton2.setOpacity(0);
+      this.kick3.setOpacity(0);
+      this.playerAmount--;
+      this.freeSpaces[1] = true;
+      this.isClickable();
+    }
   }
 
   @FXML
   protected void kickPlayer4(MouseEvent event) {
 
-    playSound("ButtonClicked.mp3");
-    this.player4.setText("");
-    this.ready4.setText("");
-    this.difficulty4.setOpacity(0);
-    this.diffSelection4.setOpacity(0);
-    this.diffButton3.setOpacity(0);
-    this.kick4.setOpacity(0);
-    this.playerAmount--;
-    this.freeSpaces[2] = true;
-    this.isClickable();
-
+    if (kick4.getOpacity() == 1.0) {
+      playSound("ButtonClicked.mp3");
+      this.player4.setText("");
+      this.ready4.setText("");
+      this.difficulty4.setOpacity(0);
+      this.diffSelection4.setOpacity(0);
+      this.diffButton3.setOpacity(0);
+      this.kick4.setOpacity(0);
+      this.playerAmount--;
+      this.freeSpaces[2] = true;
+      this.isClickable();
+    }
   }
 
 

@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import com.scrab5.network.Client;
 import com.scrab5.network.NetworkError;
 import com.scrab5.network.NetworkError.NetworkErrorType;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -17,28 +18,24 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 
 public class MultiplayerOverviewController extends Controller implements Initializable {
 
   @FXML
-  private Label userPlaying;
+  private Label userPlaying, dicDisplaying;
   @FXML
-  private ImageView playerNumber;
-  @FXML
-  private ImageView arrowRight;
-  @FXML
-  private ImageView arrowLeft;
+  private ImageView playerNumber, arrowRight, arrowLeft;
   @FXML
   private ComboBox<String> dictionarySelection;
   @FXML
   private ImageView dropDownButton;
   @FXML
   private TextField serverName;
-
   @FXML
-  private Text servername;
+  private ImageView join, join1, join2, join3, join4, join5, join6, join7;
 
+
+  private boolean isDictionarySelected = false;
   private int playerCount = 2;
 
   /**
@@ -51,6 +48,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.serverName.setFocusTraversable(false);
     this.userPlaying.setText(Data.getCurrentUser());
     this.setUpDicitionaryBox();
+
 
     if (Data.getPlayerClient() == null)
       Data.setPlayerClient(new Client(Data.getCurrentUser()));
@@ -68,10 +66,17 @@ public class MultiplayerOverviewController extends Controller implements Initial
     // } else {
     // App.setRoot("MultiplayerLobby");
     // }
+    if (this.isDictionarySelected) {
+      Data.setIsSearching(false);
+      this.setupServer(playerCount);
+      App.setRoot("MultiplayerLobby");
 
-    Data.setIsSearching(false);
-    this.setupServer(playerCount);
-    App.setRoot("MultiplayerLobby");
+    } else {
+      String message = "To start the game please select a dictionary!";
+      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+      pum.show();
+
+    }
   }
 
   /**
@@ -188,16 +193,9 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.searchServers();
   }
 
-  /**
-   * Randomly joins a server from the local network.
-   * 
-   * @author nitterhe
-   * @author mherre
-   * @param event
-   * @throws IOException
-   */
   @FXML
   private void findGame(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
     String ip4 = Data.getServerList().get((int) (Data.getServerList().size() * Math.random()))
         .getIP4Address();
     if (joinServer(ip4)) {
@@ -205,8 +203,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
     } else {
       new NetworkError(NetworkErrorType.CONNECTION);
     }
-    playSound("ButtonClicked.mp3");
-
   }
 
   /**
@@ -247,10 +243,34 @@ public class MultiplayerOverviewController extends Controller implements Initial
     playerNumber.setImage(img);
   }
 
+  @FXML
+  private void joinGame(MouseEvent event) {
+    playSound("ButtonClicked.mp3");
+  }
+
+  @FXML
+  private void lightenJoinIcon(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+    iv.setImage(new Image("/com/scrab5/ui/images/SB06_JoinButtonClicked.png"));
+  }
+
+  @FXML
+  private void darkenJoinIcon(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+    iv.setImage(new Image("/com/scrab5/ui/images/SB06_JoinButton.png"));
+  }
+
   private void setupServer(int playerCount) {
     Data.setPlayerClient(new Client(Data.getCurrentUser()));
     Data.getPlayerClient().hostServer(playerCount);
     Data.setPlayerServer(Data.getPlayerClient().getHostedServer());
+  }
+
+  @FXML
+  private void setSelectedDictionary(ActionEvent event) {
+    String selected = (String) this.dictionarySelection.getValue();
+    this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
+    isDictionarySelected = true;
   }
 
   /**
@@ -280,6 +300,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   // @author mherre @author nitterhe :^)
+
 
   private void searchServers() {
     if (!Data.getIsSearching()) {
@@ -312,6 +333,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
       new Thread(r).start();
     }
   }
+
 
   /**
    * Joins a server with the given IPAddress.

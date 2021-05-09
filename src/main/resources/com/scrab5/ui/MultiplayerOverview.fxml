@@ -80,7 +80,172 @@
                   <Image url="@images/SB04_ArrowButtonNotClickable.png" />
                </image>
             </ImageView>
-            <ComboBox fx:id="dictionarySelection" layoutX="862.0" layoutY="371.0" onMouseClicked="#dontShow" opacity="0.0" prefHeight="43.0" prefWidth="269.0" />
+            <ComboBox fx:id="dictionarySelection" layoutX="862.0" layoutY="371.0" onAction="#setSelectedDictionary" onMouseClicked="#dontShow" opacity="0.0" prefHeight="43.0" prefWidth="269.0" />
+            <Label fx:id="dicDisplaying" layoutX="862.0" layoutY="379.0" prefHeight="22.0" prefWidth="262.0" textFill="#fefff2">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="213.0" prefHeight="25.0" prefWidth="204.0" text="Markus" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="252.0" prefHeight="25.0" prefWidth="204.0" text="Markus" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="290.0" prefHeight="25.0" prefWidth="204.0" text="Markus" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="329.0" prefHeight="25.0" prefWidth="204.0" text="Markus" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="367.0" prefHeight="25.0" prefWidth="204.0" text="Markus" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="405.0" prefHeight="25.0" prefWidth="204.0" text="Markus" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="444.0" prefHeight="25.0" prefWidth="204.0" text="Markus" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="126.0" layoutY="482.0" prefHeight="25.0" prefWidth="204.0" text="Markus" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="362.0" layoutY="213.0" prefHeight="25.0" prefWidth="34.0" text="4/4" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="362.0" layoutY="252.0" prefHeight="25.0" prefWidth="34.0" text="1/2" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="362.0" layoutY="290.0" prefHeight="25.0" prefWidth="34.0" text="3/4" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="362.0" layoutY="329.0" prefHeight="25.0" prefWidth="34.0" text="2/3" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="362.0" layoutY="367.0" prefHeight="25.0" prefWidth="34.0" text="4/4" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="362.0" layoutY="405.0" prefHeight="25.0" prefWidth="34.0" text="1/2" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="362.0" layoutY="444.0" prefHeight="25.0" prefWidth="34.0" text="3/4" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="362.0" layoutY="482.0" prefHeight="25.0" prefWidth="34.0" text="2/3" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="464.0" layoutY="213.0" prefHeight="25.0" prefWidth="62.0" text="Playing" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="464.0" layoutY="252.0" prefHeight="25.0" prefWidth="62.0" text="Waiting" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="464.0" layoutY="290.0" prefHeight="25.0" prefWidth="62.0" text="3/4" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="464.0" layoutY="329.0" prefHeight="25.0" prefWidth="62.0" text="2/3" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="464.0" layoutY="367.0" prefHeight="25.0" prefWidth="62.0" text="4/4" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="464.0" layoutY="405.0" prefHeight="25.0" prefWidth="62.0" text="1/2" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="464.0" layoutY="444.0" prefHeight="25.0" prefWidth="62.0" text="3/4" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="464.0" layoutY="482.0" prefHeight="25.0" prefWidth="62.0" text="2/3" textFill="#fefff2">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="join" fitHeight="32.0" fitWidth="61.0" layoutX="602.0" layoutY="211.0" onMouseClicked="#joinGame" onMouseEntered="#lightenJoinIcon" onMouseExited="#darkenJoinIcon" onMousePressed="#darkenJoinIcon" onMouseReleased="#lightenJoinIcon" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB06_JoinButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="join1" fitHeight="32.0" fitWidth="61.0" layoutX="602.0" layoutY="250.0" onMouseClicked="#joinGame" onMouseEntered="#lightenJoinIcon" onMouseExited="#darkenJoinIcon" onMousePressed="#darkenJoinIcon" onMouseReleased="#lightenJoinIcon" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB06_JoinButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="join2" fitHeight="32.0" fitWidth="61.0" layoutX="602.0" layoutY="288.0" onMouseClicked="#joinGame" onMouseEntered="#lightenJoinIcon" onMouseExited="#darkenJoinIcon" onMousePressed="#darkenJoinIcon" onMouseReleased="#lightenJoinIcon" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB06_JoinButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="join3" fitHeight="32.0" fitWidth="61.0" layoutX="602.0" layoutY="327.0" onMouseClicked="#joinGame" onMouseEntered="#lightenJoinIcon" onMouseExited="#darkenJoinIcon" onMousePressed="#darkenJoinIcon" onMouseReleased="#lightenJoinIcon" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB06_JoinButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="join4" fitHeight="32.0" fitWidth="61.0" layoutX="602.0" layoutY="365.0" onMouseClicked="#joinGame" onMouseEntered="#lightenJoinIcon" onMouseExited="#darkenJoinIcon" onMousePressed="#darkenJoinIcon" onMouseReleased="#lightenJoinIcon" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB06_JoinButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="join5" fitHeight="32.0" fitWidth="61.0" layoutX="602.0" layoutY="403.0" onMouseClicked="#joinGame" onMouseEntered="#lightenJoinIcon" onMouseExited="#darkenJoinIcon" onMousePressed="#darkenJoinIcon" onMouseReleased="#lightenJoinIcon" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB06_JoinButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="join6" fitHeight="32.0" fitWidth="61.0" layoutX="602.0" layoutY="442.0" onMouseClicked="#joinGame" onMouseEntered="#lightenJoinIcon" onMouseExited="#darkenJoinIcon" onMousePressed="#darkenJoinIcon" onMouseReleased="#lightenJoinIcon" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB06_JoinButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="join7" fitHeight="32.0" fitWidth="61.0" layoutX="602.0" layoutY="480.0" onMouseClicked="#joinGame" onMouseEntered="#lightenJoinIcon" onMouseExited="#darkenJoinIcon" onMousePressed="#darkenJoinIcon" onMouseReleased="#lightenJoinIcon" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB06_JoinButton.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </children>
