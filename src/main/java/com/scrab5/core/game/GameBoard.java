@@ -13,38 +13,22 @@ public class GameBoard {
     this.currentChanges = currentChanges;
   }
 
-  private String[][] gameBoardSpecial =
-      new String[][]{
-          {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ",
-              "TW"},
-          {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW",
-              "  "},
-          {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ",
-              "  "},
-          {"DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ",
-              "DL"},
-          {"  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ",
-              "  "},
-          {"  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL",
-              "  "},
-          {"  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ",
-              "  "},
-          {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ",
-              "TW"},
-          {"  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ",
-              "  "},
-          {"  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL",
-              "  "},
-          {"  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ",
-              "  "},
-          {"DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ",
-              "DL"},
-          {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ",
-              "  "},
-          {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW",
-              "  "},
-          {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"}
-      };
+  private String[][] gameBoardSpecial = new String[][] {
+      {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
+      {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
+      {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "},
+      {"DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"},
+      {"  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "},
+      {"  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "},
+      {"  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "},
+      {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
+      {"  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "},
+      {"  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "},
+      {"  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "},
+      {"DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"},
+      {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "},
+      {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
+      {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"}};
 
   private Tile[][] gameBoard = new Tile[15][15];
   private Tile[][] gameBoardCurrent = new Tile[15][15];
@@ -60,8 +44,7 @@ public class GameBoard {
    *
    * @author trohwede
    */
-  public GameBoard() {
-  }
+  public GameBoard() {}
 
   /**
    * Places a tile at specific location
@@ -135,8 +118,8 @@ public class GameBoard {
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
 
-    return (row == row1 + 1 && column == column1) || (row == row1 - 1 && column == column1) || (
-        row == row1 && column == column1 + 1) || (row == row1 && column == column1 - 1);
+    return (row == row1 + 1 && column == column1) || (row == row1 - 1 && column == column1)
+        || (row == row1 && column == column1 + 1) || (row == row1 && column == column1 - 1);
   }
 
   /**
@@ -156,20 +139,20 @@ public class GameBoard {
     if ((row1 == row2 + 1 && column1 == column2) || (row1 == row2 - 1 && column1 == column2)) {
 
       for (int i = 0; i < currentChanges.size(); i++) {
-        if (((row == currentChanges.get(i).getRow() - 1) && column == column1) || ((row
-            == currentChanges.get(i).getRow() + 1) && column == column1)) {
+        if (((row == currentChanges.get(i).getRow() - 1) && column == column1)
+            || ((row == currentChanges.get(i).getRow() + 1) && column == column1)) {
           return true;
         }
       }
       return false;
 
 
-    } else if ((row1 == row2 && column1 == column2 + 1) || (row1 == row2
-        && column1 == column2 - 1)) {
+    } else if ((row1 == row2 && column1 == column2 + 1)
+        || (row1 == row2 && column1 == column2 - 1)) {
 
       for (int i = 0; i < currentChanges.size(); i++) {
-        if (((column == currentChanges.get(i).getColumn() - 1) && row == row1) || ((column
-            == currentChanges.get(i).getColumn() + 1) && row == row1)) {
+        if (((column == currentChanges.get(i).getColumn() - 1) && row == row1)
+            || ((column == currentChanges.get(i).getColumn() + 1) && row == row1)) {
           return true;
         }
       }
@@ -228,7 +211,7 @@ public class GameBoard {
 
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
-        if (changedWords[i][j] != null) { //Tile is empty
+        if (changedWords[i][j] != null) { // Tile is empty
           word.append(getTile(i, j).getLetter());
           if (gameBoardSpecial[i][j] == "TL") {
             scoreToBe += changedWords[i][j].getValue() * 3;
@@ -243,8 +226,8 @@ public class GameBoard {
           } else {
             scoreToBe += changedWords[i][j].getValue();
           }
-          
-        } else {  //Tile is empty
+
+        } else { // Tile is empty
           if (word.length() > 1) {
             if (tws) {
               scoreToBe *= 3;
@@ -256,7 +239,7 @@ public class GameBoard {
           scoreToBe = 0;
           word.setLength(0);
         }
-      }  //End of second for loop
+      } // End of second for loop
 
       if (word.length() > 1) {
         if (tws) {
@@ -284,7 +267,7 @@ public class GameBoard {
 
     for (int j = 0; j < 15; j++) {
       for (int i = 0; i < 15; i++) {
-        if (changedWords[i][j] != null) { //Tile is empty
+        if (changedWords[i][j] != null) { // Tile is empty
           word.append(getTile(i, j).getLetter());
           if (gameBoardSpecial[i][j] == "TL") {
             scoreToBe += changedWords[i][j].getValue() * 3;
@@ -300,7 +283,7 @@ public class GameBoard {
             scoreToBe += changedWords[i][j].getValue();
           }
 
-        } else {  //Tile is empty
+        } else { // Tile is empty
           if (word.length() > 1) {
             if (tws) {
               scoreToBe *= 3;
@@ -312,7 +295,7 @@ public class GameBoard {
           scoreToBe = 0;
           word.setLength(0);
         }
-      }  //End of second for loop
+      } // End of second for loop
 
       if (word.length() > 1) {
         if (tws) {
@@ -358,31 +341,31 @@ public class GameBoard {
 
       int count = 1;
 
-      //System.out.println("Current Tile: " + currentChanges.get(i).getLetter());
+      // System.out.println("Current Tile: " + currentChanges.get(i).getLetter());
       if (gameBoard[row - count][column] != null) {
         drueber = true;
-        //System.out.println("Drüber: " + gameBoard[row - count][column].getLetter());
+        // System.out.println("Drüber: " + gameBoard[row - count][column].getLetter());
       }
 
       if (gameBoard[row + count][column] != null) {
         drunter = true;
-        //System.out.println("Drunter: " + gameBoard[row + count][column].getLetter());
+        // System.out.println("Drunter: " + gameBoard[row + count][column].getLetter());
       }
 
       if (gameBoard[row][column + count] != null) {
         rechts = true;
-        //System.out.println("Rechts: " + gameBoard[row][column + count].getLetter());
+        // System.out.println("Rechts: " + gameBoard[row][column + count].getLetter());
       }
 
       if (gameBoard[row][column - count] != null) {
         links = true;
-        //System.out.println("Links: " + gameBoard[row][column - count].getLetter());
+        // System.out.println("Links: " + gameBoard[row][column - count].getLetter());
       }
 
       while (row - count >= 0 && drueber) {
         if (gameBoard[row - count][column] != null) {
           touchedTiles[row - count][column] = gameBoard[row - count][column];
-          //System.out.println("druebersucces");
+          // System.out.println("druebersucces");
           count++;
         } else {
           drueber = false;
@@ -394,7 +377,7 @@ public class GameBoard {
       while (row + count <= 14 && drunter) {
         if (gameBoard[row + count][column] != null) {
           touchedTiles[row + count][column] = gameBoard[row + count][column];
-          //System.out.println("druntersucces");
+          // System.out.println("druntersucces");
           count++;
         } else {
           drunter = false;
@@ -406,7 +389,7 @@ public class GameBoard {
       while (column + count <= 14 && rechts) {
         if (gameBoard[row][column + count] != null) {
           touchedTiles[row][column + count] = gameBoard[row][column + count];
-          //System.out.println("rechts succes");
+          // System.out.println("rechts succes");
           count++;
         } else {
           rechts = false;
@@ -418,7 +401,7 @@ public class GameBoard {
       while (column - count >= 0 && links) {
         if (gameBoard[row][column - count] != null) {
           touchedTiles[row][column - count] = gameBoard[row][column - count];
-          //System.out.println("links succes");
+          // System.out.println("links succes");
           count++;
         } else {
           links = false;
@@ -530,5 +513,17 @@ public class GameBoard {
     }
     currentChanges.clear();
     firstTile = true;
+  }
+
+  /**
+   * This method will return the Tile which is on the position of the parameter
+   *
+   * @param row
+   * @param column
+   * @return
+   * @author hraza
+   */
+  public Tile getPlacedTile(int row, int col) {
+    return gameBoard[row][col];
   }
 }
