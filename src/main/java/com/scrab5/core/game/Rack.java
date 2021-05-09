@@ -72,4 +72,15 @@ public class Rack {
       this.rack[i] = null;
     }
   }
+  
+  /**
+   * @author hraza
+   */
+  public String toString() {
+    String s= new String();
+    for(int i= 0; i<7 ;i++) {
+      s+= this.rack[i].getLetter();
+    }
+    return s;
+  }
 }

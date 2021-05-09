@@ -1,11 +1,13 @@
 package com.scrab5.core.game;
 
 public class EasyAI {
+  private String rack;
   private int wordLength;
   private String wordBeginning;
   private String wordEnding;
   private int x;
   private int y;
+  
 
   /**
    * This method will find a tile on the gameboard on which the AI can hang a word onto it and will
@@ -30,6 +32,8 @@ public class EasyAI {
           if (counter > 1) {
             this.wordLength = counter;
             this.wordBeginning = GameSession.getGameBoard().getPlacedTile(i, j).getLetter();
+            this.rack = GameSession.getCurrentPlayer().getRack().toString();
+            wordGeneratorBeginning(this.wordLength, this.wordBeginning, this.rack);
           }
         }
       }
@@ -38,13 +42,14 @@ public class EasyAI {
 
   /**
    * This method will find create a valid word from the dictionary with giving over the information
-   * of the wordLength and the wordBeginning
+   * of the wordLength and the wordBeginning and the actual rack
    *
    * @param wordLength
    * @param wordBeginning
+   * @param rack
    * @author hraza
    */
-  public String wordGeneratorBeginning(int wordLength, String wordBeginning) {
+  public static String wordGeneratorBeginning(int wordLength, String wordBeginning, String rack) {
     return "";
   }
 
