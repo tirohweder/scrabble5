@@ -115,9 +115,10 @@ public class AccountCreationController extends Controller implements Initializab
    * Checks if a nickname only consists of letters, numbers and underscores and is at least 1 char
    * long but no longer than 12 chars. In case the entered username doesn't fullfill the criteria
    * the game will show an error message explaining why the username isn't valid.
-   * 
+   * <p>
    * In case the nickname fullfills the criteria a new profile gets generated in the database and
    * the user gets shown a confirmation message.
+   * </p>
    * 
    * @author mherre
    * @param username the string containing the username thats tested

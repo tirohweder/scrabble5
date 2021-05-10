@@ -125,7 +125,7 @@ public class ProfileController extends Controller implements Initializable {
   }
 
   /**
-   * Method that is called when the "Back"-button in the UI is clicked. Changes the scene to
+   * Event method that is called when the "Back"-button in the UI is clicked. Changes the scene to
    * "MainMenu.fxml".
    * 
    * @author mherre
