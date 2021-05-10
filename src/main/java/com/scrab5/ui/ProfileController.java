@@ -126,7 +126,7 @@ public class ProfileController extends Controller implements Initializable {
 
   /**
    * Method that is called when the "Back"-button in the UI is clicked. Changes the scene to
-   * "MainMenu.fxml"
+   * "MainMenu.fxml".
    * 
    * @author mherre
    * @param event the event that is created from the mouse-click
@@ -142,7 +142,7 @@ public class ProfileController extends Controller implements Initializable {
   /**
    * Checks whether a given username fulfills the criteria (consists only of numbers, letters and
    * underscores). In case it does, it returns true. In case it doesn't it returns false and shows a
-   * PopUp message stating the username doesn't fullfill the criteria
+   * PopUp message stating the username doesn't fullfill the criteria.
    * 
    * @author mherre
    * @param username the string containing the username thats tested
@@ -186,25 +186,19 @@ public class ProfileController extends Controller implements Initializable {
    */
   private void setupStats() {
 
-    String name, picture, longestWord, favoriteDictionary;
-    int totalPoints, personalHighscore, pointsPerWordRate, totalPlayedGames, totalWins, laidWords;
+    String name = Data.getCurrentUser();
+    String picture = PlayerProfileDatabase.getPicture(name);
+    String longestWord = PlayerProfileDatabase.getLongestWord(name);
+    String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
 
-    name = Data.getCurrentUser();
-    picture = PlayerProfileDatabase.getPicture(name);
-
-    totalPoints = PlayerProfileDatabase.getTotalPoints(name);
-    personalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
-    laidWords = PlayerProfileDatabase.getLaidWords(name);
-    pointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
-
-    longestWord = PlayerProfileDatabase.getLongestWord(name);
-
-    totalPlayedGames = PlayerProfileDatabase.getTotalPlayedGames(name);
-    totalWins = PlayerProfileDatabase.getTotalWins(name);
+    int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
+    int personalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
+    int laidWords = PlayerProfileDatabase.getLaidWords(name);
+    int pointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
+    int totalPlayedGames = PlayerProfileDatabase.getTotalPlayedGames(name);
+    int totalWins = PlayerProfileDatabase.getTotalWins(name);
 
     double winRate = PlayerProfileDatabase.getWinRate(name);
-
-    favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
 
     if (totalPoints == 0 || totalPlayedGames == 0) {
       this.averagePointsGame.setText("0");
@@ -227,6 +221,4 @@ public class ProfileController extends Controller implements Initializable {
     this.favDic.setText(favoriteDictionary);
 
   }
-
-
 }
