@@ -9,6 +9,7 @@ import com.scrab5.util.database.UseDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
@@ -26,17 +27,25 @@ public class AccountCreationController extends Controller implements Initializab
   private String createdUsername;
   private static String predecessor = "";
 
+  /**
+   * Call certain methods as soon as the Controller is loaded.
+   * 
+   * @author mherre
+   * 
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     this.nickname.setFocusTraversable(false);
   }
 
   /**
-   * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
-   * predecessor "Login" scene
+   * Event method that is called when the "Back"-button in the UI is clicked. The scene gets changed
+   * to a certain predecessor scene.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    * 
    */
   @FXML
@@ -57,34 +66,32 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * In case that "Enter" is pressed on the keyboard the entered nickname gets checked on validity.
+   * Event method that is called when "Enter" is pressed on the key board. If a valid username has
+   * been entered the scene and the audio volume gets adopted.
    * 
    * @author mherre
-   * @param event the KeyEvent triggering this method
-   * @throws IOException If an input or output exception occurred
+   * @param event the KeyEvent that is created when a key is pressed on the key board
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   @FXML
   private void enterPressed(KeyEvent event) throws IOException {
 
-    switch (event.getCode()) {
-      case ENTER:
-        if (this.isUsernameValid()) {
-          App.setMusicVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
-          Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
-          App.setRoot("MainMenu");
-        }
-        break;
-      default:
-        break;
+    if (event.getCode() == KeyCode.ENTER && this.isUsernameValid()) {
+      App.setMusicVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
+      Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
+      App.setRoot("MainMenu");
     }
   }
 
   /**
-   * In case that "Enter" is clicked in the UI the entered nickname gets checked on validity.
+   * Event method that is called when the "Enter"-button is clicked in the UI. If a valid username
+   * has been entered the scene and the audio volume gets adopted.
    * 
    * @author mherre
-   * @param event the MouseEvent triggering this method
-   * @throws IOException If an input or output exception occurred
+   * @param event the MouseEvent that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   @FXML
   private void enter(MouseEvent event) throws IOException {
@@ -97,8 +104,8 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * Returns a String containing the last created username that has been entered in the nickname
-   * textfield.
+   * Returns a String containing the last created valid username that has been entered in the
+   * TextField <code>nickname</code>.
    * 
    * @author mherre
    * @return returns <code>createdUsername</code>
@@ -108,16 +115,16 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * Checks if a nickname only consists of letters, numbers and underscores, also is the maximum
-   * amount of chars set to 12. In case the User types in nothing or doesn't fullfill the other
-   * criteria, the game will show an error message explaining why the username could not be valid.
+   * Checks if a nickname only consists of letters, numbers and underscores and is at least 1 char
+   * long but no longer than 12 chars. In case the entered username doesn't fullfill the criteria
+   * the game will show an error message explaining why the username isn't valid.
    * 
    * In case the nickname fullfills the criteria a new profile gets generated in the database and
    * the user gets shown a confirmation message.
    * 
    * 
    * @author mherre
-   * @return
+   * @return the
    * @throws IOException
    */
   private boolean isUsernameValid() throws IOException {
@@ -148,7 +155,6 @@ public class AccountCreationController extends Controller implements Initializab
       }
 
     } else {
-
       message = "Please make sure your nickname consists only of letters, numbers, "
           + "underscores and is only 12 signs long";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
@@ -161,7 +167,8 @@ public class AccountCreationController extends Controller implements Initializab
   /**
    * Sets the predescessor scene of AccountCreationController.
    * 
-   * @param predecessorPara
+   * @author mherre
+   * @param predecessorPara the name of the scene that was shown before
    */
   public static void setPredecessor(String predecessorPara) {
     predecessor = predecessorPara;
