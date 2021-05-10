@@ -14,8 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
- * The AccountCreationController class is supposed to control the components of the
- * AccountCreation.fxml.
+ * The AccountCreationController class is controls the components of the AccountCreation.fxml.
  * 
  * @author mherre
  *
@@ -31,7 +30,6 @@ public class AccountCreationController extends Controller implements Initializab
    * Call certain methods as soon as the Controller is loaded.
    * 
    * @author mherre
-   * 
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -46,7 +44,6 @@ public class AccountCreationController extends Controller implements Initializab
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * 
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -77,7 +74,7 @@ public class AccountCreationController extends Controller implements Initializab
   @FXML
   private void enterPressed(KeyEvent event) throws IOException {
 
-    if (event.getCode() == KeyCode.ENTER && this.isUsernameValid()) {
+    if (event.getCode() == KeyCode.ENTER && this.isUsernameValid(this.nickname.getText())) {
       App.setMusicVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       App.setRoot("MainMenu");
@@ -96,7 +93,7 @@ public class AccountCreationController extends Controller implements Initializab
   @FXML
   private void enter(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    if (this.isUsernameValid()) {
+    if (this.isUsernameValid(this.nickname.getText())) {
       App.setMusicVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       App.setRoot("MainMenu");
@@ -122,21 +119,22 @@ public class AccountCreationController extends Controller implements Initializab
    * In case the nickname fullfills the criteria a new profile gets generated in the database and
    * the user gets shown a confirmation message.
    * 
-   * 
    * @author mherre
-   * @return the
-   * @throws IOException
+   * @param username the string containing the username thats tested
+   * @return the boolean describing if the username is valid
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
-  private boolean isUsernameValid() throws IOException {
+  private boolean isUsernameValid(String username) throws IOException {
 
     String regex = "[a-zA-Z0-9_]{1,12}";
     String message;
     PopUpMessage pum;
 
-    if (this.nickname.getText().matches(regex)) {
+    if (username.matches(regex)) {
 
       if (!UseDatabase.playerExists(this.nickname.getText())) {
-        this.createdUsername = nickname.getText();
+        this.createdUsername = username;
         Data.setCurrentUser(this.createdUsername);
         FillDatabase.createPlayer(this.createdUsername, null);
 

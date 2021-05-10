@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 /**
- * The ProfileController class is supposed to control the components of the scene "Profile"
+ * The ProfileController class controls the components of the Profile.fxml.
  * 
  * @author mherre
  *
@@ -20,50 +20,29 @@ import javafx.scene.input.MouseEvent;
 public class ProfileController extends Controller implements Initializable {
 
   @FXML
-  private Label nicknameLabel;
-  @FXML
-  private Label totalPoints;
-  @FXML
-  private Label averagePointsGame;
-  @FXML
-  private Label mostPoints;
-  @FXML
-  private Label laidWords;
-  @FXML
-  private Label averagePointsWord;
-  @FXML
-  private Label longestWord;
-  @FXML
-  private Label totalGames;
-  @FXML
-  private Label totalWins;
-  @FXML
-  private Label winPercentage;
-  @FXML
-  private Label favDic;
+  private Label nicknameLabel, totalPoints, averagePointsGame, mostPoints, laidWords,
+      averagePointsWord, longestWord, totalGames, totalWins, winPercentage, favDic;
 
   /**
-   * Sets the current username on the Label and shows stats
+   * Call certain methods as soon as the Controller is loaded.
    * 
    * @author mherre
    */
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-
     this.nicknameLabel.setText(Data.getCurrentUser());
     this.setupStats();
-
   }
 
   /**
-   * Method is called when the "Delete Profile" - button is clicked. Opens a Pop-Up asking the user
-   * if he really want to delete his profile. In case he clicks "Confirm" the profile gets removed
-   * from the database.
+   * Event method that is called when the "Delete Profile"-button in the UI is clicked. Opens a
+   * Pop-Up and depending on the users action the profile gets deleted and scene changed or not.
    * 
    * @author mherre
    * @author lengist
-   * @param event
-   * @throws IOException
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   @FXML
   private void deleteProfile(MouseEvent event) throws IOException {
@@ -76,25 +55,27 @@ public class ProfileController extends Controller implements Initializable {
 
     if (Data.isConfirmed()) {
       FillDatabase.deletePlayer(Data.getCurrentUser());
-      System.out.println("Current: " + Data.getCurrentUser());
 
       if (UseDatabase.tablePlayerIsEmpty()) {
         App.setRoot("AccountCreation");
+
       } else {
         App.setRoot("RealLogin");
+
       }
     }
   }
 
   /**
-   * Method that is called when the "Edit Name" - button is clicked. Opens a Pop-Up message with a
-   * textfield displaying the user's current nickname. In case the edited nickname fullfills the
-   * username criteria then name will be updated in the database.
+   * Event method that is called when the "Edit Name"-button in the UI is clicked. Opens a Pop-Up
+   * message with a textfield displaying the user's current nickname. In case the edited nickname
+   * fullfills the username criteria then the name will be updated in the database.
    * 
    * @author mherre
    * @author lengist
-   * @param event
-   * @throws IOException
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   @FXML
   private void editName(MouseEvent event) throws IOException {
@@ -112,6 +93,16 @@ public class ProfileController extends Controller implements Initializable {
     }
   }
 
+
+  /**
+   * Event method that is called when the "Change Profile"-button in the UI is clicked. Changes the
+   * scene to "RealLogin.fxml".
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   @FXML
   private void changeProfile(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
@@ -119,12 +110,13 @@ public class ProfileController extends Controller implements Initializable {
   }
 
   /**
-   * Method that is called when the "Create New Profile" - button is clicked, changes the scene to
-   * the "AccountCreation" screen
+   * Event method that is called when "Create New Profile"-button in the UI is clicked. Changes the
+   * scene to "AccountCreation.fxml".
    * 
    * @author mherre
-   * @param event
-   * @throws IOException
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   @FXML
   private void createNewPlayerProfile(MouseEvent event) throws IOException {
@@ -133,11 +125,13 @@ public class ProfileController extends Controller implements Initializable {
   }
 
   /**
-   * Method that is called when the "Back"-button is clicked. Changes the scene to "MainMenu"
+   * Method that is called when the "Back"-button in the UI is clicked. Changes the scene to
+   * "MainMenu.fxml"
    * 
    * @author mherre
-   * @param event
-   * @throws IOException
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -151,9 +145,10 @@ public class ProfileController extends Controller implements Initializable {
    * PopUp message stating the username doesn't fullfill the criteria
    * 
    * @author mherre
-   * @param username
-   * @return
-   * @throws IOException
+   * @param username the string containing the username thats tested
+   * @return the boolean describing if the username is valid
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   public boolean isUsernameValid(String username) throws IOException {
 
@@ -162,7 +157,6 @@ public class ProfileController extends Controller implements Initializable {
     PopUpMessage pum;
 
     if (username.matches(regex)) {
-
       if (!(UseDatabase.playerExists(username) && !(username.equals(Data.getCurrentUser())))) {
         return true;
 
@@ -170,23 +164,22 @@ public class ProfileController extends Controller implements Initializable {
         message = "This username already exists. Please choose a different name!";
         pum = new PopUpMessage(message, PopUpMessageType.ERROR);
         pum.show();
-
         return false;
+
       }
-
     } else {
-
       message = "Please make sure your nickname consists only of letters, numbers, "
           + "underscores and is only 12 signs long";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
-
       return false;
+
     }
   }
 
   /**
-   * Gather all data from the database to display it on the UI
+   * Gathers all necessary data from the database and sets the text of various labels that are
+   * displaying the statistics in the UI.
    * 
    * @author mherre
    * @author lengist
