@@ -4,7 +4,10 @@ import java.io.IOException;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import com.scrab5.core.game.*;
 import com.scrab5.core.player.*;
@@ -534,50 +537,50 @@ public class SingleplayerController implements Initializable {
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace1.getImage().getUrl())
         && rackPlace1.getOpacity() == 0) {
       rackPlace1.setOpacity(1);
-      pointsRack1.setLayoutX(rackPlace1.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack1.setLayoutY(rackPlace1.getLayoutY()+LABEL_Y_CORD_BACK);
+      pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
     } else if (rackPlace2 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace2.getImage().getUrl())
         && rackPlace2.getOpacity() == 0) {
       rackPlace2.setOpacity(1);
-      pointsRack2.setLayoutX(rackPlace2.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack2.setLayoutY(rackPlace2.getLayoutY()+LABEL_Y_CORD_BACK);
+      pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
     } else if (rackPlace3 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace3.getImage().getUrl())
         && rackPlace3.getOpacity() == 0) {
       rackPlace3.setOpacity(1);
-      pointsRack3.setLayoutX(rackPlace3.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack3.setLayoutY(rackPlace3.getLayoutY()+LABEL_Y_CORD_BACK);
+      pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
     } else if (rackPlace4 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace4.getImage().getUrl())
         && rackPlace4.getOpacity() == 0) {
       rackPlace4.setOpacity(1);
-      pointsRack4.setLayoutX(rackPlace4.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack4.setLayoutY(rackPlace4.getLayoutY()+LABEL_Y_CORD_BACK);
+      pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
     } else if (rackPlace5 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace5.getImage().getUrl())
         && rackPlace5.getOpacity() == 0) {
       rackPlace5.setOpacity(1);
-      pointsRack5.setLayoutX(rackPlace5.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack5.setLayoutY(rackPlace5.getLayoutY()+LABEL_Y_CORD_BACK);
+      pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
     } else if (rackPlace6 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace6.getImage().getUrl())
         && rackPlace6.getOpacity() == 0) {
       rackPlace6.setOpacity(1);
-      pointsRack6.setLayoutX(rackPlace6.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack6.setLayoutY(rackPlace6.getLayoutY()+LABEL_Y_CORD_BACK);
+      pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
     } else if (rackPlace7 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace7.getImage().getUrl())
         && rackPlace7.getOpacity() == 0) {
       rackPlace7.setOpacity(1);
-      pointsRack7.setLayoutX(rackPlace7.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack7.setLayoutY(rackPlace7.getLayoutY()+LABEL_Y_CORD_BACK);
+      pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
     }
     choosenTiles.remove(iv.getId());
@@ -600,8 +603,8 @@ public class SingleplayerController implements Initializable {
 
     markedTile = clickedTile.getImage();
     clickedTile.setImage(iv.getImage());
-    l.setLayoutX(clickedTile.getLayoutX()+LABEL_X_CORD);
-    l.setLayoutY(clickedTile.getLayoutY()+LABEL_Y_CORD);
+    l.setLayoutX(clickedTile.getLayoutX() + LABEL_X_CORD);
+    l.setLayoutY(clickedTile.getLayoutY() + LABEL_Y_CORD);
     choosenTiles.add(clickedTile.getId());
     clickedLetter.setOpacity(0);
     letterClicked = false;
@@ -671,10 +674,352 @@ public class SingleplayerController implements Initializable {
     }
     return y - 1;
   }
-  
+
   @FXML
   private void shuffleClicked(MouseEvent event) {
-    
+
+    Image swapRack;
+    String swapPoints;
+    ArrayList<Integer> order = new ArrayList<>();
+    order.add(1);
+    order.add(2);
+    order.add(3);
+    order.add(4);
+    order.add(5);
+    order.add(6);
+    order.add(7);
+    Random rand = new Random();
+    int random, values = 7, swapWith;
+
+    for (int i = 1; i <= 7; i++) {
+      random = rand.nextInt(values);
+      swapWith = order.get(random);
+      order.remove(random);
+      values--;
+
+      if (i == 1) {
+        swapRack = rackPlace1.getImage();
+        swapPoints = pointsRack1.getText();
+        switch (swapWith) {
+          case 1:
+            break;
+          case 2:
+            rackPlace1.setImage(rackPlace2.getImage());;
+            rackPlace2.setImage(swapRack);
+            pointsRack1.setText(pointsRack2.getText());
+            pointsRack2.setText(swapPoints);
+            break;
+          case 3:
+            rackPlace1.setImage(rackPlace3.getImage());;
+            rackPlace3.setImage(swapRack);
+            pointsRack1.setText(pointsRack3.getText());
+            pointsRack3.setText(swapPoints);
+            break;
+          case 4:
+            rackPlace1.setImage(rackPlace4.getImage());;
+            rackPlace4.setImage(swapRack);
+            pointsRack1.setText(pointsRack4.getText());
+            pointsRack4.setText(swapPoints);
+            break;
+          case 5:
+            rackPlace1.setImage(rackPlace5.getImage());;
+            rackPlace5.setImage(swapRack);
+            pointsRack1.setText(pointsRack5.getText());
+            pointsRack5.setText(swapPoints);
+            break;
+          case 6:
+            rackPlace1.setImage(rackPlace6.getImage());;
+            rackPlace6.setImage(swapRack);
+            pointsRack1.setText(pointsRack6.getText());
+            pointsRack6.setText(swapPoints);
+            break;
+          case 7:
+            rackPlace1.setImage(rackPlace7.getImage());;
+            rackPlace7.setImage(swapRack);
+            pointsRack1.setText(pointsRack7.getText());
+            pointsRack7.setText(swapPoints);
+            break;
+          default:
+            break;
+        }
+      } else if (i == 2) {
+        swapRack = rackPlace1.getImage();
+        swapPoints = pointsRack1.getText();
+        switch (swapWith) {
+          case 1:
+            break;
+          case 2:
+            rackPlace1.setImage(rackPlace2.getImage());;
+            rackPlace2.setImage(swapRack);
+            pointsRack1.setText(pointsRack2.getText());
+            pointsRack2.setText(swapPoints);
+            break;
+          case 3:
+            rackPlace1.setImage(rackPlace3.getImage());;
+            rackPlace3.setImage(swapRack);
+            pointsRack1.setText(pointsRack3.getText());
+            pointsRack3.setText(swapPoints);
+            break;
+          case 4:
+            rackPlace1.setImage(rackPlace4.getImage());;
+            rackPlace4.setImage(swapRack);
+            pointsRack1.setText(pointsRack4.getText());
+            pointsRack4.setText(swapPoints);
+            break;
+          case 5:
+            rackPlace1.setImage(rackPlace5.getImage());;
+            rackPlace5.setImage(swapRack);
+            pointsRack1.setText(pointsRack5.getText());
+            pointsRack5.setText(swapPoints);
+            break;
+          case 6:
+            rackPlace1.setImage(rackPlace6.getImage());;
+            rackPlace6.setImage(swapRack);
+            pointsRack1.setText(pointsRack6.getText());
+            pointsRack6.setText(swapPoints);
+            break;
+          case 7:
+            rackPlace1.setImage(rackPlace7.getImage());;
+            rackPlace7.setImage(swapRack);
+            pointsRack1.setText(pointsRack7.getText());
+            pointsRack7.setText(swapPoints);
+            break;
+          default:
+            break;
+        }
+
+      } else if (i == 3) {
+        swapRack = rackPlace1.getImage();
+        swapPoints = pointsRack1.getText();
+        switch (swapWith) {
+          case 1:
+            break;
+          case 2:
+            rackPlace1.setImage(rackPlace2.getImage());;
+            rackPlace2.setImage(swapRack);
+            pointsRack1.setText(pointsRack2.getText());
+            pointsRack2.setText(swapPoints);
+            break;
+          case 3:
+            rackPlace1.setImage(rackPlace3.getImage());;
+            rackPlace3.setImage(swapRack);
+            pointsRack1.setText(pointsRack3.getText());
+            pointsRack3.setText(swapPoints);
+            break;
+          case 4:
+            rackPlace1.setImage(rackPlace4.getImage());;
+            rackPlace4.setImage(swapRack);
+            pointsRack1.setText(pointsRack4.getText());
+            pointsRack4.setText(swapPoints);
+            break;
+          case 5:
+            rackPlace1.setImage(rackPlace5.getImage());;
+            rackPlace5.setImage(swapRack);
+            pointsRack1.setText(pointsRack5.getText());
+            pointsRack5.setText(swapPoints);
+            break;
+          case 6:
+            rackPlace1.setImage(rackPlace6.getImage());;
+            rackPlace6.setImage(swapRack);
+            pointsRack1.setText(pointsRack6.getText());
+            pointsRack6.setText(swapPoints);
+            break;
+          case 7:
+            rackPlace1.setImage(rackPlace7.getImage());;
+            rackPlace7.setImage(swapRack);
+            pointsRack1.setText(pointsRack7.getText());
+            pointsRack7.setText(swapPoints);
+            break;
+          default:
+            break;
+        }
+
+      } else if (i == 4) {
+        swapRack = rackPlace1.getImage();
+        swapPoints = pointsRack1.getText();
+        switch (swapWith) {
+          case 1:
+            break;
+          case 2:
+            rackPlace1.setImage(rackPlace2.getImage());;
+            rackPlace2.setImage(swapRack);
+            pointsRack1.setText(pointsRack2.getText());
+            pointsRack2.setText(swapPoints);
+            break;
+          case 3:
+            rackPlace1.setImage(rackPlace3.getImage());;
+            rackPlace3.setImage(swapRack);
+            pointsRack1.setText(pointsRack3.getText());
+            pointsRack3.setText(swapPoints);
+            break;
+          case 4:
+            rackPlace1.setImage(rackPlace4.getImage());;
+            rackPlace4.setImage(swapRack);
+            pointsRack1.setText(pointsRack4.getText());
+            pointsRack4.setText(swapPoints);
+            break;
+          case 5:
+            rackPlace1.setImage(rackPlace5.getImage());;
+            rackPlace5.setImage(swapRack);
+            pointsRack1.setText(pointsRack5.getText());
+            pointsRack5.setText(swapPoints);
+            break;
+          case 6:
+            rackPlace1.setImage(rackPlace6.getImage());;
+            rackPlace6.setImage(swapRack);
+            pointsRack1.setText(pointsRack6.getText());
+            pointsRack6.setText(swapPoints);
+            break;
+          case 7:
+            rackPlace1.setImage(rackPlace7.getImage());;
+            rackPlace7.setImage(swapRack);
+            pointsRack1.setText(pointsRack7.getText());
+            pointsRack7.setText(swapPoints);
+            break;
+          default:
+            break;
+        }
+
+      } else if (i == 5) {
+        swapRack = rackPlace1.getImage();
+        swapPoints = pointsRack1.getText();
+        switch (swapWith) {
+          case 1:
+            break;
+          case 2:
+            rackPlace1.setImage(rackPlace2.getImage());;
+            rackPlace2.setImage(swapRack);
+            pointsRack1.setText(pointsRack2.getText());
+            pointsRack2.setText(swapPoints);
+            break;
+          case 3:
+            rackPlace1.setImage(rackPlace3.getImage());;
+            rackPlace3.setImage(swapRack);
+            pointsRack1.setText(pointsRack3.getText());
+            pointsRack3.setText(swapPoints);
+            break;
+          case 4:
+            rackPlace1.setImage(rackPlace4.getImage());;
+            rackPlace4.setImage(swapRack);
+            pointsRack1.setText(pointsRack4.getText());
+            pointsRack4.setText(swapPoints);
+            break;
+          case 5:
+            rackPlace1.setImage(rackPlace5.getImage());;
+            rackPlace5.setImage(swapRack);
+            pointsRack1.setText(pointsRack5.getText());
+            pointsRack5.setText(swapPoints);
+            break;
+          case 6:
+            rackPlace1.setImage(rackPlace6.getImage());;
+            rackPlace6.setImage(swapRack);
+            pointsRack1.setText(pointsRack6.getText());
+            pointsRack6.setText(swapPoints);
+            break;
+          case 7:
+            rackPlace1.setImage(rackPlace7.getImage());;
+            rackPlace7.setImage(swapRack);
+            pointsRack1.setText(pointsRack7.getText());
+            pointsRack7.setText(swapPoints);
+            break;
+          default:
+            break;
+        }
+
+      } else if (i == 6) {
+        swapRack = rackPlace1.getImage();
+        swapPoints = pointsRack1.getText();
+        switch (swapWith) {
+          case 1:
+            break;
+          case 2:
+            rackPlace1.setImage(rackPlace2.getImage());;
+            rackPlace2.setImage(swapRack);
+            pointsRack1.setText(pointsRack2.getText());
+            pointsRack2.setText(swapPoints);
+            break;
+          case 3:
+            rackPlace1.setImage(rackPlace3.getImage());;
+            rackPlace3.setImage(swapRack);
+            pointsRack1.setText(pointsRack3.getText());
+            pointsRack3.setText(swapPoints);
+            break;
+          case 4:
+            rackPlace1.setImage(rackPlace4.getImage());;
+            rackPlace4.setImage(swapRack);
+            pointsRack1.setText(pointsRack4.getText());
+            pointsRack4.setText(swapPoints);
+            break;
+          case 5:
+            rackPlace1.setImage(rackPlace5.getImage());;
+            rackPlace5.setImage(swapRack);
+            pointsRack1.setText(pointsRack5.getText());
+            pointsRack5.setText(swapPoints);
+            break;
+          case 6:
+            rackPlace1.setImage(rackPlace6.getImage());;
+            rackPlace6.setImage(swapRack);
+            pointsRack1.setText(pointsRack6.getText());
+            pointsRack6.setText(swapPoints);
+            break;
+          case 7:
+            rackPlace1.setImage(rackPlace7.getImage());;
+            rackPlace7.setImage(swapRack);
+            pointsRack1.setText(pointsRack7.getText());
+            pointsRack7.setText(swapPoints);
+            break;
+          default:
+            break;
+        }
+
+      } else if (i == 7) {
+        swapRack = rackPlace1.getImage();
+        swapPoints = pointsRack1.getText();
+        switch (swapWith) {
+          case 1:
+            break;
+          case 2:
+            rackPlace1.setImage(rackPlace2.getImage());;
+            rackPlace2.setImage(swapRack);
+            pointsRack1.setText(pointsRack2.getText());
+            pointsRack2.setText(swapPoints);
+            break;
+          case 3:
+            rackPlace1.setImage(rackPlace3.getImage());;
+            rackPlace3.setImage(swapRack);
+            pointsRack1.setText(pointsRack3.getText());
+            pointsRack3.setText(swapPoints);
+            break;
+          case 4:
+            rackPlace1.setImage(rackPlace4.getImage());;
+            rackPlace4.setImage(swapRack);
+            pointsRack1.setText(pointsRack4.getText());
+            pointsRack4.setText(swapPoints);
+            break;
+          case 5:
+            rackPlace1.setImage(rackPlace5.getImage());;
+            rackPlace5.setImage(swapRack);
+            pointsRack1.setText(pointsRack5.getText());
+            pointsRack5.setText(swapPoints);
+            break;
+          case 6:
+            rackPlace1.setImage(rackPlace6.getImage());;
+            rackPlace6.setImage(swapRack);
+            pointsRack1.setText(pointsRack6.getText());
+            pointsRack6.setText(swapPoints);
+            break;
+          case 7:
+            rackPlace1.setImage(rackPlace7.getImage());;
+            rackPlace7.setImage(swapRack);
+            pointsRack1.setText(pointsRack7.getText());
+            pointsRack7.setText(swapPoints);
+            break;
+          default:
+            break;
+        }
+      }
+    }
+
   }
 
   private void setNewTile(ImageView rackPlace, Label point, String letter, String points) {
