@@ -87,8 +87,10 @@ public class Client implements Serializable {
    */
   public void searchServers() {
     Thread t1 = new Thread(new Runnable() {
+      long time = System.currentTimeMillis();
+
       public void run() {
-        for (int j = 1; j < 3; j++) {
+        for (int j = 1; j < 256; j++) {
           for (int k = 1; k < 256 && Data.getIsSearching(); k++) {
             final String ip4 = "192.168." + j + "." + k;
             Thread t = new Thread(new Runnable() {
@@ -132,58 +134,17 @@ public class Client implements Serializable {
             t.start();
             synchronized (this) {
               try {
-                this.wait(10);
+                this.wait(1);
               } catch (InterruptedException e) {
                 e.printStackTrace();
               }
             }
           }
         }
+        System.out.println((System.currentTimeMillis() - time) / 1000);
       }
     });
     t1.start();
-    /*
-     * Thread t2 = new Thread(new Runnable() { public void run() { for (int j = 2; j < 256; j += 2)
-     * { for (int k = 2; k < 256; k += 2) { final String ip4 = "192.168." + j + "." + k; try {
-     * InetAddress serverCheck = InetAddress.getByName(ip4); System.out.println("new Thread"); if
-     * (!serverCheck.isReachable(10000))
-     * 
-     * return;
-     * 
-     * Socket getServerDataSocket = new Socket(ip4, serverPort); ObjectOutputStream out = new
-     * ObjectOutputStream(getServerDataSocket.getOutputStream()); ObjectInputStream in = new
-     * ObjectInputStream(getServerDataSocket.getInputStream()); out.writeObject(new
-     * GetServerDataMessage(username)); out.flush(); out.reset(); Message m; for (int i = 0; i < 10;
-     * i++) { m = (Message) in.readObject(); if (m.getType() == MessageType.SENDSERVERDATA) {
-     * SendServerDataMessage ssdMessage = (SendServerDataMessage) m; ServerData serverdata = new
-     * ServerData(ssdMessage.getSender() + "'s Server", ip4, serverPort,
-     * ssdMessage.getClientCounter(), ssdMessage.getClientMaximum(), ssdMessage.getStatus());
-     * addServerToServerList(serverdata); i = 20; } } getServerDataSocket.shutdownInput();
-     * getServerDataSocket.shutdownOutput(); getServerDataSocket.close(); } catch (Exception e) {
-     * new NetworkError(NetworkErrorType.SEARCHSERVERS); } } } } });
-     * 
-     * t1.start(); t2.start();
-     * 
-     * 
-     * /* Thread lastThread = new Thread(); for (int j = 1; j < 256; j++) { for (int k = 1; k < 256;
-     * k++) { final String ip4 = "192.168." + j + "." + k; Thread t = new Thread(new Runnable() {
-     * public void run() { try { InetAddress serverCheck = InetAddress.getByName(ip4);
-     * System.out.println("new Thread"); if (!serverCheck.isReachable(10000)) return;
-     * 
-     * Socket getServerDataSocket = new Socket(ip4, serverPort); ObjectOutputStream out = new
-     * ObjectOutputStream(getServerDataSocket.getOutputStream()); ObjectInputStream in = new
-     * ObjectInputStream(getServerDataSocket.getInputStream()); out.writeObject(new
-     * GetServerDataMessage(username)); out.flush(); out.reset(); Message m; for (int i = 0; i < 10;
-     * i++) { m = (Message) in.readObject(); if (m.getType() == MessageType.SENDSERVERDATA) {
-     * SendServerDataMessage ssdMessage = (SendServerDataMessage) m; ServerData serverdata = new
-     * ServerData(ssdMessage.getSender() + "'s Server", ip4, serverPort,
-     * ssdMessage.getClientCounter(), ssdMessage.getClientMaximum(), ssdMessage.getStatus());
-     * addServerToServerList(serverdata); i = 20; } } getServerDataSocket.shutdownInput();
-     * getServerDataSocket.shutdownOutput(); getServerDataSocket.close(); } catch (Exception e) {
-     * new NetworkError(NetworkErrorType.SEARCHSERVERS); } } }); while (lastThread.isAlive()) { try
-     * { wait(100); } catch (InterruptedException e) { e.printStackTrace(); } } lastThread = t;
-     * t.start(); } }
-     */
   }
 
   /**

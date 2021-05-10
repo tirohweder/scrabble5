@@ -14,8 +14,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
- * The AccountCreationController class is supposed to control the components of the
- * AccountCreation.fxml.
+ * The AccountCreationController class is controls the components of the AccountCreation.fxml.
  * 
  * @author mherre
  *
