@@ -149,7 +149,7 @@ public class SingleplayerController implements Initializable {
 
     setNewTile(rackPlace5, pointsRack5, "E", "2");
 
-    setNewTile(rackPlace6, pointsRack6, "F", "   3");
+    setNewTile(rackPlace6, pointsRack6, "F", "3");
 
     setNewTile(rackPlace7, pointsRack7, "G", "32");
   }
