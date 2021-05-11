@@ -26,7 +26,8 @@ public class Server implements Serializable {
   public final int serverPort = 60000;
 
   private final String host;
-  private String ip;
+  private String ip4;
+  private InetAddress ip;
   private static ServerSocket serverSocket;
   private boolean gameStart;
   private static int clientCounter;
@@ -62,8 +63,11 @@ public class Server implements Serializable {
 
   public void openServerSocket() {
     try {
-      this.ip = InetAddress.getLocalHost().getHostAddress();
+      InetAddress.getLocalHost();
+      this.ip4 = InetAddress.getLocalHost().getHostAddress();
       serverSocket = new ServerSocket(this.serverPort);
+      ip4 = ip.toString();
+      System.out.println(ip4);
     } catch (Exception e) {
       e.printStackTrace();
       new NetworkError(NetworkErrorType.SERVERCREATION);
@@ -157,8 +161,8 @@ public class Server implements Serializable {
    * @author nitterhe
    * @return ip - the IP4Address of the server
    */
-  public String getIp() {
-    return this.ip;
+  public String getIp4() {
+    return this.ip4;
   }
 
   /**

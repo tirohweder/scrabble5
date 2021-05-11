@@ -63,6 +63,10 @@ public class NetworkError extends Error {
       case NAMEINUSE:
         this.dialog =
             "Name is already taken on this server. Please edit your username in the settings";
+        break;
+      case NOSERVERFOUND:
+        this.dialog = "No servers in your local network found";
+        break;
       default:
         break;
     }
@@ -100,6 +104,6 @@ public class NetworkError extends Error {
    * @author Niklas
    */
   public enum NetworkErrorType {
-    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, CLOSECONNECTION, SERVERCREATION, NAMEINUSE
+    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, CLOSECONNECTION, SERVERCREATION, NAMEINUSE, NOSERVERFOUND
   }
 }

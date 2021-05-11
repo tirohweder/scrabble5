@@ -44,7 +44,7 @@ public class ClientServerTest {
 
     testServer.shutDownServer(); // to close Sockets
     try {
-      assertEquals(testServer.getIp(), InetAddress.getLocalHost().getHostAddress());
+      assertEquals(testServer.getIp4(), InetAddress.getLocalHost().getHostAddress());
     } catch (Exception e) {
       e.printStackTrace();
     }

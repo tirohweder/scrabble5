@@ -11,7 +11,6 @@ package com.scrab5.network;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -75,7 +74,6 @@ public class Client implements Serializable {
     }
     hostedServer.acceptClients();
     connectToServer(ip);
-
   }
 
 
@@ -97,6 +95,7 @@ public class Client implements Serializable {
                 try {
                   InetAddress serverCheck = InetAddress.getByName(ip4);
                   if (serverCheck.isReachable(1000)) {
+                    System.out.println(ip4 + "found");
                     Socket getServerDataSocket = new Socket(ip4, serverPort);
                     ObjectOutputStream out =
                         new ObjectOutputStream(getServerDataSocket.getOutputStream());
@@ -105,14 +104,18 @@ public class Client implements Serializable {
                     out.writeObject(new GetServerDataMessage(username));
                     out.flush();
                     out.reset();
+                    System.out.println("written");
                     Message m;
                     for (int i = 0; i < 10; i++) {
+                      System.out.println("reading begins");
                       m = (Message) in.readObject();
+                      System.out.println("waiting for message");
                       if (m.getType() == MessageType.SENDSERVERDATA) {
                         SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
                         ServerData serverdata = new ServerData(ssdMessage.getSender(), ip4,
                             serverPort, ssdMessage.getClientCounter(),
                             ssdMessage.getClientMaximum(), ssdMessage.getStatus());
+
                         addServerToServerList(serverdata);
                         i = 20;
                       }
@@ -121,10 +124,9 @@ public class Client implements Serializable {
                     getServerDataSocket.shutdownOutput();
                     getServerDataSocket.close();
                   }
-                } catch (ConnectException ce) {
-                  // does nothing since this error occurs when the pinged IP is not a server
                 } catch (Exception e) {
-                  System.out.println(e.getMessage());
+                  // System.out.println(ip4);
+                  // System.out.println(e.getMessage());
                   // does nothing since too many device's firewalls block pings, therefore, too many
                   // exceptions
                 }
