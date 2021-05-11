@@ -11,6 +11,7 @@ package com.scrab5.network;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -120,6 +121,8 @@ public class Client implements Serializable {
                     getServerDataSocket.shutdownOutput();
                     getServerDataSocket.close();
                   }
+                } catch (ConnectException ce) {
+                  // does nothing since this error occurs when the pinged IP is not a server
                 } catch (Exception e) {
                   System.out.println(e.getMessage());
                   // does nothing since too many device's firewalls block pings, therefore, too many
