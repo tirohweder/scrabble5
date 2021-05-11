@@ -73,6 +73,7 @@ public class SingleplayerController implements Initializable {
   private ImageView rackPlace6;
   @FXML
   private ImageView rackPlace7;
+  
   @FXML
   private ImageView playerProfile1;
   @FXML
@@ -81,6 +82,11 @@ public class SingleplayerController implements Initializable {
   private ImageView playerProfile3;
   @FXML
   private ImageView playerProfile4;
+  
+  @FXML
+  private ImageView exchangeScreen;
+  
+  
 
   @FXML
   private Label pointsRack1;
@@ -749,6 +755,19 @@ public class SingleplayerController implements Initializable {
       }
     }
 
+  }
+  
+  @FXML
+  private void exchangeClicked(MouseEvent event) {
+    
+    exchangeScreen.setFitHeight(768);
+    exchangeScreen.setFitWidth(1360);
+    exchangeScreen.setLayoutX(0);
+    exchangeScreen.setLayoutY(0);
+    Image exchange = new Image(this.getClass()
+        .getResource("/com/scrab5/ui/board_Images/exchangeTiles.png")
+        .toString());
+    exchangeScreen.setImage(exchange);
   }
 
   private void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
