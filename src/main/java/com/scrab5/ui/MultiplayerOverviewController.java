@@ -52,6 +52,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * current selected user / logged in user.
    * 
    * @author mherre
+   * @author nitterhe
    */
   public void initialize(URL arg0, ResourceBundle arg1) {
     this.serverName.setFocusTraversable(false);
@@ -254,54 +255,118 @@ public class MultiplayerOverviewController extends Controller implements Initial
     playerNumber.setImage(img);
   }
 
+  /**
+   * Method for when server 0 is clicked. Only joins if this server is actually shown.
+   * 
+   * @author nitterhe
+   * @param event - the mouse click even in the LobbyOverview
+   * @throws IOException -
+   */
   @FXML
   private void join0(MouseEvent event) throws IOException {
     if (this.joinButton0.getOpacity() == 1.0)
       this.joinGame(0);
   }
 
+  /**
+   * Method for when server 1 is clicked. Only joins if this server is actually shown.
+   * 
+   * @author nitterhe
+   * @param event - the mouse click even in the LobbyOverview
+   * @throws IOException -
+   */
   @FXML
   private void join1(MouseEvent event) throws IOException {
     if (this.joinButton1.getOpacity() == 1.0)
       this.joinGame(1);
   }
 
+  /**
+   * Method for when server 2 is clicked. Only joins if this server is actually shown.
+   * 
+   * @author nitterhe
+   * @param event - the mouse click even in the LobbyOverview
+   * @throws IOException -
+   */
   @FXML
   private void join2(MouseEvent event) throws IOException {
     if (this.joinButton2.getOpacity() == 1.0)
       this.joinGame(2);
   }
 
+  /**
+   * Method for when server 3 is clicked. Only joins if this server is actually shown.
+   * 
+   * @author nitterhe
+   * @param event - the mouse click even in the LobbyOverview
+   * @throws IOException -
+   */
   @FXML
   private void join3(MouseEvent event) throws IOException {
     if (this.joinButton3.getOpacity() == 1.0)
       this.joinGame(3);
   }
 
+  /**
+   * Method for when server 4 is clicked. Only joins if this server is actually shown.
+   * 
+   * @author nitterhe
+   * @param event - the mouse click even in the LobbyOverview
+   * @throws IOException -
+   */
   @FXML
   private void join4(MouseEvent event) throws IOException {
     if (this.joinButton4.getOpacity() == 1.0)
       this.joinGame(4);
   }
 
+  /**
+   * Method for when server 5 is clicked. Only joins if this server is actually shown.
+   * 
+   * @author nitterhe
+   * @param event - the mouse click even in the LobbyOverview
+   * @throws IOException -
+   */
   @FXML
   private void join5(MouseEvent event) throws IOException {
     if (this.joinButton5.getOpacity() == 1.0)
       this.joinGame(5);
   }
 
+  /**
+   * Method for when server 6 is clicked. Only joins if this server is actually shown.
+   * 
+   * @author nitterhe
+   * @param event - the mouse click even in the LobbyOverview
+   * @throws IOException -
+   */
   @FXML
   private void join6(MouseEvent event) throws IOException {
     if (this.joinButton6.getOpacity() == 1.0)
       this.joinGame(6);
   }
 
+
+  /**
+   * Method for when server 7 is clicked. Only joins if this server is actually shown.
+   * 
+   * @author nitterhe
+   * @param event - the mouse click even in the LobbyOverview
+   * @throws IOException -
+   */
   @FXML
   private void join7(MouseEvent event) throws IOException {
     if (this.joinButton7.getOpacity() == 1.0)
       this.joinGame(7);
   }
 
+  /**
+   * 
+   * 
+   * @author nitterhe
+   * @param number
+   * @throws IOException
+   */
   private void joinGame(int number) throws IOException {
     if (Data.getServerList().size() >= number)
       playSound("ButtonClicked.mp3");
@@ -321,6 +386,12 @@ public class MultiplayerOverviewController extends Controller implements Initial
     iv.setImage(new Image("/com/scrab5/ui/images/SB06_JoinButton.png"));
   }
 
+  /**
+   * 
+   * 
+   * @author nitterhe
+   * @param playerCount
+   */
   private void setupServer(int playerCount) {
     Data.getPlayerClient().hostServer(playerCount);
     Data.setHostedServer(Data.getPlayerClient().getHostedServer());
@@ -389,7 +460,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
             try {
               wait(2000);
             } catch (InterruptedException e) {
-              System.out.println("error searching servers");
               e.printStackTrace();
             }
           }
@@ -420,12 +490,13 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
+   * 
+   * @author nitterhe
    * @author mherre
    * @param serverdata
    * @param position
    */
   private void displayServer(ServerData serverdata, int position) {
-
 
     this.serverName0.setText("HELLO");
 
@@ -434,7 +505,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
         this.serverName0.setText(serverdata.getServerHost() + "'s Lobby");
         this.playerCount0
             .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
-        this.playerCount0.setOpacity(1.0);
         this.status0.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
         this.joinButton0.setOpacity(1.0);
         break;

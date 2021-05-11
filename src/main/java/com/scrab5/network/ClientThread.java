@@ -57,7 +57,7 @@ public class ClientThread extends Threads implements Serializable {
         switch (message.getType()) {
 
           case DISCONNECT:
-            // switch layer to lobby overwiew
+            // switch layer to lobby overview
             MultiplayerLobbyController.lobbyClosed();
             this.closeConnection();
             break;
@@ -68,8 +68,17 @@ public class ClientThread extends Threads implements Serializable {
             // needs implementation
             break;
           case CONNECT:
-            System.out.println("error received");
+            // this is used since sending messages between client and server is faster than the
+            // thread switching to the new Stage
+            synchronized (this) {
+              try {
+                wait(300);
+              } catch (Exception e) {
+                e.printStackTrace();
+              }
+            }
             MultiplayerLobbyController.lobbyClosed();
+            this.closeConnection();
             new NetworkError(NetworkErrorType.NAMEINUSE);
             break;
           case LOBBYUPDATE:
@@ -85,6 +94,7 @@ public class ClientThread extends Threads implements Serializable {
       }
     } catch (Exception e) {
       new NetworkError(NetworkErrorType.CLIENTRUN);
+      e.printStackTrace();
     }
   }
 

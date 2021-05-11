@@ -13,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -35,8 +34,13 @@ public class MultiplayerController implements Initializable {
    */
   private ImageView clickedTile;
   private ImageView clickedLetter;
+  private Label clickedLabel;
 
   private Image markedTile;
+  private static final double LABEL_X_CORD = 30.0;
+  private static final double LABEL_Y_CORD = 23.0;
+  private static final double LABEL_X_CORD_BACK = 46.0;
+  private static final double LABEL_Y_CORD_BACK = 44.0;
 
   public ArrayList<Player> playersList = new ArrayList<>();
 
@@ -64,6 +68,20 @@ public class MultiplayerController implements Initializable {
   private ImageView rackPlace7;
 
   @FXML
+  private ImageView playerProfile1;
+  @FXML
+  private ImageView playerProfile2;
+  @FXML
+  private ImageView playerProfile3;
+  @FXML
+  private ImageView playerProfile4;
+
+  @FXML
+  private ImageView exchangeScreen;
+
+
+
+  @FXML
   private Label pointsRack1;
   @FXML
   private Label pointsRack2;
@@ -87,12 +105,21 @@ public class MultiplayerController implements Initializable {
   @FXML
   private Label player4;
 
+  @FXML
+  private Label pointsPlayer1;
+  @FXML
+  private Label pointsPlayer2;
+  @FXML
+  private Label pointsPlayer3;
+  @FXML
+  private Label pointsPLayer4;
+
 
 
   private ArrayList<String> unavailableTiles = new ArrayList<String>();
   private ArrayList<String> choosenTiles = new ArrayList<String>();
 
-  private ArrayList<TextField> players = new ArrayList<TextField>();
+  private ArrayList<Player> players = GameSession.getListOfPlayers();
 
 
   @Override
@@ -105,7 +132,7 @@ public class MultiplayerController implements Initializable {
     player4.setText("Peter");
     player4.setOpacity(1);
 
-    setRack();
+    initRack();
 
 
   }
@@ -118,30 +145,70 @@ public class MultiplayerController implements Initializable {
   }
 
   private void initPlayers() {
-    Iterator<Player> it = playersList.iterator();
-    Iterator<TextField> pIt = players.iterator();
-    while (it.hasNext()) {
-      players.add(new TextField());
-      pIt.next().setText(it.next().getName());
-      pIt.next().localToScene(50, 700);
-      pIt.next().setFocusTraversable(false);
+    Iterator<Player> it = players.iterator();
+
+    if (it.hasNext()) {
+      player1.setText(it.next().getName());
+      player1.setOpacity(1);
+      pointsPlayer1.setText("");
+      it.next();
+      if (it.hasNext()) {
+
+      }
     }
   }
 
-  private void setRack() {
-    setNewTile(rackPlace1, pointsRack1, "A", "1");;
-
-    setNewTile(rackPlace2, pointsRack2, "B", "12");
-
-    setNewTile(rackPlace3, pointsRack3, "C", "3");
-
-    setNewTile(rackPlace4, pointsRack4, "D", "3");
-
-    setNewTile(rackPlace5, pointsRack5, "E", "2");
-
-    setNewTile(rackPlace6, pointsRack6, "F", "   3");
-
-    setNewTile(rackPlace7, pointsRack7, "G", "32");
+  private void initRack() {
+    // String currentUser = Data.getCurrentUser();
+    // Rack myRack = null;
+    // int rackPlace;
+    //
+    // Iterator<Player> it = players.iterator();
+    // while (it.hasNext()) {
+    // String s = it.next().getName();
+    // if (s.equals(currentUser)) {
+    // myRack = it.next().getRack();
+    // } else {
+    // continue;
+    // }
+    // }
+    //
+    // for (int i = 0; i < 7; i++) {
+    // rackPlace = myRack.getTileAt(i).getRackPlace();
+    //
+    // switch (rackPlace) {
+    // case 1:
+    // setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 2:
+    // setNewTile(rackPlace2, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 3:
+    // setNewTile(rackPlace3, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 4:
+    // setNewTile(rackPlace4, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 5:
+    // setNewTile(rackPlace5, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 6:
+    // setNewTile(rackPlace6, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 7:
+    // setNewTile(rackPlace7, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // default:
+    // break;
+    // }
+    // }
   }
 
   /**
@@ -169,7 +236,7 @@ public class MultiplayerController implements Initializable {
         current.isSpotFree(rowTransformation(cordinate), columnTransformation(cordinate));
 
     // check if the field clicked is a letter to remove
-    if (iv.getImage().getUrl().contains("letter_Tiles") && !placeTaken(iv)) {
+    if (iv.getImage().getUrl().contains("letter_Images") && !placeTaken(iv)) {
       backToRack(iv);
     } else {
       // check if no tiles has been clicked
@@ -178,8 +245,8 @@ public class MultiplayerController implements Initializable {
         if (!letterClicked) {
           lighten(event);
           tileClicked = true;
-        } else if (!iv.getImage().getUrl().contains("letter_Tiles")) {
-          placeLetter(clickedLetter);
+        } else if (!iv.getImage().getUrl().contains("letter_Images")) {
+          placeLetter(clickedLetter, clickedLabel);
         }
       } else if (tileClicked && (clickedTile == (ImageView) event.getSource())) {
         darken(event);
@@ -237,6 +304,7 @@ public class MultiplayerController implements Initializable {
 
       clickedLetter = rackPlace1;
       letterClicked = true;
+      clickedLabel = pointsRack1;
 
       // no destination tile chosen
       if (!tileClicked) {
@@ -244,7 +312,7 @@ public class MultiplayerController implements Initializable {
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
-        placeLetter(clickedLetter);
+        placeLetter(clickedLetter, pointsRack1);
         rackPlace1.setOpacity(0);
       }
 
@@ -269,6 +337,7 @@ public class MultiplayerController implements Initializable {
 
       clickedLetter = rackPlace2;
       letterClicked = true;
+      clickedLabel = pointsRack2;
 
       // no destination tile chosen
       if (!tileClicked) {
@@ -276,7 +345,7 @@ public class MultiplayerController implements Initializable {
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
-        placeLetter(clickedLetter);
+        placeLetter(clickedLetter, pointsRack2);
         rackPlace2.setOpacity(0);
       }
 
@@ -301,6 +370,7 @@ public class MultiplayerController implements Initializable {
 
       clickedLetter = rackPlace3;
       letterClicked = true;
+      clickedLabel = pointsRack3;
 
       // no destination tile chosen
       if (!tileClicked) {
@@ -308,7 +378,7 @@ public class MultiplayerController implements Initializable {
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
-        placeLetter(clickedLetter);
+        placeLetter(clickedLetter, pointsRack3);
         rackPlace3.setOpacity(0);
       }
 
@@ -333,6 +403,7 @@ public class MultiplayerController implements Initializable {
 
       clickedLetter = rackPlace4;
       letterClicked = true;
+      clickedLabel = pointsRack4;
 
       // no destination tile chosen
       if (!tileClicked) {
@@ -340,7 +411,7 @@ public class MultiplayerController implements Initializable {
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
-        placeLetter(clickedLetter);
+        placeLetter(clickedLetter, pointsRack4);
         rackPlace4.setOpacity(0);
       }
 
@@ -365,6 +436,7 @@ public class MultiplayerController implements Initializable {
 
       clickedLetter = rackPlace5;
       letterClicked = true;
+      clickedLabel = pointsRack5;
 
       // no destination tile chosen
       if (!tileClicked) {
@@ -372,7 +444,7 @@ public class MultiplayerController implements Initializable {
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
-        placeLetter(clickedLetter);
+        placeLetter(clickedLetter, pointsRack5);
         rackPlace5.setOpacity(0);
       }
 
@@ -397,6 +469,7 @@ public class MultiplayerController implements Initializable {
 
       clickedLetter = rackPlace6;
       letterClicked = true;
+      clickedLabel = pointsRack6;
 
       // no destination tile chosen
       if (!tileClicked) {
@@ -404,7 +477,7 @@ public class MultiplayerController implements Initializable {
 
         // destination chosen
       } else if (!placeTaken(clickedTile)) {
-        placeLetter(clickedLetter);
+        placeLetter(clickedLetter, pointsRack6);
         rackPlace6.setOpacity(0);
       }
 
@@ -430,6 +503,7 @@ public class MultiplayerController implements Initializable {
 
       clickedLetter = rackPlace7;
       letterClicked = true;
+      clickedLabel = pointsRack7;
 
       // if no destination tile is chosen the letter is highlighted and the letterClicked is set on
       // true
@@ -438,7 +512,7 @@ public class MultiplayerController implements Initializable {
 
         // desination chosen
       } else if (!placeTaken(clickedTile)) {
-        placeLetter(clickedLetter);
+        placeLetter(clickedLetter, pointsRack7);
         rackPlace7.setOpacity(0);
       }
 
@@ -488,15 +562,6 @@ public class MultiplayerController implements Initializable {
     if (rackPlace7 != null) {
       rackPlace7.setOpacity(1);
     }
-
-    // delete the ragplaces for new tiles
-    // rackPlace1 = null;
-    // rackPlace2 = null;
-    // rackPlace3 = null;
-    // rackPlace4 = null;
-    // rackPlace5 = null;
-    // rackPlace6 = null;
-    // rackPlace7 = null;
   }
 
   /**
@@ -529,30 +594,51 @@ public class MultiplayerController implements Initializable {
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace1.getImage().getUrl())
         && rackPlace1.getOpacity() == 0) {
       rackPlace1.setOpacity(1);
+      pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
     } else if (rackPlace2 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace2.getImage().getUrl())
         && rackPlace2.getOpacity() == 0) {
       rackPlace2.setOpacity(1);
+      pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
     } else if (rackPlace3 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace3.getImage().getUrl())
         && rackPlace3.getOpacity() == 0) {
       rackPlace3.setOpacity(1);
+      pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
     } else if (rackPlace4 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace4.getImage().getUrl())
         && rackPlace4.getOpacity() == 0) {
       rackPlace4.setOpacity(1);
+      pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
     } else if (rackPlace5 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace5.getImage().getUrl())
         && rackPlace5.getOpacity() == 0) {
       rackPlace5.setOpacity(1);
+      pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
     } else if (rackPlace6 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace6.getImage().getUrl())
         && rackPlace6.getOpacity() == 0) {
       rackPlace6.setOpacity(1);
+      pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
     } else if (rackPlace7 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace7.getImage().getUrl())
         && rackPlace7.getOpacity() == 0) {
       rackPlace7.setOpacity(1);
+      pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
     }
     choosenTiles.remove(iv.getId());
     iv.setImage(markedTile);
@@ -570,10 +656,12 @@ public class MultiplayerController implements Initializable {
    *        Board thru the opacity and resets the boolean clicked attributes (Letter/ Tile) for
    *        source and destination
    */
-  private void placeLetter(ImageView iv) {
+  private void placeLetter(ImageView iv, Label l) {
 
     markedTile = clickedTile.getImage();
     clickedTile.setImage(iv.getImage());
+    l.setLayoutX(clickedTile.getLayoutX() + LABEL_X_CORD);
+    l.setLayoutY(clickedTile.getLayoutY() + LABEL_Y_CORD);
     choosenTiles.add(clickedTile.getId());
     clickedLetter.setOpacity(0);
     letterClicked = false;
@@ -644,14 +732,43 @@ public class MultiplayerController implements Initializable {
     return y - 1;
   }
 
+  @FXML
+  private void shuffleClicked(MouseEvent event) {
+    ArrayList<Player> players = GameSession.getListOfPlayers();
+    String currentUser = Data.getCurrentUser();
 
-  private void setNewTile(ImageView rackPlace, Label point, String letter, String points) {
+    Iterator<Player> it = players.iterator();
+    while (it.hasNext()) {
+      String s = it.next().getName();
+      if (s.equals(currentUser)) {
+        it.next().getRack().shuffleRack();
+        initRack();
+      } else {
+        continue;
+      }
+    }
+
+  }
+
+  @FXML
+  private void exchangeClicked(MouseEvent event) {
+
+    exchangeScreen.setFitHeight(768);
+    exchangeScreen.setFitWidth(1360);
+    exchangeScreen.setLayoutX(0);
+    exchangeScreen.setLayoutY(0);
+    Image exchange = new Image(
+        this.getClass().getResource("/com/scrab5/ui/board_Images/exchangeTiles.png").toString());
+    exchangeScreen.setImage(exchange);
+  }
+
+  private void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
     Image letterImage = new Image(this.getClass()
         .getResource("/com/scrab5/ui/letter_Images/tile" + letter.toUpperCase() + ".png")
         .toString());
     rackPlace.setImage(letterImage);
     rackPlace.setOpacity(1);
-    point.setText(points);
+    point.setText(Integer.toString(points));
     point.setOpacity(1);
   }
 
