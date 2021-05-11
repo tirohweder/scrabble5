@@ -14,7 +14,7 @@ public class CreateDatabase extends Database {
    * 
    * @author lengist
    */
-  public void createTable() {
+  protected void createTable() {
     createTablePlayer();
     createTableServer();
     createTableLetters();

@@ -54,7 +54,7 @@ public class FillDatabase extends Database {
           }
           break;
         default:
-          /* not yet implemented */
+          System.out.println("Closing of statement " + name + " not possible!");
           break;
       }
     } catch (Exception e) {
@@ -95,7 +95,7 @@ public class FillDatabase extends Database {
    * @author hraza
    * @param name String with name of the user
    */
-  public static void deleteTable(String name) {
+  protected static void deleteTable(String name) {
     Statement statement;
     try {
       statement = connection.createStatement();
@@ -133,7 +133,7 @@ public class FillDatabase extends Database {
    * @author lengist
    * @param name String with name of the user
    */
-  public static void deleteServer(String name) {
+  protected static void deleteServer(String name) {
     try {
       String sql = "DELETE FROM Server WHERE ServerListNames = ?";
       pstmDelete = connection.prepareStatement(sql);
@@ -197,8 +197,8 @@ public class FillDatabase extends Database {
    * @param contentInt Integer that contains the new information that needs to be stored in the
    *        database
    */
-  public static void updatePlayer(String column, String name, String contentString, int contentInt,
-      double doubleValues) {
+  protected static void updatePlayer(String column, String name, String contentString,
+      int contentInt, double doubleValues) {
     PreparedStatement pstm = null;
 
     if (column == "Name") {
@@ -350,7 +350,7 @@ public class FillDatabase extends Database {
    * @param serverObject an object received from the server with all information needed for the
    *        statistics in a hosted game
    */
-  public static void updateServer(Server serverObject) {
+  protected static void updateServer(Server serverObject) {
     String sql = "UPDATE Server SET Information = ? WHERE ServerHostName = ?";
     PreparedStatement pstm;
     try {
@@ -393,7 +393,7 @@ public class FillDatabase extends Database {
    */
   public static void fillLetters() {
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
-        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", " "};
+        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
     int[] points =
         {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10, 0};
     int[] occurrence =
@@ -410,7 +410,7 @@ public class FillDatabase extends Database {
    * @param letter String with the letter where the occurrence needs to be updated in the database
    * @param occurrence Integer with the new occurrence for the given letter
    */
-  public static void updateOccurrenceLetters(String letter, int occurrence) {
+  protected static void updateOccurrenceLetters(String letter, int occurrence) {
     try {
       pstmDic = connection.prepareStatement("UPDATE Letters SET Occurrence = ? WHERE Letter = ?");
       pstmDic.setInt(1, occurrence);
@@ -429,7 +429,7 @@ public class FillDatabase extends Database {
    * @param letter String with the letter where the points need to be updated in the database
    * @param point Integer with the new points for the given letter
    */
-  public static void updatePointLetters(String letter, int point) {
+  protected static void updatePointLetters(String letter, int point) {
     try {
       pstmDic = connection.prepareStatement("UPDATE Letters SET Points = ? WHERE Letter = ?");
       pstmDic.setInt(1, point);
