@@ -1,13 +1,16 @@
 package com.scrab5.core.game;
 
+import java.util.ArrayList;
+
 public class EasyAI {
-  private String rack;
+  private char[] rack;
   private int wordLength;
   private String wordBeginning;
   private String wordEnding;
   private int x;
   private int y;
-  
+  private ArrayList<String> words = new ArrayList<>();
+
 
   /**
    * This method will find a tile on the gameboard on which the AI can hang a word onto it and will
@@ -26,13 +29,13 @@ public class EasyAI {
           int counter = 1;
           while (GameSession.getGameBoard().isSpotFree(i, j + counter)
               && GameSession.getGameBoard().isSpotFree(i - counter, j + counter)
-              && GameSession.getGameBoard().isSpotFree(i + counter, j + counter)) {
+              && GameSession.getGameBoard().isSpotFree(i + counter, j + counter) && counter < 9) {
             counter++;
           }
           if (counter > 1) {
             this.wordLength = counter;
             this.wordBeginning = GameSession.getGameBoard().getPlacedTile(i, j).getLetter();
-            this.rack = GameSession.getCurrentPlayer().getRack().toString();
+            this.rack = GameSession.getCurrentPlayer().getRack().toString().toCharArray();
             wordGeneratorBeginning(this.wordLength, this.wordBeginning, this.rack);
           }
         }
@@ -49,9 +52,32 @@ public class EasyAI {
    * @param rack
    * @author hraza
    */
-  public static String wordGeneratorBeginning(int wordLength, String wordBeginning, String rack) {
+  public static String wordGeneratorBeginning(int wordLength, String wordBeginning, char[] rack) {
+    ArrayList<String> listOfWords = new ArrayList<>();
+
     return "";
   }
+
+   public void printAllKLength(char[] set, int k) {
+    int n = set.length;
+    this.words.add(printAllKLengthRec(set, "", n, k));
+  }
+
+   public String printAllKLengthRec(char[] set, String prefix, int n, int k) {
+
+    if (k == 0) {
+      System.out.println(prefix);
+      return prefix;
+    }
+
+    for (int i = 0; i < n; ++i) {
+      String newPrefix = prefix + set[i];
+      printAllKLengthRec(set, newPrefix, n, k - 1);
+    }
+    return "";
+  }
+
+
 
   /**
    * This method will find create a valid word from the dictionary with giving over the information
@@ -66,12 +92,16 @@ public class EasyAI {
   }
 
   public static void main(String[] args) {
-    String[][] s = new String[15][15];
-    for (int i = 0; i < 15; i++) {
-      for (int j = 0; j < 15; j++) {
-        s[i][j] = "HI";
-        System.out.println(s[i][j] + " " + i + " " + j);
-      }
-    }
+
+    System.out.println("First Test");
+    char[] set1 = {'a', 'b'};
+    int k =2 ;
+    EasyAI ai= new EasyAI();
+    ai.printAllKLength(set1, k);
+
+    System.out.println("\nSecond Test");
+    char[] set2 = {'a', 'b', 'c', 'd'};
+    k = 1;
+    ai.printAllKLength(set2, k);
   }
 }
