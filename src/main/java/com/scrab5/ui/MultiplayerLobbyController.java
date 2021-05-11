@@ -77,7 +77,10 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
   }
 
+  @FXML
+  private void enterChatMessage(MouseEvent event) {
 
+  }
 
   @Override
   protected void addPlayer(MouseEvent event) throws IOException {
