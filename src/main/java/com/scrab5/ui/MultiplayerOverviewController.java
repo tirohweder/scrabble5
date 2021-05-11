@@ -421,6 +421,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   private void displayServer(ServerData serverdata, int position) {
 
+    System.out.println("GHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
     switch (position) {
       case 0:
         this.serverName0.setText(serverdata.getServerHost() + "'s Lobby");

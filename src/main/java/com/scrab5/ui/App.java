@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -56,18 +57,42 @@ public class App extends Application {
       scene = new Scene(loadFXML("RealLogin"), 1360, 768);
     }
 
-    sound = new Media(Controller.class
-        .getResource("/com/scrab5/ui/sound_effects/BackgroundMusic.mp3").toExternalForm());
-    mediaplayer = new MediaPlayer(sound);
-    mediaplayer.setCycleCount(MediaPlayer.INDEFINITE);
-    mediaplayer.play();
+    this.setIcons(stage);
+    this.setMediaPlayer();
 
-    this.mainStage = stage;
+    mainStage = stage;
     stage.initStyle(StageStyle.UNDECORATED);
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
     stage.setResizable(false);
     stage.show();
+  }
+
+  /**
+   * 
+   * @author mherre
+   */
+  private void setMediaPlayer() {
+    sound = new Media(Controller.class
+        .getResource("/com/scrab5/ui/sound_effects/BackgroundMusic.mp3").toExternalForm());
+    mediaplayer = new MediaPlayer(sound);
+    mediaplayer.setCycleCount(MediaPlayer.INDEFINITE);
+    mediaplayer.play();
+  }
+
+  /**
+   * 
+   * 
+   * @author mherre
+   * @param stage
+   */
+  private void setIcons(Stage stage) {
+    Image icon1 = new Image(
+        App.class.getResource("/com/scrab5/ui/images/TaskbarIcon32.png").toExternalForm());
+    Image icon2 = new Image(
+        App.class.getResource("/com/scrab5/ui/images/TaskbarIcon32.png").toExternalForm());
+    stage.getIcons().add(icon1);
+    stage.getIcons().add(icon2);
   }
 
   /**
