@@ -89,8 +89,8 @@ public class Client implements Serializable {
     this.serverList.clear();
     Thread t1 = new Thread(new Runnable() {
       public void run() {
-        for (int j = 1; j < 256 && Data.getIsSearching(); j++) {
-          for (int k = 1; k < 256 && Data.getIsSearching(); k++) {
+        for (int j = 0; j < 256 && Data.getIsSearching(); j++) {
+          for (int k = 0; k < 256 && Data.getIsSearching(); k++) {
             final String ip4 = "192.168." + j + "." + k;
             Thread t = new Thread(new Runnable() {
               public void run() {
