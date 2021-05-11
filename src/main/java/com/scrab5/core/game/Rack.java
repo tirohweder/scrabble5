@@ -21,6 +21,7 @@ public class Rack {
       if (this.rack[i] == null && bag.getSize() >= 1) {
 
         rack[i] = bag.pick();
+        rack[i].setRackPlace(i);
       }
     }
   }
@@ -39,7 +40,12 @@ public class Rack {
   }
 
 
-  public boolean exchangeRack() {
+  public boolean exchangeRack(int place) {
+
+    if (rack[place] != null) {
+      
+    }
+
     return false;
   }
 
