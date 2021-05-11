@@ -98,6 +98,7 @@ class UseTest {
     String[] letter = UseDatabase.getAllLetters();
     assertEquals("A", letter[0]);
     assertEquals("E", letter[4]);
+    cdb.disconnect();
   }
 
   /**
@@ -113,6 +114,7 @@ class UseTest {
     int[] point = UseDatabase.getAllPointsPerLetter();
     assertEquals(1, point[0]);
     assertEquals(1, point[4]);
+    cdb.disconnect();
   }
 
   /**
@@ -128,6 +130,7 @@ class UseTest {
     int[] occurrence = UseDatabase.getAllOccurrences();
     assertEquals(9, occurrence[0]);
     assertEquals(12, occurrence[4]);
+    cdb.disconnect();
   }
 
   /**
