@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import com.scrab5.network.Client;
 import com.scrab5.network.NetworkError;
 import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.network.ServerData;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -28,12 +29,20 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private ComboBox<String> dictionarySelection;
   @FXML
-  private ImageView dropDownButton;
-  @FXML
   private TextField serverName;
   @FXML
-  private ImageView join, join1, join2, join3, join4, join5, join6, join7;
-
+  private ImageView dropDownButton;
+  @FXML
+  private ImageView joinButton0, joinButton1, joinButton2, joinButton3, joinButton4, joinButton5,
+      joinButton6, joinButton7;
+  @FXML
+  private Label serverName0, serverName1, serverName2, serverName3, serverName4, serverName5,
+      serverName6, serverName7;
+  @FXML
+  private Label playerCount0, playerCount1, playerCount2, playerCount3, playerCount4, playerCount5,
+      playerCount6, playerCount7;
+  @FXML
+  private Label status0, status1, status2, status3, status4, status5, status6, status7;
 
   private boolean isDictionarySelected = false;
   private int playerCount = 2;
@@ -48,7 +57,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.serverName.setFocusTraversable(false);
     this.userPlaying.setText(Data.getCurrentUser());
     this.setUpDicitionaryBox();
-
 
     if (Data.getPlayerClient() == null)
       Data.setPlayerClient(new Client(Data.getCurrentUser()));
@@ -244,8 +252,50 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   @FXML
-  private void joinGame(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+  private void join0(MouseEvent event) {
+    this.joinGame(0);
+  }
+
+  @FXML
+  private void join1(MouseEvent event) {
+    this.joinGame(1);
+  }
+
+  @FXML
+  private void join2(MouseEvent event) {
+    this.joinGame(2);
+  }
+
+  @FXML
+  private void join3(MouseEvent event) {
+    this.joinGame(3);
+  }
+
+  @FXML
+  private void join4(MouseEvent event) {
+    this.joinGame(4);
+  }
+
+  @FXML
+  private void join5(MouseEvent event) {
+    this.joinGame(5);
+  }
+
+  @FXML
+  private void join6(MouseEvent event) {
+    this.joinGame(6);
+  }
+
+  @FXML
+  private void join7(MouseEvent event) {
+    this.joinGame(7);
+  }
+
+  private void joinGame(int number) {
+    if (Data.getServerList().size() >= number) {
+      playSound("ButtonClicked.mp3");
+      this.joinServer(Data.getServerList().get(number).getIP4Address());
+    }
   }
 
   @FXML
@@ -315,9 +365,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
             if (!Data.getServerList().isEmpty()) {
               int j = 0;
               while (j < Data.getServerList().size()) {
-                // MultiplayerOverviewController.this.servername
-                // .setText(Data.getServerList().get(j).getServerHost() + "'s server ");
-                // Markus mach mal UI
+                displayServer(Data.getServerList().get(j), j);
                 j++;
               }
             }
@@ -351,5 +399,61 @@ public class MultiplayerOverviewController extends Controller implements Initial
       e.printStackTrace();
     }
     return false;
+  }
+
+  private void displayServer(ServerData serverdata, int position) {
+
+    switch (position) {
+      case 0:
+        this.serverName0.setText(serverdata.getServerHost() + "'s Lobby");
+        this.playerCount0
+            .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+        this.status0.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        break;
+      case 1:
+        this.serverName1.setText(serverdata.getServerHost() + "'s Lobby");
+        this.playerCount1
+            .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+        this.status1.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        break;
+      case 2:
+        this.serverName2.setText(serverdata.getServerHost() + "'s Lobby");
+        this.playerCount2
+            .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+        this.status2.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        break;
+      case 3:
+        this.serverName3.setText(serverdata.getServerHost() + "'s Lobby");
+        this.playerCount3
+            .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+        this.status3.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        break;
+      case 4:
+        this.serverName4.setText(serverdata.getServerHost() + "'s Lobby");
+        this.playerCount4
+            .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+        this.status4.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        break;
+      case 5:
+        this.serverName5.setText(serverdata.getServerHost() + "'s Lobby");
+        this.playerCount5
+            .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+        this.status5.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        break;
+      case 6:
+        this.serverName6.setText(serverdata.getServerHost() + "'s Lobby");
+        this.playerCount6
+            .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+        this.status6.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        break;
+      case 7:
+        this.serverName7.setText(serverdata.getServerHost() + "'s Lobby");
+        this.playerCount7
+            .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+        this.status7.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        break;
+      default:
+        break;
+    }
   }
 }
