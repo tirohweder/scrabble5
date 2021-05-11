@@ -13,7 +13,7 @@ public class GameBoard {
     this.currentChanges = currentChanges;
   }
 
-  private String[][] gameBoardSpecial = new String[][] {
+  private String[][] gameBoardSpecial = new String[][]{
       {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
       {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
       {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "},
@@ -44,7 +44,8 @@ public class GameBoard {
    *
    * @author trohwede
    */
-  public GameBoard() {}
+  public GameBoard() {
+  }
 
   /**
    * Places a tile at specific location
@@ -479,6 +480,7 @@ public class GameBoard {
     }
     if (word.length() > 1) {
       listOfWords.add(word.toString());
+
     }
     return listOfWords;
   }
@@ -519,7 +521,7 @@ public class GameBoard {
    * This method will return the Tile which is on the position of the parameter
    *
    * @param row
-   * @param column
+   * @param
    * @return
    * @author hraza
    */

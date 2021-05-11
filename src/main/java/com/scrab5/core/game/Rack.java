@@ -18,6 +18,7 @@ public class Rack {
       if (this.rack[i] == null && bag.getSize() >= 1) {
 
         rack[i] = bag.pick();
+        rack[i].setRackPlace(i);
       }
     }
   }
@@ -36,7 +37,12 @@ public class Rack {
   }
 
 
-  public boolean exchangeRack() {
+  public boolean exchangeRack(int place) {
+
+    if (rack[place] != null) {
+      
+    }
+
     return false;
   }
 
@@ -72,14 +78,14 @@ public class Rack {
       this.rack[i] = null;
     }
   }
-  
+
   /**
    * @author hraza
    */
   public String toString() {
-    String s= new String();
-    for(int i= 0; i<7 ;i++) {
-      s+= this.rack[i].getLetter();
+    String s = new String();
+    for (int i = 0; i < 7; i++) {
+      s += this.rack[i].getLetter();
     }
     return s;
   }
