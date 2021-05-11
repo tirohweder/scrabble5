@@ -419,9 +419,16 @@ public class MultiplayerOverviewController extends Controller implements Initial
     return false;
   }
 
+  /**
+   * @author mherre
+   * @param serverdata
+   * @param position
+   */
   private void displayServer(ServerData serverdata, int position) {
 
-    System.out.println("GHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+
+    this.serverName0.setText("HELLO");
+
     switch (position) {
       case 0:
         this.serverName0.setText(serverdata.getServerHost() + "'s Lobby");
@@ -533,5 +540,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
       this.status7.setText("");
       this.joinButton7.setOpacity(0);
     }
+
   }
 }

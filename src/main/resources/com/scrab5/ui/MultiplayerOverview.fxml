@@ -161,7 +161,7 @@
                   <Font size="16.0" />
                </font>
             </Label>
-            <Label layoutX="362.0" layoutY="482.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">
+            <Label fx:id="playerCount7" layoutX="362.0" layoutY="482.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">
                <font>
                   <Font size="16.0" />
                </font>

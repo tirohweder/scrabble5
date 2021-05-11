@@ -35,7 +35,7 @@
                   <Image url="@images/SB06_AddPlayerButtonClicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="150.0" fitWidth="16.0" layoutX="1067.0" layoutY="675.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="16.0" layoutX="1067.0" layoutY="675.0" onMouseClicked="#enterChatMessage" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB06_ChatButtonClicked.png" />
                </image>
@@ -169,8 +169,11 @@
                <image>
                   <Image url="@images/SB05_DarkerBackground.png" />
                </image></ImageView>
-            <TextArea layoutX="725.0" layoutY="474.0" prefHeight="185.0" prefWidth="363.0" style="-fx-control-inner-background: #991115; -fx-font-family: Consolas; -fx-highlight-fill: #991115; -fx-highlight-text-fill: #991115; -fx-text-fill: #991115; -fx-background-color: #991115;" />
-            <TextField layoutX="688.0" layoutY="360.0" />
+            <TextArea layoutX="726.0" layoutY="476.0" prefHeight="191.0" prefWidth="362.0" style="-fx-control-inner-background: #991115; -fx-font-family: Consolas; -fx-highlight-fill: #991115; -fx-highlight-text-fill: #991115; -fx-text-fill: #991115; -fx-background-color: #991115;" />
+            <TextField layoutX="753.0" layoutY="671.0" prefHeight="23.0" prefWidth="307.0" style="-fx-background-color: transparent; -fx-text-inner-color: WHITE;" text="Shut up you idiot">
+               <font>
+                  <Font name="Arial" size="12.0" />
+               </font></TextField>
          </children>
       </AnchorPane>
    </children>
