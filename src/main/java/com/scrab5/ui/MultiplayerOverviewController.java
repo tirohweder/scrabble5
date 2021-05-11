@@ -301,7 +301,14 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   // @author mherre @author nitterhe :^)
 
-
+  /**
+   * "Searches ofr local servers". Actually just refreshes the serverlist from the Client object
+   * every 2 seconds. i = 35 since the searchServers method from the class Client takes between 66
+   * and 68 seconds. Therefore, after 70 seconds this method can be sure no more servers are in the
+   * local network.
+   * 
+   * @author nitterhe
+   */
   private void searchServers() {
     if (!Data.getIsSearching()) {
       Data.setIsSearching(true);
@@ -310,7 +317,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
       Runnable r = new Runnable() {
 
         public synchronized void run() {
-          for (int i = 0; i < 25 && Data.getIsSearching(); i++) {
+          for (int i = 0; i < 35 && Data.getIsSearching(); i++) {
             Data.setServerList(Data.getPlayerClient().getServerList());
             if (!Data.getServerList().isEmpty()) {
               int j = 0;
