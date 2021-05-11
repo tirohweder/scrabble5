@@ -210,12 +210,14 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void findGame(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    String ip4 = Data.getServerList().get((int) (Data.getServerList().size() * Math.random()))
-        .getIP4Address();
-    if (joinServer(ip4)) {
-      App.setRoot("MultiplayerLobby");
+    if (!Data.getServerList().isEmpty()) {
+      String ip4 = Data.getServerList().get((int) (Data.getServerList().size() * Math.random()))
+          .getIP4Address();
+      if (joinServer(ip4)) {
+        App.setRoot("MultiplayerLobby");
+      }
     } else {
-      new NetworkError(NetworkErrorType.CONNECTION);
+      new NetworkError(NetworkErrorType.NOSERVERFOUND);
     }
   }
 

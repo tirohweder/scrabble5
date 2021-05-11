@@ -82,8 +82,8 @@ class CreateTest {
     FillDatabase.fillLetters();
     Statement stm;
     int i = 0;
-    String[] letter = new String[26];
-    int[] point = new int[26];
+    String[] letter = new String[27];
+    int[] point = new int[27];
     try {
       stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Letters");

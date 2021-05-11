@@ -73,7 +73,6 @@ public class ServerThread extends Threads {
             }
             this.server.getServerStatistics().addClient(connect.getSender(),
                 connect.getClientData().getIp());
-            this.server.sendUpdateMessage();
             break;
           case DISCONNECT:
             DisconnectMessage disconnect = (DisconnectMessage) message;
@@ -83,7 +82,6 @@ public class ServerThread extends Threads {
               deleteClient(disconnect.getSender());
             }
             this.stopThread();
-            this.server.sendUpdateMessage();
             break;
           case CHAT:
             ChatMessage chat = (ChatMessage) message;
@@ -92,6 +90,7 @@ public class ServerThread extends Threads {
           default:
             break;
         }
+        this.server.sendUpdateMessage();
       }
     } catch (Exception e) {
       new NetworkError(NetworkErrorType.COMMUNICATION);
