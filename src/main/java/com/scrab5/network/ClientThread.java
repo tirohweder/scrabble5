@@ -68,7 +68,9 @@ public class ClientThread extends Threads implements Serializable {
             // needs implementation
             break;
           case CONNECT:
-            new NetworkError(NetworkErrorType.CONNECTION);
+            System.out.println("error received");
+            MultiplayerLobbyController.lobbyClosed();
+            new NetworkError(NetworkErrorType.NAMEINUSE);
             break;
           case LOBBYUPDATE:
             LobbyUpdateMessage lum = (LobbyUpdateMessage) message;

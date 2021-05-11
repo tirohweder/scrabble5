@@ -60,6 +60,9 @@ public class NetworkError extends Error {
       case SERVERCREATION:
         this.dialog = "Could not host server";
         break;
+      case NAMEINUSE:
+        this.dialog =
+            "Name is already taken on this server. Please edit your username in the settings";
       default:
         break;
     }
@@ -97,6 +100,6 @@ public class NetworkError extends Error {
    * @author Niklas
    */
   public enum NetworkErrorType {
-    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, CLOSECONNECTION, SERVERCREATION
+    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, CLOSECONNECTION, SERVERCREATION, NAMEINUSE
   }
 }

@@ -3,6 +3,10 @@ package com.scrab5.util.textParser;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
+import com.scrab5.util.database.CreateDatabase;
+import com.scrab5.util.database.Database;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 
 public class DictionaryScanner {
 
@@ -20,11 +24,22 @@ public class DictionaryScanner {
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
     boolean found = false;
+    String[] possibleLetters = UseDatabase.getAllLetters();
+    String test;
+
 
     try {
       Scanner scanner = new Scanner(fileOne);
       while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
+        if (searchedWord.contains("*")) {
+          for (int j = 0; j < possibleLetters.length; j++) {
+            test = searchedWord.replace((char) 42, possibleLetters[j].charAt(0));
+            if (line.contains(test)) {
+              return true;
+            }
+          }
+        }
         if (line.contains(searchedWord)) {
           found = true;
         }
@@ -36,9 +51,21 @@ public class DictionaryScanner {
     return found;
   }
 
+  /**
+   * main method to test the implementation.
+   * 
+   * @author lengist
+   * @param args
+   */
   public static void main(String[] args) {
+    Database db = new Database();
+    CreateDatabase cdb = new CreateDatabase();
+    FillDatabase fd = new FillDatabase();
+    fd.fillLetters();
+
     DictionaryParser.setCurrentDictionary("words.txt");
     DictionaryParser.parseFile("words.txt");
+    System.out.println(scan("JOK*R"));
     System.out.println(scan("ZZZ"));
   }
 }

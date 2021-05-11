@@ -123,4 +123,8 @@ public class GameSession {
 
   public void endGame() {
   }
+
+  public boolean giveUp() {
+    return false;
+  }
 }

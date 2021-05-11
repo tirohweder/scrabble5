@@ -11,7 +11,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 /**
- * The Controller class contains some basic methods to create buttons using ImageView objects
+ * The Controller class contains some basic methods which can be used in every other
  * 
  * @author mherre
  *

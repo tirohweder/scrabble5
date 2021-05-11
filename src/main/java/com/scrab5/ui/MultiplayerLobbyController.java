@@ -68,7 +68,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     } else {
       this.ready1.setText("Not Ready");
       this.isReady1 = false;
-      Data.getPlayerServer().startGame();
+      Data.getHostedServer().startGame();
     }
   }
 

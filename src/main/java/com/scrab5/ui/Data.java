@@ -143,13 +143,19 @@ public class Data {
       playerClient = client;
   }
 
-  public static void setPlayerServer(Server server) {
+  public static void setHostedServer(Server server) {
     if (playerServer == null) {
       playerServer = server;
     }
   }
 
-  public static Server getPlayerServer() {
+  /**
+   * Just set if you host a server, not join a server.
+   * 
+   * @author nitterhe
+   * @return
+   */
+  public static Server getHostedServer() {
     return playerServer;
   }
 

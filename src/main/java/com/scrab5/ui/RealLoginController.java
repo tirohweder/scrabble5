@@ -21,6 +21,7 @@ public class RealLoginController extends Controller implements Initializable {
   private ComboBox<String> profileSelection;
   @FXML
   private Label nameDisplaying;
+
   private boolean isProfileSelected = false;
   private static String predecessor = "";
 
@@ -40,10 +41,11 @@ public class RealLoginController extends Controller implements Initializable {
       App.setRoot("MainMenu");
 
     } else {
-      PopUpMessage pum = new PopUpMessage(
-          "You must select a profile to continue. Click on the 'Arrow Down' button and select a profile",
-          PopUpMessageType.ERROR);
+      String message = "You must select a profile to continue. "
+          + "Click on the 'Arrow Down' button and select a profile";
+      PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
+
     }
   }
 
