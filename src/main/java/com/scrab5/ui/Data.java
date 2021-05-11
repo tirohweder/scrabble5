@@ -25,6 +25,7 @@ public class Data {
   private static Client playerClient;
   private static Server playerServer;
   private static ArrayList<ServerData> serverList;
+  private static int playerCountMultiplayer;
 
   private static ArrayList<Integer> occurrencyDistribution;
   private static ArrayList<Integer> pointsDistribution;
@@ -206,5 +207,15 @@ public class Data {
   public static boolean getHasBeenEdited() {
     return hasBeenEdited;
   }
+
+  public static void setPlayerCountMultiplayer(int i) {
+    playerCountMultiplayer = i;
+  }
+
+  public static int getPlayerCountMultiplayer() {
+    return playerCountMultiplayer;
+  }
+
+
 
 }

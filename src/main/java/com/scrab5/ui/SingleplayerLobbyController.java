@@ -29,7 +29,6 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   @FXML
   private Label dicDisplaying;
 
-  private boolean[] freeSpaces = {true, true, true};
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -153,7 +152,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    * 
    */
   @FXML
-  private void dontShow(MouseEvent event) throws IOException {
+  protected void dontShow(MouseEvent event) throws IOException {
     dictionarySelection.hide();
     voteSelection1.hide();
     voteSelection2.hide();
@@ -188,7 +187,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     isDictionarySelected = true;
   }
 
-  private boolean isClickable() {
+  protected boolean isClickable() {
 
     if (playerAmount >= 4) {
       this.addPlayerButton.setY(-44);

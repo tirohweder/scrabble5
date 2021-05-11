@@ -81,6 +81,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     // }
     if (this.isDictionarySelected) {
       Data.setIsSearching(false);
+      Data.setPlayerCountMultiplayer(playerCount);
       this.setupServer(playerCount);
       App.setRoot("MultiplayerLobby");
 

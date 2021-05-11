@@ -36,6 +36,7 @@ public abstract class LobbyController extends Controller {
 
   protected int playerAmount = 1;
   protected boolean isReady[] = {false, true, true, true};
+  protected boolean freeSpaces[] = {true, true, true};
   protected boolean isDictionarySelected = false;
 
 
@@ -239,8 +240,9 @@ public abstract class LobbyController extends Controller {
     this.diffBox1.getSelectionModel().select(0);
     this.diffBox2.getSelectionModel().select(0);
     this.diffBox3.getSelectionModel().select(0);
-
   }
+
+
 
   /**
    * @author trohwede
@@ -254,11 +256,16 @@ public abstract class LobbyController extends Controller {
   }
 
 
+  abstract protected boolean isClickable();
+
   @FXML
   abstract protected void back(MouseEvent event) throws IOException;
 
   @FXML
   abstract protected void addPlayer(MouseEvent event) throws IOException;
+
+  @FXML
+  abstract protected void dontShow(MouseEvent event) throws IOException;
 
   @FXML
   abstract protected void kickPlayer2(MouseEvent event);
