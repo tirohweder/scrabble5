@@ -389,7 +389,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
             try {
               wait(2000);
             } catch (InterruptedException e) {
-              System.out.println("error searching servers");
               e.printStackTrace();
             }
           }
@@ -421,13 +420,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   private void displayServer(ServerData serverdata, int position) {
 
-    System.out.println("GHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
     switch (position) {
       case 0:
         this.serverName0.setText(serverdata.getServerHost() + "'s Lobby");
         this.playerCount0
             .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
-        this.playerCount0.setOpacity(1.0);
         this.status0.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
         this.joinButton0.setOpacity(1.0);
         break;

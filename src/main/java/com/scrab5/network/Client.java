@@ -11,7 +11,6 @@ package com.scrab5.network;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.ConnectException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -121,12 +120,10 @@ public class Client implements Serializable {
                     getServerDataSocket.shutdownOutput();
                     getServerDataSocket.close();
                   }
-                } catch (ConnectException e) {
-                  // does nothing, this is thrown when the local address is reachable, but no server
-                  // is listening on the IP4 + Port
                 } catch (Exception e) {
-                  System.out.println("error at" + ip4);
-                  // e.printStackTrace();
+                  System.out.println(e.getMessage());
+                  // does nothing since too many device's firewalls block pings, therefore, too many
+                  // exceptions
                 }
               }
             });
