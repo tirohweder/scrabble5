@@ -417,48 +417,56 @@ public class MultiplayerOverviewController extends Controller implements Initial
         this.playerCount0
             .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
         this.status0.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        this.joinButton0.setOpacity(1.0);
         break;
       case 1:
         this.serverName1.setText(serverdata.getServerHost() + "'s Lobby");
         this.playerCount1
             .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
         this.status1.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        this.joinButton1.setOpacity(1.0);
         break;
       case 2:
         this.serverName2.setText(serverdata.getServerHost() + "'s Lobby");
         this.playerCount2
             .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
         this.status2.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        this.joinButton2.setOpacity(1.0);
         break;
       case 3:
         this.serverName3.setText(serverdata.getServerHost() + "'s Lobby");
         this.playerCount3
             .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
         this.status3.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        this.joinButton3.setOpacity(1.0);
         break;
       case 4:
         this.serverName4.setText(serverdata.getServerHost() + "'s Lobby");
         this.playerCount4
             .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
         this.status4.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        this.joinButton4.setOpacity(1.0);
         break;
       case 5:
         this.serverName5.setText(serverdata.getServerHost() + "'s Lobby");
         this.playerCount5
             .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
         this.status5.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        this.joinButton5.setOpacity(1.0);
         break;
       case 6:
         this.serverName6.setText(serverdata.getServerHost() + "'s Lobby");
         this.playerCount6
             .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
         this.status6.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        this.joinButton6.setOpacity(1.0);
         break;
       case 7:
         this.serverName7.setText(serverdata.getServerHost() + "'s Lobby");
         this.playerCount7
             .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
         this.status7.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+        this.joinButton7.setOpacity(1.0);
         break;
       default:
         break;
