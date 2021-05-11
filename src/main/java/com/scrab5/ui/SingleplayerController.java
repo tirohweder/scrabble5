@@ -73,6 +73,14 @@ public class SingleplayerController implements Initializable {
   private ImageView rackPlace6;
   @FXML
   private ImageView rackPlace7;
+  @FXML
+  private ImageView playerProfile1;
+  @FXML
+  private ImageView playerProfile2;
+  @FXML
+  private ImageView playerProfile3;
+  @FXML
+  private ImageView playerProfile4;
 
   @FXML
   private Label pointsRack1;
@@ -98,12 +106,21 @@ public class SingleplayerController implements Initializable {
   @FXML
   private Label player4;
 
+  @FXML
+  private Label pointsPlayer1;
+  @FXML
+  private Label pointsPlayer2;
+  @FXML
+  private Label pointsPlayer3;
+  @FXML
+  private Label pointsPLayer4;
+
 
 
   private ArrayList<String> unavailableTiles = new ArrayList<String>();
   private ArrayList<String> choosenTiles = new ArrayList<String>();
 
-  private ArrayList<TextField> players = new ArrayList<TextField>();
+  private ArrayList<Player> players = GameSession.getListOfPlayers();
 
 
   @Override
@@ -129,61 +146,70 @@ public class SingleplayerController implements Initializable {
   }
 
   private void initPlayers() {
-    Iterator<Player> it = playersList.iterator();
-    Iterator<TextField> pIt = players.iterator();
-    while (it.hasNext()) {
-      players.add(new TextField());
-      pIt.next().setText(it.next().getName());
-      pIt.next().localToScene(50, 700);
-      pIt.next().setFocusTraversable(false);
+    Iterator<Player> it = players.iterator();
+    
+    if(it.hasNext()) {
+      player1.setText(it.next().getName());
+      player1.setOpacity(1);
+      pointsPlayer1.setText("");
+      it.next();
+      if(it.hasNext()) {
+        
+      }
     }
   }
 
   private void initRack() {
-    ArrayList<Player> players = GameSession.getListOfPlayers();
-    String currentUser = Data.getCurrentUser();
-    Rack myRack = null;
-    int rackPlace;
-
-    Iterator<Player> it = players.iterator();
-    while (it.hasNext()) {
-      String s = it.next().getName();
-      if (s.equals(currentUser)) {
-        myRack = it.next().getRack();
-      } else {
-        continue;
-      }
-    }
-
-    for (int i = 0; i < 7; i++) {
-      rackPlace = myRack.getTileAt(i).getRackPlace();
-
-      switch (rackPlace) {
-        case 1:
-          setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
-          break;
-        case 2:
-          setNewTile(rackPlace2, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
-          break;
-        case 3:
-          setNewTile(rackPlace3, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
-          break;
-        case 4:
-          setNewTile(rackPlace4, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
-          break;
-        case 5:
-          setNewTile(rackPlace5, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
-          break;
-        case 6:
-          setNewTile(rackPlace6, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
-          break;
-        case 7:
-          setNewTile(rackPlace7, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
-          break;
-        default:
-          break;
-      }
-    }
+//    String currentUser = Data.getCurrentUser();
+//    Rack myRack = null;
+//    int rackPlace;
+//
+//    Iterator<Player> it = players.iterator();
+//    while (it.hasNext()) {
+//      String s = it.next().getName();
+//      if (s.equals(currentUser)) {
+//        myRack = it.next().getRack();
+//      } else {
+//        continue;
+//      }
+//    }
+//
+//    for (int i = 0; i < 7; i++) {
+//      rackPlace = myRack.getTileAt(i).getRackPlace();
+//
+//      switch (rackPlace) {
+//        case 1:
+//          setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(),
+//              myRack.getTileAt(i).getValue());
+//          break;
+//        case 2:
+//          setNewTile(rackPlace2, pointsRack1, myRack.getTileAt(i).getLetter(),
+//              myRack.getTileAt(i).getValue());
+//          break;
+//        case 3:
+//          setNewTile(rackPlace3, pointsRack1, myRack.getTileAt(i).getLetter(),
+//              myRack.getTileAt(i).getValue());
+//          break;
+//        case 4:
+//          setNewTile(rackPlace4, pointsRack1, myRack.getTileAt(i).getLetter(),
+//              myRack.getTileAt(i).getValue());
+//          break;
+//        case 5:
+//          setNewTile(rackPlace5, pointsRack1, myRack.getTileAt(i).getLetter(),
+//              myRack.getTileAt(i).getValue());
+//          break;
+//        case 6:
+//          setNewTile(rackPlace6, pointsRack1, myRack.getTileAt(i).getLetter(),
+//              myRack.getTileAt(i).getValue());
+//          break;
+//        case 7:
+//          setNewTile(rackPlace7, pointsRack1, myRack.getTileAt(i).getLetter(),
+//              myRack.getTileAt(i).getValue());
+//          break;
+//        default:
+//          break;
+//      }
+//    }
   }
 
   /**
