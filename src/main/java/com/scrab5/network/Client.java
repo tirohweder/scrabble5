@@ -87,8 +87,6 @@ public class Client implements Serializable {
    */
   public void searchServers() {
     Thread t1 = new Thread(new Runnable() {
-      long time = System.currentTimeMillis();
-
       public void run() {
         for (int j = 1; j < 256; j++) {
           for (int k = 1; k < 256 && Data.getIsSearching(); k++) {
@@ -127,7 +125,6 @@ public class Client implements Serializable {
                   // is listening on the IP4 + Port
                 } catch (Exception e) {
                   e.printStackTrace();
-                  // new NetworkError(NetworkErrorType.SEARCHSERVERS);
                 }
               }
             });
@@ -141,7 +138,6 @@ public class Client implements Serializable {
             }
           }
         }
-        System.out.println((System.currentTimeMillis() - time) / 1000);
       }
     });
     t1.start();
