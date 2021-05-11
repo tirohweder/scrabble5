@@ -573,11 +573,21 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author nitterhe
    */
   private void clearServerDisplay() {
-    // if (this.joinButton0.getOpacity() == 1.0) {
+
     this.serverName0.setText("");
     this.playerCount0.setText("");
     this.status0.setText("");
     this.joinButton0.setOpacity(0);
+
+    this.serverName0.setText("");
+    this.playerCount0.setText("");
+    this.status0.setText("");
+    this.joinButton0.setOpacity(0);
+
+    this.serverName1.setText("");
+    this.playerCount1.setText("");
+    this.status1.setText("");
+    this.joinButton1.setOpacity(0);
 
     this.serverName1.setText("");
     this.playerCount1.setText("");
@@ -589,10 +599,25 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.status2.setText("");
     this.joinButton2.setOpacity(0);
 
+    this.serverName2.setText("");
+    this.playerCount2.setText("");
+    this.status2.setText("");
+    this.joinButton2.setOpacity(0);
+
     this.serverName3.setText("");
     this.playerCount3.setText("");
     this.status3.setText("");
     this.joinButton3.setOpacity(0);
+
+    this.serverName3.setText("");
+    this.playerCount3.setText("");
+    this.status3.setText("");
+    this.joinButton3.setOpacity(0);
+
+    this.serverName4.setText("");
+    this.playerCount4.setText("");
+    this.status4.setText("");
+    this.joinButton4.setOpacity(0);
 
     this.serverName4.setText("");
     this.playerCount4.setText("");
@@ -604,6 +629,16 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.status5.setText("");
     this.joinButton5.setOpacity(0);
 
+    this.serverName5.setText("");
+    this.playerCount5.setText("");
+    this.status5.setText("");
+    this.joinButton5.setOpacity(0);
+
+    this.serverName6.setText("");
+    this.playerCount6.setText("");
+    this.status6.setText("");
+    this.joinButton6.setOpacity(0);
+
     this.serverName6.setText("");
     this.playerCount6.setText("");
     this.status6.setText("");
@@ -613,7 +648,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.playerCount7.setText("");
     this.status7.setText("");
     this.joinButton7.setOpacity(0);
-
   }
-  // }
+
 }
