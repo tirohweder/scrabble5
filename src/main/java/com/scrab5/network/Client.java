@@ -312,5 +312,3 @@ public class Client implements Serializable {
     this.username = username;
   }
 }
-
-

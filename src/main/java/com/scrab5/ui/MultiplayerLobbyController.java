@@ -22,6 +22,11 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   private boolean isReady1 = false;
 
+  /**
+   * 
+   * 
+   * @author mherre
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     String name = Data.getCurrentUser();
