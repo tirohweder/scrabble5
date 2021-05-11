@@ -1188,7 +1188,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@board_Images/Singleplayer_GiveUp_Clicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="228.0" layoutY="693.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="228.0" layoutY="693.0" onMouseClicked="#exchangeClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/Singleplayer_Exchange_Clicked.png" />
                </image>
@@ -1293,6 +1293,67 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
+            <ImageView fitHeight="65.0" fitWidth="43.0" layoutX="192.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="65.0" fitWidth="43.0" layoutX="947.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="65.0" fitWidth="43.0" layoutX="708.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="65.0" fitWidth="43.0" layoutX="444.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="playerProfile1" fitHeight="65.0" fitWidth="43.0" layoutX="192.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="playerProfile2" fitHeight="65.0" fitWidth="43.0" layoutX="444.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="playerProfile3" fitHeight="65.0" fitWidth="43.0" layoutX="708.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="playerProfile4" fitHeight="65.0" fitWidth="43.0" layoutX="947.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="pointsPlayer1" layoutX="242.0" layoutY="18.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="pointsPlayer2" layoutX="494.0" layoutY="19.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="pointsPlayer3" layoutX="758.0" layoutY="18.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="pointsPLayer4" layoutX="997.0" layoutY="19.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="exchangeScreen" fitHeight="73.0" fitWidth="81.0" layoutX="1273.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </children>

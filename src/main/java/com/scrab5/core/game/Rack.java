@@ -21,6 +21,7 @@ public class Rack {
       if (this.rack[i] == null && bag.getSize() >= 1) {
 
         rack[i] = bag.pick();
+        rack[i].setRackPlace(i);
       }
     }
   }
@@ -39,7 +40,12 @@ public class Rack {
   }
 
 
-  public boolean exchangeRack() {
+  public boolean exchangeRack(int place) {
+
+    if (rack[place] != null) {
+      
+    }
+
     return false;
   }
 
@@ -94,22 +100,26 @@ public class Rack {
 
     ArrayList<Integer> order = new ArrayList<>();
 
+    order.add(0);
     order.add(1);
     order.add(2);
     order.add(3);
     order.add(4);
     order.add(5);
     order.add(6);
-    order.add(7);
 
     Random rand = new Random();
     int random, values = 7, swapWith;
+    Tile swap; 
 
     for (int i = 1; i <= 7; i++) {
       random = rand.nextInt(values);
       swapWith = order.get(random);
       order.remove(random);
       values--;
+      swap = rack[i];
+      rack[i] = rack[swapWith];
+      rack[swapWith] = swap;
       rack[i].setRackPlace(swapWith);
       rack[swapWith].setRackPlace(i);
     }
