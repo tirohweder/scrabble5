@@ -1,5 +1,8 @@
 package com.scrab5.core.game;
 
+import java.util.ArrayList;
+import java.util.Random;
+
 public class Rack {
 
   private Tile[] rack = new Tile[7];
@@ -88,5 +91,40 @@ public class Rack {
       s += this.rack[i].getLetter();
     }
     return s;
+  }
+
+  /**
+   * @author apilgrim
+   */
+  public void shuffleRack() {
+
+    ArrayList<Integer> order = new ArrayList<>();
+
+    order.add(1);
+    order.add(2);
+    order.add(3);
+    order.add(4);
+    order.add(5);
+    order.add(6);
+    order.add(7);
+
+    Random rand = new Random();
+    int random, values = 7, swapWith;
+
+    for (int i = 1; i <= 7; i++) {
+      random = rand.nextInt(values);
+      swapWith = order.get(random);
+      order.remove(random);
+      values--;
+      rack[i].setRackPlace(swapWith);
+      rack[swapWith].setRackPlace(i);
+    }
+  }
+  
+  /**
+   * @author apilgrim
+   */
+  public Tile getTileAt(int pos) {
+    return rack[pos];
   }
 }

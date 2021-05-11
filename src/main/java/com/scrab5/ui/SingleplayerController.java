@@ -9,6 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import org.sqlite.core.CoreDatabaseMetaData;
 import com.scrab5.core.game.*;
 import com.scrab5.core.player.*;
 import com.scrab5.util.database.Database;
@@ -115,7 +116,7 @@ public class SingleplayerController implements Initializable {
     player4.setText("Peter");
     player4.setOpacity(1);
 
-    setRack();
+    initRack();
 
 
   }
@@ -138,20 +139,51 @@ public class SingleplayerController implements Initializable {
     }
   }
 
-  private void setRack() {
-    setNewTile(rackPlace1, pointsRack1, "A", "1");;
+  private void initRack() {
+    ArrayList<Player> players = GameSession.getListOfPlayers();
+    String currentUser = Data.getCurrentUser();
+    Rack myRack = null;
+    int rackPlace;
 
-    setNewTile(rackPlace2, pointsRack2, "B", "12");
+    Iterator<Player> it = players.iterator();
+    while (it.hasNext()) {
+      String s = it.next().getName();
+      if (s.equals(currentUser)) {
+        myRack = it.next().getRack();
+      } else {
+        continue;
+      }
+    }
 
-    setNewTile(rackPlace3, pointsRack3, "C", "3");
+    for (int i = 0; i < 7; i++) {
+      rackPlace = myRack.getTileAt(i).getRackPlace();
 
-    setNewTile(rackPlace4, pointsRack4, "D", "3");
-
-    setNewTile(rackPlace5, pointsRack5, "E", "2");
-
-    setNewTile(rackPlace6, pointsRack6, "F", "3");
-
-    setNewTile(rackPlace7, pointsRack7, "G", "32");
+      switch (rackPlace) {
+        case 1:
+          setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+          break;
+        case 2:
+          setNewTile(rackPlace2, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+          break;
+        case 3:
+          setNewTile(rackPlace3, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+          break;
+        case 4:
+          setNewTile(rackPlace4, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+          break;
+        case 5:
+          setNewTile(rackPlace5, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+          break;
+        case 6:
+          setNewTile(rackPlace6, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+          break;
+        case 7:
+          setNewTile(rackPlace7, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+          break;
+        default:
+          break;
+      }
+    }
   }
 
   /**
@@ -677,358 +709,29 @@ public class SingleplayerController implements Initializable {
 
   @FXML
   private void shuffleClicked(MouseEvent event) {
+    ArrayList<Player> players = GameSession.getListOfPlayers();
+    String currentUser = Data.getCurrentUser();
 
-    Image swapRack;
-    String swapPoints;
-    ArrayList<Integer> order = new ArrayList<>();
-    order.add(1);
-    order.add(2);
-    order.add(3);
-    order.add(4);
-    order.add(5);
-    order.add(6);
-    order.add(7);
-    Random rand = new Random();
-    int random, values = 7, swapWith;
-
-    for (int i = 1; i <= 7; i++) {
-      random = rand.nextInt(values);
-      swapWith = order.get(random);
-      order.remove(random);
-      values--;
-
-      if (i == 1) {
-        swapRack = rackPlace1.getImage();
-        swapPoints = pointsRack1.getText();
-        switch (swapWith) {
-          case 1:
-            break;
-          case 2:
-            rackPlace1.setImage(rackPlace2.getImage());;
-            rackPlace2.setImage(swapRack);
-            pointsRack1.setText(pointsRack2.getText());
-            pointsRack2.setText(swapPoints);
-            break;
-          case 3:
-            rackPlace1.setImage(rackPlace3.getImage());;
-            rackPlace3.setImage(swapRack);
-            pointsRack1.setText(pointsRack3.getText());
-            pointsRack3.setText(swapPoints);
-            break;
-          case 4:
-            rackPlace1.setImage(rackPlace4.getImage());;
-            rackPlace4.setImage(swapRack);
-            pointsRack1.setText(pointsRack4.getText());
-            pointsRack4.setText(swapPoints);
-            break;
-          case 5:
-            rackPlace1.setImage(rackPlace5.getImage());;
-            rackPlace5.setImage(swapRack);
-            pointsRack1.setText(pointsRack5.getText());
-            pointsRack5.setText(swapPoints);
-            break;
-          case 6:
-            rackPlace1.setImage(rackPlace6.getImage());;
-            rackPlace6.setImage(swapRack);
-            pointsRack1.setText(pointsRack6.getText());
-            pointsRack6.setText(swapPoints);
-            break;
-          case 7:
-            rackPlace1.setImage(rackPlace7.getImage());;
-            rackPlace7.setImage(swapRack);
-            pointsRack1.setText(pointsRack7.getText());
-            pointsRack7.setText(swapPoints);
-            break;
-          default:
-            break;
-        }
-      } else if (i == 2) {
-        swapRack = rackPlace1.getImage();
-        swapPoints = pointsRack1.getText();
-        switch (swapWith) {
-          case 1:
-            break;
-          case 2:
-            rackPlace1.setImage(rackPlace2.getImage());;
-            rackPlace2.setImage(swapRack);
-            pointsRack1.setText(pointsRack2.getText());
-            pointsRack2.setText(swapPoints);
-            break;
-          case 3:
-            rackPlace1.setImage(rackPlace3.getImage());;
-            rackPlace3.setImage(swapRack);
-            pointsRack1.setText(pointsRack3.getText());
-            pointsRack3.setText(swapPoints);
-            break;
-          case 4:
-            rackPlace1.setImage(rackPlace4.getImage());;
-            rackPlace4.setImage(swapRack);
-            pointsRack1.setText(pointsRack4.getText());
-            pointsRack4.setText(swapPoints);
-            break;
-          case 5:
-            rackPlace1.setImage(rackPlace5.getImage());;
-            rackPlace5.setImage(swapRack);
-            pointsRack1.setText(pointsRack5.getText());
-            pointsRack5.setText(swapPoints);
-            break;
-          case 6:
-            rackPlace1.setImage(rackPlace6.getImage());;
-            rackPlace6.setImage(swapRack);
-            pointsRack1.setText(pointsRack6.getText());
-            pointsRack6.setText(swapPoints);
-            break;
-          case 7:
-            rackPlace1.setImage(rackPlace7.getImage());;
-            rackPlace7.setImage(swapRack);
-            pointsRack1.setText(pointsRack7.getText());
-            pointsRack7.setText(swapPoints);
-            break;
-          default:
-            break;
-        }
-
-      } else if (i == 3) {
-        swapRack = rackPlace1.getImage();
-        swapPoints = pointsRack1.getText();
-        switch (swapWith) {
-          case 1:
-            break;
-          case 2:
-            rackPlace1.setImage(rackPlace2.getImage());;
-            rackPlace2.setImage(swapRack);
-            pointsRack1.setText(pointsRack2.getText());
-            pointsRack2.setText(swapPoints);
-            break;
-          case 3:
-            rackPlace1.setImage(rackPlace3.getImage());;
-            rackPlace3.setImage(swapRack);
-            pointsRack1.setText(pointsRack3.getText());
-            pointsRack3.setText(swapPoints);
-            break;
-          case 4:
-            rackPlace1.setImage(rackPlace4.getImage());;
-            rackPlace4.setImage(swapRack);
-            pointsRack1.setText(pointsRack4.getText());
-            pointsRack4.setText(swapPoints);
-            break;
-          case 5:
-            rackPlace1.setImage(rackPlace5.getImage());;
-            rackPlace5.setImage(swapRack);
-            pointsRack1.setText(pointsRack5.getText());
-            pointsRack5.setText(swapPoints);
-            break;
-          case 6:
-            rackPlace1.setImage(rackPlace6.getImage());;
-            rackPlace6.setImage(swapRack);
-            pointsRack1.setText(pointsRack6.getText());
-            pointsRack6.setText(swapPoints);
-            break;
-          case 7:
-            rackPlace1.setImage(rackPlace7.getImage());;
-            rackPlace7.setImage(swapRack);
-            pointsRack1.setText(pointsRack7.getText());
-            pointsRack7.setText(swapPoints);
-            break;
-          default:
-            break;
-        }
-
-      } else if (i == 4) {
-        swapRack = rackPlace1.getImage();
-        swapPoints = pointsRack1.getText();
-        switch (swapWith) {
-          case 1:
-            break;
-          case 2:
-            rackPlace1.setImage(rackPlace2.getImage());;
-            rackPlace2.setImage(swapRack);
-            pointsRack1.setText(pointsRack2.getText());
-            pointsRack2.setText(swapPoints);
-            break;
-          case 3:
-            rackPlace1.setImage(rackPlace3.getImage());;
-            rackPlace3.setImage(swapRack);
-            pointsRack1.setText(pointsRack3.getText());
-            pointsRack3.setText(swapPoints);
-            break;
-          case 4:
-            rackPlace1.setImage(rackPlace4.getImage());;
-            rackPlace4.setImage(swapRack);
-            pointsRack1.setText(pointsRack4.getText());
-            pointsRack4.setText(swapPoints);
-            break;
-          case 5:
-            rackPlace1.setImage(rackPlace5.getImage());;
-            rackPlace5.setImage(swapRack);
-            pointsRack1.setText(pointsRack5.getText());
-            pointsRack5.setText(swapPoints);
-            break;
-          case 6:
-            rackPlace1.setImage(rackPlace6.getImage());;
-            rackPlace6.setImage(swapRack);
-            pointsRack1.setText(pointsRack6.getText());
-            pointsRack6.setText(swapPoints);
-            break;
-          case 7:
-            rackPlace1.setImage(rackPlace7.getImage());;
-            rackPlace7.setImage(swapRack);
-            pointsRack1.setText(pointsRack7.getText());
-            pointsRack7.setText(swapPoints);
-            break;
-          default:
-            break;
-        }
-
-      } else if (i == 5) {
-        swapRack = rackPlace1.getImage();
-        swapPoints = pointsRack1.getText();
-        switch (swapWith) {
-          case 1:
-            break;
-          case 2:
-            rackPlace1.setImage(rackPlace2.getImage());;
-            rackPlace2.setImage(swapRack);
-            pointsRack1.setText(pointsRack2.getText());
-            pointsRack2.setText(swapPoints);
-            break;
-          case 3:
-            rackPlace1.setImage(rackPlace3.getImage());;
-            rackPlace3.setImage(swapRack);
-            pointsRack1.setText(pointsRack3.getText());
-            pointsRack3.setText(swapPoints);
-            break;
-          case 4:
-            rackPlace1.setImage(rackPlace4.getImage());;
-            rackPlace4.setImage(swapRack);
-            pointsRack1.setText(pointsRack4.getText());
-            pointsRack4.setText(swapPoints);
-            break;
-          case 5:
-            rackPlace1.setImage(rackPlace5.getImage());;
-            rackPlace5.setImage(swapRack);
-            pointsRack1.setText(pointsRack5.getText());
-            pointsRack5.setText(swapPoints);
-            break;
-          case 6:
-            rackPlace1.setImage(rackPlace6.getImage());;
-            rackPlace6.setImage(swapRack);
-            pointsRack1.setText(pointsRack6.getText());
-            pointsRack6.setText(swapPoints);
-            break;
-          case 7:
-            rackPlace1.setImage(rackPlace7.getImage());;
-            rackPlace7.setImage(swapRack);
-            pointsRack1.setText(pointsRack7.getText());
-            pointsRack7.setText(swapPoints);
-            break;
-          default:
-            break;
-        }
-
-      } else if (i == 6) {
-        swapRack = rackPlace1.getImage();
-        swapPoints = pointsRack1.getText();
-        switch (swapWith) {
-          case 1:
-            break;
-          case 2:
-            rackPlace1.setImage(rackPlace2.getImage());;
-            rackPlace2.setImage(swapRack);
-            pointsRack1.setText(pointsRack2.getText());
-            pointsRack2.setText(swapPoints);
-            break;
-          case 3:
-            rackPlace1.setImage(rackPlace3.getImage());;
-            rackPlace3.setImage(swapRack);
-            pointsRack1.setText(pointsRack3.getText());
-            pointsRack3.setText(swapPoints);
-            break;
-          case 4:
-            rackPlace1.setImage(rackPlace4.getImage());;
-            rackPlace4.setImage(swapRack);
-            pointsRack1.setText(pointsRack4.getText());
-            pointsRack4.setText(swapPoints);
-            break;
-          case 5:
-            rackPlace1.setImage(rackPlace5.getImage());;
-            rackPlace5.setImage(swapRack);
-            pointsRack1.setText(pointsRack5.getText());
-            pointsRack5.setText(swapPoints);
-            break;
-          case 6:
-            rackPlace1.setImage(rackPlace6.getImage());;
-            rackPlace6.setImage(swapRack);
-            pointsRack1.setText(pointsRack6.getText());
-            pointsRack6.setText(swapPoints);
-            break;
-          case 7:
-            rackPlace1.setImage(rackPlace7.getImage());;
-            rackPlace7.setImage(swapRack);
-            pointsRack1.setText(pointsRack7.getText());
-            pointsRack7.setText(swapPoints);
-            break;
-          default:
-            break;
-        }
-
-      } else if (i == 7) {
-        swapRack = rackPlace1.getImage();
-        swapPoints = pointsRack1.getText();
-        switch (swapWith) {
-          case 1:
-            break;
-          case 2:
-            rackPlace1.setImage(rackPlace2.getImage());;
-            rackPlace2.setImage(swapRack);
-            pointsRack1.setText(pointsRack2.getText());
-            pointsRack2.setText(swapPoints);
-            break;
-          case 3:
-            rackPlace1.setImage(rackPlace3.getImage());;
-            rackPlace3.setImage(swapRack);
-            pointsRack1.setText(pointsRack3.getText());
-            pointsRack3.setText(swapPoints);
-            break;
-          case 4:
-            rackPlace1.setImage(rackPlace4.getImage());;
-            rackPlace4.setImage(swapRack);
-            pointsRack1.setText(pointsRack4.getText());
-            pointsRack4.setText(swapPoints);
-            break;
-          case 5:
-            rackPlace1.setImage(rackPlace5.getImage());;
-            rackPlace5.setImage(swapRack);
-            pointsRack1.setText(pointsRack5.getText());
-            pointsRack5.setText(swapPoints);
-            break;
-          case 6:
-            rackPlace1.setImage(rackPlace6.getImage());;
-            rackPlace6.setImage(swapRack);
-            pointsRack1.setText(pointsRack6.getText());
-            pointsRack6.setText(swapPoints);
-            break;
-          case 7:
-            rackPlace1.setImage(rackPlace7.getImage());;
-            rackPlace7.setImage(swapRack);
-            pointsRack1.setText(pointsRack7.getText());
-            pointsRack7.setText(swapPoints);
-            break;
-          default:
-            break;
-        }
+    Iterator<Player> it = players.iterator();
+    while (it.hasNext()) {
+      String s = it.next().getName();
+      if (s.equals(currentUser)) {
+        it.next().getRack().shuffleRack();
+        initRack();
+      } else {
+        continue;
       }
     }
 
   }
 
-  private void setNewTile(ImageView rackPlace, Label point, String letter, String points) {
+  private void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
     Image letterImage = new Image(this.getClass()
         .getResource("/com/scrab5/ui/letter_Images/tile" + letter.toUpperCase() + ".png")
         .toString());
     rackPlace.setImage(letterImage);
     rackPlace.setOpacity(1);
-    point.setText(points);
+    point.setText(Integer.toString(points));
     point.setOpacity(1);
   }
 

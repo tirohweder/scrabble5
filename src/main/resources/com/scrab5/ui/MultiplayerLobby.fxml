@@ -4,6 +4,8 @@
 	Photoshop 2017 -->
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -167,6 +169,8 @@
                <image>
                   <Image url="@images/SB05_DarkerBackground.png" />
                </image></ImageView>
+            <TextArea layoutX="725.0" layoutY="474.0" prefHeight="185.0" prefWidth="363.0" style="-fx-control-inner-background: #991115; -fx-font-family: Consolas; -fx-highlight-fill: #991115; -fx-highlight-text-fill: #991115; -fx-text-fill: #991115; -fx-background-color: #991115;" />
+            <TextField layoutX="688.0" layoutY="360.0" />
          </children>
       </AnchorPane>
    </children>

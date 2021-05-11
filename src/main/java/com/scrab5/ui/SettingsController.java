@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 /**
- * The SettingsController class is supposed to control the components of the Settings.fxml
+ * The SettingsController class controls the components of the Settings.fxml
  * 
  * @author mherre
  */
@@ -26,6 +26,11 @@ public class SettingsController extends Controller implements Initializable {
   @FXML
   private Slider sliderSFX, sliderMusic;
 
+  /**
+   * Call certain methods as soon as the Controller is loaded.
+   * 
+   * @author mherre
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     String user = Data.getCurrentUser();
@@ -35,12 +40,13 @@ public class SettingsController extends Controller implements Initializable {
   }
 
   /**
-   * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
-   * predecessor "MainMenu" scene
+   * Event method that is called when the "Back"-button in the UI is clicked. Changes the scene to
+   * "MainMenu.fxml".
    * 
    * @author mherre
-   * @param event
-   * @throws IOException
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -48,6 +54,16 @@ public class SettingsController extends Controller implements Initializable {
     App.setRoot("MainMenu");
   }
 
+  /**
+   * Event method that is called when the "Add Dictionary"-button in the UI is clicked. Opens a
+   * <code>FileChooser</code> instance where the user can select a .txt file. The selected file will
+   * be copied in the directory of the .jar.
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   @FXML
   private void addDictionary(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
@@ -64,8 +80,16 @@ public class SettingsController extends Controller implements Initializable {
 
   }
 
-
-
+  /**
+   * Event method that is called when the "Edit Dictionary"-button in the UI is clicked. Opens a
+   * <code>FileChooser</code> instance where the user can select a .txt file. The selected file will
+   * be opened so the user can edit it.
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   @FXML
   private void editDictionaries(MouseEvent event) throws IOException {
     FileChooser fc = new FileChooser();
@@ -77,11 +101,16 @@ public class SettingsController extends Controller implements Initializable {
     }
   }
 
-
+  /**
+   * Setups two listeners for <code>sliderMusic</code> and <code>sliderSFX</code>. If the listeners
+   * are called then the volume changes to the value the user selected with the sliders. The values
+   * are stored in <code>PlayerProfileDatabase</code>.
+   * 
+   * @author mherre
+   */
   private void setupListeners() {
 
     sliderMusic.valueProperty().addListener(new ChangeListener<Number>() {
-
       @Override
       public void changed(ObservableValue<? extends Number> observable, Number oldValue,
           Number newValue) {
@@ -91,7 +120,6 @@ public class SettingsController extends Controller implements Initializable {
     });
 
     sliderSFX.valueProperty().addListener((new ChangeListener<Number>() {
-
       @Override
       public void changed(ObservableValue<? extends Number> observable, Number oldValue,
           Number newValue) {
@@ -102,11 +130,16 @@ public class SettingsController extends Controller implements Initializable {
   }
 
   /**
+   * Copies a file <code>source</code> into the directory <code>dest</code>.
+   * <p>
    * https://stackoverflow.com/questions/16433915/how-to-copy-file-from-one-location-to-another-location
+   * </p>
    * 
-   * @param source
-   * @param dest
-   * @throws IOException
+   * @author mherre
+   * @param source the file that will be copied
+   * @param dest the directory where <code>source</code> will copied to
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   private void copyFile(File source, File dest) throws IOException {
     FileInputStream is = null;
@@ -124,7 +157,4 @@ public class SettingsController extends Controller implements Initializable {
       os.close();
     }
   }
-
-
-
 }
