@@ -1,28 +1,21 @@
 package com.scrab5.ui;
 
 import java.io.IOException;
-
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 import java.util.ResourceBundle;
-import org.sqlite.core.CoreDatabaseMetaData;
-import com.scrab5.core.game.*;
-import com.scrab5.core.player.*;
+import com.scrab5.core.game.GameBoard;
+import com.scrab5.core.game.GameSession;
+import com.scrab5.core.player.Player;
 import com.scrab5.util.database.Database;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /*
@@ -73,7 +66,7 @@ public class SingleplayerController implements Initializable {
   private ImageView rackPlace6;
   @FXML
   private ImageView rackPlace7;
-  
+
   @FXML
   private ImageView playerProfile1;
   @FXML
@@ -82,11 +75,11 @@ public class SingleplayerController implements Initializable {
   private ImageView playerProfile3;
   @FXML
   private ImageView playerProfile4;
-  
+
   @FXML
   private ImageView exchangeScreen;
-  
-  
+
+
 
   @FXML
   private Label pointsRack1;
@@ -153,69 +146,69 @@ public class SingleplayerController implements Initializable {
 
   private void initPlayers() {
     Iterator<Player> it = players.iterator();
-    
-    if(it.hasNext()) {
+
+    if (it.hasNext()) {
       player1.setText(it.next().getName());
       player1.setOpacity(1);
       pointsPlayer1.setText("");
       it.next();
-      if(it.hasNext()) {
-        
+      if (it.hasNext()) {
+
       }
     }
   }
 
   private void initRack() {
-//    String currentUser = Data.getCurrentUser();
-//    Rack myRack = null;
-//    int rackPlace;
-//
-//    Iterator<Player> it = players.iterator();
-//    while (it.hasNext()) {
-//      String s = it.next().getName();
-//      if (s.equals(currentUser)) {
-//        myRack = it.next().getRack();
-//      } else {
-//        continue;
-//      }
-//    }
-//
-//    for (int i = 0; i < 7; i++) {
-//      rackPlace = myRack.getTileAt(i).getRackPlace();
-//
-//      switch (rackPlace) {
-//        case 1:
-//          setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(),
-//              myRack.getTileAt(i).getValue());
-//          break;
-//        case 2:
-//          setNewTile(rackPlace2, pointsRack1, myRack.getTileAt(i).getLetter(),
-//              myRack.getTileAt(i).getValue());
-//          break;
-//        case 3:
-//          setNewTile(rackPlace3, pointsRack1, myRack.getTileAt(i).getLetter(),
-//              myRack.getTileAt(i).getValue());
-//          break;
-//        case 4:
-//          setNewTile(rackPlace4, pointsRack1, myRack.getTileAt(i).getLetter(),
-//              myRack.getTileAt(i).getValue());
-//          break;
-//        case 5:
-//          setNewTile(rackPlace5, pointsRack1, myRack.getTileAt(i).getLetter(),
-//              myRack.getTileAt(i).getValue());
-//          break;
-//        case 6:
-//          setNewTile(rackPlace6, pointsRack1, myRack.getTileAt(i).getLetter(),
-//              myRack.getTileAt(i).getValue());
-//          break;
-//        case 7:
-//          setNewTile(rackPlace7, pointsRack1, myRack.getTileAt(i).getLetter(),
-//              myRack.getTileAt(i).getValue());
-//          break;
-//        default:
-//          break;
-//      }
-//    }
+    // String currentUser = Data.getCurrentUser();
+    // Rack myRack = null;
+    // int rackPlace;
+    //
+    // Iterator<Player> it = players.iterator();
+    // while (it.hasNext()) {
+    // String s = it.next().getName();
+    // if (s.equals(currentUser)) {
+    // myRack = it.next().getRack();
+    // } else {
+    // continue;
+    // }
+    // }
+    //
+    // for (int i = 0; i < 7; i++) {
+    // rackPlace = myRack.getTileAt(i).getRackPlace();
+    //
+    // switch (rackPlace) {
+    // case 1:
+    // setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 2:
+    // setNewTile(rackPlace2, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 3:
+    // setNewTile(rackPlace3, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 4:
+    // setNewTile(rackPlace4, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 5:
+    // setNewTile(rackPlace5, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 6:
+    // setNewTile(rackPlace6, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // case 7:
+    // setNewTile(rackPlace7, pointsRack1, myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue());
+    // break;
+    // default:
+    // break;
+    // }
+    // }
   }
 
   /**
@@ -756,17 +749,16 @@ public class SingleplayerController implements Initializable {
     }
 
   }
-  
+
   @FXML
   private void exchangeClicked(MouseEvent event) {
-    
+
     exchangeScreen.setFitHeight(768);
     exchangeScreen.setFitWidth(1360);
     exchangeScreen.setLayoutX(0);
     exchangeScreen.setLayoutY(0);
-    Image exchange = new Image(this.getClass()
-        .getResource("/com/scrab5/ui/board_Images/exchangeTiles.png")
-        .toString());
+    Image exchange = new Image(
+        this.getClass().getResource("/com/scrab5/ui/board_Images/exchangeTiles.png").toString());
     exchangeScreen.setImage(exchange);
   }
 
@@ -785,8 +777,8 @@ public class SingleplayerController implements Initializable {
     Database.disconnect();
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
 
-    if (Data.getPlayerServer() != null)
-      Data.getPlayerServer().shutDownServer();
+    if (Data.getHostedServer() != null)
+      Data.getHostedServer().shutDownServer();
     if (Data.getPlayerClient() != null)
       Data.getPlayerClient().disconnectFromServer();
 

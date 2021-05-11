@@ -31,7 +31,7 @@ public class Client implements Serializable {
   public final int clientPort = 50000;
   public final int serverPort = 60000;
   private String ip;
-  private final String username;
+  private String username;
   private ClientThread clientThread;
   private ArrayList<ServerData> serverList;
   private Server currentServer;
@@ -86,9 +86,10 @@ public class Client implements Serializable {
    *         https://stackoverflow.com/questions/24082077/java-find-server-in-network
    */
   public void searchServers() {
+    this.serverList.clear();
     Thread t1 = new Thread(new Runnable() {
       public void run() {
-        for (int j = 1; j < 256; j++) {
+        for (int j = 1; j < 256 && Data.getIsSearching(); j++) {
           for (int k = 1; k < 256 && Data.getIsSearching(); k++) {
             final String ip4 = "192.168." + j + "." + k;
             Thread t = new Thread(new Runnable() {
@@ -109,8 +110,8 @@ public class Client implements Serializable {
                       m = (Message) in.readObject();
                       if (m.getType() == MessageType.SENDSERVERDATA) {
                         SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
-                        ServerData serverdata = new ServerData(ssdMessage.getSender() + "'s Server",
-                            ip4, serverPort, ssdMessage.getClientCounter(),
+                        ServerData serverdata = new ServerData(ssdMessage.getSender(), ip4,
+                            serverPort, ssdMessage.getClientCounter(),
                             ssdMessage.getClientMaximum(), ssdMessage.getStatus());
                         addServerToServerList(serverdata);
                         i = 20;
@@ -124,7 +125,8 @@ public class Client implements Serializable {
                   // does nothing, this is thrown when the local address is reachable, but no server
                   // is listening on the IP4 + Port
                 } catch (Exception e) {
-                  e.printStackTrace();
+                  System.out.println("error at" + ip4);
+                  // e.printStackTrace();
                 }
               }
             });
@@ -150,7 +152,8 @@ public class Client implements Serializable {
    * @param serverdata The necessary data needed to open a socket with the server.
    */
   private synchronized void addServerToServerList(ServerData serverdata) {
-    serverList.add(serverdata);
+    if (!serverList.contains(serverdata))
+      serverList.add(serverdata);
   }
 
   /**
@@ -300,6 +303,16 @@ public class Client implements Serializable {
    */
   public Server getCurrentServer() {
     return this.currentServer;
+  }
+
+  /**
+   * Changes the username. Used when the client edits their username in the playerprofile.
+   * 
+   * @author nitterhe
+   * @param username - the new username
+   */
+  public void setUsername(String username) {
+    this.username = username;
   }
 }
 
