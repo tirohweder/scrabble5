@@ -7,7 +7,8 @@ import org.junit.jupiter.api.Test;
 class ParserTest {
 
   /**
-   * Tests the creation of the new filtered file
+   * Tests the creation of the new filtered file. Test for F.5 "users should be able to import
+   * different dictionaries".
    *
    * @author lengist
    */

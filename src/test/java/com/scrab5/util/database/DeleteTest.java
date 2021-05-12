@@ -31,7 +31,7 @@ class DeleteTest {
   }
 
   /**
-   * Tests the deletion of a certain player in the table Player.
+   * Tests the deletion of a certain player in the table Player. Test for Use Case 1 delete.
    * 
    * @author lengist
    */

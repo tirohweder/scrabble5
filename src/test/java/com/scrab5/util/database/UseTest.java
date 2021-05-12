@@ -59,7 +59,8 @@ class UseTest {
   }
 
   /**
-   * Tests the function to return all players from the table Player in a ResultSet.
+   * Tests the function to return all players from the table Player in a ResultSet. Test for Use
+   * Case 1 read.
    * 
    * @author lengist
    */

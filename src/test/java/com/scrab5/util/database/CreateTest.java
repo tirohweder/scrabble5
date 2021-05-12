@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class CreateTest {
 
   /**
-   * Tests the function to create a new Player in the database.
+   * Tests the function to create a new Player in the database. Test for Use Case 1 create.
    * 
    * @author lengist
    */

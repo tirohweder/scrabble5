@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 class UpdateTest {
 
   /**
-   * Tests the function to change the name in the table Player.
+   * Tests the function to change the name in the table Player. Test for Use Case 1 update.
    * 
    * @author lengist
    */
@@ -50,6 +50,7 @@ class UpdateTest {
 
   /**
    * Tests the function to change the corresponding points to a given letter in the table letters.
+   * Test for F.5 "set different letter distributions (points and occurrences of letter tiles).
    * 
    * @author lengist
    */
