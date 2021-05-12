@@ -161,6 +161,16 @@ public class PlayerProfile {
   }
 
   /**
+   * Returns the personal highscore in the database for player name
+   * 
+   * @author lengist
+   * @return int the saved personal highscore from table Player
+   */
+  public static int getPersonalHighscore() {
+    return PlayerProfileDatabase.getPersonalHighscore(name);
+  }
+
+  /**
    * Returns the number of laid words saved in the database for player "name".
    * 
    * @author lengist
@@ -168,6 +178,26 @@ public class PlayerProfile {
    */
   public static int getLaidWords() {
     return PlayerProfileDatabase.getLaidWords(name);
+  }
+
+  /**
+   * Returns the points per word rate in the database for player name
+   * 
+   * @author lengist
+   * @return double the saved points per word rate from table Player
+   */
+  public static double getPointsPerWordRate() {
+    return PlayerProfileDatabase.getPointsPerWordRate(name);
+  }
+
+  /**
+   * Returns the longest word in the database for the current player name
+   * 
+   * @author lengist
+   * @return String the saved longest word from table Player
+   */
+  public static String getLongestWord() {
+    return PlayerProfileDatabase.getLongestWord(name);
   }
 
   /**
@@ -188,6 +218,16 @@ public class PlayerProfile {
    */
   public static int getTotalWins() {
     return PlayerProfileDatabase.getTotalWins(name);
+  }
+
+  /**
+   * Returns the win rate in the database for the current player name
+   * 
+   * @author lengist
+   * @return double the saved win rate from table Player
+   */
+  public static double getWinRate() {
+    return PlayerProfileDatabase.getWinRate(name);
   }
 
   /**
