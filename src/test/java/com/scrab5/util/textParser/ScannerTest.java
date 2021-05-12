@@ -14,9 +14,9 @@ class ScannerTest {
   @Test
   void testScan() {
     CreateDatabase cdb = new CreateDatabase();
-    DictionaryParser.setCurrentDictionary("words.txt");
+    DictionaryParser.parseFile(DictionaryParser.getFileName());
 
-    // assertEquals(true, DictionaryScanner.scan("ZZZ"));
+    assertEquals(true, DictionaryScanner.scan("ZZZ"));
     assertEquals(false, DictionaryScanner.scan("XXXX"));
     cdb.disconnect();
   }

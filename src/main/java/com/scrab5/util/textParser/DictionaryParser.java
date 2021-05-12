@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 
 public class DictionaryParser {
   static BufferedWriter bufWriter = null;
-  private static String currentDictionary = "words.txt";
+  private static String currentDictionary = "Built-In Standard Dictionary.txt";
   private static String newFileName = null;
 
   /**
@@ -67,8 +67,14 @@ public class DictionaryParser {
    * @param DictionaryFile The file the user inserts as new dictionary
    */
   public static void createSearchableFile(String DictionaryFile) {
+
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
+
+    /*
+     * File file = new File( System.getProperty("user.dir") + System.getProperty("file.separator") +
+     * newFileName);
+     */
 
     try {
       if (!file.exists()) {
@@ -96,8 +102,13 @@ public class DictionaryParser {
    */
   private static void loadFile(String file) {
     try {
-      File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-          + "src/main/resources/com/scrab5/util/textParser/" + "words.txt");
+      /*
+       * File fileOne = new File(System.getProperty("user.dir") +
+       * System.getProperty("file.separator") + "src/main/resources/com/scrab5/util/textParser/" +
+       * "words.txt");
+       */
+      File fileOne =
+          new File(System.getProperty("user.dir") + System.getProperty("file.separator") + file);
       FileInputStream fileInput = new FileInputStream(fileOne);
 
       BufferedReader buf =
