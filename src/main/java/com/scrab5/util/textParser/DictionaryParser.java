@@ -12,7 +12,8 @@ import java.nio.charset.StandardCharsets;
 
 public class DictionaryParser {
   static BufferedWriter bufWriter = null;
-  private static String currentDictionary = "Built-In Standard Dictionary.txt";
+  private static String currentDictionary;
+  // private static String currentDictionary = "Built-In Standard Dictionary.txt";
   private static String newFileName = null;
 
   /**

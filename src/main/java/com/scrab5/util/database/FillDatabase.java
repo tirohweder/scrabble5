@@ -336,6 +336,7 @@ public class FillDatabase extends Database {
           .prepareStatement("INSERT INTO Server (ServerHostName, Information) VALUES (?,?);");
       pstmServer.setString(1, serverObject.getHost());
       pstmServer.setObject(2, serverObject);
+      pstmServer.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -357,6 +358,7 @@ public class FillDatabase extends Database {
       pstm = connection.prepareStatement(sql);
       pstm.setObject(1, serverObject);
       pstm.setString(2, serverObject.getHost());
+      pstm.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
     }

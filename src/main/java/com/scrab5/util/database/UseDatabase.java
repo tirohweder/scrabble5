@@ -4,6 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import com.scrab5.network.Server;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -164,6 +165,27 @@ public class UseDatabase extends Database {
     }
     int[] occurrences = occurrence.stream().mapToInt(Integer::intValue).toArray();
     return occurrences;
+  }
+
+  /**
+   * Returns the server object to get the right server statistics when a user chooses to host his
+   * server again.
+   * 
+   * @auhtor lengist
+   * @param serverHostName String representation of the host of the server
+   * @return Server object with the server statistic
+   */
+  public static Server getServerObject(String serverHostName) {
+    try {
+      Statement stm = connection.createStatement();
+      /*
+       * Server s = stm.executeQuery("SELECT Information FROM Server WHERE ServerHostName = " +
+       * serverHostName);
+       */
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return null;
   }
 
   /**

@@ -5,6 +5,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.scrab5.util.textParser.DictionaryParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -182,6 +183,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   private void setSelectedDictionary(ActionEvent event) {
     String selected = (String) this.dictionarySelection.getValue();
     this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
+    DictionaryParser.setCurrentDictionary(selected);
     isDictionarySelected = true;
   }
 
