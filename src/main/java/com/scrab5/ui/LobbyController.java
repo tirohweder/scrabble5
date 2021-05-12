@@ -17,7 +17,7 @@ import javafx.stage.StageStyle;
 
 public abstract class LobbyController extends Controller {
   @FXML
-  protected ImageView kick2, kick3, kick4, addPlayerButton, darkBackground;
+  protected ImageView kick2, kick3, kick4, addPlayerButton, startButton, darkBackground;
   @FXML
   protected ImageView diffSelection2, diffSelection3, diffSelection4, diffButton1, diffButton2,
       diffButton3;
@@ -56,10 +56,10 @@ public abstract class LobbyController extends Controller {
       this.ready1.setText("Ready");
       this.isReady[0] = true;
 
-      if (this.isReady[1] && this.isReady[2] && this.isReady[3] && this.isDictionarySelected) {
+      if (this.isEveryoneReady() && this.isDictionarySelected) {
 
         if (this.playerAmount >= 2) {
-          App.setRoot("SinglePlayer");
+          this.startButton.setOpacity(1.0);
 
         } else {
           String message = "Please add at least one another player in order to play the game!";
@@ -81,6 +81,7 @@ public abstract class LobbyController extends Controller {
 
     } else {
       this.ready1.setText("Not Ready");
+      this.startButton.setOpacity(0.0);
       this.isReady[0] = false;
 
     }
@@ -104,6 +105,11 @@ public abstract class LobbyController extends Controller {
     this.darkBackground.setFitWidth(10);
     this.darkBackground.setFitHeight(10);
     this.darkBackground.setOpacity(0);
+  }
+
+  @FXML
+  private void startGame(MouseEvent event) throws IOException {
+    App.setRoot("SinglePlayer");
   }
 
   @FXML
@@ -166,8 +172,6 @@ public abstract class LobbyController extends Controller {
     this.difficulty4.setText(temp.getValue() + "");
   }
 
-
-
   @FXML
   private void setPlayerVote1(ActionEvent event) {
     ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
@@ -214,6 +218,27 @@ public abstract class LobbyController extends Controller {
   private void darkenArrow(MouseEvent event) {
     ImageView iv = (ImageView) event.getSource();
     iv.setImage(new Image("/com/scrab5/ui/images/SB05_PlayerVoteButton.png"));
+  }
+
+  @FXML
+  private void lightenStartButton(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+    iv.setImage(new Image("/com/scrab5/ui/images/SB05_StartButtonClicked.png"));
+  }
+
+  @FXML
+  private void darkenStartButton(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+    iv.setImage(new Image("/com/scrab5/ui/images/SB05_StartButton.png"));
+  }
+
+  private boolean isEveryoneReady() {
+    for (int i = 0; i < isReady.length; i++) {
+      if (!isReady[i]) {
+        return false;
+      }
+    }
+    return true;
   }
 
   protected void setUpInit() {

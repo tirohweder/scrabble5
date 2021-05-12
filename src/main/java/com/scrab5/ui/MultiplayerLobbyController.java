@@ -29,7 +29,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.playerAmount = 2;
+    // this.playerAmount = 2;
     this.isClickable();
     setUpInit();
 
@@ -83,7 +83,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   }
 
-  @Override
+
   protected void addPlayer(MouseEvent event) throws IOException {
 
     playSound("ButtonClicked.mp3");
@@ -173,6 +173,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   protected void setUpInit() {
+    this.isDictionarySelected = true;
     this.player1.setText(Data.getCurrentUser());
     this.ready1.setText("Not Ready");
     for (int i = 1; i <= 4; i++) {
@@ -196,7 +197,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   protected boolean isClickable() {
-    if (playerAmount >= Data.getPlayerCountMultiplayer()) {
+    if (playerAmount >= Data.getPlayerCountMultiplayer() - 1) {
       this.addPlayerButton.setY(-44);
       this.addPlayerButton.setOpacity(1);
       return false;

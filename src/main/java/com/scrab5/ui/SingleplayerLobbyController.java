@@ -139,8 +139,6 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     }
   }
 
-
-
   /**
    * 
    * Makes dictionarySelection only openable when the dropDownButton is clicked, not when the

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SingleplayerLobbyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SingleplayerLobbyController">
 	<children>
 		<AnchorPane prefHeight="768.0" prefWidth="1360.0">
 			<children>
@@ -110,11 +110,6 @@
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView fx:id="darkBackground" fitHeight="65.0" fitWidth="87.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/SB05_DarkerBackground.png" />
-               </image>
-            </ImageView>
             <Label fx:id="vote1" layoutX="215.0" layoutY="185.0" text="1" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
@@ -207,6 +202,16 @@
             <ComboBox fx:id="diffBox1" layoutX="490.0" layoutY="220.0" onAction="#setDifficulty1" onMouseClicked="#dontShow" opacity="0.0" prefHeight="25.0" prefWidth="78.0" />
             <ComboBox fx:id="diffBox2" layoutX="490.0" layoutY="259.0" onAction="#setDifficulty2" onMouseClicked="#dontShow" opacity="0.0" prefHeight="25.0" prefWidth="78.0" />
             <ComboBox fx:id="diffBox3" layoutX="490.0" layoutY="297.0" onAction="#setDifficulty3" onMouseClicked="#dontShow" opacity="0.0" prefHeight="25.0" prefWidth="78.0" />
+            <ImageView fx:id="startButton" fitHeight="53.0" fitWidth="127.0" layoutX="617.0" layoutY="657.0" onMouseClicked="#startGame" onMouseEntered="#lightenStartButton" onMouseExited="#darkenStartButton" onMousePressed="#darkenStartButton" onMouseReleased="#lightenStartButton" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB05_StartButton.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="darkBackground" fitHeight="65.0" fitWidth="87.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB05_DarkerBackground.png" />
+               </image>
+            </ImageView>
 			</children>
 		</AnchorPane>
 	</children>
