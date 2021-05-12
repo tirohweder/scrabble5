@@ -95,7 +95,6 @@ public class Client implements Serializable {
                 try {
                   InetAddress serverCheck = InetAddress.getByName(ip4);
                   if (serverCheck.isReachable(1000)) {
-                    System.out.println(ip4 + "found");
                     Socket getServerDataSocket = new Socket(ip4, serverPort);
                     ObjectOutputStream out =
                         new ObjectOutputStream(getServerDataSocket.getOutputStream());
@@ -125,10 +124,8 @@ public class Client implements Serializable {
                     getServerDataSocket.close();
                   }
                 } catch (Exception e) {
-                  // System.out.println(ip4);
-                  // System.out.println(e.getMessage());
-                  // does nothing since too many device's firewalls block pings, therefore, too many
-                  // exceptions
+                  System.out.print(ip4);
+                  System.out.println(e.getMessage());
                 }
               }
             });
