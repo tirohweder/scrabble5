@@ -93,6 +93,7 @@ public class ClientThread extends Threads implements Serializable {
         }
       }
     } catch (Exception e) {
+      e.printStackTrace();
       new NetworkError(NetworkErrorType.CLIENTRUN);
       e.printStackTrace();
     }

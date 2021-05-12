@@ -285,17 +285,17 @@ public class Server implements Serializable {
     for (ServerThread serverThread : connections.values()) {
       serverThread.closeConnection();
     }
-    FillDatabase.updateServer(this);
-    this.clients.clear();
-    this.connections.clear();
-    this.updateClientCount();
-    this.gameStart = false;
     try {
       serverSocket.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
-    // save server to database
+    FillDatabase.updateServer(this);
+    this.clients.clear();
+    this.connections.clear();
+    this.serverStatistics.getServerStatistics().clear();
+    this.updateClientCount();
+    this.gameStart = false;
   }
 
   /**

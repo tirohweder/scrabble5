@@ -23,7 +23,7 @@ public class ServerThread extends Threads {
   private Server server;
   private ObjectOutputStream toClient;
   private ObjectInputStream fromClient;
-  private Client connectedClient;
+  private ClientData connectedClient;
 
   /**
    * Construtor for the ServerThread. Sets up the socket for 1 client and opens streams and handles
@@ -66,6 +66,7 @@ public class ServerThread extends Threads {
             break;
           case CONNECT:
             ConnectMessage connect = (ConnectMessage) message;
+            this.connectedClient = connect.getClientData();
             try {
               addClient(connect.getClientData());
             } catch (Exception e) {
@@ -92,7 +93,8 @@ public class ServerThread extends Threads {
         this.server.sendUpdateMessage();
       }
     } catch (Exception e) {
-      new NetworkError(NetworkErrorType.COMMUNICATION);
+      e.printStackTrace();
+      new NetworkError(NetworkErrorType.SERVERRUN);
     }
   }
 
@@ -109,7 +111,8 @@ public class ServerThread extends Threads {
   private void addClient(ClientData clientData) throws Exception {
     if (null == server.getClients().get(clientData.getUsername())) {
       if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp()))
-        FillDatabase.createServerRow(this.server, clientData.getUsername(), clientData.getIp());
+        FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
+            clientData.getIp());
       server.getClients().put(clientData.getUsername(), clientData);
       server.getConnections().put(clientData, this);
       server.updateClientCount();
@@ -133,7 +136,6 @@ public class ServerThread extends Threads {
       this.server.updateClientCount();
       this.closeConnection();
     }
-    // maybe else, idk doesnt feel necessary
   }
 
   /**
@@ -142,7 +144,7 @@ public class ServerThread extends Threads {
    * @author nitterhe
    * @return connectedClient - the connected client
    */
-  public Client getClient() {
+  public ClientData getClient() {
     return this.connectedClient;
   }
 
@@ -152,7 +154,7 @@ public class ServerThread extends Threads {
    * @author nitterhe
    * @param message - the message to send
    */
-  public void sendMessageToClient(Message message) {
+  public synchronized void sendMessageToClient(Message message) {
     try {
       this.toClient.writeObject(message);
       this.toClient.flush();
