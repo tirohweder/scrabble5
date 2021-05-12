@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import com.scrab5.network.Server;
+import com.scrab5.network.ServerStatistics;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -171,22 +171,33 @@ public class UseDatabase extends Database {
    * Returns the server object to get the right server statistics when a user chooses to host his
    * server again.
    * 
-   * @auhtor lengist
+   * @auhtor lengist <<<<<<< HEAD
+   * @author nitterhe
    * @param serverHostName String representation of the host of the server
    * @return Server object with the server statistic
    */
-  public static Server getServerObject(String serverHostName) {
+  public static ServerStatistics getServerStatistics(String serverHostName) {
     try {
       Statement stm = connection.createStatement();
-      /*
-       * Server s = stm.executeQuery("SELECT Information FROM Server WHERE ServerHostName = " +
-       * serverHostName);
-       */
+      ResultSet s =
+          stm.executeQuery("SELECT * FROM Server WHERE ServerHostName = " + serverHostName);
+      ServerStatistics ss = new ServerStatistics();
+      String client = "", IPAddress = "";
+      int gamesPlayed, gamesWon;
+      while (s.next()) {
+        client = s.getString(2);
+        gamesPlayed = s.getInt(3);
+        gamesWon = s.getInt(4);
+        IPAddress = s.getString(5);
+        ss.loadClient(client, IPAddress, gamesPlayed, gamesWon);
+      }
+      return ss;
     } catch (SQLException e) {
       e.printStackTrace();
+      return null;
     }
-    return null;
   }
+
 
   /**
    * Changes the points for the letter letter in the table letters when a user chooses to

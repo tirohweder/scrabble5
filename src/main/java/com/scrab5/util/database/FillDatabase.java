@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Iterator;
 import com.scrab5.network.Server;
+import com.scrab5.network.ServerStatistics.ClientStatistic;
 
 
 /**
@@ -328,14 +330,18 @@ public class FillDatabase extends Database {
    * Method to fill table server completely. Used when a new server is created.
    * 
    * @author lengist
+   * @author nitterhe
    * @param name String with name of the user
    */
-  public static void createServer(Server serverObject) {
+  public static void createServerRow(Server serverObject, String clientUsername, String IPAddress) {
     try {
-      pstmServer = connection
-          .prepareStatement("INSERT INTO Server (ServerHostName, Information) VALUES (?,?);");
+      pstmServer = connection.prepareStatement(
+          "INSERT INTO Server (ServerHostName, ClientUsername, GamesPlayed, GamesWon, IPAddress) VALUES (?,?,?,?, ?);");
       pstmServer.setString(1, serverObject.getHost());
-      pstmServer.setObject(2, serverObject);
+      pstmServer.setString(2, clientUsername);
+      pstmServer.setInt(3, 0);
+      pstmServer.setInt(4, 0);
+      pstmServer.setString(5, IPAddress);
       pstmServer.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -343,22 +349,32 @@ public class FillDatabase extends Database {
     closeStatement("server");
   }
 
-
   /**
    * Updates the entries from the table server at a specific serverHostName.
    * 
    * @author lengist
+   * @author nitterhe
    * @param serverObject an object received from the server with all information needed for the
    *        statistics in a hosted game
    */
-  protected static void updateServer(Server serverObject) {
-    String sql = "UPDATE Server SET Information = ? WHERE ServerHostName = ?";
+  public static void updateServer(Server serverObject) {
+    String sql =
+        "UPDATE Server SET gamesPlayed = ?, gamesWon = ? WHERE ServerHostName = ? AND ClientUsername = ?";
     PreparedStatement pstm;
     try {
-      pstm = connection.prepareStatement(sql);
-      pstm.setObject(1, serverObject);
-      pstm.setString(2, serverObject.getHost());
-      pstm.executeUpdate();
+      Iterator<ClientStatistic> iterator =
+          serverObject.getServerStatistics().getServerStatistics().values().iterator();
+      ClientStatistic cs;
+      while (iterator.hasNext()) {
+        cs = iterator.next();
+        pstm = connection.prepareStatement(sql);
+        pstm.setInt(1, cs.getGamesPlayed());
+        pstm.setInt(2, cs.getGamesWon());
+        pstm.setString(3, serverObject.getHost());
+        pstm.setString(4, cs.getClientName());
+        pstm.setString(5, cs.getIPAddress());
+        pstm.executeUpdate();
+      }
     } catch (SQLException e) {
       e.printStackTrace();
     }

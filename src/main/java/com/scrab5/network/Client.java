@@ -28,7 +28,7 @@ public class Client implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public final int clientPort = 50000;
-  public final int serverPort = 60000;
+  public final int serverPort = 8080;
   private String ip;
   private String username;
   private ClientThread clientThread;
@@ -103,12 +103,9 @@ public class Client implements Serializable {
                     out.writeObject(new GetServerDataMessage(username));
                     out.flush();
                     out.reset();
-                    System.out.println("written");
                     Message m;
                     for (int i = 0; i < 10; i++) {
-                      System.out.println("reading begins");
                       m = (Message) in.readObject();
-                      System.out.println("waiting for message");
                       if (m.getType() == MessageType.SENDSERVERDATA) {
                         SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
                         ServerData serverdata = new ServerData(ssdMessage.getSender(), ip4,
@@ -124,8 +121,7 @@ public class Client implements Serializable {
                     getServerDataSocket.close();
                   }
                 } catch (Exception e) {
-                  System.out.print(ip4);
-                  System.out.println(e.getMessage());
+                  // exception handling useless since pinging IPs often results in ConnectExceptions
                 }
               }
             });

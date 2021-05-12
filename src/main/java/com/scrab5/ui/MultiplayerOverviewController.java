@@ -456,7 +456,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
             if (!Data.getServerList().isEmpty()) {
               int j = 0;
               while (j < Data.getServerList().size()) {
-                System.out.println(Data.getServerList().get(j).getIP4Address());
                 displayServer(Data.getServerList().get(j), j);
                 j++;
               }

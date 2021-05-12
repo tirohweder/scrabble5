@@ -60,11 +60,13 @@ public class CreateDatabase extends Database {
    * Generates the table "server" with all required columns.
    * 
    * @author lengist
+   * @author nitterhe
    */
   private void createTableServer() {
     removeTable("Server");
     try (Statement stm = connection.createStatement()) {
-      String sql = "CREATE TABLE Server (ServerHostName TEXT," + "Information REAL)";
+      String sql = "CREATE TABLE Server (ServerHostName TEXT NOT NULL," + "ClientUsername TEXT,"
+          + "GamesPlayed INTEGER," + "GamesWon INTEGER" + "IPAddress TEXT NOT NULL)";
       stm.executeUpdate(sql);
       System.out.println("Table for server generated!");
     } catch (SQLException e) {

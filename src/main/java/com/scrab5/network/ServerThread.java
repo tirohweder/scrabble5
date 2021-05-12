@@ -15,6 +15,7 @@ import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.SendServerDataMessage;
+import com.scrab5.util.database.FillDatabase;
 
 public class ServerThread extends Threads {
 
@@ -71,8 +72,6 @@ public class ServerThread extends Threads {
               sendMessageToClient(
                   new ConnectMessage(this.server.getHost(), connect.getClientData()));
             }
-            this.server.getServerStatistics().addClient(connect.getSender(),
-                connect.getClientData().getIp());
             break;
           case DISCONNECT:
             DisconnectMessage disconnect = (DisconnectMessage) message;
@@ -103,14 +102,17 @@ public class ServerThread extends Threads {
    * failures.
    * 
    * @author nitterhe
-   * @param client
+   * @param client - the client that just connected to the server
+   * @param Exception - an Exception that is thrown when a similar client with the same name is
+   *        already on the server / was on the server
    */
   private void addClient(ClientData clientData) throws Exception {
     if (null == server.getClients().get(clientData.getUsername())) {
+      if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp()))
+        FillDatabase.createServerRow(this.server, clientData.getUsername(), clientData.getIp());
       server.getClients().put(clientData.getUsername(), clientData);
       server.getConnections().put(clientData, this);
       server.updateClientCount();
-      this.server.sendUpdateMessage();
     } else {
       throw new Exception();
     }
@@ -121,7 +123,7 @@ public class ServerThread extends Threads {
    * external class can manipulate the client list. Reduces failures.
    * 
    * @author nitterhe
-   * @param sender
+   * @param sender - the disconnect message's sender
    */
   private void deleteClient(String sender) {
     ClientData client = server.getClients().get(sender);

@@ -6,12 +6,14 @@
 package com.scrab5.network;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 public class ServerStatistics implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private HashMap<String, ClientStatistic> serverStatistics;
+  private LinkedHashMap<String, ClientStatistic> serverStatistics;
 
   /**
    * Constructor for creating a new ServerStatistics instance. Creates an empty HashMap.
@@ -19,7 +21,7 @@ public class ServerStatistics implements Serializable {
    * @author nitterhe
    */
   public ServerStatistics() {
-    this.serverStatistics = new HashMap<String, ClientStatistic>();
+    this.serverStatistics = new LinkedHashMap<String, ClientStatistic>();
   }
 
   /**
@@ -29,24 +31,38 @@ public class ServerStatistics implements Serializable {
    * @return serverStatistics - HashMap with all clients and their personal statistics on this
    *         server.
    */
-  public HashMap<String, ClientStatistic> getServerStatistics() {
+  public LinkedHashMap<String, ClientStatistic> getServerStatistics() {
     return this.serverStatistics;
   }
 
   /**
-   * Adds the client to serverStatistics if the client is new. Double if is used to avoid
+   * Adds the client to serverStatistics if the client is new. Double if statement is used to avoid
    * NullpointerExceptions.
    * 
    * @author nitterhe
    * @param clientname - the username of the client as a String
+   * @throws Exception - an Exception that is thrown when a similar client with the same name was
+   *         already on the server
    */
-  public void addClient(String clientname, String IPAddress) {
+  public boolean addClient(String clientname, String IPAddress) throws Exception {
     if (serverStatistics.containsKey(clientname)) {
-      if (serverStatistics.get(clientname).getIPAddress().equals(IPAddress)) {
-        return;
-      }
+      if (this.serverStatistics.get(clientname).getIPAddress().equals(IPAddress))
+        return false;
+      throw new Exception();
     }
     this.serverStatistics.put(clientname, new ClientStatistic(clientname, IPAddress));
+    return true;
+  }
+
+  /**
+   * Used when loading ServerStatistics from the database.
+   * 
+   * @author nitterhe
+   * @param clientStatistic - the clientStatistic to load from the database
+   */
+  public void loadClient(String clientname, String IPAddress, int gamesPlayed, int gamesWon) {
+    this.serverStatistics.put(clientname,
+        new ClientStatistic(clientname, IPAddress, gamesPlayed, gamesWon));
   }
 
   /**
@@ -58,9 +74,39 @@ public class ServerStatistics implements Serializable {
    */
   public void gamePlayed(String clientname, boolean winner) {
     this.serverStatistics.get(clientname).gamePlayed();
-    if (winner)
+    if (winner) {
       this.serverStatistics.get(clientname).gameWon();
+      this.sort();
+    }
   }
+
+  /**
+   * Sorts the ServerStatistics ordered by gamesWon.
+   * 
+   * @author nitterhe
+   */
+  private void sort() {
+    LinkedHashMap<String, ClientStatistic> help =
+        new LinkedHashMap<String, ClientStatistic>(this.serverStatistics.size());
+    Collection<ClientStatistic> clients = this.serverStatistics.values();
+    Iterator<ClientStatistic> iterator;
+    ClientStatistic maximum;
+    ClientStatistic next;
+
+    while (!this.serverStatistics.isEmpty()) {
+      iterator = clients.iterator();
+      maximum = iterator.next();
+      while (iterator.hasNext()) {
+        next = iterator.next();
+        if (maximum.getGamesWon() < next.getGamesWon())
+          maximum = next;
+      }
+      help.put(maximum.getClientName(), maximum);
+      this.serverStatistics.remove(maximum.getClientName());
+    }
+    this.serverStatistics = help;
+  }
+
 
   /**
    * Helping class to save every clients statistics in one object.
@@ -79,13 +125,31 @@ public class ServerStatistics implements Serializable {
      * Constructor for creating a single client's statistic object.
      * 
      * @author nitterhe
-     * @param clientname
+     * @param clientname - the client's username
+     * @param IPAddress - the client's IPAddress
      */
     public ClientStatistic(String clientname, String IPAddress) {
       this.clientname = clientname;
       this.IPAddress = IPAddress;
       this.gamesPlayed = 0;
       this.gamesWon = 0;
+    }
+
+    /**
+     * Constructor for creating a single client's statistic object. Used when loading statistics
+     * from the server.
+     * 
+     * @author nitterhe
+     * @param clientname - the client's username
+     * @param IPAddress - the client's IPAddress
+     * @param gamesPlayed - the client's number of games played
+     * @param gamesWon - the client's number of games won
+     */
+    public ClientStatistic(String clientname, String IPAddress, int gamesPlayed, int gamesWon) {
+      this.clientname = clientname;
+      this.IPAddress = IPAddress;
+      this.gamesPlayed = gamesPlayed;
+      this.gamesWon = gamesWon;
     }
 
     /**
@@ -99,10 +163,10 @@ public class ServerStatistics implements Serializable {
     }
 
     /**
-     * Returns this client's IPAddress.
+     * Returns the client's IPAddress.
      * 
      * @author nitterhe
-     * @return IPAddress - this client's IPAddress as a String
+     * @return IPAddress - the client's IPAddress
      */
     public String getIPAddress() {
       return this.IPAddress;

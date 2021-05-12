@@ -17,17 +17,18 @@ import java.util.HashMap;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 
 
 public class Server implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public final int clientPort = 50000;
-  public final int serverPort = 60000;
+  public final int serverPort = 8080;
 
   private final String host;
   private String ip4;
-  private InetAddress ip;
   private static ServerSocket serverSocket;
   private boolean gameStart;
   private static int clientCounter;
@@ -55,7 +56,7 @@ public class Server implements Serializable {
     this.host = host;
     Server.clientMaximum = clientMaximum;
     clientCounter = 0;
-    this.serverStatistics = new ServerStatistics();
+    this.serverStatistics = UseDatabase.getServerStatistics(host);
     if (!UIServerInstance) {
       this.openServerSocket();
     }
@@ -66,8 +67,7 @@ public class Server implements Serializable {
       InetAddress.getLocalHost();
       this.ip4 = InetAddress.getLocalHost().getHostAddress();
       serverSocket = new ServerSocket(this.serverPort);
-      ip4 = ip.toString();
-      System.out.println(ip4);
+      System.out.println(ip4 + " " + this.serverPort);
     } catch (Exception e) {
       e.printStackTrace();
       new NetworkError(NetworkErrorType.SERVERCREATION);
@@ -285,6 +285,7 @@ public class Server implements Serializable {
     for (ServerThread serverThread : connections.values()) {
       serverThread.closeConnection();
     }
+    FillDatabase.updateServer(this);
     this.clients.clear();
     this.connections.clear();
     this.updateClientCount();
