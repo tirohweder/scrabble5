@@ -24,7 +24,6 @@ import com.scrab5.util.database.UseDatabase;
 public class Server implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public final int clientPort = 50000;
   public final int serverPort = 8080;
 
   private final String host;
@@ -56,22 +55,34 @@ public class Server implements Serializable {
     this.host = host;
     Server.clientMaximum = clientMaximum;
     clientCounter = 0;
-    this.serverStatistics = UseDatabase.getServerStatistics(host);
     if (!UIServerInstance) {
+      this.loadServerStatistics();
       this.openServerSocket();
     }
   }
 
+  /**
+   * Opens up the sockets. Used when a new server is started or an existing server is restaerted.
+   * 
+   * @author nitterhe
+   */
   public void openServerSocket() {
     try {
-      InetAddress.getLocalHost();
       this.ip4 = InetAddress.getLocalHost().getHostAddress();
       serverSocket = new ServerSocket(this.serverPort);
-      System.out.println(ip4 + " " + this.serverPort);
     } catch (Exception e) {
       e.printStackTrace();
       new NetworkError(NetworkErrorType.SERVERCREATION);
     }
+  }
+
+  /**
+   * Loads the server's statistics from the database.
+   * 
+   * @author nitterhe
+   */
+  public void loadServerStatistics() {
+    this.serverStatistics = UseDatabase.getServerStatistics(host);
   }
 
   /**
@@ -96,7 +107,7 @@ public class Server implements Serializable {
    * 
    * @author nitterhe
    */
-  private synchronized void accept() {
+  private void accept() {
     while (!this.gameStart && Server.clientCounter < Server.clientMaximum
         && !serverSocket.isClosed()) {
       try {
@@ -104,9 +115,10 @@ public class Server implements Serializable {
         ServerThread clientConnection = new ServerThread(this, newClient);
         clientConnection.start();
       } catch (SocketException e) {
-        // does nothing so closing the server socket does not result in a SocketException error
+        // does nothing, this happens when the server socket is closed. I could implement a feature
+        // with a new socket but i do not see the need
       } catch (Exception e) {
-        // no error message?
+        System.out.println(e.getCause());
       }
     }
   }

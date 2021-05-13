@@ -40,7 +40,7 @@ public class ServerThread extends Threads {
       toClient = new ObjectOutputStream(socketToClient.getOutputStream());
       fromClient = new ObjectInputStream(socketToClient.getInputStream());
     } catch (Exception e) {
-      // requires exception handling
+      System.out.println("Server could not implement streams");
     }
   }
 
@@ -52,6 +52,7 @@ public class ServerThread extends Threads {
   public void run() {
     this.running = true;
 
+
     try {
       Message message;
       while (this.running) {
@@ -59,10 +60,11 @@ public class ServerThread extends Threads {
         switch (message.getType()) {
 
           case GETSERVERDATA:
-            sendMessageToClient(
-                new SendServerDataMessage(this.server.getHost(), this.server.getClientCounter(),
-                    this.server.getClientMaximum(), this.server.getStatus()));
-            this.closeConnection();
+            sendMessageToClient(new SendServerDataMessage(this.server.getHost(),
+                this.socketToClient.getLocalPort(), this.server.getClientCounter(),
+                this.server.getClientMaximum(), this.server.getStatus()));
+            this.stopThread();
+            this.socketToClient.close();
             break;
           case CONNECT:
             ConnectMessage connect = (ConnectMessage) message;
@@ -80,8 +82,8 @@ public class ServerThread extends Threads {
               server.shutDownServer();
             } else {
               deleteClient(disconnect.getSender());
+              closeConnection();
             }
-            this.stopThread();
             break;
           case CHAT:
             ChatMessage chat = (ChatMessage) message;
@@ -108,7 +110,7 @@ public class ServerThread extends Threads {
    * @param Exception - an Exception that is thrown when a similar client with the same name is
    *        already on the server / was on the server
    */
-  private void addClient(ClientData clientData) throws Exception {
+  private synchronized void addClient(ClientData clientData) throws Exception {
     if (null == server.getClients().get(clientData.getUsername())) {
       if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp()))
         FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
@@ -160,7 +162,7 @@ public class ServerThread extends Threads {
       this.toClient.flush();
       this.toClient.reset();
     } catch (Exception e) {
-      // requires Exception handling
+      e.printStackTrace();
     }
   }
 

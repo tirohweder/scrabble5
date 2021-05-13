@@ -82,14 +82,16 @@ public class MultiplayerOverviewController extends Controller implements Initial
     if (this.isDictionarySelected) {
       Data.setIsSearching(false);
       Data.setPlayerCountMultiplayer(playerCount);
-      this.setupServer(playerCount);
-      App.setRoot("MultiplayerLobby");
-
+      try {
+        this.setupServer(playerCount);
+        App.setRoot("MultiplayerLobby");
+      } catch (Exception e) {
+        new NetworkError(NetworkErrorType.SERVERCREATION);
+      }
     } else {
       String message = "To start the game please select a dictionary!";
       PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
-
     }
   }
 
@@ -396,7 +398,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author nitterhe
    * @param playerCount
    */
-  private void setupServer(int playerCount) {
+  private void setupServer(int playerCount) throws Exception {
     Data.getPlayerClient().hostServer(playerCount);
     Data.setHostedServer(Data.getPlayerClient().getHostedServer());
   }

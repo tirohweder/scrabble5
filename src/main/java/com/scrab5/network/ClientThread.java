@@ -49,15 +49,19 @@ public class ClientThread extends Threads implements Serializable {
    */
   public void run() {
     this.running = true;
-
+    sendMessageToServer(new ConnectMessage(this.sender, this.client.getClientData()));
     try {
       Message message;
       while (this.running) {
         message = (Message) this.fromServer.readObject();
         switch (message.getType()) {
 
+          case SENDSERVERDATA:
+
+            break;
           case DISCONNECT:
             // switch layer to lobby overview
+            // MultiplayerLobbyController.lobbyClosed();
             MultiplayerLobbyController.lobbyClosed();
             this.closeConnection();
             break;
@@ -69,7 +73,7 @@ public class ClientThread extends Threads implements Serializable {
             break;
           case CONNECT:
             // this is used since sending messages between client and server is faster than the
-            // thread switching to the new Stage
+            // thread switching to the new Scene
             synchronized (this) {
               try {
                 wait(300);
@@ -113,10 +117,11 @@ public class ClientThread extends Threads implements Serializable {
         this.toServer = new ObjectOutputStream(socketToServer.getOutputStream());
         this.fromServer = new ObjectInputStream(socketToServer.getInputStream());
         this.start();
-        sendMessageToServer(new ConnectMessage(this.sender, this.client.getClientData()));
       }
     } catch (Exception e) {
+      e.printStackTrace();
       new NetworkError(NetworkErrorType.CONNECTION);
+      MultiplayerLobbyController.lobbyClosed();
     }
   }
 

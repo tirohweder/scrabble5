@@ -45,8 +45,12 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    * @author nitterhe
    * @throws IOException
    */
-  public static void lobbyClosed() throws IOException {
-    App.setRoot("MultiplayerOverview");
+  public static void lobbyClosed() {
+    try {
+      App.setRoot("MultiplayerOverview");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -61,7 +65,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   protected void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     Data.getPlayerClient().disconnectFromServer();
-    App.setRoot("MultiplayerOverview");
   }
 
   @FXML
