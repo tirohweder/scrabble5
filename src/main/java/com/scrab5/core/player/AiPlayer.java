@@ -1,7 +1,6 @@
 package com.scrab5.core.player;
 
 import java.util.ArrayList;
-import com.scrab5.core.game.EasyAI;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.util.textParser.DictionaryScanner;
 
