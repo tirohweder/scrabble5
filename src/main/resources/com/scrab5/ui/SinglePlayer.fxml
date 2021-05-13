@@ -1353,7 +1353,6 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView fx:id="exchangeScreen" fitHeight="73.0" fitWidth="81.0" layoutX="1273.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true" />
          </children>
       </AnchorPane>
    </children>
