@@ -253,7 +253,7 @@ public class GameBoard {
       scoreToBe = 0;
       word.setLength(0);
     }
-
+    
     if (word.length() > 1) {
       if (tws) {
         scoreToBe *= 3;

@@ -124,6 +124,7 @@ class GameBoardTest {
     Tile t6 = new Tile("6", 3);
     Tile t7 = new Tile("7", 3);
     Tile t8 = new Tile("8", 3);
+    gameBoardTest.placeTile(t6, 5, 8);
     gameBoardTest.placeTile(t7, 6, 8);
     gameBoardTest.placeTile(t8, 8, 8);
 
@@ -283,7 +284,7 @@ class GameBoardTest {
 
     assertEquals(false, gameBoardTest.checkWordsLegit());
 
-    
+
   }
 
 
