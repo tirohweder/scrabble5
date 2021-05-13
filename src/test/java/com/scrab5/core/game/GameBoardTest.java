@@ -1,7 +1,6 @@
 package com.scrab5.core.game;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
@@ -205,7 +204,7 @@ class GameBoardTest {
     assertEquals(test[7][8].getLetter(), result[7][8].getLetter());
     assertEquals(test[8][8].getLetter(), result[8][8].getLetter());
 
-    //assertEquals("456", gameBoardTest.getWords().get(0).toString());
+    // assertEquals("456", gameBoardTest.getWords().get(0).toString());
   }
 
 
@@ -282,8 +281,6 @@ class GameBoardTest {
     gameBoardTest.placeTile(new Tile("X", 3), 4, 3);
 
     assertEquals(false, gameBoardTest.checkWordsLegit());
-
-    
   }
 
 
