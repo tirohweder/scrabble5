@@ -137,6 +137,7 @@ public class GameBoard {
     int row2 = currentChanges.get(1).getRow();
     int column2 = currentChanges.get(1).getColumn();
 
+    //
     if ((row1 == row2 + 1 && column1 == column2) || (row1 == row2 - 1 && column1 == column2)) {
 
       for (int i = 0; i < currentChanges.size(); i++) {
@@ -253,7 +254,7 @@ public class GameBoard {
       scoreToBe = 0;
       word.setLength(0);
     }
-    
+
     if (word.length() > 1) {
       if (tws) {
         scoreToBe *= 3;

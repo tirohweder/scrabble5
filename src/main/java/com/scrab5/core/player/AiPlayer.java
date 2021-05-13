@@ -207,12 +207,12 @@ public class AiPlayer extends Player {
     AiPlayer ai = new AiPlayer("Peter");
 
     System.out.println("Test");
-    char[] set = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
+    char[] set = {'H', 'E', 'L', 'L', 'O'};
     int k = 8;
-    //ai.printAllKLength(set, k, 2, 'd');
-    if (DictionaryScanner.scan(("Hallo"))) {
+    ai.printAllKLength(set, k, 2, 'L');
+    if (DictionaryScanner.scan(("HALLO"))) {
       System.out.println("ja");
-      
+
     }
   }
 
