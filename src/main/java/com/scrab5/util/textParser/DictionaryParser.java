@@ -11,16 +11,17 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 public class DictionaryParser {
+
   static BufferedWriter bufWriter = null;
-  private static String currentDictionary;
-  // private static String currentDictionary = "Built-In Standard Dictionary.txt";
+  //private static String currentDictionary;
+  private static String currentDictionary = "Built-In Standard Dictionary.txt";
   private static String newFileName = null;
 
   /**
    * Sets the name of the current dictionary based on the new dictionary that needs to be inserted.
-   * 
-   * @author lengist
+   *
    * @param name String representing the dictionary file name.
+   * @author lengist
    */
   public static void setCurrentDictionary(String dictionary) {
     currentDictionary = dictionary;
@@ -28,9 +29,9 @@ public class DictionaryParser {
 
   /**
    * Returns the name of the current inserted and used dictionary file
-   * 
-   * @author lengist
+   *
    * @return String representation of the current inserted dictionary file name
+   * @author lengist
    */
   public static String getFileName() {
     return currentDictionary;
@@ -38,9 +39,9 @@ public class DictionaryParser {
 
   /**
    * Returns the name of the new file to scan.
-   * 
-   * @author lengist
+   *
    * @return String representation of the new file name
+   * @author lengist
    */
   public static String getNewFileName() {
     return newFileName;
@@ -49,9 +50,9 @@ public class DictionaryParser {
   /**
    * Parses given file and creates a parsed file while using all methods of this class. Made for
    * initial call.
-   * 
-   * @author lengist
+   *
    * @param originalFile String name of the file from the inserted dictionary
+   * @author lengist
    */
   public static void parseFile(String originalFile) {
     StringBuilder sb = new StringBuilder(originalFile);
@@ -63,9 +64,9 @@ public class DictionaryParser {
 
   /**
    * Creates a new file with all the words that can be scanned now.
-   * 
-   * @author lengist
+   *
    * @param DictionaryFile The file the user inserts as new dictionary
+   * @author lengist
    */
   public static void createSearchableFile(String DictionaryFile) {
 
@@ -97,9 +98,9 @@ public class DictionaryParser {
 
   /**
    * Loads a file from the path and passes the lines of the document on to filterWords.
-   * 
-   * @author lengist
+   *
    * @param file with the name of the file for the dictionary
+   * @author lengist
    */
   private static void loadFile(String file) {
     try {
@@ -127,11 +128,12 @@ public class DictionaryParser {
   }
 
   // Check: file.createNewFile()
+
   /**
    * Filters the words with help of a regular expression and passes them to createDoc.
-   * 
-   * @author lengist
+   *
    * @param line A String representation of a line from the document
+   * @author lengist
    */
   private static void filterWords(String line) {
     /* regex: only words with at least two letters */
@@ -151,9 +153,9 @@ public class DictionaryParser {
 
   /**
    * Creates a document with the filtered and separated words.
-   * 
-   * @author lengist
+   *
    * @param word A String representing the proofed word to insert into the new document
+   * @author lengist
    */
   public static void createDoc(String word) {
     try {

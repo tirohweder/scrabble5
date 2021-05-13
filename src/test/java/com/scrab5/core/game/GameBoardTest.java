@@ -110,14 +110,12 @@ class GameBoardTest {
     Tile t1 = new Tile("1", 3);
     Tile t2 = new Tile("2", 3);
     Tile t3 = new Tile("3", 3);
-
     Tile t4 = new Tile("4", 3);
     Tile t5 = new Tile("5", 3);
 
     gameBoardTest.placeTile(t1, 7, 7);
     gameBoardTest.placeTile(t2, 7, 8);
     gameBoardTest.placeTile(t3, 7, 9);
-
     gameBoardTest.placeTile(t4, 5, 6);
     gameBoardTest.placeTile(t5, 5, 7);
 
@@ -126,11 +124,42 @@ class GameBoardTest {
     Tile t6 = new Tile("6", 3);
     Tile t7 = new Tile("7", 3);
     Tile t8 = new Tile("8", 3);
-    gameBoardTest.placeTile(t6, 5, 8);
     gameBoardTest.placeTile(t7, 6, 8);
     gameBoardTest.placeTile(t8, 8, 8);
 
-    System.out.println(gameBoardTest.countScore());
+    assertEquals(27, gameBoardTest.countScore());
+
+    gameBoardTest.clearBoard();
+
+    gameBoardTest.placeTile(t1, 13, 0);
+    gameBoardTest.placeTile(t2, 13, 1);
+    gameBoardTest.placeTile(t3, 13, 2);
+    gameBoardTest.placeTile(t4, 13, 3);
+    gameBoardTest.placeTile(t5, 13, 4);
+    gameBoardTest.placeTile(t6, 13, 5);
+
+    assertEquals(48, gameBoardTest.countScore());
+
+    gameBoardTest.clearBoard();
+
+    gameBoardTest.placeTile(t7, 0, 0);
+    gameBoardTest.placeTile(t8, 0, 1);
+    assertEquals(18, gameBoardTest.countScore());
+
+    gameBoardTest.clearBoard();
+
+    gameBoardTest.placeTile(t1, 0, 14);
+    gameBoardTest.placeTile(t2, 1, 14);
+    gameBoardTest.placeTile(t3, 2, 14);
+    gameBoardTest.placeTile(t4, 3, 14);
+    gameBoardTest.placeTile(t5, 4, 14);
+    gameBoardTest.placeTile(t6, 5, 14);
+
+    assertEquals(63, gameBoardTest.countScore());
+    gameBoardTest.placeTile(t7, 6, 14);
+
+    assertEquals(122, gameBoardTest.countScore());
+
   }
 
 
@@ -254,7 +283,7 @@ class GameBoardTest {
 
     assertEquals(false, gameBoardTest.checkWordsLegit());
 
-
+    
   }
 
 

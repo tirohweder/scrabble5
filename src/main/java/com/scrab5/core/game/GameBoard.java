@@ -343,27 +343,27 @@ public class GameBoard {
       int count = 1;
 
       // System.out.println("Current Tile: " + currentChanges.get(i).getLetter());
-      if (gameBoard[row - count][column] != null) {
+      if ((row - count >= 0) && gameBoard[row - count][column] != null) {
         drueber = true;
         // System.out.println("Drüber: " + gameBoard[row - count][column].getLetter());
       }
 
-      if (gameBoard[row + count][column] != null) {
+      if ((row + count < 15) && gameBoard[row + count][column] != null) {
         drunter = true;
         // System.out.println("Drunter: " + gameBoard[row + count][column].getLetter());
       }
 
-      if (gameBoard[row][column + count] != null) {
+      if ((column + count < 15) && gameBoard[row][column + count] != null) {
         rechts = true;
         // System.out.println("Rechts: " + gameBoard[row][column + count].getLetter());
       }
 
-      if (gameBoard[row][column - count] != null) {
+      if ((column - count >= 0) && gameBoard[row][column - count] != null) {
         links = true;
         // System.out.println("Links: " + gameBoard[row][column - count].getLetter());
       }
 
-      while (row - count >= 0 && drueber) {
+      while ((row - count >= 0) && row - count >= 0 && drueber) {
         if (gameBoard[row - count][column] != null) {
           touchedTiles[row - count][column] = gameBoard[row - count][column];
           // System.out.println("druebersucces");
@@ -375,7 +375,7 @@ public class GameBoard {
 
       count = 1;
 
-      while (row + count <= 14 && drunter) {
+      while ((row + count < 15) && row + count <= 14 && drunter) {
         if (gameBoard[row + count][column] != null) {
           touchedTiles[row + count][column] = gameBoard[row + count][column];
           // System.out.println("druntersucces");
@@ -387,7 +387,7 @@ public class GameBoard {
 
       count = 1;
 
-      while (column + count <= 14 && rechts) {
+      while ((column + count < 15) && column + count <= 14 && rechts) {
         if (gameBoard[row][column + count] != null) {
           touchedTiles[row][column + count] = gameBoard[row][column + count];
           // System.out.println("rechts succes");
@@ -399,7 +399,7 @@ public class GameBoard {
 
       count = 1;
 
-      while (column - count >= 0 && links) {
+      while ((column - count >= 0) && column - count >= 0 && links) {
         if (gameBoard[row][column - count] != null) {
           touchedTiles[row][column - count] = gameBoard[row][column - count];
           // System.out.println("links succes");
@@ -516,16 +516,5 @@ public class GameBoard {
     currentChanges.clear();
     firstTile = true;
   }
-
-  /**
-   * This method will return the Tile which is on the position of the parameter
-   *
-   * @param row
-   * @param
-   * @return
-   * @author hraza
-   */
-  public Tile getPlacedTile(int row, int col) {
-    return gameBoard[row][col];
-  }
 }
+

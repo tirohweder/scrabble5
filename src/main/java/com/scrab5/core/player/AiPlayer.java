@@ -1,8 +1,8 @@
 package com.scrab5.core.player;
 
-import java.util.ArrayList;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.util.textParser.DictionaryScanner;
+import java.util.ArrayList;
 
 public class AiPlayer extends Player {
 
@@ -22,7 +22,7 @@ public class AiPlayer extends Player {
 
   /**
    * In this method all other methods will be called
-   * 
+   *
    * @param
    * @author hraza
    */
@@ -33,7 +33,7 @@ public class AiPlayer extends Player {
 
   /**
    * In this method the current Gameboard will be scanned for occupied Spots
-   * 
+   *
    * @param
    * @author hraza
    */
@@ -51,7 +51,7 @@ public class AiPlayer extends Player {
 
   /**
    * This Method is looking for free valid Spots around the given position
-   * 
+   *
    * @param x
    * @param y
    * @author hraza
@@ -143,7 +143,7 @@ public class AiPlayer extends Player {
   /**
    * This Method will create all combinations of Bag-tiles and the tile on the Gameboard and will
    * add the valid ones to the wordslist
-   * 
+   *
    * @param fixLetter
    * @param before
    * @param after
@@ -174,7 +174,7 @@ public class AiPlayer extends Player {
       if (DictionaryScanner.scan((prefix))) {
         System.out.println(prefix);
         return prefix;
-      }else {
+      } else {
         return "";
       }
     }
@@ -191,7 +191,7 @@ public class AiPlayer extends Player {
 
   /**
    * This Method will calculate the the Points of a word
-   * 
+   *
    * @param word
    * @author hraza
    */
@@ -206,13 +206,13 @@ public class AiPlayer extends Player {
 
     AiPlayer ai = new AiPlayer("Peter");
 
-
     System.out.println("Test");
     char[] set = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
     int k = 8;
     //ai.printAllKLength(set, k, 2, 'd');
-    if(DictionaryScanner.scan(("Hallo"))) {
+    if (DictionaryScanner.scan(("Hallo"))) {
       System.out.println("ja");
+      
     }
   }
 
