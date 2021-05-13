@@ -51,6 +51,7 @@ public class ServerStatistics implements Serializable {
       throw new Exception();
     }
     this.serverStatistics.put(clientname, new ClientStatistic(clientname, IPAddress));
+    System.out.println("player added");
     return true;
   }
 

@@ -179,8 +179,8 @@ public class UseDatabase extends Database {
   public static ServerStatistics getServerStatistics(String serverHostName) {
     try {
       Statement stm = connection.createStatement();
-      ResultSet s =
-          stm.executeQuery("SELECT * FROM Server WHERE ServerHostName = " + serverHostName);
+      ResultSet s = stm
+          .executeQuery("SELECT * FROM Server WHERE (ServerHostName = '" + serverHostName + "');");
       ServerStatistics ss = new ServerStatistics();
       String client = "", IPAddress = "";
       int gamesPlayed, gamesWon;

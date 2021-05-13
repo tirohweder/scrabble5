@@ -333,11 +333,12 @@ public class FillDatabase extends Database {
    * @author nitterhe
    * @param name String with name of the user
    */
-  public static void createServerRow(Server serverObject, String clientUsername, String IPAddress) {
+  public synchronized static void createServerRow(String ServerHost, String clientUsername,
+      String IPAddress) {
     try {
       pstmServer = connection.prepareStatement(
           "INSERT INTO Server (ServerHostName, ClientUsername, GamesPlayed, GamesWon, IPAddress) VALUES (?,?,?,?, ?);");
-      pstmServer.setString(1, serverObject.getHost());
+      pstmServer.setString(1, ServerHost);
       pstmServer.setString(2, clientUsername);
       pstmServer.setInt(3, 0);
       pstmServer.setInt(4, 0);
@@ -359,7 +360,7 @@ public class FillDatabase extends Database {
    */
   public static void updateServer(Server serverObject) {
     String sql =
-        "UPDATE Server SET gamesPlayed = ?, gamesWon = ? WHERE ServerHostName = ? AND ClientUsername = ?";
+        "UPDATE Server SET gamesPlayed = ?, gamesWon = ? WHERE ServerHostName = ? AND ClientUsername = ?;";
     PreparedStatement pstm;
     try {
       Iterator<ClientStatistic> iterator =
@@ -372,7 +373,6 @@ public class FillDatabase extends Database {
         pstm.setInt(2, cs.getGamesWon());
         pstm.setString(3, serverObject.getHost());
         pstm.setString(4, cs.getClientName());
-        pstm.setString(5, cs.getIPAddress());
         pstm.executeUpdate();
       }
     } catch (SQLException e) {
