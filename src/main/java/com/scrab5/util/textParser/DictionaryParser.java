@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
 public class DictionaryParser {
 
   static BufferedWriter bufWriter = null;
-  //private static String currentDictionary;
+  // private static String currentDictionary;
   private static String currentDictionary = "Built-In Standard Dictionary.txt";
   private static String newFileName = null;
 
@@ -167,7 +167,8 @@ public class DictionaryParser {
   }
 
   public static void main(String[] args) {
-    parseFile(currentDictionary);
+    // parseFile(currentDictionary);
+    parseFile("Built-In Standard Dictionary.txt");
   }
 
 }

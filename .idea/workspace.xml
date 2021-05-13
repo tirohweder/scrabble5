@@ -6,7 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/textParser/DictionaryParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/textParser/DictionaryParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/textParser/DictionaryScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/textParser/DictionaryScanner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameBoardTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,7 +60,7 @@
       <recent name="com.scrab5.util.textParser" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GameBoardTest.countScore">
+  <component name="RunManager" selected="JUnit.GameBoardTest">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -69,6 +70,37 @@
       <option name="TEST_OBJECT" value="CLASS" />
       <properties />
       <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameBoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="scrabble5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scrab5.core.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameBoardTest.checkWordsLegit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="scrabble5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scrab5.core.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
+      <option name="METHOD_NAME" value="checkWordsLegit" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -105,22 +137,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameBoardTest.isSpotFree" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="scrabble5" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.scrab5.core.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
-      <option name="METHOD_NAME" value="isSpotFree" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="GameBoardTest.placeTile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
@@ -132,22 +148,6 @@
       <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
       <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
       <option name="METHOD_NAME" value="placeTile" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameBoardTest.removeTile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="scrabble5" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.scrab5.core.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
-      <option name="METHOD_NAME" value="removeTile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -180,20 +180,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Maven.scrabble5 [clean,package]" />
-      <item itemvalue="JUnit.GameBoardTest.removeTile" />
-      <item itemvalue="JUnit.GameBoardTest.isSpotFree" />
       <item itemvalue="JUnit.GameBoardTest.placeTile" />
       <item itemvalue="JUnit.GameBoardTest.countScore" />
       <item itemvalue="JUnit.GameBoardTest.getTouchedWords" />
+      <item itemvalue="Maven.scrabble5 [clean,package]" />
+      <item itemvalue="JUnit.GameBoardTest.checkWordsLegit" />
+      <item itemvalue="JUnit.GameBoardTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameBoardTest" />
         <item itemvalue="JUnit.GameBoardTest.countScore" />
+        <item itemvalue="JUnit.GameBoardTest.checkWordsLegit" />
         <item itemvalue="JUnit.GameBoardTest.getTouchedWords" />
         <item itemvalue="JUnit.GameBoardTest.placeTile" />
-        <item itemvalue="JUnit.GameBoardTest.isSpotFree" />
-        <item itemvalue="JUnit.GameBoardTest.removeTile" />
       </list>
     </recent_temporary>
   </component>
@@ -221,7 +221,7 @@
       <workItem from="1620626649511" duration="7208000" />
       <workItem from="1620721248878" duration="7062000" />
       <workItem from="1620746951271" duration="7599000" />
-      <workItem from="1620892937495" duration="3832000" />
+      <workItem from="1620892937495" duration="5992000" />
     </task>
     <task id="LOCAL-00001" summary="#69 add strucutre">
       <created>1619793717336</created>
@@ -314,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620903560506</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="#66 Fixed countScore Test">
+      <created>1620904270520</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1620904270520</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -355,7 +362,8 @@
     <MESSAGE value="#66 added placetile functionality" />
     <MESSAGE value="#66 push for count" />
     <MESSAGE value="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/game/EasyAI.java&#10;#&#9;src/main/java/com/scrab5/core/player/PlayerProfile.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/game/EasyAI.java&#10;#&#9;src/main/java/com/scrab5/core/player/PlayerProfile.java" />
+    <MESSAGE value="#66 Fixed countScore Test" />
+    <option name="LAST_COMMIT_MESSAGE" value="#66 Fixed countScore Test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
