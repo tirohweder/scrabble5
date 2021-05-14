@@ -72,6 +72,9 @@ public class GameBoard {
 
 
   public boolean removeTile(int row, int column) {
+    if (gameBoard[row][column] != null) {
+      return false;
+    }
     if (!isSpotFree(row, column) && currentChanges.size() > 0) {
       Tile t = gameBoardCurrent[row][column];
       gameBoardCurrent[row][column] = null;
@@ -99,6 +102,7 @@ public class GameBoard {
       for (int j = 0; j < 15; j++) {
         if (gameBoardCurrent[i][j] != null) {
           gameBoard[i][j] = gameBoardCurrent[i][j];
+          
         }
 
       }
