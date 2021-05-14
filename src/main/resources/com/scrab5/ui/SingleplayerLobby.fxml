@@ -186,17 +186,17 @@
             </Label>
             <ImageView fx:id="diffButton1" fitHeight="17.0" fitWidth="18.0" layoutX="569.0" layoutY="225.0" onMouseClicked="#clickDiffBox1" onMouseEntered="#lightenArrow" onMouseExited="#darkenArrow" onMousePressed="#darkenArrow" onMouseReleased="#lightenArrow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/SB05_PlayerVoteButtonClicked.png" />
+                  <Image url="@images/SB05_PlayerVoteButton.png" />
                </image>
             </ImageView>
             <ImageView fx:id="diffButton2" fitHeight="17.0" fitWidth="18.0" layoutX="569.0" layoutY="264.0" onMouseClicked="#clickDiffBox2" onMouseEntered="#lightenArrow" onMouseExited="#darkenArrow" onMousePressed="#darkenArrow" onMouseReleased="#lightenArrow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/SB05_PlayerVoteButtonClicked.png" />
+                  <Image url="@images/SB05_PlayerVoteButton.png" />
                </image>
             </ImageView>
             <ImageView fx:id="diffButton3" fitHeight="17.0" fitWidth="18.0" layoutX="569.0" layoutY="302.0" onMouseClicked="#clickDiffBox3" onMouseEntered="#lightenArrow" onMouseExited="#darkenArrow" onMousePressed="#darkenArrow" onMouseReleased="#lightenArrow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/SB05_PlayerVoteButtonClicked.png" />
+                  <Image url="@images/SB05_PlayerVoteButton.png" />
                </image>
             </ImageView>
             <ComboBox fx:id="diffBox1" layoutX="490.0" layoutY="220.0" onAction="#setDifficulty1" onMouseClicked="#dontShow" opacity="0.0" prefHeight="25.0" prefWidth="78.0" />
