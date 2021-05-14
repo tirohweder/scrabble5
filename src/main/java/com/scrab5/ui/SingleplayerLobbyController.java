@@ -56,8 +56,8 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
     ArrayList<Player> test = new ArrayList<Player>();
 
-    test.add(humanPlayer);
-    test.add(humanPlayer1);
+    test.add(0, humanPlayer);
+    test.add(1, humanPlayer1);
 
     if (Data.getHasBeenEdited()) {
       Data.getPointsDistribution();

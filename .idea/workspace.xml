@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/test/java/com/scrab5/core/game/GameBoardTest.java">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/ServerThread.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" afterDir="false" />
+    <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameSessionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/RackTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AiPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AiPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/Data.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/MultiplayerLobby.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/MultiplayerLobby.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SingleplayerLobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SingleplayerLobbyController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -52,6 +52,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -59,11 +61,17 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.scrab5.util.textParser" />
     </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.scrab5.core.game" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.AiPlayer">
+  <component name="RunManager" selected="JUnit.GameSessionTest.finishTurn">
     <configuration name="AiPlayer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.scrab5.core.player.AiPlayer" />
       <module name="scrabble5" />
@@ -88,6 +96,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CreateTest.testCreatePlayer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="scrabble5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scrab5.util.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.scrab5.util.database" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.util.database.CreateTest" />
+      <option name="METHOD_NAME" value="testCreatePlayer" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="GameBoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
@@ -99,22 +123,6 @@
       <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
       <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameBoardTest.checkWordsLegit" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="scrabble5" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.scrab5.core.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
-      <option name="METHOD_NAME" value="checkWordsLegit" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -135,7 +143,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameBoardTest.getTouchedWords" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameSessionTest.finishTurn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
         <pattern>
@@ -144,8 +152,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
-      <option name="METHOD_NAME" value="getTouchedWords" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameSessionTest" />
+      <option name="METHOD_NAME" value="finishTurn" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -180,18 +188,18 @@
     <list>
       <item itemvalue="Application.AiPlayer" />
       <item itemvalue="JUnit.GameBoardTest.countScore" />
-      <item itemvalue="JUnit.GameBoardTest.getTouchedWords" />
-      <item itemvalue="JUnit.GameBoardTest.checkWordsLegit" />
       <item itemvalue="JUnit.GameBoardTest" />
       <item itemvalue="Maven.scrabble5 [clean,package]" />
+      <item itemvalue="JUnit.CreateTest.testCreatePlayer" />
+      <item itemvalue="JUnit.GameSessionTest.finishTurn" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameSessionTest.finishTurn" />
+        <item itemvalue="JUnit.CreateTest.testCreatePlayer" />
         <item itemvalue="Application.AiPlayer" />
         <item itemvalue="JUnit.GameBoardTest" />
         <item itemvalue="JUnit.GameBoardTest.countScore" />
-        <item itemvalue="JUnit.GameBoardTest.checkWordsLegit" />
-        <item itemvalue="JUnit.GameBoardTest.getTouchedWords" />
       </list>
     </recent_temporary>
   </component>
