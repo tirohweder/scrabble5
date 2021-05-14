@@ -3,14 +3,12 @@ package com.scrab5.core.game;
 import org.junit.jupiter.api.Test;
 
 class RackTest {
-
-  private Rack testRack = new Tile[];
+  
 
   @Test
   void fill() {
 
-    assertEquals(null, testRack[0]);
-
+    //ssertEquals(null, testRack[0]);
 
   }
 
