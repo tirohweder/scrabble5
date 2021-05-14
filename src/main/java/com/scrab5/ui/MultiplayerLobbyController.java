@@ -2,8 +2,12 @@ package com.scrab5.ui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
+import com.scrab5.network.ClientData;
+import com.scrab5.network.Server;
 import com.scrab5.util.database.PlayerProfileDatabase;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -18,7 +22,17 @@ import javafx.scene.input.MouseEvent;
 public class MultiplayerLobbyController extends LobbyController implements Initializable {
 
   @FXML
-  private Label player1, ready1, playerNameStats1, played1, won1, score1;
+  private Label player1, player2, player3, player4;
+  @FXML
+  private Label ready1, ready2, ready3, ready4;
+  @FXML
+  private Label playerNameStats1, playerNameStats2, playerNameStats3, playerNameStats4;
+  @FXML
+  private Label played1, played2, played3, played4;
+  @FXML
+  private Label won1, won2, won3, won4;
+  @FXML
+  private Label score1, score2, score3, score4;
 
   private boolean isReady1 = false;
 
@@ -29,11 +43,13 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // this.playerAmount = 2;
     this.isClickable();
     setUpInit();
 
+    refreshUI();
+
     String name = Data.getCurrentUser();
+    this.playerNameStats1.setText(name);
     this.played1.setText(PlayerProfileDatabase.getTotalPlayedGames(name) + "");
     this.won1.setText(PlayerProfileDatabase.getTotalWins(name) + "");
     this.score1.setText(PlayerProfileDatabase.getTotalPoints(name) + "");
@@ -45,8 +61,12 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    * @author nitterhe
    * @throws IOException
    */
-  public static void lobbyClosed() throws IOException {
-    App.setRoot("MultiplayerOverview");
+  public static void lobbyClosed() {
+    try {
+      App.setRoot("MultiplayerOverview");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -61,7 +81,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   protected void back(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     Data.getPlayerClient().disconnectFromServer();
-    App.setRoot("MultiplayerOverview");
   }
 
   @FXML
@@ -207,5 +226,72 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.addPlayerButton.setOpacity(0);
       return true;
     }
+  }
+
+  @Override
+  protected void startGame(MouseEvent event) throws IOException {
+    // TODO Auto-generated method stub
+
+  }
+
+  public void refreshUI() {
+
+    Thread t = new Thread(new Runnable() {
+
+      @Override
+      public void run() {
+        System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+
+        while (Data.getPlayerClient().getClientThread().isAlive()) {
+          Server UIServer = Data.getPlayerClient().getCurrentServer();
+          Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
+
+
+          Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+              if (iterator.hasNext()) {
+                ClientData client1 = iterator.next();
+                player1.setText(client1.getUsername());
+              }
+
+              if (iterator.hasNext()) {
+                ClientData client2 = iterator.next();
+                player2.setText(client2.getUsername());
+
+              }
+              if (iterator.hasNext()) {
+                ClientData client3 = iterator.next();
+                player3.setText(client3.getUsername());
+              }
+              if (iterator.hasNext()) {
+                ClientData client4 = iterator.next();
+                player4.setText(client4.getUsername());
+              }
+
+            }
+          });
+          synchronized (this) {
+            try {
+              this.wait(200);
+            } catch (InterruptedException e) {
+              // e.printStackTrace();
+            }
+          }
+        }
+      }
+    });
+
+    // 1. clients refresh
+    // 2. leaderboard
+    // 3. gameState
+
+    t.start();
+  }
+
+
+  public static void displayChatMessage(String text) {
+
   }
 }

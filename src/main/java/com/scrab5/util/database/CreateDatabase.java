@@ -66,7 +66,7 @@ public class CreateDatabase extends Database {
     removeTable("Server");
     try (Statement stm = connection.createStatement()) {
       String sql = "CREATE TABLE Server (ServerHostName TEXT NOT NULL," + "ClientUsername TEXT,"
-          + "GamesPlayed INTEGER," + "GamesWon INTEGER" + "IPAddress TEXT NOT NULL)";
+          + "GamesPlayed INTEGER," + "GamesWon INTEGER," + "IPAddress TEXT NOT NULL)";
       stm.executeUpdate(sql);
       System.out.println("Table for server generated!");
     } catch (SQLException e) {

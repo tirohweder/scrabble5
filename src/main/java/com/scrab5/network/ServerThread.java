@@ -15,7 +15,6 @@ import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.SendServerDataMessage;
-import com.scrab5.util.database.FillDatabase;
 
 public class ServerThread extends Threads {
 
@@ -23,7 +22,7 @@ public class ServerThread extends Threads {
   private Server server;
   private ObjectOutputStream toClient;
   private ObjectInputStream fromClient;
-  private Client connectedClient;
+  private ClientData connectedClient;
 
   /**
    * Construtor for the ServerThread. Sets up the socket for 1 client and opens streams and handles
@@ -40,7 +39,7 @@ public class ServerThread extends Threads {
       toClient = new ObjectOutputStream(socketToClient.getOutputStream());
       fromClient = new ObjectInputStream(socketToClient.getInputStream());
     } catch (Exception e) {
-      // requires exception handling
+      System.out.println("Server could not implement streams");
     }
   }
 
@@ -52,6 +51,7 @@ public class ServerThread extends Threads {
   public void run() {
     this.running = true;
 
+
     try {
       Message message;
       while (this.running) {
@@ -59,13 +59,15 @@ public class ServerThread extends Threads {
         switch (message.getType()) {
 
           case GETSERVERDATA:
-            sendMessageToClient(
-                new SendServerDataMessage(this.server.getHost(), this.server.getClientCounter(),
-                    this.server.getClientMaximum(), this.server.getStatus()));
-            this.closeConnection();
+            sendMessageToClient(new SendServerDataMessage(this.server.getHost(),
+                this.socketToClient.getLocalPort(), this.server.getClientCounter(),
+                this.server.getClientMaximum(), this.server.getStatus()));
+            this.stopThread();
+            this.socketToClient.close();
             break;
           case CONNECT:
             ConnectMessage connect = (ConnectMessage) message;
+            this.connectedClient = connect.getClientData();
             try {
               addClient(connect.getClientData());
             } catch (Exception e) {
@@ -79,8 +81,8 @@ public class ServerThread extends Threads {
               server.shutDownServer();
             } else {
               deleteClient(disconnect.getSender());
+              closeConnection();
             }
-            this.stopThread();
             break;
           case CHAT:
             ChatMessage chat = (ChatMessage) message;
@@ -92,7 +94,8 @@ public class ServerThread extends Threads {
         this.server.sendUpdateMessage();
       }
     } catch (Exception e) {
-      new NetworkError(NetworkErrorType.COMMUNICATION);
+      // e.printStackTrace();
+      new NetworkError(NetworkErrorType.SERVERRUN);
     }
   }
 
@@ -108,8 +111,10 @@ public class ServerThread extends Threads {
    */
   private void addClient(ClientData clientData) throws Exception {
     if (null == server.getClients().get(clientData.getUsername())) {
-      if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp()))
-        FillDatabase.createServerRow(this.server, clientData.getUsername(), clientData.getIp());
+      if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
+        // FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
+        // clientData.getIp());
+      }
       server.getClients().put(clientData.getUsername(), clientData);
       server.getConnections().put(clientData, this);
       server.updateClientCount();
@@ -133,7 +138,6 @@ public class ServerThread extends Threads {
       this.server.updateClientCount();
       this.closeConnection();
     }
-    // maybe else, idk doesnt feel necessary
   }
 
   /**
@@ -142,7 +146,7 @@ public class ServerThread extends Threads {
    * @author nitterhe
    * @return connectedClient - the connected client
    */
-  public Client getClient() {
+  public ClientData getClient() {
     return this.connectedClient;
   }
 
@@ -152,13 +156,13 @@ public class ServerThread extends Threads {
    * @author nitterhe
    * @param message - the message to send
    */
-  public void sendMessageToClient(Message message) {
+  public synchronized void sendMessageToClient(Message message) {
     try {
       this.toClient.writeObject(message);
       this.toClient.flush();
       this.toClient.reset();
     } catch (Exception e) {
-      // requires Exception handling
+      e.printStackTrace();
     }
   }
 

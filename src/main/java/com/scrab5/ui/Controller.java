@@ -1,5 +1,6 @@
 package com.scrab5.ui;
 
+import java.util.Set;
 import com.scrab5.util.database.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -60,11 +61,14 @@ public abstract class Controller {
   private void closeGame(MouseEvent event) {
     Database.disconnect();
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+    if (Data.getHostedServer() != null) {
+      Data.getHostedServer().shutDownServer();
+    }
 
-    // Set<Thread> threads = Thread.getAllStackTraces().keySet();
-    // for (Thread t : threads) {
-    // System.out.println(t);
-    // }
+    Set<Thread> threads = Thread.getAllStackTraces().keySet();
+    for (Thread t : threads) {
+      System.out.println(t);
+    }
 
     // if (Data.getPlayerServer() != null)
     // Data.getPlayerServer().shutDownServer();

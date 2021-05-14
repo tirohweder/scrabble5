@@ -1,6 +1,7 @@
 package com.scrab5.core.game;
 
 import com.scrab5.core.player.Player;
+import com.scrab5.ui.Data;
 import com.scrab5.util.database.UseDatabase;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,70 +11,71 @@ import java.util.Iterator;
 public class GameSession {
 
 
-  public static GameBoard getGameBoard() {
+  public GameBoard getGameBoard() {
     return gameBoard;
   }
 
-  public static void setGameBoard(GameBoard gameBoard) {
-    GameSession.gameBoard = gameBoard;
+  public void setGameBoard(GameBoard gameBoard) {
+    this.gameBoard = gameBoard;
   }
 
-  public static BagOfTiles getBag() {
+
+  public BagOfTiles getBag() {
     return bag;
   }
 
-  public static void setBag(BagOfTiles bag) {
-    GameSession.bag = bag;
+  public void setBag(BagOfTiles bag) {
+    this.bag = bag;
   }
 
-  public static ArrayList<Player> getListOfPlayers() {
+  public ArrayList<Player> getListOfPlayers() {
     return listOfPlayers;
   }
 
-  public static void setListOfPlayers(ArrayList<Player> listOfPlayers) {
-    GameSession.listOfPlayers = listOfPlayers;
+  public void setListOfPlayers(ArrayList<Player> listOfPlayers) {
+    this.listOfPlayers = listOfPlayers;
   }
 
-  public static int getSkippedTurn() {
+  public int getSkippedTurn() {
     return skippedTurn;
   }
 
-  public static void setSkippedTurn(int skippedTurn) {
-    GameSession.skippedTurn = skippedTurn;
+  public void setSkippedTurn(int skippedTurn) {
+    this.skippedTurn = skippedTurn;
   }
 
-  public static int getRoundNumber() {
+  public int getRoundNumber() {
     return roundNumber;
   }
 
-  public static void setRoundNumber(int roundNumber) {
-    GameSession.roundNumber = roundNumber;
+  public void setRoundNumber(int roundNumber) {
+    this.roundNumber = roundNumber;
   }
 
-  public static boolean isCanEnd() {
+  public boolean isCanEnd() {
     return canEnd;
   }
 
-  public static void setCanEnd(boolean canEnd) {
-    GameSession.canEnd = canEnd;
+  public void setCanEnd(boolean canEnd) {
+    this.canEnd = canEnd;
   }
 
-  public static Player getCurrentPlayer() {
+  public Player getCurrentPlayer() {
     return currentPlayer;
   }
 
-  public static void setCurrentPlayer(Player currentPlayer) {
-    GameSession.currentPlayer = currentPlayer;
+  public void setCurrentPlayer(Player currentPlayer) {
+    this.currentPlayer = currentPlayer;
   }
 
-  private static GameBoard gameBoard = new GameBoard();
-  private static BagOfTiles bag = new BagOfTiles();
-  private static ArrayList<Player> listOfPlayers = new ArrayList<>();
-  private static int skippedTurn = 0;
-  private static int roundNumber = 0;
-  private static boolean canEnd = false;
-  private static Player currentPlayer;
-  private static String currentDic;
+  private GameBoard gameBoard = new GameBoard();
+  private BagOfTiles bag = new BagOfTiles();
+  private ArrayList<Player> listOfPlayers = new ArrayList<>();
+  private int skippedTurn = 0;
+  private int roundNumber = 0;
+  private boolean canEnd = false;
+  private Player currentPlayer;
+  private String currentDic;
 
   // initialize bag fills the bag with the selected tiles
 
@@ -83,43 +85,76 @@ public class GameSession {
    * @throws SQLException
    * @author trohwede
    */
+  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
+      ArrayList<Integer> points) throws SQLException {
+    this.listOfPlayers = listOfPlayers;
+    currentPlayer = listOfPlayers.get(0);
+
+    initializeBag(letters, points);
+    Iterator<Player> iter = listOfPlayers.iterator();
+    while (iter.hasNext()) {
+      iter.next().getRack().fill(bag);
+    }
+  }
+
   public GameSession(ArrayList<Player> listOfPlayers) throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
+    System.out.println("GFuck you homo");
+
     initializeBag();
+
+    Iterator<Player> iter = listOfPlayers.iterator();
+    while (iter.hasNext()) {
+      iter.next().getRack().fill(bag);
+      System.out.println("GFuck you homo2");
+      System.out.println(currentPlayer.getRack().getTileAt(0));
+    }
+  }
+
+
+  public void createGameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
+      ArrayList<Integer> points) throws SQLException {
+    this.listOfPlayers = listOfPlayers;
+    currentPlayer = listOfPlayers.get(0);
+
+    initializeBag(letters, points);
     Iterator<Player> iter = listOfPlayers.iterator();
     while (iter.hasNext()) {
       iter.next().getRack().fill(bag);
     }
 
-
   }
 
-  public void initializeBag() throws SQLException {
+  public void initializeBag()
+      throws SQLException {
+
+    System.out.println("tedqwokdoq");
     ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
       this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
     }
   }
 
+  public void initializeBag(ArrayList<Integer> letters, ArrayList<Integer> points)
+      throws SQLException {
+    if (!Data.getHasBeenEdited()) {
+      ResultSet rs = UseDatabase.viewLetters();
+      while (rs.next()) {
+        this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
+      }
+    } else {
+      for (int i = 0; i < letters.size(); i++) {
 
-  public boolean play(Tile t, int rackNumber, int row, int column) {
-    if (gameBoard.checkWordsLegit()) {
-      int points = gameBoard.countScore();
-      roundNumber++;
-      setCurrentPlayer();
-      gameBoard.finishTurn();
-
-
+      }
     }
-    return true;
   }
 
-  public void setCurrentPlayer() {
+  public void finishTurn() {
+    currentPlayer.getRack().fill(bag);
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
   }
-
 
   public void endGame() {
   }

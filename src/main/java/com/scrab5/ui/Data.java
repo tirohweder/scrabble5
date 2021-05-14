@@ -140,8 +140,13 @@ public class Data {
   }
 
   public static void setPlayerClient(Client client) {
-    if (playerClient == null)
+    if (playerClient == null) {
       playerClient = client;
+    }
+  }
+
+  public static void updatePlayerClient(Client client) {
+    playerClient = client;
   }
 
   public static void setHostedServer(Server server) {

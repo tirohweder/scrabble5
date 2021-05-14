@@ -1,6 +1,7 @@
 package com.scrab5.ui;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.URL;
 import java.util.ResourceBundle;
 import com.scrab5.util.database.FillDatabase;
@@ -73,7 +74,6 @@ public class AccountCreationController extends Controller implements Initializab
    */
   @FXML
   private void enterPressed(KeyEvent event) throws IOException {
-
     if (event.getCode() == KeyCode.ENTER && this.isUsernameValid(this.nickname.getText())) {
       App.setMusicVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
@@ -138,6 +138,8 @@ public class AccountCreationController extends Controller implements Initializab
         this.createdUsername = username;
         Data.setCurrentUser(this.createdUsername);
         FillDatabase.createPlayer(this.createdUsername, null);
+        FillDatabase.createServerRow(Data.getCurrentUser(), Data.getCurrentUser(),
+            InetAddress.getLocalHost().getHostAddress());
 
         message = "Congratulations! Your account has been created";
         pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);

@@ -9,6 +9,7 @@ package com.scrab5.network.messages;
 public class SendServerDataMessage extends Message {
   private static final long serialVersionUID = 1L;
 
+  private int port;
   private int clientCounter;
   private int clientMaximum;
   private boolean status;
@@ -22,13 +23,24 @@ public class SendServerDataMessage extends Message {
    * @param clientMaxmimum - the maximum amount of clients allowed to connect to the server
    * @param status - the server's status (true = in game/ false = waiting for clients)
    */
-  public SendServerDataMessage(String sender, int clientCounter, int clientMaximum,
+  public SendServerDataMessage(String sender, int port, int clientCounter, int clientMaximum,
       boolean status) {
     super(sender);
     this.type = MessageType.SENDSERVERDATA;
+    this.port = port;
     this.clientCounter = clientCounter;
     this.clientMaximum = clientMaximum;
     this.status = status;
+  }
+
+  /**
+   * Returns the port that the server is waiting on for messages.
+   * 
+   * @author nitterhe
+   * @return port - the server's port for this client
+   */
+  public int getPort() {
+    return this.port;
   }
 
   /**

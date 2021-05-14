@@ -7,10 +7,6 @@ public class Rack {
 
   private Tile[] rack = new Tile[7];
 
-  public Rack() {
-
-  }
-
 
   /**
    * @param bag
@@ -19,7 +15,7 @@ public class Rack {
   public void fill(BagOfTiles bag) {
     for (int i = 0; i < 7; i++) {
       if (this.rack[i] == null && bag.getSize() >= 1) {
-
+        System.out.println("test");
         rack[i] = bag.pick();
         rack[i].setRackPlace(i);
       }
@@ -43,7 +39,7 @@ public class Rack {
   public boolean exchangeRack(int place) {
 
     if (rack[place] != null) {
-      
+
     }
 
     return false;
@@ -110,7 +106,7 @@ public class Rack {
 
     Random rand = new Random();
     int random, values = 7, swapWith;
-    Tile swap; 
+    Tile swap;
 
     for (int i = 1; i <= 7; i++) {
       random = rand.nextInt(values);
@@ -124,7 +120,7 @@ public class Rack {
       rack[swapWith].setRackPlace(i);
     }
   }
-  
+
   /**
    * @author apilgrim
    */
