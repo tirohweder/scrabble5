@@ -99,10 +99,13 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
     playSound("ButtonClicked.mp3");
 
-    if (!isReady) {
+    if (isReady) {
+      this.isReady = false;
+    } else {
       this.isReady = true;
-      Data.getPlayerClient().setReady(this.isReady);
     }
+    Data.getPlayerClient().setReady(this.isReady);
+
   }
 
   @FXML
@@ -273,33 +276,37 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
               if (iterator.hasNext()) {
                 client = iterator.next();
                 player1.setText(client.getUsername());
-                ready1.setText("" + client.isReady());
+                ready1.setText(client.isReady() ? "Ready" : "Not Ready");
               } else {
                 player1.setText("");
+                ready1.setText("");
               }
 
               if (iterator.hasNext()) {
                 client = iterator.next();
                 player2.setText(client.getUsername());
-                ready2.setText("" + client.isReady());
+                ready2.setText(client.isReady() ? "Ready" : "Not Ready");
               } else {
                 player2.setText("");
+                ready2.setText("");
               }
 
               if (iterator.hasNext()) {
                 client = iterator.next();
                 player3.setText(client.getUsername());
-                ready3.setText("" + client.isReady());
+                ready3.setText(client.isReady() ? "Ready" : "Not Ready");
               } else {
                 player3.setText("");
+                ready3.setText("");
               }
 
               if (iterator.hasNext()) {
                 client = iterator.next();
                 player4.setText(client.getUsername());
-                ready4.setText("" + client.isReady());
+                ready4.setText(client.isReady() ? "Ready" : "Not Ready");
               } else {
                 player4.setText("");
+                ready4.setText("");
               }
 
               ClientStatistic help;
