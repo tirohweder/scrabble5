@@ -1,46 +1,35 @@
 package com.scrab5.ui;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * The LoginController class controls the components of the "Login" scene
+ * The LoginController class controls the components of the Login.fxml.
  * 
  * @author mherre
  *
  */
 
-public class LoginController extends Controller implements Initializable {
+public class LoginController extends Controller {
 
   @FXML
   private ImageView quitButton;
   @FXML
   private ImageView createButton;
 
-  @Override
-  public void initialize(URL arg0, ResourceBundle arg1) {
-    // TODO Auto-generated method stub
-
-  }
-
-
-
   /**
-   * Is called when "Create" is clicked. Sets the next scene to "AccountCreation"
+   * Event method that is called when the "Create"-button in the UI is clicked. Sets the next scene
+   * to "AccountCreation". Changes the scene to "AccountCreation.fxml".
    * 
    * @author mherre
-   * @param event
-   * @throws IOException
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   @FXML
   private void create(MouseEvent event) throws IOException {
     App.setRoot("AccountCreation");
-
   }
-
 }

@@ -263,6 +263,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 0 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -276,6 +277,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 1 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -289,6 +291,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 2 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -302,6 +305,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 3 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -315,6 +319,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 4 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -328,6 +333,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 5 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -341,6 +347,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 6 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -355,6 +362,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 7 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
