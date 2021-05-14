@@ -35,6 +35,19 @@ public class ServerStatistics implements Serializable {
     return this.serverStatistics;
   }
 
+
+  public ClientStatistic get(int i) {
+    Iterator<ClientStatistic> it = serverStatistics.values().iterator();
+    if (i <= serverStatistics.size()) {
+      ClientStatistic cs = null;
+      for (int j = 0; j < i; j++) {
+        cs = it.next();
+      }
+      return cs;
+    }
+    return null;
+  }
+
   /**
    * Adds the client to serverStatistics if the client is new. Double if statement is used to avoid
    * NullpointerExceptions.
@@ -52,6 +65,7 @@ public class ServerStatistics implements Serializable {
     }
     this.serverStatistics.put(clientname, new ClientStatistic(clientname, IPAddress));
     System.out.println("player added");
+    this.sort();
     return true;
   }
 

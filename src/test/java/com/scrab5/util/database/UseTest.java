@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
+import com.scrab5.network.Server;
 
 class UseTest {
 
@@ -135,15 +136,18 @@ class UseTest {
   }
 
   /**
-   * Tests the function to return all players from the table Player in a Observable List.
+   * Tests the return of the statistics for a hosted lobby.
    * 
    * @author lengist
    */
-  /*
-   * @Test void testGetAllPlayer() { fail("Not yet implemented"); FillDatabase.createPlayer("Gamma",
-   * null); FillDatabase.createPlayer("Delta", null); ObservableList<String> list =
-   * UseDatabase.getAllPlayer(); }
-   */
+  @Test
+  void testGetServerStatistics() {
+    CreateDatabase cdb = new CreateDatabase();
+    Server server = new Server("Laura", 4, true);
+    // FillDatabase.createServer(server);
+    // ServerStatistic ss = new
+
+  }
 
   @Test
   void testPlayerExists() {

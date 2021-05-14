@@ -6,7 +6,8 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import com.scrab5.network.ClientData;
 import com.scrab5.network.Server;
-import com.scrab5.util.database.PlayerProfileDatabase;
+import com.scrab5.network.ServerStatistics;
+import com.scrab5.network.ServerStatistics.ClientStatistic;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -48,11 +49,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
     refreshUI();
 
-    String name = Data.getCurrentUser();
-    this.playerNameStats1.setText(name);
-    this.played1.setText(PlayerProfileDatabase.getTotalPlayedGames(name) + "");
-    this.won1.setText(PlayerProfileDatabase.getTotalWins(name) + "");
-    this.score1.setText(PlayerProfileDatabase.getTotalPoints(name) + "");
   }
 
   /**
@@ -234,16 +230,22 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   }
 
+
+  /**
+   * 
+   * 
+   * @author nitterhe
+   */
   public void refreshUI() {
 
     Thread t = new Thread(new Runnable() {
 
       @Override
       public void run() {
-        System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 
         while (Data.getPlayerClient().getClientThread().isAlive()) {
           Server UIServer = Data.getPlayerClient().getCurrentServer();
+          ServerStatistics sd = UIServer.getServerStatistics();
           Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
 
 
@@ -254,20 +256,52 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
               if (iterator.hasNext()) {
                 ClientData client1 = iterator.next();
                 player1.setText(client1.getUsername());
+              } else {
+                player1.setText("");
               }
 
               if (iterator.hasNext()) {
                 ClientData client2 = iterator.next();
                 player2.setText(client2.getUsername());
-
+              } else {
+                player2.setText("");
               }
+
               if (iterator.hasNext()) {
                 ClientData client3 = iterator.next();
                 player3.setText(client3.getUsername());
+              } else {
+                player3.setText("");
               }
+
               if (iterator.hasNext()) {
                 ClientData client4 = iterator.next();
                 player4.setText(client4.getUsername());
+              } else {
+                player4.setText("");
+              }
+
+              ClientStatistic help;
+              if (null != (help = sd.get(1))) {
+                playerNameStats1.setText(help.getClientName());
+                played1.setText("" + help.getGamesPlayed());
+                won1.setText("" + help.getGamesWon());
+                // score!?
+              }
+              if (null != (help = sd.get(2))) {
+                playerNameStats2.setText(help.getClientName());
+                played2.setText("" + help.getGamesPlayed());
+                won2.setText("" + help.getGamesWon());
+              }
+              if (null != (help = sd.get(3))) {
+                playerNameStats3.setText(help.getClientName());
+                played3.setText("" + help.getGamesPlayed());
+                won3.setText("" + help.getGamesWon());
+              }
+              if (null != (help = sd.get(4))) {
+                playerNameStats4.setText(help.getClientName());
+                played4.setText("" + help.getGamesPlayed());
+                won4.setText("" + help.getGamesWon());
               }
 
             }

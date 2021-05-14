@@ -101,6 +101,27 @@ public class ClientThread extends Threads implements Serializable {
       new NetworkError(NetworkErrorType.CLIENTRUN);
       e.printStackTrace();
     }
+
+    try {
+      this.socketToServer.close();
+      try {
+        Platform.runLater(new Runnable() {
+          public void run() {
+            try {
+              PopUpMessage npm = new PopUpMessage("The connection has been closed.",
+                  PopUpMessageType.NOTIFICATION);
+              npm.show();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
+        });
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    } catch (Exception e) {
+      new NetworkError(NetworkErrorType.CLOSECONNECTION);
+    }
   }
 
   /**
@@ -149,25 +170,5 @@ public class ClientThread extends Threads implements Serializable {
    */
   protected void closeConnection() {
     this.stopThread();
-    try {
-      this.socketToServer.close();
-      try {
-        Platform.runLater(new Runnable() {
-          public void run() {
-            try {
-              PopUpMessage npm = new PopUpMessage("The connection has been closed.",
-                  PopUpMessageType.NOTIFICATION);
-              npm.show();
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-          }
-        });
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    } catch (Exception e) {
-      new NetworkError(NetworkErrorType.CLOSECONNECTION);
-    }
   }
 }

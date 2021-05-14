@@ -102,6 +102,8 @@ public class Client implements Serializable {
                   InetAddress serverCheck = InetAddress.getByName(ip4);
                   if (serverCheck.isReachable(1000)) {
                     Socket getServerDataSocket = new Socket(ip4, serverPort);
+                    getServerDataSocket.setSoTimeout(10000);
+
                     ObjectOutputStream out =
                         new ObjectOutputStream(getServerDataSocket.getOutputStream());
                     ObjectInputStream in =

@@ -9,6 +9,7 @@ package com.scrab5.network;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
@@ -93,6 +94,13 @@ public class ServerThread extends Threads {
         }
         this.server.sendUpdateMessage();
       }
+
+      /**
+       * This is in close connection, but also here to ensure that sockets on ports are really
+       * closed and no conflicts shoot when hosting the App the next time.
+       */
+    } catch (SocketException e) {
+      // does nothing, this happens when the socket is closed while reading, not important
     } catch (Exception e) {
       // e.printStackTrace();
       new NetworkError(NetworkErrorType.SERVERRUN);
@@ -136,7 +144,6 @@ public class ServerThread extends Threads {
       this.server.getConnections().remove(client);
       this.server.getClients().remove(client.getUsername());
       this.server.updateClientCount();
-      this.closeConnection();
     }
   }
 
@@ -177,8 +184,7 @@ public class ServerThread extends Threads {
     try {
       this.socketToClient.close();
     } catch (Exception e) {
-      new NetworkError(NetworkErrorType.CLOSECONNECTION);
+      // new NetworkError(NetworkErrorType.CLOSECONNECTION);
     }
-
   }
 }
