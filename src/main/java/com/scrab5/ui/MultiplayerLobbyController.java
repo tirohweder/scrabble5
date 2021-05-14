@@ -236,24 +236,42 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   public void refreshUI() {
 
-    Platform.runLater(new Runnable() {
+    Thread t = new Thread(new Runnable() {
+
+      @Override
       public void run() {
+        System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
 
         while (Data.getPlayerClient().getClientThread().isAlive()) {
           Server UIServer = Data.getPlayerClient().getCurrentServer();
           Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
 
-          if (iterator.hasNext()) {
-            ClientData client1 = iterator.next();
-            player1.setText(client1.getUsername());
-          }
-          if (iterator.hasNext()) {
-            ClientData client2 = iterator.next();
-            player2.setText(client2.getUsername());
-          }
-          if (iterator.hasNext()) {
 
-          }
+          Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+              if (iterator.hasNext()) {
+                ClientData client1 = iterator.next();
+                player1.setText(client1.getUsername());
+              }
+
+              if (iterator.hasNext()) {
+                ClientData client2 = iterator.next();
+                player2.setText(client2.getUsername());
+
+              }
+              if (iterator.hasNext()) {
+                ClientData client3 = iterator.next();
+                player3.setText(client3.getUsername());
+              }
+              if (iterator.hasNext()) {
+                ClientData client4 = iterator.next();
+                player4.setText(client4.getUsername());
+              }
+
+            }
+          });
           synchronized (this) {
             try {
               this.wait(200);
@@ -269,7 +287,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     // 2. leaderboard
     // 3. gameState
 
-
+    t.start();
   }
 
 

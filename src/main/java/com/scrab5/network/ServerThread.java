@@ -109,12 +109,13 @@ public class ServerThread extends Threads {
    * @param Exception - an Exception that is thrown when a similar client with the same name is
    *        already on the server / was on the server
    */
-  private synchronized void addClient(ClientData clientData) throws Exception {
+  private void addClient(ClientData clientData) throws Exception {
     if (null == server.getClients().get(clientData.getUsername())) {
-      if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp()))
+      if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
         // FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
         // clientData.getIp());
-        server.getClients().put(clientData.getUsername(), clientData);
+      }
+      server.getClients().put(clientData.getUsername(), clientData);
       server.getConnections().put(clientData, this);
       server.updateClientCount();
     } else {
