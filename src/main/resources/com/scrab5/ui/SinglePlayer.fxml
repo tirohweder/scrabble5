@@ -16,7 +16,7 @@ The method specification which implements what to do when a field is clicked/ en
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SingleplayerController">
    <children>
-      <AnchorPane prefHeight="768.0" prefWidth="1618.0">
+      <AnchorPane fx:id="mainPane" prefHeight="768.0" prefWidth="1618.0">
          <children>
             <ImageView fitHeight="768.0" fitWidth="1360.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="382.0">
                <image>
@@ -1298,37 +1298,37 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="65.0" fitWidth="43.0" layoutX="947.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playerProfile4Active" fitHeight="65.0" fitWidth="43.0" layoutX="947.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="65.0" fitWidth="43.0" layoutX="708.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playerProfile3Active" fitHeight="65.0" fitWidth="43.0" layoutX="708.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="65.0" fitWidth="43.0" layoutX="444.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playerProfile2Active" fitHeight="65.0" fitWidth="43.0" layoutX="444.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="playerProfile1" fitHeight="65.0" fitWidth="43.0" layoutX="192.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playerProfile1Passive" fitHeight="65.0" fitWidth="43.0" layoutX="192.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="playerProfile2" fitHeight="65.0" fitWidth="43.0" layoutX="444.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playerProfile2Passive" fitHeight="65.0" fitWidth="43.0" layoutX="444.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="playerProfile3" fitHeight="65.0" fitWidth="43.0" layoutX="708.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playerProfile3Passive" fitHeight="65.0" fitWidth="43.0" layoutX="708.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="playerProfile4" fitHeight="65.0" fitWidth="43.0" layoutX="947.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="playerProfile4Passive" fitHeight="65.0" fitWidth="43.0" layoutX="947.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
                </image>
@@ -1338,17 +1338,17 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="pointsPlayer2" layoutX="494.0" layoutY="19.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
+            <Label fx:id="pointsPlayer2" layoutX="494.0" layoutY="19.0" opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="pointsPlayer3" layoutX="758.0" layoutY="18.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
+            <Label fx:id="pointsPlayer3" layoutX="758.0" layoutY="18.0" opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="pointsPLayer4" layoutX="997.0" layoutY="19.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
+            <Label fx:id="pointsPLayer4" layoutX="997.0" layoutY="19.0" opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>

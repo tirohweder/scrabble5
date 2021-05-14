@@ -15,13 +15,7 @@ public class ExchangeController extends InGameController implements Initializabl
   
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-//    player1.setText("Aaron");
-//    player2.setText("Peter");
-//    player2.setOpacity(1);
-//    player3.setText("Peter");
-//    player3.setOpacity(1);
-//    player4.setText("Peter");
-//    player4.setOpacity(1);
+    initPlayers();
     
     setNewTile(rackPlace1, pointsRack1, "A", 3);
 

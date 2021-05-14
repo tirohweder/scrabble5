@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /*
@@ -44,8 +45,11 @@ public abstract class InGameController implements Initializable {
   private static final double LABEL_Y_CORD_BACK = 44.0;
 
   public ArrayList<Player> playersList = new ArrayList<>();
-  
+
   private ArrayList<Label> points = new ArrayList<>();
+
+  String currentUser = Data.getCurrentUser();
+  String currentPlayer;
 
 
 
@@ -71,17 +75,23 @@ public abstract class InGameController implements Initializable {
   ImageView rackPlace7;
 
   @FXML
-  private ImageView playerProfile1;
+  ImageView playerProfile1Passive;
   @FXML
-  private ImageView playerProfile2;
+  ImageView playerProfile2Passive;
   @FXML
-  private ImageView playerProfile3;
+  ImageView playerProfile3Passive;
   @FXML
-  private ImageView playerProfile4;
+  ImageView playerProfile4Passive;
 
   @FXML
-  private ImageView exchangeScreen;
+  private ImageView playerProfile2Active;
+  @FXML
+  private ImageView playerProfile3Active;
+  @FXML
+  private ImageView playerProfile4Active;
 
+  @FXML
+  private AnchorPane mainPane;
 
 
   @FXML
@@ -129,13 +139,7 @@ public abstract class InGameController implements Initializable {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    player1.setText("Aaron");
-    player2.setText("Peter");
-    player2.setOpacity(1);
-    player3.setText("Peter");
-    player3.setOpacity(1);
-    player4.setText("Peter");
-    player4.setOpacity(1);
+
 
     setNewTile(rackPlace1, pointsRack1, "A", 3);
 
@@ -151,18 +155,25 @@ public abstract class InGameController implements Initializable {
     playersList.add(new Player("Aaron"));
   }
 
-  private void initPlayers() {
-    Iterator<Player> it = players.iterator();
-
-    if (it.hasNext()) {
-      player1.setText(it.next().getName());
-      player1.setOpacity(1);
-      pointsPlayer1.setText("");
-      it.next();
-      if (it.hasNext()) {
-
-      }
-    }
+  protected void initPlayers() {
+    // Iterator<Player> it = players.iterator();
+    //
+    // if (it.hasNext()) {
+    // player1.setText(it.next().getName());
+    // player1.setOpacity(1);
+    // pointsPlayer1.setText("");
+    // it.next();
+    // if (it.hasNext()) {
+    //
+    // }
+    // }
+    player1.setText("Aaron");
+    player2.setText("Peter");
+    player2.setOpacity(1);
+    player3.setText("Peter");
+    player3.setOpacity(1);
+    player4.setText("Peter");
+    player4.setOpacity(1);
   }
 
   private void initRack() {
@@ -603,62 +614,62 @@ public abstract class InGameController implements Initializable {
     if (rackPlace7 != null) {
       rackPlace7.setOpacity(1);
     }
-    
-    if (pointsRack1 != null && (pointsRack1.getLayoutY()<740)) {
+
+    if (pointsRack1 != null && (pointsRack1.getLayoutY() < 740)) {
       Label point = new Label(pointsRack1.getText());
       point.setLayoutX(pointsRack1.getLayoutX());
       point.setLayoutY(pointsRack1.getLayoutY());
-      points.add(point);
-      pointsRack1.setLayoutX(rackPlace1.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack1.setLayoutY(rackPlace1.getLayoutY()+LABEL_Y_CORD_BACK);
+      mainPane.getChildren().add(mainPane.getChildren().size()-1, point);
+      pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
     }
-    if (pointsRack2 != null && (pointsRack2.getLayoutY()<740)) {
+    if (pointsRack2 != null && (pointsRack2.getLayoutY() < 740)) {
       Label point = new Label(pointsRack2.getText(), pointsRack2);
       point.setLayoutX(pointsRack2.getLayoutX());
       point.setLayoutY(pointsRack2.getLayoutY());
-      points.add(point);
-      pointsRack2.setLayoutX(rackPlace2.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack2.setLayoutY(rackPlace2.getLayoutY()+LABEL_Y_CORD_BACK);
+      mainPane.getChildren().add(mainPane.getChildren().size()-1, point);
+      pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
     }
-    if (pointsRack3 != null && (pointsRack3.getLayoutY()<740)) {
+    if (pointsRack3 != null && (pointsRack3.getLayoutY() < 740)) {
       Label point = new Label(pointsRack3.getText());
       point.setLayoutX(pointsRack3.getLayoutX());
       point.setLayoutY(pointsRack3.getLayoutY());
-      points.add(point);
-      pointsRack3.setLayoutX(rackPlace3.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack3.setLayoutY(rackPlace3.getLayoutY()+LABEL_Y_CORD_BACK);
+      mainPane.getChildren().add(mainPane.getChildren().size()-1, point);
+      pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
     }
-    if (pointsRack4 != null && (pointsRack4.getLayoutY()<740)) {
+    if (pointsRack4 != null && (pointsRack4.getLayoutY() < 740)) {
       Label point = new Label(pointsRack4.getText());
       point.setLayoutX(pointsRack4.getLayoutX());
       point.setLayoutY(pointsRack4.getLayoutY());
-      points.add(point);
-      pointsRack4.setLayoutX(rackPlace4.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack4.setLayoutY(rackPlace4.getLayoutY()+LABEL_Y_CORD_BACK);
+      mainPane.getChildren().add(mainPane.getChildren().size()-1, point);
+      pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
     }
-    if (pointsRack5 != null && (pointsRack5.getLayoutY()<740)) {
+    if (pointsRack5 != null && (pointsRack5.getLayoutY() < 740)) {
       Label point = new Label(pointsRack5.getText());
       point.setLayoutX(pointsRack5.getLayoutX());
       point.setLayoutY(pointsRack5.getLayoutY());
-      points.add(point);
-      pointsRack5.setLayoutX(rackPlace5.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack5.setLayoutY(rackPlace5.getLayoutY()+LABEL_Y_CORD_BACK);
+      mainPane.getChildren().add(mainPane.getChildren().size()-1, point);
+      pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
     }
-    if (pointsRack6 != null && (pointsRack6.getLayoutY()<740)) {
+    if (pointsRack6 != null && (pointsRack6.getLayoutY() < 740)) {
       Label point = new Label(pointsRack6.getText());
       point.setLayoutX(pointsRack6.getLayoutX());
       point.setLayoutY(pointsRack6.getLayoutY());
-      points.add(point);
-      pointsRack6.setLayoutX(rackPlace6.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack6.setLayoutY(rackPlace6.getLayoutY()+LABEL_Y_CORD_BACK);
+      mainPane.getChildren().add(mainPane.getChildren().size()-1, point);
+      pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
     }
-    if (pointsRack7 != null && (pointsRack7.getLayoutY()<740)) {
+    if (pointsRack7 != null && (pointsRack7.getLayoutY() < 740)) {
       Label point = new Label(pointsRack7.getText());
       point.setLayoutX(pointsRack7.getLayoutX());
       point.setLayoutY(pointsRack7.getLayoutY());
-      points.add(point);
-      pointsRack7.setLayoutX(rackPlace7.getLayoutX()+LABEL_X_CORD_BACK);
-      pointsRack7.setLayoutY(rackPlace7.getLayoutY()+LABEL_Y_CORD_BACK);
+      mainPane.getChildren().add(mainPane.getChildren().size()-1, point);
+      pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
     }
   }
 
@@ -841,7 +852,7 @@ public abstract class InGameController implements Initializable {
   @FXML
   private void shuffleClicked(MouseEvent event) {
     ArrayList<Player> players = GameSession.getListOfPlayers();
-    String currentUser = Data.getCurrentUser();
+    currentUser = Data.getCurrentUser();
 
     Iterator<Player> it = players.iterator();
     while (it.hasNext()) {
@@ -870,6 +881,12 @@ public abstract class InGameController implements Initializable {
 
   @FXML
   private void exchangeClicked(MouseEvent event) throws IOException {
+//    currentUser = Data.getCurrentUser();
+//    currentPlayer = GameSession.getCurrentPlayer().getName();
+//
+//    if (currentUser.toLowerCase().equals(currentPlayer.toLowerCase())) {
+//      
+//    }
     App.setRoot("Exchange");
   }
 
