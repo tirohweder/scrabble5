@@ -10,9 +10,10 @@ import java.io.Serializable;
 public class ClientData implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  String username;
-  String ip;
-  ClientThread clientThread;
+  private String username;
+  private String ip;
+  private ClientThread clientThread;
+  private boolean isReady;
 
   /**
    * Constructor save the most important data of the client for the server. Created to be sent via
@@ -23,10 +24,11 @@ public class ClientData implements Serializable {
    * @param ip - the ip of the client
    * @param clientThread - the client's thread for receiving messages
    */
-  public ClientData(String username, String ip, ClientThread clientThread) {
+  public ClientData(String username, String ip, ClientThread clientThread, boolean isReady) {
     this.username = username;
     this.ip = ip;
     this.clientThread = clientThread;
+    this.isReady = isReady;
   }
 
   /**
@@ -57,5 +59,15 @@ public class ClientData implements Serializable {
    */
   public ClientThread getClientThread() {
     return this.clientThread;
+  }
+
+  /**
+   * Returns the client's ready status.
+   * 
+   * @author nitterhe
+   * @return clientThread - the client's ready status as a boolean
+   */
+  public boolean isReady() {
+    return this.isReady;
   }
 }

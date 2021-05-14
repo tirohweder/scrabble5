@@ -3,7 +3,9 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
+import com.scrab5.network.Client;
 import com.scrab5.network.ClientData;
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
@@ -12,6 +14,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
@@ -34,9 +37,12 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private Label won1, won2, won3, won4;
   @FXML
   private Label score1, score2, score3, score4;
+  @FXML
+  private ImageView customizeButton;
 
-  private boolean isReady1 = false;
+  private boolean isReady = false;
   private int aiPlayerAmount = 0;
+  private LinkedList<Client> AIs;
 
   /**
    * 
@@ -47,6 +53,14 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   public void initialize(URL location, ResourceBundle resources) {
     this.isClickable();
     this.setUpInit();
+
+    if (Data.getPlayerClient().getUsername()
+        .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
+    } else {
+      this.customizeButton.setY(-34);
+      this.customizeButton.setOpacity(1.0);
+
+    }
 
     this.refreshUI();
 
@@ -82,15 +96,12 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   @FXML
   private void ready(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
-    if (!isReady1) {
-      this.ready1.setText("Ready");
-      this.isReady1 = true;
 
-    } else {
-      this.ready1.setText("Not Ready");
-      this.isReady1 = false;
-      Data.getHostedServer().startGame();
+    playSound("ButtonClicked.mp3");
+
+    if (!isReady) {
+      this.isReady = true;
+      Data.getPlayerClient().setReady(this.isReady);
     }
   }
 
@@ -101,6 +112,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
 
   protected void addPlayer(MouseEvent event) throws IOException {
+
+    // AIs.add(new Client("Der Zerstörinator"+(AIs.size()+1)));
 
     playSound("ButtonClicked.mp3");
     this.aiPlayerAmount++;
@@ -115,7 +128,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
             this.kick3.setOpacity(1.0);
             this.diffSelection3.setOpacity(1.0);
             this.diffButton2.setOpacity(1.0);
-            isReady[i + 1] = true;
+            // isReady[i + 1] = true;
             break;
           case 2:
             this.player4.setText("CPU 4");
@@ -124,7 +137,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
             this.kick4.setOpacity(1.0);
             this.diffSelection4.setOpacity(1.0);
             this.diffButton3.setOpacity(1.0);
-            isReady[i + 1] = true;
+            // isReady[i + 1] = true;
             break;
           default:
             break;
@@ -133,7 +146,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
         break;
       }
     }
-
     this.isClickable();
   }
 
@@ -246,6 +258,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       public void run() {
 
         while (Data.getPlayerClient().getClientThread().isAlive()) {
+
           Server UIServer = Data.getPlayerClient().getCurrentServer();
           ServerStatistics sd = UIServer.getServerStatistics();
           Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
@@ -260,7 +273,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
               if (iterator.hasNext()) {
                 client = iterator.next();
                 player1.setText(client.getUsername());
-                ready1.setText("");
+                ready1.setText("" + client.isReady());
               } else {
                 player1.setText("");
               }
@@ -268,7 +281,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
               if (iterator.hasNext()) {
                 client = iterator.next();
                 player2.setText(client.getUsername());
-                ready1.setText("");
+                ready2.setText("" + client.isReady());
               } else {
                 player2.setText("");
               }
@@ -276,7 +289,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
               if (iterator.hasNext()) {
                 client = iterator.next();
                 player3.setText(client.getUsername());
-                ready1.setText("");
+                ready3.setText("" + client.isReady());
               } else {
                 player3.setText("");
               }
@@ -284,7 +297,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
               if (iterator.hasNext()) {
                 client = iterator.next();
                 player4.setText(client.getUsername());
-                ready1.setText("");
+                ready4.setText("" + client.isReady());
               } else {
                 player4.setText("");
               }
@@ -323,6 +336,11 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
         }
       }
     });
+
+    // 1. clients refresh
+    // 2. leaderboard
+    // 3. gameState
+
     t.start();
   }
 

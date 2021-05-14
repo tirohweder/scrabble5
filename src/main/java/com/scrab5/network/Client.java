@@ -34,6 +34,7 @@ public class Client implements Serializable {
   private ArrayList<ServerData> serverList;
   private Server currentServer;
   private Server hostedServer;
+  private boolean isReady;
 
   /**
    * Implements a new Client with the given username. Constructs an empty list for all servers in
@@ -49,6 +50,7 @@ public class Client implements Serializable {
     this.username = username;
     serverList = new ArrayList<ServerData>();
     this.hostedServer = null; // needs connection to database
+    this.isReady = false;
     try {
       this.ip = InetAddress.getLocalHost().getHostAddress();
     } catch (Exception e) {
@@ -222,7 +224,7 @@ public class Client implements Serializable {
   }
 
   public ClientData getClientData() {
-    return new ClientData(this.username, this.ip, this.clientThread);
+    return new ClientData(this.username, this.ip, this.clientThread, isReady);
   }
 
   /**
@@ -273,6 +275,26 @@ public class Client implements Serializable {
    */
   public Server getHostedServer() {
     return this.hostedServer;
+  }
+
+  /**
+   * Returns the client's ready to play status.
+   *
+   * @author nitterhe
+   * @return isReady - the client's ready status
+   */
+  public boolean isReady() {
+    return this.isReady;
+  }
+
+  /**
+   * Sets the client's ready status.
+   *
+   * @author nitterhe
+   * @param ready - a boolean with the client's ready satus
+   */
+  public void setReady(boolean ready) {
+    this.isReady = ready;
   }
 
   /**
