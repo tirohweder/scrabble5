@@ -295,7 +295,7 @@ public class Client implements Serializable {
     this.getCurrentServer().setClients(lum.getClients());
     this.getCurrentServer().updateClientCount();
     this.getCurrentServer().setServerStatistics(lum.getServerStatistics());
-    // needs to refresh UI
+    Data.updatePlayerClient(this);
   }
 
   /**

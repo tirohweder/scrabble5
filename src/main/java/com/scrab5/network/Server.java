@@ -69,6 +69,7 @@ public class Server implements Serializable {
   public void openServerSocket() {
     try {
       this.ip4 = InetAddress.getLocalHost().getHostAddress();
+      System.out.println(this.ip4);
       serverSocket = new ServerSocket(this.serverPort);
     } catch (Exception e) {
       e.printStackTrace();

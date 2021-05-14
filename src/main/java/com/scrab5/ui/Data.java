@@ -135,13 +135,19 @@ public class Data {
     return inputFieldText;
   }
 
-  public static Client getPlayerClient() {
+  public synchronized static Client getPlayerClient() {
     return playerClient;
   }
 
-  public static void setPlayerClient(Client client) {
+  // used when joingin or leaving lobbies, not UI
+  public synchronized static void setPlayerClient(Client client) {
     if (playerClient == null)
       playerClient = client;
+  }
+
+  // used for UI
+  public synchronized static void updatePlayerClient(Client client) {
+    playerClient = client;
   }
 
   public static void setHostedServer(Server server) {
