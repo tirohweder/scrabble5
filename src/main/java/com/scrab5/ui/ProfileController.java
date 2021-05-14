@@ -24,7 +24,8 @@ public class ProfileController extends Controller implements Initializable {
       averagePointsWord, longestWord, totalGames, totalWins, winPercentage, favDic;
 
   /**
-   * Call certain methods as soon as the Controller is loaded.
+   * Call certain methods as soon as the Controller is loaded. Calls {@link #setupStats()} and
+   * displays the name of the current user
    * 
    * @author mherre
    */
@@ -92,7 +93,6 @@ public class ProfileController extends Controller implements Initializable {
       App.setRoot("Profile");
     }
   }
-
 
   /**
    * Event method that is called when the "Change Profile"-button in the UI is clicked. Changes the

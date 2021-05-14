@@ -211,4 +211,10 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       return true;
     }
   }
+
+  @Override
+  protected void startGame(MouseEvent event) throws IOException {
+    // TODO Auto-generated method stub
+
+  }
 }

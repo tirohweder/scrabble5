@@ -95,7 +95,7 @@ public class ServerThread extends Threads {
         this.server.sendUpdateMessage();
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      // e.printStackTrace();
       new NetworkError(NetworkErrorType.SERVERRUN);
     }
   }

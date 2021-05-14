@@ -1,11 +1,12 @@
 package com.scrab5.core.game;
 
-import com.scrab5.core.player.Player;
-import com.scrab5.util.database.UseDatabase;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import com.scrab5.core.player.Player;
+import com.scrab5.ui.Data;
+import com.scrab5.util.database.UseDatabase;
 
 public class GameSession {
 
@@ -92,14 +93,31 @@ public class GameSession {
     while (iter.hasNext()) {
       iter.next().getRack().fill(bag);
     }
+  }
 
+
+  public void createGameSession(ArrayList<Player> listOfPlayers) throws SQLException {
+    this.listOfPlayers = listOfPlayers;
+    currentPlayer = listOfPlayers.get(0);
+
+    initializeBag();
+    Iterator<Player> iter = listOfPlayers.iterator();
+    while (iter.hasNext()) {
+      iter.next().getRack().fill(bag);
+    }
 
   }
 
-  public void initializeBag() throws SQLException {
-    ResultSet rs = UseDatabase.viewLetters();
-    while (rs.next()) {
-      this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
+
+  public void initializeBag(ArrayList<Integer> letters, ArrayList<Integer> points)
+      throws SQLException {
+    if (!Data.getHasBeenEdited()) {
+      ResultSet rs = UseDatabase.viewLetters();
+      while (rs.next()) {
+        this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
+      }
+    } else {
+      // Hier muss die Liste übergeben werden
     }
   }
 
@@ -121,8 +139,7 @@ public class GameSession {
   }
 
 
-  public void endGame() {
-  }
+  public void endGame() {}
 
   public boolean giveUp() {
     return false;

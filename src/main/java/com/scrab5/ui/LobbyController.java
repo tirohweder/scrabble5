@@ -107,10 +107,6 @@ public abstract class LobbyController extends Controller {
     this.darkBackground.setOpacity(0);
   }
 
-  @FXML
-  private void startGame(MouseEvent event) throws IOException {
-    App.setRoot("SinglePlayer");
-  }
 
   @FXML
   private void clickComboBox1(MouseEvent event) throws IOException {
@@ -282,6 +278,9 @@ public abstract class LobbyController extends Controller {
 
 
   abstract protected boolean isClickable();
+
+  @FXML
+  abstract protected void startGame(MouseEvent event) throws IOException;
 
   @FXML
   abstract protected void back(MouseEvent event) throws IOException;
