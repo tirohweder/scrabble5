@@ -171,7 +171,7 @@ public class UseDatabase extends Database {
    * Returns the server object to get the right server statistics when a user chooses to host his
    * server again.
    * 
-   * @auhtor lengist <<<<<<< HEAD
+   * @auhtor lengist  <<<<<<< HEAD
    * @author nitterhe
    * @param serverHostName String representation of the host of the server
    * @return Server object with the server statistic
@@ -198,7 +198,7 @@ public class UseDatabase extends Database {
     }
   }
 
-
+  
   /**
    * Changes the points for the letter letter in the table letters when a user chooses to
    * individualize.
@@ -245,7 +245,7 @@ public class UseDatabase extends Database {
     }
     return exists;
   }
-
+  
   /**
    * Returns a boolean if the server "name" already exists.
    * 

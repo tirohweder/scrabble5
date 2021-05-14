@@ -67,7 +67,7 @@ public class DictionaryScanner {
     // DictionaryParser.setCurrentDictionary("words.txt");
     // DictionaryParser.parseFile("words.txt");
     DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
-    System.out.println(scan("JOK*R"));
+    // System.out.println(scan("JOK*R"));
     System.out.println(scan("ZZZ"));
   }
 }
