@@ -2,8 +2,12 @@ package com.scrab5.ui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Iterator;
 import java.util.ResourceBundle;
+import com.scrab5.network.ClientData;
+import com.scrab5.network.Server;
 import com.scrab5.util.database.PlayerProfileDatabase;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -232,43 +236,58 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   public void refreshUI() {
 
-    // Thread t = new Thread(new Runnable() {
-    // public void run() {
-    //
-    // while (Data.getPlayerClient().getClientThread().isAlive()) {
-    // Platform.runLater(new Runnable() {
-    // public void run() {
-    // Server UIServer = Data.getPlayerClient().getCurrentServer();
-    // Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
-    //
-    // if (iterator.hasNext()) {
-    // ClientData client1 = iterator.next();
-    // player1.setText(client1.getUsername());
-    // }
-    // if (iterator.hasNext()) {
-    // ClientData client2 = iterator.next();
-    // player2.setText(client2.getUsername());
-    // }
-    // if (iterator.hasNext()) {
-    //
-    // }
-    // synchronized (this) {
-    // try {
-    // this.wait(200);
-    // } catch (InterruptedException e) {
-    // // e.printStackTrace();
-    // }
-    // }
-    // }
-    // }
-    // });
-    // t.start();
-    //
-    // // 1. clients refresh
-    // // 2. leaderboard
-    // // 3. gameState
-    //
+    Thread t = new Thread(new Runnable() {
 
+      @Override
+      public void run() {
+        System.out.println("HHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+
+        while (Data.getPlayerClient().getClientThread().isAlive()) {
+          Server UIServer = Data.getPlayerClient().getCurrentServer();
+          Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
+
+
+          Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+              if (iterator.hasNext()) {
+                ClientData client1 = iterator.next();
+                player1.setText(client1.getUsername());
+              }
+
+              if (iterator.hasNext()) {
+                ClientData client2 = iterator.next();
+                player2.setText(client2.getUsername());
+
+              }
+              if (iterator.hasNext()) {
+                ClientData client3 = iterator.next();
+                player3.setText(client3.getUsername());
+              }
+              if (iterator.hasNext()) {
+                ClientData client4 = iterator.next();
+                player4.setText(client4.getUsername());
+              }
+
+            }
+          });
+          synchronized (this) {
+            try {
+              this.wait(200);
+            } catch (InterruptedException e) {
+              // e.printStackTrace();
+            }
+          }
+        }
+      }
+    });
+
+    // 1. clients refresh
+    // 2. leaderboard
+    // 3. gameState
+
+    t.start();
   }
 
 
