@@ -15,7 +15,6 @@ import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.SendServerDataMessage;
-import com.scrab5.util.database.FillDatabase;
 
 public class ServerThread extends Threads {
 
@@ -113,9 +112,9 @@ public class ServerThread extends Threads {
   private synchronized void addClient(ClientData clientData) throws Exception {
     if (null == server.getClients().get(clientData.getUsername())) {
       if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp()))
-        FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
-            clientData.getIp());
-      server.getClients().put(clientData.getUsername(), clientData);
+        // FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
+        // clientData.getIp());
+        server.getClients().put(clientData.getUsername(), clientData);
       server.getConnections().put(clientData, this);
       server.updateClientCount();
     } else {
