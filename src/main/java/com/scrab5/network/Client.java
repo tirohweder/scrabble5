@@ -21,6 +21,7 @@ import com.scrab5.network.messages.GetServerDataMessage;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.MessageType;
+import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
 
@@ -295,6 +296,7 @@ public class Client implements Serializable {
    */
   public void setReady(boolean ready) {
     this.isReady = ready;
+    this.clientThread.sendMessageToServer(new SendReadyMessage(this.username, ready));
   }
 
   /**

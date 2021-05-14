@@ -70,4 +70,15 @@ public class ClientData implements Serializable {
   public boolean isReady() {
     return this.isReady;
   }
+
+  /**
+   * Sets the client's ready status
+   * 
+   * @author nitterhe
+   * @param ready - the client's ready status
+   * @return
+   */
+  public void setReady(boolean ready) {
+    this.isReady = ready;
+  }
 }
