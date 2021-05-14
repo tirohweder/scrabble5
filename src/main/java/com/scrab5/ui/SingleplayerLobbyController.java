@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+import com.scrab5.core.player.AiPlayer;
+import com.scrab5.core.player.Player;
 import com.scrab5.util.textParser.DictionaryParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,6 +45,42 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     playSound("ButtonClicked.mp3");
     App.setRoot("MainMenu");
 
+  }
+
+  @FXML
+  protected void startGame(MouseEvent event) throws IOException {
+
+
+    Player humanPlayer = new Player("Name");
+    AiPlayer aiPlayer1 = new AiPlayer("Name", 0);
+
+
+    ArrayList<Player> test = new ArrayList<Player>();
+
+    test.add(humanPlayer);
+    test.add(aiPlayer1);
+
+    if (Data.getHasBeenEdited()) {
+      Data.getPointsDistribution();
+      Data.getOccurrencyDistribution();
+    } else {
+
+    }
+
+    /*
+     * TODO: #Get Player Order #Get PlayerAmount #Get Difficulties #Get Distribution
+     */
+
+    App.setRoot("SinglePlayer");
+  }
+
+  private int[] getPlayerOrder() {
+    int[] playerOrder = new int[4];
+    playerOrder[0] = Integer.parseInt(vote1.getText());
+    playerOrder[1] = Integer.parseInt(vote2.getText());
+    playerOrder[2] = Integer.parseInt(vote3.getText());
+    playerOrder[3] = Integer.parseInt(vote4.getText());
+    return playerOrder;
   }
 
   @FXML
