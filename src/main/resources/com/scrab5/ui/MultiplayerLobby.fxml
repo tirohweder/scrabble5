@@ -86,17 +86,17 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="301.0" layoutY="523.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
+            <Label fx:id="playerNameStats2" layoutX="301.0" layoutY="523.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="301.0" layoutY="552.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
+            <Label fx:id="playerNameStats3" layoutX="301.0" layoutY="552.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="301.0" layoutY="581.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
+            <Label fx:id="playerNameStats4" layoutX="301.0" layoutY="581.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -106,17 +106,17 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="422.0" layoutY="523.0" prefHeight="15.0" prefWidth="68.0" text="100" textFill="#fefff2">
+            <Label fx:id="played2" layoutX="422.0" layoutY="523.0" prefHeight="15.0" prefWidth="68.0" text="100" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="422.0" layoutY="552.0" prefHeight="15.0" prefWidth="68.0" text="100" textFill="#fefff2">
+            <Label fx:id="played3" layoutX="422.0" layoutY="552.0" prefHeight="15.0" prefWidth="68.0" text="100" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="422.0" layoutY="581.0" prefHeight="15.0" prefWidth="68.0" text="100" textFill="#fefff2">
+            <Label fx:id="played4" layoutX="422.0" layoutY="581.0" prefHeight="15.0" prefWidth="68.0" text="100" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -126,17 +126,17 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="510.0" layoutY="523.0" prefHeight="15.0" prefWidth="40.0" text="62" textFill="#fefff2">
+            <Label fx:id="won2" layoutX="510.0" layoutY="523.0" prefHeight="15.0" prefWidth="40.0" text="62" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="510.0" layoutY="552.0" prefHeight="15.0" prefWidth="40.0" text="62" textFill="#fefff2">
+            <Label fx:id="won3" layoutX="510.0" layoutY="552.0" prefHeight="15.0" prefWidth="40.0" text="62" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="510.0" layoutY="581.0" prefHeight="15.0" prefWidth="40.0" text="62" textFill="#fefff2">
+            <Label fx:id="won4" layoutX="510.0" layoutY="581.0" prefHeight="15.0" prefWidth="40.0" text="62" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -146,17 +146,17 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="580.0" layoutY="523.0" prefHeight="15.0" prefWidth="50.0" text="10000" textFill="#fefff2">
+            <Label fx:id="score2" layoutX="580.0" layoutY="523.0" prefHeight="15.0" prefWidth="50.0" text="10000" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="580.0" layoutY="552.0" prefHeight="15.0" prefWidth="50.0" text="10000" textFill="#fefff2">
+            <Label fx:id="score3" layoutX="580.0" layoutY="552.0" prefHeight="15.0" prefWidth="50.0" text="10000" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="580.0" layoutY="581.0" prefHeight="15.0" prefWidth="50.0" text="10000" textFill="#fefff2">
+            <Label fx:id="score4" layoutX="580.0" layoutY="581.0" prefHeight="15.0" prefWidth="50.0" text="10000" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>

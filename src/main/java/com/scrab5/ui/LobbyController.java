@@ -1,6 +1,7 @@
 package com.scrab5.ui;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public abstract class LobbyController extends Controller {
+
   @FXML
   protected ImageView kick2, kick3, kick4, addPlayerButton, startButton, darkBackground;
   @FXML
@@ -40,13 +42,12 @@ public abstract class LobbyController extends Controller {
   protected boolean isDictionarySelected = false;
 
 
-
   /**
    * Event method that is called when the "Ready"-button is clicked.
-   * 
-   * @author mherre
+   *
    * @param event
    * @throws IOException
+   * @author mherre
    */
   @FXML
   private void ready(MouseEvent event) throws IOException {
@@ -107,10 +108,6 @@ public abstract class LobbyController extends Controller {
     this.darkBackground.setOpacity(0);
   }
 
-  @FXML
-  private void startGame(MouseEvent event) throws IOException {
-    App.setRoot("SinglePlayer");
-  }
 
   @FXML
   private void clickComboBox1(MouseEvent event) throws IOException {
@@ -268,12 +265,11 @@ public abstract class LobbyController extends Controller {
   }
 
 
-
   /**
-   * @author trohwede
    * @param fxml
    * @return
    * @throws IOException
+   * @author trohwede
    */
   private static Parent loadFXML(String fxml) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
@@ -282,6 +278,9 @@ public abstract class LobbyController extends Controller {
 
 
   abstract protected boolean isClickable();
+
+  @FXML
+  abstract protected void startGame(MouseEvent event) throws IOException, SQLException;
 
   @FXML
   abstract protected void back(MouseEvent event) throws IOException;

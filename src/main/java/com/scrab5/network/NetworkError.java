@@ -54,6 +54,9 @@ public class NetworkError extends Error {
       case CLIENTRUN:
         this.dialog = "Could not read incoming message from the server";
         break;
+      case SERVERRUN:
+        this.dialog = "Could not read incoming message from a client";
+        break;
       case CLOSECONNECTION:
         this.dialog = "Closing the connection failed, maybe sockets already have been closed";
         break;
@@ -104,6 +107,6 @@ public class NetworkError extends Error {
    * @author Niklas
    */
   public enum NetworkErrorType {
-    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, CLOSECONNECTION, SERVERCREATION, NAMEINUSE, NOSERVERFOUND
+    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, SERVERRUN, CLOSECONNECTION, SERVERCREATION, NAMEINUSE, NOSERVERFOUND
   }
 }

@@ -27,7 +27,6 @@ import com.scrab5.ui.Data;
 public class Client implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public final int clientPort = 50000;
   public final int serverPort = 8080;
   private String ip;
   private String username;
@@ -65,15 +64,21 @@ public class Client implements Serializable {
    * @param clientMaximum - the maximum number of clients allowed to connect to the server
    * @throws xyz
    */
-  public void hostServer(int clientMaximum) {
+  public void hostServer(int clientMaximum) throws Exception {
     if (hostedServer == null) {
       hostedServer = new Server(this.username, clientMaximum, false);
     } else {
       hostedServer.setClientMaximum(clientMaximum);
+      hostedServer.loadServerStatistics();
       hostedServer.openServerSocket();
     }
     hostedServer.acceptClients();
-    connectToServer(ip);
+    try {
+      connectToServer(hostedServer.getIp4());
+    } catch (Exception e) {
+      hostedServer.shutDownServer();
+      throw e;
+    }
   }
 
 
@@ -90,42 +95,43 @@ public class Client implements Serializable {
         for (int j = 0; j < 256 && Data.getIsSearching(); j++) {
           for (int k = 0; k < 256 && Data.getIsSearching(); k++) {
             final String ip4 = "192.168." + j + "." + k;
+
             Thread t = new Thread(new Runnable() {
               public void run() {
                 try {
                   InetAddress serverCheck = InetAddress.getByName(ip4);
                   if (serverCheck.isReachable(1000)) {
                     Socket getServerDataSocket = new Socket(ip4, serverPort);
+                    getServerDataSocket.setSoTimeout(10000);
+
                     ObjectOutputStream out =
                         new ObjectOutputStream(getServerDataSocket.getOutputStream());
                     ObjectInputStream in =
                         new ObjectInputStream(getServerDataSocket.getInputStream());
+
                     out.writeObject(new GetServerDataMessage(username));
                     out.flush();
                     out.reset();
-                    Message m;
-                    for (int i = 0; i < 10; i++) {
-                      m = (Message) in.readObject();
-                      if (m.getType() == MessageType.SENDSERVERDATA) {
-                        SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
-                        ServerData serverdata = new ServerData(ssdMessage.getSender(), ip4,
-                            serverPort, ssdMessage.getClientCounter(),
-                            ssdMessage.getClientMaximum(), ssdMessage.getStatus());
 
-                        addServerToServerList(serverdata);
-                        i = 20;
-                      }
+                    Message m = (Message) in.readObject();
+                    if (m.getType() == MessageType.SENDSERVERDATA) {
+                      SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
+                      addServerToServerList(new ServerData(ssdMessage.getSender(), ip4,
+                          ssdMessage.getPort(), ssdMessage.getClientCounter(),
+                          ssdMessage.getClientMaximum(), ssdMessage.getStatus()));
                     }
                     getServerDataSocket.shutdownInput();
                     getServerDataSocket.shutdownOutput();
                     getServerDataSocket.close();
                   }
                 } catch (Exception e) {
-                  // exception handling useless since pinging IPs often results in ConnectExceptions
+                  // e.printStackTrace();
+                  // does nothing here
                 }
               }
             });
             t.start();
+            // otherwise too many Threads start at the same time
             synchronized (this) {
               try {
                 this.wait(1);
@@ -147,7 +153,13 @@ public class Client implements Serializable {
    * @param serverdata The necessary data needed to open a socket with the server.
    */
   private synchronized void addServerToServerList(ServerData serverdata) {
-    if (!serverList.contains(serverdata))
+    boolean add = true;
+    for (ServerData sd : this.serverList) {
+      if (sd.getServerHost().equals(serverdata.getServerHost()))
+        add = false;
+      break;
+    }
+    if (add)
       serverList.add(serverdata);
   }
 
@@ -180,8 +192,8 @@ public class Client implements Serializable {
    * @author nitterhe
    * @param ip4 The ip4 which should be connected to.
    */
-  public void connectToServer(String ip4) {
-    connectToServer(new ServerData(null, ip4, serverPort, 0, 0, false));
+  public void connectToServer(String ip) throws Exception {
+    connectToServer(new ServerData(null, ip, serverPort, 0, 0, false));
   }
 
   /**
@@ -193,7 +205,6 @@ public class Client implements Serializable {
    */
   public boolean disconnectFromServer() {
     if (this.clientThread.running) {
-      // save hostedServer to database
       clientThread.sendMessageToServer(new DisconnectMessage(clientThread.sender));
       return true;
     }
@@ -286,7 +297,7 @@ public class Client implements Serializable {
     this.getCurrentServer().setClients(lum.getClients());
     this.getCurrentServer().updateClientCount();
     this.getCurrentServer().setServerStatistics(lum.getServerStatistics());
-    // needs to refresh UI
+    Data.updatePlayerClient(this);
   }
 
   /**

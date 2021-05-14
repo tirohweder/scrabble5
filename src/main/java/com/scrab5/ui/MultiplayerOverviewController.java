@@ -82,14 +82,16 @@ public class MultiplayerOverviewController extends Controller implements Initial
     if (this.isDictionarySelected) {
       Data.setIsSearching(false);
       Data.setPlayerCountMultiplayer(playerCount);
-      this.setupServer(playerCount);
-      App.setRoot("MultiplayerLobby");
-
+      try {
+        this.setupServer(playerCount);
+        App.setRoot("MultiplayerLobby");
+      } catch (Exception e) {
+        new NetworkError(NetworkErrorType.SERVERCREATION);
+      }
     } else {
       String message = "To start the game please select a dictionary!";
       PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
-
     }
   }
 
@@ -263,6 +265,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 0 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -276,6 +279,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 1 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -289,6 +293,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 2 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -302,6 +307,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 3 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -315,6 +321,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 4 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -328,6 +335,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 5 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -341,6 +349,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 6 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -355,6 +364,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method for when server 7 is clicked. Only joins if this server is actually shown.
    * 
    * @author nitterhe
+   * @author mherre
    * @param event - the mouse click even in the LobbyOverview
    * @throws IOException -
    */
@@ -396,7 +406,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author nitterhe
    * @param playerCount
    */
-  private void setupServer(int playerCount) {
+  private void setupServer(int playerCount) throws Exception {
     Data.getPlayerClient().hostServer(playerCount);
     Data.setHostedServer(Data.getPlayerClient().getHostedServer());
   }

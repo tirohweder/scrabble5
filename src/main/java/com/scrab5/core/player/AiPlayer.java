@@ -1,8 +1,8 @@
 package com.scrab5.core.player;
 
+import java.util.ArrayList;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.util.textParser.DictionaryScanner;
-import java.util.ArrayList;
 
 public class AiPlayer extends Player {
 
@@ -10,14 +10,16 @@ public class AiPlayer extends Player {
   private ArrayList<Integer> possiblePoints;
   private ArrayList<Integer> x;
   private ArrayList<Integer> y;
+  private int diff;
 
   /**
    * @param name
    * @author hraza
    */
 
-  public AiPlayer(String name) {
+  public AiPlayer(String name, int diff) {
     super(name);
+    this.diff = diff;
   }
 
   /**
@@ -207,12 +209,12 @@ public class AiPlayer extends Player {
     AiPlayer ai = new AiPlayer("Peter");
 
     System.out.println("Test");
-    char[] set = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'};
+    char[] set = {'H', 'E', 'L', 'L', 'O'};
     int k = 8;
-    //ai.printAllKLength(set, k, 2, 'd');
-    if (DictionaryScanner.scan(("Hallo"))) {
+    ai.printAllKLength(set, k, 2, 'L');
+    if (DictionaryScanner.scan(("HALLO"))) {
       System.out.println("ja");
-      
+
     }
   }
 

@@ -15,6 +15,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * The RealLoginController class controls the components of the "RealLogin.fxml".
+ * 
+ * @author mherre
+ */
 public class RealLoginController extends Controller implements Initializable {
 
   @FXML
@@ -25,11 +30,26 @@ public class RealLoginController extends Controller implements Initializable {
   private boolean isProfileSelected = false;
   private static String predecessor = "";
 
+  /**
+   * Call certain methods as soon as the Controller is loaded.
+   * 
+   * @author mherre
+   */
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     profileSelection.setItems(UseDatabase.getAllPlayer());
   }
 
+  /**
+   * Event method that is called when the "Login"-button in the UI is clicked. If a Profile has been
+   * selected the volume settings are loaded and the scene gets changed to "MainMenu.fxml",
+   * otherwise a Pop-Up message is created.
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   @FXML
   private void login(MouseEvent event) throws IOException {
 
@@ -49,6 +69,14 @@ public class RealLoginController extends Controller implements Initializable {
     }
   }
 
+  /**
+   * Event method that is called when an item in <code>profileSelection</code> has been selected.
+   * Displays the name of the selected profile and sets <code>isProfileSelected</code> on
+   * <code>true</code>.
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   */
   @FXML
   private void setSelectedProfile(ActionEvent event) {
     String selected = (String) this.profileSelection.getValue();
