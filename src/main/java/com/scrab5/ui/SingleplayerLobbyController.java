@@ -1,14 +1,15 @@
 package com.scrab5.ui;
 
+import com.scrab5.core.game.GameSession;
+import com.scrab5.core.player.Player;
+import com.scrab5.util.textParser.DictionaryParser;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import com.scrab5.core.player.AiPlayer;
-import com.scrab5.core.player.Player;
-import com.scrab5.util.textParser.DictionaryParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -20,7 +21,7 @@ import javafx.scene.input.MouseEvent;
 /**
  * The SingleplayerLobbyController class is supposed to control the components of
  * SinglePlayerLobby.fxml
- * 
+ *
  * @author mherre
  */
 
@@ -48,17 +49,15 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   }
 
   @FXML
-  protected void startGame(MouseEvent event) throws IOException {
+  protected void startGame(MouseEvent event) throws IOException, SQLException {
 
-
-    Player humanPlayer = new Player("Name");
-    AiPlayer aiPlayer1 = new AiPlayer("Name", 0);
-
+    Player humanPlayer = new Player("wq");
+    Player humanPlayer1 = new Player("Name2");
 
     ArrayList<Player> test = new ArrayList<Player>();
 
     test.add(humanPlayer);
-    test.add(aiPlayer1);
+    test.add(humanPlayer1);
 
     if (Data.getHasBeenEdited()) {
       Data.getPointsDistribution();
@@ -66,6 +65,9 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     } else {
 
     }
+
+    Data.setGameSession(new GameSession(test));
+    System.out.println("iowejOPJWOEOPQJWEO");
 
     /*
      * TODO: #Get Player Order #Get PlayerAmount #Get Difficulties #Get Distribution
@@ -180,14 +182,12 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   }
 
   /**
-   * 
    * Makes dictionarySelection only openable when the dropDownButton is clicked, not when the
    * combobox (dictionarySelection) is clicked.
-   * 
-   * @author mherre
+   *
    * @param event
    * @throws IOException
-   * 
+   * @author mherre
    */
   @FXML
   protected void dontShow(MouseEvent event) throws IOException {
@@ -202,15 +202,12 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   }
 
   /**
-   *
    * Is called when the "dropDownButton" Button is clicked. Opens the combo box displaying all
    * selectable dictionaries.
-   * 
-   * @author mherre
+   *
    * @param event
    * @throws IOException
-   * 
-   * 
+   * @author mherre
    */
   @FXML
   private void clickComboBox(MouseEvent event) throws IOException {

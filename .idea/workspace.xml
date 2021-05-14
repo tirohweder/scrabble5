@@ -8,7 +8,14 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/myDatabase.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AiPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AiPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/Data.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/Data.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/InGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/InGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/LobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/LobbyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SingleplayerLobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SingleplayerLobbyController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +60,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -74,15 +81,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -177,12 +182,12 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.AiPlayer" />
       <item itemvalue="JUnit.GameBoardTest.countScore" />
       <item itemvalue="JUnit.GameBoardTest.getTouchedWords" />
-      <item itemvalue="Maven.scrabble5 [clean,package]" />
       <item itemvalue="JUnit.GameBoardTest.checkWordsLegit" />
       <item itemvalue="JUnit.GameBoardTest" />
-      <item itemvalue="Application.AiPlayer" />
+      <item itemvalue="Maven.scrabble5 [clean,package]" />
     </list>
     <recent_temporary>
       <list>
@@ -219,6 +224,9 @@
       <workItem from="1620721248878" duration="7062000" />
       <workItem from="1620746951271" duration="7599000" />
       <workItem from="1620892937495" duration="10662000" />
+      <workItem from="1620932000284" duration="596000" />
+      <workItem from="1620983144126" duration="1009000" />
+      <workItem from="1620988416099" duration="12271000" />
     </task>
     <task id="LOCAL-00001" summary="#69 add strucutre">
       <created>1619793717336</created>
@@ -384,5 +392,9 @@
         <watch expression="touchedTiles[7][8]" />
       </configuration>
     </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

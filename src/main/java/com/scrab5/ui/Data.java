@@ -1,16 +1,16 @@
 package com.scrab5.ui;
 
-import java.util.ArrayList;
+import com.scrab5.core.game.GameSession;
 import com.scrab5.network.Client;
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerData;
+import java.util.ArrayList;
 
 /**
  * The Data class is supposed to save temporary information that is needed between controller
  * classes
- * 
- * @author mherre
  *
+ * @author mherre
  */
 
 public class Data {
@@ -35,11 +35,33 @@ public class Data {
 
   private static double sfxVolume = 1.0;
 
+  private static GameSession gameSession;
+
+  /**
+   * Getter for gameSession
+   *
+   * @return
+   * @author trohwede
+   */
+  public static GameSession getGameSession() {
+    return gameSession;
+  }
+
+  /**
+   * Setter for gameSession
+   *
+   * @param gameSession
+   * @author trohwede
+   */
+  public static void setGameSession(GameSession gameSession) {
+    Data.gameSession = gameSession;
+  }
+
   /**
    * Saves which user is currently logged in.
-   * 
-   * @author mherre
+   *
    * @param username
+   * @author mherre
    */
   public static void setCurrentUser(String username) {
     currentUser = username;
@@ -47,9 +69,9 @@ public class Data {
 
   /**
    * Returns the user who is currently logged in
-   * 
-   * @author mherre
+   *
    * @return
+   * @author mherre
    */
   public static String getCurrentUser() {
     return currentUser;
@@ -57,9 +79,9 @@ public class Data {
 
   /**
    * Saves the text message that gets displayed on the currently opened PopUp message
-   * 
-   * @author mherre
+   *
    * @param message
+   * @author mherre
    */
   public static void setMessage(String message) {
     popUpMessage = message;
@@ -67,9 +89,9 @@ public class Data {
 
   /**
    * Returns the text message of the currently opened PopUp message
-   * 
-   * @author mherre
+   *
    * @return
+   * @author mherre
    */
   public static String getMessage() {
     return popUpMessage;
@@ -77,9 +99,9 @@ public class Data {
 
   /**
    * Saves the type of the currently opened PopUp message
-   * 
-   * @author mherre
+   *
    * @param popUpType
+   * @author mherre
    */
   public static void setMessageType(PopUpMessageType popUpType) {
     messageType = popUpType;
@@ -87,9 +109,9 @@ public class Data {
 
   /**
    * Returns what kind of PopUp message is opened right now
-   * 
-   * @author mherre
+   *
    * @return
+   * @author mherre
    */
   public static PopUpMessageType getMessageType() {
     return messageType;
@@ -97,9 +119,9 @@ public class Data {
 
   /**
    * Saves if a the "Confirm" button of a CONFIRMATION PopUp message was clicked
-   * 
-   * @author mherre
+   *
    * @param cf
+   * @author mherre
    */
   public static void setConfirmed(boolean cf) {
     confirmed = cf;
@@ -107,9 +129,9 @@ public class Data {
 
   /**
    * Returns the value if the "Confirm" button was clicked
-   * 
-   * @author mherre
+   *
    * @return
+   * @author mherre
    */
   public static boolean isConfirmed() {
     return confirmed;
@@ -117,9 +139,9 @@ public class Data {
 
   /**
    * Sets the text of the textfield of a INPUT PopUp message
-   * 
-   * @author mherre
+   *
    * @param ipft
+   * @author mherre
    */
   public static void setInputFieldText(String ipft) {
     inputFieldText = ipft;
@@ -127,9 +149,9 @@ public class Data {
 
   /**
    * Returns the text of the textfield of a INPUT PopUp message
-   * 
-   * @author mherre
+   *
    * @return
+   * @author mherre
    */
   public static String getInputFieldText() {
     return inputFieldText;
@@ -140,8 +162,9 @@ public class Data {
   }
 
   public static void setPlayerClient(Client client) {
-    if (playerClient == null)
+    if (playerClient == null) {
       playerClient = client;
+    }
   }
 
   public static void setHostedServer(Server server) {
@@ -152,9 +175,9 @@ public class Data {
 
   /**
    * Just set if you host a server, not join a server.
-   * 
-   * @author nitterhe
+   *
    * @return
+   * @author nitterhe
    */
   public static Server getHostedServer() {
     return playerServer;
@@ -215,7 +238,6 @@ public class Data {
   public static int getPlayerCountMultiplayer() {
     return playerCountMultiplayer;
   }
-
 
 
 }
