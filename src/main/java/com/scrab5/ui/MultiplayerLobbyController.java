@@ -36,6 +36,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private Label score1, score2, score3, score4;
 
   private boolean isReady1 = false;
+  private int aiPlayerAmount = 0;
 
   /**
    * 
@@ -45,9 +46,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     this.isClickable();
-    setUpInit();
+    this.setUpInit();
 
-    refreshUI();
+    this.refreshUI();
 
   }
 
@@ -102,7 +103,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   protected void addPlayer(MouseEvent event) throws IOException {
 
     playSound("ButtonClicked.mp3");
-    this.playerAmount++;
+    this.aiPlayerAmount++;
 
     for (int i = 1; i < Data.getPlayerCountMultiplayer() - 1; i++) {
       if (freeSpaces[i]) {
@@ -135,6 +136,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
     this.isClickable();
   }
+
 
   @FXML
   protected void dontShow(MouseEvent event) throws IOException {
@@ -248,6 +250,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
           ServerStatistics sd = UIServer.getServerStatistics();
           Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
 
+          playerAmount = UIServer.getClientCounter() + aiPlayerAmount;
 
           Platform.runLater(new Runnable() {
 
