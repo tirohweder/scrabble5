@@ -253,30 +253,35 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
             @Override
             public void run() {
+              ClientData client;
               if (iterator.hasNext()) {
-                ClientData client1 = iterator.next();
-                player1.setText(client1.getUsername());
+                client = iterator.next();
+                player1.setText(client.getUsername());
+                ready1.setText("");
               } else {
                 player1.setText("");
               }
 
               if (iterator.hasNext()) {
-                ClientData client2 = iterator.next();
-                player2.setText(client2.getUsername());
+                client = iterator.next();
+                player2.setText(client.getUsername());
+                ready1.setText("");
               } else {
                 player2.setText("");
               }
 
               if (iterator.hasNext()) {
-                ClientData client3 = iterator.next();
-                player3.setText(client3.getUsername());
+                client = iterator.next();
+                player3.setText(client.getUsername());
+                ready1.setText("");
               } else {
                 player3.setText("");
               }
 
               if (iterator.hasNext()) {
-                ClientData client4 = iterator.next();
-                player4.setText(client4.getUsername());
+                client = iterator.next();
+                player4.setText(client.getUsername());
+                ready1.setText("");
               } else {
                 player4.setText("");
               }
@@ -286,7 +291,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 playerNameStats1.setText(help.getClientName());
                 played1.setText("" + help.getGamesPlayed());
                 won1.setText("" + help.getGamesWon());
-                // score!?
               }
               if (null != (help = sd.get(2))) {
                 playerNameStats2.setText(help.getClientName());
@@ -316,11 +320,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
         }
       }
     });
-
-    // 1. clients refresh
-    // 2. leaderboard
-    // 3. gameState
-
     t.start();
   }
 
