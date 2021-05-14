@@ -3,8 +3,12 @@ package com.scrab5.util.database;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 import org.junit.jupiter.api.Test;
 import com.scrab5.network.Server;
+import com.scrab5.network.ServerStatistics;
+import com.scrab5.network.ServerStatistics.ClientStatistic;
 
 class UseTest {
 
@@ -144,11 +148,27 @@ class UseTest {
   void testGetServerStatistics() {
     CreateDatabase cdb = new CreateDatabase();
     Server server = new Server("Laura", 4, true);
-    // FillDatabase.createServer(server);
-    // ServerStatistic ss = new
-
+    FillDatabase.createServerRow(server.getHost(), "client", "12345");
+    ServerStatistics ss = UseDatabase.getServerStatistics(server.getHost());
+    LinkedHashMap<String, ClientStatistic> list = ss.getServerStatistics();
+    String client = "";
+    ClientStatistic cs = null;
+    for(Entry<String, ClientStatistic> l : list.entrySet()) {
+      client = l.getKey();
+      cs = l.getValue();
+    }
+    assertEquals(false, list.isEmpty());
+    assertEquals("Laura", server.getHost());
+    assertEquals("client", client);
+    assertEquals("12345", cs.getIPAddress());
+    cdb.disconnect();
   }
 
+  /**
+   * Tests if a player with a given name exists, to make sure that not two players with the same name are saved in the local database.
+   * 
+   * @author lengist
+   */
   @Test
   void testPlayerExists() {
     CreateDatabase cdb = new CreateDatabase();
@@ -157,10 +177,4 @@ class UseTest {
     assertEquals(false, UseDatabase.playerExists("Peter"));
     cdb.disconnect();
   }
-
-  /*
-   * @Test void testServerExists() { fail("Not yet implemented"); }
-   */
-
-
 }

@@ -245,28 +245,4 @@ public class UseDatabase extends Database {
     }
     return exists;
   }
-
-  /**
-   * Returns a boolean if the server "name" already exists.
-   * 
-   * @author lengist
-   * @param name String of the name of the user to use in the prepared Statement
-   * @return boolean returning true if a server with name "name" already exists in the table server
-   */
-  public static boolean serverExists(String name) {
-    boolean exists = false;
-    try {
-      Statement test = connection.createStatement();
-      ResultSet rs = test.executeQuery("SELECT ServerListNames FROM Server");
-      while (rs.next()) {
-        if (rs.getString("ServerListNames").equals(name)) {
-          exists = true;
-        }
-      }
-    } catch (SQLException e1) {
-      e1.printStackTrace();
-    }
-    return exists;
-    // test
-  }
 }

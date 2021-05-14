@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.net.InetAddress;
 import org.junit.Ignore;
 import org.junit.Test;
+import com.scrab5.util.database.Database;
 
 public class ClientServerTest {
 
@@ -53,6 +54,7 @@ public class ClientServerTest {
 
   @Test
   public void ClientThreadTest() {
+    Database.reconnect();
     try {
       testClient = new Client("networkTest");
       testClient.hostServer(4);

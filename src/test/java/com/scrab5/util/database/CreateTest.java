@@ -44,10 +44,6 @@ class CreateTest {
 
   }
 
-  /*
-   * @Test void testCreateServer() { fail("Not yet implemented"); }
-   */
-
   /**
    * Tests the function to insert a letter and the corresponding points into the table Letters.
    * 

@@ -40,7 +40,7 @@ public class DictionaryScanner {
          * = searchedWord.replace((char) 42, possibleLetters[j].charAt(0)); if (line.contains(test))
          * { scanner.close(); return true; } } }
          */
-        if (line.contains(searchedWord)) {
+        if (line.equalsIgnoreCase(searchedWord)) {
           found = true;
         }
       }
