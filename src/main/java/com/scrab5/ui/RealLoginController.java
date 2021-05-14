@@ -85,14 +85,28 @@ public class RealLoginController extends Controller implements Initializable {
     this.isProfileSelected = true;
   }
 
+  /**
+   * Event method that is called when the "Arrow Down"-button in the UI is clicked. Opens the
+   * dropbox which displays the profiles.
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   */
   @FXML
-  private void clickComboBox(MouseEvent event) throws IOException {
+  private void clickComboBox(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     this.profileSelection.show();
   }
 
+  /**
+   * Event method that is called when <code>profileSelection</code> is clicked. Ensures that
+   * <code>profileSelection</code> only opens when the "Arrow Down"-button is clicked.
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   */
   @FXML
-  private void dontShow(MouseEvent event) throws IOException {
+  private void dontShow(MouseEvent event) {
     this.profileSelection.hide();
   }
 
