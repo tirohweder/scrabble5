@@ -649,7 +649,7 @@ public abstract class InGameController implements Initializable {
       Label point = new Label(pointsRack1.getText());
       point.setLayoutX(pointsRack1.getLayoutX());
       point.setLayoutY(pointsRack1.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size() - 1, point);
+      mainPane.getChildren().add(mainPane.getChildren().size(), point);
       pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
       pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
     }
@@ -657,7 +657,7 @@ public abstract class InGameController implements Initializable {
       Label point = new Label(pointsRack2.getText(), pointsRack2);
       point.setLayoutX(pointsRack2.getLayoutX());
       point.setLayoutY(pointsRack2.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size() - 1, point);
+      mainPane.getChildren().add(mainPane.getChildren().size(), point);
       pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
       pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
     }
@@ -665,7 +665,7 @@ public abstract class InGameController implements Initializable {
       Label point = new Label(pointsRack3.getText());
       point.setLayoutX(pointsRack3.getLayoutX());
       point.setLayoutY(pointsRack3.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size() - 1, point);
+      mainPane.getChildren().add(mainPane.getChildren().size(), point);
       pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
       pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
     }
@@ -673,7 +673,7 @@ public abstract class InGameController implements Initializable {
       Label point = new Label(pointsRack4.getText());
       point.setLayoutX(pointsRack4.getLayoutX());
       point.setLayoutY(pointsRack4.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size() - 1, point);
+      mainPane.getChildren().add(mainPane.getChildren().size(), point);
       pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
       pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
     }
@@ -681,7 +681,7 @@ public abstract class InGameController implements Initializable {
       Label point = new Label(pointsRack5.getText());
       point.setLayoutX(pointsRack5.getLayoutX());
       point.setLayoutY(pointsRack5.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size() - 1, point);
+      mainPane.getChildren().add(mainPane.getChildren().size(), point);
       pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
       pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
     }
@@ -689,7 +689,7 @@ public abstract class InGameController implements Initializable {
       Label point = new Label(pointsRack6.getText());
       point.setLayoutX(pointsRack6.getLayoutX());
       point.setLayoutY(pointsRack6.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size() - 1, point);
+      mainPane.getChildren().add(mainPane.getChildren().size(), point);
       pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
       pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
     }
@@ -697,7 +697,7 @@ public abstract class InGameController implements Initializable {
       Label point = new Label(pointsRack7.getText());
       point.setLayoutX(pointsRack7.getLayoutX());
       point.setLayoutY(pointsRack7.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size() - 1, point);
+      mainPane.getChildren().add(mainPane.getChildren().size(), point);
       pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
       pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
     }
@@ -983,10 +983,11 @@ public abstract class InGameController implements Initializable {
 
     Iterator<Player> it = players.iterator();
     while (it.hasNext()) {
-      String s = it.next().getName();
+      Player p = it.next();
+      String s = p.getName();
       if (s.equals(currentUser)) {
-        it.next().getRack().removeTileFromRack(pos);
-        it.next().getRack().fill(Data.getGameSession().getBag());
+        p.getRack().removeTileFromRack(pos);
+        p.getRack().fill(Data.getGameSession().getBag());
       } else {
         continue;
       }
