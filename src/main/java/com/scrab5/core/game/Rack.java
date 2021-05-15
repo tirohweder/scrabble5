@@ -14,13 +14,16 @@ public class Rack {
    */
   public void fill(BagOfTiles bag) {
     for (int i = 0; i < 7; i++) {
-      System.out.println(rack[i].isNull());
-      if (this.rack[i].isNull() && bag.getSize() >= 1) {
-        System.out.println("test");
+      System.out.println(rack[i]);
+      System.out.println(rack[i] == null);
+      if (this.rack[i] == null && bag.getSize() >= 1) {
+        System.out.println("FillsRack: " + i);
         rack[i] = bag.pick();
         rack[i].setRackPlace(i);
       }
     }
+
+    System.out.println("Rack at 0 = " + rack[0]);
   }
 
   /**

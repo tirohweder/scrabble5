@@ -136,7 +136,7 @@ public class GameSession {
     ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
       this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
-      System.out.println(rs.getString("Lettter") + " : " + rs.getInt("Points"));
+      System.out.println(rs.getString("Letter") + " : " + rs.getInt("Points"));
     }
 
     System.out.println("Finished Initialized Bag");
