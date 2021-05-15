@@ -2,6 +2,7 @@ package com.scrab5.core.game;
 
 import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -101,15 +102,14 @@ public class GameSession {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
-    System.out.println("GFuck you homo");
+    System.out.println("Created Game Session");
 
     initializeBag();
 
-    Iterator<Player> iter = listOfPlayers.iterator();
-    while (iter.hasNext()) {
-      iter.next().getRack().fill(bag);
-      System.out.println("GFuck you homo2");
-      System.out.println(currentPlayer.getRack().getTileAt(0));
+    for (int i = 0; i < listOfPlayers.size(); i++) {
+      listOfPlayers.get(i).getRack().fill(bag);
+      System.out.println();
+      System.out.println("Tile AT 0:" + currentPlayer.getRack().getTileAt(0));
     }
   }
 
@@ -124,17 +124,23 @@ public class GameSession {
     while (iter.hasNext()) {
       iter.next().getRack().fill(bag);
     }
-
+    System.out.println(bag.getSize());
   }
 
   public void initializeBag()
       throws SQLException {
 
-    System.out.println("tedqwokdoq");
+    System.out.println("Initialized Bag");
+
+    FillDatabase.fillLetters();
+
     ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
       this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
+      System.out.println(rs.getString("Lettter") + " : " + rs.getInt("Points"));
     }
+
+    System.out.println("Finished Initialized Bag");
   }
 
   public void initializeBag(ArrayList<Integer> letters, ArrayList<Integer> points)

@@ -1,23 +1,24 @@
 package com.scrab5.util.database;
 
+import com.scrab5.network.Server;
+import com.scrab5.network.ServerStatistics.ClientStatistic;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
-import com.scrab5.network.Server;
-import com.scrab5.network.ServerStatistics.ClientStatistic;
 
 
 /**
  * class with methods to fill all tables, edit certain entries or delete a table or certain entries
  * in the database.
- * 
+ *
  * @author lengist
  * @author hraza
  */
 public class FillDatabase extends Database {
+
   /*
    * to-do for this class: close statements for all preparedStatements.
    */
@@ -28,7 +29,7 @@ public class FillDatabase extends Database {
 
   /**
    * Closes the statement stream for preparedSatetements with "name" in its notation.
-   * 
+   *
    * @author lengist
    * @author hraza
    */
@@ -68,7 +69,7 @@ public class FillDatabase extends Database {
 
   /**
    * Closes all prepared statements when the application gets closed.
-   * 
+   *
    * @author lengist
    */
   public static void closeAllStatements() {
@@ -92,10 +93,10 @@ public class FillDatabase extends Database {
 
   /**
    * Deleting all entries from the table "name".
-   * 
+   *
+   * @param name String with name of the user
    * @author lengist
    * @author hraza
-   * @param name String with name of the user
    */
   protected static void deleteTable(String name) {
     Statement statement;
@@ -112,9 +113,9 @@ public class FillDatabase extends Database {
 
   /**
    * Deletes a certain player with name "name" in the table Player.
-   * 
-   * @author lengist
+   *
    * @param name String with name of the user
+   * @author lengist
    */
   public static void deletePlayer(String name) {
     try {
@@ -131,9 +132,9 @@ public class FillDatabase extends Database {
 
   /**
    * Deletes a certain server with name "name" in the table Server.
-   * 
-   * @author lengist
+   *
    * @param name String with name of the user
+   * @author lengist
    */
   protected static void deleteServer(String name) {
     try {
@@ -152,11 +153,11 @@ public class FillDatabase extends Database {
   /**
    * Method to fill table player completely. Used when a new player profile is created. Variables
    * for statistics get default values.
-   * 
+   *
+   * @param name    String with name of the user
+   * @param picture String with the path to the picture
    * @author lengist
    * @author hraza
-   * @param name String with name of the user
-   * @param picture String with the path to the picture
    */
   public static boolean createPlayer(String name, String picture) {
     boolean created = false;
@@ -190,14 +191,15 @@ public class FillDatabase extends Database {
   /**
    * Filling the table player at specific index/column. If variable for column name is from type
    * integer, variable contentString is default.
-   * 
-   * @author hraza
-   * @param column String with the name of the column in the table where a change needs to be done
-   * @param name String with name of the user
+   *
+   * @param column        String with the name of the column in the table where a change needs to be
+   *                      done
+   * @param name          String with name of the user
    * @param contentString String that contains the new information that needs to be stored in the
-   *        database
-   * @param contentInt Integer that contains the new information that needs to be stored in the
-   *        database
+   *                      database
+   * @param contentInt    Integer that contains the new information that needs to be stored in the
+   *                      database
+   * @author hraza
    */
   protected static void updatePlayer(String column, String name, String contentString,
       int contentInt, double doubleValues) {
@@ -328,10 +330,10 @@ public class FillDatabase extends Database {
 
   /**
    * Method to fill table server completely. Used when a new server is created.
-   * 
+   *
+   * @param name String with name of the user
    * @author lengist
    * @author nitterhe
-   * @param name String with name of the user
    */
   public synchronized static void createServerRow(String ServerHost, String clientUsername,
       String IPAddress) {
@@ -352,11 +354,11 @@ public class FillDatabase extends Database {
 
   /**
    * Updates the entries from the table server at a specific serverHostName.
-   * 
+   *
+   * @param serverObject an object received from the server with all information needed for the
+   *                     statistics in a hosted game
    * @author lengist
    * @author nitterhe
-   * @param serverObject an object received from the server with all information needed for the
-   *        statistics in a hosted game
    */
   public static void updateServer(Server serverObject) {
     String sql =
@@ -383,11 +385,11 @@ public class FillDatabase extends Database {
 
   /**
    * Inserts letters with corresponding points.
-   * 
+   *
+   * @param letter String with the letter that needs to be inserted in the database
+   * @param point  Integer with the correpsonding points for the given letter
    * @author lengist
    * @author hraza
-   * @param letter String with the letter that needs to be inserted in the database
-   * @param point Integer with the correpsonding points for the given letter
    */
   public static void insertLetters(String letter, int point, int occurrence) {
     try {
@@ -405,9 +407,9 @@ public class FillDatabase extends Database {
 
   /**
    * Fills table letters initial.
-   * 
-   * @author lengist
+   *
    * @throws IOException Exception from insertLetters
+   * @author lengist
    */
   public static void fillLetters() {
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
@@ -423,10 +425,11 @@ public class FillDatabase extends Database {
 
   /**
    * Updates the occurrence for a particular letter if a change is needed.
-   * 
-   * @author lengist
-   * @param letter String with the letter where the occurrence needs to be updated in the database
+   *
+   * @param letter     String with the letter where the occurrence needs to be updated in the
+   *                   database
    * @param occurrence Integer with the new occurrence for the given letter
+   * @author lengist
    */
   protected static void updateOccurrenceLetters(String letter, int occurrence) {
     try {
@@ -442,10 +445,10 @@ public class FillDatabase extends Database {
 
   /**
    * Updates the points for a particular letter if a change is needed.
-   * 
-   * @author lengist
+   *
    * @param letter String with the letter where the points need to be updated in the database
-   * @param point Integer with the new points for the given letter
+   * @param point  Integer with the new points for the given letter
+   * @author lengist
    */
   protected static void updatePointLetters(String letter, int point) {
     try {
@@ -458,6 +461,8 @@ public class FillDatabase extends Database {
     }
     closeStatement("dic");
   }
+  
+
 }
 
 

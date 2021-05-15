@@ -14,7 +14,8 @@ public class Rack {
    */
   public void fill(BagOfTiles bag) {
     for (int i = 0; i < 7; i++) {
-      if (this.rack[i] == null && bag.getSize() >= 1) {
+      System.out.println(rack[i].isNull());
+      if (this.rack[i].isNull() && bag.getSize() >= 1) {
         System.out.println("test");
         rack[i] = bag.pick();
         rack[i].setRackPlace(i);

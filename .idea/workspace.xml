@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/scrabble5.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/myDatabase.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/FillDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/FillDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameSessionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameSessionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/RackTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/RackTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +50,15 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql&#10;sqlite" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/myDatabase.db" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -68,26 +76,17 @@
       <recent name="com.scrab5.core.game" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UpdateTest.testUpdatePlayer">
-    <configuration name="AiPlayer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.player.AiPlayer" />
+  <component name="RunManager" selected="JUnit.CreateTest.testCreatePlayer">
+    <configuration name="CreateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.scrab5.core.player.*" />
+          <option name="PATTERN" value="com.scrab5.util.database.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
+      <option name="PACKAGE_NAME" value="com.scrab5.util.database" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.util.database.CreateTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -109,22 +108,39 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameBoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CreateTest.testFillLetters" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.scrab5.core.game.*" />
+          <option name="PATTERN" value="com.scrab5.util.database.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="com.scrab5.util.database" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.util.database.CreateTest" />
+      <option name="METHOD_NAME" value="testFillLetters" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameSessionTest.finishTurn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CreateTest.testInsertLetters" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="scrabble5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scrab5.util.database.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.scrab5.util.database" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.util.database.CreateTest" />
+      <option name="METHOD_NAME" value="testInsertLetters" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameSessionTest.testInitializeBag" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
         <pattern>
@@ -134,23 +150,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
       <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameSessionTest" />
-      <option name="METHOD_NAME" value="finishTurn" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UpdateTest.testUpdatePlayer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="scrabble5" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.scrab5.util.database.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.scrab5.util.database" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.util.database.UpdateTest" />
-      <option name="METHOD_NAME" value="testUpdatePlayer" />
+      <option name="METHOD_NAME" value="testInitializeBag" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -183,20 +183,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.AiPlayer" />
-      <item itemvalue="JUnit.GameBoardTest" />
-      <item itemvalue="Maven.scrabble5 [clean,package]" />
+      <item itemvalue="JUnit.GameSessionTest.testInitializeBag" />
+      <item itemvalue="JUnit.CreateTest.testInsertLetters" />
+      <item itemvalue="JUnit.CreateTest" />
+      <item itemvalue="JUnit.CreateTest.testFillLetters" />
       <item itemvalue="JUnit.CreateTest.testCreatePlayer" />
-      <item itemvalue="JUnit.GameSessionTest.finishTurn" />
-      <item itemvalue="JUnit.UpdateTest.testUpdatePlayer" />
+      <item itemvalue="Maven.scrabble5 [clean,package]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UpdateTest.testUpdatePlayer" />
-        <item itemvalue="JUnit.GameSessionTest.finishTurn" />
         <item itemvalue="JUnit.CreateTest.testCreatePlayer" />
-        <item itemvalue="Application.AiPlayer" />
-        <item itemvalue="JUnit.GameBoardTest" />
+        <item itemvalue="JUnit.CreateTest.testInsertLetters" />
+        <item itemvalue="JUnit.CreateTest.testFillLetters" />
+        <item itemvalue="JUnit.CreateTest" />
+        <item itemvalue="JUnit.GameSessionTest.testInitializeBag" />
       </list>
     </recent_temporary>
   </component>
@@ -348,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621015478204</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/test/java/com/scrab5/core/game/GameBoardTest.java">
+      <created>1621015567518</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1621015567518</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
