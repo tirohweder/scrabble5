@@ -13,7 +13,7 @@ class ConnectTest {
   @Test
   void testDatabase() {
     Database db = new Database();
-    db.disconnect();
+    Database.disconnect();
   }
 
 
@@ -25,8 +25,8 @@ class ConnectTest {
   @Test
   void testReconnect() {
     Database db = new Database();
-    db.disconnect();
-    db.reconnect();
+    Database.disconnect();
+    Database.reconnect();
   }
 
 

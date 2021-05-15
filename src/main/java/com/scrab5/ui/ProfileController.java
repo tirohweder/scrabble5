@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 
 /**
- * The ProfileController class controls the components of the Profile.fxml.
+ * The ProfileController class controls the components of the "Profile.fxml".
  * 
  * @author mherre
  *
@@ -145,7 +145,7 @@ public class ProfileController extends Controller implements Initializable {
    * PopUp message stating the username doesn't fullfill the criteria.
    * 
    * @author mherre
-   * @param username the string containing the username thats tested
+   * @param username the string containing the username that's tested
    * @return the boolean describing if the username is valid
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist

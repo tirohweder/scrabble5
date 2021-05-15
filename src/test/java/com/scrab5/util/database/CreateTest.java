@@ -15,7 +15,8 @@ class CreateTest {
    */
   @Test
   void testCreatePlayer() {
-    CreateDatabase cdb = new CreateDatabase();
+    //CreateDatabase cdb = new CreateDatabase();
+    Database.reconnect();
     FillDatabase.createPlayer("Laura", "Bild");
 
 
@@ -40,8 +41,7 @@ class CreateTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    cdb.disconnect();
-
+    Database.disconnect();
   }
 
   /**
@@ -51,6 +51,7 @@ class CreateTest {
    */
   @Test
   void testInsertLetters() {
+    Database.reconnect();
     CreateDatabase cdb = new CreateDatabase();
     FillDatabase.insertLetters("L", 4, 5);
     Statement stm;
@@ -64,7 +65,7 @@ class CreateTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    cdb.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -74,6 +75,7 @@ class CreateTest {
    */
   @Test
   void testFillLetters() {
+    Database.reconnect();
     CreateDatabase cdb = new CreateDatabase();
     FillDatabase.fillLetters();
     Statement stm;
@@ -143,7 +145,7 @@ class CreateTest {
     assertEquals(4, point[24]);
     assertEquals("Z", letter[25]);
     assertEquals(10, point[25]);
-    cdb.disconnect();
+    Database.disconnect();
   }
 
 }
