@@ -42,19 +42,16 @@ public abstract class InGameController implements Initializable {
   private static final double LABEL_X_CORD_BACK = 46.0;
   private static final double LABEL_Y_CORD_BACK = 44.0;
 
-  public ArrayList<Player> playersList = new ArrayList<>();
-
-  private ArrayList<Label> points = new ArrayList<>();
 
   String currentUser = Data.getCurrentUser();
-  String currentPlayer;
+  String currentPlayer = Data.getGameSession().getCurrentPlayer().getName();
 
 
   /**
    * @author apilgrim
-   * <p>
-   * first representation of the rack places which later will be connected to the game core and
-   * linked to the bag of tiles
+   *         <p>
+   *         first representation of the rack places which later will be connected to the game core
+   *         and linked to the bag of tiles
    */
   @FXML
   ImageView rackPlace1;
@@ -138,39 +135,47 @@ public abstract class InGameController implements Initializable {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
-    setNewTile(rackPlace1, pointsRack1, "A", 3);
-
     initRack();
+    initPlayers();
 
 
-  }
-
-  public void test() {
-    playersList.add(new Player("peter"));
-    playersList.add(new Player("karl"));
-    playersList.add(new Player("marta"));
-    playersList.add(new Player("Aaron"));
   }
 
   protected void initPlayers() {
-    // Iterator<Player> it = players.iterator();
-    //
-    // if (it.hasNext()) {
-    // player1.setText(it.next().getName());
-    // player1.setOpacity(1);
-    // pointsPlayer1.setText("");
-    // it.next();
-    // if (it.hasNext()) {
-    //
-    // }
-    // }
-    player1.setText("Aaron");
-    player2.setText("Peter");
-    player2.setOpacity(1);
-    player3.setText("Peter");
-    player3.setOpacity(1);
-    player4.setText("Peter");
-    player4.setOpacity(1);
+    Iterator<Player> it = players.iterator();
+    int playerAmount = players.size();
+
+    if (0 < playerAmount) {
+      player1.setText(players.get(0).getName());
+      if (players.get(0).getName().equalsIgnoreCase(currentPlayer)) {
+        playerProfile1Passive.setOpacity(0);
+      }
+    }
+    if (1 < playerAmount) {
+      player2.setText(players.get(1).getName());
+      playerProfile2Active.setOpacity(1);
+      playerProfile2Passive.setOpacity(1);
+      if (players.get(1).getName().equalsIgnoreCase(currentPlayer)) {
+        playerProfile1Passive.setOpacity(0);
+      }
+    }
+    if (2 < playerAmount) {
+      player3.setText(players.get(2).getName());
+      playerProfile3Active.setOpacity(1);
+      playerProfile3Passive.setOpacity(1);
+      if (players.get(2).getName().equalsIgnoreCase(currentPlayer)) {
+        playerProfile1Passive.setOpacity(0);
+      }
+    }
+    if (3 < playerAmount) {
+      player4.setText(players.get(3).getName());
+      playerProfile4Active.setOpacity(1);
+      playerProfile4Passive.setOpacity(1);
+      if (players.get(3).getName().equalsIgnoreCase(currentPlayer)) {
+        playerProfile1Passive.setOpacity(0);
+      }
+    }
+
   }
 
   private void initRack() {
@@ -186,7 +191,6 @@ public abstract class InGameController implements Initializable {
       System.out.println(s.equalsIgnoreCase(currentUser));
       if (s.equalsIgnoreCase(currentUser)) {
         myRack = it.next().getRack();
-        myRack.fill(Data.getGameSession().getBag());
         System.out.println(myRack.getTileAt(0).getLetter());
       } else {
         continue;
@@ -201,27 +205,27 @@ public abstract class InGameController implements Initializable {
               myRack.getTileAt(i).getValue());
           break;
         case 1:
-          setNewTile(rackPlace2, pointsRack1, myRack.getTileAt(i).getLetter(),
+          setNewTile(rackPlace2, pointsRack2, myRack.getTileAt(i).getLetter(),
               myRack.getTileAt(i).getValue());
           break;
         case 2:
-          setNewTile(rackPlace3, pointsRack1, myRack.getTileAt(i).getLetter(),
+          setNewTile(rackPlace3, pointsRack3, myRack.getTileAt(i).getLetter(),
               myRack.getTileAt(i).getValue());
           break;
         case 3:
-          setNewTile(rackPlace4, pointsRack1, myRack.getTileAt(i).getLetter(),
+          setNewTile(rackPlace4, pointsRack4, myRack.getTileAt(i).getLetter(),
               myRack.getTileAt(i).getValue());
           break;
         case 4:
-          setNewTile(rackPlace5, pointsRack1, myRack.getTileAt(i).getLetter(),
+          setNewTile(rackPlace5, pointsRack5, myRack.getTileAt(i).getLetter(),
               myRack.getTileAt(i).getValue());
           break;
         case 5:
-          setNewTile(rackPlace6, pointsRack1, myRack.getTileAt(i).getLetter(),
+          setNewTile(rackPlace6, pointsRack6, myRack.getTileAt(i).getLetter(),
               myRack.getTileAt(i).getValue());
           break;
         case 6:
-          setNewTile(rackPlace7, pointsRack1, myRack.getTileAt(i).getLetter(),
+          setNewTile(rackPlace7, pointsRack7, myRack.getTileAt(i).getLetter(),
               myRack.getTileAt(i).getValue());
           break;
         default:
@@ -233,11 +237,10 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event - MouseEvent
    * @throws IOException this method is called when a tile on the board is clicked. It checks 1. if
-   *                     the field already contained a letter which than is removed (backToRack) 2.
-   *                     else, if no other tile is clicked and the place isn't taken, then it is
-   *                     marked thru the opacity or if a letter is clicked as well, the Letter is
-   *                     placed. 3. last if another tile has been clicked before it is unclicked an
-   *                     reseted from the clickedTile
+   *         the field already contained a letter which than is removed (backToRack) 2. else, if no
+   *         other tile is clicked and the place isn't taken, then it is marked thru the opacity or
+   *         if a letter is clicked as well, the Letter is placed. 3. last if another tile has been
+   *         clicked before it is unclicked an reseted from the clickedTile
    * @author apilgirm
    */
   @FXML
@@ -256,11 +259,12 @@ public abstract class InGameController implements Initializable {
         if (!letterClicked) {
           lighten(event);
           tileClicked = true;
-        } else if (Data.getGameSession().getGameBoard()
-            .placeTile(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(rackClicked),
-                rowTransformation(clickedTile.getId()),
-                columnTransformation(clickedTile.getId()))) {
+        } else if (Data.getGameSession().getGameBoard().placeTile(
+            Data.getGameSession().getCurrentPlayer().getRack().getTileAt(rackClicked),
+            rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))
+            && rackClicked < 7) {
           placeLetter(clickedLetter, clickedLabel);
+          rackClicked = 7;
         }
       } else if (tileClicked && (clickedTile == (ImageView) event.getSource())) {
         darken(event);
@@ -272,8 +276,8 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @param event - MouseEvent
-   *              <p>
-   *              method to set the opacity and let it looks like the field/ button is entered
+   *        <p>
+   *        method to set the opacity and let it looks like the field/ button is entered
    * @author apilgirm
    */
   @FXML
@@ -284,9 +288,10 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @author apilgirm
-   * <p>
-   * method to set the opacity on zero and let it looks like the field/ button is excited but checks
-   * first that it isnt a letter already placed or the marked field with the square
+   *         <p>
+   *         method to set the opacity on zero and let it looks like the field/ button is excited
+   *         but checks first that it isnt a letter already placed or the marked field with the
+   *         square
    */
   @FXML
   private void darken(MouseEvent event) {
@@ -301,11 +306,10 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method which is called when the rack Place One is clicked and checks 1. if
-   *                     another letter is clicked/marked 2. if not, it checks if a destination tile
-   *                     is already marked on the field and therefore is replaced with this letter,
-   *                     otherwise it is marked and is locked in the clicked Letter attribute. Or 3.
-   *                     least if it was already the marked letter in the rack it is unmarked and
-   *                     unclicked
+   *         another letter is clicked/marked 2. if not, it checks if a destination tile is already
+   *         marked on the field and therefore is replaced with this letter, otherwise it is marked
+   *         and is locked in the clicked Letter attribute. Or 3. least if it was already the marked
+   *         letter in the rack it is unmarked and unclicked
    * @author apilgirm
    */
   @FXML
@@ -325,9 +329,9 @@ public abstract class InGameController implements Initializable {
         rackPlace1.setOpacity(0.8);
 
         // destination chosen
-      } else if (Data.getGameSession().getGameBoard()
-          .placeTile(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(0),
-              rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
+      } else if (Data.getGameSession().getGameBoard().placeTile(
+          Data.getGameSession().getCurrentPlayer().getRack().getTileAt(0),
+          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
         placeLetter(clickedLetter, pointsRack1);
         rackPlace1.setOpacity(0);
       }
@@ -345,7 +349,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *                     Place 2 like in rackPlace1Clicked
+   *         Place 2 like in rackPlace1Clicked
    * @author apilgirm
    */
   @FXML
@@ -357,6 +361,7 @@ public abstract class InGameController implements Initializable {
 
       clickedLetter = rackPlace2;
       letterClicked = true;
+      rackClicked = 1;
       clickedLabel = pointsRack2;
 
       // no destination tile chosen
@@ -364,9 +369,9 @@ public abstract class InGameController implements Initializable {
         rackPlace2.setOpacity(0.8);
 
         // destination chosen
-      } else if (Data.getGameSession().getGameBoard()
-          .placeTile(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(1),
-              rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
+      } else if (Data.getGameSession().getGameBoard().placeTile(
+          Data.getGameSession().getCurrentPlayer().getRack().getTileAt(1),
+          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
         placeLetter(clickedLetter, pointsRack2);
         rackPlace2.setOpacity(0);
       }
@@ -384,7 +389,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *                     Place 3 like in rackPlace1Clicked
+   *         Place 3 like in rackPlace1Clicked
    * @author apilgirm
    */
   @FXML
@@ -396,6 +401,7 @@ public abstract class InGameController implements Initializable {
 
       clickedLetter = rackPlace3;
       letterClicked = true;
+      rackClicked = 2;
       clickedLabel = pointsRack3;
 
       // no destination tile chosen
@@ -403,9 +409,9 @@ public abstract class InGameController implements Initializable {
         rackPlace3.setOpacity(0.8);
 
         // destination chosen
-      } else if (Data.getGameSession().getGameBoard()
-          .placeTile(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(2),
-              rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
+      } else if (Data.getGameSession().getGameBoard().placeTile(
+          Data.getGameSession().getCurrentPlayer().getRack().getTileAt(2),
+          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
         placeLetter(clickedLetter, pointsRack3);
         rackPlace3.setOpacity(0);
       }
@@ -422,7 +428,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *                     Place 4 like in rackPlace1Clicked
+   *         Place 4 like in rackPlace1Clicked
    * @author apilgirm
    */
   @FXML
@@ -434,6 +440,7 @@ public abstract class InGameController implements Initializable {
 
       clickedLetter = rackPlace4;
       letterClicked = true;
+      rackClicked = 3;
       clickedLabel = pointsRack4;
 
       // no destination tile chosen
@@ -441,9 +448,9 @@ public abstract class InGameController implements Initializable {
         rackPlace4.setOpacity(0.8);
 
         // destination chosen
-      } else if (Data.getGameSession().getGameBoard()
-          .placeTile(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(3),
-              rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
+      } else if (Data.getGameSession().getGameBoard().placeTile(
+          Data.getGameSession().getCurrentPlayer().getRack().getTileAt(3),
+          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
         placeLetter(clickedLetter, pointsRack4);
         rackPlace4.setOpacity(0);
       }
@@ -461,7 +468,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *                     Place 5 like in rackPlace1Clicked
+   *         Place 5 like in rackPlace1Clicked
    * @author apilgirm
    */
   @FXML
@@ -473,6 +480,7 @@ public abstract class InGameController implements Initializable {
 
       clickedLetter = rackPlace5;
       letterClicked = true;
+      rackClicked = 4;
       clickedLabel = pointsRack5;
 
       // no destination tile chosen
@@ -480,9 +488,9 @@ public abstract class InGameController implements Initializable {
         rackPlace5.setOpacity(0.8);
 
         // destination chosen
-      } else if (Data.getGameSession().getGameBoard()
-          .placeTile(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(4),
-              rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
+      } else if (Data.getGameSession().getGameBoard().placeTile(
+          Data.getGameSession().getCurrentPlayer().getRack().getTileAt(4),
+          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
 
         placeLetter(clickedLetter, pointsRack5);
         rackPlace5.setOpacity(0);
@@ -501,7 +509,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *                     Place 6 like in rackPlace1Clicked
+   *         Place 6 like in rackPlace1Clicked
    * @author apilgirm
    */
   @FXML
@@ -513,6 +521,7 @@ public abstract class InGameController implements Initializable {
 
       clickedLetter = rackPlace6;
       letterClicked = true;
+      rackClicked = 5;
       clickedLabel = pointsRack6;
 
       // no destination tile chosen
@@ -520,9 +529,9 @@ public abstract class InGameController implements Initializable {
         rackPlace6.setOpacity(0.8);
 
         // destination chosen
-      } else if (Data.getGameSession().getGameBoard()
-          .placeTile(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(5),
-              rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
+      } else if (Data.getGameSession().getGameBoard().placeTile(
+          Data.getGameSession().getCurrentPlayer().getRack().getTileAt(5),
+          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
         placeLetter(clickedLetter, pointsRack6);
         rackPlace6.setOpacity(0);
       }
@@ -540,7 +549,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *                     Place 7 like in rackPlace1Clicked
+   *         Place 7 like in rackPlace1Clicked
    * @author apilgirm
    * @author Aaron
    */
@@ -553,6 +562,7 @@ public abstract class InGameController implements Initializable {
 
       clickedLetter = rackPlace7;
       letterClicked = true;
+      rackClicked = 6;
       clickedLabel = pointsRack7;
 
       // if no destination tile is chosen the letter is highlighted and the letterClicked is set
@@ -562,9 +572,9 @@ public abstract class InGameController implements Initializable {
         rackPlace7.setOpacity(0.8);
 
         // desination chosen
-      } else if (Data.getGameSession().getGameBoard()
-          .placeTile(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(6),
-              rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
+      } else if (Data.getGameSession().getGameBoard().placeTile(
+          Data.getGameSession().getCurrentPlayer().getRack().getTileAt(6),
+          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
         placeLetter(clickedLetter, pointsRack7);
       }
       rackPlace7.setOpacity(0);
@@ -583,14 +593,14 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to refill rack where letters have been placed and to permanently
-   *                     lock
+   *         lock
    * @author apilgirm, (small part trohwede)
    */
   @FXML
   private void playClicked(MouseEvent event) throws IOException {
     ImageView iv = (ImageView) event.getSource();
 
-    //TODO
+    // TODO
     if (Data.getGameSession().getGameBoard().checkWordsLegit()) {
 
       String message = "Congrats you scored: " + Data.getGameSession().getGameBoard().countScore();
@@ -603,29 +613,36 @@ public abstract class InGameController implements Initializable {
       PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
     }
 
-    //TODO
+    // TODO
 
     // reset Opacity on the Rag Board if not null
-    if (rackPlace1 != null) {
+    if (rackPlace1 != null && rackPlace1.getOpacity() == 0) {
       rackPlace1.setOpacity(1);
+      rackRemoveTile(0);
     }
-    if (rackPlace2 != null) {
+    if (rackPlace2 != null && rackPlace2.getOpacity() == 0) {
       rackPlace2.setOpacity(1);
+      rackRemoveTile(1);
     }
-    if (rackPlace3 != null) {
+    if (rackPlace3 != null && rackPlace3.getOpacity() == 0) {
       rackPlace3.setOpacity(1);
+      rackRemoveTile(2);
     }
-    if (rackPlace4 != null) {
+    if (rackPlace4 != null && rackPlace4.getOpacity() == 0) {
       rackPlace4.setOpacity(1);
+      rackRemoveTile(3);
     }
-    if (rackPlace5 != null) {
+    if (rackPlace5 != null && rackPlace5.getOpacity() == 0) {
       rackPlace5.setOpacity(1);
+      rackRemoveTile(4);
     }
-    if (rackPlace6 != null) {
+    if (rackPlace6 != null && rackPlace6.getOpacity() == 0) {
       rackPlace6.setOpacity(1);
+      rackRemoveTile(5);
     }
-    if (rackPlace7 != null) {
+    if (rackPlace7 != null && rackPlace7.getOpacity() == 0) {
       rackPlace7.setOpacity(1);
+      rackRemoveTile(6);
     }
 
     if (pointsRack1 != null && (pointsRack1.getLayoutY() < 740)) {
@@ -684,12 +701,16 @@ public abstract class InGameController implements Initializable {
       pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
       pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
     }
+
+    initRack();
+    initPlayers();
+    
   }
 
   /**
    * @param - ImageView
-   *          <p>
-   *          reset the opacity of the clickedLetter in the Rack and resets him from being clicked
+   *        <p>
+   *        reset the opacity of the clickedLetter in the Rack and resets him from being clicked
    * @author apilgrim
    */
 
@@ -708,12 +729,12 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @param iv - ImageView
-   *           <p>
-   *           This method is called when a destination Tile is clicked on the GameBoard which
-   *           already contains a letter tile (is chosen but not permanently logged) and brings back
-   *           the letter to the rack. It changes the Image on the Board back to the marked Tile
-   *           (black square) and brings the Letter from the Board back to the rack thru the opacity
-   *           and resets the clicked attributes (Letter/ Tile) for source and destination
+   *        <p>
+   *        This method is called when a destination Tile is clicked on the GameBoard which already
+   *        contains a letter tile (is chosen but not permanently logged) and brings back the letter
+   *        to the rack. It changes the Image on the Board back to the marked Tile (black square)
+   *        and brings the Letter from the Board back to the rack thru the opacity and resets the
+   *        clicked attributes (Letter/ Tile) for source and destination
    * @author apilgrim
    */
   private void backToRack(ImageView iv) {
@@ -722,54 +743,74 @@ public abstract class InGameController implements Initializable {
     if (rackPlace1 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace1.getImage().getUrl())
         && rackPlace1.getOpacity() == 0) {
-      rackPlace1.setOpacity(1);
-      pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
+      if (Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()))) {
+        rackPlace1.setOpacity(1);
+        pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+      }
     } else if (rackPlace2 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace2.getImage().getUrl())
         && rackPlace2.getOpacity() == 0) {
-      rackPlace2.setOpacity(1);
-      pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
+      if (Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()))) {
+        rackPlace2.setOpacity(1);
+        pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+      }
     } else if (rackPlace3 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace3.getImage().getUrl())
         && rackPlace3.getOpacity() == 0) {
-      rackPlace3.setOpacity(1);
-      pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
+      if (Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()))) {
+        rackPlace3.setOpacity(1);
+        pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+      }
     } else if (rackPlace4 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace4.getImage().getUrl())
         && rackPlace4.getOpacity() == 0) {
-      rackPlace4.setOpacity(1);
-      pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
+      if (Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()))) {
+        rackPlace4.setOpacity(1);
+        pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+      }
     } else if (rackPlace5 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace5.getImage().getUrl())
         && rackPlace5.getOpacity() == 0) {
-      rackPlace5.setOpacity(1);
-      pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
+      if (Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()))) {
+        rackPlace5.setOpacity(1);
+        pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+      }
     } else if (rackPlace6 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace6.getImage().getUrl())
         && rackPlace6.getOpacity() == 0) {
-      rackPlace6.setOpacity(1);
-      pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
+      if (Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()))) {
+        rackPlace6.setOpacity(1);
+        pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+      }
     } else if (rackPlace7 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace7.getImage().getUrl())
         && rackPlace7.getOpacity() == 0) {
-      rackPlace7.setOpacity(1);
-      pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
+      if (Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()))) {
+        rackPlace7.setOpacity(1);
+        pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+      }
     }
-    choosenTiles.remove(iv.getId());
     iv.setImage(markedTile);
     clickedTile = null;
     clickedLetter = null;
@@ -778,11 +819,11 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @param iv - ImageView
-   *           <p>
-   *           This method is called when a destination Tile is clicked on the GameBoard and a
-   *           Letter Tile is selected. It changes the Image on the Board and "deletes" the Letter
-   *           from the Board thru the opacity and resets the boolean clicked attributes (Letter/
-   *           Tile) for source and destination
+   *        <p>
+   *        This method is called when a destination Tile is clicked on the GameBoard and a Letter
+   *        Tile is selected. It changes the Image on the Board and "deletes" the Letter from the
+   *        Board thru the opacity and resets the boolean clicked attributes (Letter/ Tile) for
+   *        source and destination
    * @author apilgrim
    */
   private void placeLetter(ImageView iv, Label l) {
@@ -800,9 +841,9 @@ public abstract class InGameController implements Initializable {
   /**
    * @param iv - ImageView
    * @return boolean
-   * <p>
-   * This method checks if a tile is already permanently taken by another Letter. Only for
-   * demonstration/ test purpose. Later checked in the core.game with @is_spot_free
+   *         <p>
+   *         This method checks if a tile is already permanently taken by another Letter. Only for
+   *         demonstration/ test purpose. Later checked in the core.game with @is_spot_free
    * @author apilgrim
    */
   private boolean placeTaken(ImageView iv) {
@@ -821,7 +862,7 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @param placeID - String representation of the coordinate from every tile on the board read from
-   *                the fxml document as ID
+   *        the fxml document as ID
    * @return x - Integer representation of the x coordinate for the tile, placed on the Gameboard
    * @author apilgrim
    */
@@ -836,7 +877,7 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @param placeID - String representation of the coordinate from every tile on the board read from
-   *                the fxml document as ID
+   *        the fxml document as ID
    * @return y - Integer representation of the y coordinate for the tile, placed on the Gameboard
    * @author apilgrim
    */
@@ -865,12 +906,35 @@ public abstract class InGameController implements Initializable {
   private void shuffleClicked(MouseEvent event) {
     ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
     currentUser = Data.getCurrentUser();
+    ArrayList<Integer> order = new ArrayList<>();
+
+    if (rackPlace1.getOpacity() != 0) {
+      order.add(0);
+    }
+    if (rackPlace2.getOpacity() != 0) {
+      order.add(1);
+    }
+    if (rackPlace3.getOpacity() != 0) {
+      order.add(2);
+    }
+    if (rackPlace4.getOpacity() != 0) {
+      order.add(3);
+    }
+    if (rackPlace5.getOpacity() != 0) {
+      order.add(4);
+    }
+    if (rackPlace6.getOpacity() != 0) {
+      order.add(5);
+    }
+    if (rackPlace7.getOpacity() != 0) {
+      order.add(6);
+    }
 
     Iterator<Player> it = players.iterator();
     while (it.hasNext()) {
       String s = it.next().getName();
       if (s.equals(currentUser)) {
-        it.next().getRack().shuffleRack();
+        it.next().getRack().shuffleRack(order);
         initRack();
       } else {
         continue;
@@ -893,12 +957,12 @@ public abstract class InGameController implements Initializable {
 
   @FXML
   private void exchangeClicked(MouseEvent event) throws IOException {
-//    currentUser = Data.getCurrentUser();
-//    currentPlayer = GameSession.getCurrentPlayer().getName();
-//
-//    if (currentUser.toLowerCase().equals(currentPlayer.toLowerCase())) {
-//      
-//    }
+    // currentUser = Data.getCurrentUser();
+    // currentPlayer = GameSession.getCurrentPlayer().getName();
+    //
+    // if (currentUser.toLowerCase().equals(currentPlayer.toLowerCase())) {
+    //
+    // }
     App.setRoot("Exchange");
   }
 
@@ -911,6 +975,24 @@ public abstract class InGameController implements Initializable {
     point.setText(Integer.toString(points));
     point.setOpacity(1);
   }
+
+
+  protected void rackRemoveTile(int pos) {
+    ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
+    currentUser = Data.getCurrentUser();
+
+    Iterator<Player> it = players.iterator();
+    while (it.hasNext()) {
+      String s = it.next().getName();
+      if (s.equals(currentUser)) {
+        it.next().getRack().removeTileFromRack(pos);
+        it.next().getRack().fill(Data.getGameSession().getBag());
+      } else {
+        continue;
+      }
+    }
+  }
+
 
   /**
    * @param event

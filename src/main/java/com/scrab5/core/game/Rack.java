@@ -96,20 +96,10 @@ public class Rack {
   /**
    * @author apilgrim
    */
-  public void shuffleRack() {
-
-    ArrayList<Integer> order = new ArrayList<>();
-
-    order.add(0);
-    order.add(1);
-    order.add(2);
-    order.add(3);
-    order.add(4);
-    order.add(5);
-    order.add(6);
+  public void shuffleRack(ArrayList<Integer> order) {
 
     Random rand = new Random();
-    int random, values = 7, swapWith;
+    int random, values = order.size(), swapWith;
     Tile swap;
 
     for (int i = 1; i <= 7; i++) {
