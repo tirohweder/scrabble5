@@ -99,19 +99,21 @@ public class Rack {
   public void shuffleRack(ArrayList<Integer> order) {
 
     Random rand = new Random();
-    int random, values = order.size(), swapWith;
+    int random, values = order.size(), swapWith, swapOther;
     Tile swap;
 
     for (int i = 0; i < order.size(); i++) {
       random = rand.nextInt(values);
       swapWith = order.get(random);
+      random = rand.nextInt(values);
+      swapOther = order.get(random);
       order.remove(random);
       values--;
-      swap = rack[i];
-      rack[i] = rack[swapWith];
+      swap = rack[swapOther];
+      rack[swapOther] = rack[swapWith];
       rack[swapWith] = swap;
-      rack[i].setRackPlace(swapWith);
-      rack[swapWith].setRackPlace(i);
+      rack[swapOther].setRackPlace(swapWith);
+      rack[swapWith].setRackPlace(swapOther);
     }
   }
 
