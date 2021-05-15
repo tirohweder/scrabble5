@@ -38,7 +38,11 @@ public class BagOfTiles {
       return null;
     }
 
-    return bag.remove(new Random().nextInt(bag.size()));
+    Tile test = bag.get(new Random().nextInt(bag.size()));
+    bag.remove(test);
+
+    System.out.println("BAG SIZE IS : " + bag.size());
+    return test;
   }
 
 
@@ -50,5 +54,5 @@ public class BagOfTiles {
     // returns how many Tiles are left in the Bag
     return this.bag.size();
   }
-  
+
 }
