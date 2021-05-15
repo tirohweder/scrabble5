@@ -19,6 +19,7 @@ import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.GetServerDataMessage;
 import com.scrab5.network.messages.LobbyUpdateMessage;
+import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.MessageType;
 import com.scrab5.network.messages.SendReadyMessage;
@@ -343,5 +344,10 @@ public class Client implements Serializable {
    */
   public void setUsername(String username) {
     this.username = username;
+  }
+
+  public void makeTurn() {
+    MakeTurnMessage mtm = new MakeTurnMessage(this.username);
+    this.clientThread.sendMessageToServer(mtm);
   }
 }

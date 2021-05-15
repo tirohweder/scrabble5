@@ -14,6 +14,8 @@ import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
+import com.scrab5.network.messages.GameUpdateMessage;
+import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
@@ -94,6 +96,11 @@ public class ServerThread extends Threads {
             SendReadyMessage srm = (SendReadyMessage) message;
             server.setClientReady(srm.getSender(), srm.getReady());
             break;
+          case MAKETURN:
+            MakeTurnMessage mtm = (MakeTurnMessage) message;
+            // needs implementation
+            server.sendMessageToAllClients(new GameUpdateMessage(this.server.getHost()));
+            break;
           default:
             break;
         }
@@ -127,6 +134,8 @@ public class ServerThread extends Threads {
       if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
         // FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
         // clientData.getIp());
+        boolean reminder;
+        // the boolean is a reminder that i do not forget to uncomment the code above
       }
       server.getClients().put(clientData.getUsername(), clientData);
       server.getConnections().put(clientData, this);
