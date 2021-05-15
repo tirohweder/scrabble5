@@ -331,8 +331,20 @@ public class Server implements Serializable {
     this.clients = clients;
   }
 
-
+  /**
+   * Sets the maximum amount of clients allowed to connect.
+   * 
+   * @author nitterhe
+   * @param clientMaximum - the maximum amount of clients allowed to connect.
+   */
   public void setClientMaximum(int clientMaximum) {
     Server.clientMaximum = clientMaximum;
+  }
+
+  public void setClientReady(String clientname, boolean ready) {
+    if (clients.containsKey(clientname)) {
+      clients.get(clientname).setReady(ready);
+      sendUpdateMessage();
+    }
   }
 }

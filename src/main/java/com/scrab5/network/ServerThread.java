@@ -15,6 +15,7 @@ import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.Message;
+import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 
 public class ServerThread extends Threads {
@@ -88,6 +89,10 @@ public class ServerThread extends Threads {
           case CHAT:
             ChatMessage chat = (ChatMessage) message;
             server.sendMessageToAllClients(chat);
+            break;
+          case SENDREADY:
+            SendReadyMessage srm = (SendReadyMessage) message;
+            server.setClientReady(srm.getSender(), srm.getReady());
             break;
           default:
             break;

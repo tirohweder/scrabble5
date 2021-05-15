@@ -43,11 +43,6 @@ class UpdateTest {
     db.disconnect();
   }
 
-  /*
-   * 
-   * @Test void testUpdateServer() { fail("Not yet implemented"); }
-   */
-
   /**
    * Tests the function to change the corresponding points to a given letter in the table letters.
    * Test for F.5 "set different letter distributions (points and occurrences of letter tiles).

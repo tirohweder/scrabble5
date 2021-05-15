@@ -14,8 +14,7 @@ public class DictionaryParser {
 
   static BufferedWriter bufWriter = null;
   // private static String currentDictionary;
-  private static String currentDictionary;
-  // private static String currentDictionary = "Built-In Standard Dictionary.txt";
+  private static String currentDictionary = "Built-In Standard Dictionary.txt";
   private static String newFileName = null;
 
   /**
@@ -121,6 +120,7 @@ public class DictionaryParser {
         filterWords(line);
 
       }
+      buf.close();
     } catch (FileNotFoundException e1) {
       e1.printStackTrace();
     } catch (IOException e) {

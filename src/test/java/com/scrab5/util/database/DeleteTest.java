@@ -52,10 +52,4 @@ class DeleteTest {
     }
     cdb.disconnect();
   }
-
-  /*
-   * 
-   * @Test void testDeleteServer() { fail("Not yet implemented"); }
-   */
-
 }

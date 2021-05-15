@@ -86,17 +86,17 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="playerNameStats2" layoutX="301.0" layoutY="523.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
+            <Label fx:id="playerNameStats2" layoutX="301.0" layoutY="523.0" prefHeight="15.0" prefWidth="111.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="playerNameStats3" layoutX="301.0" layoutY="552.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
+            <Label fx:id="playerNameStats3" layoutX="301.0" layoutY="552.0" prefHeight="15.0" prefWidth="111.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="playerNameStats4" layoutX="301.0" layoutY="581.0" prefHeight="15.0" prefWidth="111.0" text="Chandlerking" textFill="#fefff2">
+            <Label fx:id="playerNameStats4" layoutX="301.0" layoutY="581.0" prefHeight="15.0" prefWidth="111.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -106,17 +106,17 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="played2" layoutX="422.0" layoutY="523.0" prefHeight="15.0" prefWidth="68.0" text="100" textFill="#fefff2">
+            <Label fx:id="played2" layoutX="422.0" layoutY="523.0" prefHeight="15.0" prefWidth="68.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="played3" layoutX="422.0" layoutY="552.0" prefHeight="15.0" prefWidth="68.0" text="100" textFill="#fefff2">
+            <Label fx:id="played3" layoutX="422.0" layoutY="552.0" prefHeight="15.0" prefWidth="68.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="played4" layoutX="422.0" layoutY="581.0" prefHeight="15.0" prefWidth="68.0" text="100" textFill="#fefff2">
+            <Label fx:id="played4" layoutX="422.0" layoutY="581.0" prefHeight="15.0" prefWidth="68.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -126,17 +126,17 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="won2" layoutX="510.0" layoutY="523.0" prefHeight="15.0" prefWidth="40.0" text="62" textFill="#fefff2">
+            <Label fx:id="won2" layoutX="510.0" layoutY="523.0" prefHeight="15.0" prefWidth="40.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="won3" layoutX="510.0" layoutY="552.0" prefHeight="15.0" prefWidth="40.0" text="62" textFill="#fefff2">
+            <Label fx:id="won3" layoutX="510.0" layoutY="552.0" prefHeight="15.0" prefWidth="40.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="won4" layoutX="510.0" layoutY="581.0" prefHeight="15.0" prefWidth="40.0" text="62" textFill="#fefff2">
+            <Label fx:id="won4" layoutX="510.0" layoutY="581.0" prefHeight="15.0" prefWidth="40.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -146,17 +146,17 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="score2" layoutX="580.0" layoutY="523.0" prefHeight="15.0" prefWidth="50.0" text="10000" textFill="#fefff2">
+            <Label fx:id="score2" layoutX="580.0" layoutY="523.0" prefHeight="15.0" prefWidth="50.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="score3" layoutX="580.0" layoutY="552.0" prefHeight="15.0" prefWidth="50.0" text="10000" textFill="#fefff2">
+            <Label fx:id="score3" layoutX="580.0" layoutY="552.0" prefHeight="15.0" prefWidth="50.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="score4" layoutX="580.0" layoutY="581.0" prefHeight="15.0" prefWidth="50.0" text="10000" textFill="#fefff2">
+            <Label fx:id="score4" layoutX="580.0" layoutY="581.0" prefHeight="15.0" prefWidth="50.0" text="-" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
@@ -267,6 +267,11 @@
             <ComboBox fx:id="voteSelection2" layoutX="158.0" layoutY="196.0" onAction="#setPlayerVote2" onMouseClicked="#dontShow" opacity="0.0" prefHeight="11.0" prefWidth="50.0" />
             <ComboBox fx:id="voteSelection3" layoutX="158.0" layoutY="236.0" onAction="#setPlayerVote3" onMouseClicked="#dontShow" opacity="0.0" prefHeight="11.0" prefWidth="50.0" />
             <ComboBox fx:id="voteSelection4" layoutX="158.0" layoutY="273.0" onAction="#setPlayerVote4" onMouseClicked="#dontShow" opacity="0.0" prefHeight="11.0" prefWidth="50.0" />
+            <ImageView fx:id="customizeButton" fitHeight="27.0" fitWidth="131.0" layoutX="385.0" layoutY="696.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB06_CustomizeButtonNotClickable.png" />
+               </image>
+            </ImageView>
             <ImageView fx:id="darkBackground" fitHeight="65.0" fitWidth="976.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB05_DarkerBackground.png" />
