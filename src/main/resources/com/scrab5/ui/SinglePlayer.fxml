@@ -1278,7 +1278,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="player2" layoutX="997.0" layoutY="-3.0" opacity="0.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
+            <Label fx:id="player4" layoutX="997.0" layoutY="-3.0" opacity="0.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
@@ -1288,7 +1288,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="player4" layoutX="494.0" layoutY="-3.0" opacity="0.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
+            <Label fx:id="player2" layoutX="494.0" layoutY="-3.0" opacity="0.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
