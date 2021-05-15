@@ -21,10 +21,11 @@ class UseTest {
    */
   @Test
   void testViewLetters() {
-    //CreateDatabase cdb = new CreateDatabase();
-    //FillDatabase.insertLetters("A", 4, 5);
-    //FillDatabase.insertLetters("B", 1, 4);
-    //FillDatabase.insertLetters("C", 2, 10);
+    Database.reconnect();
+    CreateDatabase cdb = new CreateDatabase();
+    FillDatabase.insertLetters("A", 4, 5);
+    FillDatabase.insertLetters("B", 1, 4);
+    FillDatabase.insertLetters("C", 2, 10);
     ResultSet rs = UseDatabase.viewLetters();
     int i = 0;
     String[] letter = new String[3];
@@ -49,7 +50,7 @@ class UseTest {
     assertEquals("C", letter[2]);
     assertEquals(2, point[2]);
     assertEquals(10, occurrence[2]);
-    //cdb.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -61,7 +62,7 @@ class UseTest {
   void testTablePlayerIsEmpty() {
     CreateDatabase cdb = new CreateDatabase();
     assertEquals(true, UseDatabase.tablePlayerIsEmpty());
-    cdb.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -89,7 +90,7 @@ class UseTest {
     }
     assertEquals("Alpha", name[0]);
     assertEquals("Beta", name[1]);
-    cdb.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -105,7 +106,7 @@ class UseTest {
     String[] letter = UseDatabase.getAllLetters();
     assertEquals("A", letter[0]);
     assertEquals("E", letter[4]);
-    cdb.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -121,7 +122,7 @@ class UseTest {
     int[] point = UseDatabase.getAllPointsPerLetter();
     assertEquals(1, point[0]);
     assertEquals(1, point[4]);
-    cdb.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -137,7 +138,7 @@ class UseTest {
     int[] occurrence = UseDatabase.getAllOccurrences();
     assertEquals(9, occurrence[0]);
     assertEquals(12, occurrence[4]);
-    cdb.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -162,7 +163,7 @@ class UseTest {
     assertEquals("Laura", server.getHost());
     assertEquals("client", client);
     assertEquals("12345", cs.getIPAddress());
-    cdb.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -177,6 +178,6 @@ class UseTest {
     FillDatabase.createPlayer("Laura", null);
     assertEquals(true, UseDatabase.playerExists("Laura"));
     assertEquals(false, UseDatabase.playerExists("Peter"));
-    cdb.disconnect();
+    Database.disconnect();
   }
 }

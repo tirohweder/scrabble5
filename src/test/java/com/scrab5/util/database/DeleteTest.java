@@ -27,7 +27,7 @@ class DeleteTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    cdb.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -50,6 +50,6 @@ class DeleteTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    cdb.disconnect();
+    Database.disconnect();
   }
 }

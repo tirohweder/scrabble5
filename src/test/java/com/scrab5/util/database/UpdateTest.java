@@ -40,7 +40,7 @@ class UpdateTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    db.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -66,7 +66,7 @@ class UpdateTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    db.disconnect();
+    Database.disconnect();
   }
 
 }
