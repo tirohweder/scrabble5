@@ -3,17 +3,14 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.scrab5.util.database.Database;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 /**
  * The RealLoginController class controls the components of the "RealLogin.fxml".
@@ -110,6 +107,15 @@ public class RealLoginController extends Controller implements Initializable {
     this.profileSelection.hide();
   }
 
+  /**
+   * Event method that is called when the "Quit"-button in the UI is clicked. Depending on the
+   * predecessor scene the game either closes or changes the scene to "Profile.fxml".
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   @FXML
   private void close(MouseEvent event) throws IOException {
     switch (predecessor) {
@@ -117,17 +123,16 @@ public class RealLoginController extends Controller implements Initializable {
         App.setRoot(predecessor);
         break;
       default:
-        Database.disconnect();
-        Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
-        s.close();
+        closeGame(event);
         break;
     }
   }
 
   /**
-   * Sets the predescessor scene of AccountCreationController.
+   * Sets the predecessor scene of this scene.
    * 
-   * @param predecessorPara
+   * @author mherre
+   * @param predecessorPara the String valuing the name of the predecessor scene
    */
   public static void setPredecessor(String predecessorPara) {
     predecessor = predecessorPara;
