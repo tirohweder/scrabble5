@@ -707,7 +707,7 @@ public abstract class InGameController implements Initializable {
 
     initRack();
     initPlayers();
-    
+
   }
 
   /**
@@ -974,7 +974,9 @@ public abstract class InGameController implements Initializable {
         .getResource("/com/scrab5/ui/letter_Images/tile" + letter.toUpperCase() + ".png")
         .toString());
     rackPlace.setImage(letterImage);
-    rackPlace.setOpacity(1);
+    if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
+      rackPlace.setOpacity(1);
+    }
     point.setText(Integer.toString(points));
     point.setOpacity(1);
   }
