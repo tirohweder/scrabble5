@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/scrabble5.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myDatabase.db" beforeDir="false" afterPath="$PROJECT_DIR$/myDatabase.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/FillDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/FillDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameSessionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameSessionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/UseDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/util/database/UseDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/UseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/util/database/UseTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,7 +73,20 @@
       <recent name="com.scrab5.core.game" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CreateTest.testCreatePlayer">
+  <component name="RunManager" selected="JUnit.UseTest.testViewLetters">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CreateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
@@ -140,17 +150,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameSessionTest.testInitializeBag" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UseTest.testViewLetters" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.scrab5.core.game.*" />
+          <option name="PATTERN" value="com.scrab5.util.database.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameSessionTest" />
-      <option name="METHOD_NAME" value="testInitializeBag" />
+      <option name="PACKAGE_NAME" value="com.scrab5.util.database" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.util.database.UseTest" />
+      <option name="METHOD_NAME" value="testViewLetters" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -183,20 +193,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.GameSessionTest.testInitializeBag" />
       <item itemvalue="JUnit.CreateTest.testInsertLetters" />
       <item itemvalue="JUnit.CreateTest" />
       <item itemvalue="JUnit.CreateTest.testFillLetters" />
       <item itemvalue="JUnit.CreateTest.testCreatePlayer" />
       <item itemvalue="Maven.scrabble5 [clean,package]" />
+      <item itemvalue="JUnit.UseTest.testViewLetters" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UseTest.testViewLetters" />
         <item itemvalue="JUnit.CreateTest.testCreatePlayer" />
         <item itemvalue="JUnit.CreateTest.testInsertLetters" />
         <item itemvalue="JUnit.CreateTest.testFillLetters" />
         <item itemvalue="JUnit.CreateTest" />
-        <item itemvalue="JUnit.GameSessionTest.testInitializeBag" />
       </list>
     </recent_temporary>
   </component>
@@ -228,6 +238,7 @@
       <workItem from="1620932000284" duration="596000" />
       <workItem from="1620983144126" duration="1009000" />
       <workItem from="1620988416099" duration="12656000" />
+      <workItem from="1621061127917" duration="2181000" />
     </task>
     <task id="LOCAL-00001" summary="#69 add strucutre">
       <created>1619793717336</created>
@@ -355,7 +366,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621015567518</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/test/java/com/scrab5/core/game/GameBoardTest.java">
+      <created>1621061203249</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1621061203249</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

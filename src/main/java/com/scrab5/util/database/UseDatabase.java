@@ -1,10 +1,10 @@
 package com.scrab5.util.database;
 
+import com.scrab5.network.ServerStatistics;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import com.scrab5.network.ServerStatistics;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -12,12 +12,13 @@ public class UseDatabase extends Database {
 
   /**
    * Displaying the content of current table Letters.
-   * 
-   * @author lengist
+   *
    * @return ResultSet including the content from the table letters
+   * @author lengist
    */
   public static ResultSet viewLetters() {
     ResultSet rs = null;
+    Database.reconnect();
     try {
       Statement stm = connection.createStatement();
       rs = stm.executeQuery("SELECT * FROM Letters");
@@ -29,9 +30,9 @@ public class UseDatabase extends Database {
 
   /**
    * Checks whether the table Player is empty or with entries.
-   * 
-   * @author lengist
+   *
    * @return boolean returning true if there is no entry in the table player
+   * @author lengist
    */
   public static boolean tablePlayerIsEmpty() {
     boolean empty = false;
@@ -52,9 +53,9 @@ public class UseDatabase extends Database {
 
   /**
    * Returns all player names from the table Player.
-   * 
-   * @author lengist
+   *
    * @return ResultSet returning the content of the table player
+   * @author lengist
    */
   public static ResultSet getAllPlayerRS() {
     ResultSet rs = null;
@@ -71,9 +72,9 @@ public class UseDatabase extends Database {
 
   /**
    * Returns a ObservableList so all player profiles can be displayed in a ComboBox
-   * 
-   * @author mherre
+   *
    * @return ObservableList including the content of the table player
+   * @author mherre
    */
   public static ObservableList<String> getAllPlayer() {
     ResultSet rs = null;
@@ -93,9 +94,9 @@ public class UseDatabase extends Database {
 
   /**
    * Returns all the letters as array
-   * 
-   * @author lengist
+   *
    * @return String array containing all letters saved in the database
+   * @author lengist
    */
   public static String[] getAllLetters() {
     ResultSet rs = null;
@@ -117,12 +118,11 @@ public class UseDatabase extends Database {
 
   /**
    * Returns all the points of the letters as array
-   * 
-   * @author lengist
+   *
    * @return integer array containing all points saved in the database
-   * 
-   *         code line to convert list to array from:
-   *         https://www.techiedelight.com/convert-list-integer-array-int/
+   * <p>
+   * code line to convert list to array from: https://www.techiedelight.com/convert-list-integer-array-int/
+   * @author lengist
    */
   public static int[] getAllPointsPerLetter() {
     ResultSet rs = null;
@@ -143,12 +143,11 @@ public class UseDatabase extends Database {
 
   /**
    * Returns all the Occurrences of the letters as array
-   * 
-   * @author lengist
+   *
    * @return integer array containing all occurrences saved in the database
-   * 
-   *         code line to convert list to array from:
-   *         https://www.techiedelight.com/convert-list-integer-array-int/
+   * <p>
+   * code line to convert list to array from: https://www.techiedelight.com/convert-list-integer-array-int/
+   * @author lengist
    */
   public static int[] getAllOccurrences() {
     ResultSet rs = null;
@@ -170,11 +169,11 @@ public class UseDatabase extends Database {
   /**
    * Returns the server object to get the right server statistics when a user chooses to host his
    * server again.
-   * 
-   * @auhtor lengist <<<<<<< HEAD
-   * @author nitterhe
+   *
    * @param serverHostName String representation of the host of the server
    * @return Server object with the server statistic
+   * @auhtor lengist <<<<<<< HEAD
+   * @author nitterhe
    */
   public static ServerStatistics getServerStatistics(String serverHostName) {
     try {
@@ -202,10 +201,10 @@ public class UseDatabase extends Database {
   /**
    * Changes the points for the letter letter in the table letters when a user chooses to
    * individualize.
-   * 
-   * @author lengist
+   *
    * @param letter String for the letter where a change needs to be fulfilled
-   * @param point int for the new points
+   * @param point  int for the new points
+   * @author lengist
    */
   public static void setPointForLetter(String letter, int point) {
     FillDatabase.updatePointLetters(letter, point);
@@ -214,10 +213,10 @@ public class UseDatabase extends Database {
   /**
    * Changes the occurrence for the letter letter in the table letters when a user chooses to
    * individualize.
-   * 
-   * @author lengist
-   * @param letter String for the letter where a change needs to be fulfilled
+   *
+   * @param letter     String for the letter where a change needs to be fulfilled
    * @param occurrence int for the new occurrence
+   * @author lengist
    */
   public static void setOccurrenceLetters(String letter, int occurrence) {
     FillDatabase.updateOccurrenceLetters(letter, occurrence);
@@ -225,10 +224,10 @@ public class UseDatabase extends Database {
 
   /**
    * Returns a boolean if the player "name" already exists.
-   * 
-   * @author lengist
+   *
    * @param name String of the name of the user to use in the prepared Statement
    * @return boolean returning true if player with name "name" already exists
+   * @author lengist
    */
   public static boolean playerExists(String name) {
     boolean exists = false;

@@ -133,7 +133,6 @@ public class GameSession {
     System.out.println("Initialized Bag");
 
     FillDatabase.fillLetters();
-
     ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
       this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));

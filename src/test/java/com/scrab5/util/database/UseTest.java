@@ -1,29 +1,30 @@
 package com.scrab5.util.database;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.scrab5.network.Server;
+import com.scrab5.network.ServerStatistics;
+import com.scrab5.network.ServerStatistics.ClientStatistic;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import org.junit.jupiter.api.Test;
-import com.scrab5.network.Server;
-import com.scrab5.network.ServerStatistics;
-import com.scrab5.network.ServerStatistics.ClientStatistic;
 
 class UseTest {
 
   /**
    * Tests the function to return all the letters with their corresponding points that are saved in
    * the table Server in the database.
-   * 
+   *
    * @author lengist
    */
   @Test
   void testViewLetters() {
-    CreateDatabase cdb = new CreateDatabase();
-    FillDatabase.insertLetters("A", 4, 5);
-    FillDatabase.insertLetters("B", 1, 4);
-    FillDatabase.insertLetters("C", 2, 10);
+    //CreateDatabase cdb = new CreateDatabase();
+    //FillDatabase.insertLetters("A", 4, 5);
+    //FillDatabase.insertLetters("B", 1, 4);
+    //FillDatabase.insertLetters("C", 2, 10);
     ResultSet rs = UseDatabase.viewLetters();
     int i = 0;
     String[] letter = new String[3];
@@ -48,12 +49,12 @@ class UseTest {
     assertEquals("C", letter[2]);
     assertEquals(2, point[2]);
     assertEquals(10, occurrence[2]);
-    cdb.disconnect();
+    //cdb.disconnect();
   }
 
   /**
    * Tests the function to check if the table Player is empty.
-   * 
+   *
    * @author lengist
    */
   @Test
@@ -66,7 +67,7 @@ class UseTest {
   /**
    * Tests the function to return all players from the table Player in a ResultSet. Test for Use
    * Case 1 read.
-   * 
+   *
    * @author lengist
    */
   @Test
@@ -93,7 +94,7 @@ class UseTest {
 
   /**
    * Tests the function to return all letters stored in an array.
-   * 
+   *
    * @author lengist
    */
   @Test
@@ -109,7 +110,7 @@ class UseTest {
 
   /**
    * Tests the function to return all points stored in an array.
-   * 
+   *
    * @author lengist
    */
   @Test
@@ -125,7 +126,7 @@ class UseTest {
 
   /**
    * Tests the function to return all occurrences stored in an array.
-   * 
+   *
    * @author lengist
    */
   @Test
@@ -141,7 +142,7 @@ class UseTest {
 
   /**
    * Tests the return of the statistics for a hosted lobby.
-   * 
+   *
    * @author lengist
    */
   @Test
@@ -153,7 +154,7 @@ class UseTest {
     LinkedHashMap<String, ClientStatistic> list = ss.getServerStatistics();
     String client = "";
     ClientStatistic cs = null;
-    for(Entry<String, ClientStatistic> l : list.entrySet()) {
+    for (Entry<String, ClientStatistic> l : list.entrySet()) {
       client = l.getKey();
       cs = l.getValue();
     }
@@ -165,8 +166,9 @@ class UseTest {
   }
 
   /**
-   * Tests if a player with a given name exists, to make sure that not two players with the same name are saved in the local database.
-   * 
+   * Tests if a player with a given name exists, to make sure that not two players with the same
+   * name are saved in the local database.
+   *
    * @author lengist
    */
   @Test
