@@ -153,6 +153,7 @@ public abstract class InGameController implements Initializable {
     }
     if (1 < playerAmount) {
       player2.setText(players.get(1).getName());
+      player2.setOpacity(1);
       playerProfile2Active.setOpacity(1);
       playerProfile2Passive.setOpacity(1);
       if (players.get(1).getName().equalsIgnoreCase(currentPlayer)) {
@@ -161,6 +162,7 @@ public abstract class InGameController implements Initializable {
     }
     if (2 < playerAmount) {
       player3.setText(players.get(2).getName());
+      player3.setOpacity(1);
       playerProfile3Active.setOpacity(1);
       playerProfile3Passive.setOpacity(1);
       if (players.get(2).getName().equalsIgnoreCase(currentPlayer)) {
@@ -169,6 +171,7 @@ public abstract class InGameController implements Initializable {
     }
     if (3 < playerAmount) {
       player4.setText(players.get(3).getName());
+      player4.setOpacity(1);
       playerProfile4Active.setOpacity(1);
       playerProfile4Passive.setOpacity(1);
       if (players.get(3).getName().equalsIgnoreCase(currentPlayer)) {
