@@ -102,7 +102,7 @@ public class Rack {
     int random, values = order.size(), swapWith;
     Tile swap;
 
-    for (int i = 1; i <= 7; i++) {
+    for (int i = 0; i < order.size(); i++) {
       random = rand.nextInt(values);
       swapWith = order.get(random);
       order.remove(random);
