@@ -71,7 +71,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    //Database.disconnect();
     return rs;
   }
 
@@ -95,7 +95,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    //Database.disconnect();
     return ol;
   }
 
@@ -121,7 +121,7 @@ public class UseDatabase extends Database {
     }
     String[] letters = new String[letter.size()];
     letters = letter.toArray(letters);
-    Database.disconnect();
+    //Database.disconnect();
     return letters;
   }
 
@@ -148,7 +148,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     int[] points = point.stream().mapToInt(Integer::intValue).toArray();
-    Database.disconnect();
+    //Database.disconnect();
     return points;
   }
 
@@ -175,7 +175,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     int[] occurrences = occurrence.stream().mapToInt(Integer::intValue).toArray();
-    Database.disconnect();
+    //Database.disconnect();
     return occurrences;
   }
 
