@@ -20,12 +20,13 @@ public class Database {
 
   /**
    * Constructor to create a new Database and call the method to establish a connection to the
-   * database file.
+   * database file. Disconnect makes sure, that when another method gets called and reconnects to the database, it is possible to reconnect.
    * 
    * @author lengist
    */
   public Database() {
-    this.connect(this.databaseFileName);
+    this.connect(databaseFileName);
+    disconnect();
   }
 
   /**
@@ -56,7 +57,8 @@ public class Database {
    * @return boolean returning true if a database file already exists
    */
   public static boolean databaseExistance() {
-    return new File("myDatabase.db").isFile();
+    //return new File("myDatabase.db").isFile();
+    return new File(databaseFileName).isFile();
   }
 
   /**

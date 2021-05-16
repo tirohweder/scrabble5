@@ -1,5 +1,6 @@
 package com.scrab5.core.game;
 
+import com.scrab5.ui.Data;
 import com.scrab5.util.textParser.DictionaryScanner;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -60,6 +61,7 @@ public class GameBoard implements Serializable {
    * @author trohwede
    */
   public boolean placeTile(Tile t, int row, int column) {
+
     if (isSpotFree(row, column)) {
       gameBoardCurrent[row][column] = t;
       t.setRow(row);
@@ -73,6 +75,11 @@ public class GameBoard implements Serializable {
     }
   }
 
+
+  //TODO isAllowedTOPlay hinzufügen!!
+  public boolean isAllowedToPlay() {
+    return (Data.getCurrentUser().equals(Data.getGameSession().getCurrentPlayer().getName()));
+  }
 
   public boolean removeTile(int row, int column) {
     if (gameBoard[row][column] != null) {
