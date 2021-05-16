@@ -1,9 +1,12 @@
 package com.scrab5.core.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class BagOfTiles {
+public class BagOfTiles implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   private ArrayList<Tile> bag = new ArrayList<>();
 
@@ -38,7 +41,11 @@ public class BagOfTiles {
       return null;
     }
 
-    return bag.remove(new Random().nextInt(bag.size()));
+    Tile test = bag.get(new Random().nextInt(bag.size()));
+    bag.remove(test);
+
+    System.out.println("BAG SIZE IS : " + bag.size());
+    return test;
   }
 
 
@@ -50,5 +57,5 @@ public class BagOfTiles {
     // returns how many Tiles are left in the Bag
     return this.bag.size();
   }
-  
+
 }

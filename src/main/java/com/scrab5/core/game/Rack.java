@@ -1,9 +1,12 @@
 package com.scrab5.core.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Rack {
+public class Rack implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   private Tile[] rack = new Tile[7];
 
@@ -14,13 +17,16 @@ public class Rack {
    */
   public void fill(BagOfTiles bag) {
     for (int i = 0; i < 7; i++) {
-      System.out.println(rack[i].isNull());
-      if (this.rack[i].isNull() && bag.getSize() >= 1) {
-        System.out.println("test");
+      System.out.println(rack[i]);
+      System.out.println(rack[i] == null);
+      if (this.rack[i] == null && bag.getSize() >= 1) {
+        System.out.println("FillsRack: " + i);
         rack[i] = bag.pick();
         rack[i].setRackPlace(i);
       }
     }
+
+    System.out.println("Rack at 0 = " + rack[0]);
   }
 
   /**
@@ -93,32 +99,24 @@ public class Rack {
   /**
    * @author apilgrim
    */
-  public void shuffleRack() {
-
-    ArrayList<Integer> order = new ArrayList<>();
-
-    order.add(0);
-    order.add(1);
-    order.add(2);
-    order.add(3);
-    order.add(4);
-    order.add(5);
-    order.add(6);
+  public void shuffleRack(ArrayList<Integer> order) {
 
     Random rand = new Random();
-    int random, values = 7, swapWith;
+    int random, values = order.size(), swapWith, swapOther;
     Tile swap;
 
-    for (int i = 1; i <= 7; i++) {
+    for (int i = 0; i < order.size(); i++) {
       random = rand.nextInt(values);
       swapWith = order.get(random);
+      random = rand.nextInt(values);
+      swapOther = order.get(random);
       order.remove(random);
       values--;
-      swap = rack[i];
-      rack[i] = rack[swapWith];
+      swap = rack[swapOther];
+      rack[swapOther] = rack[swapWith];
       rack[swapWith] = swap;
-      rack[i].setRackPlace(swapWith);
-      rack[swapWith].setRackPlace(i);
+      rack[swapOther].setRackPlace(swapWith);
+      rack[swapWith].setRackPlace(swapOther);
     }
   }
 

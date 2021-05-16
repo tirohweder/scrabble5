@@ -6,23 +6,26 @@
  */
 package com.scrab5.network;
 
+import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.network.messages.ChatMessage;
+import com.scrab5.network.messages.ConnectMessage;
+import com.scrab5.network.messages.LobbyUpdateMessage;
+import com.scrab5.network.messages.MakeTurnMessage;
+import com.scrab5.network.messages.Message;
+import com.scrab5.ui.Data;
+import com.scrab5.ui.MultiplayerLobbyController;
+import com.scrab5.ui.PopUpMessage;
+import com.scrab5.ui.PopUpMessageType;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
-import com.scrab5.network.NetworkError.NetworkErrorType;
-import com.scrab5.network.messages.ChatMessage;
-import com.scrab5.network.messages.ConnectMessage;
-import com.scrab5.network.messages.LobbyUpdateMessage;
-import com.scrab5.network.messages.Message;
-import com.scrab5.ui.MultiplayerLobbyController;
-import com.scrab5.ui.PopUpMessage;
-import com.scrab5.ui.PopUpMessageType;
 import javafx.application.Platform;
 
 public class ClientThread extends Threads implements Serializable {
+
   private static final long serialVersionUID = 1L;
 
   transient private Client client;
@@ -33,9 +36,9 @@ public class ClientThread extends Threads implements Serializable {
 
   /**
    * Creates a Client Thread. Thread is started when the Client connects to a server.
-   * 
-   * @author nitterhe
+   *
    * @param client - references to the client the thread belongs to
+   * @author nitterhe
    */
   public ClientThread(Client client) {
     this.client = client;
@@ -44,7 +47,7 @@ public class ClientThread extends Threads implements Serializable {
 
   /**
    * Runs the thread. Receives messages from the server and handles actions.
-   * 
+   *
    * @author nitterhe
    */
   public void run() {
@@ -92,6 +95,11 @@ public class ClientThread extends Threads implements Serializable {
                   new Server(lum.getSender(), lum.getClientMaximum(), true));
             }
             this.client.updateCurrentServer(lum);
+            break;
+          case MAKETURN:
+            MakeTurnMessage mtm = (MakeTurnMessage) message;
+            Data.setGameSession(mtm.getGameSession());
+            break;
           default:
             break;
         }
@@ -127,9 +135,9 @@ public class ClientThread extends Threads implements Serializable {
   /**
    * Checks if server is still reachable then connects to the server. Opens streams and then starts
    * the thread => run() starts.
-   * 
-   * @author nitterhe
+   *
    * @param serverdata - object with given serverdata to connect to
+   * @author nitterhe
    */
   public void connectToServer(ServerData serverdata) {
     try {
@@ -148,9 +156,9 @@ public class ClientThread extends Threads implements Serializable {
 
   /**
    * Sends a message to the connected server.
-   * 
-   * @author nitterhe
+   *
    * @param message - the Message object to send to the server
+   * @author nitterhe
    */
   public void sendMessageToServer(Message message) {
     try {
@@ -165,7 +173,7 @@ public class ClientThread extends Threads implements Serializable {
   /**
    * Sets the Thread attribute running = false. Closes the current connection and streams to the
    * server.
-   * 
+   *
    * @author nitterhe @mherre :^)
    */
   protected void closeConnection() {

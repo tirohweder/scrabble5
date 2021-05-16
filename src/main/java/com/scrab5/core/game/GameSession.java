@@ -4,13 +4,17 @@ import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class GameSession {
+public class GameSession implements Serializable {
 
+  private static final long serialVersionUID = 1L;
 
   public GameBoard getGameBoard() {
     return gameBoard;
@@ -69,6 +73,14 @@ public class GameSession {
     this.currentPlayer = currentPlayer;
   }
 
+  public boolean isOnline() {
+    return online;
+  }
+
+  public void setOnline(boolean online) {
+    this.online = online;
+  }
+
   private GameBoard gameBoard = new GameBoard();
   private BagOfTiles bag = new BagOfTiles();
   private ArrayList<Player> listOfPlayers = new ArrayList<>();
@@ -77,6 +89,10 @@ public class GameSession {
   private boolean canEnd = false;
   private Player currentPlayer;
   private String currentDic;
+
+
+  private boolean online;
+  private Timer timer;
 
   // initialize bag fills the bag with the selected tiles
 
@@ -87,10 +103,14 @@ public class GameSession {
    * @author trohwede
    */
   public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
-      ArrayList<Integer> points) throws SQLException {
+      ArrayList<Integer> points, boolean isOnline) throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
-
+    this.online = isOnline;
+    if (this.online) {
+      Data.getHostedServer().startGame();
+      startTimer();
+    }
     initializeBag(letters, points);
     Iterator<Player> iter = listOfPlayers.iterator();
     while (iter.hasNext()) {
@@ -98,10 +118,13 @@ public class GameSession {
     }
   }
 
-  public GameSession(ArrayList<Player> listOfPlayers) throws SQLException {
+  public GameSession(ArrayList<Player> listOfPlayers, boolean isOnline) throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
-
+    this.online = isOnline;
+    if (this.online) {
+      startTimer();
+    }
     System.out.println("Created Game Session");
 
     initializeBag();
@@ -114,19 +137,6 @@ public class GameSession {
   }
 
 
-  public void createGameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
-      ArrayList<Integer> points) throws SQLException {
-    this.listOfPlayers = listOfPlayers;
-    currentPlayer = listOfPlayers.get(0);
-
-    initializeBag(letters, points);
-    Iterator<Player> iter = listOfPlayers.iterator();
-    while (iter.hasNext()) {
-      iter.next().getRack().fill(bag);
-    }
-    System.out.println(bag.getSize());
-  }
-
   public void initializeBag()
       throws SQLException {
 
@@ -136,7 +146,7 @@ public class GameSession {
     ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
       this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
-      System.out.println(rs.getString("Lettter") + " : " + rs.getInt("Points"));
+      System.out.println(rs.getString("Letter") + " : " + rs.getInt("Points"));
     }
 
     System.out.println("Finished Initialized Bag");
@@ -159,12 +169,42 @@ public class GameSession {
   public void finishTurn() {
     currentPlayer.getRack().fill(bag);
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
+    resetTimer();
+    Data.getPlayerClient().makeTurn();
   }
 
   public void endGame() {
+    this.cancelTimer();
+    //TODO call server method
   }
 
   public boolean giveUp() {
     return false;
+  }
+
+  private void startTimer() {
+
+    if (this.online) {
+
+    } else {
+      timer = new Timer();
+      TimerTask task = (new TimerTask() {
+        public void run() {
+          if (Data.getPlayerClient() != null) {
+            Data.getPlayerClient().disconnectFromServer();
+          }
+        }
+      });
+      timer.schedule(task, 1000 * 60 * 10);
+    }
+  }
+
+  public void resetTimer() {
+    timer.cancel();
+    this.startTimer();
+  }
+
+  public void cancelTimer() {
+    timer.cancel();
   }
 }

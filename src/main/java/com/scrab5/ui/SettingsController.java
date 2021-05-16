@@ -17,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 
 /**
- * The SettingsController class controls the components of the Settings.fxml
+ * The SettingsController class controls the components of the "Settings.fxml".
  * 
  * @author mherre
  */

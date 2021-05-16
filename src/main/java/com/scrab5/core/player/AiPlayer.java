@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 public class AiPlayer extends Player {
 
+  private static final long serialVersionUID = 1L;
+
   private ArrayList<String> possibleWords;
   private ArrayList<Integer> possiblePoints;
   private ArrayList<Integer> x;

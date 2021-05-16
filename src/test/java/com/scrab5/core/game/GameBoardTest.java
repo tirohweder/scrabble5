@@ -39,6 +39,12 @@ class GameBoardTest {
     gameBoardTest.removeTile(0, 0);
     assertEquals(null, gameBoardTest.getTile(0, 0));
     assertEquals(x, gameBoardTest.getCurrentChanges().get(0));
+
+    gameBoardTest.placeTile(new Tile("T", 3), 0, 0);
+    gameBoardTest.finishTurn();
+
+    assertEquals(false, gameBoardTest.removeTile(0, 0));
+
   }
 
   @Test

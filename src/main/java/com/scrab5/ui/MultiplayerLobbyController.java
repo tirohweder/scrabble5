@@ -1,15 +1,19 @@
 package com.scrab5.ui;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ResourceBundle;
+import com.scrab5.core.game.GameSession;
+import com.scrab5.core.player.Player;
 import com.scrab5.network.Client;
 import com.scrab5.network.ClientData;
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,9 +23,8 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * The MultiplayerLobbyController class is supposed to control the of the MultiplayerLobby screen
- * 
- * @author mherre
  *
+ * @author mherre
  */
 public class MultiplayerLobbyController extends LobbyController implements Initializable {
 
@@ -45,8 +48,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private LinkedList<Client> AIs;
 
   /**
-   * 
-   * 
    * @author mherre
    */
   @Override
@@ -68,9 +69,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   /**
    * Called when the lobby was closed by the host.
-   * 
-   * @author nitterhe
+   *
    * @throws IOException
+   * @author nitterhe
    */
   public static void lobbyClosed() {
     try {
@@ -83,10 +84,10 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   /**
    * This method is called when the "Back"-button is clicked. It sets the scene to
    * "MultiplayerOverview"
-   * 
-   * @author mherre @author nitterhe
+   *
    * @param event
    * @throws IOException
+   * @author mherre @author nitterhe
    */
   @FXML
   protected void back(MouseEvent event) throws IOException {
@@ -242,15 +243,29 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   @Override
-  protected void startGame(MouseEvent event) throws IOException {
+  protected void startGame(MouseEvent event) throws IOException, SQLException {
     // TODO Auto-generated method stub
+    ArrayList<Player> playerList = new ArrayList<Player>();
+    for (String clientName : Data.getPlayerClient().getCurrentServer().getClients().keySet()) {
+      playerList.add(new Player(clientName));
 
+    }
+
+    if (Data.getHasBeenEdited()) {
+      ArrayList<Integer> pointsDito = Data.getPointsDistribution();
+      ArrayList<Integer> occurrencyDisto = Data.getOccurrencyDistribution();
+
+      Data.setGameSession(new GameSession(playerList, pointsDito, occurrencyDisto, true));
+
+    } else {
+      Data.setGameSession(new GameSession(playerList, true));
+      System.out.println("Online GameSession created");
+    }
+    
   }
 
 
   /**
-   * 
-   * 
    * @author nitterhe
    */
   public void refreshUI() {

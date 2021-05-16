@@ -1,6 +1,5 @@
 package com.scrab5.ui;
 
-import java.util.Set;
 import com.scrab5.util.database.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -11,10 +10,10 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
 /**
- * The Controller class contains some basic methods which can be used in every other
+ * The Controller class contains some basic methods which are used in several other Controller
+ * classes.
  * 
  * @author mherre
- *
  */
 
 public abstract class Controller {
@@ -24,26 +23,32 @@ public abstract class Controller {
   private Media sound;
 
   /**
-   * 
-   * Method that changes opacity of an image to 1. Image is usally a copy of a button image but with
-   * a white filter on it. It is supposed to lighten up a button when hovering over it with a mouse
+   * Event method that is called when the mouse is hovering over the <code>ImageView</code> object
+   * <code>iv</code> or released after it has been clicked. Changes the opacity of it to 1.
+   * <p>
+   * <code>iv</code> is usually a button image file with a white filter. The same button image
+   * without the white filter is underlying, this gives the impression that it is an actual button.
+   * </p>
    * 
    * @author mherre
-   *
+   * @param event the event that is created from the hovering and releasing
    */
   @FXML
   private void lighten(MouseEvent event) {
-    ImageView iv = ((ImageView) event.getSource());
+    iv = ((ImageView) event.getSource());
     iv.setOpacity(1);
   }
 
   /**
-   * Method that changes opacity of an image to 0. Image is usally a copy of a button image but with
-   * a white filter on it. It is supposed to darken a button when leaving the button area with the
-   * mouse
+   * Event method that is called when the mouse is exiting the <code>ImageView</code> object
+   * <code>iv</code> or when it is pressed. Changes the opacity of it to 0.
+   * <p>
+   * <code>iv</code> is usually a button image file with a white filter. The same button image
+   * without the white filter is underlying, this gives the impression that it is an actual button.
+   * </p>
    * 
    * @author mherre
-   * 
+   * @param event the event that is created from exiting and pressing
    */
   @FXML
   private void darken(MouseEvent event) {
@@ -51,35 +56,50 @@ public abstract class Controller {
     iv.setOpacity(0);
   }
 
+  /**
+   * Event method that is called when some sort of closing button in the UI is clicked. Closes the
+   * current stage. Mainly used for pop ups.
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   */
   @FXML
   private void close(MouseEvent event) {
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();
   }
 
+  /**
+   * Event method that is called when some sort of closing button in the UI is clicked. Closes the
+   * current stage. Mainly used for the main stage.
+   * 
+   * @author mherre
+   * @author nitterhe
+   * @author lengist
+   * @param event the event that is created from the mouse-click
+   */
   @FXML
-  private void closeGame(MouseEvent event) {
+  protected void closeGame(MouseEvent event) {
     Database.disconnect();
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+
     if (Data.getHostedServer() != null) {
       Data.getHostedServer().shutDownServer();
     }
-
-    Set<Thread> threads = Thread.getAllStackTraces().keySet();
-    for (Thread t : threads) {
-      System.out.println(t);
-    }
-
-    // if (Data.getPlayerServer() != null)
-    // Data.getPlayerServer().shutDownServer();
-    // if (Data.getPlayerClient() != null)
-    // Data.getPlayerClient().disconnectFromServer();
-
-    // we will not need this anymore since we hid the exit bar on the top
-
+    // Set<Thread> threads = Thread.getAllStackTraces().keySet();
+    // for (Thread t : threads) {
+    // System.out.println(t);
+    // }
     s.close();
   }
 
+  /**
+   * Method that plays a sound file and adjusts the volume to the volume that has been set by the
+   * user in the "Settings.fxml" scene.
+   * 
+   * @author mherre
+   * @param file the String containing the file name
+   */
   protected void playSound(String file) {
     sound = new Media(
         Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file).toExternalForm());
@@ -87,6 +107,5 @@ public abstract class Controller {
     mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();
   }
-
 
 }

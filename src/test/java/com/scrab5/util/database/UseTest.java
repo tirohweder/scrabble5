@@ -179,6 +179,5 @@ class UseTest {
     assertEquals(true, UseDatabase.playerExists("Laura"));
     assertEquals(false, UseDatabase.playerExists("Peter"));
     Database.disconnect();
-    //test
   }
 }

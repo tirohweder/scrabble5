@@ -2,11 +2,16 @@
  * Class to implement the server sided client-server-communication. Starts the ServerThread Class.
  * Provides methods for the server to communicate with the clients. Also provides methods to get
  * server information.
- * 
+ *
  * @author nitterhe
  */
 package com.scrab5.network;
 
+import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.network.messages.LobbyUpdateMessage;
+import com.scrab5.network.messages.Message;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.InetAddress;
@@ -14,14 +19,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.HashMap;
-import com.scrab5.network.NetworkError.NetworkErrorType;
-import com.scrab5.network.messages.LobbyUpdateMessage;
-import com.scrab5.network.messages.Message;
-import com.scrab5.util.database.FillDatabase;
-import com.scrab5.util.database.UseDatabase;
 
 
 public class Server implements Serializable {
+
   private static final long serialVersionUID = 1L;
 
   public final int serverPort = 8080;
@@ -42,7 +43,7 @@ public class Server implements Serializable {
    * creating the server socket. ServerSocket only opens if this is not a Server instance that is
    * used for communication with the UI. The boolean UIServerInstance states if this Server is saved
    * as a currentServer in the Client class.
-   * 
+   *
    * @author nitterhe
    * @param host - the name of the server host
    * @param clientMaximum - the maximum amount of clients allowed to connect to the server
@@ -63,7 +64,7 @@ public class Server implements Serializable {
 
   /**
    * Opens up the sockets. Used when a new server is started or an existing server is restaerted.
-   * 
+   *
    * @author nitterhe
    */
   public void openServerSocket() {
@@ -79,7 +80,7 @@ public class Server implements Serializable {
 
   /**
    * Loads the server's statistics from the database.
-   * 
+   *
    * @author nitterhe
    */
   public void loadServerStatistics() {
@@ -89,7 +90,7 @@ public class Server implements Serializable {
   /**
    * Allows a maximum of 4 clients to connect to the server while the game session has not been
    * started.
-   * 
+   *
    * @author nitterhe
    */
   public void acceptClients() {
@@ -105,7 +106,7 @@ public class Server implements Serializable {
    * Method run by the Thread in the method acceptClients() above. Usually throws 1 Exception since
    * closing the sockets while the Thread is running ends in a SocketException. Could be changed
    * with a flag but there is no need since this Exception does not effect anything.
-   * 
+   *
    * @author nitterhe
    */
   private void accept() {
@@ -126,7 +127,7 @@ public class Server implements Serializable {
 
   /**
    * Starts the game. No more clients can join the lobby.
-   * 
+   *
    * @author nitterhe
    */
   // must be called by Game logic when game board is set up
@@ -137,7 +138,7 @@ public class Server implements Serializable {
 
   /**
    * Ends the game. Clients can join again.
-   * 
+   *
    * @author nitterhe
    */
   // must be called by Game logic after game ends
@@ -154,7 +155,7 @@ public class Server implements Serializable {
 
   /**
    * Sends a message to all clients via the ServerThreads.
-   * 
+   *
    * @author nitterhe
    * @param message - the message to send
    */
@@ -170,7 +171,7 @@ public class Server implements Serializable {
 
   /**
    * Returns the IP4Address of the server as a String.
-   * 
+   *
    * @author nitterhe
    * @return ip - the IP4Address of the server
    */
@@ -180,7 +181,7 @@ public class Server implements Serializable {
 
   /**
    * Returns the server's status (true = in game/ false = waiting for clients)
-   * 
+   *
    * @author nitterhe
    * @return gameStart - the server's status
    */
@@ -190,7 +191,7 @@ public class Server implements Serializable {
 
   /**
    * Returns the ServerSocket of the server as a ServerSocket object.
-   * 
+   *
    * @author nitterhe
    * @return serverSocket - the ServerSocket of the server
    */
@@ -200,7 +201,7 @@ public class Server implements Serializable {
 
   /**
    * Returns the server's host as a String.
-   * 
+   *
    * @author nitterhe
    * @return host - the server's host.
    */
@@ -210,7 +211,7 @@ public class Server implements Serializable {
 
   /**
    * Returns the maximum amount of clients allowed to connect.
-   * 
+   *
    * @author nitterhe
    * @return clientMaximum- number of connected clients
    */
@@ -220,7 +221,7 @@ public class Server implements Serializable {
 
   /**
    * Returns the number of connected clients as an int.
-   * 
+   *
    * @author nitterhe
    * @return client count - number of connected clients
    */
@@ -230,7 +231,7 @@ public class Server implements Serializable {
 
   /**
    * Sets clientCounter to the current size of the clients ArrayList.
-   * 
+   *
    * @author nitterhe
    */
   public void updateClientCount() {
@@ -239,7 +240,7 @@ public class Server implements Serializable {
   }
 
   /**
-   * 
+   *
    */
   public void sendUpdateMessage() {
     this.sendMessageToAllClients(new LobbyUpdateMessage(this.getHost(), this.getStatus(),
@@ -249,7 +250,7 @@ public class Server implements Serializable {
   /**
    * Returns all connected clients as a HashMap. Keys are the usernames as Strings and values are
    * the clients as ClientData objects.
-   * 
+   *
    * @author nitterhe
    * @return clients - HashMap with the Strings as keys and Clients as values
    */
@@ -260,7 +261,7 @@ public class Server implements Serializable {
   /**
    * Returns all connections as a HashMap. Keys are the Client objects (from the client list) and
    * values are the belonging ServerThread objects.
-   * 
+   *
    * @author nitterhe
    * @return connections - HashMap with Clients as keys and ServerThreads as values
    */
@@ -270,7 +271,7 @@ public class Server implements Serializable {
 
   /**
    * Returns this server's statistics as a ServerStatistics object.
-   * 
+   *
    * @author nitterhe
    * @return serverStatistics - this server's ServerStatistics object
    */
@@ -281,7 +282,7 @@ public class Server implements Serializable {
   /**
    * Sets the serverStatistics to the given ServerStatistics instance. Only used for the
    * currentServer in the Client class to display the statistics correctly at every client.
-   * 
+   *
    * @author nitterhe
    * @param serverStatistics - the new ServerStatistics object
    */
@@ -291,7 +292,7 @@ public class Server implements Serializable {
 
   /**
    * Shuts down the server by closing all connections to the clients and closing the server socket.
-   * 
+   *
    * @author nitterhe
    */
   public void shutDownServer() {
@@ -313,7 +314,7 @@ public class Server implements Serializable {
 
   /**
    * Updates the attribute gameStart with the given parameter.
-   * 
+   *
    * @author nitterhe
    * @param gameStart - the new value for gameStart
    */
@@ -323,7 +324,7 @@ public class Server implements Serializable {
 
   /**
    * Overrides the client list.
-   * 
+   *
    * @author nitterhe
    * @param clients - the new HashMap of the clients
    */
@@ -333,7 +334,7 @@ public class Server implements Serializable {
 
   /**
    * Sets the maximum amount of clients allowed to connect.
-   * 
+   *
    * @author nitterhe
    * @param clientMaximum - the maximum amount of clients allowed to connect.
    */

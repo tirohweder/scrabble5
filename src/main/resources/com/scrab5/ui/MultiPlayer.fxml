@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
 
 <!-- 
 @author apilgrim
 
-fxml file which contains all images and information for the UI screen of the Singleplayer. Furthermore the ID contains the information about the clicked row (a-o) and column (1-15) 
+fxml file which contains all images and information for the UI screen of the Multiplayer. Furthermore the ID contains the information about the clicked row (a-o) and column (1-15) 
 on the Gameboard, and as well the bonus point specification (dw- double word, dl - double letter, tw- tripple word, tl- tripple letter). 
-The method specification which implements what to do when a field is clicked/ entered/ excited... is decleared in the SingleplayerController
+The method specification which implements what to do when a field is clicked/ entered/ excited... is decleared in the MultiplayerController
  -->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SingleplayerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MultiplayerController">
    <children>
       <AnchorPane fx:id="mainPane" prefHeight="768.0" prefWidth="1618.0">
          <children>
@@ -1353,6 +1355,32 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
+            <ImageView fitHeight="43.0" fitWidth="56.0" layoutX="1288.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/ChatIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="43.0" fitWidth="56.0" layoutX="1288.0" layoutY="3.0" onMouseClicked="#chatClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/ChatIconClicked.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="chatImage" fitHeight="447.0" fitWidth="413.0" layoutX="931.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/ChatOpen.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="28.0" fitWidth="15.0" layoutX="1296.0" layoutY="456.0" onMouseClicked="#sentClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/sentClicked.png" />
+               </image>
+            </ImageView>
+            <TextFlow fx:id="chatTextField" layoutX="942.0" layoutY="105.0" lineSpacing="5.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.0" prefHeight="344.0" prefWidth="388.0" />
+            <TextField fx:id="chatInsert" layoutX="987.0" layoutY="454.0" onMouseClicked="#chatInsertClicked" opacity="0.0" prefHeight="0.0" prefWidth="295.0">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </TextField>
          </children>
       </AnchorPane>
    </children>
