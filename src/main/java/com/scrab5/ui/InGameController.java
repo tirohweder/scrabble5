@@ -181,7 +181,7 @@ public abstract class InGameController implements Initializable {
 
   }
 
-  private void initRack() {
+  protected void initRack() {
     String currentUser = Data.getCurrentUser();
     Rack myRack = null;
     int rackPlace;
@@ -949,13 +949,9 @@ public abstract class InGameController implements Initializable {
 
   @FXML
   private void exchangeClicked(MouseEvent event) throws IOException {
-    // currentUser = Data.getCurrentUser();
-    // currentPlayer = GameSession.getCurrentPlayer().getName();
-    //
-    // if (currentUser.toLowerCase().equals(currentPlayer.toLowerCase())) {
-    //
-    // }
-    App.setRoot("Exchange");
+    if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
+      App.setRoot("Exchange");
+    }
   }
 
   protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
