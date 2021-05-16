@@ -100,11 +100,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
     playSound("ButtonClicked.mp3");
 
-    if (isReady) {
-      this.isReady = false;
-    } else {
-      this.isReady = true;
-    }
+    this.isReady = !isReady;
     Data.getPlayerClient().setReady(this.isReady);
 
   }
@@ -245,8 +241,12 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
     // TODO Auto-generated method stub
+
     ArrayList<Player> playerList = new ArrayList<Player>();
     for (String clientName : Data.getPlayerClient().getCurrentServer().getClients().keySet()) {
+
+      int vote1 = 0;
+
       playerList.add(new Player(clientName));
 
     }
@@ -261,7 +261,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.setGameSession(new GameSession(playerList, true));
       System.out.println("Online GameSession created");
     }
-    
+
+    App.setRoot("SinglePlayer");
   }
 
 

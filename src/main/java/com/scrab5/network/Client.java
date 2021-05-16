@@ -45,9 +45,8 @@ public class Client implements Serializable {
    * Server constantly changes every connected client's currentServer attribute (i.e. ChatMessages,
    * new Clients joined ....).
    *
-   * @author nitterhe
    * @param username This is the client's name other clients will see in a MultiPlayerLobby.
-   * @throws xyz
+   * @author nitterhe
    */
   public Client(String username) {
     this.username = username;
@@ -65,9 +64,10 @@ public class Client implements Serializable {
    * Hosts a server and accepts clients. Automatically joins the server. In application: starts a
    * MultiPlayerLobby.
    *
-   * @author nitterhe
    * @param clientMaximum - the maximum number of clients allowed to connect to the server
-   * @throws xyz
+   * @throws Exception - an Exception that is thrown to the Controller that the server could not be
+   *                   hosted
+   * @author nitterhe
    */
   public void hostServer(int clientMaximum) throws Exception {
     if (hostedServer == null) {
@@ -90,8 +90,7 @@ public class Client implements Serializable {
   /**
    * Searches for Servers in the local network and adds them to the serverList.
    *
-   * @author from stackoverflow -
-   *         https://stackoverflow.com/questions/24082077/java-find-server-in-network
+   * @author from stackoverflow - https://stackoverflow.com/questions/24082077/java-find-server-in-network
    */
   public void searchServers() {
     this.serverList.clear();
@@ -154,8 +153,8 @@ public class Client implements Serializable {
   /**
    * Adds an available server to the serverList.
    *
-   * @author nitterhe
    * @param serverdata The necessary data needed to open a socket with the server.
+   * @author nitterhe
    */
   private synchronized void addServerToServerList(ServerData serverdata) {
     boolean add = true;
@@ -173,8 +172,8 @@ public class Client implements Serializable {
   /**
    * Returns the current serverList.
    *
-   * @author nitterhe
    * @return serverList
+   * @author nitterhe
    */
   public synchronized ArrayList<ServerData> getServerList() {
     return this.serverList;
@@ -184,8 +183,8 @@ public class Client implements Serializable {
    * Connects the ClientThread to the given ServerThread by starting the ClientThread. For the
    * currentServer a new Server instance is created that is updated by the server via messages.
    *
-   * @author nitterhe
    * @param serverdata Includes the IP4Address and
+   * @author nitterhe
    */
   public void connectToServer(ServerData serverdata) {
     this.clientThread = new ClientThread(this);
@@ -196,8 +195,8 @@ public class Client implements Serializable {
    * Connects the ClientThread to the given IP4 Address by calling the method above with a new
    * ServerData object.
    *
+   * @param ip - The ip4 which should be connected to.
    * @author nitterhe
-   * @param ip4 The ip4 which should be connected to.
    */
   public void connectToServer(String ip) throws Exception {
     connectToServer(new ServerData(null, ip, serverPort, 0, 0, false));
@@ -207,8 +206,8 @@ public class Client implements Serializable {
    * Disconnects the ClientThread from the ServerThread. Server shuts down if the client is the
    * server's host.
    *
-   * @author nitterhe
    * @return boolean - used in the MulitplayerLobbyController to display a disconnect notification
+   * @author nitterhe
    */
   public boolean disconnectFromServer() {
     if (this.clientThread.running) {
@@ -236,8 +235,8 @@ public class Client implements Serializable {
   /**
    * Sends ChatMessage to the server. Server will send it to all clients in the lobby.
    *
-   * @author nitterhe
    * @param text The message text.
+   * @author nitterhe
    */
   public void sendChatMessage(String text) {
     this.clientThread.sendMessageToServer(new ChatMessage(clientThread.sender, text));
@@ -246,8 +245,8 @@ public class Client implements Serializable {
   /**
    * Returns the client's username as a String.
    *
-   * @author nitterhe
    * @return username - username of the client
+   * @author nitterhe
    */
   public String getUsername() {
     return this.username;
@@ -256,8 +255,8 @@ public class Client implements Serializable {
   /**
    * Returns the client's IP4Address as a String.
    *
-   * @author nitterhe
    * @return ip - the IP4Address of the client
+   * @author nitterhe
    */
   public String getIp() {
     return this.ip;
@@ -266,8 +265,8 @@ public class Client implements Serializable {
   /**
    * Returns this client's ClientThread.
    *
-   * @author nitterhe
    * @return clientThread - this client's ClientThread.
+   * @author nitterhe
    */
   public ClientThread getClientThread() {
     return this.clientThread;
@@ -276,8 +275,8 @@ public class Client implements Serializable {
   /**
    * Returns the client's server as a Server object. Null if no server was hosted by the client.
    *
-   * @author nitterhe
    * @return hostedServer - the client's server
+   * @author nitterhe
    */
   public Server getHostedServer() {
     return this.hostedServer;
@@ -286,8 +285,8 @@ public class Client implements Serializable {
   /**
    * Returns the client's ready to play status.
    *
-   * @author nitterhe
    * @return isReady - the client's ready status
+   * @author nitterhe
    */
   public boolean isReady() {
     return this.isReady;
@@ -296,8 +295,8 @@ public class Client implements Serializable {
   /**
    * Sets the client's ready status.
    *
-   * @author nitterhe
    * @param ready - a boolean with the client's ready satus
+   * @author nitterhe
    */
   public void setReady(boolean ready) {
     this.isReady = ready;
@@ -308,8 +307,8 @@ public class Client implements Serializable {
    * Used to first set an empty sever instance that is filled by the conencted server and the
    * changes are displayed by the UI.
    *
-   * @author nitterhe
    * @param currentServer - the server that is now the new currentServer
+   * @author nitterhe
    */
   public void initializeCurrentServer(Server currentServer) {
     this.currentServer = currentServer;
@@ -318,8 +317,8 @@ public class Client implements Serializable {
   /**
    * Updates the current Server instance and refreshes the UI
    *
-   * @author nitterhe
    * @param lum - the message from the server with the updated values
+   * @author nitterhe
    */
   public void updateCurrentServer(LobbyUpdateMessage lum) {
     this.getCurrentServer().setGameStart(lum.getGameStart());
@@ -333,8 +332,8 @@ public class Client implements Serializable {
    * Returns the client's current server that the client is connected to. Used for controlling what
    * the UI shall show. CurrentServer is constantly updated by the server.
    *
-   * @author nitterhe
    * @return currentServer - the server the client is connected to
+   * @author nitterhe
    */
   public Server getCurrentServer() {
     return this.currentServer;
@@ -343,8 +342,8 @@ public class Client implements Serializable {
   /**
    * Changes the username. Used when the client edits their username in the playerprofile.
    *
-   * @author nitterhe
    * @param username - the new username
+   * @author nitterhe
    */
   public void setUsername(String username) {
     this.username = username;

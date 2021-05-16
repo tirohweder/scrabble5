@@ -11,7 +11,7 @@ public class MakeTurnMessage extends Message {
 
   private static final long serialVersionUID = 1L;
 
-  private GameSession gameSession;
+  private final GameSession gameSession;
 
   /**
    * Constructor to send the turn made to the server / from the server to all clients.
