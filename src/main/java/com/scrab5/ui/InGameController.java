@@ -188,12 +188,14 @@ public abstract class InGameController implements Initializable {
 
     Iterator<Player> it = Data.getGameSession().getListOfPlayers().iterator();
     while (it.hasNext()) {
-      String s = it.next().getName();
+      Player p = it.next();
+      String s = p.getName();
       System.out.println(s);
       System.out.println(currentUser);
       System.out.println(s.equalsIgnoreCase(currentUser));
       if (s.equalsIgnoreCase(currentUser)) {
-        myRack = it.next().getRack();
+        p.getRack().fill(Data.getGameSession().getBag());
+        myRack = p.getRack();
         System.out.println(myRack.getTileAt(0).getLetter());
       } else {
         continue;
@@ -251,7 +253,7 @@ public abstract class InGameController implements Initializable {
     ImageView iv = ((ImageView) event.getSource());
 
     // check if the field clicked is a letter to remove
-    if (iv.getImage().getUrl().contains("letter_Images") && isChoosen(iv)) {
+    if (isChoosen(iv)) {
       backToRack(iv);
     } else {
       // check if no tiles has been clicked
@@ -265,7 +267,6 @@ public abstract class InGameController implements Initializable {
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))
             && rackClicked < 7) {
           placeLetter(clickedLetter, clickedLabel);
-          rackClicked = 7;
         }
       } else if (tileClicked && (clickedTile == (ImageView) event.getSource())) {
         darken(event);
