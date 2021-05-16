@@ -170,8 +170,13 @@ public class GameSession implements Serializable {
     currentPlayer.getRack().fill(bag);
     roundNumber++;
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
-    resetTimer();
-    Data.getPlayerClient().makeTurn();
+
+    if (online) {
+      resetTimer();
+      Data.getPlayerClient().makeTurn();
+    }
+
+
   }
 
   public void endGame() {
