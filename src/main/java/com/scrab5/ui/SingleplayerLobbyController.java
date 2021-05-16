@@ -67,7 +67,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     }
 
     Data.setGameSession(new GameSession(test, false));
-    System.out.println("iowejOPJWOEOPQJWEO");
+    System.out.println("Created GameSession");
 
     /*
      * TODO: #Get Player Order #Get PlayerAmount #Get Difficulties #Get Distribution
