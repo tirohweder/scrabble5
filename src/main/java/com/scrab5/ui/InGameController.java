@@ -250,8 +250,6 @@ public abstract class InGameController implements Initializable {
   private void fieldClicked(MouseEvent event) throws IOException {
     ImageView iv = ((ImageView) event.getSource());
 
-    String cordinate = iv.getId();
-
     // check if the field clicked is a letter to remove
     if (iv.getImage().getUrl().contains("letter_Images") && isChoosen(iv)) {
       backToRack(iv);
@@ -769,52 +767,59 @@ public abstract class InGameController implements Initializable {
     if (rackPlace1 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace1.getImage().getUrl())
         && rackPlace1.getOpacity() == 0 && isChoosen(iv)) {
-        rackPlace1.setOpacity(1);
-        pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
-        pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
-        iv.setImage(markedTile);
+      rackPlace1.setOpacity(1);
+      pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
+      removeChoosen(iv.getId());
     } else if (rackPlace2 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace2.getImage().getUrl())
         && rackPlace2.getOpacity() == 0 && isChoosen(iv)) {
-        rackPlace2.setOpacity(1);
-        pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
-        pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
-        iv.setImage(markedTile);
+      rackPlace2.setOpacity(1);
+      pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
+      removeChoosen(iv.getId());
     } else if (rackPlace3 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace3.getImage().getUrl())
         && rackPlace3.getOpacity() == 0 && isChoosen(iv)) {
-        rackPlace3.setOpacity(1);
-        pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
-        pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
-        iv.setImage(markedTile);
+      rackPlace3.setOpacity(1);
+      pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
+      removeChoosen(iv.getId());
     } else if (rackPlace4 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace4.getImage().getUrl())
         && rackPlace4.getOpacity() == 0 && isChoosen(iv)) {
-        rackPlace4.setOpacity(1);
-        pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
-        pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
-        iv.setImage(markedTile);
+      rackPlace4.setOpacity(1);
+      pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
+      removeChoosen(iv.getId());
     } else if (rackPlace5 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace5.getImage().getUrl())
         && rackPlace5.getOpacity() == 0 && isChoosen(iv)) {
-        rackPlace5.setOpacity(1);
-        pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
-        pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
-        iv.setImage(markedTile);
+      rackPlace5.setOpacity(1);
+      pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
+      removeChoosen(iv.getId());
     } else if (rackPlace6 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace6.getImage().getUrl())
         && rackPlace6.getOpacity() == 0 && isChoosen(iv)) {
-        rackPlace6.setOpacity(1);
-        pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
-        pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
-        iv.setImage(markedTile);
+      rackPlace6.setOpacity(1);
+      pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
+      removeChoosen(iv.getId());
     } else if (rackPlace7 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace7.getImage().getUrl())
         && rackPlace7.getOpacity() == 0 && isChoosen(iv)) {
-        rackPlace7.setOpacity(1);
-        pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
-        pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
-        iv.setImage(markedTile);
+      rackPlace7.setOpacity(1);
+      pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
+      pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
+      iv.setImage(markedTile);
+      removeChoosen(iv.getId());
     }
     iv.setImage(markedTile);
     clickedTile = null;
@@ -983,14 +988,23 @@ public abstract class InGameController implements Initializable {
   }
 
   private boolean isChoosen(ImageView iv) {
-    Iterator it = choosenTiles.iterator();
 
-    while (it.hasNext()) {
-      if (it.next().equals(iv.getId())) {
+    for (int i = 0; i < choosenTiles.size(); i++) {
+      if (choosenTiles.get(i).equalsIgnoreCase(iv.getId())) {
         return true;
       }
     }
     return false;
+  }
+
+  private void removeChoosen(String choosen) {
+
+    for (int i = 0; i < choosenTiles.size(); i++) {
+      if (choosenTiles.get(i).equalsIgnoreCase(choosen)) {
+        choosenTiles.remove(i);
+      }
+    }
+
   }
 
 
