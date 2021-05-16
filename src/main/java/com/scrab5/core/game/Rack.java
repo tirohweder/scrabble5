@@ -1,9 +1,12 @@
 package com.scrab5.core.game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Rack {
+public class Rack implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   private Tile[] rack = new Tile[7];
 

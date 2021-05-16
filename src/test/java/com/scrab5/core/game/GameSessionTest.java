@@ -27,8 +27,8 @@ class GameSessionTest {
 
     test.add(0, p1);
     test.add(0, p2);
-    GameSession testGameSession = new GameSession(test);
-    
+    GameSession testGameSession = new GameSession(test, false);
+
 
   }
 

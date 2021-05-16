@@ -1,13 +1,16 @@
 package com.scrab5.core.player;
 
-import java.io.IOException;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.PlayerProfileDatabase;
+import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * @author trohwede
  */
-public class PlayerProfile {
+public class PlayerProfile implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   private static String name = Data.getCurrentUser();
   private static String picture;
@@ -18,9 +21,9 @@ public class PlayerProfile {
 
   /**
    * Returns the name of the current user.
-   * 
-   * @author lengist
+   *
    * @return String representation of the name of the current user
+   * @author lengist
    */
   public static String getName() {
     return name;
@@ -28,9 +31,9 @@ public class PlayerProfile {
 
   /**
    * Return the picture of the current user if added.
-   * 
-   * @author lengist
+   *
    * @return String representation of the picture of the current user
+   * @author lengist
    */
   public static String getPicture() {
     picture = PlayerProfileDatabase.getPicture(name);
@@ -39,9 +42,9 @@ public class PlayerProfile {
 
   /**
    * Adds the achieved points to the current points of the user "name" in the database.
-   * 
-   * @author lengist
+   *
    * @param points the user achieved in the played game
+   * @author lengist
    */
   public static void addPoints(int points) throws IOException {
     int currentPoints = PlayerProfileDatabase.getTotalPoints(name);
@@ -52,9 +55,9 @@ public class PlayerProfile {
   /**
    * Changes the personal highscore of the player, if the new highscore is greater than the saved
    * one.
-   * 
-   * @author lengist
+   *
    * @param lastPersonalHighscore the user achieved in the played game
+   * @author lengist
    */
   public static void adjustPersonalHighscore(int lastPersonalHighscore) {
     int savedPersonalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
@@ -65,9 +68,9 @@ public class PlayerProfile {
 
   /**
    * Adds the laid words to the column laidWords of the user "name" in the database.
-   * 
-   * @author lengist
+   *
    * @param words the user laid in the played game
+   * @author lengist
    */
   public static void addWords(int words) throws IOException {
     int currentWords = PlayerProfileDatabase.getLaidWords(name);
@@ -78,9 +81,9 @@ public class PlayerProfile {
   /**
    * Changes the points per word rate, if the new rate is greater than the one saved in the
    * database.
-   * 
-   * @author lengist
+   *
    * @param newPointsPerWordRate the user achieved in the played game
+   * @author lengist
    */
   public static void adjustPointsPerWordRate(int newPointsPerWordRate) {
     int currentPointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
@@ -92,9 +95,9 @@ public class PlayerProfile {
   /**
    * Changes the longest word, if the player has laid a word in the current game, that is longer
    * than the one saved.
-   * 
-   * @author lengist
+   *
    * @param longestWord the user laid in the played game
+   * @author lengist
    */
   public static void adjustLongestWord(String longestWord) {
     String currentLongestWord = PlayerProfileDatabase.getLongestWord(name);
@@ -105,9 +108,9 @@ public class PlayerProfile {
 
   /**
    * Adds the quantity of played games of the user "name" to the database.
-   * 
-   * @author lengist
+   *
    * @param games the amount of games the user played since the last lock
+   * @author lengist
    */
   public static void addGames(int games) throws IOException {
     int currentGames = PlayerProfileDatabase.getTotalPlayedGames(name);
@@ -117,9 +120,9 @@ public class PlayerProfile {
 
   /**
    * Adds the achieved wins of the user "name" to the database.
-   * 
-   * @author lengist
+   *
    * @param wins the amount of wins the user achieved since the last lock
+   * @author lengist
    */
   public static void addWins(int wins) throws IOException {
     int currentWins = PlayerProfileDatabase.getTotalWins(name);
@@ -129,9 +132,9 @@ public class PlayerProfile {
 
   /**
    * Adjusts the win rate stored for the player.
-   * 
-   * @author lengist
+   *
    * @param winRate the user achieved in the played game
+   * @author lengist
    */
   public static void adjustWinRate(double winRate) {
     double currentWinRate = PlayerProfileDatabase.getWinRate(name);
@@ -142,9 +145,9 @@ public class PlayerProfile {
 
   /**
    * Changes the favorite dictionary of the user "name" in the database.
-   * 
-   * @author lengist
+   *
    * @param dictionary the user selected in the played game
+   * @author lengist
    */
   public static void changeDictionary(String dictionary) throws IOException {
     PlayerProfileDatabase.setFavoriteDictionary(name, dictionary);
@@ -152,9 +155,9 @@ public class PlayerProfile {
 
   /**
    * Returns the total points saved in the database for player "name".
-   * 
-   * @author lengist
+   *
    * @return int the total points saved in the database for the user name
+   * @author lengist
    */
   public static int getTotalPoints() {
     return PlayerProfileDatabase.getTotalPoints(name);
@@ -162,9 +165,9 @@ public class PlayerProfile {
 
   /**
    * Returns the personal highscore in the database for player name
-   * 
-   * @author lengist
+   *
    * @return int the saved personal highscore from table Player
+   * @author lengist
    */
   public static int getPersonalHighscore() {
     return PlayerProfileDatabase.getPersonalHighscore(name);
@@ -172,9 +175,9 @@ public class PlayerProfile {
 
   /**
    * Returns the number of laid words saved in the database for player "name".
-   * 
-   * @author lengist
+   *
    * @return int the laid words saved in the database for the user name
+   * @author lengist
    */
   public static int getLaidWords() {
     return PlayerProfileDatabase.getLaidWords(name);
@@ -182,9 +185,9 @@ public class PlayerProfile {
 
   /**
    * Returns the points per word rate in the database for player name
-   * 
-   * @author lengist
+   *
    * @return double the saved points per word rate from table Player
+   * @author lengist
    */
   public static double getPointsPerWordRate() {
     return PlayerProfileDatabase.getPointsPerWordRate(name);
@@ -192,9 +195,9 @@ public class PlayerProfile {
 
   /**
    * Returns the longest word in the database for the current player name
-   * 
-   * @author lengist
+   *
    * @return String the saved longest word from table Player
+   * @author lengist
    */
   public static String getLongestWord() {
     return PlayerProfileDatabase.getLongestWord(name);
@@ -202,9 +205,9 @@ public class PlayerProfile {
 
   /**
    * Returns the total played games saved in the database for player "name".
-   * 
-   * @author lengist
+   *
    * @return int the total played games saved in the database for the user name
+   * @author lengist
    */
   public static int getTotalPlayedGames() {
     return PlayerProfileDatabase.getTotalPlayedGames(name);
@@ -212,9 +215,9 @@ public class PlayerProfile {
 
   /**
    * Returns the number of total wins saved in the database for player "name".
-   * 
-   * @author lengist
+   *
    * @return int the total wins saved in the database for the user name
+   * @author lengist
    */
   public static int getTotalWins() {
     return PlayerProfileDatabase.getTotalWins(name);
@@ -222,9 +225,9 @@ public class PlayerProfile {
 
   /**
    * Returns the win rate in the database for the current player name
-   * 
-   * @author lengist
+   *
    * @return double the saved win rate from table Player
+   * @author lengist
    */
   public static double getWinRate() {
     return PlayerProfileDatabase.getWinRate(name);
@@ -232,9 +235,9 @@ public class PlayerProfile {
 
   /**
    * Returns the favorite dictionary saved in the database for player "name".
-   * 
-   * @author lengist
+   *
    * @return String the favorite dictionary saved in the database for the user name
+   * @author lengist
    */
   public static String getFavoriteDictionary() {
     return PlayerProfileDatabase.getFavoriteDictionary(name);

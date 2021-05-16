@@ -1,9 +1,12 @@
 package com.scrab5.core.game;
 
 import com.scrab5.util.textParser.DictionaryScanner;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class GameBoard {
+public class GameBoard implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   public ArrayList<Tile> getCurrentChanges() {
     return currentChanges;
@@ -102,7 +105,7 @@ public class GameBoard {
       for (int j = 0; j < 15; j++) {
         if (gameBoardCurrent[i][j] != null) {
           gameBoard[i][j] = gameBoardCurrent[i][j];
-          
+
         }
 
       }

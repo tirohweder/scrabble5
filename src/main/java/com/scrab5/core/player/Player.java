@@ -1,8 +1,11 @@
 package com.scrab5.core.player;
 
 import com.scrab5.core.game.Rack;
+import java.io.Serializable;
 
-public class Player {
+public class Player implements Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   /**
    * @return Gets Rack
