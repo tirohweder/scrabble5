@@ -26,7 +26,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    //Database.disconnect();
     return rs;
   }
 
