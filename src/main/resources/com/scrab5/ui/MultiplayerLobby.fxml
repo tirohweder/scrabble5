@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MultiplayerLobbyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MultiplayerLobbyController">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1360.0">
          <children>
@@ -270,6 +270,11 @@
             <ImageView fx:id="customizeButton" fitHeight="27.0" fitWidth="131.0" layoutX="385.0" layoutY="696.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB06_CustomizeButtonNotClickable.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="startButton" fitHeight="150.0" fitWidth="127.0" layoutX="1121.0" layoutY="589.0" onMouseClicked="#startGame" onMouseEntered="#lightenStartButton" onMouseExited="#darkenStartButton" onMousePressed="#darkenStartButton" onMouseReleased="#lightenStartButton" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB05_StartButton.png" />
                </image>
             </ImageView>
             <ImageView fx:id="darkBackground" fitHeight="65.0" fitWidth="976.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
