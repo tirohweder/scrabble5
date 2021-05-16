@@ -1,16 +1,15 @@
 package com.scrab5.core.game;
 
-import com.scrab5.core.player.Player;
-import com.scrab5.ui.Data;
-import com.scrab5.util.database.FillDatabase;
-import com.scrab5.util.database.UseDatabase;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Timer;
-import java.util.TimerTask;
+import com.scrab5.core.player.Player;
+import com.scrab5.ui.Data;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 
 public class GameSession implements Serializable {
 
@@ -92,7 +91,7 @@ public class GameSession implements Serializable {
 
 
   private boolean online;
-  private Timer timer;
+  private transient Timer timer;
 
   // initialize bag fills the bag with the selected tiles
 
@@ -109,7 +108,6 @@ public class GameSession implements Serializable {
     this.online = isOnline;
     if (this.online) {
       Data.getHostedServer().startGame();
-      startTimer();
     }
     initializeBag(letters, points);
     Iterator<Player> iter = listOfPlayers.iterator();
@@ -123,7 +121,7 @@ public class GameSession implements Serializable {
     currentPlayer = listOfPlayers.get(0);
     this.online = isOnline;
     if (this.online) {
-      startTimer();
+      Data.getHostedServer().startGame();
     }
     System.out.println("Created Game Session");
 
@@ -171,7 +169,6 @@ public class GameSession implements Serializable {
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
 
     if (online) {
-      resetTimer();
       Data.getPlayerClient().makeTurn();
     }
 
@@ -179,37 +176,11 @@ public class GameSession implements Serializable {
   }
 
   public void endGame() {
-    this.cancelTimer();
+    // Data.getHostedServer().endGame(winner);
     // TODO call server method
   }
 
   public boolean giveUp() {
     return false;
-  }
-
-  private void startTimer() {
-
-    if (!this.online) {
-
-    } else {
-      timer = new Timer();
-      TimerTask task = (new TimerTask() {
-        public void run() {
-          if (Data.getPlayerClient() != null) {
-            Data.getPlayerClient().disconnectFromServer();
-          }
-        }
-      });
-      timer.schedule(task, 1000 * 60 * 10);
-    }
-  }
-
-  public void resetTimer() {
-    timer.cancel();
-    this.startTimer();
-  }
-
-  public void cancelTimer() {
-    timer.cancel();
   }
 }
