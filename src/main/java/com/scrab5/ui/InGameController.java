@@ -1,6 +1,7 @@
 package com.scrab5.ui;
 
 import com.scrab5.core.game.Rack;
+
 import com.scrab5.core.player.Player;
 import com.scrab5.util.database.Database;
 import java.io.IOException;
