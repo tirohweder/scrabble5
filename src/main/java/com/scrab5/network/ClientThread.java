@@ -71,7 +71,7 @@ public class ClientThread extends Threads implements Serializable {
           case CHAT:
             ChatMessage chatMessage = (ChatMessage) message;
             String text = chatMessage.getText();
-            MultiplayerLobbyController.getChatHistory().append(text);
+            MultiplayerLobbyController.getChatHistory().insert(0, text);
             break;
           case CONNECT:
             // this is used since sending messages between client and server is faster than the

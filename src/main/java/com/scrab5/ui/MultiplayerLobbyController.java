@@ -121,12 +121,10 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       @Override
       public void run() {
         messageTextField.selectAll();
-        Data.getPlayerClient().sendChatMessage(messageTextField.getText() + "\n");
+        Data.getPlayerClient()
+            .sendChatMessage(Data.getCurrentUser() + ": " + messageTextField.getText() + "\n");
       }
     });
-
-
-    System.out.println("AAAAAAAAAAAAAA");
 
   }
 
