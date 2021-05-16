@@ -15,9 +15,12 @@ import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -42,9 +45,14 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private Label score1, score2, score3, score4;
   @FXML
   private ImageView customizeButton;
+  @FXML
+  private TextArea chatBox;
+  @FXML
+  private TextField messageTextField;
 
   private boolean isReady = false;
   private int aiPlayerAmount = 0;
+  private static StringBuffer chatHistory = new StringBuffer();
   private LinkedList<Client> AIs;
 
   /**
@@ -107,6 +115,18 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   @FXML
   private void enterChatMessage(MouseEvent event) {
+
+    Platform.runLater(new Runnable() {
+
+      @Override
+      public void run() {
+        messageTextField.selectAll();
+        Data.getPlayerClient().sendChatMessage(messageTextField.getText() + "\n");
+      }
+    });
+
+
+    System.out.println("AAAAAAAAAAAAAA");
 
   }
 
@@ -277,6 +297,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       @Override
       public void run() {
 
+
+
         while (Data.getPlayerClient().getClientThread().isAlive()) {
 
           Server UIServer = Data.getPlayerClient().getCurrentServer();
@@ -289,11 +311,17 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
             @Override
             public void run() {
+
+              chatBox.setText(chatHistory.toString());
+
+              boolean start = true;
               ClientData client;
               if (iterator.hasNext()) {
                 client = iterator.next();
                 player1.setText(client.getUsername());
                 ready1.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (!client.isReady())
+                  start = false;
               } else {
                 player1.setText("");
                 ready1.setText("");
@@ -303,6 +331,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player2.setText(client.getUsername());
                 ready2.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (!client.isReady())
+                  start = false;
               } else {
                 player2.setText("");
                 ready2.setText("");
@@ -312,6 +342,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player3.setText(client.getUsername());
                 ready3.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (!client.isReady())
+                  start = false;
               } else {
                 player3.setText("");
                 ready3.setText("");
@@ -321,9 +353,27 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player4.setText(client.getUsername());
                 ready4.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (!client.isReady())
+                  start = false;
               } else {
                 player4.setText("");
                 ready4.setText("");
+              }
+
+              if (start && Data.getPlayerClient().getCurrentServer().getClients().size() > 1) {
+                startButton.setOpacity(1.0);
+                startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+                  @Override
+                  public void handle(MouseEvent event) {
+                    try {
+                      startGame(event);
+                    } catch (IOException | SQLException e) {
+                      e.printStackTrace();
+                    }
+                  }
+
+                });
               }
 
               ClientStatistic help;
@@ -366,5 +416,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   public static void displayChatMessage(String text) {
 
+  }
+
+  public static StringBuffer getChatHistory() {
+    return chatHistory;
   }
 }

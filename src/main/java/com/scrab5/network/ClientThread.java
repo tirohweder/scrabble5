@@ -6,6 +6,12 @@
  */
 package com.scrab5.network;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.Socket;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
@@ -16,12 +22,6 @@ import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.Socket;
 import javafx.application.Platform;
 
 public class ClientThread extends Threads implements Serializable {
@@ -71,8 +71,7 @@ public class ClientThread extends Threads implements Serializable {
           case CHAT:
             ChatMessage chatMessage = (ChatMessage) message;
             String text = chatMessage.getText();
-            System.out.println(text);
-            // needs implementation
+            MultiplayerLobbyController.getChatHistory().append(text);
             break;
           case CONNECT:
             // this is used since sending messages between client and server is faster than the
@@ -100,6 +99,8 @@ public class ClientThread extends Threads implements Serializable {
             MakeTurnMessage mtm = (MakeTurnMessage) message;
             Data.setGameSession(mtm.getGameSession());
             break;
+          // case GAMESTART:
+          // this.client.setReady(false);
           default:
             break;
         }
