@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -1365,7 +1366,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@board_Images/ChatIconClicked.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="chatImage" fitHeight="447.0" fitWidth="413.0" layoutX="931.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="chatImage" fitHeight="447.0" fitWidth="413.0" layoutX="931.0" layoutY="53.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/ChatOpen.png" />
                </image>
@@ -1375,7 +1376,10 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@board_Images/sentClicked.png" />
                </image>
             </ImageView>
-            <TextFlow fx:id="chatTextField" layoutX="942.0" layoutY="105.0" lineSpacing="5.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.0" prefHeight="344.0" prefWidth="388.0" />
+            <TextFlow fx:id="chatTextField" layoutX="942.0" layoutY="105.0" lineSpacing="5.0" nodeOrientation="LEFT_TO_RIGHT" opacity="0.0" prefHeight="344.0" prefWidth="388.0">
+               <children>
+                  <TextArea fx:id="textArea" prefHeight="349.0" prefWidth="390.0" />
+               </children></TextFlow>
             <TextField fx:id="chatInsert" layoutX="987.0" layoutY="454.0" onMouseClicked="#chatInsertClicked" opacity="0.0" prefHeight="0.0" prefWidth="295.0">
                <font>
                   <Font size="10.0" />

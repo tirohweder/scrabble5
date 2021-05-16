@@ -3,6 +3,7 @@ package com.scrab5.ui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -10,41 +11,45 @@ import javafx.scene.text.TextFlow;
 
 
 public class MultiplayerController extends InGameController implements Initializable {
-  
+
   @FXML
   ImageView chatImage;
   @FXML
   TextFlow chatTextField;
   @FXML
   TextField chatInsert;
-  
+  @FXML
+  TextArea textArea;
+
   private boolean chatOpen = false;
+
   @FXML
   private void chatClicked(MouseEvent event) {
-    if(chatOpen) {
+    if (chatOpen) {
       chatImage.setOpacity(0);
       chatTextField.setOpacity(0);
       chatInsert.setOpacity(0);
-    }else {
+      chatOpen = false;
+    } else {
       chatImage.setOpacity(1);
       chatTextField.setOpacity(1);
       chatInsert.setOpacity(1);
+      chatOpen = true;
     }
   }
-  
+
   @FXML
   private void sentClicked(MouseEvent event) {
-    if(chatOpen) {
-      if(chatInsert.getText().length()>0) {
-        System.out.println("Done");
+    if (chatOpen) {
+      if (chatInsert.getText().length() > 0) {
+        chatInsert.selectAll();
+        textArea.setText(chatInsert.getText());
       }
     }
   }
-  
-  
+
+
   @FXML
-  private void chatInsertClicked(MouseEvent event) {
-  }
-  
+  private void chatInsertClicked(MouseEvent event) {}
+
 }
-  
