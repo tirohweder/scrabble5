@@ -2,10 +2,7 @@ package com.scrab5.core.player;
 
 import com.scrab5.core.game.AiPosition;
 import com.scrab5.core.game.GameBoard;
-import com.scrab5.core.game.GameSession;
-import com.scrab5.core.game.Tile;
 import com.scrab5.ui.Data;
-import com.scrab5.util.textParser.DictionaryScanner;
 import java.util.ArrayList;
 
 public class AiPlayer extends Player {
@@ -23,8 +20,9 @@ public class AiPlayer extends Player {
   public AiPlayer(String name) {
     super(name);
   }
+
   /**
-   * In this method all other methods will be called for the Easy AI
+   * In this method all other methods will be called for the Hard AI
    *
    * @param
    * @author hraza
@@ -48,11 +46,11 @@ public class AiPlayer extends Player {
         }
       }
     }
-    for(int i=0;i<pos.size();i++) {
+    for (int i = 0; i < pos.size(); i++) {
       pos.get(i).sortPossibleWordsDescending();
     }
     this.sortPosMax();
-    //JETZT FEHLT NOCH,DASS MAN VON POS(0) DAS WORT ERSTE WORT LEGT 
+    // JETZT FEHLT NOCH,DASS MAN VON POS(0) DAS WORT ERSTE WORT LEGT
   }
 
   /**
@@ -80,11 +78,11 @@ public class AiPlayer extends Player {
         }
       }
     }
-    for(int i=0;i<pos.size();i++) {
+    for (int i = 0; i < pos.size(); i++) {
       pos.get(i).sortPossibleWordsAscending();
     }
     this.sortPosMin();
-    //JETZT FEHLT NOCH,DASS MAN VON POS(0) DAS WORT ERSTE WORT LEGT 
+    // JETZT FEHLT NOCH,DASS MAN VON POS(0) DAS WORT ERSTE WORT LEGT
   }
 
   /**
@@ -155,36 +153,33 @@ public class AiPlayer extends Player {
     while (y - 1 - counterUp < 14 && x == 14 && g.isSpotFree(y - 1 - counterUp, x)
         && g.isSpotFree(y - 1 - counterUp, x - 1)) {
       counterUp++;
-      this.counterDown = counterDown;
-      this.counterUp = counterUp;
-      this.counterRight = counterRight;
-      this.counterLeft = counterLeft;
     }
-
     this.counterDown = counterDown;
     this.counterUp = counterUp;
     this.counterRight = counterRight;
     this.counterLeft = counterLeft;
-
   }
 
   /**
-   * This Method will scan the Dictionary for words that fit to the size of the spot on the gameboard, will
-   * create an AiPosition object,will fill this AiPosition with posWords and will add it to the List pos
+   * This Method will scan the Dictionary for words that fit to the size of the spot on the
+   * gameboard, will create an AiPosition object,will fill this AiPosition with posWords and will
+   * add it to the List pos
    *
    * @param fixLetter
    * @param before
    * @param after
    * @param x
    * @param y
+   * @param horizontal
    * @author hraza
    */
-  public void wordGenerator(String fixLetter, int before, int after, int x, int y, boolean horizontal) {
-    //THIS METHOD SHOULD ONLY ADD VALID WORDS TO THE LIST THAT CAN BE BUILD WITH THE BAG
-    
+  public void wordGenerator(String fixLetter, int before, int after, int x, int y,
+      boolean horizontal) {
+    // THIS METHOD SHOULD ONLY ADD VALID WORDS TO THE LIST THAT CAN BE BUILD WITH THE BAG
+
 
   }
-  
+
   /**
    * This Method will sort the list pos, so that the Position with the biggest maxPoint is first
    *
@@ -204,9 +199,10 @@ public class AiPlayer extends Player {
       }
     }
   }
-  
+
   /**
-   * This Method will sort the list pos, so that the Position who has the smallest minPoints is first
+   * This Method will sort the list pos, so that the Position who has the smallest minPoints is
+   * first in the list pos
    *
    * @param
    * @author hraza

@@ -54,7 +54,7 @@ public class AiPosition {
   }
 
   /**
-   * This Method will sort the lists possiblePoints and possibleWords at the same Time, so the word
+   * This Method will sort the lists "possiblePoints", "possibleWords", "before", "after" and "horizontal" at the same Time, so the word
    * with the lowest points is first and initializes the minPoint and maxPoint
    *
    * @param
@@ -81,8 +81,8 @@ public class AiPosition {
   }
 
   /**
-   * This Method will sort the lists possiblePoints and possibleWords at the same Time, so the word
-   * with the highest points is first
+   * This Method will sort the lists "possiblePoints", "possibleWords", "before", "after" and "horizontal" at the same Time, so the word
+   * with the highest points is first. It also intializes "minPoint" and "maxPoint"
    *
    * @param
    * @author hraza
@@ -106,5 +106,5 @@ public class AiPosition {
       }
     }
   }
-
+  
 }
