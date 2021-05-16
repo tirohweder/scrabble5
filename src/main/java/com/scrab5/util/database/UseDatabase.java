@@ -1,10 +1,10 @@
 package com.scrab5.util.database;
 
-import com.scrab5.network.ServerStatistics;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import com.scrab5.network.ServerStatistics;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -71,7 +71,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    //Database.disconnect();
     return rs;
   }
 
@@ -95,7 +95,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    //Database.disconnect();
     return ol;
   }
 
@@ -121,7 +121,7 @@ public class UseDatabase extends Database {
     }
     String[] letters = new String[letter.size()];
     letters = letter.toArray(letters);
-    Database.disconnect();
+    //Database.disconnect();
     return letters;
   }
 
@@ -130,7 +130,8 @@ public class UseDatabase extends Database {
    *
    * @return integer array containing all points saved in the database
    * 
-   * code line to convert list to array from: https://www.techiedelight.com/convert-list-integer-array-int/
+   *         code line to convert list to array from:
+   *         https://www.techiedelight.com/convert-list-integer-array-int/
    * @author lengist
    */
   public synchronized static int[] getAllPointsPerLetter() {
@@ -148,7 +149,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     int[] points = point.stream().mapToInt(Integer::intValue).toArray();
-    Database.disconnect();
+    //Database.disconnect();
     return points;
   }
 
@@ -157,7 +158,8 @@ public class UseDatabase extends Database {
    *
    * @return integer array containing all occurrences saved in the database
    * 
-   * code line to convert list to array from: https://www.techiedelight.com/convert-list-integer-array-int/
+   *         code line to convert list to array from:
+   *         https://www.techiedelight.com/convert-list-integer-array-int/
    * @author lengist
    */
   public synchronized static int[] getAllOccurrences() {
@@ -175,7 +177,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     int[] occurrences = occurrence.stream().mapToInt(Integer::intValue).toArray();
-    Database.disconnect();
+    //Database.disconnect();
     return occurrences;
   }
 
@@ -185,7 +187,7 @@ public class UseDatabase extends Database {
    *
    * @param serverHostName String representation of the host of the server
    * @return Server object with the server statistic
-   * @auhtor lengist 
+   * @auhtor lengist
    * @author nitterhe
    */
   public synchronized static ServerStatistics getServerStatistics(String serverHostName) {
@@ -219,7 +221,7 @@ public class UseDatabase extends Database {
    * individualize.
    *
    * @param letter String for the letter where a change needs to be fulfilled
-   * @param point  int for the new points
+   * @param point int for the new points
    * @author lengist
    */
   public synchronized static void setPointForLetter(String letter, int point) {
