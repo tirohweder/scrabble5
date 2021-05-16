@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SingleplayerLobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SingleplayerLobbyController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +235,7 @@
       <workItem from="1620983144126" duration="1009000" />
       <workItem from="1620988416099" duration="12656000" />
       <workItem from="1621061127917" duration="10427000" />
-      <workItem from="1621150207196" duration="8240000" />
+      <workItem from="1621150207196" duration="9067000" />
     </task>
     <task id="LOCAL-00001" summary="#69 add strucutre">
       <created>1619793717336</created>
@@ -447,7 +447,21 @@
       <option name="project" value="LOCAL" />
       <updated>1621173463154</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="#66 connicting">
+      <created>1621174334589</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1621174334589</updated>
+    </task>
+    <task id="LOCAL-00032" summary="w #66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/ui/MultiplayerLobbyController.java">
+      <created>1621174404043</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1621174404043</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -493,7 +507,8 @@
     <MESSAGE value="#66 connectin with network" />
     <MESSAGE value="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/player/AiPlayer.java" />
     <MESSAGE value="#66 connicting" />
-    <option name="LAST_COMMIT_MESSAGE" value="#66 connicting" />
+    <MESSAGE value="w #66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="w #66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
