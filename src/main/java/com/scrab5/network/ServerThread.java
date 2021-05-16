@@ -6,6 +6,10 @@
  */
 package com.scrab5.network;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.SocketException;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
@@ -15,10 +19,7 @@ import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.net.SocketException;
+import com.scrab5.util.database.FillDatabase;
 
 public class ServerThread extends Threads {
 
@@ -32,7 +33,7 @@ public class ServerThread extends Threads {
    * Construtor for the ServerThread. Sets up the socket for 1 client and opens streams and handles
    * the server side communication.
    *
-   * @param server         - the server object this Thread belongs to
+   * @param server - the server object this Thread belongs to
    * @param socketToClient - the clients's socket the ServerThread connects to.
    * @author nitterhe
    */
@@ -125,16 +126,14 @@ public class ServerThread extends Threads {
    *
    * @param clientData - the clientData object of the lient that just connected to the server
    * @throws Exception - an Exception that is thrown when a similar client with the same name is
-   *                   already on the server / was on the server
+   *         already on the server / was on the server
    * @author nitterhe
    */
   private void addClient(ClientData clientData) throws Exception {
     if (null == server.getClients().get(clientData.getUsername())) {
       if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
-        // FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
-        // clientData.getIp());
-        boolean reminder;
-        // the boolean is a reminder that i do not forget to uncomment the code above
+        FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
+            clientData.getIp());
       }
       server.getClients().put(clientData.getUsername(), clientData);
       server.getConnections().put(clientData, this);
