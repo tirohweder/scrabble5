@@ -13,7 +13,6 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * The App class contains some methods changing the scene seen and the sets the app up for the first
@@ -62,7 +61,7 @@ public class App extends Application {
     this.setMediaPlayer();
 
     mainStage = stage;
-    stage.initStyle(StageStyle.UNDECORATED);
+    // stage.initStyle(StageStyle.UNDECORATED);
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
     stage.setResizable(false);

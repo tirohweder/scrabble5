@@ -1,12 +1,5 @@
 package com.scrab5.ui;
 
-import com.scrab5.core.game.GameSession;
-import com.scrab5.core.player.Player;
-import com.scrab5.network.Client;
-import com.scrab5.network.ClientData;
-import com.scrab5.network.Server;
-import com.scrab5.network.ServerStatistics;
-import com.scrab5.network.ServerStatistics.ClientStatistic;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -14,6 +7,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import com.scrab5.core.game.GameSession;
+import com.scrab5.core.player.Player;
+import com.scrab5.network.Client;
+import com.scrab5.network.ClientData;
+import com.scrab5.network.Server;
+import com.scrab5.network.ServerStatistics;
+import com.scrab5.network.ServerStatistics.ClientStatistic;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -161,13 +161,13 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     diffBox3.hide();
   }
 
-
+  @FXML
   protected void kickPlayer2(MouseEvent event) {
     // TODO Auto-generated method stub
 
   }
 
-
+  @FXML
   protected void kickPlayer3(MouseEvent event) {
 
     if (kick3.getOpacity() == 1.0) { // AI oder echter Spieler?
@@ -184,6 +184,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
   }
 
+  @FXML
   protected void kickPlayer4(MouseEvent event) {
 
     if (kick4.getOpacity() == 1.0) { // AI oder echter Spieler?
@@ -262,7 +263,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       System.out.println("Online GameSession created");
     }
 
-    App.setRoot("SinglePlayer");
+    App.setRoot("Multiplayer");
   }
 
 
