@@ -38,7 +38,7 @@ public class Client implements Serializable {
   private Server currentServer;
   private Server hostedServer;
   private boolean isReady;
-  private boolean inGame;
+  private boolean starting;
 
   /**
    * Implements a new Client with the given username. Constructs an empty list for all servers in
@@ -54,7 +54,7 @@ public class Client implements Serializable {
     serverList = new ArrayList<ServerData>();
     this.hostedServer = null; // needs connection to database
     this.isReady = false;
-    this.inGame = false;
+    this.starting = false;
     try {
       this.ip = InetAddress.getLocalHost().getHostAddress();
     } catch (Exception e) {
@@ -364,22 +364,23 @@ public class Client implements Serializable {
   }
 
   /**
-   * Method to set the value of the inGame variable.
+   * Method to set the value of the starting value. This is used to set App.setroot() once when the
+   * game starts.
    * 
    * @author nitterhe
-   * @return inGame - the inGame variable
+   * @return starting - the starting variable
    */
-  public boolean getInGame() {
-    return this.inGame;
+  public boolean getStarting() {
+    return this.starting;
   }
 
   /**
-   * Method to set the value of the inGame variable.
+   * Method to set the value of the starting variable.
    * 
    * @author nitterhe
-   * @param inGame - the inGame variable
+   * @param inGame - the starting variable
    */
-  public void setInGame(boolean inGame) {
-    this.inGame = inGame;
+  public void setStarting(boolean starting) {
+    this.starting = starting;
   }
 }

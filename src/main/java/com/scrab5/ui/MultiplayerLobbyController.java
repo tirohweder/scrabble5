@@ -318,9 +318,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
               chatBox.setText(chatHistory.toString());
 
-              if (Data.getPlayerClient().getInGame()
-                  && Data.getGameSession().getRoundNumber() == 0) {
+              if (Data.getPlayerClient().getStarting()) {
                 try {
+                  Data.getPlayerClient().setStarting(false);
                   App.setRoot("MultiPlayer");
                 } catch (IOException e) {
                   e.printStackTrace();

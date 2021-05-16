@@ -101,7 +101,7 @@ public class ClientThread extends Threads implements Serializable {
             Data.setGameSession(mtm.getGameSession());
 
             if (mtm.getGameSession().getRoundNumber() == 0) {
-              this.client.setInGame(true);
+              this.client.setStarting(true);
             }
             break;
           default:
