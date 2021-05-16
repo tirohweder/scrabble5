@@ -17,7 +17,6 @@ public class UseDatabase extends Database {
    * @author lengist
    */
   public synchronized static ResultSet viewLetters() {
-    Database.reconnect();
     ResultSet rs = null;
     Database.reconnect();
     try {
