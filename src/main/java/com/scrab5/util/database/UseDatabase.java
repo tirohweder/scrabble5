@@ -120,7 +120,7 @@ public class UseDatabase extends Database {
    * Returns all the points of the letters as array
    *
    * @return integer array containing all points saved in the database
-   * <p>
+   * 
    * code line to convert list to array from: https://www.techiedelight.com/convert-list-integer-array-int/
    * @author lengist
    */
@@ -145,7 +145,7 @@ public class UseDatabase extends Database {
    * Returns all the Occurrences of the letters as array
    *
    * @return integer array containing all occurrences saved in the database
-   * <p>
+   * 
    * code line to convert list to array from: https://www.techiedelight.com/convert-list-integer-array-int/
    * @author lengist
    */
@@ -172,7 +172,7 @@ public class UseDatabase extends Database {
    *
    * @param serverHostName String representation of the host of the server
    * @return Server object with the server statistic
-   * @auhtor lengist <<<<<<< HEAD
+   * @auhtor lengist 
    * @author nitterhe
    */
   public static ServerStatistics getServerStatistics(String serverHostName) {
@@ -214,7 +214,7 @@ public class UseDatabase extends Database {
    * Changes the occurrence for the letter letter in the table letters when a user chooses to
    * individualize.
    *
-   * @param letter     String for the letter where a change needs to be fulfilled
+   * @param letter String for the letter where a change needs to be fulfilled
    * @param occurrence int for the new occurrence
    * @author lengist
    */
