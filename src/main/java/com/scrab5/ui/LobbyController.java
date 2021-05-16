@@ -2,6 +2,7 @@ package com.scrab5.ui;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -276,6 +277,28 @@ public abstract class LobbyController extends Controller {
     return fxmlLoader.load();
   }
 
+  public ArrayList<Integer> getPlayerVotes() {
+
+    ArrayList<Integer> al = new ArrayList<Integer>();
+
+    for (int i = 0; i < this.playerAmount; i++) {
+
+      if (i == 0) {
+        al.add(voteSelection1.getValue());
+
+      } else if (i == 1) {
+        al.add(voteSelection2.getValue());
+
+      } else if (i == 2) {
+        al.add(voteSelection3.getValue());
+
+      } else if (i == 3) {
+        al.add(voteSelection4.getValue());
+
+      }
+    }
+    return al;
+  }
 
   abstract protected boolean isClickable();
 

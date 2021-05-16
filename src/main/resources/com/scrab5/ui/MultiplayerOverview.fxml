@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MultiplayerOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MultiplayerOverviewController">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
@@ -81,49 +81,49 @@
                </image>
             </ImageView>
             <ComboBox fx:id="dictionarySelection" layoutX="862.0" layoutY="371.0" onAction="#setSelectedDictionary" onMouseClicked="#dontShow" opacity="0.0" prefHeight="43.0" prefWidth="269.0" />
-            <Label fx:id="dicDisplaying" layoutX="862.0" layoutY="379.0" prefHeight="22.0" prefWidth="262.0" textFill="#fefff2">
+            <Label fx:id="dicDisplaying" layoutX="862.0" layoutY="381.0" prefHeight="22.0" prefWidth="262.0" textFill="#fefff2">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
             <Label fx:id="serverName0" layoutX="126.0" layoutY="213.0" prefHeight="25.0" prefWidth="204.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="serverName1" layoutX="126.0" layoutY="252.0" prefHeight="25.0" prefWidth="204.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="serverName2" layoutX="126.0" layoutY="290.0" prefHeight="25.0" prefWidth="204.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="serverName3" layoutX="126.0" layoutY="329.0" prefHeight="25.0" prefWidth="204.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="serverName4" layoutX="126.0" layoutY="367.0" prefHeight="25.0" prefWidth="204.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="serverName5" layoutX="126.0" layoutY="405.0" prefHeight="25.0" prefWidth="204.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="serverName6" layoutX="126.0" layoutY="444.0" prefHeight="25.0" prefWidth="204.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="serverName7" layoutX="126.0" layoutY="482.0" prefHeight="25.0" prefWidth="204.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="playerCount0" layoutX="362.0" layoutY="213.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">

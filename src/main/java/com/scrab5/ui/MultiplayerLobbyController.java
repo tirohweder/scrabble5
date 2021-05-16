@@ -110,7 +110,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
     this.isReady = !isReady;
     Data.getPlayerClient().setReady(this.isReady);
-
   }
 
   @FXML
