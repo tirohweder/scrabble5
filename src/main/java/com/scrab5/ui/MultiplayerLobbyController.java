@@ -1,12 +1,5 @@
 package com.scrab5.ui;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ResourceBundle;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.core.player.Player;
 import com.scrab5.network.Client;
@@ -14,6 +7,14 @@ import com.scrab5.network.ClientData;
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
+import com.scrab5.network.messages.MakeTurnMessage;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -270,20 +271,23 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
     }
 
+    GameSession gs;
+
     if (Data.getHasBeenEdited()) {
       ArrayList<Integer> pointsDito = Data.getPointsDistribution();
       ArrayList<Integer> occurrencyDisto = Data.getOccurrencyDistribution();
 
-      Data.setGameSession(new GameSession(playerList, pointsDito, occurrencyDisto, true));
+      gs = new GameSession(playerList, pointsDito, occurrencyDisto, true);
+      Data.setGameSession(gs);
 
     } else {
-      Data.setGameSession(new GameSession(playerList, true));
+      gs = new GameSession(playerList, true);
+      Data.setGameSession(gs);
       System.out.println("Online GameSession created");
     }
-
-    App.setRoot("Multiplayer");
+    Data.getPlayerClient().getClientThread()
+        .sendMessageToServer(new MakeTurnMessage(Data.getCurrentUser(), Data.getGameSession()));
   }
-
 
   /**
    * @author nitterhe
@@ -294,8 +298,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
       @Override
       public void run() {
-
-
 
         while (Data.getPlayerClient().getClientThread().isAlive()) {
 
@@ -312,14 +314,24 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
               chatBox.setText(chatHistory.toString());
 
+              if (Data.getPlayerClient().getInGame()
+                  && Data.getGameSession().getRoundNumber() == 0) {
+                try {
+                  App.setRoot("MultiPlayer");
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              }
+
               boolean start = true;
               ClientData client;
               if (iterator.hasNext()) {
                 client = iterator.next();
                 player1.setText(client.getUsername());
                 ready1.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (!client.isReady())
+                if (!client.isReady()) {
                   start = false;
+                }
               } else {
                 player1.setText("");
                 ready1.setText("");
@@ -329,8 +341,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player2.setText(client.getUsername());
                 ready2.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (!client.isReady())
+                if (!client.isReady()) {
                   start = false;
+                }
               } else {
                 player2.setText("");
                 ready2.setText("");
@@ -340,8 +353,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player3.setText(client.getUsername());
                 ready3.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (!client.isReady())
+                if (!client.isReady()) {
                   start = false;
+                }
               } else {
                 player3.setText("");
                 ready3.setText("");
@@ -351,8 +365,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player4.setText(client.getUsername());
                 ready4.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (!client.isReady())
+                if (!client.isReady()) {
                   start = false;
+                }
               } else {
                 player4.setText("");
                 ready4.setText("");

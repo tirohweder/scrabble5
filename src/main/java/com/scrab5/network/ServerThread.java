@@ -6,10 +6,6 @@
  */
 package com.scrab5.network;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.net.SocketException;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
@@ -20,6 +16,10 @@ import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.FillDatabase;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.SocketException;
 
 public class ServerThread extends Threads {
 
@@ -33,7 +33,7 @@ public class ServerThread extends Threads {
    * Construtor for the ServerThread. Sets up the socket for 1 client and opens streams and handles
    * the server side communication.
    *
-   * @param server - the server object this Thread belongs to
+   * @param server         - the server object this Thread belongs to
    * @param socketToClient - the clients's socket the ServerThread connects to.
    * @author nitterhe
    */
@@ -112,9 +112,9 @@ public class ServerThread extends Threads {
        * closed and no conflicts shoot when hosting the App the next time.
        */
     } catch (SocketException e) {
-      // does nothing, this happens when the socket is closed while reading, not important
+      e.printStackTrace();
     } catch (Exception e) {
-      // e.printStackTrace();
+      e.printStackTrace();
       new NetworkError(NetworkErrorType.SERVERRUN);
     }
   }
@@ -126,8 +126,8 @@ public class ServerThread extends Threads {
    *
    * @param clientData - the clientData object of the lient that just connected to the server
    * @throws Exception - an Exception that is thrown when a similar client with the same name is
-   *         already on the server / was on the server
-   * @author nitterhe
+   *                   already on the server / was on the server
+   * @author nitterher
    */
   private void addClient(ClientData clientData) throws Exception {
     if (null == server.getClients().get(clientData.getUsername())) {

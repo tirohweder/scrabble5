@@ -6,12 +6,6 @@
  */
 package com.scrab5.network;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.Socket;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
@@ -22,6 +16,12 @@ import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.Socket;
 import javafx.application.Platform;
 
 public class ClientThread extends Threads implements Serializable {
@@ -96,11 +96,14 @@ public class ClientThread extends Threads implements Serializable {
             this.client.updateCurrentServer(lum);
             break;
           case MAKETURN:
+
             MakeTurnMessage mtm = (MakeTurnMessage) message;
             Data.setGameSession(mtm.getGameSession());
+
+            if (mtm.getGameSession().getRoundNumber() == 0) {
+              this.client.setInGame(true);
+            }
             break;
-          // case GAMESTART:
-          // this.client.setReady(false);
           default:
             break;
         }
@@ -167,6 +170,7 @@ public class ClientThread extends Threads implements Serializable {
       this.toServer.flush();
       this.toServer.reset();
     } catch (Exception e) {
+      e.printStackTrace();
       new NetworkError(NetworkErrorType.COMMUNICATION);
     }
   }
