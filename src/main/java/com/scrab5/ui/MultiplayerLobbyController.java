@@ -1,5 +1,12 @@
 package com.scrab5.ui;
 
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ResourceBundle;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.core.player.Player;
 import com.scrab5.network.Client;
@@ -8,13 +15,6 @@ import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
 import com.scrab5.network.messages.MakeTurnMessage;
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -55,6 +55,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private int aiPlayerAmount = 0;
   private static StringBuffer chatHistory = new StringBuffer();
   private LinkedList<Client> AIs;
+  private boolean isHost;
 
   /**
    * @author mherre
@@ -66,10 +67,11 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
     if (Data.getPlayerClient().getUsername()
         .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
+      isHost = true;
     } else {
+      isHost = false;
       this.customizeButton.setY(-34);
       this.customizeButton.setOpacity(1.0);
-
     }
 
     this.refreshUI();
@@ -261,6 +263,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   protected void startGame(MouseEvent event) throws IOException, SQLException {
     // TODO Auto-generated method stub
 
+
+
     ArrayList<Player> playerList = new ArrayList<Player>();
     for (String clientName : Data.getPlayerClient().getCurrentServer().getClients().keySet()) {
 
@@ -284,6 +288,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.setGameSession(gs);
       System.out.println("Online GameSession created");
     }
+    Data.getHostedServer().startGame();
     Data.getPlayerClient().getClientThread()
         .sendMessageToServer(new MakeTurnMessage(Data.getCurrentUser(), Data.getGameSession()));
   }
@@ -372,7 +377,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 ready4.setText("");
               }
 
-              if (start && Data.getPlayerClient().getCurrentServer().getClients().size() > 1) {
+              if (start && Data.getPlayerClient().getCurrentServer().getClients().size() > 1
+                  && isHost) {
                 startButton.setOpacity(1.0);
                 startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
