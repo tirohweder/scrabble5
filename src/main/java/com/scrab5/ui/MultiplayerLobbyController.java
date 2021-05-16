@@ -296,7 +296,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   /**
    * @author nitterhe
    */
-  public void refreshUI() {
+  private void refreshUI() {
 
     Thread t = new Thread(new Runnable() {
 
@@ -432,11 +432,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       }
     });
     t.start();
-  }
-
-
-  public static void displayChatMessage(String text) {
-
   }
 
   public static StringBuffer getChatHistory() {

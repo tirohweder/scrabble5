@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import com.scrab5.core.game.Rack;
 import com.scrab5.core.player.Player;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -136,6 +137,8 @@ public abstract class InGameController implements Initializable {
 
     initRack();
     initPlayers();
+
+    refreshUI();
 
   }
 
@@ -1104,7 +1107,6 @@ public abstract class InGameController implements Initializable {
 
   }
 
-
   /**
    * @param event
    * @author mherre
@@ -1112,17 +1114,45 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void closeGame(MouseEvent event) throws IOException {
-    // Database.disconnect();
-    // Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
-    //
-    // if (Data.getHostedServer() != null) {
-    // Data.getHostedServer().shutDownServer();
-    // }
     if (Data.getPlayerClient() != null) {
       Data.getPlayerClient().disconnectFromServer();
     }
-    App.setRoot("MainMenu");
-    // s.close();
+  }
+
+  private void refreshUI() {
+
+    Thread t = new Thread(new Runnable() {
+
+      @Override
+      public void run() {
+
+        while (Data.getPlayerClient().getClientThread().isAlive()) {
+
+          Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+
+              // chatBox.setText(chatHistory.toString());
+
+              initPlayers();
+              initRack();
+              // initGameboard()
+              // nur als reminder, nenn es wie du willst
+
+            }
+          });
+          synchronized (this) {
+            try {
+              this.wait(200);
+            } catch (InterruptedException e) {
+              // e.printStackTrace();
+            }
+          }
+        }
+      }
+    });
+    t.start();
   }
 }
 

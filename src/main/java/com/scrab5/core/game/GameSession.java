@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Timer;
 import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.FillDatabase;
@@ -91,7 +90,6 @@ public class GameSession implements Serializable {
 
 
   private boolean online;
-  private transient Timer timer;
 
   // initialize bag fills the bag with the selected tiles
 
