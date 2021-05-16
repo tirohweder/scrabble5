@@ -16,7 +16,8 @@ public class UseDatabase extends Database {
    * @return ResultSet including the content from the table letters
    * @author lengist
    */
-  public static ResultSet viewLetters() {
+  public synchronized static ResultSet viewLetters() {
+    Database.reconnect();
     ResultSet rs = null;
     Database.reconnect();
     try {
@@ -25,6 +26,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return rs;
   }
 
@@ -34,7 +36,8 @@ public class UseDatabase extends Database {
    * @return boolean returning true if there is no entry in the table player
    * @author lengist
    */
-  public static boolean tablePlayerIsEmpty() {
+  public synchronized static boolean tablePlayerIsEmpty() {
+    Database.reconnect();
     boolean empty = false;
     int anzahl = 0;
     try {
@@ -48,6 +51,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return empty;
   }
 
@@ -57,7 +61,8 @@ public class UseDatabase extends Database {
    * @return ResultSet returning the content of the table player
    * @author lengist
    */
-  public static ResultSet getAllPlayerRS() {
+  public synchronized static ResultSet getAllPlayerRS() {
+    Database.reconnect();
     ResultSet rs = null;
     try {
 
@@ -67,6 +72,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return rs;
   }
 
@@ -76,7 +82,8 @@ public class UseDatabase extends Database {
    * @return ObservableList including the content of the table player
    * @author mherre
    */
-  public static ObservableList<String> getAllPlayer() {
+  public synchronized static ObservableList<String> getAllPlayer() {
+    Database.reconnect();
     ResultSet rs = null;
     ObservableList<String> ol = FXCollections.observableArrayList();
     try {
@@ -89,6 +96,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return ol;
   }
 
@@ -98,7 +106,8 @@ public class UseDatabase extends Database {
    * @return String array containing all letters saved in the database
    * @author lengist
    */
-  public static String[] getAllLetters() {
+  public synchronized static String[] getAllLetters() {
+    Database.reconnect();
     ResultSet rs = null;
     Statement stm;
     ArrayList<String> letter = new ArrayList<String>();
@@ -113,6 +122,7 @@ public class UseDatabase extends Database {
     }
     String[] letters = new String[letter.size()];
     letters = letter.toArray(letters);
+    Database.disconnect();
     return letters;
   }
 
@@ -120,11 +130,12 @@ public class UseDatabase extends Database {
    * Returns all the points of the letters as array
    *
    * @return integer array containing all points saved in the database
-   * <p>
+   * 
    * code line to convert list to array from: https://www.techiedelight.com/convert-list-integer-array-int/
    * @author lengist
    */
-  public static int[] getAllPointsPerLetter() {
+  public synchronized static int[] getAllPointsPerLetter() {
+    Database.reconnect();
     ResultSet rs = null;
     Statement stm;
     ArrayList<Integer> point = new ArrayList<Integer>();
@@ -138,6 +149,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     int[] points = point.stream().mapToInt(Integer::intValue).toArray();
+    Database.disconnect();
     return points;
   }
 
@@ -145,11 +157,12 @@ public class UseDatabase extends Database {
    * Returns all the Occurrences of the letters as array
    *
    * @return integer array containing all occurrences saved in the database
-   * <p>
+   * 
    * code line to convert list to array from: https://www.techiedelight.com/convert-list-integer-array-int/
    * @author lengist
    */
-  public static int[] getAllOccurrences() {
+  public synchronized static int[] getAllOccurrences() {
+    Database.reconnect();
     ResultSet rs = null;
     Statement stm;
     ArrayList<Integer> occurrence = new ArrayList<Integer>();
@@ -163,6 +176,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     int[] occurrences = occurrence.stream().mapToInt(Integer::intValue).toArray();
+    Database.disconnect();
     return occurrences;
   }
 
@@ -172,10 +186,11 @@ public class UseDatabase extends Database {
    *
    * @param serverHostName String representation of the host of the server
    * @return Server object with the server statistic
-   * @auhtor lengist <<<<<<< HEAD
+   * @auhtor lengist 
    * @author nitterhe
    */
-  public static ServerStatistics getServerStatistics(String serverHostName) {
+  public synchronized static ServerStatistics getServerStatistics(String serverHostName) {
+    Database.reconnect();
     try {
       Statement stm = connection.createStatement();
       ResultSet s = stm
@@ -190,9 +205,11 @@ public class UseDatabase extends Database {
         IPAddress = s.getString(5);
         ss.loadClient(client, IPAddress, gamesPlayed, gamesWon);
       }
+      Database.disconnect();
       return ss;
     } catch (SQLException e) {
       e.printStackTrace();
+      Database.disconnect();
       return null;
     }
   }
@@ -206,7 +223,7 @@ public class UseDatabase extends Database {
    * @param point  int for the new points
    * @author lengist
    */
-  public static void setPointForLetter(String letter, int point) {
+  public synchronized static void setPointForLetter(String letter, int point) {
     FillDatabase.updatePointLetters(letter, point);
   }
 
@@ -214,11 +231,11 @@ public class UseDatabase extends Database {
    * Changes the occurrence for the letter letter in the table letters when a user chooses to
    * individualize.
    *
-   * @param letter     String for the letter where a change needs to be fulfilled
+   * @param letter String for the letter where a change needs to be fulfilled
    * @param occurrence int for the new occurrence
    * @author lengist
    */
-  public static void setOccurrenceLetters(String letter, int occurrence) {
+  public synchronized static void setOccurrenceLetters(String letter, int occurrence) {
     FillDatabase.updateOccurrenceLetters(letter, occurrence);
   }
 
@@ -229,7 +246,8 @@ public class UseDatabase extends Database {
    * @return boolean returning true if player with name "name" already exists
    * @author lengist
    */
-  public static boolean playerExists(String name) {
+  public synchronized static boolean playerExists(String name) {
+    Database.reconnect();
     boolean exists = false;
     try {
       Statement test = connection.createStatement();
@@ -242,6 +260,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e1) {
       e1.printStackTrace();
     }
+    Database.disconnect();
     return exists;
   }
 }
