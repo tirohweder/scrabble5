@@ -6,19 +6,19 @@
  */
 package com.scrab5.network;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.net.SocketException;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
-import com.scrab5.network.messages.GameUpdateMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
+import com.scrab5.ui.Data;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.SocketException;
 
 public class ServerThread extends Threads {
 
@@ -31,10 +31,10 @@ public class ServerThread extends Threads {
   /**
    * Construtor for the ServerThread. Sets up the socket for 1 client and opens streams and handles
    * the server side communication.
-   * 
-   * @author nitterhe
-   * @param server - the server object this Thread belongs to
+   *
+   * @param server         - the server object this Thread belongs to
    * @param socketToClient - the clients's socket the ServerThread connects to.
+   * @author nitterhe
    */
   public ServerThread(Server server, Socket socketToClient) {
     this.server = server;
@@ -49,12 +49,11 @@ public class ServerThread extends Threads {
 
   /**
    * Runs the thread. Receives messages from the client and handles actions.
-   * 
+   *
    * @author nitterhe
    */
   public void run() {
     this.running = true;
-
 
     try {
       Message message;
@@ -98,8 +97,8 @@ public class ServerThread extends Threads {
             break;
           case MAKETURN:
             MakeTurnMessage mtm = (MakeTurnMessage) message;
-            // needs implementation
-            server.sendMessageToAllClients(new GameUpdateMessage(this.server.getHost()));
+            Data.setGameSession(mtm.getGameSession());
+            server.sendMessageToAllClients(mtm);
             break;
           default:
             break;
@@ -123,11 +122,11 @@ public class ServerThread extends Threads {
    * Adds the given client to the servers client list with username as key. Declared private and in
    * this class so that no client can join the server without setting up a connection. Reduces
    * failures.
-   * 
+   *
+   * @param clientData - the clientData object of the lient that just connected to the server
+   * @throws Exception - an Exception that is thrown when a similar client with the same name is
+   *                   already on the server / was on the server
    * @author nitterhe
-   * @param client - the client that just connected to the server
-   * @param Exception - an Exception that is thrown when a similar client with the same name is
-   *        already on the server / was on the server
    */
   private void addClient(ClientData clientData) throws Exception {
     if (null == server.getClients().get(clientData.getUsername())) {
@@ -148,9 +147,9 @@ public class ServerThread extends Threads {
   /**
    * Adds the given client to the servers client list. Declared private and in this class so that no
    * external class can manipulate the client list. Reduces failures.
-   * 
-   * @author nitterhe
+   *
    * @param sender - the disconnect message's sender
+   * @author nitterhe
    */
   private void deleteClient(String sender) {
     ClientData client = server.getClients().get(sender);
@@ -163,9 +162,9 @@ public class ServerThread extends Threads {
 
   /**
    * Returns the client this ServerThread is connected to.
-   * 
-   * @author nitterhe
+   *
    * @return connectedClient - the connected client
+   * @author nitterhe
    */
   public ClientData getClient() {
     return this.connectedClient;
@@ -173,9 +172,9 @@ public class ServerThread extends Threads {
 
   /**
    * Sends the given message to the connected client.
-   * 
-   * @author nitterhe
+   *
    * @param message - the message to send
+   * @author nitterhe
    */
   public synchronized void sendMessageToClient(Message message) {
     try {
@@ -189,7 +188,7 @@ public class ServerThread extends Threads {
 
   /**
    * Sends a DisconnectMessage to the connected client and closes the streams.
-   * 
+   *
    * @author nitterhe
    */
   protected synchronized void closeConnection() {

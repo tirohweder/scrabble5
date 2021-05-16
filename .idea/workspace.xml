@@ -6,18 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AiPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AiPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/PlayerProfile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/PlayerProfile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/ClientThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/ClientThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/ServerThread.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/ServerThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/ConnectMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/ConnectMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/GameUpdateMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/MakeTurnMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/MakeTurnMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/MessageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/messages/MessageType.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SingleplayerLobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/SingleplayerLobbyController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameSessionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameSessionTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -235,7 +232,7 @@
       <workItem from="1620983144126" duration="1009000" />
       <workItem from="1620988416099" duration="12656000" />
       <workItem from="1621061127917" duration="10427000" />
-      <workItem from="1621150207196" duration="3857000" />
+      <workItem from="1621150207196" duration="4997000" />
     </task>
     <task id="LOCAL-00001" summary="#69 add strucutre">
       <created>1619793717336</created>
@@ -412,7 +409,28 @@
       <option name="project" value="LOCAL" />
       <updated>1621096166843</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="#66 connectin with network">
+      <created>1621164960895</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1621164960895</updated>
+    </task>
+    <task id="LOCAL-00027" summary="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/player/AiPlayer.java">
+      <created>1621165007032</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1621165007032</updated>
+    </task>
+    <task id="LOCAL-00028" summary="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/player/AiPlayer.java">
+      <created>1621165020734</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1621165020734</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -455,7 +473,9 @@
     <MESSAGE value="#66 Fixed countScore Test" />
     <MESSAGE value="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/test/java/com/scrab5/core/game/GameBoardTest.java" />
     <MESSAGE value="#66 connectin singleplayer" />
-    <option name="LAST_COMMIT_MESSAGE" value="#66 connectin singleplayer" />
+    <MESSAGE value="#66 connectin with network" />
+    <MESSAGE value="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/player/AiPlayer.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/player/AiPlayer.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

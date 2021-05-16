@@ -261,8 +261,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.setGameSession(new GameSession(playerList, true));
       System.out.println("Online GameSession created");
     }
-
-
+    
   }
 
 

@@ -170,6 +170,7 @@ public class GameSession implements Serializable {
     currentPlayer.getRack().fill(bag);
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
     resetTimer();
+    Data.getPlayerClient().makeTurn();
   }
 
   public void endGame() {

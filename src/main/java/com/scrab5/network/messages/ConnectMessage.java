@@ -10,14 +10,14 @@ import com.scrab5.network.ClientData;
 public class ConnectMessage extends Message {
   private static final long serialVersionUID = 1L;
 
-  private ClientData clientData;
+  private final ClientData clientData;
 
   /**
    * Constructor to create ConnectionMessages.
    * 
    * @author nitterhe
    * @param sender - the username of the connecting client
-   * @param client - the instance of the connecting client
+   * @param clientData - the ClientData instance of the connecting client
    */
   public ConnectMessage(String sender, ClientData clientData) {
     super(sender);
