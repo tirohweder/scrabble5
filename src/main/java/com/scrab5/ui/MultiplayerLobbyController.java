@@ -262,7 +262,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       System.out.println("Online GameSession created");
     }
 
-    App.setRoot("SinglePlayer");
+    App.setRoot("MultiPlayer");
   }
 
 
