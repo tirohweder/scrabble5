@@ -182,5 +182,6 @@ public class ClientThread extends Threads implements Serializable {
    */
   protected void closeConnection() {
     this.stopThread();
+    Data.setGameSession(null);
   }
 }

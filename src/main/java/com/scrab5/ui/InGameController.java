@@ -1,23 +1,19 @@
 package com.scrab5.ui;
 
-import com.scrab5.core.game.Rack;
-
-import com.scrab5.core.player.Player;
-import com.scrab5.util.database.Database;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
+import com.scrab5.core.game.Rack;
+import com.scrab5.core.player.Player;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 /*
  * @author apilgrim
@@ -1030,9 +1026,15 @@ public abstract class InGameController implements Initializable {
   }
 
   protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
-    Image letterImage = new Image(this.getClass()
-        .getResource("/com/scrab5/ui/letter_Images/tile" + letter.toUpperCase() + ".png")
-        .toString());
+    if (letter.equals("*")) {
+      letter = "placeHolder";
+    } else {
+      letter = "tile" + letter.toUpperCase();
+    }
+
+    System.out.println(letter + " " + points);
+
+    Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter.toUpperCase() + ".png");
     rackPlace.setImage(letterImage);
     if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
       rackPlace.setOpacity(1);
@@ -1106,20 +1108,21 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @author mherre
+   * @throws IOException
    */
   @FXML
-  private void closeGame(MouseEvent event) {
-    Database.disconnect();
-    Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
-
-    if (Data.getHostedServer() != null) {
-      Data.getHostedServer().shutDownServer();
-    }
+  private void closeGame(MouseEvent event) throws IOException {
+    // Database.disconnect();
+    // Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
+    //
+    // if (Data.getHostedServer() != null) {
+    // Data.getHostedServer().shutDownServer();
+    // }
     if (Data.getPlayerClient() != null) {
       Data.getPlayerClient().disconnectFromServer();
     }
-
-    s.close();
+    App.setRoot("MainMenu");
+    // s.close();
   }
 }
 

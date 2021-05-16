@@ -392,6 +392,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                   }
 
                 });
+              } else {
+                startButton.setOpacity(0);
+                startButton.setOnMouseClicked(null);
               }
 
               ClientStatistic help;

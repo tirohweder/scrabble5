@@ -316,6 +316,7 @@ public class Server implements Serializable {
     this.serverStatistics.getServerStatistics().clear();
     this.updateClientCount();
     this.gameStart = false;
+    Data.setGameSession(null);
   }
 
   /**
