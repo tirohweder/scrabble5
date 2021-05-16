@@ -33,7 +33,7 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author hraza
    */
-  private static void closeStatement(String name) {
+  private synchronized static void closeStatement(String name) {
     try {
       switch (name) {
         case "delete":
@@ -72,7 +72,7 @@ public class FillDatabase extends Database {
    *
    * @author lengist
    */
-  public static void closeAllStatements() {
+  public synchronized static void closeAllStatements() {
     try {
       if ((pstmDelete != null) && (!pstmDelete.isClosed())) {
         pstmDelete.close();
@@ -98,7 +98,8 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author hraza
    */
-  protected static void deleteTable(String name) {
+  protected synchronized static void deleteTable(String name) {
+    Database.reconnect();
     Statement statement;
     try {
       statement = connection.createStatement();
@@ -109,6 +110,7 @@ public class FillDatabase extends Database {
       System.out.println("Could not perform deletion in table " + name);
       System.out.println(e);
     }
+    Database.disconnect();
   }
 
   /**
@@ -117,7 +119,8 @@ public class FillDatabase extends Database {
    * @param name String with name of the user
    * @author lengist
    */
-  public static void deletePlayer(String name) {
+  public synchronized static void deletePlayer(String name) {
+    Database.reconnect();
     try {
       String sql = "DELETE FROM Player WHERE Name = ?";
       pstmDelete = connection.prepareStatement(sql);
@@ -128,6 +131,7 @@ public class FillDatabase extends Database {
       System.out.println(e);
     }
     closeStatement("delete");
+    Database.disconnect();
   }
 
   /**
@@ -136,7 +140,8 @@ public class FillDatabase extends Database {
    * @param name String with name of the user
    * @author lengist
    */
-  protected static void deleteServer(String name) {
+  protected synchronized static void deleteServer(String name) {
+    Database.reconnect();
     try {
       String sql = "DELETE FROM Server WHERE ServerListNames = ?";
       pstmDelete = connection.prepareStatement(sql);
@@ -148,6 +153,7 @@ public class FillDatabase extends Database {
       System.out.println(e);
     }
     closeStatement("delete");
+    Database.disconnect();
   }
 
   /**
@@ -159,7 +165,8 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author hraza
    */
-  public static boolean createPlayer(String name, String picture) {
+  public synchronized static boolean createPlayer(String name, String picture) {
+    Database.reconnect();
     boolean created = false;
     try {
       pstmPlayer = connection.prepareStatement(
@@ -185,6 +192,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("player");
+    Database.disconnect();
     return created;
   }
 
@@ -201,8 +209,9 @@ public class FillDatabase extends Database {
    *                      database
    * @author hraza
    */
-  protected static void updatePlayer(String column, String name, String contentString,
+  protected synchronized static void updatePlayer(String column, String name, String contentString,
       int contentInt, double doubleValues) {
+    Database.reconnect();
     PreparedStatement pstm = null;
 
     if (column == "Name") {
@@ -326,6 +335,7 @@ public class FillDatabase extends Database {
       }
     }
     closeStatement("player");
+    Database.disconnect();
   }
 
   /**
@@ -337,6 +347,7 @@ public class FillDatabase extends Database {
    */
   public synchronized static void createServerRow(String ServerHost, String clientUsername,
       String IPAddress) {
+    Database.reconnect();
     try {
       pstmServer = connection.prepareStatement(
           "INSERT INTO Server (ServerHostName, ClientUsername, GamesPlayed, GamesWon, IPAddress) VALUES (?,?,?,?, ?);");
@@ -350,6 +361,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("server");
+    Database.disconnect();
   }
 
   /**
@@ -360,7 +372,8 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author nitterhe
    */
-  public static void updateServer(Server serverObject) {
+  public synchronized static void updateServer(Server serverObject) {
+    Database.reconnect();
     String sql =
         "UPDATE Server SET gamesPlayed = ?, gamesWon = ? WHERE ServerHostName = ? AND ClientUsername = ?;";
     PreparedStatement pstm;
@@ -381,6 +394,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("server");
+    Database.disconnect();
   }
 
   /**
@@ -391,7 +405,8 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author hraza
    */
-  public static void insertLetters(String letter, int point, int occurrence) {
+  public synchronized static void insertLetters(String letter, int point, int occurrence) {
+    Database.reconnect();
     try {
       pstmDic = connection
           .prepareStatement("INSERT INTO Letters (Letter, Points, Occurrence) VALUES (?,?,?);");
@@ -403,6 +418,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("dic");
+    Database.disconnect();
   }
 
   /**
@@ -411,7 +427,8 @@ public class FillDatabase extends Database {
    * @throws IOException Exception from insertLetters
    * @author lengist
    */
-  public static void fillLetters() {
+  public synchronized static void fillLetters() {
+    Database.reconnect();
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
         "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
     int[] points =
@@ -421,6 +438,7 @@ public class FillDatabase extends Database {
     for (int i = 0; i < 27; i++) {
       insertLetters(letter[i], points[i], occurrence[i]);
     }
+    Database.disconnect();
   }
 
   /**
@@ -431,7 +449,8 @@ public class FillDatabase extends Database {
    * @param occurrence Integer with the new occurrence for the given letter
    * @author lengist
    */
-  protected static void updateOccurrenceLetters(String letter, int occurrence) {
+  protected synchronized static void updateOccurrenceLetters(String letter, int occurrence) {
+    Database.reconnect();
     try {
       pstmDic = connection.prepareStatement("UPDATE Letters SET Occurrence = ? WHERE Letter = ?");
       pstmDic.setInt(1, occurrence);
@@ -441,6 +460,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("dic");
+    Database.disconnect();
   }
 
   /**
@@ -450,7 +470,8 @@ public class FillDatabase extends Database {
    * @param point  Integer with the new points for the given letter
    * @author lengist
    */
-  protected static void updatePointLetters(String letter, int point) {
+  protected synchronized static void updatePointLetters(String letter, int point) {
+    Database.reconnect();
     try {
       pstmDic = connection.prepareStatement("UPDATE Letters SET Points = ? WHERE Letter = ?");
       pstmDic.setInt(1, point);
@@ -460,6 +481,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("dic");
+    Database.disconnect();
   }
   
 
