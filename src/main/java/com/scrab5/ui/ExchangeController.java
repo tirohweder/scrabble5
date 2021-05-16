@@ -36,6 +36,7 @@ public class ExchangeController extends InGameController implements Initializabl
   private void exchangeTiles() {
     for(int i = 0; i<rackChanges.length; i++) {
       if(rackChanges[i] != null && rackChanges[i] == true) {
+        Data.getGameSession().getBag().add(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(i));
         Data.getGameSession().getCurrentPlayer().getRack().removeTileFromRack(i);
         
         Data.getGameSession().getCurrentPlayer().getRack().fill(Data.getGameSession().getBag());

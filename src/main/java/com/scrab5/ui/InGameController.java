@@ -130,6 +130,7 @@ public abstract class InGameController implements Initializable {
   private ArrayList<String> choosenTiles = new ArrayList<String>();
 
   private ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
+  private int playerAmount = players.size();
 
 
   @Override
@@ -138,12 +139,9 @@ public abstract class InGameController implements Initializable {
     initRack();
     initPlayers();
 
-
   }
 
   protected void initPlayers() {
-    Iterator<Player> it = players.iterator();
-    int playerAmount = players.size();
 
     if (0 < playerAmount) {
       player1.setText(players.get(0).getName());
@@ -178,6 +176,8 @@ public abstract class InGameController implements Initializable {
         playerProfile1Passive.setOpacity(0);
       }
     }
+    
+    nextPlayer();
 
   }
 
@@ -951,6 +951,10 @@ public abstract class InGameController implements Initializable {
   private void exchangeClicked(MouseEvent event) throws IOException {
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       App.setRoot("Exchange");
+    } else {
+      PopUpMessage pum =
+          new PopUpMessage("Sorry, you're not the current Player", PopUpMessageType.NOTIFICATION);
+      pum.show();
     }
   }
 
@@ -964,6 +968,29 @@ public abstract class InGameController implements Initializable {
     }
     point.setText(Integer.toString(points));
     point.setOpacity(1);
+  }
+
+  private void nextPlayer() {
+    if (Data.getGameSession().getCurrentPlayer().getName().equalsIgnoreCase(player1.getText())) {
+      playerProfile1Passive.setOpacity(0);
+    }else {
+      playerProfile1Passive.setOpacity(1);
+    }
+    if (Data.getGameSession().getCurrentPlayer().getName().equalsIgnoreCase(player2.getText())) {
+      playerProfile2Passive.setOpacity(0);
+    }else if(1<playerAmount){
+      playerProfile2Passive.setOpacity(1);
+    }
+    if (Data.getGameSession().getCurrentPlayer().getName().equalsIgnoreCase(player3.getText())) {
+      playerProfile3Passive.setOpacity(0);
+    }else if(2<playerAmount){
+      playerProfile3Passive.setOpacity(1);
+    }
+    if (Data.getGameSession().getCurrentPlayer().getName().equalsIgnoreCase(player4.getText())) {
+      playerProfile4Passive.setOpacity(0);
+    }else if(3<playerAmount) {
+      playerProfile4Passive.setOpacity(1);
+    }
   }
 
 
