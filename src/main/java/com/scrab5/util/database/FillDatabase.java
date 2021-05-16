@@ -211,17 +211,14 @@ public class FillDatabase extends Database {
    */
   protected synchronized static void updatePlayer(String column, String name, String contentString,
       int contentInt, double doubleValues) {
-    Database.reconnect();
-    PreparedStatement pstm = null;
-
+    Database.reconnect();                              
+             
     if (column == "Name") {
       String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
         pstmt.setString(1, contentString);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
-        Statement stm = connection.createStatement();
-        ResultSet rs = stm.executeQuery("SELECT * FROM Player");
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }

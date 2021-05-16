@@ -51,7 +51,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   @FXML
   protected void startGame(MouseEvent event) throws IOException, SQLException {
 
-    Player humanPlayer = new Player("wq");
+    Player humanPlayer = new Player(Data.getCurrentUser());
     Player humanPlayer1 = new Player("Name2");
 
     ArrayList<Player> test = new ArrayList<Player>();
