@@ -1,9 +1,5 @@
 package com.scrab5.core.game;
 
-import com.scrab5.core.player.Player;
-import com.scrab5.ui.Data;
-import com.scrab5.util.database.FillDatabase;
-import com.scrab5.util.database.UseDatabase;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +7,10 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
+import com.scrab5.core.player.Player;
+import com.scrab5.ui.Data;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 
 public class GameSession implements Serializable {
 
@@ -137,8 +137,7 @@ public class GameSession implements Serializable {
   }
 
 
-  public void initializeBag()
-      throws SQLException {
+  public void initializeBag() throws SQLException {
 
     System.out.println("Initialized Bag");
 
@@ -176,7 +175,7 @@ public class GameSession implements Serializable {
 
   public void endGame() {
     this.cancelTimer();
-    //TODO call server method
+    // TODO call server method
   }
 
   public boolean giveUp() {
