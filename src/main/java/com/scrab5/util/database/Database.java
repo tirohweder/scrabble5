@@ -26,7 +26,8 @@ public class Database {
    */
   public Database() {
     this.connect(databaseFileName);
-    disconnect();
+    System.out.println("okay");
+    //disconnect();
   }
 
   /**

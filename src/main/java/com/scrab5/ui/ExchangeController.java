@@ -15,11 +15,9 @@ public class ExchangeController extends InGameController implements Initializabl
   
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    initPlayers();
+    //initPlayers();
     
-    setNewTile(rackPlace1, pointsRack1, "A", 3);
-
-    //initRack();
+    initRack();
 
 
   }
@@ -37,11 +35,10 @@ public class ExchangeController extends InGameController implements Initializabl
   
   private void exchangeTiles() {
     for(int i = 0; i<rackChanges.length; i++) {
-      if(rackChanges[i]) {
-        //GameSession.getCurrentPlayer().getRack().removeTileFromRack(i);
+      if(rackChanges[i] != null && rackChanges[i] == true) {
+        Data.getGameSession().getCurrentPlayer().getRack().removeTileFromRack(i);
         
-        //________________________________________________
-        //GameSession.getCurrentPlayer().getRack().fill();
+        Data.getGameSession().getCurrentPlayer().getRack().fill(Data.getGameSession().getBag());
       }
     }
   }
