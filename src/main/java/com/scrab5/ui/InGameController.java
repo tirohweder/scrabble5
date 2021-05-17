@@ -241,6 +241,7 @@ public abstract class InGameController implements Initializable {
 
   }
 
+
   protected void initGameboard() {
 
 
@@ -1170,6 +1171,7 @@ public abstract class InGameController implements Initializable {
       Data.getPlayerClient().disconnectFromServer();
     }
   }
+
 
 
 }
