@@ -6,6 +6,8 @@ import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * The App class contains some methods changing the scene seen and the sets the app up for the first
@@ -43,6 +46,8 @@ public class App extends Application {
    */
   public void start(Stage stage) throws IOException {
 
+    mainStage = stage;
+
     if (!Database.databaseExistance()) {
       db = new Database();
       CreateDatabase cdb = new CreateDatabase();
@@ -60,8 +65,19 @@ public class App extends Application {
     this.setIcons(stage);
     this.setMediaPlayer();
 
-    mainStage = stage;
-    // stage.initStyle(StageStyle.UNDECORATED);
+    stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+      @Override
+      public void handle(WindowEvent event) {
+
+        if (Data.getHostedServer() != null) {
+          Data.getHostedServer().shutDownServer();
+        }
+
+        Platform.exit();
+        System.exit(0);
+      }
+    });
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
     stage.setResizable(false);
