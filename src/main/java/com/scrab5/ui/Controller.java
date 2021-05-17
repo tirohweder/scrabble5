@@ -1,5 +1,6 @@
 package com.scrab5.ui;
 
+import java.util.Set;
 import com.scrab5.util.database.Database;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -88,6 +89,11 @@ public abstract class Controller {
 
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();
+
+    Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+    for (Thread t : threadSet) {
+      System.out.println(t);
+    }
   }
 
   /**

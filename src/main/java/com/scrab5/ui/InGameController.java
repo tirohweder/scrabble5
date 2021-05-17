@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import com.scrab5.core.game.Rack;
 import com.scrab5.core.player.Player;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -137,8 +136,7 @@ public abstract class InGameController implements Initializable {
 
     initRack();
     initPlayers();
-
-    refreshUI();
+    initGameboard();
 
   }
 
@@ -239,6 +237,47 @@ public abstract class InGameController implements Initializable {
             break;
         }
       }
+    }
+
+  }
+
+  protected void initGameboard() {
+
+
+    double layoutX = 263.0, layoutY = 53.0;
+
+
+
+    for (int i = 0; i < 15; i++) {
+      for (int j = 0; j < 15; j++) {
+        if (Data.getGameSession().getGameBoard().getTile(i, j) != null) {
+          System.out.println("OIUHFOÖIEROÖI2");
+          ImageView letterImage = new ImageView();
+          String letter = Data.getGameSession().getGameBoard().getTile(i, j).getLetter();
+          String points =
+              Integer.toString(Data.getGameSession().getGameBoard().getTile(i, j).getValue());
+          letterImage.setFitWidth(42.0);
+          letterImage.setFitHeight(42.0);
+          if (letter.equalsIgnoreCase("*")) {
+            letterImage.setImage(new Image("/com/scrab5/ui/letter_Images/placeHolder.png"));
+          } else {
+            letterImage.setImage(
+                new Image("/com/scrab5/ui/letter_Images/tile" + letter.toUpperCase() + ".png"));
+          }
+          letterImage.setLayoutX(layoutX);
+          letterImage.setLayoutY(layoutY);
+          Label point = new Label(points);
+
+          point.setLayoutX(letterImage.getLayoutX() + LABEL_X_CORD);
+          point.setLayoutY(letterImage.getLayoutY() + LABEL_Y_CORD);
+
+          mainPane.getChildren().add(mainPane.getChildren().size(), letterImage);
+          mainPane.getChildren().add(mainPane.getChildren().size(), point);
+        }
+        layoutX += 42.0;
+      }
+      layoutY += 42.0;
+      layoutX = 263.0;
     }
 
   }
@@ -1007,13 +1046,27 @@ public abstract class InGameController implements Initializable {
 
   private void unclickAll() {
 
-    rackPlace1.setOpacity(1);
-    rackPlace2.setOpacity(1);
-    rackPlace3.setOpacity(1);
-    rackPlace4.setOpacity(1);
-    rackPlace5.setOpacity(1);
-    rackPlace6.setOpacity(1);
-    rackPlace7.setOpacity(1);
+    if (rackPlace1.getOpacity() != 0) {
+      rackPlace1.setOpacity(1);
+    }
+    if (rackPlace2.getOpacity() != 0) {
+      rackPlace2.setOpacity(1);
+    }
+    if (rackPlace3.getOpacity() != 0) {
+      rackPlace3.setOpacity(1);
+    }
+    if (rackPlace4.getOpacity() != 0) {
+      rackPlace4.setOpacity(1);
+    }
+    if (rackPlace5.getOpacity() != 0) {
+      rackPlace5.setOpacity(1);
+    }
+    if (rackPlace6.getOpacity() != 0) {
+      rackPlace6.setOpacity(1);
+    }
+    if (rackPlace7.getOpacity() != 0) {
+      rackPlace7.setOpacity(1);
+    }
 
   }
 
@@ -1035,9 +1088,8 @@ public abstract class InGameController implements Initializable {
       letter = "tile" + letter.toUpperCase();
     }
 
-    System.out.println(letter + " " + points);
 
-    Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter.toUpperCase() + ".png");
+    Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter + ".png");
     rackPlace.setImage(letterImage);
     if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
       rackPlace.setOpacity(1);
@@ -1119,40 +1171,6 @@ public abstract class InGameController implements Initializable {
     }
   }
 
-  private void refreshUI() {
 
-    Thread t = new Thread(new Runnable() {
-
-      @Override
-      public void run() {
-
-        while (Data.getPlayerClient().getClientThread().isAlive()) {
-
-          Platform.runLater(new Runnable() {
-
-            @Override
-            public void run() {
-
-              // chatBox.setText(chatHistory.toString());
-
-              initPlayers();
-              initRack();
-              // initGameboard()
-              // nur als reminder, nenn es wie du willst
-
-            }
-          });
-          synchronized (this) {
-            try {
-              this.wait(200);
-            } catch (InterruptedException e) {
-              // e.printStackTrace();
-            }
-          }
-        }
-      }
-    });
-    t.start();
-  }
 }
 

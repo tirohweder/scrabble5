@@ -1,6 +1,9 @@
 package com.scrab5.ui;
 
 
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
@@ -22,6 +25,16 @@ public class MultiplayerController extends InGameController implements Initializ
   TextArea textArea;
 
   private boolean chatOpen = false;
+  
+  @Override
+  public void initialize(URL arg0, ResourceBundle arg1) {
+
+    initRack();
+    initPlayers();
+    initGameboard();
+    refreshUI();
+
+  }
 
   @FXML
   private void chatClicked(MouseEvent event) {
@@ -51,5 +64,41 @@ public class MultiplayerController extends InGameController implements Initializ
 
   @FXML
   private void chatInsertClicked(MouseEvent event) {}
+  
+  private void refreshUI() {
+
+    Thread t = new Thread(new Runnable() {
+
+      @Override
+      public void run() {
+
+        while (Data.getPlayerClient().getClientThread().isAlive()) {
+
+          Platform.runLater(new Runnable() {
+
+            @Override
+            public void run() {
+
+              // chatBox.setText(chatHistory.toString());
+
+              initPlayers();
+              initRack();
+              initGameboard();
+              // nur als reminder, nenn es wie du willst
+
+            }
+          });
+          synchronized (this) {
+            try {
+              this.wait(200);
+            } catch (InterruptedException e) {
+              // e.printStackTrace();
+            }
+          }
+        }
+      }
+    });
+    t.start();
+  }
 
 }
