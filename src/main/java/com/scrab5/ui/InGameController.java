@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.ResourceBundle;
 import com.scrab5.core.game.Rack;
 import com.scrab5.core.player.Player;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -241,46 +242,45 @@ public abstract class InGameController implements Initializable {
 
   }
 
-
   protected void initGameboard() {
 
 
     double layoutX = 263.0, layoutY = 53.0;
 
+    
 
-
-    for (int i = 0; i < 15; i++) {
-      for (int j = 0; j < 15; j++) {
-        if (Data.getGameSession().getGameBoard().getTile(i, j) != null) {
-          System.out.println("OIUHFOÖIEROÖI2");
-          ImageView letterImage = new ImageView();
-          String letter = Data.getGameSession().getGameBoard().getTile(i, j).getLetter();
-          String points =
-              Integer.toString(Data.getGameSession().getGameBoard().getTile(i, j).getValue());
-          letterImage.setFitWidth(42.0);
-          letterImage.setFitHeight(42.0);
-          if (letter.equalsIgnoreCase("*")) {
-            letterImage.setImage(new Image("/com/scrab5/ui/letter_Images/placeHolder.png"));
-          } else {
-            letterImage.setImage(
-                new Image("/com/scrab5/ui/letter_Images/tile" + letter.toUpperCase() + ".png"));
-          }
-          letterImage.setLayoutX(layoutX);
-          letterImage.setLayoutY(layoutY);
-          Label point = new Label(points);
-
-          point.setLayoutX(letterImage.getLayoutX() + LABEL_X_CORD);
-          point.setLayoutY(letterImage.getLayoutY() + LABEL_Y_CORD);
-
-          mainPane.getChildren().add(mainPane.getChildren().size(), letterImage);
-          mainPane.getChildren().add(mainPane.getChildren().size(), point);
-        }
-        layoutX += 42.0;
-      }
-      layoutY += 42.0;
-      layoutX = 263.0;
-    }
-
+     for(int i = 0; i < 15; i++) {
+     for(int j = 0; j < 15; j++) {
+       if(Data.getGameSession().getGameBoard().getTile(i, j) != null) {
+         System.out.println("OIUHFOÖIEROÖI2");
+         ImageView letterImage = new ImageView();
+         String letter = Data.getGameSession().getGameBoard().getTile(i, j).getLetter();
+         String points = Integer.toString(Data.getGameSession().getGameBoard().getTile(i,
+         j).getValue());
+         letterImage.setFitWidth(42.0);
+         letterImage.setFitHeight(42.0);
+         if(letter.equalsIgnoreCase("*")) {
+         letterImage.setImage(new Image("/com/scrab5/ui/letter_Images/placeHolder.png"));
+         }else {
+         letterImage.setImage(new Image("/com/scrab5/ui/letter_Images/tile"+letter.toUpperCase() +
+         ".png"));
+         }
+         letterImage.setLayoutX(layoutX);
+         letterImage.setLayoutY(layoutY);
+         Label point = new Label(points);
+        
+         point.setLayoutX(letterImage.getLayoutX() + LABEL_X_CORD);
+         point.setLayoutY(letterImage.getLayoutY() + LABEL_Y_CORD);
+         
+         mainPane.getChildren().add(mainPane.getChildren().size(), letterImage);
+         mainPane.getChildren().add(mainPane.getChildren().size(), point);
+         }
+     layoutX += 42.0;
+     }
+     layoutY += 42.0;
+     layoutX = 263.0;
+     }
+    
   }
 
   /**
@@ -300,7 +300,7 @@ public abstract class InGameController implements Initializable {
       ImageView iv = ((ImageView) event.getSource());
 
       // check if the field clicked is a letter to remove
-      if (isChoosen(iv) && exchangeable) {
+      if (isChoosen(iv) && exchangeable && iv.getImage().getUrl().contains("letter_Images")) {
         System.out.println("HUHFHHAKSKANFÖO");
         backToRack(iv);
       } else {
@@ -884,6 +884,7 @@ public abstract class InGameController implements Initializable {
       pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
     } else if (rackPlace2 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace2.getImage().getUrl())
         && rackPlace2.getOpacity() == 0 && isChoosen(iv)) {
@@ -892,6 +893,7 @@ public abstract class InGameController implements Initializable {
       pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
     } else if (rackPlace3 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace3.getImage().getUrl())
         && rackPlace3.getOpacity() == 0 && isChoosen(iv)) {
@@ -900,6 +902,7 @@ public abstract class InGameController implements Initializable {
       pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
     } else if (rackPlace4 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace4.getImage().getUrl())
         && rackPlace4.getOpacity() == 0 && isChoosen(iv)) {
@@ -908,6 +911,7 @@ public abstract class InGameController implements Initializable {
       pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
     } else if (rackPlace5 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace5.getImage().getUrl())
         && rackPlace5.getOpacity() == 0 && isChoosen(iv)) {
@@ -916,6 +920,7 @@ public abstract class InGameController implements Initializable {
       pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
     } else if (rackPlace6 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace6.getImage().getUrl())
         && rackPlace6.getOpacity() == 0 && isChoosen(iv)) {
@@ -924,6 +929,7 @@ public abstract class InGameController implements Initializable {
       pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
     } else if (rackPlace7 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace7.getImage().getUrl())
         && rackPlace7.getOpacity() == 0 && isChoosen(iv)) {
@@ -932,6 +938,7 @@ public abstract class InGameController implements Initializable {
       pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
     }
     iv.setImage(markedTile);
     // TODO
@@ -1172,7 +1179,6 @@ public abstract class InGameController implements Initializable {
     }
   }
 
-
-
+  
 }
 
