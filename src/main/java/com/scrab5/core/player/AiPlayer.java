@@ -21,6 +21,6 @@ public class AiPlayer extends Player {
     super(name);
     this.diff = diff;
   }
-
+ 
 
 }

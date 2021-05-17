@@ -2,6 +2,7 @@ package com.scrab5.util.textParser;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.Database;
@@ -13,12 +14,11 @@ public class DictionaryScanner {
    * Scans the created file of the dictionary for the word searchedWord and returns if its
    * contained.
    *
+   * @author lengist
    * @param searchedWord the String of the laid Word to check
    * @return boolean of the file contains a searched word
-   * @author lengist
    */
 
-  // TO-DO gameSession.getCurrentDic();
   public static boolean scan(String searchedWord) {
     /*
      * File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
@@ -50,6 +50,39 @@ public class DictionaryScanner {
     }
     return found;
   }
+  
+  /**
+   * Method to return words that conatins the letter "letter" and are at most "length" chars long.
+   * 
+   * @author lengist
+   * @param letter the letter that needs to be in the wanted word
+   * @param length the maximum length the wanted words can be
+   * @return a String array containing all the suitable words
+   */
+  public static String[] getWordsIncluding(String letter, int length) {
+    ArrayList<String> list = new ArrayList<String>();
+    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+    + "src/main/resources/com/scrab5/util/textParser/"
+    + "Built-In Standard DictionaryParsed.txt");
+    //needs to be changed back to DictionaryParser.getNewFileName(); 
+    try {
+      Scanner scanner = new Scanner(file);
+      while(scanner.hasNextLine()) {
+        String line = scanner.nextLine();
+        if(line.contains(letter) && line.length() <= length) {
+          list.add(line);
+        }
+      }
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    }
+    String[] suitableWords = new String[list.size()];
+    suitableWords = list.toArray(suitableWords);
+    
+    return suitableWords;
+  }
+  
+  
 
   /**
    * main method to test the implementation.
@@ -69,5 +102,14 @@ public class DictionaryScanner {
     DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
     // System.out.println(scan("JOK*R"));
     System.out.println(scan("ZZZ"));
+    System.out.println();
+    
+    System.out.println("before");
+    System.out.println();
+    String[] test = getWordsIncluding("A", 3);
+    for(int i = 0; i < test.length; i++) {
+      System.out.println(test[i]);
+    }
+    System.out.println("after");
   }
 }
