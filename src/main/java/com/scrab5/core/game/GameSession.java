@@ -187,6 +187,10 @@ public class GameSession implements Serializable {
     return false;
   }
 
+
+  /**
+   * @author trohwede, nitterhe
+   */
   private void startTimer() {
 
     if (!this.online) {
@@ -204,6 +208,9 @@ public class GameSession implements Serializable {
     }
   }
 
+  /**
+   *
+   */
   public void resetTimer() {
     timer.cancel();
     this.startTimer();
