@@ -6,6 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import org.junit.jupiter.api.Test;
 
+/**
+ * This class tests the methods to change a entry in a table in the database.
+ * The other required functions supported by methods in FillDatabase.java, UseDatabase.java and PlayerProfileDatabase.java are getting tested in other test classes.
+ * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * 
+ * @author lauraengist
+ */
 class UpdateTest {
 
   /**
@@ -16,9 +23,11 @@ class UpdateTest {
 
   @Test
   void testUpdatePlayer() {
+    Database.reconnect();
     CreateDatabase db = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
     FillDatabase.updatePlayer("Name", "Laura", "Maria", 0, 0.0);
+    Database.reconnect();
     Statement stm;
 
     try {
@@ -51,10 +60,12 @@ class UpdateTest {
    */
   @Test
   void testUpdateLetters() {
+    Database.reconnect();
     CreateDatabase db = new CreateDatabase();
     FillDatabase.insertLetters("L", 4, 6);
     FillDatabase.updatePointLetters("L", 2);
     FillDatabase.updateOccurrenceLetters("L", 7);
+    Database.reconnect();
 
     Statement stm;
     try {

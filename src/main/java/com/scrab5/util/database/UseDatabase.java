@@ -8,6 +8,11 @@ import com.scrab5.network.ServerStatistics;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * Note: To save the database and make sure that not two clients at the same time are able to make a request to the database file, the connection gets established and disconnected in every method individual where it is necessary.
+ * 
+ * @author lengist
+ */
 public class UseDatabase extends Database {
 
   /**

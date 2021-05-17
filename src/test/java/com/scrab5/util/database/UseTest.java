@@ -11,6 +11,12 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import org.junit.jupiter.api.Test;
 
+/**
+ * In this class the required functions that need to be tested separately from FillDatabase.java and need to return important information for other functions are tested.
+ * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * 
+ * @author lauraengist
+ */
 class UseTest {
 
   /**

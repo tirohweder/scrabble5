@@ -26,8 +26,6 @@ public class Database {
    */
   public Database() {
     this.connect(databaseFileName);
-    System.out.println("okay");
-    //disconnect();
   }
 
   /**
@@ -39,7 +37,6 @@ public class Database {
     try {
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
-      System.out.println("connected");
     } catch (ClassNotFoundException e) {
       System.out.println("Connection not possible" + e.getMessage());
     } catch (SQLException e1) {
@@ -58,7 +55,6 @@ public class Database {
    * @return boolean returning true if a database file already exists
    */
   public static boolean databaseExistance() {
-    //return new File("myDatabase.db").isFile();
     return new File(databaseFileName).isFile();
   }
 

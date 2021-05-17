@@ -1,9 +1,18 @@
 package com.scrab5.util.textParser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import com.scrab5.util.database.CreateDatabase;
+import com.scrab5.util.database.Database;
 
+/**
+ * This class tests the scanning process of a file to search a word. The method getWordsIncluding is tested relating the AiPlayer.
+ * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * 
+ * @author lengist
+ */
+@Disabled
 class ScannerTest {
 
   /**
@@ -13,12 +22,14 @@ class ScannerTest {
    */
   @Test
   void testScan() {
+    Database.reconnect();
     CreateDatabase cdb = new CreateDatabase();
+    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
     DictionaryParser.parseFile(DictionaryParser.getFileName());
 
     assertEquals(true, DictionaryScanner.scan("ZZZ"));
     assertEquals(false, DictionaryScanner.scan("XXXX"));
-    cdb.disconnect();
+    Database.disconnect();
   }
 
 }

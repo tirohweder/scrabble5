@@ -6,6 +6,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import org.junit.jupiter.api.Test;
 
+/**
+ * This class tests the deletion of either the content of a whole table or just the deletion of a single entry. 
+ * Concerning CreateDatabase.java and Use Case 1.
+ * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * 
+ * @author lengist
+ */
 class DeleteTest {
 
   /**
@@ -15,9 +22,11 @@ class DeleteTest {
    */
   @Test
   void testDeleteTable() {
+    Database.reconnect();
     CreateDatabase cdb = new CreateDatabase();
     FillDatabase.createPlayer("Laura", null);
     FillDatabase.deleteTable("Player");
+    Database.reconnect();
     Statement stm;
 
     try {
@@ -37,9 +46,11 @@ class DeleteTest {
    */
   @Test
   void testDeletePlayer() {
+    Database.reconnect();
     CreateDatabase cdb = new CreateDatabase();
     FillDatabase.createPlayer("Laura", null);
     FillDatabase.deletePlayer("Laura");
+    Database.reconnect();
 
     Statement stm;
 

@@ -4,6 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.File;
 import org.junit.jupiter.api.Test;
 
+/**
+ * filter words
+ * This class tests the parsing of a dictionary file into a new file to be scanned. The method to filter for words is tested in ScannerTest.java.
+ * 
+ * @author lengist
+ */
 class ParserTest {
 
   /**
@@ -14,7 +20,7 @@ class ParserTest {
    */
   @Test
   void testCreateSearchableFile() {
-    // load file
+    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
     DictionaryParser.parseFile(DictionaryParser.getFileName());
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());

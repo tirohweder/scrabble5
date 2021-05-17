@@ -13,15 +13,13 @@ import java.util.Iterator;
 /**
  * class with methods to fill all tables, edit certain entries or delete a table or certain entries
  * in the database.
+ * Note: To save the database and make sure that not two clients at the same time are able to make a request to the database file, the connection gets established and disconnected in every method individual where it is necessary.
  *
  * @author lengist
  * @author hraza
  */
 public class FillDatabase extends Database {
 
-  /*
-   * to-do for this class: close statements for all preparedStatements.
-   */
   private static PreparedStatement pstmPlayer;
   private static PreparedStatement pstmServer;
   private static PreparedStatement pstmDic;
@@ -128,28 +126,6 @@ public class FillDatabase extends Database {
       pstmDelete.executeUpdate();
     } catch (SQLException e) {
       System.out.println("Could not perform deletion from player " + name);
-      System.out.println(e);
-    }
-    closeStatement("delete");
-    Database.disconnect();
-  }
-
-  /**
-   * Deletes a certain server with name "name" in the table Server.
-   *
-   * @param name String with name of the user
-   * @author lengist
-   */
-  protected synchronized static void deleteServer(String name) {
-    Database.reconnect();
-    try {
-      String sql = "DELETE FROM Server WHERE ServerListNames = ?";
-      pstmDelete = connection.prepareStatement(sql);
-      pstmDelete.setString(1, name);
-      pstmDelete.executeUpdate();
-
-    } catch (SQLException e) {
-      System.out.println("Could not perform deletion from server " + name);
       System.out.println(e);
     }
     closeStatement("delete");
@@ -480,8 +456,6 @@ public class FillDatabase extends Database {
     closeStatement("dic");
     Database.disconnect();
   }
-  
-
 }
 
 

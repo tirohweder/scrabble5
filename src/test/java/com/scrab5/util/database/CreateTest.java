@@ -6,6 +6,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import org.junit.jupiter.api.Test;
 
+/**
+ * In this class the creation of a new player in the database table, 
+ * the insertion of a letter with corresponding points and occurrence 
+ * and the initial filling of the table letter with all letters from the alphabet and the initial points and  is tested.
+ * The other methods from class CreateDatabase like removeTable() are tested in DeleteTest.java
+ * 
+ * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * 
+ * @author lengist
+ */
 class CreateTest {
 
   /**
@@ -15,9 +25,9 @@ class CreateTest {
    */
   @Test
   void testCreatePlayer() {
-    //CreateDatabase cdb = new CreateDatabase();
-    Database.reconnect();
+    CreateDatabase cdb = new CreateDatabase();
     FillDatabase.createPlayer("Laura", "Bild");
+    Database.reconnect();
 
 
     Statement stm;
@@ -38,6 +48,7 @@ class CreateTest {
       assertEquals("", rs.getString("FaveDic"));
       assertEquals(50.0, rs.getDouble("Music"));
       assertEquals(50.0, rs.getDouble("SoundEffect"));
+      System.out.println("done");
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -54,6 +65,7 @@ class CreateTest {
     Database.reconnect();
     CreateDatabase cdb = new CreateDatabase();
     FillDatabase.insertLetters("L", 4, 5);
+    Database.reconnect();
     Statement stm;
 
     try {
@@ -78,6 +90,7 @@ class CreateTest {
     Database.reconnect();
     CreateDatabase cdb = new CreateDatabase();
     FillDatabase.fillLetters();
+    Database.reconnect();
     Statement stm;
     int i = 0;
     String[] letter = new String[27];
