@@ -1,19 +1,19 @@
 package com.scrab5.util.database;
 
-import com.scrab5.network.Server;
-import com.scrab5.network.ServerStatistics.ClientStatistic;
 import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
+import com.scrab5.network.Server;
+import com.scrab5.network.ServerStatistics.ClientStatistic;
 
 
 /**
  * class with methods to fill all tables, edit certain entries or delete a table or certain entries
- * in the database.
- * Note: To save the database and make sure that not two clients at the same time are able to make a request to the database file, the connection gets established and disconnected in every method individual where it is necessary.
+ * in the database. Note: To save the database and make sure that not two clients at the same time
+ * are able to make a request to the database file, the connection gets established and disconnected
+ * in every method individual where it is necessary.
  *
  * @author lengist
  * @author hraza
@@ -136,7 +136,7 @@ public class FillDatabase extends Database {
    * Method to fill table player completely. Used when a new player profile is created. Variables
    * for statistics get default values.
    *
-   * @param name    String with name of the user
+   * @param name String with name of the user
    * @param picture String with the path to the picture
    * @author lengist
    * @author hraza
@@ -176,19 +176,18 @@ public class FillDatabase extends Database {
    * Filling the table player at specific index/column. If variable for column name is from type
    * integer, variable contentString is default.
    *
-   * @param column        String with the name of the column in the table where a change needs to be
-   *                      done
-   * @param name          String with name of the user
+   * @param column String with the name of the column in the table where a change needs to be done
+   * @param name String with name of the user
    * @param contentString String that contains the new information that needs to be stored in the
-   *                      database
-   * @param contentInt    Integer that contains the new information that needs to be stored in the
-   *                      database
+   *        database
+   * @param contentInt Integer that contains the new information that needs to be stored in the
+   *        database
    * @author hraza
    */
   protected synchronized static void updatePlayer(String column, String name, String contentString,
       int contentInt, double doubleValues) {
-    Database.reconnect();                              
-             
+    Database.reconnect();
+
     if (column == "Name") {
       String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
       try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
@@ -341,7 +340,7 @@ public class FillDatabase extends Database {
    * Updates the entries from the table server at a specific serverHostName.
    *
    * @param serverObject an object received from the server with all information needed for the
-   *                     statistics in a hosted game
+   *        statistics in a hosted game
    * @author lengist
    * @author nitterhe
    */
@@ -374,7 +373,7 @@ public class FillDatabase extends Database {
    * Inserts letters with corresponding points.
    *
    * @param letter String with the letter that needs to be inserted in the database
-   * @param point  Integer with the correpsonding points for the given letter
+   * @param point Integer with the correpsonding points for the given letter
    * @author lengist
    * @author hraza
    */
@@ -387,6 +386,7 @@ public class FillDatabase extends Database {
       pstmDic.setInt(2, point);
       pstmDic.setInt(3, occurrence);
       pstmDic.executeUpdate();
+      System.out.println("fine");
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -417,8 +417,7 @@ public class FillDatabase extends Database {
   /**
    * Updates the occurrence for a particular letter if a change is needed.
    *
-   * @param letter     String with the letter where the occurrence needs to be updated in the
-   *                   database
+   * @param letter String with the letter where the occurrence needs to be updated in the database
    * @param occurrence Integer with the new occurrence for the given letter
    * @author lengist
    */
@@ -440,7 +439,7 @@ public class FillDatabase extends Database {
    * Updates the points for a particular letter if a change is needed.
    *
    * @param letter String with the letter where the points need to be updated in the database
-   * @param point  Integer with the new points for the given letter
+   * @param point Integer with the new points for the given letter
    * @author lengist
    */
   protected synchronized static void updatePointLetters(String letter, int point) {

@@ -14,7 +14,7 @@ public class AiPosition {
   int minPoints;
 
   public AiPosition(int x, int y, ArrayList<String> possibleWords, ArrayList<Integer> before,
-      ArrayList<Integer> after) {
+      ArrayList<Integer> after,ArrayList<Boolean> horizontal) {
     this.x = x;
     this.y = y;
     this.possibleWords = possibleWords;
