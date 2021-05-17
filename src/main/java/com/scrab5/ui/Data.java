@@ -1,14 +1,14 @@
 package com.scrab5.ui;
 
+import java.util.ArrayList;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.network.Client;
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerData;
-import java.util.ArrayList;
 
 /**
  * The Data class is supposed to save temporary information that is needed between controller
- * classes
+ * classes.
  *
  * @author mherre
  */
@@ -48,7 +48,7 @@ public class Data {
   /**
    * Saves which user is currently logged in.
    *
-   * @param username
+   * @param username the string containing the username which will be set
    * @author mherre
    */
   public static void setCurrentUser(String username) {
@@ -56,9 +56,9 @@ public class Data {
   }
 
   /**
-   * Returns the user who is currently logged in
+   * Returns the name of the user who is currently logged in.
    *
-   * @return
+   * @return currentUser the string containing the username
    * @author mherre
    */
   public static String getCurrentUser() {
@@ -66,9 +66,10 @@ public class Data {
   }
 
   /**
-   * Saves the text message that gets displayed on the currently opened PopUp message
+   * Saves the text message that gets displayed on the currently opened
+   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
-   * @param message
+   * @param message the string that gets set
    * @author mherre
    */
   public static void setMessage(String message) {
@@ -76,9 +77,10 @@ public class Data {
   }
 
   /**
-   * Returns the text message of the currently opened PopUp message
+   * Returns the text message of the currently opened {@link com.scrab5.ui.PopUpMessage
+   * PopUpMessage}.
    *
-   * @return
+   * @return popUpMessage the string containing the message
    * @author mherre
    */
   public static String getMessage() {
@@ -86,9 +88,9 @@ public class Data {
   }
 
   /**
-   * Saves the type of the currently opened PopUp message
+   * Saves what kind of {@link com.scrab5.ui.PopUpMessage PopUpMessage} is currently opened.
    *
-   * @param popUpType
+   * @param popUpType the PopUpMessageTyp that gets set
    * @author mherre
    */
   public static void setMessageType(PopUpMessageType popUpType) {
@@ -96,9 +98,9 @@ public class Data {
   }
 
   /**
-   * Returns what kind of PopUp message is opened right now
+   * Returns what kind of {@link com.scrab5.ui.PopUpMessage PopUpMessage} is opened right now.
    *
-   * @return
+   * @return messageType the PopUpMessageType that is currently saved
    * @author mherre
    */
   public static PopUpMessageType getMessageType() {
@@ -106,9 +108,10 @@ public class Data {
   }
 
   /**
-   * Saves if a the "Confirm" button of a CONFIRMATION PopUp message was clicked
+   * Saves if "Confirm" of a {@link com.scrab5.ui.PopUpMessage PopUpMessage} has been clicked or
+   * not.
    *
-   * @param cf
+   * @param cf the boolean that gets set
    * @author mherre
    */
   public static void setConfirmed(boolean cf) {
@@ -116,9 +119,10 @@ public class Data {
   }
 
   /**
-   * Returns the value if the "Confirm" button was clicked
+   * Returns the value of <code>confirmed</code> and thus gives information if the "Confirm" button
+   * of a {@link com.scrab5.ui.PopUpMessage PopUpMessage} was clicked.
    *
-   * @return
+   * @return confirmed
    * @author mherre
    */
   public static boolean isConfirmed() {
@@ -126,9 +130,10 @@ public class Data {
   }
 
   /**
-   * Sets the text of the textfield of a INPUT PopUp message
+   * Saves the text of the {@link com.scrab5.ui.PopUpMessageController#textfield textfield} from a
+   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
-   * @param ipft
+   * @param ipft the String that gets set
    * @author mherre
    */
   public static void setInputFieldText(String ipft) {
@@ -136,9 +141,10 @@ public class Data {
   }
 
   /**
-   * Returns the text of the textfield of a INPUT PopUp message
+   * Returns the text of the {@link com.scrab5.ui.PopUpMessageController#textfield textfield} from a
+   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
-   * @return
+   * @return inputFieldText the String containing the text of the textfield
    * @author mherre
    */
   public static String getInputFieldText() {
