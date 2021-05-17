@@ -7,11 +7,6 @@
  */
 package com.scrab5.network;
 
-import com.scrab5.network.NetworkError.NetworkErrorType;
-import com.scrab5.network.messages.LobbyUpdateMessage;
-import com.scrab5.network.messages.Message;
-import com.scrab5.util.database.FillDatabase;
-import com.scrab5.util.database.UseDatabase;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.InetAddress;
@@ -19,6 +14,14 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.HashMap;
+import java.util.Timer;
+import java.util.TimerTask;
+import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.network.messages.LobbyUpdateMessage;
+import com.scrab5.network.messages.Message;
+import com.scrab5.ui.Data;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 
 
 public class Server implements Serializable {
@@ -34,6 +37,7 @@ public class Server implements Serializable {
   private static int clientCounter;
   private static int clientMaximum;
   private ServerStatistics serverStatistics;
+  private Timer timer;
 
   private HashMap<String, ClientData> clients;
   private HashMap<ClientData, ServerThread> connections;
@@ -134,6 +138,7 @@ public class Server implements Serializable {
   public void startGame() {
     this.gameStart = true;
     this.sendUpdateMessage();
+    this.startTimer();
   }
 
   /**
@@ -143,6 +148,7 @@ public class Server implements Serializable {
    */
   // must be called by Game logic after game ends
   public void endGame(String winner) {
+    this.cancelTimer();
     this.gameStart = false;
     boolean win = false;
     for (String client : this.clients.keySet()) {
@@ -310,6 +316,7 @@ public class Server implements Serializable {
     this.serverStatistics.getServerStatistics().clear();
     this.updateClientCount();
     this.gameStart = false;
+    Data.setGameSession(null);
   }
 
   /**
@@ -342,10 +349,54 @@ public class Server implements Serializable {
     Server.clientMaximum = clientMaximum;
   }
 
+  /**
+   * Sets the given client's ready status.
+   * 
+   * @author nitterhe
+   * @param clientname - the client's name
+   * @param ready - the client's new ready status
+   */
   public void setClientReady(String clientname, boolean ready) {
     if (clients.containsKey(clientname)) {
       clients.get(clientname).setReady(ready);
       sendUpdateMessage();
     }
+  }
+
+  /**
+   * Starts a 10 min timer for a client to make his turn. Server shuts down after 10 mins.
+   * 
+   * @author nitterhe
+   */
+  public void startTimer() {
+
+    this.timer = new Timer();
+    TimerTask task = (new TimerTask() {
+      public void run() {
+        if (Data.getPlayerClient() != null) {
+          Server.this.shutDownServer();
+        }
+      }
+    });
+    timer.schedule(task, 1000 * 60 * 10);
+  }
+
+  /**
+   * Resets the timer. Called when a turn was made and received by the server.
+   * 
+   * @author nitterhe
+   */
+  public void resetTimer() {
+    this.timer.cancel();
+    this.startTimer();
+  }
+
+  /**
+   * Cancels the timer. Called when the game ends.
+   * 
+   * @author nitterhe
+   */
+  public void cancelTimer() {
+    this.timer.cancel();
   }
 }

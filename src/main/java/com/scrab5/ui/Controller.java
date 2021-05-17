@@ -81,15 +81,12 @@ public abstract class Controller {
   @FXML
   protected void closeGame(MouseEvent event) {
     Database.disconnect();
-    Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
 
     if (Data.getHostedServer() != null) {
       Data.getHostedServer().shutDownServer();
     }
-    // Set<Thread> threads = Thread.getAllStackTraces().keySet();
-    // for (Thread t : threads) {
-    // System.out.println(t);
-    // }
+
+    Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();
   }
 

@@ -128,82 +128,82 @@
             </Label>
             <Label fx:id="playerCount0" layoutX="362.0" layoutY="213.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="playerCount1" layoutX="362.0" layoutY="252.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="playerCount2" layoutX="362.0" layoutY="290.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="playerCount3" layoutX="362.0" layoutY="329.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="playerCount4" layoutX="362.0" layoutY="367.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="playerCount5" layoutX="362.0" layoutY="405.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="playerCount6" layoutX="362.0" layoutY="444.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="playerCount7" layoutX="362.0" layoutY="482.0" prefHeight="25.0" prefWidth="34.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="status0" layoutX="464.0" layoutY="213.0" prefHeight="25.0" prefWidth="62.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="status1" layoutX="464.0" layoutY="252.0" prefHeight="25.0" prefWidth="62.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="status2" layoutX="464.0" layoutY="290.0" prefHeight="25.0" prefWidth="62.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="status3" layoutX="464.0" layoutY="329.0" prefHeight="25.0" prefWidth="62.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="status4" layoutX="464.0" layoutY="367.0" prefHeight="25.0" prefWidth="62.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="status5" layoutX="464.0" layoutY="405.0" prefHeight="25.0" prefWidth="62.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="status6" layoutX="464.0" layoutY="444.0" prefHeight="25.0" prefWidth="62.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <Label fx:id="status7" layoutX="464.0" layoutY="482.0" prefHeight="25.0" prefWidth="62.0" textFill="#fefff2">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
             <ImageView fx:id="joinButton0" fitHeight="32.0" fitWidth="61.0" layoutX="602.0" layoutY="211.0" onMouseClicked="#join0" onMouseEntered="#lightenJoinIcon" onMouseExited="#darkenJoinIcon" onMousePressed="#darkenJoinIcon" onMouseReleased="#lightenJoinIcon" opacity="0.0" pickOnBounds="true" preserveRatio="true">

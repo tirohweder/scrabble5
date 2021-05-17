@@ -8,6 +8,12 @@
  */
 package com.scrab5.network;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.ArrayList;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.DisconnectMessage;
@@ -19,12 +25,6 @@ import com.scrab5.network.messages.MessageType;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.util.ArrayList;
 
 public class Client implements Serializable {
 
@@ -38,7 +38,7 @@ public class Client implements Serializable {
   private Server currentServer;
   private Server hostedServer;
   private boolean isReady;
-  private boolean inGame;
+  private boolean starting;
 
   /**
    * Implements a new Client with the given username. Constructs an empty list for all servers in
@@ -54,7 +54,7 @@ public class Client implements Serializable {
     serverList = new ArrayList<ServerData>();
     this.hostedServer = null; // needs connection to database
     this.isReady = false;
-    this.inGame = false;
+    this.starting = false;
     try {
       this.ip = InetAddress.getLocalHost().getHostAddress();
     } catch (Exception e) {
@@ -68,7 +68,7 @@ public class Client implements Serializable {
    *
    * @param clientMaximum - the maximum number of clients allowed to connect to the server
    * @throws Exception - an Exception that is thrown to the Controller that the server could not be
-   *                   hosted
+   *         hosted
    * @author nitterhe
    */
   public void hostServer(int clientMaximum) throws Exception {
@@ -92,7 +92,8 @@ public class Client implements Serializable {
   /**
    * Searches for Servers in the local network and adds them to the serverList.
    *
-   * @author from stackoverflow - https://stackoverflow.com/questions/24082077/java-find-server-in-network
+   * @author from stackoverflow -
+   *         https://stackoverflow.com/questions/24082077/java-find-server-in-network
    */
   public void searchServers() {
     this.serverList.clear();
@@ -352,16 +353,34 @@ public class Client implements Serializable {
     this.username = username;
   }
 
+  /**
+   * Method to send the turn made by the client to the server.
+   * 
+   * @author nitterhe
+   */
   public void makeTurn() {
     MakeTurnMessage mtm = new MakeTurnMessage(this.username, Data.getGameSession());
     this.clientThread.sendMessageToServer(mtm);
   }
 
-  public boolean getInGame() {
-    return this.inGame;
+  /**
+   * Method to set the value of the starting value. This is used to set App.setroot() once when the
+   * game starts.
+   * 
+   * @author nitterhe
+   * @return starting - the starting variable
+   */
+  public boolean getStarting() {
+    return this.starting;
   }
 
-  public void setInGame(boolean inGame) {
-    this.inGame = inGame;
+  /**
+   * Method to set the value of the starting variable.
+   * 
+   * @author nitterhe
+   * @param inGame - the starting variable
+   */
+  public void setStarting(boolean starting) {
+    this.starting = starting;
   }
 }

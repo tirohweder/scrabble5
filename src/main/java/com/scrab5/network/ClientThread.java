@@ -6,6 +6,12 @@
  */
 package com.scrab5.network;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.Socket;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
@@ -16,12 +22,6 @@ import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.Socket;
 import javafx.application.Platform;
 
 public class ClientThread extends Threads implements Serializable {
@@ -101,7 +101,7 @@ public class ClientThread extends Threads implements Serializable {
             Data.setGameSession(mtm.getGameSession());
 
             if (mtm.getGameSession().getRoundNumber() == 0) {
-              this.client.setInGame(true);
+              this.client.setStarting(true);
             }
             break;
           default:
@@ -109,9 +109,8 @@ public class ClientThread extends Threads implements Serializable {
         }
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      // e.printStackTrace();
       new NetworkError(NetworkErrorType.CLIENTRUN);
-      e.printStackTrace();
     }
 
     try {
@@ -183,5 +182,6 @@ public class ClientThread extends Threads implements Serializable {
    */
   protected void closeConnection() {
     this.stopThread();
+    Data.setGameSession(null);
   }
 }
