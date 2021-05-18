@@ -1130,12 +1130,12 @@ public abstract class InGameController implements Initializable {
   }
 
   protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
-    if (letter.equals("space")) {
+    if (letter.equals("space") | letter.equals("*")) {
       letter = "placeHolder";
     } else {
       letter = "tile" + letter.toUpperCase();
     }
-
+    System.out.println(letter);
     Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter + ".png");
     rackPlace.setImage(letterImage);
     if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
