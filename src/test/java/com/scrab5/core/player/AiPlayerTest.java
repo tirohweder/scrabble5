@@ -7,7 +7,7 @@ import com.scrab5.core.game.Tile;
 
 class AiPlayerTest {
 
-  
+   
   @Test
   void sortPosMinTest() {
     Tile first = new Tile("A",1);

@@ -5,7 +5,7 @@ import com.scrab5.core.game.GameBoard;
 import com.scrab5.ui.Data;
 import java.util.ArrayList;
 
-
+ 
 public class AiPlayer extends Player {
 
   ArrayList<AiPosition> pos;
