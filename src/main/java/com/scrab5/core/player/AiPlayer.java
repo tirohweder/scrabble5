@@ -20,6 +20,24 @@ public class AiPlayer extends Player {
   public AiPlayer(String name) {
     super(name);
   }
+  
+  public int getCounterUp() {
+    return this.counterUp;
+  }
+  
+  public int getCounterDown() {
+    return this.counterDown;
+  }
+  
+  public int getCounterLeft() {
+    return this.counterLeft;
+  }
+  
+  public int getCounterRight() {
+    return this.counterRight;
+  }
+  
+  
 
   /**
    * In this method all other methods will be called for the Hard AI

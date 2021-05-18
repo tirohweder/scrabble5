@@ -21,6 +21,9 @@ public class AiPosition {
     this.before = before;
     this.after = after;
     // CALCULATE POINTS FOR EVERY WORD IN THE WORDSLIST(FILL THE POINTS LIST)
+    for(int i=0;i<possibleWords.size();i++) {
+      this.possiblePoints.add(calculatePoints(this.possibleWords.get(i)));
+    }
   }
 
   public int getMaxPoints() {
@@ -38,7 +41,6 @@ public class AiPosition {
    * @author hraza
    */
   public static int calculatePoints(String word) {
-    // call the method from Gameboard to calculate the Points
     String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     int[] points =
         new int[] {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 2, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
@@ -63,17 +65,28 @@ public class AiPosition {
   public void sortPossibleWordsAscending() {
     int temp;
     String tempString;
+    Boolean tempHorizontal;
+    int tempBefore;
+    int tempAfter;
     for (int i = 0; i < this.possiblePoints.size(); i++) {
       for (int j = 1; j < this.possiblePoints.size(); j++) {
         if (this.possiblePoints.get(i) > this.possiblePoints.get(j)) {
           temp = this.possiblePoints.get(i);
           tempString = this.possibleWords.get(i);
+          tempHorizontal = this.horizontal.get(i);
+          tempBefore = this.before.get(i);
+          tempAfter = this.after.get(i);
+          
           this.possibleWords.add(i, this.possibleWords.get(j));
           this.possibleWords.add(j, tempString);
           this.possiblePoints.add(i, this.possiblePoints.get(j));
           this.possiblePoints.add(j, temp);
-          // YOU HAVE TO SORT THE LISTS BEFORE AND AFTER AND HORIZONTAL TOOO
-          // YOU HAVE TO INITIALIZE THE MIN AND MAXPOINT
+          this.horizontal.add(i, this.horizontal.get(j));
+          this.horizontal.add(j, tempHorizontal);
+          this.before.add(i, this.before.get(j));
+          this.before.add(j, tempBefore);
+          this.after.add(i, this.after.get(j));
+          this.after.add(j, tempAfter);
 
         }
       }
@@ -88,23 +101,32 @@ public class AiPosition {
    * @author hraza
    */
   public void sortPossibleWordsDescending() {
-    // sorting the pointslist and the wordlist
     int temp;
     String tempString;
+    Boolean tempHorizontal;
+    int tempBefore;
+    int tempAfter;
     for (int i = 0; i < this.possiblePoints.size(); i++) {
       for (int j = 1; j < this.possiblePoints.size(); j++) {
         if (this.possiblePoints.get(i) < this.possiblePoints.get(j)) {
           temp = this.possiblePoints.get(i);
           tempString = this.possibleWords.get(i);
+          tempHorizontal = this.horizontal.get(i);
+          tempBefore = this.before.get(i);
+          tempAfter = this.after.get(i);
+          
           this.possibleWords.add(i, this.possibleWords.get(j));
           this.possibleWords.add(j, tempString);
           this.possiblePoints.add(i, this.possiblePoints.get(j));
           this.possiblePoints.add(j, temp);
-          // YOU HAVE TO SORT THE LISTS BEFORE AND AFTER AND HORIZONTAL TOOO
-          // YOU HAVE TO INITIALIZE THE MIN AND MAXPOINT
+          this.horizontal.add(i, this.horizontal.get(j));
+          this.horizontal.add(j, tempHorizontal);
+          this.before.add(i, this.before.get(j));
+          this.before.add(j, tempBefore);
+          this.after.add(i, this.after.get(j));
+          this.after.add(j, tempAfter);
         }
       }
     }
   }
-  
 }
