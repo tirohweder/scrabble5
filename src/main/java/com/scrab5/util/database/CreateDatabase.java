@@ -1,7 +1,7 @@
 package com.scrab5.util.database;
 
-import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.SQLException;
 
 public class CreateDatabase extends Database {
 

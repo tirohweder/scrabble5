@@ -1,14 +1,16 @@
 package com.scrab5.util.database;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -17,6 +19,7 @@ import org.junit.jupiter.api.Test;
  * 
  * @author lauraengist
  */
+@Disabled
 class UseTest {
 
   /**

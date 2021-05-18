@@ -3,7 +3,6 @@ package com.scrab5.util.database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Class to get and set the data for the player statistics and leaderboards.
