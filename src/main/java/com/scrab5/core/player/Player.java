@@ -55,11 +55,19 @@ public class Player implements Serializable {
     isHuman = human;
   }
 
+  public int getPoints() {
+    return points;
+  }
+
+  public void setPoints(int points) {
+    this.points = points;
+  }
+
   private Rack rack;
   private String name;
   private boolean isHuman;
   private PlayerProfile playerProfile;
-
+  private int points;
 
   /**
    * @param name When Player is created gives the player a name and a personal rack
@@ -68,6 +76,7 @@ public class Player implements Serializable {
   public Player(String name) {
     this.name = name;
     this.rack = new Rack();
+    this.points = 0;
   }
 
 

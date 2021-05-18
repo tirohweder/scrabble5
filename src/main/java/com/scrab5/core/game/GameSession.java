@@ -79,6 +79,14 @@ public class GameSession implements Serializable {
     this.online = online;
   }
 
+  public boolean isRunning() {
+    return isRunning;
+  }
+
+  public void setRunning(boolean running) {
+    isRunning = running;
+  }
+
   private GameBoard gameBoard = new GameBoard();
   private BagOfTiles bag = new BagOfTiles();
   private ArrayList<Player> listOfPlayers;
@@ -87,6 +95,9 @@ public class GameSession implements Serializable {
   private boolean canEnd = false;
   private Player currentPlayer;
   private String currentDic;
+
+
+  private boolean isRunning = true;
 
 
   private boolean online;
@@ -164,7 +175,7 @@ public class GameSession implements Serializable {
     currentPlayer.getRack().fill(bag);
     roundNumber++;
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
-
+    gameBoard.finishTurn();
     if (online) {
       Data.getPlayerClient().makeTurn();
     }
@@ -175,6 +186,8 @@ public class GameSession implements Serializable {
   public void endGame() {
     // Data.getHostedServer().endGame(winner);
     // TODO call server method
+
+    this.isRunning = false;
   }
 
   public boolean giveUp() {
