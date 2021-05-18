@@ -87,6 +87,14 @@ public class GameSession implements Serializable {
     running = running;
   }
 
+  public boolean isShouldEnd() {
+    return shouldEnd;
+  }
+
+  public void setShouldEnd(boolean shouldEnd) {
+    this.shouldEnd = shouldEnd;
+  }
+
   private GameBoard gameBoard = new GameBoard();
   private BagOfTiles bag = new BagOfTiles();
   private ArrayList<Player> listOfPlayers;
@@ -95,8 +103,7 @@ public class GameSession implements Serializable {
   private boolean canEnd = false;
   private Player currentPlayer;
   private String currentDic;
-
-
+  private boolean shouldEnd = false;
   private boolean running = true;
 
 
@@ -169,6 +176,7 @@ public class GameSession implements Serializable {
 
       }
     }
+    Database.disconnect();
   }
 
   public void finishTurn() {
@@ -183,6 +191,10 @@ public class GameSession implements Serializable {
 
   }
 
+  public void checkEndScreen() {
+
+  }
+
   public void endGame() {
     // Data.getHostedServer().endGame(winner);
     // TODO call server method
@@ -194,9 +206,9 @@ public class GameSession implements Serializable {
     return false;
   }
 
-  public void checkBagAndRack() {
-    if (bag.getSize() == 0 && !currentPlayer.getRack().isRackFull()) {
-      this.endGame();
+  public void checkBagAndRack(Player player) {
+    if (bag.getSize() == 0 && !player.getRack().isRackFull()) {
+      this.shouldEnd = true;
     }
   }
 
