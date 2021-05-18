@@ -14,7 +14,6 @@ public class SingleplayerController extends InGameController implements Initiali
     initRack();
     initPlayers();
     initGameboard();
-    refreshUI();
 
   }
   
