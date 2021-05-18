@@ -759,9 +759,9 @@ public abstract class InGameController implements Initializable {
             "Congrats you scored: " + Data.getGameSession().getGameBoard().countScore();
         PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
         pum.show();
-        
+
         Player current = Data.getGameSession().getCurrentPlayer();
-        
+
         Data.getGameSession().getGameBoard().finishTurn();
         Data.getGameSession().finishTurn();
 
@@ -860,7 +860,7 @@ public abstract class InGameController implements Initializable {
         tileClicked = false;
         clickedLetter = null;
         clickedTile = null;
-        
+
         Data.getGameSession().checkBagAndRack(current);
 
       } else {
@@ -1211,6 +1211,19 @@ public abstract class InGameController implements Initializable {
   private void newPum(String message) throws IOException {
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
     pum.show();
+  }
+
+  @FXML
+  private void giveUpClicked(MouseEvent event) throws IOException {
+    PopUpMessage pum = new PopUpMessage("Really!?\nE", PopUpMessageType.CONFIRMATION);
+    pum.show();
+    if (Data.isConfirmed()) {
+      Data.getGameSession().endGame();
+      if (Data.getPlayerClient() != null) {
+        Data.getPlayerClient().disconnectFromServer();
+      }
+      App.setRoot("EndGame");
+    }
   }
 
   /**
