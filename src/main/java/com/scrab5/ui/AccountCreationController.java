@@ -94,16 +94,11 @@ public class AccountCreationController extends Controller implements Initializab
   @FXML
   private void enter(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    Database.disconnect();
     if (this.isUsernameValid(this.nickname.getText())) {
-      System.out.println("hier schon problem");
       App.setMusicVolume(PlayerProfileDatabase.getMusicVolume(Data.getCurrentUser()));
-      Database.disconnect();
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
-      Database.disconnect();
       App.setRoot("MainMenu");
     }
-    //Database.disconnect();
   }
 
   /**
@@ -139,15 +134,12 @@ public class AccountCreationController extends Controller implements Initializab
     PopUpMessage pum;
 
     if (username.matches(regex)) {
-      Database.reconnect();
       if (!UseDatabase.playerExists(this.nickname.getText())) {
         this.createdUsername = username;
         Data.setCurrentUser(this.createdUsername);
         FillDatabase.createPlayer(this.createdUsername, null);
-        Database.disconnect();
         FillDatabase.createServerRow(Data.getCurrentUser(), Data.getCurrentUser(),
             InetAddress.getLocalHost().getHostAddress());
-        Database.disconnect();
 
 
         message = "Congratulations! Your account has been created";
@@ -160,7 +152,6 @@ public class AccountCreationController extends Controller implements Initializab
         message = "This username already exists. Please choose a different name!";
         pum = new PopUpMessage(message, PopUpMessageType.ERROR);
         pum.show();
-        Database.disconnect();
 
         return false;
       }

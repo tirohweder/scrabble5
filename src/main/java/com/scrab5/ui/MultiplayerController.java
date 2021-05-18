@@ -54,10 +54,15 @@ public class MultiplayerController extends InGameController implements Initializ
   @FXML
   private void sentClicked(MouseEvent event) {
     if (chatOpen) {
-      if (chatInsert.getText().length() > 0) {
-        chatInsert.selectAll();
-        textArea.setText(chatInsert.getText());
-      }
+      Platform.runLater(new Runnable() {
+
+        @Override
+        public void run() {
+          chatInsert.selectAll();
+          Data.getPlayerClient()
+              .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
+        }
+      });
     }
   }
 
@@ -65,15 +70,6 @@ public class MultiplayerController extends InGameController implements Initializ
   @FXML
   private void chatInsertClicked(MouseEvent event) {
 
-    Platform.runLater(new Runnable() {
-
-      @Override
-      public void run() {
-        chatInsert.selectAll();
-        Data.getPlayerClient()
-            .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
-      }
-    });
 
   }
 

@@ -752,22 +752,15 @@ public abstract class InGameController implements Initializable {
     ImageView iv = (ImageView) event.getSource();
 
     // TODO
-    // if (Data.getGameSession().getGameBoard().checkWordsLegit()) {
+    if (Data.getGameSession().getGameBoard().checkWordsLegit()) {
 
     String message = "Congrats you scored: " + Data.getGameSession().getGameBoard().countScore();
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
     pum.show();
     Data.getGameSession().getGameBoard().finishTurn();
     Data.getGameSession().finishTurn();
-
-    // } else {
-    // String message = "The word placed isnt legit!";
-    // PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
-    // }
-
-    // TODO
-
-    // reset Opacity on the Rag Board if not null
+    
+ // reset Opacity on the Rag Board if not null
     if (rackPlace1 != null && rackPlace1.getOpacity() == 0) {
       rackPlace1.setOpacity(1);
       rackRemoveTile(0);
@@ -862,6 +855,13 @@ public abstract class InGameController implements Initializable {
     tileClicked = false;
     clickedLetter = null;
     clickedTile = null;
+
+     } else {
+     String message = "The word placed isnt legit!";
+     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
+     }
+
+    
 
   }
 

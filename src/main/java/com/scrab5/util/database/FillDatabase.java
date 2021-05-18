@@ -188,19 +188,23 @@ public class FillDatabase extends Database {
       int contentInt, double doubleValues) {
     Database.reconnect();
     System.out.println("Fill");
+    PreparedStatement pstmt;
 
     if (column == "Name") {
       String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setString(1, contentString);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
+        pstmt.close();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "Picture") {
       String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setString(2, contentString);
         pstmt.setString(1, name);
         pstmt.executeUpdate();
@@ -209,7 +213,8 @@ public class FillDatabase extends Database {
       }
     } else if (column == "TotalPoints") {
       String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setInt(1, contentInt);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
@@ -218,7 +223,8 @@ public class FillDatabase extends Database {
       }
     } else if (column == "PersonalHighscore") {
       String sql = "UPDATE Player SET PersonalHighscore = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setInt(1, contentInt);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
@@ -227,25 +233,28 @@ public class FillDatabase extends Database {
       }
     } else if (column == "LaidWords") {
       String sql = "UPDATE Player SET Laidwords = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name); //
+        pstmt.setString(2, name); 
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "PointsPerWordRate") {
       String sql = "UPDATE Player SET PointsPerWordRate = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name); //
+        pstmt.setString(2, name); 
         pstmt.executeUpdate();
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       }
     } else if (column == "LongestWord") {
       String sql = "UPDATE Player SET LongestWord = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setInt(1, contentInt);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
@@ -254,7 +263,8 @@ public class FillDatabase extends Database {
       }
     } else if (column == "TotalPlayedGames") {
       String sql = "UPDATE Player SET TotalPlayedGames = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setInt(1, contentInt);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
@@ -263,7 +273,8 @@ public class FillDatabase extends Database {
       }
     } else if (column == "TotalWins") {
       String sql = "UPDATE Player SET TotalWins = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setInt(1, contentInt);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
@@ -272,7 +283,8 @@ public class FillDatabase extends Database {
       }
     } else if (column == "WinRate") {
       String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setDouble(1, doubleValues);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
@@ -281,7 +293,8 @@ public class FillDatabase extends Database {
       }
     } else if (column == "FavDic") {
       String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setString(1, contentString);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
@@ -290,7 +303,8 @@ public class FillDatabase extends Database {
       }
     } else if (column == "Music") {
       String sql = "UPDATE Player SET Music = ? WHERE name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setDouble(1, doubleValues);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
@@ -299,7 +313,8 @@ public class FillDatabase extends Database {
       }
     } else if (column == "SoundEffect") {
       String sql = "UPDATE Player SET SoundEffect = ? WHERE name = ?";
-      try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+      try {
+        pstmt = connection.prepareStatement(sql);
         pstmt.setDouble(1, doubleValues);
         pstmt.setString(2, name);
         pstmt.executeUpdate();
