@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,17 +76,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.GameBoardTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="GameBoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
@@ -193,12 +182,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Maven.scrabble5 [clean,package]" />
       <item itemvalue="JUnit.GameBoardTest.isSpotNext" />
       <item itemvalue="JUnit.GameBoardTest.isSpotInLine" />
       <item itemvalue="JUnit.GameBoardTest.isTileLegal" />
       <item itemvalue="JUnit.GameBoardTest.countScore" />
       <item itemvalue="JUnit.GameBoardTest" />
+      <item itemvalue="Maven.scrabble5 [clean,package]" />
     </list>
     <recent_temporary>
       <list>
@@ -241,7 +230,8 @@
       <workItem from="1621061127917" duration="10427000" />
       <workItem from="1621150207196" duration="9782000" />
       <workItem from="1621239683722" duration="1221000" />
-      <workItem from="1621318735502" duration="20818000" />
+      <workItem from="1621318735502" duration="22271000" />
+      <workItem from="1621345243582" duration="1944000" />
     </task>
     <task id="LOCAL-00001" summary="#69 add strucutre">
       <created>1619793717336</created>
@@ -544,7 +534,21 @@
       <option name="project" value="LOCAL" />
       <updated>1621341713357</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="#85 fixed singleplayer">
+      <created>1621343493884</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1621343493884</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;#66 &#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/game/GameSession.java">
+      <created>1621343552487</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1621343552487</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +603,8 @@
     <MESSAGE value="#85 push for aaron" />
     <MESSAGE value="#85 shouldEnd implementated" />
     <MESSAGE value="#85 fixed singleplayer" />
-    <option name="LAST_COMMIT_MESSAGE" value="#85 fixed singleplayer" />
+    <MESSAGE value="Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;#66 &#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/game/GameSession.java" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;#66 &#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/game/GameSession.java" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

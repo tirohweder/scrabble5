@@ -137,7 +137,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
     playSound("ButtonClicked.mp3");
 
-
     for (int i = 1; i < Data.getPlayerCountMultiplayer() - 1; i++) {
       if (freeSpaces[i]) {
         switch (i) {
@@ -264,6 +263,11 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     // TODO Auto-generated method stub
 
     ArrayList<Player> playerList = new ArrayList<Player>();
+
+    ArrayList<ArrayList<Integer>> votes;
+    
+    //TODO calucalte rheinfolge
+
     for (String clientName : Data.getPlayerClient().getCurrentServer().getClients().keySet()) {
 
       int vote1 = 0;
