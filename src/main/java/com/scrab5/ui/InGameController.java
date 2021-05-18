@@ -1186,12 +1186,8 @@ public abstract class InGameController implements Initializable {
   @FXML
   private void endGame(MouseEvent event) throws IOException {
     if (endPossible) {
+      Data.getGameSession().setShouldEnd(true);
       Data.getGameSession().endGame();
-      if (Data.getPlayerClient() != null) {
-        App.setRoot("EndGameMultiplayer");
-      } else {
-        App.setRoot("EndGameSingleplayer");
-      }
     }
   }
 

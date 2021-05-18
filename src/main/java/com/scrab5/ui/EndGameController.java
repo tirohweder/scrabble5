@@ -28,7 +28,7 @@ public class EndGameController extends InGameController implements Initializable
 
     initRack();
 
-    initEndGame();
+   // initEndGame();
   }
 
   private void initEndGame() {
