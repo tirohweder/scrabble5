@@ -48,7 +48,7 @@ public class SingleplayerController extends InGameController implements Initiali
           }
         }
         try {
-          App.setRoot("EndGame");
+          App.setRoot("EndGameSingleplayer");
         } catch (IOException e) {
           System.out.println("Something went wrong!");
         }
