@@ -7,13 +7,6 @@
  */
 package com.scrab5.network;
 
-import com.scrab5.network.NetworkError.NetworkErrorType;
-import com.scrab5.network.messages.LobbyUpdateMessage;
-import com.scrab5.network.messages.Message;
-import com.scrab5.ui.Data;
-import com.scrab5.util.database.Database;
-import com.scrab5.util.database.FillDatabase;
-import com.scrab5.util.database.UseDatabase;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.InetAddress;
@@ -23,6 +16,13 @@ import java.net.SocketException;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
+import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.network.messages.LobbyUpdateMessage;
+import com.scrab5.network.messages.Message;
+import com.scrab5.ui.Data;
+import com.scrab5.util.database.Database;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 
 
 public class Server implements Serializable {
@@ -49,8 +49,8 @@ public class Server implements Serializable {
    * used for communication with the UI. The boolean UIServerInstance states if this Server is saved
    * as a currentServer in the Client class.
    *
-   * @param host             - the name of the server host
-   * @param clientMaximum    - the maximum amount of clients allowed to connect to the server
+   * @param host - the name of the server host
+   * @param clientMaximum - the maximum amount of clients allowed to connect to the server
    * @param UIServerInstance - boolean to handle if sockets must be opened
    * @author nitterhe
    */
@@ -61,6 +61,7 @@ public class Server implements Serializable {
     this.host = host;
     Server.clientMaximum = clientMaximum;
     clientCounter = 0;
+    this.startTimer();
     if (!UIServerInstance) {
       this.loadServerStatistics();
       this.openServerSocket();
@@ -139,7 +140,6 @@ public class Server implements Serializable {
   public void startGame() {
     this.gameStart = true;
     this.sendUpdateMessage();
-    this.startTimer();
   }
 
   /**
@@ -312,6 +312,7 @@ public class Server implements Serializable {
       e.printStackTrace();
     }
     FillDatabase.updateServer(this);
+    this.cancelTimer();
     this.clients.clear();
     this.connections.clear();
     this.serverStatistics.getServerStatistics().clear();
@@ -355,7 +356,7 @@ public class Server implements Serializable {
    * Sets the given client's ready status.
    *
    * @param clientname - the client's name
-   * @param ready      - the client's new ready status
+   * @param ready - the client's new ready status
    * @author nitterhe
    */
   public void setClientReady(String clientname, boolean ready) {
@@ -377,7 +378,6 @@ public class Server implements Serializable {
       public void run() {
         if (Data.getPlayerClient() != null) {
           Data.getGameSession().setShouldEnd(true);
-          //Server.this.shutDownServer();
         }
       }
     });

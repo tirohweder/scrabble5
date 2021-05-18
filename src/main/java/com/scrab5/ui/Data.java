@@ -243,4 +243,8 @@ public class Data {
     return chatHistory;
   }
 
+  public static void resetChatHistroy() {
+    chatHistory = new StringBuffer();
+  }
+
 }

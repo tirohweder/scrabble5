@@ -19,6 +19,7 @@ import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
+import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 
@@ -97,6 +98,7 @@ public class ServerThread extends Threads {
             break;
           case SENDREADY:
             SendReadyMessage srm = (SendReadyMessage) message;
+            MultiplayerLobbyController.addVote(srm.getOrder());
             server.setClientReady(srm.getSender(), srm.getReady());
             break;
           case MAKETURN:

@@ -78,6 +78,7 @@ public class Client implements Serializable {
       hostedServer.setClientMaximum(clientMaximum);
       hostedServer.loadServerStatistics();
       hostedServer.openServerSocket();
+      hostedServer.startTimer();
     }
     hostedServer.acceptClients();
     try {
@@ -191,6 +192,8 @@ public class Client implements Serializable {
    * @author nitterhe
    */
   public void connectToServer(ServerData serverdata) {
+    Data.resetChatHistroy();
+    this.isReady = false;
     this.clientThread = new ClientThread(this);
     this.clientThread.connectToServer(serverdata);
   }
@@ -303,9 +306,9 @@ public class Client implements Serializable {
    * @param ready - a boolean with the client's ready satus
    * @author nitterhe
    */
-  public void setReady(boolean ready) {
+  public void setReady(boolean ready, ArrayList<Integer> order) {
     this.isReady = ready;
-    this.clientThread.sendMessageToServer(new SendReadyMessage(this.username, ready));
+    this.clientThread.sendMessageToServer(new SendReadyMessage(this.username, ready, order));
   }
 
   /**

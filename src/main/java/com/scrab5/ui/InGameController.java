@@ -1,13 +1,12 @@
 package com.scrab5.ui;
 
+import com.scrab5.core.game.Rack;
+import com.scrab5.core.player.Player;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
-import com.scrab5.core.game.Rack;
-import com.scrab5.core.player.Player;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -47,9 +46,9 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @author apilgrim
-   *         <p>
-   *         first representation of the rack places which later will be connected to the game core
-   *         and linked to the bag of tiles
+   * <p>
+   * first representation of the rack places which later will be connected to the game core and
+   * linked to the bag of tiles
    */
   @FXML
   ImageView rackPlace1;
@@ -186,9 +185,7 @@ public abstract class InGameController implements Initializable {
     Rack myRack = null;
     int rackPlace;
 
-    Iterator<Player> it = Data.getGameSession().getListOfPlayers().iterator();
-    while (it.hasNext()) {
-      Player p = it.next();
+    for (Player p : Data.getGameSession().getListOfPlayers()) {
       String s = p.getName();
       System.out.println(s);
       System.out.println(currentUser);
@@ -196,7 +193,6 @@ public abstract class InGameController implements Initializable {
       if (s.equalsIgnoreCase(currentUser)) {
         p.getRack().fill(Data.getGameSession().getBag());
         myRack = p.getRack();
-        System.out.println(myRack.getTileAt(0).getLetter());
       } else {
         continue;
       }
@@ -244,10 +240,7 @@ public abstract class InGameController implements Initializable {
 
   protected void initGameboard() {
 
-
     double layoutX = 263.0, layoutY = 53.0;
-
-
 
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
@@ -285,10 +278,11 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event - MouseEvent
    * @throws IOException this method is called when a tile on the board is clicked. It checks 1. if
-   *         the field already contained a letter which than is removed (backToRack) 2. else, if no
-   *         other tile is clicked and the place isn't taken, then it is marked thru the opacity or
-   *         if a letter is clicked as well, the Letter is placed. 3. last if another tile has been
-   *         clicked before it is unclicked an reseted from the clickedTile
+   *                     the field already contained a letter which than is removed (backToRack) 2.
+   *                     else, if no other tile is clicked and the place isn't taken, then it is
+   *                     marked thru the opacity or if a letter is clicked as well, the Letter is
+   *                     placed. 3. last if another tile has been clicked before it is unclicked an
+   *                     reseted from the clickedTile
    * @author apilgirm
    */
   @FXML
@@ -334,8 +328,8 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @param event - MouseEvent
-   *        <p>
-   *        method to set the opacity and let it looks like the field/ button is entered
+   *              <p>
+   *              method to set the opacity and let it looks like the field/ button is entered
    * @author apilgirm
    */
   @FXML
@@ -346,10 +340,9 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @author apilgirm
-   *         <p>
-   *         method to set the opacity on zero and let it looks like the field/ button is excited
-   *         but checks first that it isnt a letter already placed or the marked field with the
-   *         square
+   * <p>
+   * method to set the opacity on zero and let it looks like the field/ button is excited but checks
+   * first that it isnt a letter already placed or the marked field with the square
    */
   @FXML
   private void darken(MouseEvent event) {
@@ -364,10 +357,11 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method which is called when the rack Place One is clicked and checks 1. if
-   *         another letter is clicked/marked 2. if not, it checks if a destination tile is already
-   *         marked on the field and therefore is replaced with this letter, otherwise it is marked
-   *         and is locked in the clicked Letter attribute. Or 3. least if it was already the marked
-   *         letter in the rack it is unmarked and unclicked
+   *                     another letter is clicked/marked 2. if not, it checks if a destination tile
+   *                     is already marked on the field and therefore is replaced with this letter,
+   *                     otherwise it is marked and is locked in the clicked Letter attribute. Or 3.
+   *                     least if it was already the marked letter in the rack it is unmarked and
+   *                     unclicked
    * @author apilgirm
    */
   @FXML
@@ -420,7 +414,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 2 like in rackPlace1Clicked
+   *                     Place 2 like in rackPlace1Clicked
    * @author apilgirm
    */
   @FXML
@@ -473,7 +467,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 3 like in rackPlace1Clicked
+   *                     Place 3 like in rackPlace1Clicked
    * @author apilgirm
    */
   @FXML
@@ -525,7 +519,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 4 like in rackPlace1Clicked
+   *                     Place 4 like in rackPlace1Clicked
    * @author apilgirm
    */
   @FXML
@@ -578,7 +572,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 5 like in rackPlace1Clicked
+   *                     Place 5 like in rackPlace1Clicked
    * @author apilgirm
    */
   @FXML
@@ -632,7 +626,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 6 like in rackPlace1Clicked
+   *                     Place 6 like in rackPlace1Clicked
    * @author apilgirm
    */
   @FXML
@@ -686,7 +680,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 7 like in rackPlace1Clicked
+   *                     Place 7 like in rackPlace1Clicked
    * @author apilgirm
    * @author Aaron
    */
@@ -744,7 +738,7 @@ public abstract class InGameController implements Initializable {
   /**
    * @param event
    * @throws IOException method to refill rack where letters have been placed and to permanently
-   *         lock
+   *                     lock
    * @author apilgirm, (small part trohwede)
    */
   @FXML
@@ -873,13 +867,12 @@ public abstract class InGameController implements Initializable {
     }
 
 
-
   }
 
   /**
    * @param - ImageView
-   *        <p>
-   *        reset the opacity of the clickedLetter in the Rack and resets him from being clicked
+   *          <p>
+   *          reset the opacity of the clickedLetter in the Rack and resets him from being clicked
    * @author apilgrim
    */
 
@@ -898,12 +891,12 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @param iv - ImageView
-   *        <p>
-   *        This method is called when a destination Tile is clicked on the GameBoard which already
-   *        contains a letter tile (is chosen but not permanently logged) and brings back the letter
-   *        to the rack. It changes the Image on the Board back to the marked Tile (black square)
-   *        and brings the Letter from the Board back to the rack thru the opacity and resets the
-   *        clicked attributes (Letter/ Tile) for source and destination
+   *           <p>
+   *           This method is called when a destination Tile is clicked on the GameBoard which
+   *           already contains a letter tile (is chosen but not permanently logged) and brings back
+   *           the letter to the rack. It changes the Image on the Board back to the marked Tile
+   *           (black square) and brings the Letter from the Board back to the rack thru the opacity
+   *           and resets the clicked attributes (Letter/ Tile) for source and destination
    * @author apilgrim
    */
   private void backToRack(ImageView iv) {
@@ -988,11 +981,11 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @param iv - ImageView
-   *        <p>
-   *        This method is called when a destination Tile is clicked on the GameBoard and a Letter
-   *        Tile is selected. It changes the Image on the Board and "deletes" the Letter from the
-   *        Board thru the opacity and resets the boolean clicked attributes (Letter/ Tile) for
-   *        source and destination
+   *           <p>
+   *           This method is called when a destination Tile is clicked on the GameBoard and a
+   *           Letter Tile is selected. It changes the Image on the Board and "deletes" the Letter
+   *           from the Board thru the opacity and resets the boolean clicked attributes (Letter/
+   *           Tile) for source and destination
    * @author apilgrim
    */
   private void placeLetter(ImageView iv, Label l) {
@@ -1009,7 +1002,7 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @param placeID - String representation of the coordinate from every tile on the board read from
-   *        the fxml document as ID
+   *                the fxml document as ID
    * @return x - Integer representation of the x coordinate for the tile, placed on the Gameboard
    * @author apilgrim
    */
@@ -1024,7 +1017,7 @@ public abstract class InGameController implements Initializable {
 
   /**
    * @param placeID - String representation of the coordinate from every tile on the board read from
-   *        the fxml document as ID
+   *                the fxml document as ID
    * @return y - Integer representation of the y coordinate for the tile, placed on the Gameboard
    * @author apilgrim
    */
@@ -1131,12 +1124,11 @@ public abstract class InGameController implements Initializable {
   }
 
   protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
-    if (letter.equals("*")) {
+    if (letter.equals("space")) {
       letter = "placeHolder";
     } else {
       letter = "tile" + letter.toUpperCase();
     }
-
 
     Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter + ".png");
     rackPlace.setImage(letterImage);
@@ -1215,21 +1207,22 @@ public abstract class InGameController implements Initializable {
 
   @FXML
   private void giveUpClicked(MouseEvent event) throws IOException {
-    PopUpMessage pum = new PopUpMessage("Really!?\nE", PopUpMessageType.CONFIRMATION);
+    PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
     pum.show();
     if (Data.isConfirmed()) {
       Data.getGameSession().endGame();
       if (Data.getPlayerClient() != null) {
-        Data.getPlayerClient().disconnectFromServer();
+        App.setRoot("EndGameMultiplayer");
+      }else {
+        App.setRoot("EndGameSingleplayer");
       }
-      App.setRoot("EndGame");
     }
   }
 
   /**
    * @param event
-   * @author mherre
    * @throws IOException
+   * @author mherre
    */
   @FXML
   private void closeGame(MouseEvent event) throws IOException {

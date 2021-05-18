@@ -60,8 +60,6 @@ public class ClientThread extends Threads implements Serializable {
         switch (message.getType()) {
 
           case DISCONNECT:
-            // switch layer to lobby overview
-            // MultiplayerLobbyController.lobbyClosed();
             MultiplayerLobbyController.lobbyClosed();
             this.closeConnection();
             break;
@@ -116,8 +114,9 @@ public class ClientThread extends Threads implements Serializable {
         Platform.runLater(new Runnable() {
           public void run() {
             try {
-              PopUpMessage npm = new PopUpMessage("The connection has been closed.",
-                  PopUpMessageType.NOTIFICATION);
+              PopUpMessage npm =
+                  new PopUpMessage("The connection has been closed since a player disconnected.",
+                      PopUpMessageType.NOTIFICATION);
               npm.show();
             } catch (IOException e) {
               e.printStackTrace();
@@ -175,7 +174,7 @@ public class ClientThread extends Threads implements Serializable {
    * Sets the Thread attribute running = false. Closes the current connection and streams to the
    * server.
    *
-   * @author nitterhe @mherre :^)
+   * @author nitterhe
    */
   protected void closeConnection() {
     this.stopThread();

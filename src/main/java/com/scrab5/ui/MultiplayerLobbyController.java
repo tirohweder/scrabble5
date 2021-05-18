@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -55,6 +56,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private int aiPlayerAmount = 0;
   private LinkedList<Client> AIs;
   private boolean isHost;
+  private static ArrayList<ArrayList<Integer>> votes;
 
   /**
    * @author mherre
@@ -63,6 +65,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   public void initialize(URL location, ResourceBundle resources) {
     this.isClickable();
     this.setUpInit();
+    votes = new ArrayList<ArrayList<Integer>>();
 
     if (Data.getPlayerClient().getUsername()
         .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
@@ -111,7 +114,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     playSound("ButtonClicked.mp3");
 
     this.isReady = !isReady;
-    Data.getPlayerClient().setReady(this.isReady);
+
+    Data.getPlayerClient().setReady(this.isReady, this.getPlayerVotes());
   }
 
   @FXML
@@ -259,19 +263,47 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
   }
 
+  /**
+   * @author nitterhe
+   */
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
-    // TODO Auto-generated method stub
-
 
 
     ArrayList<Player> playerList = new ArrayList<Player>();
-    for (String clientName : Data.getPlayerClient().getCurrentServer().getClients().keySet()) {
+    Collection<ClientData> clientnames =
+        Data.getPlayerClient().getCurrentServer().getClients().values();
+    ArrayList<Integer> voteResults = new ArrayList<Integer>();
 
-      int vote1 = 0;
+    for (int i = 0; i < Data.getHostedServer().getClientCounter(); i++) {
+      voteResults.add(0);
+    }
 
-      playerList.add(new Player(clientName));
+    for (ArrayList<Integer> vote : votes) {
+      for (int j = 0; j < vote.size(); j++) {
+        voteResults.add(j, vote.get(j) + voteResults.remove(j));
+      }
+    }
 
+    int maximum;
+    Iterator<ClientData> it;
+    while (voteResults.size() > 1) {
+      maximum = 0;
+      for (int k = 1; k < voteResults.size(); k++) {
+        if (voteResults.get(maximum) < voteResults.get(k)) {
+          maximum = k;
+        }
+      }
+      it = clientnames.iterator();
+      for (int l = 0; l < maximum; l++) {
+        it.next();
+      }
+      playerList.add(0, new Player(it.next().getUsername()));
+      voteResults.remove(maximum);
+    }
+
+    for (ClientData client : Data.getHostedServer().getClients().values()) {
+      playerList.add(new Player(client.getUsername()));
     }
 
     GameSession gs;
@@ -295,7 +327,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   /**
    * Use Case 3.3 and 5 within.
-   * 
+   *
    * @author nitterhe
    */
   private void refreshUI() {
@@ -438,5 +470,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   private void updateAICounter() {
     this.aiPlayerAmount = AIs.size();
+  }
+
+  public static void addVote(ArrayList<Integer> vote) {
+    votes.add(vote);
   }
 }
