@@ -46,7 +46,7 @@ public class Client implements Serializable {
    * Server constantly changes every connected client's currentServer attribute (i.e. ChatMessages,
    * new Clients joined ....).
    *
-   * @param username This is the client's name other clients will see in a MultiPlayerLobby.
+   * @param username - This is the client's name other clients will see in a MultiPlayerLobby.
    * @author nitterhe
    */
   public Client(String username) {
