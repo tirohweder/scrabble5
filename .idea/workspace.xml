@@ -7,6 +7,7 @@
     <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Server.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,7 +243,7 @@
       <workItem from="1621061127917" duration="10427000" />
       <workItem from="1621150207196" duration="9782000" />
       <workItem from="1621239683722" duration="1221000" />
-      <workItem from="1621318735502" duration="16309000" />
+      <workItem from="1621318735502" duration="17090000" />
     </task>
     <task id="LOCAL-00001" summary="#69 add strucutre">
       <created>1619793717336</created>
@@ -524,7 +525,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621335551743</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="#85 shouldEnd implementated">
+      <created>1621335883508</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1621335883509</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +585,8 @@
     <MESSAGE value="#53 fixed tile placements" />
     <MESSAGE value="#85 fixed tile placements" />
     <MESSAGE value="#85 push for aaron" />
-    <option name="LAST_COMMIT_MESSAGE" value="#85 push for aaron" />
+    <MESSAGE value="#85 shouldEnd implementated" />
+    <option name="LAST_COMMIT_MESSAGE" value="#85 shouldEnd implementated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

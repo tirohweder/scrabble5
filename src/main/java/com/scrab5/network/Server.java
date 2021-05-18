@@ -376,7 +376,7 @@ public class Server implements Serializable {
     TimerTask task = (new TimerTask() {
       public void run() {
         if (Data.getPlayerClient() != null) {
-          Data.getGameSession().endGame();
+          Data.getGameSession().setShouldEnd(true);
           //Server.this.shutDownServer();
         }
       }
