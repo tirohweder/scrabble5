@@ -80,11 +80,11 @@ public class GameSession implements Serializable {
   }
 
   public boolean isRunning() {
-    return isRunning;
+    return running;
   }
 
   public void setRunning(boolean running) {
-    isRunning = running;
+    running = running;
   }
 
   private GameBoard gameBoard = new GameBoard();
@@ -97,7 +97,7 @@ public class GameSession implements Serializable {
   private String currentDic;
 
 
-  private boolean isRunning = true;
+  private boolean running = true;
 
 
   private boolean online;
@@ -187,10 +187,26 @@ public class GameSession implements Serializable {
     // Data.getHostedServer().endGame(winner);
     // TODO call server method
 
-    this.isRunning = false;
+    this.running = false;
   }
 
   public boolean giveUp() {
     return false;
   }
+
+  public void checkBagAndRack() {
+    if (bag.getSize() == 0 && !currentPlayer.getRack().isRackFull()) {
+      this.endGame();
+    }
+  }
+
+  public boolean calculateEndPossibility() {
+    if (this.skippedTurn >= 6) {
+      return true;
+    }
+    return false;
+
+
+  }
+
 }

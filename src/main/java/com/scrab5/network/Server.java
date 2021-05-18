@@ -7,6 +7,13 @@
  */
 package com.scrab5.network;
 
+import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.network.messages.LobbyUpdateMessage;
+import com.scrab5.network.messages.Message;
+import com.scrab5.ui.Data;
+import com.scrab5.util.database.Database;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.InetAddress;
@@ -16,13 +23,6 @@ import java.net.SocketException;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-import com.scrab5.network.NetworkError.NetworkErrorType;
-import com.scrab5.network.messages.LobbyUpdateMessage;
-import com.scrab5.network.messages.Message;
-import com.scrab5.ui.Data;
-import com.scrab5.util.database.Database;
-import com.scrab5.util.database.FillDatabase;
-import com.scrab5.util.database.UseDatabase;
 
 
 public class Server implements Serializable {
@@ -49,10 +49,10 @@ public class Server implements Serializable {
    * used for communication with the UI. The boolean UIServerInstance states if this Server is saved
    * as a currentServer in the Client class.
    *
-   * @author nitterhe
-   * @param host - the name of the server host
-   * @param clientMaximum - the maximum amount of clients allowed to connect to the server
+   * @param host             - the name of the server host
+   * @param clientMaximum    - the maximum amount of clients allowed to connect to the server
    * @param UIServerInstance - boolean to handle if sockets must be opened
+   * @author nitterhe
    */
   public Server(String host, int clientMaximum, boolean UIServerInstance) {
     this.clients = new HashMap<String, ClientData>();
@@ -163,8 +163,8 @@ public class Server implements Serializable {
   /**
    * Sends a message to all clients via the ServerThreads.
    *
-   * @author nitterhe
    * @param message - the message to send
+   * @author nitterhe
    */
   public void sendMessageToAllClients(Message message) {
     try {
@@ -179,8 +179,8 @@ public class Server implements Serializable {
   /**
    * Returns the IP4Address of the server as a String.
    *
-   * @author nitterhe
    * @return ip - the IP4Address of the server
+   * @author nitterhe
    */
   public String getIp4() {
     return this.ip4;
@@ -189,8 +189,8 @@ public class Server implements Serializable {
   /**
    * Returns the server's status (true = in game/ false = waiting for clients)
    *
-   * @author nitterhe
    * @return gameStart - the server's status
+   * @author nitterhe
    */
   public boolean getStatus() {
     return this.gameStart;
@@ -199,8 +199,8 @@ public class Server implements Serializable {
   /**
    * Returns the ServerSocket of the server as a ServerSocket object.
    *
-   * @author nitterhe
    * @return serverSocket - the ServerSocket of the server
+   * @author nitterhe
    */
   public ServerSocket getServerSocket() {
     return serverSocket;
@@ -209,8 +209,8 @@ public class Server implements Serializable {
   /**
    * Returns the server's host as a String.
    *
-   * @author nitterhe
    * @return host - the server's host.
+   * @author nitterhe
    */
   public String getHost() {
     return this.host;
@@ -219,8 +219,8 @@ public class Server implements Serializable {
   /**
    * Returns the maximum amount of clients allowed to connect.
    *
-   * @author nitterhe
    * @return clientMaximum- number of connected clients
+   * @author nitterhe
    */
   public int getClientMaximum() {
     return Server.clientMaximum;
@@ -229,8 +229,8 @@ public class Server implements Serializable {
   /**
    * Returns the number of connected clients as an int.
    *
-   * @author nitterhe
    * @return client count - number of connected clients
+   * @author nitterhe
    */
   public int getClientCounter() {
     return clientCounter;
@@ -258,8 +258,8 @@ public class Server implements Serializable {
    * Returns all connected clients as a HashMap. Keys are the usernames as Strings and values are
    * the clients as ClientData objects.
    *
-   * @author nitterhe
    * @return clients - HashMap with the Strings as keys and Clients as values
+   * @author nitterhe
    */
   public HashMap<String, ClientData> getClients() {
     return clients;
@@ -269,8 +269,8 @@ public class Server implements Serializable {
    * Returns all connections as a HashMap. Keys are the Client objects (from the client list) and
    * values are the belonging ServerThread objects.
    *
-   * @author nitterhe
    * @return connections - HashMap with Clients as keys and ServerThreads as values
+   * @author nitterhe
    */
   public HashMap<ClientData, ServerThread> getConnections() {
     return connections;
@@ -279,8 +279,8 @@ public class Server implements Serializable {
   /**
    * Returns this server's statistics as a ServerStatistics object.
    *
-   * @author nitterhe
    * @return serverStatistics - this server's ServerStatistics object
+   * @author nitterhe
    */
   public ServerStatistics getServerStatistics() {
     return this.serverStatistics;
@@ -290,8 +290,8 @@ public class Server implements Serializable {
    * Sets the serverStatistics to the given ServerStatistics instance. Only used for the
    * currentServer in the Client class to display the statistics correctly at every client.
    *
-   * @author nitterhe
    * @param serverStatistics - the new ServerStatistics object
+   * @author nitterhe
    */
   public void setServerStatistics(ServerStatistics serverStatistics) {
     this.serverStatistics = serverStatistics;
@@ -324,8 +324,8 @@ public class Server implements Serializable {
   /**
    * Updates the attribute gameStart with the given parameter.
    *
-   * @author nitterhe
    * @param gameStart - the new value for gameStart
+   * @author nitterhe
    */
   public void setGameStart(boolean gameStart) {
     this.gameStart = gameStart;
@@ -334,8 +334,8 @@ public class Server implements Serializable {
   /**
    * Overrides the client list.
    *
-   * @author nitterhe
    * @param clients - the new HashMap of the clients
+   * @author nitterhe
    */
   public void setClients(HashMap<String, ClientData> clients) {
     this.clients = clients;
@@ -344,8 +344,8 @@ public class Server implements Serializable {
   /**
    * Sets the maximum amount of clients allowed to connect.
    *
-   * @author nitterhe
    * @param clientMaximum - the maximum amount of clients allowed to connect.
+   * @author nitterhe
    */
   public void setClientMaximum(int clientMaximum) {
     Server.clientMaximum = clientMaximum;
@@ -353,10 +353,10 @@ public class Server implements Serializable {
 
   /**
    * Sets the given client's ready status.
-   * 
-   * @author nitterhe
+   *
    * @param clientname - the client's name
-   * @param ready - the client's new ready status
+   * @param ready      - the client's new ready status
+   * @author nitterhe
    */
   public void setClientReady(String clientname, boolean ready) {
     if (clients.containsKey(clientname)) {
@@ -367,8 +367,8 @@ public class Server implements Serializable {
 
   /**
    * Starts a 10 min timer for a client to make his turn. Server shuts down after 10 mins.
-   * 
-   * @author nitterhe
+   *
+   * @author nitterhe, trohwede
    */
   public void startTimer() {
 
@@ -376,7 +376,8 @@ public class Server implements Serializable {
     TimerTask task = (new TimerTask() {
       public void run() {
         if (Data.getPlayerClient() != null) {
-          Server.this.shutDownServer();
+          Data.getGameSession().endGame();
+          //Server.this.shutDownServer();
         }
       }
     });
@@ -385,7 +386,7 @@ public class Server implements Serializable {
 
   /**
    * Resets the timer. Called when a turn was made and received by the server.
-   * 
+   *
    * @author nitterhe
    */
   public void resetTimer() {
@@ -395,7 +396,7 @@ public class Server implements Serializable {
 
   /**
    * Cancels the timer. Called when the game ends.
-   * 
+   *
    * @author nitterhe
    */
   public void cancelTimer() {

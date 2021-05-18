@@ -70,6 +70,7 @@ public class GameBoard implements Serializable {
       currentChanges.add(t);
       System.out.println(currentChanges.size());
       firstTile = false;
+
       return true;
     } else {
       return false;

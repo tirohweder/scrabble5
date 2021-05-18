@@ -33,7 +33,7 @@ public class Rack implements Serializable {
    * @return
    * @author trohwede
    */
-  public boolean rackFull() {
+  public boolean isRackFull() {
     for (int i = 0; i < 7; i++) {
       if (this.rack[i] == null) {
         return false;
