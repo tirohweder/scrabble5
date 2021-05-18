@@ -25,7 +25,7 @@ public class SingleplayerController extends InGameController implements Initiali
       @Override
       public void run() {
 
-        while (Data.getGameSession().isRunning()) {
+        while (!Data.getGameSession().isShouldEnd()) {
 
           Platform.runLater(new Runnable() {
 
@@ -48,7 +48,7 @@ public class SingleplayerController extends InGameController implements Initiali
           }
         }
         try {
-          App.setRoot("endGame");
+          App.setRoot("EndGame");
         } catch (IOException e) {
           System.out.println("Something went wrong!");
         }
