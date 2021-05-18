@@ -3,6 +3,7 @@ package com.scrab5.core.game;
 import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
+import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -152,7 +153,7 @@ public class GameSession implements Serializable {
 
     System.out.println("Initialized Bag");
 
-    //FillDatabase.fillLetters();
+    FillDatabase.fillLetters();
     ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
       this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
