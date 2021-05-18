@@ -141,8 +141,10 @@ public class AccountCreationController extends Controller implements Initializab
         this.createdUsername = username;
         Data.setCurrentUser(this.createdUsername);
         FillDatabase.createPlayer(this.createdUsername, null);
+        Database.disconnect();
         FillDatabase.createServerRow(Data.getCurrentUser(), Data.getCurrentUser(),
             InetAddress.getLocalHost().getHostAddress());
+        Database.disconnect();
 
 
         message = "Congratulations! Your account has been created";

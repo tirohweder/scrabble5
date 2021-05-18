@@ -57,6 +57,8 @@ public class App extends Application {
     } else {
       Database.reconnect();
     }
+    Database.disconnect();
+    Database.reconnect();
 
     if (UseDatabase.tablePlayerIsEmpty()) {
       scene = new Scene(loadFXML("Login"), 1360, 768);
@@ -85,6 +87,7 @@ public class App extends Application {
     stage.setResizable(false);
     stage.show();
     Database.disconnect();
+    System.out.println("hier sind wir jetzt!");
   }
 
   /**
