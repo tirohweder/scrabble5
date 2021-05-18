@@ -30,7 +30,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    //Database.disconnect();
     return picture;
   }
 
