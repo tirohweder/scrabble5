@@ -38,7 +38,7 @@ public class SingleplayerController extends InGameController implements Initiali
               );
           synchronized (this) {
             try {
-              this.wait(5000);
+              this.wait(200);
             } catch (InterruptedException e) {
               // e.printStackTrace();
             }
