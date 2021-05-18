@@ -203,7 +203,7 @@ public abstract class InGameController implements Initializable {
     }
 
     for (int i = 0; i < 7; i++) {
-      if (!myRack.getTileAt(i).getLetter().equals("space")) {
+      if (myRack.getTileAt(i) != null) {
         switch (i) {
 
           case 0:
@@ -753,12 +753,15 @@ public abstract class InGameController implements Initializable {
 
     if (Data.getGameSession().getGameBoard().getCurrentChanges().size() > 0) {
       if (Data.getGameSession().getGameBoard().checkWordsLegit()) {
-        
+
         Data.getGameSession().setSkippedTurn(0);
         String message =
             "Congrats you scored: " + Data.getGameSession().getGameBoard().countScore();
         PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
         pum.show();
+        
+        Player current = Data.getGameSession().getCurrentPlayer();
+        
         Data.getGameSession().getGameBoard().finishTurn();
         Data.getGameSession().finishTurn();
 
@@ -857,13 +860,16 @@ public abstract class InGameController implements Initializable {
         tileClicked = false;
         clickedLetter = null;
         clickedTile = null;
+        
+        Data.getGameSession().checkBagAndRack(current);
 
       } else {
         String message = "The word placed isnt legit!";
         PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
+        pum.show();
       }
-    }else {
-      Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn()+1);
+    } else {
+      Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn() + 1);
     }
 
 
@@ -975,7 +981,6 @@ public abstract class InGameController implements Initializable {
           columnTransformation(iv.getId()));
     }
     iv.setImage(markedTile);
-    // TODO
     clickedTile = null;
     tileClicked = false;
     letterClicked = false;
