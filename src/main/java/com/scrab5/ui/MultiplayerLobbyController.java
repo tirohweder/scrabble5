@@ -132,10 +132,11 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   protected void addPlayer(MouseEvent event) throws IOException {
 
-    // AIs.add(new Client("Der Zerstörinator"+(AIs.size()+1)));
+    AIs.add(new Client("Der Zerstörinator" + (AIs.size() + 1)));
+    this.updateAICounter();
 
     playSound("ButtonClicked.mp3");
-    this.aiPlayerAmount++;
+
 
     for (int i = 1; i < Data.getPlayerCountMultiplayer() - 1; i++) {
       if (freeSpaces[i]) {
@@ -431,5 +432,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       }
     });
     t.start();
+  }
+
+  private void updateAICounter() {
+    this.aiPlayerAmount = AIs.size();
   }
 }

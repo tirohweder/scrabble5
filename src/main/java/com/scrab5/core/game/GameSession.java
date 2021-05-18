@@ -154,6 +154,8 @@ public class GameSession implements Serializable {
     System.out.println("Initialized Bag");
 
     FillDatabase.fillLetters();
+    Database.disconnect();
+    Database.reconnect();
     ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
       this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
