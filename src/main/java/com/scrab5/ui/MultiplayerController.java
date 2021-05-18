@@ -113,7 +113,7 @@ public class MultiplayerController extends InGameController implements Initializ
         }
 
         try {
-          App.setRoot("EndGame");
+          App.setRoot("EndGameMultiplayer");
         } catch (IOException e) {
           System.out.println("Something went wrong!");
         }
