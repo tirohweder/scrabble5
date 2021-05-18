@@ -252,7 +252,6 @@ public abstract class InGameController implements Initializable {
      for(int i = 0; i < 15; i++) {
      for(int j = 0; j < 15; j++) {
        if(Data.getGameSession().getGameBoard().getTile(i, j) != null) {
-         System.out.println("OIUHFOÖIEROÖI2");
          ImageView letterImage = new ImageView();
          String letter = Data.getGameSession().getGameBoard().getTile(i, j).getLetter();
          String points = Integer.toString(Data.getGameSession().getGameBoard().getTile(i,
