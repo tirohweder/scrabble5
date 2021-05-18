@@ -115,7 +115,7 @@
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="pointsPLayer4" layoutX="997.0" layoutY="19.0" opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
+            <Label fx:id="pointsPlayer4" layoutX="997.0" layoutY="19.0" opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
                <font>
                   <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
@@ -140,7 +140,7 @@
                   <Image url="@endImages/WonMenuClicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="91.0" layoutX="798.0" layoutY="465.0" onMouseClicked="#playAgainClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="42.0" fitWidth="91.0" layoutX="798.0" layoutY="465.0" opacity="0" onMouseClicked="#playAgainClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@endImages/wonPlayAgainClicked.png" />
                </image>
