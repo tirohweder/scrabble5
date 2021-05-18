@@ -1,6 +1,7 @@
 package com.scrab5.ui;
 
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -109,6 +110,12 @@ public class MultiplayerController extends InGameController implements Initializ
               // e.printStackTrace();
             }
           }
+        }
+
+        try {
+          App.setRoot("endGame");
+        } catch (IOException e) {
+          System.out.println("Something went wrong!");
         }
       }
     });
