@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
+import com.scrab5.util.textParser.DictionaryParser;
 
 class GameBoardTest {
 
@@ -269,6 +270,7 @@ class GameBoardTest {
 
   @Test
   void checkWordsLegit() {
+    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary");
     gameBoardTest.placeTile(new Tile("H", 3), 0, 0);
     gameBoardTest.placeTile(new Tile("E", 3), 0, 1);
     gameBoardTest.placeTile(new Tile("L", 3), 0, 2);

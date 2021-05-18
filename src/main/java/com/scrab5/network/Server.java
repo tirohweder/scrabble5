@@ -20,6 +20,7 @@ import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 
@@ -317,6 +318,7 @@ public class Server implements Serializable {
     this.updateClientCount();
     this.gameStart = false;
     Data.setGameSession(null);
+    Database.disconnect();
   }
 
   /**

@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
 import javafx.event.ActionEvent;
@@ -51,6 +52,7 @@ public class RealLoginController extends Controller implements Initializable {
   private void login(MouseEvent event) throws IOException {
 
     playSound("ButtonClicked.mp3");
+    Database.reconnect();
 
     if (this.isProfileSelected) {
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()) / 100);
@@ -64,6 +66,7 @@ public class RealLoginController extends Controller implements Initializable {
       pum.show();
 
     }
+    Database.disconnect();
   }
 
   /**

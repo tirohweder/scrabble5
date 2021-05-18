@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
@@ -93,11 +94,13 @@ public class AccountCreationController extends Controller implements Initializab
   @FXML
   private void enter(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
+    Database.reconnect();
     if (this.isUsernameValid(this.nickname.getText())) {
       App.setMusicVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       App.setRoot("MainMenu");
     }
+    Database.disconnect();
   }
 
   /**
@@ -133,24 +136,26 @@ public class AccountCreationController extends Controller implements Initializab
     PopUpMessage pum;
 
     if (username.matches(regex)) {
-
+      Database.reconnect();
       if (!UseDatabase.playerExists(this.nickname.getText())) {
         this.createdUsername = username;
         Data.setCurrentUser(this.createdUsername);
         FillDatabase.createPlayer(this.createdUsername, null);
         FillDatabase.createServerRow(Data.getCurrentUser(), Data.getCurrentUser(),
             InetAddress.getLocalHost().getHostAddress());
+        
 
         message = "Congratulations! Your account has been created";
         pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
         pum.show();
-
+        Database.disconnect();
         return true;
 
       } else {
         message = "This username already exists. Please choose a different name!";
         pum = new PopUpMessage(message, PopUpMessageType.ERROR);
         pum.show();
+        Database.disconnect();
 
         return false;
       }

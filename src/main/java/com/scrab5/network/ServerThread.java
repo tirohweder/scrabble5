@@ -19,6 +19,7 @@ import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 
 public class ServerThread extends Threads {
@@ -143,6 +144,7 @@ public class ServerThread extends Threads {
     } else {
       throw new Exception();
     }
+    Database.disconnect();
   }
 
   /**

@@ -82,6 +82,7 @@ public class App extends Application {
     stage.setTitle("Scrabble - Group 5");
     stage.setResizable(false);
     stage.show();
+    Database.disconnect();
   }
 
   /**

@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
@@ -47,6 +48,7 @@ public class ProfileController extends Controller implements Initializable {
    */
   @FXML
   private void deleteProfile(MouseEvent event) throws IOException {
+    Database.reconnect();
 
     playSound("ButtonClicked.mp3");
 
@@ -65,6 +67,7 @@ public class ProfileController extends Controller implements Initializable {
 
       }
     }
+    Database.disconnect();
   }
 
   /**
@@ -80,7 +83,7 @@ public class ProfileController extends Controller implements Initializable {
    */
   @FXML
   private void editName(MouseEvent event) throws IOException {
-
+    Database.reconnect();
     playSound("ButtonClicked.mp3");
 
     String message = "Enter your changes and click 'Okay'";
@@ -92,6 +95,7 @@ public class ProfileController extends Controller implements Initializable {
       Data.setCurrentUser(Data.getInputFieldText());
       App.setRoot("Profile");
     }
+    Database.disconnect();
   }
 
   /**
@@ -184,8 +188,9 @@ public class ProfileController extends Controller implements Initializable {
    * @author mherre
    * @author lengist
    */
-  private void setupStats() {
+  private synchronized void setupStats() {
 
+    Database.reconnect();
     String name = Data.getCurrentUser();
     String picture = PlayerProfileDatabase.getPicture(name);
     String longestWord = PlayerProfileDatabase.getLongestWord(name);
@@ -219,6 +224,6 @@ public class ProfileController extends Controller implements Initializable {
     this.totalWins.setText(String.valueOf(totalWins));
     this.winPercentage.setText(String.valueOf(winRate));
     this.favDic.setText(favoriteDictionary);
-
+    Database.disconnect();
   }
 }

@@ -254,6 +254,7 @@ public class PlayerProfileDatabase extends Database {
    * @return double value of the sound effect volume
    */
   public synchronized static double getSoundEffectVolume(String name) {
+    Database.reconnect();
     double soundEffect = 0.0;
     try {
       PreparedStatement pstm =

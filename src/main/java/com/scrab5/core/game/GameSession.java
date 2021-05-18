@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 
@@ -145,6 +146,7 @@ public class GameSession implements Serializable {
     }
 
     System.out.println("Finished Initialized Bag");
+    Database.disconnect();
   }
 
   public void initializeBag(ArrayList<Integer> letters, ArrayList<Integer> points)
