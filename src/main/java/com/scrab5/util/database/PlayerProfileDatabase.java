@@ -461,7 +461,7 @@ public class PlayerProfileDatabase extends Database {
    * @param language String representing the new favorite dictionary to be stored in the database
    */
   public static void setFavoriteDictionary(String name, String language) {
-    FillDatabase.updatePlayer("FaveDic", name, language, 0, 0.0);
+    FillDatabase.updatePlayer("FavDic", name, language, 0, 0.0);
   }
 
   /**

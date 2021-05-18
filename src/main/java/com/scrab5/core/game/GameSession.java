@@ -163,6 +163,7 @@ public class GameSession implements Serializable {
     }
 
     System.out.println("Finished Initialized Bag");
+    rs.close();
     Database.disconnect();
   }
 

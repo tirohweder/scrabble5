@@ -27,10 +27,9 @@ public class UseDatabase extends Database {
     try {
       Statement stm = connection.createStatement();
       rs = stm.executeQuery("SELECT * FROM Letters");
-      //rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
-    }
+    } 
     return rs;
   }
 

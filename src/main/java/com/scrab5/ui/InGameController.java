@@ -250,11 +250,11 @@ public abstract class InGameController implements Initializable {
 
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
-        if (Data.getGameSession().getGameBoard().getTile(i, j) != null) {
+        if (Data.getGameSession().getGameBoard().getPlayedTile(i, j) != null) {
           ImageView letterImage = new ImageView();
-          String letter = Data.getGameSession().getGameBoard().getTile(i, j).getLetter();
+          String letter = Data.getGameSession().getGameBoard().getPlayedTile(i, j).getLetter();
           String points =
-              Integer.toString(Data.getGameSession().getGameBoard().getTile(i, j).getValue());
+              Integer.toString(Data.getGameSession().getGameBoard().getPlayedTile(i, j).getValue());
           letterImage.setFitWidth(42.0);
           letterImage.setFitHeight(42.0);
           if (letter.equalsIgnoreCase("*")) {
@@ -1120,7 +1120,6 @@ public abstract class InGameController implements Initializable {
   private void exchangeClicked(MouseEvent event) throws IOException {
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()
         && (Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0)) {
-      Data.getGameSession().finishTurn();
       App.setRoot("Exchange");
     } else {
       PopUpMessage pum =
@@ -1130,12 +1129,12 @@ public abstract class InGameController implements Initializable {
   }
 
   protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
-    if (letter.equals("space")) {
+    if (letter.equals("space") | letter.equals("*")) {
       letter = "placeHolder";
-    } else {
+    } else  {
       letter = "tile" + letter.toUpperCase();
     }
-
+    System.out.println(letter);
     Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter + ".png");
     rackPlace.setImage(letterImage);
     if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {

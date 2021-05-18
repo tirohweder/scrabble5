@@ -205,7 +205,7 @@ public class FillDatabase extends Database {
           pstmt.setString(1, contentString);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
-          pstmt.close();
+          //pstmt.close();
         } else if (column == "Picture") {
           String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
             pstmt = connection.prepareStatement(sql);
@@ -264,8 +264,9 @@ public class FillDatabase extends Database {
           String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
             pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, contentString);
+            System.out.println("contentString: " + contentString);
             pstmt.setString(2, name);
-            pstmt.executeUpdate();
+            pstmt.executeUpdate(); 
         } else if (column == "Music") {
           String sql = "UPDATE Player SET Music = ? WHERE name = ?";
             pstmt = connection.prepareStatement(sql);
