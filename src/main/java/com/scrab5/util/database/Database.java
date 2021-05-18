@@ -88,7 +88,7 @@ public class Database {
    */
   public static void disconnect() {
     try {
-      FillDatabase.closeAllStatements();
+      //FillDatabase.closeAllStatements();
       connection.close();
       System.out.println("disconnected!");
     } catch (SQLException e) {

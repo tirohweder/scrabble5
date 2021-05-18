@@ -27,6 +27,7 @@ public class UseDatabase extends Database {
     try {
       Statement stm = connection.createStatement();
       rs = stm.executeQuery("SELECT * FROM Letters");
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -43,14 +44,20 @@ public class UseDatabase extends Database {
     Database.reconnect();
     boolean empty = false;
     int anzahl = 0;
+    ResultSet rs = null;
     try {
       Statement stm = connection.createStatement();
       String sql = "SELECT COUNT(*) FROM Player";
-      ResultSet rs = stm.executeQuery(sql);
+      rs = stm.executeQuery(sql);
       anzahl = rs.getInt(1);
       if (anzahl == 0) {
         empty = true;
       }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    try {
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -71,7 +78,11 @@ public class UseDatabase extends Database {
 
       Statement stm = connection.createStatement();
       rs = stm.executeQuery("SELECT Name FROM Player");
-
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    try {
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -95,6 +106,11 @@ public class UseDatabase extends Database {
       while (rs.next()) {
         ol.add(rs.getString(1));
       }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    try {
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -123,6 +139,11 @@ public class UseDatabase extends Database {
     }
     String[] letters = new String[letter.size()];
     letters = letter.toArray(letters);
+    try {
+      rs.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     return letters;
   }
 
@@ -150,6 +171,11 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     int[] points = point.stream().mapToInt(Integer::intValue).toArray();
+    try {
+      rs.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     return points;
   }
 
@@ -177,6 +203,11 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     int[] occurrences = occurrence.stream().mapToInt(Integer::intValue).toArray();
+    try {
+      rs.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
     return occurrences;
   }
 
@@ -191,9 +222,10 @@ public class UseDatabase extends Database {
    */
   public synchronized static ServerStatistics getServerStatistics(String serverHostName) {
     Database.reconnect();
+    ResultSet s = null;
     try {
       Statement stm = connection.createStatement();
-      ResultSet s = stm
+      s = stm
           .executeQuery("SELECT * FROM Server WHERE (ServerHostName = '" + serverHostName + "');");
       ServerStatistics ss = new ServerStatistics();
       String client = "", IPAddress = "";
@@ -206,9 +238,15 @@ public class UseDatabase extends Database {
         ss.loadClient(client, IPAddress, gamesPlayed, gamesWon);
       }
       Database.disconnect();
+      s.close();
       return ss;
     } catch (SQLException e) {
       e.printStackTrace();
+      try {
+        s.close();
+      } catch (SQLException e1) {
+        e1.printStackTrace();
+      }
       Database.disconnect();
       return null;
     }
@@ -249,9 +287,10 @@ public class UseDatabase extends Database {
   public synchronized static boolean playerExists(String name) {
     Database.reconnect();
     boolean exists = false;
+    ResultSet rs = null;
     try {
       Statement test = connection.createStatement();
-      ResultSet rs = test.executeQuery("SELECT Name FROM Player");
+      rs = test.executeQuery("SELECT Name FROM Player");
       while (rs.next()) {
         if (rs.getString("Name").equals(name)) {
           exists = true;
@@ -259,6 +298,11 @@ public class UseDatabase extends Database {
       }
     } catch (SQLException e1) {
       e1.printStackTrace();
+    }
+    try {
+      rs.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
     Database.disconnect();
     return exists;

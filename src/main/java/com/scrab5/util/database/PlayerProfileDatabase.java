@@ -3,6 +3,7 @@ package com.scrab5.util.database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Class to get and set the data for the player statistics and leaderboards.
@@ -19,16 +20,26 @@ public class PlayerProfileDatabase extends Database {
    * @return String with path to picture
    */
   public synchronized static String getPicture(String name) {
+    Database.disconnect();
     Database.reconnect();
     String picture = null;
+    ResultSet rs = null;
     try {
       PreparedStatement pstm =
           connection.prepareStatement("SELECT Picture FROM Player WHERE Name = ?");
       pstm.setString(1, name);
-      ResultSet rs = pstm.executeQuery();
-      picture = rs.getString(1);
+      rs = pstm.executeQuery();
+      while(rs.next()) {
+        picture = rs.getString(1);
+      }
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        rs.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
     //Database.disconnect();
     return picture;
@@ -49,7 +60,10 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT TotalPoints FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      points = rs.getInt(1);
+      while(rs.next()) {
+        points = rs.getInt(1);
+      }
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -67,14 +81,24 @@ public class PlayerProfileDatabase extends Database {
   public synchronized static int getPersonalHighscore(String name) {
     Database.reconnect();
     int highscore = 0;
+    ResultSet rs = null;
     try {
       PreparedStatement pstm =
           connection.prepareStatement("SELECT PersonalHighscore FROM Player WHERE Name = ?");
       pstm.setString(1, name);
-      ResultSet rs = pstm.executeQuery();
-      highscore = rs.getInt(1);
+      rs = pstm.executeQuery();
+      while(rs.next()) {
+        highscore = rs.getInt(1);
+      }
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
+    } finally {
+      try {
+        rs.close();
+      } catch (SQLException e) {
+        e.printStackTrace();
+      }
     }
     Database.disconnect();
     return highscore;
@@ -96,7 +120,10 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT LaidWords FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      words = rs.getInt(1);
+      while(rs.next()) {
+        words = rs.getInt(1);
+      }
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -119,7 +146,10 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT PointsPerWordRate FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      pPerWord = rs.getInt(1);
+      while(rs.next()) {
+        pPerWord = rs.getInt(1);
+      }
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -143,7 +173,11 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT LongestWord FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      word = rs.getString(1);
+      while(rs.next()) {
+        word = rs.getString(1);
+      }
+      
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -167,7 +201,10 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT TotalPlayedGames FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      games = rs.getInt(1);
+      while(rs.next()) {
+        games = rs.getInt(1);
+      }
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -190,7 +227,10 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT TotalWins FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      wins = rs.getInt(1);
+      while(rs.next()) {
+        wins = rs.getInt(1);
+      }
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -214,7 +254,10 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT WinRate FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      rate = rs.getDouble(1);
+      while(rs.next()) {
+        rate = rs.getDouble(1);
+      }
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -237,7 +280,10 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT FaveDic FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      dic = rs.getString(1);
+      while(rs.next()) {
+        dic = rs.getString(1);
+      }
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -260,7 +306,10 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT Music FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      music = rs.getDouble(1);
+      while(rs.next()) {
+        music = rs.getDouble(1);
+      }
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -283,7 +332,10 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT SoundEffect FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      soundEffect = rs.getDouble(1);
+      while(rs.next()) {
+        soundEffect = rs.getDouble(1);
+      }
+      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -438,5 +490,8 @@ public class PlayerProfileDatabase extends Database {
     System.out.println("EffectFertig");
   }
 
+  public static void main(String[] args) {
+    FillDatabase.updatePlayer("Name", "laura", "neuLaura", 0, 0.0);
+  }
 
 }

@@ -190,8 +190,9 @@ public class ProfileController extends Controller implements Initializable {
    */
   private synchronized void setupStats() {
 
-    //Database.reconnect();
+    Database.reconnect();
     String name = Data.getCurrentUser();
+    Database.disconnect();
     String picture = PlayerProfileDatabase.getPicture(name);
     String longestWord = PlayerProfileDatabase.getLongestWord(name);
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
@@ -225,5 +226,9 @@ public class ProfileController extends Controller implements Initializable {
     this.winPercentage.setText(String.valueOf(winRate));
     this.favDic.setText(favoriteDictionary);
     //Database.disconnect();
+  }
+  
+  public static void main(String[] args) {
+    //setupStats();
   }
 }

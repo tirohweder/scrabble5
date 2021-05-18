@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.scrab5.util.database.Database;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

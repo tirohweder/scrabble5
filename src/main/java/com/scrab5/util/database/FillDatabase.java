@@ -108,7 +108,7 @@ public class FillDatabase extends Database {
       System.out.println("Could not perform deletion in table " + name);
       System.out.println(e);
     }
-    // Database.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -129,7 +129,7 @@ public class FillDatabase extends Database {
       System.out.println(e);
     }
     closeStatement("delete");
-    // Database.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -167,8 +167,13 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    closeStatement("player");
-    // Database.disconnect();
+    try {
+      pstmPlayer.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    //closeStatement("player");
+    Database.disconnect();
     return created;
   }
 
@@ -183,147 +188,115 @@ public class FillDatabase extends Database {
    * @param contentInt Integer that contains the new information that needs to be stored in the
    *        database
    * @author hraza
+   * @author lengist
    */
   protected synchronized static void updatePlayer(String column, String name, String contentString,
       int contentInt, double doubleValues) {
     Database.reconnect();
     System.out.println("Fill");
-    PreparedStatement pstmt;
+    //PreparedStatement pstmt;
 
-    if (column == "Name") {
-      String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
+    try {
+      PreparedStatement pstmt = null;
+      
       try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setString(1, contentString);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-        pstmt.close();
+        if (column == "Name") {
+          String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setString(1, contentString);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
+          pstmt.close();
+        } else if (column == "Picture") {
+          String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(2, contentString);
+            pstmt.setString(1, name);
+            pstmt.executeUpdate();
+        } else if (column == "TotalPoints") {
+          String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, contentInt);
+            pstmt.setString(2, name);
+            pstmt.executeUpdate();
+        } else if (column == "PersonalHighscore") {
+          String sql = "UPDATE Player SET PersonalHighscore = ? WHERE Name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, contentInt);
+            pstmt.setString(2, name);
+            pstmt.executeUpdate();
+        } else if (column == "LaidWords") {
+          String sql = "UPDATE Player SET Laidwords = ? WHERE Name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, contentInt);
+            pstmt.setString(2, name); 
+            pstmt.executeUpdate();
+        } else if (column == "PointsPerWordRate") {
+          String sql = "UPDATE Player SET PointsPerWordRate = ? WHERE Name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, contentInt);
+            pstmt.setString(2, name); 
+            pstmt.executeUpdate();
+        } else if (column == "LongestWord") {
+          String sql = "UPDATE Player SET LongestWord = ? WHERE Name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, contentInt);
+            pstmt.setString(2, name);
+            pstmt.executeUpdate();
+        } else if (column == "TotalPlayedGames") {
+          String sql = "UPDATE Player SET TotalPlayedGames = ? WHERE Name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, contentInt);
+            pstmt.setString(2, name);
+            pstmt.executeUpdate();
+        } else if (column == "TotalWins") {
+          String sql = "UPDATE Player SET TotalWins = ? WHERE Name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setInt(1, contentInt);
+            pstmt.setString(2, name);
+            pstmt.executeUpdate();
+        } else if (column == "WinRate") {
+          String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setDouble(1, doubleValues);
+            pstmt.setString(2, name);
+            pstmt.executeUpdate();
+        } else if (column == "FavDic") {
+          String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setString(1, contentString);
+            pstmt.setString(2, name);
+            pstmt.executeUpdate();
+        } else if (column == "Music") {
+          String sql = "UPDATE Player SET Music = ? WHERE name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setDouble(1, doubleValues);
+            pstmt.setString(2, name);
+            pstmt.executeUpdate();
+        } else if (column == "SoundEffect") {
+          String sql = "UPDATE Player SET SoundEffect = ? WHERE name = ?";
+            pstmt = connection.prepareStatement(sql);
+            pstmt.setDouble(1, doubleValues);
+            pstmt.setString(2, name);
+            pstmt.executeUpdate();
+        }
       } catch (SQLException e) {
         System.out.println(e.getMessage());
+      } finally {
+        if(pstmt != null) {
+          pstmt.close();
+        }
       }
-    } else if (column == "Picture") {
-      String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setString(2, contentString);
-        pstmt.setString(1, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "TotalPoints") {
-      String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "PersonalHighscore") {
-      String sql = "UPDATE Player SET PersonalHighscore = ? WHERE Name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "LaidWords") {
-      String sql = "UPDATE Player SET Laidwords = ? WHERE Name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name); 
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "PointsPerWordRate") {
-      String sql = "UPDATE Player SET PointsPerWordRate = ? WHERE Name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name); 
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "LongestWord") {
-      String sql = "UPDATE Player SET LongestWord = ? WHERE Name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "TotalPlayedGames") {
-      String sql = "UPDATE Player SET TotalPlayedGames = ? WHERE Name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "TotalWins") {
-      String sql = "UPDATE Player SET TotalWins = ? WHERE Name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setInt(1, contentInt);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "WinRate") {
-      String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setDouble(1, doubleValues);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "FavDic") {
-      String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setString(1, contentString);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "Music") {
-      String sql = "UPDATE Player SET Music = ? WHERE name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setDouble(1, doubleValues);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
-    } else if (column == "SoundEffect") {
-      String sql = "UPDATE Player SET SoundEffect = ? WHERE name = ?";
-      try {
-        pstmt = connection.prepareStatement(sql);
-        pstmt.setDouble(1, doubleValues);
-        pstmt.setString(2, name);
-        pstmt.executeUpdate();
-      } catch (SQLException e) {
-        System.out.println(e.getMessage());
-      }
+    } catch (SQLException e) {
+      System.out.println(e.getMessage());
     }
-    closeStatement("player");
-    // Database.disconnect();
+  
+      
+      
+    
+     
+    //closeStatement("player");
+    Database.disconnect();
   }
 
   /**
@@ -348,7 +321,12 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    closeStatement("server");
+    try {
+      pstmServer.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    //closeStatement("server");
     // Database.disconnect();
   }
 
@@ -377,12 +355,13 @@ public class FillDatabase extends Database {
         pstm.setString(3, serverObject.getHost());
         pstm.setString(4, cs.getClientName());
         pstm.executeUpdate();
+        pstm.close();
       }
     } catch (SQLException e) {
       e.printStackTrace();
     }
     closeStatement("server");
-    // Database.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -406,8 +385,13 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    closeStatement("dic");
-    // Database.disconnect();
+    try {
+      pstmDic.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    //closeStatement("dic");
+    Database.disconnect();
   }
 
   /**
@@ -427,7 +411,7 @@ public class FillDatabase extends Database {
     for (int i = 0; i < 27; i++) {
       insertLetters(letter[i], points[i], occurrence[i]);
     }
-    // Database.disconnect();
+   Database.disconnect();
   }
 
   /**
@@ -448,7 +432,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("dic");
-    // Database.disconnect();
+    Database.disconnect();
   }
 
   /**
@@ -469,7 +453,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("dic");
-    // Database.disconnect();
+    Database.disconnect();
   }
 }
 
