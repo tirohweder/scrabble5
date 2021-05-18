@@ -39,6 +39,8 @@ public class App extends Application {
    * 
    * Then it sets up the app screen and shows the first scene
    * 
+   * https://www.codota.com/code/java/methods/javafx.stage.Stage/setOnCloseRequest
+   * 
    * TODO: Update Comments
    * 
    * @author mherre
