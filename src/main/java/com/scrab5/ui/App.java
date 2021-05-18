@@ -85,6 +85,7 @@ public class App extends Application {
     stage.setResizable(false);
     stage.show();
     System.out.println("hier sind wir jetzt!");
+
   }
 
   /**
