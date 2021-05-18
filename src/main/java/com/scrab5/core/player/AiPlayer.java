@@ -5,6 +5,7 @@ import com.scrab5.core.game.GameBoard;
 import com.scrab5.ui.Data;
 import java.util.ArrayList;
 
+
 public class AiPlayer extends Player {
 
   ArrayList<AiPosition> pos;
@@ -112,6 +113,7 @@ public class AiPlayer extends Player {
    * @author hraza
    */
 
+  
   public void getSpotsfree(int x, int y, GameBoard g) {
     int counterRight = 0;
     int counterLeft = 0;

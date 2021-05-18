@@ -7,6 +7,7 @@ import com.scrab5.core.game.Tile;
 
 class AiPlayerTest {
 
+  
   @Test
   void sortPosMinTest() {
     Tile first = new Tile("A",1);
@@ -22,6 +23,7 @@ class AiPlayerTest {
     assertEquals(8,test.getCounterDown());
     assertEquals(6,test.getCounterUp());
   }
+  
   
   @Test
   void sortPosMaxTest() {
