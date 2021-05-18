@@ -1,10 +1,10 @@
 package com.scrab5.util.textParser;
 
+import com.scrab5.util.database.CreateDatabase;
+import com.scrab5.util.database.Database;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import com.scrab5.util.database.CreateDatabase;
-import com.scrab5.util.database.Database;
 
 /**
  * This class tests the scanning process of a file to search a word. The method getWordsIncluding is tested relating the AiPlayer.

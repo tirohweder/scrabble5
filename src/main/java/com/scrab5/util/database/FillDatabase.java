@@ -1,12 +1,12 @@
 package com.scrab5.util.database;
 
-import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Iterator;
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.util.Iterator;
 
 
 /**

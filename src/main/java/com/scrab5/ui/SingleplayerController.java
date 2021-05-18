@@ -38,14 +38,14 @@ public class SingleplayerController extends InGameController implements Initiali
               );
           synchronized (this) {
             try {
-              this.wait(5000);
+              this.wait(200);
             } catch (InterruptedException e) {
               // e.printStackTrace();
             }
           }
         }
         try {
-          App.setRoot("EndGameSingleplayer");
+          App.setRoot("EndGameMultiplayer");
         } catch (IOException e) {
           System.out.println("Something went wrong!");
         }
