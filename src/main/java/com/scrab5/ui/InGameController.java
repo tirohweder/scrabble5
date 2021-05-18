@@ -196,7 +196,6 @@ public abstract class InGameController implements Initializable {
       if (s.equalsIgnoreCase(currentUser)) {
         p.getRack().fill(Data.getGameSession().getBag());
         myRack = p.getRack();
-        System.out.println(myRack.getTileAt(0).getLetter());
       } else {
         continue;
       }
@@ -1215,14 +1214,15 @@ public abstract class InGameController implements Initializable {
 
   @FXML
   private void giveUpClicked(MouseEvent event) throws IOException {
-    PopUpMessage pum = new PopUpMessage("Really!?\nE", PopUpMessageType.CONFIRMATION);
+    PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
     pum.show();
     if (Data.isConfirmed()) {
       Data.getGameSession().endGame();
       if (Data.getPlayerClient() != null) {
-        Data.getPlayerClient().disconnectFromServer();
+        App.setRoot("EndGameMultiplayer");
+      }else {
+        App.setRoot("EndGameSingleplayer");
       }
-      App.setRoot("EndGame");
     }
   }
 
