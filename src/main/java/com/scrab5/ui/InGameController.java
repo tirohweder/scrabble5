@@ -116,7 +116,7 @@ public abstract class InGameController implements Initializable {
   @FXML
   private Label pointsPlayer3;
   @FXML
-  private Label pointsPLayer4;
+  private Label pointsPlayer4;
 
   private int rackClicked;
 
@@ -143,6 +143,7 @@ public abstract class InGameController implements Initializable {
   protected void initPlayers() {
 
     if (0 < playerAmount) {
+      pointsPlayer1.setText(Integer.toString(players.get(0).getPoints()));
       player1.setText(players.get(0).getName());
       if (players.get(0).getName().equalsIgnoreCase(currentPlayer)) {
         playerProfile1Passive.setOpacity(0);
@@ -151,6 +152,8 @@ public abstract class InGameController implements Initializable {
     if (1 < playerAmount) {
       player2.setText(players.get(1).getName());
       player2.setOpacity(1);
+      pointsPlayer2.setText(Integer.toString(players.get(1).getPoints()));
+      pointsPlayer2.setOpacity(1);
       playerProfile2Active.setOpacity(1);
       playerProfile2Passive.setOpacity(1);
       if (players.get(1).getName().equalsIgnoreCase(currentPlayer)) {
@@ -160,6 +163,8 @@ public abstract class InGameController implements Initializable {
     if (2 < playerAmount) {
       player3.setText(players.get(2).getName());
       player3.setOpacity(1);
+      pointsPlayer3.setText(Integer.toString(players.get(2).getPoints()));
+      pointsPlayer3.setOpacity(1);
       playerProfile3Active.setOpacity(1);
       playerProfile3Passive.setOpacity(1);
       if (players.get(2).getName().equalsIgnoreCase(currentPlayer)) {
@@ -169,6 +174,8 @@ public abstract class InGameController implements Initializable {
     if (3 < playerAmount) {
       player4.setText(players.get(3).getName());
       player4.setOpacity(1);
+      pointsPlayer4.setText(Integer.toString(players.get(3).getPoints()));
+      pointsPlayer4.setOpacity(1);
       playerProfile4Active.setOpacity(1);
       playerProfile4Passive.setOpacity(1);
       if (players.get(3).getName().equalsIgnoreCase(currentPlayer)) {
@@ -183,7 +190,6 @@ public abstract class InGameController implements Initializable {
   protected void initRack() {
     String currentUser = Data.getCurrentUser();
     Rack myRack = null;
-    int rackPlace;
 
     for (Player p : Data.getGameSession().getListOfPlayers()) {
       String s = p.getName();
@@ -244,11 +250,11 @@ public abstract class InGameController implements Initializable {
 
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
-        if (Data.getGameSession().getGameBoard().getTile(i, j) != null) {
+        if (Data.getGameSession().getGameBoard().getPlayedTile(i, j) != null) {
           ImageView letterImage = new ImageView();
-          String letter = Data.getGameSession().getGameBoard().getTile(i, j).getLetter();
+          String letter = Data.getGameSession().getGameBoard().getPlayedTile(i, j).getLetter();
           String points =
-              Integer.toString(Data.getGameSession().getGameBoard().getTile(i, j).getValue());
+              Integer.toString(Data.getGameSession().getGameBoard().getPlayedTile(i, j).getValue());
           letterImage.setFitWidth(42.0);
           letterImage.setFitHeight(42.0);
           if (letter.equalsIgnoreCase("*")) {
@@ -1114,7 +1120,6 @@ public abstract class InGameController implements Initializable {
   private void exchangeClicked(MouseEvent event) throws IOException {
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()
         && (Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0)) {
-      Data.getGameSession().finishTurn();
       App.setRoot("Exchange");
     } else {
       PopUpMessage pum =
@@ -1124,12 +1129,12 @@ public abstract class InGameController implements Initializable {
   }
 
   protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
-    if (letter.equals("space")) {
+    if (letter.equals("space") | letter.equals("*")) {
       letter = "placeHolder";
-    } else {
+    } else  {
       letter = "tile" + letter.toUpperCase();
     }
-
+    System.out.println(letter);
     Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter + ".png");
     rackPlace.setImage(letterImage);
     if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {

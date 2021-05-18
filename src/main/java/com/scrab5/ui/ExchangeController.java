@@ -30,6 +30,7 @@ public class ExchangeController extends InGameController implements Initializabl
   @FXML
   private void exchangeConfirmed(MouseEvent event) throws IOException {
     exchangeTiles();
+    Data.getGameSession().finishTurn();
     App.setRoot("SinglePlayer");
   }
   

@@ -11,9 +11,6 @@ public class SingleplayerController extends InGameController implements Initiali
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
-    initRack();
-    initPlayers();
-    initGameboard();
     refreshUI();
 
   }
