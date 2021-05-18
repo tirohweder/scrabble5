@@ -35,6 +35,8 @@ public class Data {
 
   private static double sfxVolume = 1.0;
 
+  private static StringBuffer chatHistory = new StringBuffer();
+
   public static GameSession getGameSession() {
     return gameSession;
   }
@@ -237,5 +239,8 @@ public class Data {
     return playerCountMultiplayer;
   }
 
+  public static StringBuffer getChatHistory() {
+    return chatHistory;
+  }
 
 }
