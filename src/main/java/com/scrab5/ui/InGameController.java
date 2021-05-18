@@ -1131,7 +1131,7 @@ public abstract class InGameController implements Initializable {
   }
 
   protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
-    if (letter.equals("*")) {
+    if (letter.equals("space")) {
       letter = "placeHolder";
     } else {
       letter = "tile" + letter.toUpperCase();
