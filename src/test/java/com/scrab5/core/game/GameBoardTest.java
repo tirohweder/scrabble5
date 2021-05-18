@@ -111,6 +111,18 @@ class GameBoardTest {
     gameBoardTest.placeTileTest(new Tile("T", 3), 8, 4);
     assertTrue(gameBoardTest.isSpotInLine(8, 5));
     assertFalse(gameBoardTest.isSpotInLine(8, 6));
+
+    gameBoardTest.finishTurn();
+
+    gameBoardTest.placeTileTest(new Tile("T", 3), 8, 1);
+    gameBoardTest.placeTileTest(new Tile("T", 3), 8, 5);
+
+    assertTrue(gameBoardTest.isSpotInLine(8, 0));
+    assertTrue(gameBoardTest.isSpotInLine(8, 5));
+
+    assertFalse(gameBoardTest.isSpotInLine(8, 7));
+    gameBoardTest.placeTileTest(new Tile("T", 3), 8, 5);
+    assertTrue(gameBoardTest.isSpotInLine(8, 6));
   }
 
   @Test
@@ -315,7 +327,7 @@ class GameBoardTest {
     gameBoardTest.placeTileTest(new Tile("X", 3), 4, 3);
 
     assertFalse(gameBoardTest.checkWordsLegit());
-    
+
 
   }
 

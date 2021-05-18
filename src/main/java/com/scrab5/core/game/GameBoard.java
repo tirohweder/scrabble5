@@ -68,6 +68,7 @@ public class GameBoard implements Serializable {
       t.setColumn(column);
       t.setRackPlace(null);
       currentChanges.add(t);
+      System.out.println(currentChanges.size());
       firstTile = false;
       return true;
     } else {
@@ -114,6 +115,12 @@ public class GameBoard implements Serializable {
       Tile t = gameBoardCurrent[row][column];
       gameBoardCurrent[row][column] = null;
       currentChanges.remove(t);
+
+      //TODO Error may appear if you try to remove in the middele
+      if (row == 0 && column == 0) {
+        firstTile = true;
+      }
+
       return true;
     } else {
       return false;
@@ -207,7 +214,10 @@ public class GameBoard implements Serializable {
 
 
   public boolean isConnectedToOldTiles(int row, int column) {
-    return (gameBoard[row + 1][column] == null);
+    return ((row + 1 < 15) && gameBoard[row + 1][column] != null) || ((row - 1 >= 0)
+        && gameBoard[row - 1][column] != null) || ((column + 1 < 15) &&
+        gameBoard[row][column + 1] != null) || ((column - 1 >= 0)
+        && gameBoard[row][column - 1] != null);
   }
 
   /**
@@ -218,7 +228,7 @@ public class GameBoard implements Serializable {
    * @return
    * @author trohwede
    */
-  public boolean isSpotInLine(int row, int column) {
+  public boolean isSpotInLinev2(int row, int column) {
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
     int row2 = currentChanges.get(1).getRow();
@@ -251,18 +261,46 @@ public class GameBoard implements Serializable {
   }
 
 
-  public boolean isSpotInLinev2(int row, int column) {
+  public boolean isSpotInLine(int row, int column) {
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
     int row2 = currentChanges.get(1).getRow();
     int column2 = currentChanges.get(1).getColumn();
 
-    if (row1 == row2) {
+    if (column1 == column2 && column1 == column) {
+      if (row < row1) {
+        for (int i = 1; i < Integer.min(row1, row2) - row; i++) {
+          if (gameBoardCurrent[Integer.min(row1, row2) - i][column] == null) {
+            return false;
+          }
+        }
+      } else if (row > row1) {
+        for (int i = 1; i < row - Integer.max(row1, row2); i++) {
+          if (gameBoardCurrent[Integer.max(row1, row2) + i][column] == null) {
+            return false;
+          }
+        }
+      }
 
-    }
-
-    if (column1 == column2) {
-
+    } else if (row1 == row2 && row1 == row) {
+      System.out.println("Same Row");
+      if (column < column1) {
+        System.out.println("Neuer buchstabe ist Links");
+        for (int i = 1; i < Integer.min(column1, column2) - column; i++) {
+          if (gameBoardCurrent[row][Integer.min(column1, column2) - i] == null) {
+            return false;
+          }
+        }
+      } else if (column > column1) {
+        System.out.println("Neuer buchstabe ist rechts");
+        for (int i = 1; i < column - Integer.max(column1, column2); i++) {
+          if (gameBoardCurrent[row][Integer.max(column1, column2) + i] == null) {
+            return false;
+          }
+        }
+      }
+    } else {
+      return false;
     }
 
     return true;
@@ -278,10 +316,12 @@ public class GameBoard implements Serializable {
   public boolean isTileLegal(int row, int column) {
 
     if (firstTile) {
+      System.out.println("First Tile should be Placed");
       return (row == 7 && column == 7);
+
     } else {
       if (currentChanges.size() == 0) {
-        return isSpotFree(row, column);
+        return isConnectedToOldTiles(row, column);
       } else if (currentChanges.size() == 1) {
         if (!(isSpotFree(row, column))) {
           return false;
