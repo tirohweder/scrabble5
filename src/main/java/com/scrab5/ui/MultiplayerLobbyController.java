@@ -53,7 +53,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   private boolean isReady = false;
   private int aiPlayerAmount = 0;
-  private static StringBuffer chatHistory = new StringBuffer();
   private LinkedList<Client> AIs;
   private boolean isHost;
 
@@ -316,7 +315,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
             @Override
             public void run() {
 
-              chatBox.setText(chatHistory.toString());
+              chatBox.setText(Data.getChatHistory().toString());
 
               if (Data.getPlayerClient().getStarting()) {
                 try {
@@ -432,9 +431,5 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       }
     });
     t.start();
-  }
-
-  public static StringBuffer getChatHistory() {
-    return chatHistory;
   }
 }

@@ -108,7 +108,7 @@ public class FillDatabase extends Database {
       System.out.println("Could not perform deletion in table " + name);
       System.out.println(e);
     }
-    //Database.disconnect();
+    // Database.disconnect();
   }
 
   /**
@@ -129,7 +129,7 @@ public class FillDatabase extends Database {
       System.out.println(e);
     }
     closeStatement("delete");
-    //Database.disconnect();
+    // Database.disconnect();
   }
 
   /**
@@ -168,7 +168,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("player");
-    //Database.disconnect();
+    // Database.disconnect();
     return created;
   }
 
@@ -187,6 +187,7 @@ public class FillDatabase extends Database {
   protected synchronized static void updatePlayer(String column, String name, String contentString,
       int contentInt, double doubleValues) {
     Database.reconnect();
+    System.out.println("Fill");
 
     if (column == "Name") {
       String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
@@ -307,7 +308,7 @@ public class FillDatabase extends Database {
       }
     }
     closeStatement("player");
-    //Database.disconnect();
+    // Database.disconnect();
   }
 
   /**
@@ -333,7 +334,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("server");
-    //Database.disconnect();
+    // Database.disconnect();
   }
 
   /**
@@ -366,7 +367,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("server");
-    //Database.disconnect();
+    // Database.disconnect();
   }
 
   /**
@@ -391,7 +392,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("dic");
-    //Database.disconnect();
+    // Database.disconnect();
   }
 
   /**
@@ -411,7 +412,7 @@ public class FillDatabase extends Database {
     for (int i = 0; i < 27; i++) {
       insertLetters(letter[i], points[i], occurrence[i]);
     }
-    //Database.disconnect();
+    // Database.disconnect();
   }
 
   /**
@@ -432,7 +433,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("dic");
-    //Database.disconnect();
+    // Database.disconnect();
   }
 
   /**
@@ -453,7 +454,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     closeStatement("dic");
-    //Database.disconnect();
+    // Database.disconnect();
   }
 }
 

@@ -25,7 +25,7 @@ public class MultiplayerController extends InGameController implements Initializ
   TextArea textArea;
 
   private boolean chatOpen = false;
-  
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -63,8 +63,20 @@ public class MultiplayerController extends InGameController implements Initializ
 
 
   @FXML
-  private void chatInsertClicked(MouseEvent event) {}
-  
+  private void chatInsertClicked(MouseEvent event) {
+
+    Platform.runLater(new Runnable() {
+
+      @Override
+      public void run() {
+        chatInsert.selectAll();
+        Data.getPlayerClient()
+            .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
+      }
+    });
+
+  }
+
   private void refreshUI() {
 
     Thread t = new Thread(new Runnable() {
@@ -79,6 +91,7 @@ public class MultiplayerController extends InGameController implements Initializ
             @Override
             public void run() {
 
+              textArea.setText(Data.getChatHistory().toString());
               // chatBox.setText(chatHistory.toString());
 
               initPlayers();

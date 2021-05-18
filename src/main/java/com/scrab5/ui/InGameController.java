@@ -247,39 +247,39 @@ public abstract class InGameController implements Initializable {
 
     double layoutX = 263.0, layoutY = 53.0;
 
-    
 
-     for(int i = 0; i < 15; i++) {
-     for(int j = 0; j < 15; j++) {
-       if(Data.getGameSession().getGameBoard().getTile(i, j) != null) {
-         ImageView letterImage = new ImageView();
-         String letter = Data.getGameSession().getGameBoard().getTile(i, j).getLetter();
-         String points = Integer.toString(Data.getGameSession().getGameBoard().getTile(i,
-         j).getValue());
-         letterImage.setFitWidth(42.0);
-         letterImage.setFitHeight(42.0);
-         if(letter.equalsIgnoreCase("*")) {
-         letterImage.setImage(new Image("/com/scrab5/ui/letter_Images/placeHolder.png"));
-         }else {
-         letterImage.setImage(new Image("/com/scrab5/ui/letter_Images/tile"+letter.toUpperCase() +
-         ".png"));
-         }
-         letterImage.setLayoutX(layoutX);
-         letterImage.setLayoutY(layoutY);
-         Label point = new Label(points);
-        
-         point.setLayoutX(letterImage.getLayoutX() + LABEL_X_CORD);
-         point.setLayoutY(letterImage.getLayoutY() + LABEL_Y_CORD);
-         
-         mainPane.getChildren().add(mainPane.getChildren().size(), letterImage);
-         mainPane.getChildren().add(mainPane.getChildren().size(), point);
-         }
-     layoutX += 42.0;
-     }
-     layoutY += 42.0;
-     layoutX = 263.0;
-     }
-    
+
+    for (int i = 0; i < 15; i++) {
+      for (int j = 0; j < 15; j++) {
+        if (Data.getGameSession().getGameBoard().getTile(i, j) != null) {
+          ImageView letterImage = new ImageView();
+          String letter = Data.getGameSession().getGameBoard().getTile(i, j).getLetter();
+          String points =
+              Integer.toString(Data.getGameSession().getGameBoard().getTile(i, j).getValue());
+          letterImage.setFitWidth(42.0);
+          letterImage.setFitHeight(42.0);
+          if (letter.equalsIgnoreCase("*")) {
+            letterImage.setImage(new Image("/com/scrab5/ui/letter_Images/placeHolder.png"));
+          } else {
+            letterImage.setImage(
+                new Image("/com/scrab5/ui/letter_Images/tile" + letter.toUpperCase() + ".png"));
+          }
+          letterImage.setLayoutX(layoutX);
+          letterImage.setLayoutY(layoutY);
+          Label point = new Label(points);
+
+          point.setLayoutX(letterImage.getLayoutX() + LABEL_X_CORD);
+          point.setLayoutY(letterImage.getLayoutY() + LABEL_Y_CORD);
+
+          mainPane.getChildren().add(mainPane.getChildren().size(), letterImage);
+          mainPane.getChildren().add(mainPane.getChildren().size(), point);
+        }
+        layoutX += 42.0;
+      }
+      layoutY += 42.0;
+      layoutX = 263.0;
+    }
+
   }
 
   /**
@@ -300,7 +300,6 @@ public abstract class InGameController implements Initializable {
 
       // check if the field clicked is a letter to remove
       if (isChoosen(iv) && exchangeable && iv.getImage().getUrl().contains("letter_Images")) {
-        System.out.println("HUHFHHAKSKANFÖO");
         backToRack(iv);
       } else {
         // check if no tiles has been clicked
@@ -316,6 +315,9 @@ public abstract class InGameController implements Initializable {
             placeLetter(clickedLetter, clickedLabel);
             choosenTiles.add(iv.getId());
             exchangeable = true;
+          } else {
+            newPum(
+                "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
           }
         } else if (tileClicked && (clickedTile == (ImageView) event.getSource())) {
           darken(event);
@@ -394,6 +396,9 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
+        } else {
+          newPum(
+              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -444,6 +449,9 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
+        } else {
+          newPum(
+              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -494,6 +502,9 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
+        } else {
+          newPum(
+              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
       } else {
         if (clickedLetter == rackPlace3) {
@@ -544,6 +555,9 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
+        } else {
+          newPum(
+              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -594,6 +608,9 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
+        } else {
+          newPum(
+              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -646,6 +663,9 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
+        } else {
+          newPum(
+              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -700,6 +720,9 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
+        } else {
+          newPum(
+              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -883,7 +906,8 @@ public abstract class InGameController implements Initializable {
       pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()));
     } else if (rackPlace2 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace2.getImage().getUrl())
         && rackPlace2.getOpacity() == 0 && isChoosen(iv)) {
@@ -892,7 +916,8 @@ public abstract class InGameController implements Initializable {
       pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()));
     } else if (rackPlace3 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace3.getImage().getUrl())
         && rackPlace3.getOpacity() == 0 && isChoosen(iv)) {
@@ -901,7 +926,8 @@ public abstract class InGameController implements Initializable {
       pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()));
     } else if (rackPlace4 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace4.getImage().getUrl())
         && rackPlace4.getOpacity() == 0 && isChoosen(iv)) {
@@ -910,7 +936,8 @@ public abstract class InGameController implements Initializable {
       pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()));
     } else if (rackPlace5 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace5.getImage().getUrl())
         && rackPlace5.getOpacity() == 0 && isChoosen(iv)) {
@@ -919,7 +946,8 @@ public abstract class InGameController implements Initializable {
       pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()));
     } else if (rackPlace6 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace6.getImage().getUrl())
         && rackPlace6.getOpacity() == 0 && isChoosen(iv)) {
@@ -928,7 +956,8 @@ public abstract class InGameController implements Initializable {
       pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()));
     } else if (rackPlace7 != null
         && iv.getImage().getUrl().equalsIgnoreCase(rackPlace7.getImage().getUrl())
         && rackPlace7.getOpacity() == 0 && isChoosen(iv)) {
@@ -937,7 +966,8 @@ public abstract class InGameController implements Initializable {
       pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
       iv.setImage(markedTile);
       removeChoosen(iv.getId());
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()), columnTransformation(iv.getId()));
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+          columnTransformation(iv.getId()));
     }
     iv.setImage(markedTile);
     // TODO
@@ -1080,6 +1110,7 @@ public abstract class InGameController implements Initializable {
   @FXML
   private void exchangeClicked(MouseEvent event) throws IOException {
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
+      Data.getGameSession().finishTurn();
       App.setRoot("Exchange");
     } else {
       PopUpMessage pum =
@@ -1166,6 +1197,11 @@ public abstract class InGameController implements Initializable {
 
   }
 
+  private void newPum(String message) throws IOException {
+    PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
+    pum.show();
+  }
+
   /**
    * @param event
    * @author mherre
@@ -1173,11 +1209,17 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void closeGame(MouseEvent event) throws IOException {
-    if (Data.getPlayerClient() != null) {
-      Data.getPlayerClient().disconnectFromServer();
+    PopUpMessage pum = new PopUpMessage("Really!?\nEvery progress is lost and there is no way back....", PopUpMessageType.CONFIRMATION);
+    pum.show();
+    if(Data.isConfirmed()) {
+      Data.getGameSession().endGame();
+      if (Data.getPlayerClient() != null) {
+        Data.getPlayerClient().disconnectFromServer();
+      }
+      App.setRoot("MainMenu");
     }
   }
 
-  
+
 }
 

@@ -34,9 +34,12 @@ public class SettingsController extends Controller implements Initializable {
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    Database.reconnect();
+    Database.disconnect();
+    System.out.println("settings");
+    //Database.reconnect();
     String user = Data.getCurrentUser();
     this.sliderMusic.setValue(PlayerProfileDatabase.getMusicVolume(user));
+    Database.disconnect();
     this.sliderSFX.setValue(PlayerProfileDatabase.getSoundEffectVolume(user));
     this.setupListeners();
     Database.disconnect();

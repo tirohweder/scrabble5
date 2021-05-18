@@ -94,13 +94,16 @@ public class AccountCreationController extends Controller implements Initializab
   @FXML
   private void enter(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    Database.reconnect();
+    Database.disconnect();
     if (this.isUsernameValid(this.nickname.getText())) {
-      App.setMusicVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
+      System.out.println("hier schon problem");
+      App.setMusicVolume(PlayerProfileDatabase.getMusicVolume(Data.getCurrentUser()));
+      Database.disconnect();
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
+      Database.disconnect();
       App.setRoot("MainMenu");
     }
-    Database.disconnect();
+    //Database.disconnect();
   }
 
   /**
@@ -141,8 +144,10 @@ public class AccountCreationController extends Controller implements Initializab
         this.createdUsername = username;
         Data.setCurrentUser(this.createdUsername);
         FillDatabase.createPlayer(this.createdUsername, null);
+        Database.disconnect();
         FillDatabase.createServerRow(Data.getCurrentUser(), Data.getCurrentUser(),
             InetAddress.getLocalHost().getHostAddress());
+        Database.disconnect();
 
 
         message = "Congratulations! Your account has been created";

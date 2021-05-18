@@ -19,6 +19,7 @@ public class PlayerProfileDatabase extends Database {
    * @return String with path to picture
    */
   public synchronized static String getPicture(String name) {
+    Database.reconnect();
     String picture = null;
     try {
       PreparedStatement pstm =
@@ -29,6 +30,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return picture;
   }
 
@@ -40,6 +42,7 @@ public class PlayerProfileDatabase extends Database {
    * @return int Integer value of the total points from user "name" in the database
    */
   public synchronized static int getTotalPoints(String name) {
+    Database.reconnect();
     int points = 0;
     try {
       PreparedStatement pstm =
@@ -50,6 +53,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return points;
   }
 
@@ -61,6 +65,7 @@ public class PlayerProfileDatabase extends Database {
    * @return int Integer value of the personal highscore stored in the database
    */
   public synchronized static int getPersonalHighscore(String name) {
+    Database.reconnect();
     int highscore = 0;
     try {
       PreparedStatement pstm =
@@ -71,6 +76,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return highscore;
   }
 
@@ -83,6 +89,7 @@ public class PlayerProfileDatabase extends Database {
    * @return int Integer value of the count of laid words stored in the database
    */
   public synchronized static int getLaidWords(String name) {
+    Database.reconnect();
     int words = 0;
     try {
       PreparedStatement pstm =
@@ -93,6 +100,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return words;
   }
 
@@ -104,6 +112,7 @@ public class PlayerProfileDatabase extends Database {
    * @return int Integer value of the points per word rate stored in the database
    */
   public synchronized static int getPointsPerWordRate(String name) {
+    Database.reconnect();
     int pPerWord = 0;
     try {
       PreparedStatement pstm =
@@ -114,6 +123,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return pPerWord;
   }
 
@@ -126,6 +136,7 @@ public class PlayerProfileDatabase extends Database {
    * @return String with the longest word stored in the database
    */
   public synchronized static String getLongestWord(String name) {
+    Database.reconnect();
     String word = null;
     try {
       PreparedStatement pstm =
@@ -136,6 +147,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return word;
   }
 
@@ -148,6 +160,7 @@ public class PlayerProfileDatabase extends Database {
    * @return int Integer value of the total played games stored in the database
    */
   public synchronized static int getTotalPlayedGames(String name) {
+    Database.reconnect();
     int games = 0;
     try {
       PreparedStatement pstm =
@@ -158,6 +171,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return games;
   }
 
@@ -169,6 +183,7 @@ public class PlayerProfileDatabase extends Database {
    * @return int Integer value of the total wins stored in the database
    */
   public synchronized static int getTotalWins(String name) {
+    Database.reconnect();
     int wins = 0;
     try {
       PreparedStatement pstm =
@@ -179,6 +194,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return wins;
   }
 
@@ -191,6 +207,7 @@ public class PlayerProfileDatabase extends Database {
    * @return Double value of the win rate stored in the database
    */
   public synchronized static double getWinRate(String name) {
+    Database.reconnect();
     double rate = 0.0;
     try {
       PreparedStatement pstm =
@@ -201,6 +218,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return rate;
   }
 
@@ -212,6 +230,7 @@ public class PlayerProfileDatabase extends Database {
    * @return String representing the favorite dictionary of the player name stored in the database
    */
   public synchronized static String getFavoriteDictionary(String name) {
+    Database.reconnect();
     String dic = null;
     try {
       PreparedStatement pstm =
@@ -222,6 +241,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return dic;
   }
 
@@ -233,6 +253,7 @@ public class PlayerProfileDatabase extends Database {
    * @return double value of the music volume
    */
   public synchronized static double getMusicVolume(String name) {
+    Database.reconnect();
     double music = 0.0;
     try {
       PreparedStatement pstm =
@@ -243,6 +264,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    Database.disconnect();
     return music;
   }
 
@@ -399,6 +421,8 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setMusicVolume(String name, Double music) {
     FillDatabase.updatePlayer("Music", name, null, 0, music);
+    Database.disconnect();
+    System.out.println("VolumeFertig");
   }
 
   /**
@@ -410,6 +434,8 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setSoundEffectVolume(String name, Double soundEffect) {
     FillDatabase.updatePlayer("SoundEffect", name, null, 0, soundEffect);
+    Database.disconnect();
+    System.out.println("EffectFertig");
   }
 
 

@@ -20,7 +20,8 @@ public class Database {
 
   /**
    * Constructor to create a new Database and call the method to establish a connection to the
-   * database file. Disconnect makes sure, that when another method gets called and reconnects to the database, it is possible to reconnect.
+   * database file. Disconnect makes sure, that when another method gets called and reconnects to
+   * the database, it is possible to reconnect.
    * 
    * @author lengist
    */
@@ -37,6 +38,7 @@ public class Database {
     try {
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
+      System.out.println("connected!");
     } catch (ClassNotFoundException e) {
       System.out.println("Connection not possible" + e.getMessage());
     } catch (SQLException e1) {
@@ -88,6 +90,7 @@ public class Database {
     try {
       FillDatabase.closeAllStatements();
       connection.close();
+      System.out.println("disconnected!");
     } catch (SQLException e) {
       System.out.println("Problem with closing connection: " + e.getMessage());
       e.printStackTrace();

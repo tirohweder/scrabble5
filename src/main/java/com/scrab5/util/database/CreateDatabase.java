@@ -6,6 +6,7 @@ import java.sql.Statement;
 public class CreateDatabase extends Database {
 
   public CreateDatabase() {
+    reconnect();
     createTable();
   }
 
