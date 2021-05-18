@@ -64,7 +64,7 @@ public class Client implements Serializable {
 
   /**
    * Hosts a server and accepts clients. Automatically joins the server. In application: starts a
-   * MultiPlayerLobby.
+   * MultiPlayerLobby. Use Case 3.1.
    *
    * @param clientMaximum - the maximum number of clients allowed to connect to the server
    * @throws Exception - an Exception that is thrown to the Controller that the server could not be
@@ -184,7 +184,8 @@ public class Client implements Serializable {
 
   /**
    * Connects the ClientThread to the given ServerThread by starting the ClientThread. For the
-   * currentServer a new Server instance is created that is updated by the server via messages.
+   * currentServer a new Server instance is created that is updated by the server via messages. Use
+   * Case 3.2.
    *
    * @param serverdata Includes the IP4Address and
    * @author nitterhe
@@ -207,7 +208,7 @@ public class Client implements Serializable {
 
   /**
    * Disconnects the ClientThread from the ServerThread. Server shuts down if the client is the
-   * server's host.
+   * server's host. Use Case 3.4.
    *
    * @return boolean - used in the MulitplayerLobbyController to display a disconnect notification
    * @author nitterhe

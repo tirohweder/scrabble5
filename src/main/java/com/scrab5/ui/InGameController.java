@@ -751,117 +751,122 @@ public abstract class InGameController implements Initializable {
   private void playClicked(MouseEvent event) throws IOException {
     ImageView iv = (ImageView) event.getSource();
 
-    // TODO
-    if (Data.getGameSession().getGameBoard().checkWordsLegit()) {
+    if (Data.getGameSession().getGameBoard().getCurrentChanges().size() > 0) {
+      if (Data.getGameSession().getGameBoard().checkWordsLegit()) {
+        
+        Data.getGameSession().setSkippedTurn(0);
+        String message =
+            "Congrats you scored: " + Data.getGameSession().getGameBoard().countScore();
+        PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+        pum.show();
+        Data.getGameSession().getGameBoard().finishTurn();
+        Data.getGameSession().finishTurn();
 
-    String message = "Congrats you scored: " + Data.getGameSession().getGameBoard().countScore();
-    PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-    pum.show();
-    Data.getGameSession().getGameBoard().finishTurn();
-    Data.getGameSession().finishTurn();
-    
- // reset Opacity on the Rag Board if not null
-    if (rackPlace1 != null && rackPlace1.getOpacity() == 0) {
-      rackPlace1.setOpacity(1);
-      rackRemoveTile(0);
-    }
-    if (rackPlace2 != null && rackPlace2.getOpacity() == 0) {
-      rackPlace2.setOpacity(1);
-      rackRemoveTile(1);
-    }
-    if (rackPlace3 != null && rackPlace3.getOpacity() == 0) {
-      rackPlace3.setOpacity(1);
-      rackRemoveTile(2);
-    }
-    if (rackPlace4 != null && rackPlace4.getOpacity() == 0) {
-      rackPlace4.setOpacity(1);
-      rackRemoveTile(3);
-    }
-    if (rackPlace5 != null && rackPlace5.getOpacity() == 0) {
-      rackPlace5.setOpacity(1);
-      rackRemoveTile(4);
-    }
-    if (rackPlace6 != null && rackPlace6.getOpacity() == 0) {
-      rackPlace6.setOpacity(1);
-      rackRemoveTile(5);
-    }
-    if (rackPlace7 != null && rackPlace7.getOpacity() == 0) {
-      rackPlace7.setOpacity(1);
-      rackRemoveTile(6);
+        // reset Opacity on the Rag Board if not null
+        if (rackPlace1 != null && rackPlace1.getOpacity() == 0) {
+          rackPlace1.setOpacity(1);
+          rackRemoveTile(0);
+        }
+        if (rackPlace2 != null && rackPlace2.getOpacity() == 0) {
+          rackPlace2.setOpacity(1);
+          rackRemoveTile(1);
+        }
+        if (rackPlace3 != null && rackPlace3.getOpacity() == 0) {
+          rackPlace3.setOpacity(1);
+          rackRemoveTile(2);
+        }
+        if (rackPlace4 != null && rackPlace4.getOpacity() == 0) {
+          rackPlace4.setOpacity(1);
+          rackRemoveTile(3);
+        }
+        if (rackPlace5 != null && rackPlace5.getOpacity() == 0) {
+          rackPlace5.setOpacity(1);
+          rackRemoveTile(4);
+        }
+        if (rackPlace6 != null && rackPlace6.getOpacity() == 0) {
+          rackPlace6.setOpacity(1);
+          rackRemoveTile(5);
+        }
+        if (rackPlace7 != null && rackPlace7.getOpacity() == 0) {
+          rackPlace7.setOpacity(1);
+          rackRemoveTile(6);
+        }
+
+        if (pointsRack1 != null && (pointsRack1.getLayoutY() < 740)) {
+          Label point = new Label(pointsRack1.getText());
+          point.setLayoutX(pointsRack1.getLayoutX());
+          point.setLayoutY(pointsRack1.getLayoutY());
+          mainPane.getChildren().add(mainPane.getChildren().size(), point);
+          pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
+          pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
+        }
+        if (pointsRack2 != null && (pointsRack2.getLayoutY() < 740)) {
+          Label point = new Label(pointsRack2.getText());
+          point.setLayoutX(pointsRack2.getLayoutX());
+          point.setLayoutY(pointsRack2.getLayoutY());
+          mainPane.getChildren().add(mainPane.getChildren().size(), point);
+          pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
+          pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
+        }
+        if (pointsRack3 != null && (pointsRack3.getLayoutY() < 740)) {
+          Label point = new Label(pointsRack3.getText());
+          point.setLayoutX(pointsRack3.getLayoutX());
+          point.setLayoutY(pointsRack3.getLayoutY());
+          mainPane.getChildren().add(mainPane.getChildren().size(), point);
+          pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
+          pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
+        }
+        if (pointsRack4 != null && (pointsRack4.getLayoutY() < 740)) {
+          Label point = new Label(pointsRack4.getText());
+          point.setLayoutX(pointsRack4.getLayoutX());
+          point.setLayoutY(pointsRack4.getLayoutY());
+          mainPane.getChildren().add(mainPane.getChildren().size(), point);
+          pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
+          pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
+        }
+        if (pointsRack5 != null && (pointsRack5.getLayoutY() < 740)) {
+          Label point = new Label(pointsRack5.getText());
+          point.setLayoutX(pointsRack5.getLayoutX());
+          point.setLayoutY(pointsRack5.getLayoutY());
+          mainPane.getChildren().add(mainPane.getChildren().size(), point);
+          pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
+          pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
+        }
+        if (pointsRack6 != null && (pointsRack6.getLayoutY() < 740)) {
+          Label point = new Label(pointsRack6.getText());
+          point.setLayoutX(pointsRack6.getLayoutX());
+          point.setLayoutY(pointsRack6.getLayoutY());
+          mainPane.getChildren().add(mainPane.getChildren().size(), point);
+          pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
+          pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
+        }
+        if (pointsRack7 != null && (pointsRack7.getLayoutY() < 740)) {
+          Label point = new Label(pointsRack7.getText());
+          point.setLayoutX(pointsRack7.getLayoutX());
+          point.setLayoutY(pointsRack7.getLayoutY());
+          mainPane.getChildren().add(mainPane.getChildren().size(), point);
+          pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
+          pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
+        }
+
+        initRack();
+        initPlayers();
+        exchangeable = false;
+        choosenTiles.clear();
+        letterClicked = false;
+        tileClicked = false;
+        clickedLetter = null;
+        clickedTile = null;
+
+      } else {
+        String message = "The word placed isnt legit!";
+        PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
+      }
+    }else {
+      Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn()+1);
     }
 
-    if (pointsRack1 != null && (pointsRack1.getLayoutY() < 740)) {
-      Label point = new Label(pointsRack1.getText());
-      point.setLayoutX(pointsRack1.getLayoutX());
-      point.setLayoutY(pointsRack1.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size(), point);
-      pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
-    }
-    if (pointsRack2 != null && (pointsRack2.getLayoutY() < 740)) {
-      Label point = new Label(pointsRack2.getText());
-      point.setLayoutX(pointsRack2.getLayoutX());
-      point.setLayoutY(pointsRack2.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size(), point);
-      pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
-    }
-    if (pointsRack3 != null && (pointsRack3.getLayoutY() < 740)) {
-      Label point = new Label(pointsRack3.getText());
-      point.setLayoutX(pointsRack3.getLayoutX());
-      point.setLayoutY(pointsRack3.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size(), point);
-      pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
-    }
-    if (pointsRack4 != null && (pointsRack4.getLayoutY() < 740)) {
-      Label point = new Label(pointsRack4.getText());
-      point.setLayoutX(pointsRack4.getLayoutX());
-      point.setLayoutY(pointsRack4.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size(), point);
-      pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
-    }
-    if (pointsRack5 != null && (pointsRack5.getLayoutY() < 740)) {
-      Label point = new Label(pointsRack5.getText());
-      point.setLayoutX(pointsRack5.getLayoutX());
-      point.setLayoutY(pointsRack5.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size(), point);
-      pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
-    }
-    if (pointsRack6 != null && (pointsRack6.getLayoutY() < 740)) {
-      Label point = new Label(pointsRack6.getText());
-      point.setLayoutX(pointsRack6.getLayoutX());
-      point.setLayoutY(pointsRack6.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size(), point);
-      pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
-    }
-    if (pointsRack7 != null && (pointsRack7.getLayoutY() < 740)) {
-      Label point = new Label(pointsRack7.getText());
-      point.setLayoutX(pointsRack7.getLayoutX());
-      point.setLayoutY(pointsRack7.getLayoutY());
-      mainPane.getChildren().add(mainPane.getChildren().size(), point);
-      pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
-    }
 
-    initRack();
-    initPlayers();
-    exchangeable = false;
-    choosenTiles.clear();
-    letterClicked = false;
-    tileClicked = false;
-    clickedLetter = null;
-    clickedTile = null;
-
-     } else {
-     String message = "The word placed isnt legit!";
-     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
-     }
-
-    
 
   }
 
@@ -1109,7 +1114,8 @@ public abstract class InGameController implements Initializable {
 
   @FXML
   private void exchangeClicked(MouseEvent event) throws IOException {
-    if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
+    if (Data.getGameSession().getGameBoard().isAllowedToPlay()
+        && (Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0)) {
       Data.getGameSession().finishTurn();
       App.setRoot("Exchange");
     } else {
@@ -1209,9 +1215,11 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void closeGame(MouseEvent event) throws IOException {
-    PopUpMessage pum = new PopUpMessage("Really!?\nEvery progress is lost and there is no way back....", PopUpMessageType.CONFIRMATION);
+    PopUpMessage pum =
+        new PopUpMessage("Really!?\nEvery progress is lost and there is no way back....",
+            PopUpMessageType.CONFIRMATION);
     pum.show();
-    if(Data.isConfirmed()) {
+    if (Data.isConfirmed()) {
       Data.getGameSession().endGame();
       if (Data.getPlayerClient() != null) {
         Data.getPlayerClient().disconnectFromServer();
