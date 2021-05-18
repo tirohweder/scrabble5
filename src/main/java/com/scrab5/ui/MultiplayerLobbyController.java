@@ -293,6 +293,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   /**
+   * Use Case 3.3 and 5 within.
+   * 
    * @author nitterhe
    */
   private void refreshUI() {

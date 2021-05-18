@@ -59,9 +59,6 @@ public class ClientThread extends Threads implements Serializable {
         message = (Message) this.fromServer.readObject();
         switch (message.getType()) {
 
-          case SENDSERVERDATA:
-
-            break;
           case DISCONNECT:
             // switch layer to lobby overview
             // MultiplayerLobbyController.lobbyClosed();

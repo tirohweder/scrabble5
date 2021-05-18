@@ -73,6 +73,11 @@ public class MultiplayerController extends InGameController implements Initializ
 
   }
 
+  /**
+   * Use Case 3.3 within.
+   * 
+   * @author nitterhe @author apilgrem
+   */
   private void refreshUI() {
 
     Thread t = new Thread(new Runnable() {

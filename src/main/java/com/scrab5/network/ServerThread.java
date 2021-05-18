@@ -82,7 +82,9 @@ public class ServerThread extends Threads {
             break;
           case DISCONNECT:
             DisconnectMessage disconnect = (DisconnectMessage) message;
-            if (disconnect.getSender().equals(server.getHost())) {
+            boolean inGame =
+                (Data.getGameSession() != null) ? Data.getGameSession().isRunning() : false;
+            if (disconnect.getSender().equals(server.getHost()) || inGame) {
               server.shutDownServer();
             } else {
               deleteClient(disconnect.getSender());
