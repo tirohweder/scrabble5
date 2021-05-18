@@ -194,7 +194,6 @@ public class FillDatabase extends Database {
       int contentInt, double doubleValues) {
     Database.reconnect();
     System.out.println("Fill");
-    //PreparedStatement pstmt;
 
     try {
       PreparedStatement pstmt = null;
@@ -401,6 +400,7 @@ public class FillDatabase extends Database {
    * @author lengist
    */
   public synchronized static void fillLetters() {
+    deleteTable("Letters");
     Database.reconnect();
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
         "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
