@@ -5,7 +5,7 @@ import com.scrab5.core.game.GameBoard;
 import com.scrab5.ui.Data;
 import java.util.ArrayList;
 
- 
+
 public class AiPlayer extends Player {
 
   ArrayList<AiPosition> pos;
@@ -21,24 +21,24 @@ public class AiPlayer extends Player {
   public AiPlayer(String name) {
     super(name);
   }
-  
+
   public int getCounterUp() {
     return this.counterUp;
   }
-  
+
   public int getCounterDown() {
     return this.counterDown;
   }
-  
+
   public int getCounterLeft() {
     return this.counterLeft;
   }
-  
+
   public int getCounterRight() {
     return this.counterRight;
   }
-  
-  
+
+
 
   /**
    * In this method all other methods will be called for the Hard AI
@@ -113,7 +113,7 @@ public class AiPlayer extends Player {
    * @author hraza
    */
 
-  
+
   public void getSpotsfree(int x, int y, GameBoard g) {
     int counterRight = 0;
     int counterLeft = 0;
@@ -149,28 +149,28 @@ public class AiPlayer extends Player {
     }
 
     // Checking for free Spots under the Position x,y
-    while (y + 1 + counterDown < 14 && x > 0 && x < 14 && g.isSpotFree(y + 1 + counterDown, x)
+    while (y + 1 + counterDown <= 14 && x > 0 && x < 14 && g.isSpotFree(y + 1 + counterDown, x)
         && g.isSpotFree(y + 1 + counterDown, x + 1) && g.isSpotFree(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
-    while (y + 1 + counterDown < 14 && x == 0 && g.isSpotFree(y + 1 + counterDown, x)
+    while (y + 1 + counterDown <= 14 && x == 0 && g.isSpotFree(y + 1 + counterDown, x)
         && g.isSpotFree(y + 1 + counterDown, x + 1)) {
       counterDown++;
     }
-    while (y + 1 + counterDown < 14 && x == 14 && g.isSpotFree(y + 1 + counterDown, x)
+    while (y + 1 + counterDown <= 14 && x == 14 && g.isSpotFree(y + 1 + counterDown, x)
         && g.isSpotFree(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
     // Checking for free Spots over the Position x,y
-    while (y - 1 - counterUp < 14 && x > 0 && x < 14 && g.isSpotFree(y - 1 - counterUp, x)
+    while (y - 1 - counterUp >= 0 && x > 0 && x < 14 && g.isSpotFree(y - 1 - counterUp, x)
         && g.isSpotFree(y - 1 - counterUp, x + 1) && g.isSpotFree(y - 1 - counterUp, x - 1)) {
       counterUp++;
     }
-    while (y - 1 - counterUp < 14 && x == 0 && g.isSpotFree(y - 1 - counterUp, x)
+    while (y - 1 - counterUp >= 0 && x == 0 && g.isSpotFree(y - 1 - counterUp, x)
         && g.isSpotFree(y - 1 - counterUp, x + 1)) {
       counterUp++;
     }
-    while (y - 1 - counterUp < 14 && x == 14 && g.isSpotFree(y - 1 - counterUp, x)
+    while (y - 1 - counterUp >= 0 && x == 14 && g.isSpotFree(y - 1 - counterUp, x)
         && g.isSpotFree(y - 1 - counterUp, x - 1)) {
       counterUp++;
     }

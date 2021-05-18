@@ -10,18 +10,7 @@ class AiPlayerTest {
    
   @Test
   void sortPosMinTest() {
-    Tile first = new Tile("A",1);
-    Tile middle = new Tile("A",1);
-    GameBoard g= new GameBoard();
-    g.placeTile(first, 8, 8);
-    g.placeTile(middle, 6, 6);
-    g.placeTile(middle, 6, 6);
-    AiPlayer test = new AiPlayer("test");
-    test.getSpotsfree(0, 2, g);
-    assertEquals(6,test.getCounterLeft());
-    assertEquals(8,test.getCounterRight());
-    assertEquals(8,test.getCounterDown());
-    assertEquals(6,test.getCounterUp());
+    
   }
   
   
@@ -32,7 +21,17 @@ class AiPlayerTest {
   
   @Test 
   void getSpotsFree() {
-    
+    Tile middle = new Tile("A",1);
+    Tile middle2= new Tile("A",1);
+    GameBoard g= new GameBoard();
+    g.placeTileTest(middle, 6, 6);
+    g.placeTileTest(middle2, 8, 6);
+    AiPlayer test = new AiPlayer("test");
+    test.getSpotsfree(6, 6, g);
+    assertEquals(6,test.getCounterLeft());
+    assertEquals(8,test.getCounterRight());
+    assertEquals(1,test.getCounterDown());
+    assertEquals(6,test.getCounterUp());
   }
   
 
