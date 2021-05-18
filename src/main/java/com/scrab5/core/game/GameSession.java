@@ -1,15 +1,14 @@
 package com.scrab5.core.game;
 
-import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class GameSession implements Serializable {
 
@@ -82,7 +81,7 @@ public class GameSession implements Serializable {
 
   private GameBoard gameBoard = new GameBoard();
   private BagOfTiles bag = new BagOfTiles();
-  private ArrayList<Player> listOfPlayers = new ArrayList<>();
+  private ArrayList<Player> listOfPlayers;
   private int skippedTurn = 0;
   private int roundNumber = 0;
   private boolean canEnd = false;
@@ -97,7 +96,6 @@ public class GameSession implements Serializable {
   /**
    * Starts GameSession with up to 4 Players.
    *
-   * @throws SQLException
    * @author trohwede
    */
   public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
@@ -109,9 +107,8 @@ public class GameSession implements Serializable {
       Data.getHostedServer().startGame();
     }
     initializeBag(letters, points);
-    Iterator<Player> iter = listOfPlayers.iterator();
-    while (iter.hasNext()) {
-      iter.next().getRack().fill(bag);
+    for (Player listOfPlayer : listOfPlayers) {
+      listOfPlayer.getRack().fill(bag);
     }
   }
 
@@ -126,8 +123,8 @@ public class GameSession implements Serializable {
 
     initializeBag();
 
-    for (int i = 0; i < listOfPlayers.size(); i++) {
-      listOfPlayers.get(i).getRack().fill(bag);
+    for (Player listOfPlayer : listOfPlayers) {
+      listOfPlayer.getRack().fill(bag);
       System.out.println();
       System.out.println("Tile AT 0:" + currentPlayer.getRack().getTileAt(0));
     }

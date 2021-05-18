@@ -60,8 +60,8 @@ public class Tile implements Serializable {
 
 
   /**
-   * @param letter
-   * @param value
+   * @param letter String of the Tile
+   * @param value  Amount of points for the Tile
    * @author trohwede
    */
   public Tile(String letter, int value) {
@@ -70,7 +70,9 @@ public class Tile implements Serializable {
   }
 
   /**
-   * @return
+   * Getter for String of Tile
+   *
+   * @return letter String of the Tile
    * @author trohwede
    */
   public String getLetter() {
@@ -78,7 +80,9 @@ public class Tile implements Serializable {
   }
 
   /**
-   * @param letter
+   * Sets the Letter of a Tile
+   *
+   * @param letter String of the TIle
    * @author trohwede
    */
   public void setLetter(String letter) {
@@ -86,7 +90,9 @@ public class Tile implements Serializable {
   }
 
   /**
-   * @return
+   * Getter for Value of Tile
+   *
+   * @return value Amount of points for the letter
    * @author trohwede
    */
   public int getValue() {
@@ -94,7 +100,9 @@ public class Tile implements Serializable {
   }
 
   /**
-   * @param value
+   * Setter for Value of Tile
+   *
+   * @param value Amount of points for the letter
    * @author trohwede
    */
   public void setValue(int value) {
