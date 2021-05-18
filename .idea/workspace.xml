@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
+    <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="#85 fixed singleplayer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/network/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/InGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/InGameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,13 +76,28 @@
       <recent name="com.scrab5.core.game" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.GameBoardTest.isSpotInLine">
+  <component name="RunManager" selected="JUnit.GameBoardTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameBoardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="scrabble5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scrab5.core.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -152,22 +167,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="GameBoardTest.removeTile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="scrabble5" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.scrab5.core.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
-      <option name="METHOD_NAME" value="removeTile" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="scrabble5 [clean,package]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -195,20 +194,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.GameBoardTest.removeTile" />
       <item itemvalue="Maven.scrabble5 [clean,package]" />
       <item itemvalue="JUnit.GameBoardTest.isSpotNext" />
       <item itemvalue="JUnit.GameBoardTest.isSpotInLine" />
       <item itemvalue="JUnit.GameBoardTest.isTileLegal" />
       <item itemvalue="JUnit.GameBoardTest.countScore" />
+      <item itemvalue="JUnit.GameBoardTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameBoardTest" />
         <item itemvalue="JUnit.GameBoardTest.isSpotInLine" />
         <item itemvalue="JUnit.GameBoardTest.countScore" />
         <item itemvalue="JUnit.GameBoardTest.isSpotNext" />
         <item itemvalue="JUnit.GameBoardTest.isTileLegal" />
-        <item itemvalue="JUnit.GameBoardTest.removeTile" />
       </list>
     </recent_temporary>
   </component>
@@ -243,7 +242,7 @@
       <workItem from="1621061127917" duration="10427000" />
       <workItem from="1621150207196" duration="9782000" />
       <workItem from="1621239683722" duration="1221000" />
-      <workItem from="1621318735502" duration="17090000" />
+      <workItem from="1621318735502" duration="19040000" />
     </task>
     <task id="LOCAL-00001" summary="#69 add strucutre">
       <created>1619793717336</created>
@@ -532,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621335883509</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="#85 fixed singleplayer">
+      <created>1621336664569</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1621336664569</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -586,7 +592,8 @@
     <MESSAGE value="#85 fixed tile placements" />
     <MESSAGE value="#85 push for aaron" />
     <MESSAGE value="#85 shouldEnd implementated" />
-    <option name="LAST_COMMIT_MESSAGE" value="#85 shouldEnd implementated" />
+    <MESSAGE value="#85 fixed singleplayer" />
+    <option name="LAST_COMMIT_MESSAGE" value="#85 fixed singleplayer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

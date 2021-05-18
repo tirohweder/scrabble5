@@ -1,12 +1,5 @@
 package com.scrab5.ui;
 
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ResourceBundle;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.core.player.Player;
 import com.scrab5.network.Client;
@@ -15,6 +8,13 @@ import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
 import com.scrab5.network.messages.MakeTurnMessage;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -262,8 +262,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   protected void startGame(MouseEvent event) throws IOException, SQLException {
     // TODO Auto-generated method stub
 
-
-
     ArrayList<Player> playerList = new ArrayList<Player>();
     for (String clientName : Data.getPlayerClient().getCurrentServer().getClients().keySet()) {
 
@@ -294,7 +292,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   /**
    * Use Case 3.3 and 5 within.
-   * 
+   *
    * @author nitterhe
    */
   private void refreshUI() {
