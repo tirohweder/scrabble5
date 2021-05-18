@@ -258,6 +258,12 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
   }
 
+  /**
+   * @param event
+   * @throws IOException
+   * @throws SQLException
+   * @author trohwede, nitterhe
+   */
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
     // TODO Auto-generated method stub
@@ -265,7 +271,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     ArrayList<Player> playerList = new ArrayList<Player>();
 
     ArrayList<ArrayList<Integer>> votes;
-    
+
     //TODO calucalte rheinfolge
 
     for (String clientName : Data.getPlayerClient().getCurrentServer().getClients().keySet()) {
