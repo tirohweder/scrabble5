@@ -4,13 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="#66 branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/game/GameSession.java">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" afterDir="false" />
+    <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/Tutorial.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/Tutorial_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/Tutorial_10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/Tutorial_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/Tutorial_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/Tutorial_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/Tutorial_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/Tutorial_6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/Tutorial_7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/Tutorial_8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/Tutorial_9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/back.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/backClicked.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/next.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/scrab5/ui/tutorial_Images/nextClicked.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/AccountCreationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/AccountCreationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/InGameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/InGameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/game/GameBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MainMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/MainMenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/PopUpMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/PopUpMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/TutorialController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/TutorialController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +261,7 @@
       <workItem from="1621061127917" duration="10427000" />
       <workItem from="1621150207196" duration="9782000" />
       <workItem from="1621239683722" duration="1221000" />
-      <workItem from="1621318735502" duration="7378000" />
+      <workItem from="1621318735502" duration="7855000" />
     </task>
     <task id="LOCAL-00001" summary="#69 add strucutre">
       <created>1619793717336</created>
@@ -493,7 +508,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621182908327</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="#53 working on fixing the legal tile checker">
+      <created>1621326988756</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1621326988756</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -507,7 +529,7 @@
             <State>
               <option name="CUSTOM_BOOLEAN_PROPERTIES">
                 <map>
-                  <entry key="Show.Git.Branches" value="true" />
+                  <entry key="Show.Git.Branches" value="false" />
                 </map>
               </option>
               <option name="BEK_SORT_TYPE" value="1" />
@@ -541,7 +563,8 @@
     <MESSAGE value="#66 connicting" />
     <MESSAGE value="w #66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/ui/MultiplayerLobbyController.java" />
     <MESSAGE value="#66 connecting everything" />
-    <option name="LAST_COMMIT_MESSAGE" value="#66 connecting everything" />
+    <MESSAGE value="#53 working on fixing the legal tile checker" />
+    <option name="LAST_COMMIT_MESSAGE" value="#53 working on fixing the legal tile checker" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

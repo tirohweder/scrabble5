@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -15,13 +16,10 @@ import javafx.stage.Stage;
  */
 
 public class TutorialController extends Controller implements Initializable {
-
+  
   @FXML
-  private ImageView multiplayerButton;
-  @FXML
-  private ImageView singleplayerButton;
-  @FXML
-  private ImageView tutorialButton;
+  private ImageView tutorial;
+  private int number = 1;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -39,8 +37,13 @@ public class TutorialController extends Controller implements Initializable {
    *         explanation will be displayed
    */
   @FXML
-  private void gotItClicked(MouseEvent event) throws IOException {
-    // App.setRoot("nextExplanation");
+  private void nextClicked(MouseEvent event) throws IOException {
+    number++;
+    if(number<11) {
+      tutorial.setImage(new Image("/com/scrab5/ui/tutorial_Images/Tutorial_"+Integer.toString(number)+".png"));
+    }else {
+      App.setRoot("SingleplayerLobby");
+    }
   }
 
   /**
@@ -52,7 +55,12 @@ public class TutorialController extends Controller implements Initializable {
    */
   @FXML
   private void backClicked(MouseEvent event) throws IOException {
-    // App.setRoot("nextExplanation");
+    number--;
+    if(number>0) {
+      tutorial.setImage(new Image("/com/scrab5/ui/tutorial_Images/Tutorial_"+Integer.toString(number)+".png"));
+    }else {
+      App.setRoot("MainMenu");
+    }
   }
 
 

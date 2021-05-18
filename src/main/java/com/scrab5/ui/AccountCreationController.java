@@ -16,7 +16,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
- * The AccountCreationController class is controls the components of the AccountCreation.fxml.
+ * The AccountCreationController class controls the components of the AccountCreation.fxml.
  * 
  * @author mherre
  *
@@ -143,7 +143,7 @@ public class AccountCreationController extends Controller implements Initializab
         FillDatabase.createPlayer(this.createdUsername, null);
         FillDatabase.createServerRow(Data.getCurrentUser(), Data.getCurrentUser(),
             InetAddress.getLocalHost().getHostAddress());
-        
+
 
         message = "Congratulations! Your account has been created";
         pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);

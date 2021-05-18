@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.TutorialController">
+   <children>
+      <AnchorPane prefHeight="768.0" prefWidth="1618.0">
+         <children>
+            <ImageView fx:id="tutorial" fitHeight="846.0" fitWidth="1360.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@tutorial_Images/Tutorial_1.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="130.0" layoutX="14.0" layoutY="654.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@tutorial_Images/back.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="130.0" layoutX="14.0" layoutY="654.0" onMouseClicked="#backClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@tutorial_Images/backClicked.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="130.0" layoutX="1213.0" layoutY="653.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@tutorial_Images/next.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="130.0" layoutX="1213.0" layoutY="653.0" onMouseClicked="#nextClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@tutorial_Images/nextClicked.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
