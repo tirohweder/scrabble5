@@ -78,7 +78,6 @@ public class SettingsController extends Controller implements Initializable {
       File destination = new File(System.getProperty("user.dir") + "\\" + fileName);
       this.copyFile(source, destination);
     }
-
   }
 
   /**

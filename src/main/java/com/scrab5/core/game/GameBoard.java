@@ -112,13 +112,16 @@ public class GameBoard implements Serializable {
     if (gameBoard[row][column] != null) {
       return false;
     }
+
     if (!isSpotFree(row, column) && currentChanges.size() > 0) {
       Tile t = gameBoardCurrent[row][column];
       gameBoardCurrent[row][column] = null;
       currentChanges.remove(t);
 
+      System.out.println("removed sucker");
       //TODO Error may appear if you try to remove in the middele
-      if (row == 0 && column == 0) {
+      if (row == 7 && column == 7) {
+        System.out.println("Go to hell sucker");
         firstTile = true;
       }
 
@@ -655,6 +658,7 @@ public class GameBoard implements Serializable {
     }
     return true;
   }
+
 
   /**
    * Clears the board of all Tiles and sets them to null

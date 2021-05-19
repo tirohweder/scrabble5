@@ -1,12 +1,13 @@
 package com.scrab5.util.database;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import com.scrab5.network.ServerStatistics;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  * Note: To save the database and make sure that not two clients at the same time are able to make a request to the database file, the connection gets established and disconnected in every method individual where it is necessary.
@@ -27,10 +28,9 @@ public class UseDatabase extends Database {
     try {
       Statement stm = connection.createStatement();
       rs = stm.executeQuery("SELECT * FROM Letters");
-      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
-    }
+    } 
     return rs;
   }
 
@@ -210,6 +210,31 @@ public class UseDatabase extends Database {
     }
     return occurrences;
   }
+  
+  /**
+   * Returns the points for a letter saved in the table Letters to calculate the points for a laid word.
+   * 
+   * @author lengist
+   * @param letter representing the letter for which the points need to be known
+   * @return int value of the points for the letter
+   */
+  public synchronized static int getPointForLetter(String letter) {
+    Database.reconnect();
+    ResultSet rs = null;
+    Statement stm;
+    ArrayList<Integer> point = new ArrayList<Integer>();
+    try {
+      stm = connection.createStatement();
+      rs = stm.executeQuery("SELECT Points FROM Letters WHERE Letter = " + letter);
+      while (rs.next()) {
+        point.add(rs.getInt(1));
+        return rs.getInt(1);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return 0;
+  }
 
   /**
    * Returns the server object to get the right server statistics when a user chooses to host his
@@ -275,6 +300,37 @@ public class UseDatabase extends Database {
    */
   public synchronized static void setOccurrenceLetters(String letter, int occurrence) {
     FillDatabase.updateOccurrenceLetters(letter, occurrence);
+  }
+  
+  /**
+   * Updates the values in the table Letters after a user customized it.
+   * 
+   * @author lengist
+   * @param points a ArrayList for all the points that need to be saved.
+   * @param occurrences a ArrayList for al the occurrences that need to be saved.
+   */
+  public synchronized static void updateLetterCustomization(ArrayList<Integer> points, ArrayList<Integer> occurrences) {
+    Database.reconnect();
+    FillDatabase.deleteTable("Letters");
+    String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    int[] point = new int[points.size()];
+    int count = 0;
+    for(int n : points) {
+      point[count] = n;
+      count++;
+    }
+    
+    int count2 = 0;
+    int[] occurrence = new int[occurrences.size()];
+    for(int n : occurrences) {
+      occurrence[count2] = n;
+      count2++;
+    }
+    
+    for (int i = 0; i < letter.length; i++) {
+      FillDatabase.insertLetters(letter[i], point[i], occurrence[i]);
+    }
   }
 
   /**

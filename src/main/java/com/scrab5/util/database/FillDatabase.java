@@ -1,12 +1,12 @@
 package com.scrab5.util.database;
 
-import java.io.IOException;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Iterator;
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.util.Iterator;
 
 
 /**
@@ -194,7 +194,6 @@ public class FillDatabase extends Database {
       int contentInt, double doubleValues) {
     Database.reconnect();
     System.out.println("Fill");
-    //PreparedStatement pstmt;
 
     try {
       PreparedStatement pstmt = null;
@@ -206,7 +205,7 @@ public class FillDatabase extends Database {
           pstmt.setString(1, contentString);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
-          pstmt.close();
+          //pstmt.close();
         } else if (column == "Picture") {
           String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
             pstmt = connection.prepareStatement(sql);
@@ -265,8 +264,9 @@ public class FillDatabase extends Database {
           String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
             pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, contentString);
+            System.out.println("contentString: " + contentString);
             pstmt.setString(2, name);
-            pstmt.executeUpdate();
+            pstmt.executeUpdate(); 
         } else if (column == "Music") {
           String sql = "UPDATE Player SET Music = ? WHERE name = ?";
             pstmt = connection.prepareStatement(sql);
@@ -401,6 +401,7 @@ public class FillDatabase extends Database {
    * @author lengist
    */
   public synchronized static void fillLetters() {
+    deleteTable("Letters");
     Database.reconnect();
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
         "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};

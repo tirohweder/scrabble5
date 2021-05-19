@@ -98,7 +98,7 @@ public class ServerThread extends Threads {
             break;
           case SENDREADY:
             SendReadyMessage srm = (SendReadyMessage) message;
-            MultiplayerLobbyController.addVote(srm.getOrder());
+            MultiplayerLobbyController.addVote(srm.getSender(), srm.getOrder());
             server.setClientReady(srm.getSender(), srm.getReady());
             break;
           case MAKETURN:
@@ -137,17 +137,15 @@ public class ServerThread extends Threads {
    * @author nitterher
    */
   private void addClient(ClientData clientData) throws Exception {
-    if (null == server.getClients().get(clientData.getUsername())) {
-      if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
-        FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
-            clientData.getIp());
-      }
-      server.getClients().put(clientData.getUsername(), clientData);
-      server.getConnections().put(clientData, this);
-      server.updateClientCount();
-    } else {
+    if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
+      FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
+          clientData.getIp());
+    }
+    if (null != server.getClients().putIfAbsent(clientData.getUsername(), clientData)) {
       throw new Exception();
     }
+    server.getConnections().put(clientData, this);
+    server.updateClientCount();
     Database.disconnect();
   }
 

@@ -2,6 +2,7 @@ package com.scrab5.ui;
 
 import com.scrab5.core.game.GameSession;
 import com.scrab5.core.player.Player;
+import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.textParser.DictionaryParser;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -74,7 +75,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
      */
 
     App.setRoot("SinglePlayer");
-  }
+  } 
 
   private int[] getPlayerOrder() {
     int[] playerOrder = new int[4];
@@ -220,6 +221,10 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     String selected = (String) this.dictionarySelection.getValue();
     this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
     DictionaryParser.setCurrentDictionary(selected);
+    DictionaryParser.parseFile(selected);
+    PlayerProfileDatabase.setFavoriteDictionary(Data.getCurrentUser(), selected);
+    System.out.println(selected);
+    System.out.println("PP: " + PlayerProfileDatabase.getFavoriteDictionary(Data.getCurrentUser()));
     isDictionarySelected = true;
   }
 
