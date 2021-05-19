@@ -2,6 +2,7 @@ package com.scrab5.core.player;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+import com.scrab5.core.game.BagOfTiles;
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
 
@@ -56,10 +57,7 @@ class AiPlayerTest {
     assertEquals(14,test.getCounterLeft());
     assertEquals(0,test.getCounterRight());
     assertEquals(14,test.getCounterDown());
-    assertEquals(0,test.getCounterUp());
-    
-    
+    assertEquals(0,test.getCounterUp());   
   }
-  
 
 }

@@ -135,7 +135,12 @@ public class ClientServerTest {
       assertEquals(testServer.getClients().get("networkTest").getUsername(),
           UIInstance.getClients().get("networkTest").getUsername());
 
+      /**
+       * Testing shutting down the server.
+       */
       testClient.disconnectFromServer();
+      this.delay();
+      assertFalse(st.isAlive());
 
     } catch (Exception e) {
       e.printStackTrace();
