@@ -46,7 +46,7 @@ public class ServerThread extends Threads {
       toClient = new ObjectOutputStream(socketToClient.getOutputStream());
       fromClient = new ObjectInputStream(socketToClient.getInputStream());
     } catch (Exception e) {
-      System.out.println("Server could not implement streams");
+      e.printStackTrace();
     }
   }
 

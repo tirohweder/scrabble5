@@ -70,14 +70,13 @@ public class Server implements Serializable {
   }
 
   /**
-   * Opens up the sockets. Used when a new server is started or an existing server is restaerted.
+   * Opens up the sockets. Used when a new server is started or an existing server is restarted.
    *
    * @author nitterhe
    */
   public void openServerSocket() {
     try {
       this.ip4 = InetAddress.getLocalHost().getHostAddress();
-      System.out.println(this.ip4);
       serverSocket = new ServerSocket(this.serverPort);
     } catch (Exception e) {
       e.printStackTrace();
