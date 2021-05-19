@@ -114,9 +114,9 @@ public class ClientThread extends Threads implements Serializable {
         Platform.runLater(new Runnable() {
           public void run() {
             try {
-              PopUpMessage npm =
-                  new PopUpMessage("The connection has been closed since a player disconnected.",
-                      PopUpMessageType.NOTIFICATION);
+              PopUpMessage npm = new PopUpMessage(
+                  "The connection has been closed since a player disconnected or you have been kicked.",
+                  PopUpMessageType.NOTIFICATION);
               npm.show();
             } catch (IOException e) {
               e.printStackTrace();

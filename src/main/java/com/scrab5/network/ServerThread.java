@@ -88,7 +88,6 @@ public class ServerThread extends Threads {
             if (disconnect.getSender().equals(server.getHost()) || inGame) {
               server.shutDownServer();
             } else {
-              deleteClient(disconnect.getSender());
               closeConnection();
             }
             break;
@@ -198,6 +197,7 @@ public class ServerThread extends Threads {
    */
   protected synchronized void closeConnection() {
     sendMessageToClient(new DisconnectMessage(server.getHost()));
+    deleteClient(this.connectedClient.getUsername());
     this.stopThread();
     try {
       this.socketToClient.close();

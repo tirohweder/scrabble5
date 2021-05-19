@@ -136,7 +136,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   protected void addPlayer(MouseEvent event) throws IOException {
 
-    AIs.add(new Client("Der Zerstörinator" + (AIs.size() + 1)));
+    // AIs.add(new Client("Der Zerstörinator" + (AIs.size() + 1)));
     this.updateAICounter();
 
     playSound("ButtonClicked.mp3");
@@ -185,14 +185,25 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   @FXML
   protected void kickPlayer2(MouseEvent event) {
-    // TODO Auto-generated method stub
 
+    if (kick2.getOpacity() == 1.0) { // AI oder echter Spieler?
+      Data.getHostedServer().kickClient(this.player2.getText());
+      playSound("ButtonClicked.mp3");
+      this.player2.setText("");
+      this.ready2.setText("");
+      this.kick2.setOpacity(0);
+      this.playerAmount--;
+      this.freeSpaces[1] = true;
+      this.isClickable();
+
+    }
   }
 
   @FXML
   protected void kickPlayer3(MouseEvent event) {
 
     if (kick3.getOpacity() == 1.0) { // AI oder echter Spieler?
+      Data.getHostedServer().kickClient(this.player3.getText());
       playSound("ButtonClicked.mp3");
       this.player3.setText("");
       this.ready3.setText("");
@@ -203,6 +214,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.playerAmount--;
       this.freeSpaces[1] = true;
       this.isClickable();
+
     }
   }
 
@@ -210,6 +222,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   protected void kickPlayer4(MouseEvent event) {
 
     if (kick4.getOpacity() == 1.0) { // AI oder echter Spieler?
+      Data.getHostedServer().kickClient(this.player4.getText());
       playSound("ButtonClicked.mp3");
       this.player4.setText("");
       this.ready4.setText("");
@@ -220,8 +233,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.playerAmount--;
       this.freeSpaces[2] = true;
       this.isClickable();
-    }
 
+    }
   }
 
   protected void setUpInit() {
@@ -384,6 +397,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player2.setText(client.getUsername());
                 ready2.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (isHost) {
+                  kick2.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -396,6 +412,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player3.setText(client.getUsername());
                 ready3.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (isHost) {
+                  kick3.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -408,6 +427,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player4.setText(client.getUsername());
                 ready4.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (isHost) {
+                  kick4.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }
