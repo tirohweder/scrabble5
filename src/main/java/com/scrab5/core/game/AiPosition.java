@@ -162,7 +162,7 @@ public class AiPosition {
 
   public int countScore() {
 
-    Double []
+    //String[][] gameBoardSpecial = Data.getGameSession().getGameBoard().ge
 
     int score = 0;
     boolean tws = false;
