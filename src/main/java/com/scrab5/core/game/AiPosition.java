@@ -1,5 +1,6 @@
 package com.scrab5.core.game;
 
+import com.scrab5.ui.Data;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -162,14 +163,14 @@ public class AiPosition {
 
   public int countScore() {
 
-    //String[][] gameBoardSpecial = Data.getGameSession().getGameBoard().ge
+    String[][] gameBoardSpecial = Data.getGameSession().getGameBoard().getGameBoardSpecial();
 
     int score = 0;
     boolean tws = false;
     boolean dws = false;
 
     StringBuilder word = new StringBuilder();
-
+    
     return score;
 
 

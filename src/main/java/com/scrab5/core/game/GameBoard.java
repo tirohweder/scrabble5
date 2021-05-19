@@ -17,6 +17,14 @@ public class GameBoard implements Serializable {
     this.currentChanges = currentChanges;
   }
 
+  public String[][] getGameBoardSpecial() {
+    return gameBoardSpecial;
+  }
+
+  public void setGameBoardSpecial(String[][] gameBoardSpecial) {
+    this.gameBoardSpecial = gameBoardSpecial;
+  }
+
   private String[][] gameBoardSpecial = new String[][]{
       {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
       {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
