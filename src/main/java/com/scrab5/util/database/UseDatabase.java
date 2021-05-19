@@ -3,6 +3,7 @@ package com.scrab5.util.database;
 import com.scrab5.network.ServerStatistics;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
@@ -208,6 +209,31 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     return occurrences;
+  }
+  
+  /**
+   * Returns the points for a letter saved in the table Letters to calculate the points for a laid word.
+   * 
+   * @author lengist
+   * @param letter representing the letter for which the points need to be known
+   * @return int value of the points for the letter
+   */
+  public synchronized static int getPointForLetter(String letter) {
+    Database.reconnect();
+    ResultSet rs = null;
+    Statement stm;
+    ArrayList<Integer> point = new ArrayList<Integer>();
+    try {
+      stm = connection.createStatement();
+      rs = stm.executeQuery("SELECT Points FROM Letters WHERE Letter = " + letter);
+      while (rs.next()) {
+        point.add(rs.getInt(1));
+        return rs.getInt(1);
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return 0;
   }
 
   /**
