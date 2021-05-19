@@ -113,6 +113,7 @@ public class PopUpMessageController extends Controller implements Initializable 
    * Event method that is called when the "Confirm"-button in the UI is clicked. Saves the action in
    * {@link com.scrab5.ui.Data Data} and the pop up closes.
    * 
+   * @author mherre
    * @param event the event that is created from the mouse-click
    */
   @FXML
