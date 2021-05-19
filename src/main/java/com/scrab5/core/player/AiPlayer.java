@@ -1,8 +1,12 @@
 package com.scrab5.core.player;
 
 import com.scrab5.core.game.AiPosition;
+import com.scrab5.core.game.BagOfTiles;
 import com.scrab5.core.game.GameBoard;
+import com.scrab5.core.game.GameSession;
+import com.scrab5.core.game.Tile;
 import com.scrab5.ui.Data;
+import com.scrab5.util.textParser.DictionaryScanner;
 import java.util.ArrayList;
 
 
@@ -200,10 +204,93 @@ public class AiPlayer extends Player {
    * @param y
    * @param horizontal
    * @author hraza
+   * @author lengist
    */
-  public void wordGenerator(String fixLetter, int before, int after, int x, int y,
+  public static void wordGenerator(String fixLetter, int before, int after, int x, int y,
       boolean horizontal) {
-    // THIS METHOD SHOULD ONLY ADD VALID WORDS TO THE LIST THAT CAN BE BUILD WITH THE BAG
+    /*TO-DO: comment is not clear and add the comment for every parameter*/
+    ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
+    //ArrayList<String> possibleLetters = new ArrayList<String>();
+    ArrayList<String> finalWords = new ArrayList<String>();
+    ArrayList<String> deletionRound1 = new ArrayList<String>();
+    ArrayList<String> deletionRound2 = new ArrayList<String>();
+    int maximumLength = before + 1 + after;
+    int before2 = 0;
+    int after2 = 0;
+    
+    /*BagOfTiles bag = Data.getGameSession().getBag();
+    listOfTiles = bag.getBag();
 
+    for(Tile tile : listOfTiles) {
+      String letter = tile.getLetter();
+      possibleLetters.add(letter);
+    }*/
+    
+    //TO-DO: possibleLetters ArrayList zu array --> when connection to the bag is possible
+    
+    String[] possibleLetters = {"A", "L", "I", "V", "E", "O", "N"};
+    
+    ArrayList<String> first = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
+    for(String b1 : possibleLetters) {
+      first = DictionaryScanner.getWordsIncludingFromTest(first, b1);
+      for(String s : first) {
+        finalWords.add(s);
+      }
+    }
+    
+    /*Now: finalWords includes now all words with at least one of the letters from possibleLetters. 
+    The next part of the method checks that the words in finalWords at the end only consist of the 
+    letters in possibleLetters.*/
+    StringBuilder sb = new StringBuilder();
+    for(String s : possibleLetters) {
+      sb.append(s);
+    }
+    String b = sb.toString();
+    for(String s : finalWords) {
+      for(int i = 0; i < s.length(); i++) {
+        if(b.indexOf(s.charAt(i)) == -1) {
+          deletionRound1.add(s);
+        }
+      }
+    }
+    finalWords.removeAll(deletionRound1);
+    
+    /*for(String t : finalWords) {
+      System.out.println(t);
+    }*/
+
+    /*TO-DO: if finalWords is empty --> exchange bag??*/
+    
+    /*The next part checks the words in finalWords if they fulfill the requirements */
+    for(String s : finalWords) {
+      for(int i = 0; i < s.length(); i++) {
+        
+        if(s.charAt(i) == fixLetter.charAt(0)) {
+          before2 = i;
+          after2 = s.length()-i;   
+          
+          if(before2 > before) {
+            deletionRound2.add(s);
+          }else if(after2 > after) {
+            deletionRound2.add(s);
+          }
+        }
+      }
+    }
+    finalWords.removeAll(deletionRound2);
+    
+    /*System.out.println("last one");
+    for(String t : finalWords) {
+      System.out.println(t);
+    }*/
+    
+    /*TO-DO: what if finalWords is empty --> exchange?*/
+    
+    /*TO-DO: what now? I would save the found words in an ArrayList so the next step would be to calculate the points for each word!*/
   }
+  
+  /* Just for direct testing:
+   * public static void main(String[] args) {
+    wordGenerator("A", 3, 4, 0, 0, true);
+  }*/
 }

@@ -59,7 +59,7 @@ public class DictionaryScanner {
    * @param length the maximum length the wanted words can be
    * @return a String array containing all the suitable words
    */
-  public static String[] getWordsIncluding(String letter, int length) {
+  public static ArrayList<String> getWordsIncluding(String letter, int length) {
     ArrayList<String> list = new ArrayList<String>();
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
     + "src/main/resources/com/scrab5/util/textParser/"
@@ -79,7 +79,39 @@ public class DictionaryScanner {
     String[] suitableWords = new String[list.size()];
     suitableWords = list.toArray(suitableWords);
     
-    return suitableWords;
+    //return suitableWords;
+    return list;
+  }
+  
+  /**
+   * Returns a new array that contains the words from the parameter array which include letter.
+   * 
+   * @author lengist
+   * @param words a String array containing all words to check
+   * @param letter a String of the letter that should be in the array that gets returned
+   * @return an array containing all words containing the letter
+   */
+  public static String[] getWordsIncludingFrom(String[] words, String letter) {
+    ArrayList<String> checked = new ArrayList<String>();
+    for(String line : words) {
+      if(line.contains(letter)) {
+        checked.add(line);
+      }
+    }
+    
+    String[] checkedWords = new String[checked.size()];
+    checkedWords = checked.toArray(checkedWords);
+    return checkedWords;
+  }
+  
+  public static ArrayList<String> getWordsIncludingFromTest(ArrayList<String> words, String letter) {
+    ArrayList<String> checked = new ArrayList<String>();
+    for(String line : words) {
+      if(line.contains(letter)) {
+        checked.add(line);
+      }
+    }
+    return checked;
   }
   
   
@@ -106,10 +138,10 @@ public class DictionaryScanner {
     
     System.out.println("before");
     System.out.println();
-    String[] test = getWordsIncluding("A", 3);
-    for(int i = 0; i < test.length; i++) {
+    //String[] test = getWordsIncluding("A", 3);
+    /*for(int i = 0; i < test.length; i++) {
       System.out.println(test[i]);
     }
-    System.out.println("after");
+    System.out.println("after");*/
   }
 }

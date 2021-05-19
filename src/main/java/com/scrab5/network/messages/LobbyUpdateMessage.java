@@ -5,7 +5,7 @@
  */
 package com.scrab5.network.messages;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import com.scrab5.network.ClientData;
 import com.scrab5.network.ServerStatistics;
 
@@ -13,7 +13,7 @@ public class LobbyUpdateMessage extends Message {
   private static final long serialVersionUID = 1L;
 
   private boolean gameStart;
-  private HashMap<String, ClientData> clients;
+  private LinkedHashMap<String, ClientData> clients;
   private int clientMaximum;
   private ServerStatistics serverStatistics;
 
@@ -23,8 +23,9 @@ public class LobbyUpdateMessage extends Message {
    * @author nitterhe
    * @param sender - the LobbyUpdateMessage sender (always server's host)
    */
-  public LobbyUpdateMessage(String sender, boolean gameStart, HashMap<String, ClientData> clients,
-      int clientMaximum, ServerStatistics serverStatistics) {
+  public LobbyUpdateMessage(String sender, boolean gameStart,
+      LinkedHashMap<String, ClientData> clients, int clientMaximum,
+      ServerStatistics serverStatistics) {
     super(sender);
     this.type = MessageType.LOBBYUPDATE;
     this.gameStart = gameStart;
@@ -49,7 +50,7 @@ public class LobbyUpdateMessage extends Message {
    * @author nitterhe
    * @return client - object of the connecting client
    */
-  public HashMap<String, ClientData> getClients() {
+  public LinkedHashMap<String, ClientData> getClients() {
     return this.clients;
   }
 

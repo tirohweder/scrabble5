@@ -1,5 +1,14 @@
 package com.scrab5.ui;
 
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
+import java.util.ResourceBundle;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.core.player.Player;
 import com.scrab5.network.Client;
@@ -8,13 +17,6 @@ import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
 import com.scrab5.network.messages.MakeTurnMessage;
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -55,6 +57,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private int aiPlayerAmount = 0;
   private LinkedList<Client> AIs;
   private boolean isHost;
+  private static LinkedHashMap<String, ArrayList<Integer>> votes;
 
   /**
    * @author mherre
@@ -63,6 +66,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   public void initialize(URL location, ResourceBundle resources) {
     this.isClickable();
     this.setUpInit();
+    votes = new LinkedHashMap<String, ArrayList<Integer>>();
 
     if (Data.getPlayerClient().getUsername()
         .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
@@ -111,7 +115,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     playSound("ButtonClicked.mp3");
 
     this.isReady = !isReady;
-    Data.getPlayerClient().setReady(this.isReady);
+    Data.getPlayerClient().setReady(this.isReady, this.getPlayerVotes());
   }
 
   @FXML
@@ -132,7 +136,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   protected void addPlayer(MouseEvent event) throws IOException {
 
-    AIs.add(new Client("Der Zerstörinator" + (AIs.size() + 1)));
+    // AIs.add(new Client("Der Zerstörinator" + (AIs.size() + 1)));
     this.updateAICounter();
 
     playSound("ButtonClicked.mp3");
@@ -175,21 +179,31 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     voteSelection2.hide();
     voteSelection3.hide();
     voteSelection4.hide();
-    diffBox1.hide();
     diffBox2.hide();
     diffBox3.hide();
   }
 
   @FXML
   protected void kickPlayer2(MouseEvent event) {
-    // TODO Auto-generated method stub
 
+    if (kick2.getOpacity() == 1.0) { // AI oder echter Spieler?
+      Data.getHostedServer().kickClient(this.player2.getText());
+      playSound("ButtonClicked.mp3");
+      this.player2.setText("");
+      this.ready2.setText("");
+      this.kick2.setOpacity(0);
+      this.playerAmount--;
+      this.freeSpaces[1] = true;
+      this.isClickable();
+
+    }
   }
 
   @FXML
   protected void kickPlayer3(MouseEvent event) {
 
     if (kick3.getOpacity() == 1.0) { // AI oder echter Spieler?
+      Data.getHostedServer().kickClient(this.player3.getText());
       playSound("ButtonClicked.mp3");
       this.player3.setText("");
       this.ready3.setText("");
@@ -200,6 +214,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.playerAmount--;
       this.freeSpaces[1] = true;
       this.isClickable();
+
     }
   }
 
@@ -207,6 +222,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   protected void kickPlayer4(MouseEvent event) {
 
     if (kick4.getOpacity() == 1.0) { // AI oder echter Spieler?
+      Data.getHostedServer().kickClient(this.player4.getText());
       playSound("ButtonClicked.mp3");
       this.player4.setText("");
       this.ready4.setText("");
@@ -217,8 +233,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.playerAmount--;
       this.freeSpaces[2] = true;
       this.isClickable();
-    }
 
+    }
   }
 
   protected void setUpInit() {
@@ -266,21 +282,47 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    */
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
-    // TODO Auto-generated method stub
+
 
     ArrayList<Player> playerList = new ArrayList<Player>();
+    Collection<ClientData> clientnames =
+        Data.getPlayerClient().getCurrentServer().getClients().values();
+    ArrayList<Integer> voteResults = new ArrayList<Integer>();
 
-    ArrayList<ArrayList<Integer>> votes;
-
-    //TODO calucalte rheinfolge
-
-    for (String clientName : Data.getPlayerClient().getCurrentServer().getClients().keySet()) {
-
-      int vote1 = 0;
-
-      playerList.add(new Player(clientName));
-
+    for (int i = 0; i < Data.getHostedServer().getClientCounter(); i++) {
+      voteResults.add(0);
     }
+
+    for (ArrayList<Integer> vote : votes.values()) {
+      for (int j = 0; j < vote.size(); j++) {
+        voteResults.add(j, vote.get(j) + voteResults.remove(j));
+      }
+    }
+
+    System.out.println(voteResults.get(0));
+    System.out.println(voteResults.get(1));
+
+    int maximum;
+    Iterator<ClientData> it;
+    for (int clients = 0; clients < clientnames.size(); clients++) {
+      maximum = 0;
+      for (int k = 1; k < voteResults.size(); k++) {
+        if (voteResults.get(maximum) < voteResults.get(k)) {
+          maximum = k;
+        }
+      }
+      it = clientnames.iterator();
+      for (int l = 0; l < maximum; l++) {
+        it.next();
+      }
+      playerList.add(0, new Player(it.next().getUsername()));
+      voteResults.set(maximum, 0);
+    }
+
+    // for (ClientData client : Data.getHostedServer().getClients().values()) {
+    // System.out.println(client.getUsername());
+    // playerList.add(new Player(client.getUsername()));
+    // }
 
     GameSession gs;
 
@@ -355,6 +397,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player2.setText(client.getUsername());
                 ready2.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (isHost) {
+                  kick2.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -367,6 +412,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player3.setText(client.getUsername());
                 ready3.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (isHost) {
+                  kick3.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -379,6 +427,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player4.setText(client.getUsername());
                 ready4.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (isHost) {
+                  kick4.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -446,5 +497,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   private void updateAICounter() {
     this.aiPlayerAmount = AIs.size();
+  }
+
+  public static void addVote(String clientname, ArrayList<Integer> vote) {
+    votes.putIfAbsent(clientname, vote);
   }
 }

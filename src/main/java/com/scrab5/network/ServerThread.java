@@ -19,6 +19,7 @@ import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
+import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 
@@ -45,7 +46,7 @@ public class ServerThread extends Threads {
       toClient = new ObjectOutputStream(socketToClient.getOutputStream());
       fromClient = new ObjectInputStream(socketToClient.getInputStream());
     } catch (Exception e) {
-      System.out.println("Server could not implement streams");
+      e.printStackTrace();
     }
   }
 
@@ -87,7 +88,6 @@ public class ServerThread extends Threads {
             if (disconnect.getSender().equals(server.getHost()) || inGame) {
               server.shutDownServer();
             } else {
-              deleteClient(disconnect.getSender());
               closeConnection();
             }
             break;
@@ -97,6 +97,7 @@ public class ServerThread extends Threads {
             break;
           case SENDREADY:
             SendReadyMessage srm = (SendReadyMessage) message;
+            MultiplayerLobbyController.addVote(srm.getSender(), srm.getOrder());
             server.setClientReady(srm.getSender(), srm.getReady());
             break;
           case MAKETURN:
@@ -135,17 +136,15 @@ public class ServerThread extends Threads {
    * @author nitterher
    */
   private void addClient(ClientData clientData) throws Exception {
-    if (null == server.getClients().get(clientData.getUsername())) {
-      if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
-        FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
-            clientData.getIp());
-      }
-      server.getClients().put(clientData.getUsername(), clientData);
-      server.getConnections().put(clientData, this);
-      server.updateClientCount();
-    } else {
+    if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
+      FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
+          clientData.getIp());
+    }
+    if (null != server.getClients().putIfAbsent(clientData.getUsername(), clientData)) {
       throw new Exception();
     }
+    server.getConnections().put(clientData, this);
+    server.updateClientCount();
     Database.disconnect();
   }
 
@@ -198,6 +197,7 @@ public class ServerThread extends Threads {
    */
   protected synchronized void closeConnection() {
     sendMessageToClient(new DisconnectMessage(server.getHost()));
+    deleteClient(this.connectedClient.getUsername());
     this.stopThread();
     try {
       this.socketToClient.close();
