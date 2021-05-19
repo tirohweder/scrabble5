@@ -69,6 +69,15 @@ public class Tile implements Serializable {
     this.value = value;
   }
 
+
+  public Tile(String letter, int value, int row, int column) {
+    this.letter = letter;
+    this.value = value;
+    this.row = row;
+    this.column = column;
+  }
+
+
   /**
    * Getter for String of Tile
    *
