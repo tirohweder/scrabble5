@@ -179,7 +179,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     voteSelection2.hide();
     voteSelection3.hide();
     voteSelection4.hide();
-    diffBox1.hide();
     diffBox2.hide();
     diffBox3.hide();
   }
