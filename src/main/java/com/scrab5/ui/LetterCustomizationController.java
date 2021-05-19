@@ -44,6 +44,7 @@ public class LetterCustomizationController extends Controller implements Initial
       ArrayList<Integer> listO, listP;
       listO = Data.getOccurrencyDistribution();
       listP = Data.getPointsDistribution();
+      UseDatabase.updateLetterCustomization(listP, listO);
 
       for (int i = 0; i < 27; i++) {
         al.get(i).setText(listO.get(i) + "");
