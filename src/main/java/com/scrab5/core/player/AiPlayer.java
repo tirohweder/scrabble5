@@ -208,9 +208,9 @@ public class AiPlayer extends Player {
    */
   public static void wordGenerator(String fixLetter, int before, int after, int x, int y,
       boolean horizontal) {
-    /*TO-DO: comment is not clear and add the comment for every parameter*/
+    /*TODO: comment is not clear and add the comment for every parameter*/
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
-    //ArrayList<String> possibleLetters = new ArrayList<String>();
+    ArrayList<String> possibleLetters1 = new ArrayList<String>();
     ArrayList<String> finalWords = new ArrayList<String>();
     ArrayList<String> deletionRound1 = new ArrayList<String>();
     ArrayList<String> deletionRound2 = new ArrayList<String>();
@@ -218,21 +218,24 @@ public class AiPlayer extends Player {
     int before2 = 0;
     int after2 = 0;
     
-    /*BagOfTiles bag = Data.getGameSession().getBag();
+    BagOfTiles bag = Data.getGameSession().getBag();
     listOfTiles = bag.getBag();
 
     for(Tile tile : listOfTiles) {
       String letter = tile.getLetter();
-      possibleLetters.add(letter);
-    }*/
+      possibleLetters1.add(letter);
+    }
     
-    //TO-DO: possibleLetters ArrayList zu array --> when connection to the bag is possible
+    /*ArrayList zu Array*/
+    String[] possibleLetters = new String[possibleLetters1.size()];
+    for(int i = 0; i < possibleLetters.length; i++) {
+      possibleLetters[i] = possibleLetters1.get(i);
+    }
     
-    String[] possibleLetters = {"A", "L", "I", "V", "E", "O", "N"};
     
     ArrayList<String> first = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
     for(String b1 : possibleLetters) {
-      first = DictionaryScanner.getWordsIncludingFromTest(first, b1);
+      first = DictionaryScanner.getWordsIncludingFrom(first, b1);
       for(String s : first) {
         finalWords.add(s);
       }
@@ -254,12 +257,8 @@ public class AiPlayer extends Player {
       }
     }
     finalWords.removeAll(deletionRound1);
-    
-    /*for(String t : finalWords) {
-      System.out.println(t);
-    }*/
 
-    /*TO-DO: if finalWords is empty --> exchange bag??*/
+    /*TODO: if finalWords is empty --> zum naechsten spot*/
     
     /*The next part checks the words in finalWords if they fulfill the requirements */
     for(String s : finalWords) {
@@ -279,18 +278,91 @@ public class AiPlayer extends Player {
     }
     finalWords.removeAll(deletionRound2);
     
-    /*System.out.println("last one");
-    for(String t : finalWords) {
-      System.out.println(t);
-    }*/
+    /*TODO: what if finalWords is empty --> zum naechsten spot*/
     
-    /*TO-DO: what if finalWords is empty --> exchange?*/
+    /*TODO: what now? I would save the found words in an ArrayList so the next step would be to calculate the points for each word!*/
+    ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
     
-    /*TO-DO: what now? I would save the found words in an ArrayList so the next step would be to calculate the points for each word!*/
+    
+    /*TODO: Eventuell Abbruchbedingung nach 15 Woerter oder so*/
   }
   
-  /* Just for direct testing:
-   * public static void main(String[] args) {
-    wordGenerator("A", 3, 4, 0, 0, true);
-  }*/
+  /**
+   * Method to test the function for the AiPlayer to generate a fitting word. 
+   * Just created to test this function in the JUnit test class, not for usage in the game.
+   * 
+   * @author lengist
+   * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a word next to
+   * @param before the amount of tiles that are free before this letter
+   * @param after the amount of tiles that are free after this letter
+   * @param x the x-coordinate of the tile with letter fixLetter on the board
+   * @param y the y-coordinate of the tile with letter fixLetter on the board
+   * @param horizontal is true, when the word needs to get laid horizontal and false if vertical. This parameter is needed later on
+   */
+  public static String[] wordGeneratorTest(String fixLetter, int before, int after, int x, int y,
+      boolean horizontal) {
+    ArrayList<String> finalWords = new ArrayList<String>();
+    ArrayList<String> deletionRound1 = new ArrayList<String>();
+    ArrayList<String> deletionRound2 = new ArrayList<String>();
+    int maximumLength = before + 1 + after;
+    int before2 = 0;
+    int after2 = 0;
+    String[] possibleLetters = {"A", "L", "I", "V", "E", "O", "N"};
+    
+    ArrayList<String> first = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
+    for(String b1 : possibleLetters) {
+      first = DictionaryScanner.getWordsIncludingFrom(first, b1);
+      for(String s : first) {
+        finalWords.add(s);
+      }
+    }
+    
+    StringBuilder sb = new StringBuilder();
+    for(String s : possibleLetters) {
+      sb.append(s);
+    }
+    String b = sb.toString();
+    for(String s : finalWords) {
+      for(int i = 0; i < s.length(); i++) {
+        if(b.indexOf(s.charAt(i)) == -1) {
+          deletionRound1.add(s);
+        }
+      }
+    }
+    finalWords.removeAll(deletionRound1);
+    
+    for(String s : finalWords) {
+      for(int i = 0; i < s.length(); i++) {
+        
+        if(s.charAt(i) == fixLetter.charAt(0)) {
+          before2 = i;
+          after2 = s.length()-i;   
+          
+          if(before2 > before) {
+            deletionRound2.add(s);
+          }else if(after2 > after) {
+            deletionRound2.add(s);
+          }
+        }
+      }
+    }
+    finalWords.removeAll(deletionRound2);
+    
+    String[] ready = new String[finalWords.size()];
+    for(int i = 0; i < ready.length; i++) {
+      ready[i] = finalWords.get(i);
+    }
+    return ready;
+  }
+  
+  
+  
+  /* Just for direct testing: */
+  public static void main(String[] args) {
+    //wordGenerator("A", 3, 4, 0, 0, true);
+    String[] test = wordGeneratorTest("A", 3, 4, 0, 0, true);
+    for(String s : test) {
+      System.out.println(s);
+    }
+  }
 }

@@ -87,24 +87,11 @@ public class DictionaryScanner {
    * Returns a new array that contains the words from the parameter array which include letter.
    * 
    * @author lengist
-   * @param words a String array containing all words to check
+   * @param words a ArrayList containing all words to check
    * @param letter a String of the letter that should be in the array that gets returned
-   * @return an array containing all words containing the letter
+   * @return a ArrayList containing all words containing the letter
    */
-  public static String[] getWordsIncludingFrom(String[] words, String letter) {
-    ArrayList<String> checked = new ArrayList<String>();
-    for(String line : words) {
-      if(line.contains(letter)) {
-        checked.add(line);
-      }
-    }
-    
-    String[] checkedWords = new String[checked.size()];
-    checkedWords = checked.toArray(checkedWords);
-    return checkedWords;
-  }
-  
-  public static ArrayList<String> getWordsIncludingFromTest(ArrayList<String> words, String letter) {
+  public static ArrayList<String> getWordsIncludingFrom(ArrayList<String> words, String letter) {
     ArrayList<String> checked = new ArrayList<String>();
     for(String line : words) {
       if(line.contains(letter)) {
