@@ -161,6 +161,7 @@ public class AiPosition {
     return score;
   }
 
+  
   public int countScore() {
 
     String[][] gameBoardSpecial = Data.getGameSession().getGameBoard().getGameBoardSpecial();
@@ -170,7 +171,7 @@ public class AiPosition {
     boolean dws = false;
 
     StringBuilder word = new StringBuilder();
-    
+
     return score;
 
 

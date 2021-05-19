@@ -59,12 +59,29 @@ class AiPlayerTest {
     assertEquals(14, test.getCounterDown());
     assertEquals(0, test.getCounterUp());
 
-    g.placeTileTest(new Tile("T", 3), 8, 6);
+    g.placeTileTest(new Tile("T", 3), 3, 7);
     test.getSpotsfree(6, 6, g);
     assertEquals(6, test.getCounterLeft());
     assertEquals(8, test.getCounterRight());
     assertEquals(1, test.getCounterDown());
     assertEquals(2, test.getCounterUp());
+
+    g.removeTile(3, 7);
+
+    g.placeTileTest(new Tile("T", 3), 3, 5);
+    test.getSpotsfree(6, 6, g);
+    assertEquals(6, test.getCounterLeft());
+    assertEquals(8, test.getCounterRight());
+    assertEquals(1, test.getCounterDown());
+    assertEquals(2, test.getCounterUp());
+
+    g.placeTileTest(new Tile("T", 3), 5, 9);
+    test.getSpotsfree(6, 6, g);
+    assertEquals(6, test.getCounterLeft());
+    assertEquals(2, test.getCounterRight());
+    assertEquals(1, test.getCounterDown());
+    assertEquals(2, test.getCounterUp());
+
 
   }
 
