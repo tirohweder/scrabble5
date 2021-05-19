@@ -136,7 +136,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   protected void addPlayer(MouseEvent event) throws IOException {
 
-    AIs.add(new Client("Der Zerstörinator" + (AIs.size() + 1)));
+    // AIs.add(new Client("Der Zerstörinator" + (AIs.size() + 1)));
     this.updateAICounter();
 
     playSound("ButtonClicked.mp3");
@@ -384,6 +384,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player2.setText(client.getUsername());
                 ready2.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (isHost) {
+                  kick2.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -396,6 +399,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player3.setText(client.getUsername());
                 ready3.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (isHost) {
+                  kick3.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -408,6 +414,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 client = iterator.next();
                 player4.setText(client.getUsername());
                 ready4.setText(client.isReady() ? "Ready" : "Not Ready");
+                if (isHost) {
+                  kick4.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }

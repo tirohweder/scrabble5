@@ -14,6 +14,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 import com.scrab5.network.NetworkError.NetworkErrorType;
@@ -40,7 +41,7 @@ public class Server implements Serializable {
   private ServerStatistics serverStatistics;
   private Timer timer;
 
-  private HashMap<String, ClientData> clients;
+  private LinkedHashMap<String, ClientData> clients;
   private HashMap<ClientData, ServerThread> connections;
 
   /**
@@ -55,7 +56,7 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public Server(String host, int clientMaximum, boolean UIServerInstance) {
-    this.clients = new HashMap<String, ClientData>();
+    this.clients = new LinkedHashMap<String, ClientData>();
     this.connections = new HashMap<ClientData, ServerThread>();
     this.gameStart = false;
     this.host = host;
@@ -338,7 +339,7 @@ public class Server implements Serializable {
    * @param clients - the new HashMap of the clients
    * @author nitterhe
    */
-  public void setClients(HashMap<String, ClientData> clients) {
+  public void setClients(LinkedHashMap<String, ClientData> clients) {
     this.clients = clients;
   }
 
@@ -401,5 +402,16 @@ public class Server implements Serializable {
    */
   public void cancelTimer() {
     this.timer.cancel();
+  }
+
+  /**
+   * Kicks the client given.
+   *
+   * @author nitterhe
+   * @param clientname - the name of the client that was kicked
+   */
+  public void kickClient(String clientname) {
+    this.connections.get(this.clients.get(clientname)).closeConnection();
+    this.sendUpdateMessage();
   }
 }
