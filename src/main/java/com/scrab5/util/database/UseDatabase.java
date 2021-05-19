@@ -275,6 +275,37 @@ public class UseDatabase extends Database {
   public synchronized static void setOccurrenceLetters(String letter, int occurrence) {
     FillDatabase.updateOccurrenceLetters(letter, occurrence);
   }
+  
+  /**
+   * Updates the values in the table Letters after a user customized it.
+   * 
+   * @author lengist
+   * @param points a ArrayList for all the points that need to be saved.
+   * @param occurrences a ArrayList for al the occurrences that need to be saved.
+   */
+  public synchronized static void updateLetterCustomization(ArrayList<Integer> points, ArrayList<Integer> occurrences) {
+    Database.reconnect();
+    FillDatabase.deleteTable("Letters");
+    String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    int[] point = new int[points.size()];
+    int count = 0;
+    for(int n : points) {
+      point[count] = n;
+      count++;
+    }
+    
+    int count2 = 0;
+    int[] occurrence = new int[occurrences.size()];
+    for(int n : occurrences) {
+      occurrence[count2] = n;
+      count2++;
+    }
+    
+    for (int i = 0; i < letter.length; i++) {
+      FillDatabase.insertLetters(letter[i], point[i], occurrence[i]);
+    }
+  }
 
   /**
    * Returns a boolean if the player "name" already exists.
