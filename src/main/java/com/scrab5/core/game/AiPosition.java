@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class AiPosition {
+
   private int x;
   private int y;
   String fixLetter;
@@ -147,7 +148,7 @@ public class AiPosition {
   public static int calculatePoints(String word) {
     String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     int[] points =
-        new int[] {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 2, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
+        new int[]{1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 2, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
     int score = 0;
     for (int i = 0; i < word.length(); i++) {
       for (int j = 0; j < s.length(); j++) {
@@ -158,4 +159,20 @@ public class AiPosition {
     }
     return score;
   }
+
+  public int countScore() {
+
+    Double []
+
+    int score = 0;
+    boolean tws = false;
+    boolean dws = false;
+
+    StringBuilder word = new StringBuilder();
+
+    return score;
+
+
+  }
+
 }
