@@ -16,7 +16,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class EndGameController extends InGameController implements Initializable {
-  
+
   @FXML
   private ImageView wonScreen;
   @FXML
@@ -27,19 +27,21 @@ public class EndGameController extends InGameController implements Initializable
     initPlayers();
 
     initRack();
-    
-    initEndGame();
+
+   // initEndGame();
   }
-  
+
   private void initEndGame() {
     ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
-    
-    Iterator it = players.iterator();
-    
-    while(it.hasNext()) {
-      
+    Player owner;
+    Iterator<Player> it = players.iterator();
+    while (it.hasNext()) {
+      Player p = it.next();
+      if (p.getName().equals(Data.getCurrentUser())) {
+        owner = p;
+      }
     }
-    
+
   }
 
   @FXML
@@ -49,7 +51,9 @@ public class EndGameController extends InGameController implements Initializable
 
   @FXML
   private void playAgainClicked(MouseEvent event) throws IOException {
-    
+
     App.setRoot("SingleplayerLobby");
   }
 }
+
+

@@ -3,7 +3,6 @@ package com.scrab5.util.database;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 /**
  * Class to get and set the data for the player statistics and leaderboards.
@@ -461,7 +460,7 @@ public class PlayerProfileDatabase extends Database {
    * @param language String representing the new favorite dictionary to be stored in the database
    */
   public static void setFavoriteDictionary(String name, String language) {
-    FillDatabase.updatePlayer("FaveDic", name, language, 0, 0.0);
+    FillDatabase.updatePlayer("FavDic", name, language, 0, 0.0);
   }
 
   /**

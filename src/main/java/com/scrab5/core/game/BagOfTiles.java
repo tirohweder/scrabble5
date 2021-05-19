@@ -6,6 +6,14 @@ import java.util.Random;
 
 public class BagOfTiles implements Serializable {
 
+  public ArrayList<Tile> getBag() {
+    return bag;
+  }
+
+  public void setBag(ArrayList<Tile> bag) {
+    this.bag = bag;
+  }
+  
   private static final long serialVersionUID = 1L;
 
   private ArrayList<Tile> bag = new ArrayList<>();

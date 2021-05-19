@@ -5,6 +5,7 @@ import com.scrab5.core.game.GameBoard;
 import com.scrab5.ui.Data;
 import java.util.ArrayList;
 
+
 public class AiPlayer extends Player {
 
   ArrayList<AiPosition> pos;
@@ -21,13 +22,31 @@ public class AiPlayer extends Player {
     super(name);
   }
 
+  public int getCounterUp() {
+    return this.counterUp;
+  }
+
+  public int getCounterDown() {
+    return this.counterDown;
+  }
+
+  public int getCounterLeft() {
+    return this.counterLeft;
+  }
+
+  public int getCounterRight() {
+    return this.counterRight;
+  }
+
+
+
   /**
    * In this method all other methods will be called for the Hard AI
    *
    * @param
    * @author hraza
    */
-  public void playerMoveHard() {
+  /*public void playerMoveHard() {
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
         if (!Data.getGameSession().getGameBoard().isSpotFree(i, j)) {
@@ -46,12 +65,25 @@ public class AiPlayer extends Player {
         }
       }
     }
-    for (int i = 0; i < pos.size(); i++) {
-      pos.get(i).sortPossibleWordsDescending();
+    int idxBestPos = 0;
+    for (int i = 1; i < pos.size(); i++) {
+        if (pos.get(idxBestPos).getPoints(pos.get(idxBestPos).getIndexOfMostPoints()) < pos.get(i)
+            .getPoints(pos.get(i).getIndexOfMostPoints())) {
+          idxBestPos = i;
+        }
     }
-    this.sortPosMax();
-    // JETZT FEHLT NOCH,DASS MAN VON POS(0) DAS WORT ERSTE WORT LEGT
-  }
+    String word= pos.get(idxBestPos).getWord(pos.get(idxBestPos).getIndexOfMostPoints());
+    int before=pos.get(idxBestPos).getBefore(pos.get(idxBestPos).getIndexOfMostPoints());
+    int after= pos.get(idxBestPos).getAfter(pos.get(idxBestPos).getIndexOfMostPoints());
+    if(pos.get(idxBestPos).getHorizontal(pos.get(idxBestPos).getIndexOfMostPoints())) {
+      for(int i=1;i<=before;i++) {
+        Data.getGameSession().getGameBoard().placeTile(Data.getGameSession().getBag().pick(), pos.get(idxBestPos).getY(), pos.get(idxBestPos).getX());
+      }
+    }
+    else {
+      
+    }
+  }*/
 
   /**
    * In this method all other methods will be called for the Easy AI
@@ -59,7 +91,7 @@ public class AiPlayer extends Player {
    * @param
    * @author hraza
    */
-  public void playerMoveEasy() {
+  /*public void playerMoveEasy() {
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
         if (!Data.getGameSession().getGameBoard().isSpotFree(i, j)) {
@@ -78,12 +110,7 @@ public class AiPlayer extends Player {
         }
       }
     }
-    for (int i = 0; i < pos.size(); i++) {
-      pos.get(i).sortPossibleWordsAscending();
-    }
-    this.sortPosMin();
-    // JETZT FEHLT NOCH,DASS MAN VON POS(0) DAS WORT ERSTE WORT LEGT
-  }
+  }*/
 
   /**
    * This Method is looking for free valid Spots around the given position and initializes the
@@ -93,6 +120,7 @@ public class AiPlayer extends Player {
    * @param y
    * @author hraza
    */
+
 
   public void getSpotsfree(int x, int y, GameBoard g) {
     int counterRight = 0;
@@ -129,28 +157,28 @@ public class AiPlayer extends Player {
     }
 
     // Checking for free Spots under the Position x,y
-    while (y + 1 + counterDown < 14 && x > 0 && x < 14 && g.isSpotFree(y + 1 + counterDown, x)
+    while (y + 1 + counterDown <= 14 && x > 0 && x < 14 && g.isSpotFree(y + 1 + counterDown, x)
         && g.isSpotFree(y + 1 + counterDown, x + 1) && g.isSpotFree(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
-    while (y + 1 + counterDown < 14 && x == 0 && g.isSpotFree(y + 1 + counterDown, x)
+    while (y + 1 + counterDown <= 14 && x == 0 && g.isSpotFree(y + 1 + counterDown, x)
         && g.isSpotFree(y + 1 + counterDown, x + 1)) {
       counterDown++;
     }
-    while (y + 1 + counterDown < 14 && x == 14 && g.isSpotFree(y + 1 + counterDown, x)
+    while (y + 1 + counterDown <= 14 && x == 14 && g.isSpotFree(y + 1 + counterDown, x)
         && g.isSpotFree(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
     // Checking for free Spots over the Position x,y
-    while (y - 1 - counterUp < 14 && x > 0 && x < 14 && g.isSpotFree(y - 1 - counterUp, x)
+    while (y - 1 - counterUp >= 0 && x > 0 && x < 14 && g.isSpotFree(y - 1 - counterUp, x)
         && g.isSpotFree(y - 1 - counterUp, x + 1) && g.isSpotFree(y - 1 - counterUp, x - 1)) {
       counterUp++;
     }
-    while (y - 1 - counterUp < 14 && x == 0 && g.isSpotFree(y - 1 - counterUp, x)
+    while (y - 1 - counterUp >= 0 && x == 0 && g.isSpotFree(y - 1 - counterUp, x)
         && g.isSpotFree(y - 1 - counterUp, x + 1)) {
       counterUp++;
     }
-    while (y - 1 - counterUp < 14 && x == 14 && g.isSpotFree(y - 1 - counterUp, x)
+    while (y - 1 - counterUp >= 0 && x == 14 && g.isSpotFree(y - 1 - counterUp, x)
         && g.isSpotFree(y - 1 - counterUp, x - 1)) {
       counterUp++;
     }
@@ -177,52 +205,5 @@ public class AiPlayer extends Player {
       boolean horizontal) {
     // THIS METHOD SHOULD ONLY ADD VALID WORDS TO THE LIST THAT CAN BE BUILD WITH THE BAG
 
-
-  }
-
-  /**
-   * This Method will sort the list pos, so that the Position with the biggest maxPoint is first
-   *
-   * @param
-   * @author hraza
-   */
-  public void sortPosMax() {
-    // sorting the pointslist and the wordlist
-    AiPosition temp;
-    for (int i = 0; i < this.pos.size(); i++) {
-      for (int j = 1; j < this.pos.size(); j++) {
-        if (this.pos.get(i).getMaxPoints() < this.pos.get(j).getMaxPoints()) {
-          temp = this.pos.get(i);
-          this.pos.add(i, this.pos.get(j));
-          this.pos.add(j, temp);
-        }
-      }
-    }
-  }
-
-  /**
-   * This Method will sort the list pos, so that the Position who has the smallest minPoints is
-   * first in the list pos
-   *
-   * @param
-   * @author hraza
-   */
-  public void sortPosMin() {
-    // sorting the pointslist and the wordlist
-    AiPosition temp;
-    for (int i = 0; i < this.pos.size(); i++) {
-      for (int j = 1; j < this.pos.size(); j++) {
-        if (this.pos.get(i).getMinPoints() > this.pos.get(j).getMinPoints()) {
-          temp = this.pos.get(i);
-          this.pos.add(i, this.pos.get(j));
-          this.pos.add(j, temp);
-        }
-      }
-    }
-  }
-
-  public static void main(String[] args) {
-    // testing the methods
-    System.out.println("Hi");
   }
 }

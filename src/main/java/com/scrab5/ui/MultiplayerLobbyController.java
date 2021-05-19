@@ -114,7 +114,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     playSound("ButtonClicked.mp3");
 
     this.isReady = !isReady;
-
     Data.getPlayerClient().setReady(this.isReady, this.getPlayerVotes());
   }
 
@@ -140,7 +139,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     this.updateAICounter();
 
     playSound("ButtonClicked.mp3");
-
 
     for (int i = 1; i < Data.getPlayerCountMultiplayer() - 1; i++) {
       if (freeSpaces[i]) {
@@ -264,7 +262,10 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   /**
-   * @author nitterhe
+   * @param event
+   * @throws IOException
+   * @throws SQLException
+   * @author trohwede, nitterhe
    */
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {

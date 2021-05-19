@@ -1,12 +1,12 @@
 package com.scrab5.util.textParser;
 
+import com.scrab5.util.database.CreateDatabase;
+import com.scrab5.util.database.Database;
+import com.scrab5.util.database.FillDatabase;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import com.scrab5.util.database.CreateDatabase;
-import com.scrab5.util.database.Database;
-import com.scrab5.util.database.FillDatabase;
 
 public class DictionaryScanner {
 
