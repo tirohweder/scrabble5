@@ -6,6 +6,7 @@ import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.core.game.Tile;
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.textParser.DictionaryScanner;
 import java.util.ArrayList;
 
@@ -17,6 +18,9 @@ public class AiPlayer extends Player {
   int counterDown;
   int counterRight;
   int counterLeft;
+  String[] lettersFromDatabase;
+  int[] pointsPerLetterFromDatabase;
+  
 
   /**
    * @param name
@@ -193,22 +197,18 @@ public class AiPlayer extends Player {
   }
 
   /**
-   * This Method will scan the Dictionary for words that fit to the size of the spot on the
-   * gameboard, will create an AiPosition object,will fill this AiPosition with posWords and will
-   * add it to the List pos
-   *
-   * @param fixLetter
-   * @param before
-   * @param after
-   * @param x
-   * @param y
-   * @param horizontal
-   * @author hraza
+   * Method to generate a fitting word and create a ArrayList containing a ArrayList of Tiles for the possible words. 
+   * 
    * @author lengist
+   * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a word next to
+   * @param before the amount of tiles that are free before this letter
+   * @param after the amount of tiles that are free after this letter
+   * @param x the x-coordinate of the tile with letter fixLetter on the board
+   * @param y the y-coordinate of the tile with letter fixLetter on the board
+   * @param horizontal is true, when the word needs to get laid horizontal and false if vertical. This parameter is needed later on
    */
   public static void wordGenerator(String fixLetter, int before, int after, int x, int y,
       boolean horizontal) {
-    /*TODO: comment is not clear and add the comment for every parameter*/
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
     ArrayList<String> possibleLetters1 = new ArrayList<String>();
     ArrayList<String> finalWords = new ArrayList<String>();
@@ -226,7 +226,6 @@ public class AiPlayer extends Player {
       possibleLetters1.add(letter);
     }
     
-    /*ArrayList zu Array*/
     String[] possibleLetters = new String[possibleLetters1.size()];
     for(int i = 0; i < possibleLetters.length; i++) {
       possibleLetters[i] = possibleLetters1.get(i);
@@ -258,7 +257,9 @@ public class AiPlayer extends Player {
     }
     finalWords.removeAll(deletionRound1);
 
-    /*TODO: if finalWords is empty --> zum naechsten spot*/
+    if(finalWords.isEmpty()) {
+      /*TODO: change next spot*/
+    }
     
     /*The next part checks the words in finalWords if they fulfill the requirements */
     for(String s : finalWords) {
@@ -278,13 +279,31 @@ public class AiPlayer extends Player {
     }
     finalWords.removeAll(deletionRound2);
     
-    /*TODO: what if finalWords is empty --> zum naechsten spot*/
+    if(finalWords.isEmpty()) {
+      /*TODO: change next spot*/
+    }
     
-    /*TODO: what now? I would save the found words in an ArrayList so the next step would be to calculate the points for each word!*/
+    /*TODO: check that the letters only appear the given amount --> Hedis Methode aufrufen, gibt boolean zurueck --> true, dass okay --> Wort bleibt, ansonsten remove*/
+    
+    /*TODO: create the following list with a list of tiles for Timm*/
+    /*TODO: einmal alle punkte fuer Buchstaben aus Database in Klassenvariable, damit ich value hinzufuegen kann*/
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
+    for(String s : finalWords) {
+      
+    }
     
-    
-    /*TODO: Eventuell Abbruchbedingung nach 15 Woerter oder so*/
+    /*TODO: Possible add: condition to end this method after for example 15 words.*/
+  }
+  
+  /**
+   * Method to get all the points for the letters in the database to find out the points for a possible word.
+   * The values will be saved in a local variable.
+   * 
+   * @author lengist
+   */
+  public void setLetterPoints() {
+    lettersFromDatabase = UseDatabase.getAllLetters();
+    pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
   }
   
   /**

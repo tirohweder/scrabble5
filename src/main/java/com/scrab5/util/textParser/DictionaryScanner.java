@@ -79,7 +79,6 @@ public class DictionaryScanner {
     String[] suitableWords = new String[list.size()];
     suitableWords = list.toArray(suitableWords);
     
-    //return suitableWords;
     return list;
   }
   
