@@ -1,37 +1,141 @@
 package com.scrab5.core.game;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AiPosition {
   private int x;
   private int y;
-  private ArrayList<String> possibleWords;
-  private ArrayList<Integer> possiblePoints;
-  private ArrayList<Integer> before;
-  private ArrayList<Integer> after;
-  private ArrayList<Boolean> horizontal;
-  int maxPoints;
-  int minPoints;
+  String fixLetter;
+  private ArrayList<String> possibleWords = new ArrayList();
+  private ArrayList<Integer> possiblePoints = new ArrayList();
+  private ArrayList<Integer> before = new ArrayList();
+  private ArrayList<Integer> after = new ArrayList();
+  private ArrayList<Boolean> horizontal = new ArrayList();
 
-  public AiPosition(int x, int y, ArrayList<String> possibleWords, ArrayList<Integer> before,
-      ArrayList<Integer> after,ArrayList<Boolean> horizontal) {
+  /**
+   * Constructor
+   *
+   * @param x
+   * @param y
+   * @param fixLetter
+   * @author hraza
+   */
+  public AiPosition(int x, int y, String fixLetter) {
     this.x = x;
     this.y = y;
-    this.possibleWords = possibleWords;
-    this.before = before;
-    this.after = after;
-    // CALCULATE POINTS FOR EVERY WORD IN THE WORDSLIST(FILL THE POINTS LIST)
-    for(int i=0;i<possibleWords.size();i++) {
-      this.possiblePoints.add(calculatePoints(this.possibleWords.get(i)));
-    }
+    this.fixLetter = fixLetter;
   }
 
-  public int getMaxPoints() {
-    return this.maxPoints;
+  /**
+   * With this method you can add elements to the possibleWords list
+   *
+   * @param word
+   * @param before
+   * @param after
+   * @param horizontal
+   * @author hraza
+   */
+  public void add(String word, int before, int after, Boolean horizontal) {
+    this.possibleWords.add(word);
+    this.possiblePoints.add(calculatePoints(word));
+    this.after.add(after);
+    this.before.add(before);
+    this.horizontal.add(horizontal);
   }
 
-  public int getMinPoints() {
-    return this.minPoints;
+  /**
+   * Word getter
+   *
+   * @param idx
+   * @author hraza
+   */
+  public String getWord(int idx) {
+    return this.possibleWords.get(idx);
+  }
+
+  /**
+   * Word getter
+   *
+   * @param idx
+   * @author hraza
+   */
+  public int getX() {
+    return this.x;
+  }
+
+  /**
+   * Word getter
+   *
+   * @param idx
+   * @author hraza
+   */
+  public int getY() {
+    return this.y;
+  }
+
+  /**
+   * Direction getter
+   *
+   * @param idx
+   * @author hraza
+   */
+  public Boolean getHorizontal(int idx) {
+    return this.horizontal.get(idx);
+  }
+
+  /**
+   * Before-counter getter
+   *
+   * @param idx
+   * @author hraza
+   */
+  public int getBefore(int idx) {
+    return this.before.get(idx);
+  }
+
+  /**
+   * After-counter getter
+   *
+   * @param idx
+   * @author hraza
+   */
+  public int getAfter(int idx) {
+    return this.after.get(idx);
+  }
+
+  /**
+   * Points getter
+   *
+   * @param idx
+   * @author hraza
+   */
+  public int getPoints(int idx) {
+    return this.possiblePoints.get(idx);
+  }
+
+  /**
+   * This method will give back the index of the word with most points
+   *
+   * @param
+   * @author hraza
+   */
+  public int getIndexOfMostPoints() {
+    Integer maxPoints = Collections.max(this.possiblePoints);
+    Integer maxIdx = this.possiblePoints.indexOf(maxPoints);
+    return maxIdx;
+  }
+
+  /**
+   * This method will give back the index of the word with fewest points
+   *
+   * @param
+   * @author hraza
+   */
+  public int getIndexOfSmallestPoints() {
+    Integer minPoints = Collections.min(this.possiblePoints);
+    Integer minIdx = this.possiblePoints.indexOf(minPoints);
+    return minIdx;
   }
 
   /**
@@ -53,80 +157,5 @@ public class AiPosition {
       }
     }
     return score;
-  }
-
-  /**
-   * This Method will sort the lists "possiblePoints", "possibleWords", "before", "after" and "horizontal" at the same Time, so the word
-   * with the lowest points is first and initializes the minPoint and maxPoint
-   *
-   * @param
-   * @author hraza
-   */
-  public void sortPossibleWordsAscending() {
-    int temp;
-    String tempString;
-    Boolean tempHorizontal;
-    int tempBefore;
-    int tempAfter;
-    for (int i = 0; i < this.possiblePoints.size(); i++) {
-      for (int j = 1; j < this.possiblePoints.size(); j++) {
-        if (this.possiblePoints.get(i) > this.possiblePoints.get(j)) {
-          temp = this.possiblePoints.get(i);
-          tempString = this.possibleWords.get(i);
-          tempHorizontal = this.horizontal.get(i);
-          tempBefore = this.before.get(i);
-          tempAfter = this.after.get(i);
-          
-          this.possibleWords.add(i, this.possibleWords.get(j));
-          this.possibleWords.add(j, tempString);
-          this.possiblePoints.add(i, this.possiblePoints.get(j));
-          this.possiblePoints.add(j, temp);
-          this.horizontal.add(i, this.horizontal.get(j));
-          this.horizontal.add(j, tempHorizontal);
-          this.before.add(i, this.before.get(j));
-          this.before.add(j, tempBefore);
-          this.after.add(i, this.after.get(j));
-          this.after.add(j, tempAfter);
-
-        }
-      }
-    }
-  }
-
-  /**
-   * This Method will sort the lists "possiblePoints", "possibleWords", "before", "after" and "horizontal" at the same Time, so the word
-   * with the highest points is first. It also intializes "minPoint" and "maxPoint"
-   *
-   * @param
-   * @author hraza
-   */
-  public void sortPossibleWordsDescending() {
-    int temp;
-    String tempString;
-    Boolean tempHorizontal;
-    int tempBefore;
-    int tempAfter;
-    for (int i = 0; i < this.possiblePoints.size(); i++) {
-      for (int j = 1; j < this.possiblePoints.size(); j++) {
-        if (this.possiblePoints.get(i) < this.possiblePoints.get(j)) {
-          temp = this.possiblePoints.get(i);
-          tempString = this.possibleWords.get(i);
-          tempHorizontal = this.horizontal.get(i);
-          tempBefore = this.before.get(i);
-          tempAfter = this.after.get(i);
-          
-          this.possibleWords.add(i, this.possibleWords.get(j));
-          this.possibleWords.add(j, tempString);
-          this.possiblePoints.add(i, this.possiblePoints.get(j));
-          this.possiblePoints.add(j, temp);
-          this.horizontal.add(i, this.horizontal.get(j));
-          this.horizontal.add(j, tempHorizontal);
-          this.before.add(i, this.before.get(j));
-          this.before.add(j, tempBefore);
-          this.after.add(i, this.after.get(j));
-          this.after.add(j, tempAfter);
-        }
-      }
-    }
   }
 }
