@@ -364,10 +364,10 @@ public class AiPlayer extends Player {
     return ready;
   }
 
-  public HashMap<String, Integer> checkDistributionLegal(
-      HashMap<String, Integer> currentDistribution) {
-
-    return null;
+  public Boolean checkBagDistributionLegal(
+      HashMap<String, Integer> currentDistribution, String word) {
+    
+    return false;
   }
 
   /* Just for direct testing: */
