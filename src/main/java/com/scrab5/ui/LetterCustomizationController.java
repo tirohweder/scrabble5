@@ -12,6 +12,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+/**
+ * The LetterCustomizationController class controls the components of the
+ * "LetterCustomization.fxml".
+ * 
+ * @author mherre
+ */
 public class LetterCustomizationController extends Controller implements Initializable {
 
   @FXML
@@ -23,6 +29,13 @@ public class LetterCustomizationController extends Controller implements Initial
 
   private ArrayList<TextField> al, alP;
 
+  /**
+   * Call certain methods as soon as the Controller is loaded. Sets the displayed occurrences and
+   * points depending on if the letter's occurrences/points have already been edited, if not then
+   * the standard occurrences and point distribution is loaded from the database.
+   * 
+   * @author mherre
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
@@ -51,11 +64,17 @@ public class LetterCustomizationController extends Controller implements Initial
         alP.get(i).setText(listP.get(i) + "");
       }
     }
-
   }
 
-
-
+  /**
+   * Event method that is called when the "Confirm"-button in the UI is clicked. Saves the changes
+   * that were made by the user.
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   @FXML
   private void confirm(MouseEvent event) throws IOException {
 
@@ -78,9 +97,15 @@ public class LetterCustomizationController extends Controller implements Initial
       s.close();
     }
 
-
   }
 
+  /**
+   * Method that puts all <code>TextField</code> containing the occurrences into one
+   * <code>ArrayList</code>, so working with them is easier.
+   * 
+   * @author mherre
+   * @return al the ArrayList containing the occurrences
+   */
   private ArrayList<TextField> createListO() {
     ArrayList<TextField> al = new ArrayList<TextField>();
     al.add(aO);
@@ -114,6 +139,13 @@ public class LetterCustomizationController extends Controller implements Initial
     return al;
   }
 
+  /**
+   * Method that puts all <code>TextField</code> containing the points into one
+   * <code>ArrayList</code>, so working with them is easier.
+   * 
+   * @author mherre
+   * @return al the ArrayList containing the amount of points
+   */
   private ArrayList<TextField> createListP() {
     ArrayList<TextField> al = new ArrayList<TextField>();
     al.add(aP);
@@ -147,6 +179,16 @@ public class LetterCustomizationController extends Controller implements Initial
     return al;
   }
 
+  /**
+   * Method that checks if all entered values in the <code>TextFields</code>'s consist only of
+   * numbers.
+   * 
+   * @author mherre
+   * @return the boolean containing the value whether the <code>TextFields</code>'s fulfill the
+   *         requirements
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   private boolean areValuesValid() throws IOException {
 
     for (int i = 0; i < 27; i++) {
