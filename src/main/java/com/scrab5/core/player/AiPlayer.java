@@ -364,21 +364,36 @@ public class AiPlayer extends Player {
     return ready;
   }
 
+  /**
+   * This Method is gettig a String word and the current Bag-Occurence hashmap handed over and then
+   * checks if there are enough letters in the Bag to create the word. For every Letter in the word
+   * it substracts 1 from the value in the Hashmap and then checks if the value of this Letter is
+   * still positive. If it is negative, the boolean will be changed to false, the loop breaks and
+   * the hashmap will be resetted and false is given back
+   *
+   * @param currentDistribution
+   * @param word
+   * @author hraza
+   */
   public static Boolean checkBagDistributionLegal(HashMap<String, Integer> currentDistribution,
       String word) {
     boolean b = true;
+    int j = 0;
     for (int i = 0; i < word.length(); i++) {
-      //reduziere den Value jedes in word vorkommende Buchstabe um 1 und überprüfe dann ob Value negativ wird
       currentDistribution.put(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) - 1);
       if (currentDistribution.get(Character.toString(word.charAt(i))) < 0) {
         b = false;
+        j = i;
+        break;
+      } else {
+        j = word.length() - 1;
       }
     }
-    for (int i = 0; i < word.length(); i++) {
-      //reduziere den Value jedes in word vorkommende Buchstabe um 1 und überprüfe dann ob Value negativ wird
+    System.out.println(j);
+    for (int i = 0; i <= j; i++) {
       currentDistribution.put(Character.toString(word.charAt(i)),
-          currentDistribution.get(Character.toString(word.charAt(i)))+1);
+          currentDistribution.get(Character.toString(word.charAt(i))) + 1);
     }
     return b;
   }
