@@ -364,10 +364,23 @@ public class AiPlayer extends Player {
     return ready;
   }
 
-  public Boolean checkBagDistributionLegal(
-      HashMap<String, Integer> currentDistribution, String word) {
-    
-    return false;
+  public static Boolean checkBagDistributionLegal(HashMap<String, Integer> currentDistribution,
+      String word) {
+    boolean b = true;
+    for (int i = 0; i < word.length(); i++) {
+      //reduziere den Value jedes in word vorkommende Buchstabe um 1 und überprüfe dann ob Value negativ wird
+      currentDistribution.put(Character.toString(word.charAt(i)),
+          currentDistribution.get(Character.toString(word.charAt(i))) - 1);
+      if (currentDistribution.get(Character.toString(word.charAt(i))) < 0) {
+        b = false;
+      }
+    }
+    for (int i = 0; i < word.length(); i++) {
+      //reduziere den Value jedes in word vorkommende Buchstabe um 1 und überprüfe dann ob Value negativ wird
+      currentDistribution.put(Character.toString(word.charAt(i)),
+          currentDistribution.get(Character.toString(word.charAt(i)))+1);
+    }
+    return b;
   }
 
   /* Just for direct testing: */

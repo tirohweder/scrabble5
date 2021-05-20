@@ -1,7 +1,7 @@
 package com.scrab5.core.player;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import java.util.HashMap;
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
 import org.junit.jupiter.api.Test;
@@ -10,18 +10,20 @@ class AiPlayerTest {
 
 
   @Test
-  void sortPosMinTest() {
-
+  void checkBagDistributionLegalTest() {
+    HashMap<String, Integer> bagDistribution = new HashMap<String, Integer>();
+    bagDistribution.put("H", 1);
+    bagDistribution.put("A", 1);
+    bagDistribution.put("L", 1);
+    bagDistribution.put("O", 1);    
+    assertEquals(false ,AiPlayer.checkBagDistributionLegal(bagDistribution, "HALLO"));
+    bagDistribution.put("L", 2);
+    assertEquals(true ,AiPlayer.checkBagDistributionLegal(bagDistribution, "HALLO"));
+    
   }
 
-
   @Test
-  void sortPosMaxTest() {
-
-  }
-
-  @Test
-  void getSpotsFree() {
+  void getSpotsFreeTest() {
     Tile middle = new Tile("A", 1);
     Tile middle2 = new Tile("A", 1);
     GameBoard g = new GameBoard();
