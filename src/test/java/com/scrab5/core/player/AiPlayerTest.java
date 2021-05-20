@@ -82,8 +82,6 @@ class AiPlayerTest {
     assertEquals(1, test.getCounterDown());
     assertEquals(2, test.getCounterUp());
 
-
   }
 
-    
 }
