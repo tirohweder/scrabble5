@@ -2,6 +2,7 @@ package com.scrab5.core.game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 public class BagOfTiles implements Serializable {
@@ -13,7 +14,7 @@ public class BagOfTiles implements Serializable {
   public void setBag(ArrayList<Tile> bag) {
     this.bag = bag;
   }
-  
+
   private static final long serialVersionUID = 1L;
 
   private ArrayList<Tile> bag = new ArrayList<>();
@@ -65,5 +66,34 @@ public class BagOfTiles implements Serializable {
     // returns how many Tiles are left in the Bag
     return this.bag.size();
   }
+
+  //
+  //public int removeSpecific() {
+
+  //}
+
+
+  public HashMap<String, Integer> getCurrentBagDisrubtion() {
+
+    HashMap<String, Integer> wordDistro = null;
+
+    for (int i = 0; i < bag.size(); i++) {
+      wordDistro.merge(bag.get(i).getLetter(), 1, Integer::sum);
+    }
+
+    return wordDistro;
+  }
+
+  //TODO String[][] a, b,
+  //TODO            5, 2,
+
+  //TODO currentBagDisrubition. word. ""APFEL"
+
+  // String[][] a
+  // Sring [][] 5-1
+
+  // newBagDisrubtion
+
+  // intilaize bag (newBagDisrubiton)
 
 }

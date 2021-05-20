@@ -7,7 +7,7 @@
     <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/AiPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/AiPosition.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/scrab5/core/player/AiPlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/scrab5/core/player/AiPlayerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,19 +78,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.AiPlayerTest.getSpotsFree">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AiPlayerTest.getSpotsFree" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
@@ -246,14 +233,8 @@
       <workItem from="1621239683722" duration="1221000" />
       <workItem from="1621318735502" duration="22271000" />
       <workItem from="1621345243582" duration="6006000" />
-      <workItem from="1621445444441" duration="1348000" />
-    </task>
-    <task id="LOCAL-00002" summary="#69 add strucutre">
-      <created>1619794181023</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1619794181023</updated>
+      <workItem from="1621445444441" duration="3985000" />
+      <workItem from="1621492380627" duration="778000" />
     </task>
     <task id="LOCAL-00003" summary="#66 testing finished">
       <created>1619795029998</created>
@@ -591,7 +572,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621445545071</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="#66 ai calculate points method">
+      <created>1621447029504</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1621447029504</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -623,7 +611,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="#66 Solved a few proplems regarding the way it checks the played tiles" />
     <MESSAGE value="#66 checking for new words fixed" />
     <MESSAGE value="#66 scoring works now" />
     <MESSAGE value="#66 added placetile functionality" />
@@ -648,7 +635,8 @@
     <MESSAGE value="#81 fixing the controller" />
     <MESSAGE value="#81 ai count points" />
     <MESSAGE value="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/test/java/com/scrab5/core/player/AiPlayerTest.java" />
-    <option name="LAST_COMMIT_MESSAGE" value="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/test/java/com/scrab5/core/player/AiPlayerTest.java" />
+    <MESSAGE value="#66 ai calculate points method" />
+    <option name="LAST_COMMIT_MESSAGE" value="#66 ai calculate points method" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

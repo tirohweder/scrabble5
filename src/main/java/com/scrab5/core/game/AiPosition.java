@@ -161,19 +161,22 @@ public class AiPosition {
     return score;
   }
 
-  
-  public int countScore() {
+
+  public ArrayList<Integer> countScore() {
+
+    ArrayList<Integer> word = null;
+
+    //
 
     String[][] gameBoardSpecial = Data.getGameSession().getGameBoard().getGameBoardSpecial();
 
-    int score = 0;
+    ArrayList<Integer> score;
     boolean tws = false;
     boolean dws = false;
 
-    StringBuilder word = new StringBuilder();
+    //StringBuilder word = new StringBuilder();
 
-    return score;
-
+    return word;
 
   }
 
