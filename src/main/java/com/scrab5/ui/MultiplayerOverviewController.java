@@ -113,7 +113,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   /**
    * Event method that is called when the "Right Arrow"-button is clicked. The "Number of Players"
-   * number gets increased by one.Changes "Right Arrow"-button to a greyed out image of it which
+   * number gets increased by one.Changes "Right Arrow"-button to a grayed out image of it which
    * can't be clicked.
    * 
    * @author mherre
