@@ -1,6 +1,5 @@
 package com.scrab5.core.game;
 
-import com.scrab5.ui.Data;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -162,21 +161,55 @@ public class AiPosition {
   }
 
 
-  public ArrayList<Integer> countScore() {
+  /**
+   * Cout
+   *
+   * @param gameBoard     takes the currentGameBoard
+   * @param possibleWords revices the possible words as a ArrayList<Tile>
+   * @return Points per Word
+   * @author trohwede
+   */
+  public ArrayList<Integer> countScore(GameBoard gameBoard,
+      ArrayList<ArrayList<Tile>> possibleWords) {
+    ArrayList<Integer> scoreList = new ArrayList<>();
 
-    ArrayList<Integer> word = null;
+    for (ArrayList<Tile> word : possibleWords) {
+      int score = 0;
+      int scoreToBe = 0;
+      boolean tw = false;
+      boolean dw = false;
+      for (Tile tile : word) {
 
-    //
+        if (gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) {
+          switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
+            case "DL":
+              scoreToBe += tile.getValue() * 2;
+              break;
+            case "TL":
+              scoreToBe += tile.getValue() * 3;
+              break;
+            case "DW":
+              dw = true;
+              scoreToBe += tile.getValue();
+              break;
+            case "TW":
+              tw = true;
+              scoreToBe += tile.getValue();
+              break;
+            default:
+              scoreToBe += tile.getValue();
+          }
+        }
+      }
+      if (dw) {
+        score = scoreToBe * 2;
+      } else if (tw) {
+        score = scoreToBe * 3;
+      }
+      scoreList.add(score);
+    }
 
-    String[][] gameBoardSpecial = Data.getGameSession().getGameBoard().getGameBoardSpecial();
-
-    ArrayList<Integer> score;
-    boolean tws = false;
-    boolean dws = false;
-
-    //StringBuilder word = new StringBuilder();
-
-    return word;
+    return scoreList;
 
   }
 

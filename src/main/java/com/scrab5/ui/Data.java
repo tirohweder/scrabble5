@@ -153,20 +153,36 @@ public class Data {
     return inputFieldText;
   }
 
+  /**
+   * 
+   * @return
+   */
   public static Client getPlayerClient() {
     return playerClient;
   }
 
+  /**
+   * 
+   * @param client
+   */
   public static void setPlayerClient(Client client) {
     if (playerClient == null) {
       playerClient = client;
     }
   }
 
+  /**
+   * 
+   * @param client
+   */
   public static void updatePlayerClient(Client client) {
     playerClient = client;
   }
 
+  /**
+   * 
+   * @param server
+   */
   public static void setHostedServer(Server server) {
     if (playerServer == null) {
       playerServer = server;
@@ -183,66 +199,155 @@ public class Data {
     return playerServer;
   }
 
+  /**
+   * 
+   * @return
+   */
   public static ArrayList<ServerData> getServerList() {
     return serverList;
   }
 
+  /**
+   * 
+   * @param slist
+   */
   public static void setServerList(ArrayList<ServerData> slist) {
     serverList = slist;
   }
 
+  /**
+   * 
+   * @return
+   */
   public static boolean getIsSearching() {
     return isSearching;
   }
 
+  /**
+   * 
+   * @param searching
+   */
   public static void setIsSearching(boolean searching) {
     isSearching = searching;
   }
 
+  /**
+   * Sets the sound effects volume of the game.
+   * 
+   * @author mherre
+   * @param newVolume the double containing the new sound volume
+   */
   public static void setSFXVolume(double newVolume) {
     sfxVolume = newVolume;
   }
 
+  /**
+   * Returns the current set sound effects volume.
+   * 
+   * @author mherre
+   * @return sfxVolume the double containing the volume
+   */
   public static double getSFXVolume() {
     return sfxVolume;
   }
 
+  /**
+   * Saves the customized letter occurrences.
+   * 
+   * @author mherre
+   * @param al the ArrayList that containing the whole customized occurrences
+   */
   public static void setOccurrencyDistribution(ArrayList<Integer> al) {
     occurrencyDistribution = al;
   }
 
+  /**
+   * Returns the customized occurrences.
+   * 
+   * @author mherre
+   * @return occurrencyDistribution the ArrayList containing the occurrences
+   */
   public static ArrayList<Integer> getOccurrencyDistribution() {
     return occurrencyDistribution;
   }
 
+  /**
+   * Saves the customized letter points distribution.
+   * 
+   * @author mherre
+   * @param al the ArrayList that containing the whole customized points distribution
+   */
   public static void setPointsDistribution(ArrayList<Integer> al) {
     pointsDistribution = al;
   }
 
+  /**
+   * Returns the customized points Distribution.
+   * 
+   * @author mherre
+   * @return pointsDistribution the ArrayList containing the points Distribution
+   */
   public static ArrayList<Integer> getPointsDistribution() {
     return pointsDistribution;
   }
 
+  /**
+   * Saves the information if the letters have been customized in any way.
+   * 
+   * @author mherre
+   * @param b the boolean containing the value if it has been customized
+   */
   public static void setHasBeenEdited(boolean b) {
     hasBeenEdited = b;
   }
 
+  /**
+   * Returns the value if the letters have been customized in any way.
+   * 
+   * @author mherre
+   * @return hasBeenEdited the boolean containing the value if it has been edited
+   */
   public static boolean getHasBeenEdited() {
     return hasBeenEdited;
   }
 
+  /**
+   * Sets the current amount of players in a multiplayer lobby.
+   * 
+   * @author mherre
+   * @param i the integer containing the current amount of players
+   */
   public static void setPlayerCountMultiplayer(int i) {
     playerCountMultiplayer = i;
   }
 
+  /**
+   * Returns the current amount of players in a multiplayer lobby.
+   * 
+   * @author mherre
+   * @return playerCountMultiplayer the integer containing the current amount of players
+   */
   public static int getPlayerCountMultiplayer() {
     return playerCountMultiplayer;
   }
 
+  /**
+   * Returns the chat history displayed in {@link com.scrab5.ui.MultiplayerLobbyController
+   * MultiplayerLobby}.
+   * 
+   * @author mherre
+   * @return chatHistory the StringBuffer containing the chat history
+   */
   public static StringBuffer getChatHistory() {
     return chatHistory;
   }
 
+  /**
+   * Resets the chat displayed in the UI to an empty <code>StringBuffer</code>.
+   * 
+   * @author mherre
+   * 
+   */
   public static void resetChatHistroy() {
     chatHistory = new StringBuffer();
   }

@@ -59,6 +59,15 @@ public class GameBoard implements Serializable {
   public GameBoard() {
   }
 
+
+  public void setSpecialAt(int row, int column, String string) {
+    this.gameBoardSpecial[row][column] = string;
+  }
+
+  public String getSpecialsAt(int row, int column) {
+    return gameBoardSpecial[row][column];
+  }
+
   /**
    * Places a tile at specific location
    *

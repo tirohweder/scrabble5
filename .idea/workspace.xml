@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" afterDir="false" />
-    </list>
+    <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,7 +72,20 @@
       <recent name="com.scrab5.core.game" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AiPlayerTest.checkBagDistributionLegalTest">
+  <component name="RunManager" selected="JUnit.AiPositionTest.countScore">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AiPlayerTest.checkBagDistributionLegalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
@@ -108,7 +118,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AiPositionTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AiPositionTest.calculatePointsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
         <pattern>
@@ -118,7 +128,24 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
       <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.AiPositionTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="calculatePointsTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AiPositionTest.countScore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="scrabble5" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.scrab5.core.game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.AiPositionTest" />
+      <option name="METHOD_NAME" value="countScore" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -134,22 +161,6 @@
       <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
       <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.AiPositionTest" />
       <option name="METHOD_NAME" value="getIndexOfMostPoints" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="GameBoardTest.placeTileTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="scrabble5" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.scrab5.core.game.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
-      <option name="METHOD_NAME" value="placeTileTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -182,20 +193,20 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JUnit.GameBoardTest.placeTileTest" />
       <item itemvalue="JUnit.AiPlayerTest.getSpotsFree" />
       <item itemvalue="JUnit.AiPositionTest.getIndexOfMostPoints" />
-      <item itemvalue="JUnit.AiPositionTest" />
       <item itemvalue="JUnit.AiPlayerTest.checkBagDistributionLegalTest" />
       <item itemvalue="Maven.scrabble5 [clean,package]" />
+      <item itemvalue="JUnit.AiPositionTest.countScore" />
+      <item itemvalue="JUnit.AiPositionTest.calculatePointsTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AiPositionTest.countScore" />
+        <item itemvalue="JUnit.AiPositionTest.calculatePointsTest" />
         <item itemvalue="JUnit.AiPlayerTest.checkBagDistributionLegalTest" />
         <item itemvalue="JUnit.AiPlayerTest.getSpotsFree" />
         <item itemvalue="JUnit.AiPositionTest.getIndexOfMostPoints" />
-        <item itemvalue="JUnit.AiPositionTest" />
-        <item itemvalue="JUnit.GameBoardTest.placeTileTest" />
       </list>
     </recent_temporary>
   </component>
@@ -234,21 +245,7 @@
       <workItem from="1621345243582" duration="6006000" />
       <workItem from="1621445444441" duration="3985000" />
       <workItem from="1621492380627" duration="5504000" />
-      <workItem from="1621580512972" duration="767000" />
-    </task>
-    <task id="LOCAL-00004" summary="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/test/java/com/scrab5/core/game/GameBoardTest.java">
-      <created>1619795125627</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1619795125627</updated>
-    </task>
-    <task id="LOCAL-00005" summary="#66 Solved a few proplems regarding the way it checks the played tiles">
-      <created>1620210806669</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1620210806669</updated>
+      <workItem from="1621580512972" duration="6752000" />
     </task>
     <task id="LOCAL-00006" summary="#66 checking for new words fixed">
       <created>1620302439921</created>
@@ -579,7 +576,21 @@
       <option name="project" value="LOCAL" />
       <updated>1621494282792</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="#88 ai calculate points method">
+      <created>1621581298559</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1621581298562</updated>
+    </task>
+    <task id="LOCAL-00054" summary="#88 ai calculate points method">
+      <created>1621592690119</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1621592690119</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
