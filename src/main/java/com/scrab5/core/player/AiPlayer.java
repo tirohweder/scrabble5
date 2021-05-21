@@ -285,6 +285,8 @@ public class AiPlayer extends Player {
       }
       tiles.add(innerList);
     }
+    
+    /*TODO: tiles an AiPosition.countScore weitergeben*/
 
     /* TODO: Possible add: condition to end this method after for example 15 words. */
   }
