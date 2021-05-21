@@ -19,8 +19,8 @@ public class AiPlayer extends Player {
   int counterDown;
   int counterRight;
   int counterLeft;
-  String[] lettersFromDatabase;
-  int[] pointsPerLetterFromDatabase;
+  static String[] lettersFromDatabase;
+  static int[] pointsPerLetterFromDatabase;
 
 
   /**
@@ -105,8 +105,6 @@ public class AiPlayer extends Player {
    * @param y
    * @author hraza
    */
-
-
   public void getSpotsfree(int x, int y, GameBoard g) {
     int counterRight = 0;
     int counterLeft = 0;
@@ -176,6 +174,12 @@ public class AiPlayer extends Player {
   /**
    * Method to generate a fitting word and create a ArrayList containing a ArrayList of Tiles for
    * the possible words.
+   * 1. First it saves the letters from the bag of tiles in the array possibleLetters. Line 205 and following.
+   * 2. The DictionaryScanner returns words from the current dictionary that contain the at least the fixLetter or one of the letters from possibleLetters and adds them to the finalWords. Line 219 and following.
+   * 3. In a new step, all the words that do not only consist of the letters in possibleLetters will be removed from finalWords. Line 227 and following.
+   * 4. Next there is another check to see if the words in finalWords fulfill the requirements. For example, if not too long. Line 245 and following.
+   * 5. The words that are still in the finalWords will now be checked if the occurrence of letters in it conform to the occurrence of them in the bag of tiles. If not, they will be removed from finalWords. Line 268 and following.
+   * 6. In the last step a ArrayList containing all words the AI could possibly lay as Tiles with coordinates and points is created and passed. Line 277 and following.
    * 
    * @author lengist
    * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
@@ -220,11 +224,6 @@ public class AiPlayer extends Player {
       }
     }
 
-    /*
-     * Now: finalWords includes now all words with at least one of the letters from possibleLetters.
-     * The next part of the method checks that the words in finalWords at the end only consist of
-     * the letters in possibleLetters.
-     */
     StringBuilder sb = new StringBuilder();
     for (String s : possibleLetters) {
       sb.append(s);
@@ -243,7 +242,6 @@ public class AiPlayer extends Player {
       /* TODO: change next spot */
     }
 
-    /* The next part checks the words in finalWords if they fulfill the requirements */
     for (String s : finalWords) {
       for (int i = 0; i < s.length(); i++) {
 
@@ -265,22 +263,98 @@ public class AiPlayer extends Player {
       /* TODO: change next spot */
     }
 
-    /*
-     * TODO: check that the letters only appear the given amount --> Hedis Methode aufrufen, gibt
-     * boolean zurueck --> true, dass okay --> Wort bleibt, ansonsten remove
-     */
+    ArrayList<String> deletionRound3 = new ArrayList<String>();
+    HashMap<String, Integer> currentDistribution = bag.getCurrentBagDisrubtion();
+    for(String s : finalWords) {
+      if(!checkBagDistributionLegal(currentDistribution, s)) {
+        deletionRound3.add(s);
+      }
+    }
+    finalWords.removeAll(deletionRound3);
 
-    /* TODO: create the following list with a list of tiles for Timm */
-    /*
-     * TODO: einmal alle punkte fuer Buchstaben aus Database in Klassenvariable, damit ich value
-     * hinzufuegen kann
-     */
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
+    ArrayList<Tile> innerList = new ArrayList<Tile>();
     for (String s : finalWords) {
-
+      for(int i = 0; i < s.length(); i++) {
+        int value = getPointForLetter(String.valueOf(s.charAt(i)));
+        ArrayList<Integer> coordinates = getCoordinates(s, fixLetter, String.valueOf(s.charAt(i)), x, y, horizontal);
+        int row = coordinates.get(1);
+        int column = coordinates.get(0);
+        Tile t = new Tile(String.valueOf(s.charAt(i)), value, row, column);
+        innerList.add(t);
+      }
+      tiles.add(innerList);
     }
 
     /* TODO: Possible add: condition to end this method after for example 15 words. */
+  }
+  
+  /**
+   * Method to calculate the coordinates for the tiles of a new word.
+   * First it estimates the place of the fixLetter in word and then the place of the newLetter in word.
+   * With this information, the Coordinates for the newLetter get calculated.
+   * 
+   * @author lengist
+   * @param word the word that contains the fixLetter and newLetter to calculate the exact positions of the given letters
+   * @param fixLetter the letter that is already n the gameboard
+   * @param newLetter a letter from the word different to fixLetter. This is the letter the coordinates need to be calculated for.
+   * @param xFixLetter the x-Coordinate of the fixLetter
+   * @param yFixLetter the y-Coordinate of the fixLetter
+   * @param horizontal a boolean variable for the alignment of the word on the board. If it is true, the word will be laid horizontal. If not, vertical.
+   * @return coordinates, a ArrayList including the x- and y-Coordinate of the newLetter.
+   */
+  public static ArrayList<Integer> getCoordinates(String word, String fixLetter, String newLetter, int xFixLetter, int yFixLetter, boolean horizontal) {
+    int placeFixLetter = 0;
+    int xNew = 0;
+    int yNew = 0;
+    
+    for(int i = 0; i < word.length(); i++) {
+      if(word.charAt(i) == fixLetter.charAt(0)) {
+        placeFixLetter = i;
+      }
+    }
+    
+    for(int i = 0; i < word.length(); i++) {
+      if(word.charAt(i) == newLetter.charAt(0)) {
+        if(horizontal) {
+          yNew = yFixLetter;
+          if(i < placeFixLetter) {
+            xNew = xFixLetter - (placeFixLetter - i);
+          }else {
+            xNew = xFixLetter + (i - placeFixLetter);
+          }
+        }else {
+          xNew = xFixLetter;
+          if(i < placeFixLetter) {
+            yNew = yFixLetter - (placeFixLetter - i);
+          }else {
+            yNew = yFixLetter + (i - placeFixLetter);
+          }
+        }
+      }
+    }
+    
+    ArrayList<Integer> coordinates = new ArrayList<Integer>();
+    coordinates.add(xNew);
+    coordinates.add(yNew);
+    return coordinates;
+  }
+  
+  /**
+   * Method to return the points for a letter saved in the database.
+   * 
+   * @author lengist
+   * @param letter the String of the letter for that the points need to be known
+   * @return points the points saved in database for the letter.
+   */
+  public static int getPointForLetter(String letter) {
+    int points = 0;
+    for(int i = 0; i < lettersFromDatabase.length; i++) {
+      if(lettersFromDatabase[i].equals(letter)) {
+        points = pointsPerLetterFromDatabase[i];
+      }
+    }
+    return points;
   }
 
   /**
@@ -289,7 +363,7 @@ public class AiPlayer extends Player {
    * 
    * @author lengist
    */
-  public void setLetterPoints() {
+  public static void setLetterPoints() {
     lettersFromDatabase = UseDatabase.getAllLetters();
     pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
   }
@@ -356,10 +430,45 @@ public class AiPlayer extends Player {
       }
     }
     finalWords.removeAll(deletionRound2);
+    
+    ArrayList<String> deletionRound3 = new ArrayList<String>();
+    /*TODO: fill the hashmap for the CurrentDistribution*/
+    
+    HashMap<String, Integer> currentDistribution = new HashMap<String, Integer>();
+    for (int i = 0; i < possibleLetters.length; i++) {
+      currentDistribution.merge(possibleLetters[i], 1, Integer::sum);
+    }
+    
+    for(String s : finalWords) {
+      if(!checkBagDistributionLegal(currentDistribution, s)) {
+        deletionRound3.add(s);
+      }
+    }
+    finalWords.removeAll(deletionRound3);
 
     String[] ready = new String[finalWords.size()];
     for (int i = 0; i < ready.length; i++) {
       ready[i] = finalWords.get(i);
+    }
+    
+    ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
+    ArrayList<Tile> innerList = new ArrayList<Tile>();
+    for (String s : finalWords) {
+      for(int i = 0; i < s.length(); i++) {
+        int value = getPointForLetter(String.valueOf(s.charAt(i)));
+        ArrayList<Integer> coordinates = getCoordinates(s, fixLetter, String.valueOf(s.charAt(i)), x, y, horizontal);
+        int row = coordinates.get(1);
+        int column = coordinates.get(0);
+        Tile t = new Tile(String.valueOf(s.charAt(i)), value, row, column);
+        innerList.add(t);
+        /*System.out.println("s: " + s);
+        System.out.println("s x: " + x);
+        System.out.println("s y: " + y);
+        System.out.println("char: " + s.charAt(i));
+        System.out.println("xNew: " + column);
+        System.out.println("yNew: " + row);*/
+      }
+      tiles.add(innerList);
     }
     return ready;
   }
@@ -400,8 +509,8 @@ public class AiPlayer extends Player {
 
   /* Just for direct testing: */
   public static void main(String[] args) {
-    // wordGenerator("A", 3, 4, 0, 0, true);
-    String[] test = wordGeneratorTest("A", 3, 4, 0, 0, true);
+    setLetterPoints();
+    String[] test = wordGeneratorTest("A", 3, 4, 6, 6, true);
     for (String s : test) {
       System.out.println(s);
     }
