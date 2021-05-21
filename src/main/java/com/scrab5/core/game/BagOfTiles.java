@@ -1,8 +1,11 @@
 package com.scrab5.core.game;
 
+import com.scrab5.util.database.UseDatabase;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Random;
 
 public class BagOfTiles implements Serializable {
@@ -82,6 +85,25 @@ public class BagOfTiles implements Serializable {
     }
 
     return wordDistro;
+  }
+
+
+  public void setBagWithDisto(HashMap<String, Integer> newWordDistro) {
+    bag.clear();
+
+    Iterator it = newWordDistro.entrySet().iterator();
+    int count = 0;
+    while (it.hasNext()) {
+      Map.Entry pair = (Map.Entry) it.next();
+      for (int i = 0; i < (int) pair.getValue(); i++) {
+        bag.add(count, new Tile((String) pair.getKey(),
+            UseDatabase.getPointForLetter((String) pair.getKey())));
+        count++;
+      }
+
+      it.remove();
+    }
+
   }
 
   //TODO String[][] a, b,
