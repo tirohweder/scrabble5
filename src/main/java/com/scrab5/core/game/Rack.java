@@ -8,11 +8,13 @@ public class Rack implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private Tile[] rack = new Tile[7];
+  private final Tile[] rack = new Tile[7];
 
 
   /**
-   * @param bag
+   * For every empty place in the rack, fill will pick a tile from the bag and place it in the rack
+   *
+   * @param bag bag of which to fill the rack with
    * @author trohwede
    */
   public void fill(BagOfTiles bag) {
@@ -25,12 +27,13 @@ public class Rack implements Serializable {
         rack[i].setRackPlace(i);
       }
     }
-
     System.out.println("Rack at 0 = " + rack[0]);
   }
 
   /**
-   * @return
+   * Returns if the rack is full
+   *
+   * @return if the Rack is full
    * @author trohwede
    */
   public boolean isRackFull() {
@@ -53,8 +56,10 @@ public class Rack implements Serializable {
   }
 
   /**
-   * @param t
-   * @param pos
+   * Adds the tile t to the position pos in the rack
+   *
+   * @param t   the tile that wants to be added
+   * @param pos position of where to add the tile in the rack
    * @author trohwede
    */
   public void addToRack(Tile t, int pos) {
@@ -63,7 +68,9 @@ public class Rack implements Serializable {
 
 
   /**
-   * @param pos
+   * Removes a tile from the rack at the given position
+   *
+   * @param pos position of the rack you want to remove the tile from
    * @author trohwede
    */
   public boolean removeTileFromRack(int pos) {
@@ -89,11 +96,11 @@ public class Rack implements Serializable {
    * @author hraza
    */
   public String toString() {
-    String s = new String();
+    StringBuilder s = new StringBuilder();
     for (int i = 0; i < 7; i++) {
-      s += this.rack[i].getLetter();
+      s.append(this.rack[i].getLetter());
     }
-    return s;
+    return s.toString();
   }
 
   /**

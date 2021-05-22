@@ -6,17 +6,30 @@ public class Tile implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-
+  /**
+   * Return where a tile is stored on the rack
+   *
+   * @return place where the tile is stored on the rack
+   * @author trohwede
+   */
   public Integer getRackPlace() {
     return rackPlace;
   }
 
+  /**
+   * Sets where a tile is stored on the rack
+   *
+   * @param rackPlace place where the tile is stored on the rack
+   * @author trohwede
+   */
   public void setRackPlace(Integer rackPlace) {
     this.rackPlace = rackPlace;
   }
 
   /**
-   * @return
+   * Getter for the tiles  column coordinates
+   *
+   * @return column of the letter
    * @author trohwede
    */
   public int getColumn() {
@@ -24,7 +37,9 @@ public class Tile implements Serializable {
   }
 
   /**
-   * @param column
+   * Sets the column of the letter
+   *
+   * @param column column coordinates of the letter
    * @author trohwede
    */
   public void setColumn(int column) {
@@ -32,7 +47,9 @@ public class Tile implements Serializable {
   }
 
   /**
-   * @return
+   * Getter for the tiles  column coordinates
+   *
+   * @return row of the letter
    * @author trohwede
    */
   public int getRow() {
@@ -40,7 +57,9 @@ public class Tile implements Serializable {
   }
 
   /**
-   * @param row
+   * Sets the row of the tile
+   *
+   * @param row row coordinates of the letter
    * @author trohwede
    */
   public void setRow(int row) {
@@ -48,6 +67,12 @@ public class Tile implements Serializable {
   }
 
 
+  /**
+   * Returns if the letter is equal to null
+   *
+   * @return if the letter is null
+   * @author trohwede
+   */
   public boolean isNull() {
     return (this.letter == null);
   }
@@ -60,6 +85,8 @@ public class Tile implements Serializable {
 
 
   /**
+   * Constructor for a tile, where you only know tile letter and value
+   *
    * @param letter String of the Tile
    * @param value  Amount of points for the Tile
    * @author trohwede
@@ -70,6 +97,15 @@ public class Tile implements Serializable {
   }
 
 
+  /**
+   * Constructor for a tile, where you already know the coordinates.
+   *
+   * @param letter String of the Tile
+   * @param value  Amount of points for the Tile
+   * @param row    coordinates of Tile
+   * @param column coordinates of Tile
+   * @author trohwede
+   */
   public Tile(String letter, int value, int row, int column) {
     this.letter = letter;
     this.value = value;
