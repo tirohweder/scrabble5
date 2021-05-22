@@ -179,7 +179,6 @@ public class AiPosition {
       boolean tw = false;
       boolean dw = false;
       for (Tile tile : word) {
-
         if (gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) {
           switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
             case "DL":
@@ -208,7 +207,6 @@ public class AiPosition {
       }
       scoreList.add(score);
     }
-
     return scoreList;
 
   }

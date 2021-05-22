@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="" />
+    <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/AiPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/AiPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,6 +31,7 @@
       </list>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -34,6 +40,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProblemsViewState">
     <hideBySeverity>
@@ -72,16 +81,14 @@
       <recent name="com.scrab5.core.game" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AiPositionTest.countScore">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.GameBoardTest.countScore">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -150,7 +157,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AiPositionTest.getIndexOfMostPoints" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="GameBoardTest.countScore" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
         <pattern>
@@ -159,8 +166,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.scrab5.core.game" />
-      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.AiPositionTest" />
-      <option name="METHOD_NAME" value="getIndexOfMostPoints" />
+      <option name="MAIN_CLASS_NAME" value="com.scrab5.core.game.GameBoardTest" />
+      <option name="METHOD_NAME" value="countScore" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -194,19 +201,19 @@
     </configuration>
     <list>
       <item itemvalue="JUnit.AiPlayerTest.getSpotsFree" />
-      <item itemvalue="JUnit.AiPositionTest.getIndexOfMostPoints" />
       <item itemvalue="JUnit.AiPlayerTest.checkBagDistributionLegalTest" />
-      <item itemvalue="Maven.scrabble5 [clean,package]" />
       <item itemvalue="JUnit.AiPositionTest.countScore" />
       <item itemvalue="JUnit.AiPositionTest.calculatePointsTest" />
+      <item itemvalue="Maven.scrabble5 [clean,package]" />
+      <item itemvalue="JUnit.GameBoardTest.countScore" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.GameBoardTest.countScore" />
         <item itemvalue="JUnit.AiPositionTest.countScore" />
         <item itemvalue="JUnit.AiPositionTest.calculatePointsTest" />
         <item itemvalue="JUnit.AiPlayerTest.checkBagDistributionLegalTest" />
         <item itemvalue="JUnit.AiPlayerTest.getSpotsFree" />
-        <item itemvalue="JUnit.AiPositionTest.getIndexOfMostPoints" />
       </list>
     </recent_temporary>
   </component>
@@ -245,14 +252,8 @@
       <workItem from="1621345243582" duration="6006000" />
       <workItem from="1621445444441" duration="3985000" />
       <workItem from="1621492380627" duration="5504000" />
-      <workItem from="1621580512972" duration="6752000" />
-    </task>
-    <task id="LOCAL-00006" summary="#66 checking for new words fixed">
-      <created>1620302439921</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1620302439921</updated>
+      <workItem from="1621580512972" duration="9141000" />
+      <workItem from="1621666301885" duration="4739000" />
     </task>
     <task id="LOCAL-00007" summary="#66 scoring works now">
       <created>1620491029606</created>
@@ -590,7 +591,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621592690119</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="#88 ai calculate points method">
+      <created>1621593099905</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1621593099905</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,6 +623,21 @@
                 </TextFilterSettings>
               </option>
             </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
