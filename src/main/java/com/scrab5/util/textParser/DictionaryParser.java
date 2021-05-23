@@ -20,7 +20,7 @@ public class DictionaryParser {
   /**
    * Sets the name of the current dictionary based on the new dictionary that needs to be inserted.
    *
-   * @param name String representing the dictionary file name.
+   * @param dictionary String representing the dictionary file name.
    * @author lengist
    */
   public static void setCurrentDictionary(String dictionary) {
@@ -28,7 +28,7 @@ public class DictionaryParser {
   }
 
   /**
-   * Returns the name of the current inserted and used dictionary file
+   * Returns the name of the current inserted and used dictionary file.
    *
    * @return String representation of the current inserted dictionary file name
    * @author lengist
@@ -65,10 +65,10 @@ public class DictionaryParser {
   /**
    * Creates a new file with all the words that can be scanned now.
    *
-   * @param DictionaryFile The file the user inserts as new dictionary
+   * @param dictionaryFile The file the user inserts as new dictionary
    * @author lengist
    */
-  public static void createSearchableFile(String DictionaryFile) {
+  public static void createSearchableFile(String dictionaryFile) {
 
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
@@ -88,7 +88,7 @@ public class DictionaryParser {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    loadFile(DictionaryFile);
+    loadFile(dictionaryFile);
     try {
       bufWriter.close();
     } catch (IOException e) {

@@ -200,7 +200,7 @@ public class AiPlayer extends Player {
     ArrayList<String> finalWords = new ArrayList<String>();
     ArrayList<String> deletionRound1 = new ArrayList<String>();
     ArrayList<String> deletionRound2 = new ArrayList<String>();
-    int maximumLength = before + 1 + after;
+    
     int before2 = 0;
     int after2 = 0;
 
@@ -217,6 +217,7 @@ public class AiPlayer extends Player {
       possibleLetters[i] = possibleLetters1.get(i);
     }
 
+    int maximumLength = before + 1 + after;
     ArrayList<String> first = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
     for (String b1 : possibleLetters) {
       first = DictionaryScanner.getWordsIncludingFrom(first, b1);
@@ -303,18 +304,18 @@ public class AiPlayer extends Player {
    * @param fixLetter  the letter that is already n the gameboard
    * @param newLetter  a letter from the word different to fixLetter. This is the letter the
    *                   coordinates need to be calculated for.
-   * @param xFixLetter the x-Coordinate of the fixLetter
-   * @param yFixLetter the y-Coordinate of the fixLetter
+   * @param xfixLetter the x-Coordinate of the fixLetter
+   * @param yfixLetter the y-Coordinate of the fixLetter
    * @param horizontal a boolean variable for the alignment of the word on the board. If it is true,
    *                   the word will be laid horizontal. If not, vertical.
    * @return coordinates, a ArrayList including the x- and y-Coordinate of the newLetter.
    * @author lengist
    */
   public static ArrayList<Integer> getCoordinates(String word, String fixLetter, String newLetter,
-      int xFixLetter, int yFixLetter, boolean horizontal) {
+      int xfixLetter, int yfixLetter, boolean horizontal) {
     int placeFixLetter = 0;
-    int xNew = 0;
-    int yNew = 0;
+    int xnew = 0;
+    int ynew = 0;
 
     for (int i = 0; i < word.length(); i++) {
       if (word.charAt(i) == fixLetter.charAt(0)) {
@@ -325,26 +326,26 @@ public class AiPlayer extends Player {
     for (int i = 0; i < word.length(); i++) {
       if (word.charAt(i) == newLetter.charAt(0)) {
         if (horizontal) {
-          yNew = yFixLetter;
+          ynew = yfixLetter;
           if (i < placeFixLetter) {
-            xNew = xFixLetter - (placeFixLetter - i);
+            xnew = xfixLetter - (placeFixLetter - i);
           } else {
-            xNew = xFixLetter + (i - placeFixLetter);
+            xnew = xfixLetter + (i - placeFixLetter);
           }
         } else {
-          xNew = xFixLetter;
+          xnew = xfixLetter;
           if (i < placeFixLetter) {
-            yNew = yFixLetter - (placeFixLetter - i);
+            ynew = yfixLetter - (placeFixLetter - i);
           } else {
-            yNew = yFixLetter + (i - placeFixLetter);
+            ynew = yfixLetter + (i - placeFixLetter);
           }
         }
       }
     }
 
     ArrayList<Integer> coordinates = new ArrayList<Integer>();
-    coordinates.add(xNew);
-    coordinates.add(yNew);
+    coordinates.add(xnew);
+    coordinates.add(ynew);
     return coordinates;
   }
 
@@ -517,11 +518,11 @@ public class AiPlayer extends Player {
   }
 
   /* Just for direct testing: */
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
     setLetterPoints();
     String[] test = wordGeneratorTest("A", 3, 4, 6, 6, true);
     for (String s : test) {
       System.out.println(s);
     }
-  }
+  }*/
 }

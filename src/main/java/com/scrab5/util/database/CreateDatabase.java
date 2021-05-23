@@ -82,7 +82,8 @@ public class CreateDatabase extends Database {
     removeTable("Letters");
     try (Statement stm = connection.createStatement()) {
       String sql =
-          "CREATE TABLE Letters (Letter TEXT NOT NULL, Points INTEGER NOT NULL, Occurrence INTEGER NOT NULL)";
+          "CREATE TABLE Letters (Letter TEXT NOT NULL, Points INTEGER NOT NULL, "
+          + "Occurrence INTEGER NOT NULL)";
       stm.executeUpdate(sql);
     } catch (SQLException e) {
       e.printStackTrace();
