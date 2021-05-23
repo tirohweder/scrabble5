@@ -14,10 +14,12 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * In this class the required functions that need to be tested separately from FillDatabase.java and need to return important information for other functions are tested.
- * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * In this class the required functions that need to be tested separately 
+ * from FillDatabase.java and need to return important information for other functions are tested.
+ * Note: In the methods with access to the database to connection gets established and disconnect 
+ * individually for each method. Because of that every test method needs to do so too.
  * 
- * @author lauraengist
+ * @author lengist
  */
 @Disabled
 class UseTest {
@@ -81,12 +83,12 @@ class UseTest {
    * @author lengist
    */
   @Test
-  void testGetAllPlayerRS() {
+  void testGetAllPlayerRs() {
     CreateDatabase cdb = new CreateDatabase();
     FillDatabase.createPlayer("Alpha", null);
     FillDatabase.createPlayer("Beta", null);
 
-    ResultSet rs = UseDatabase.getAllPlayerRS();
+    ResultSet rs = UseDatabase.getAllPlayerRs();
     String[] name = new String[2];
     int i = 0;
     try {
