@@ -36,8 +36,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private ComboBox<String> dictionarySelection;
   @FXML
-  private TextField serverName;
-  @FXML
   private ImageView dropDownButton;
   @FXML
   private ImageView joinButton0, joinButton1, joinButton2, joinButton3, joinButton4, joinButton5,
@@ -62,7 +60,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author nitterhe
    */
   public void initialize(URL arg0, ResourceBundle arg1) {
-    this.serverName.setFocusTraversable(false);
     this.userPlaying.setText(Data.getCurrentUser());
     this.setUpDicitionaryBox();
 
@@ -88,13 +85,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
   private void start(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
 
-    // if (serverName.getText().isEmpty()) {
-    // String message = "You must enter a server name to continue";
-    // PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-    // pum.show();
-    // } else {
-    // App.setRoot("MultiplayerLobby");
-    // }
     if (this.isDictionarySelected) {
 
       Data.setIsSearching(false);
@@ -149,12 +139,12 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
     } else if (playerCount == 4) {
       this.changeNumberImage();
-      this.arrowRight.setLayoutY(458);
+      this.arrowRight.setLayoutY(384);
       this.arrowRight.setOpacity(1);
 
     } else if (playerCount > 2 && this.arrowLeft.getOpacity() == 1) {
       this.changeNumberImage();
-      this.arrowLeft.setLayoutY(500);
+      this.arrowLeft.setLayoutY(420);
       this.arrowLeft.setOpacity(0);
 
     } else {
@@ -181,12 +171,12 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
     } else if (playerCount == 2) {
       this.changeNumberImage();
-      this.arrowLeft.setLayoutY(458);
+      this.arrowLeft.setLayoutY(384);
       this.arrowLeft.setOpacity(1);
 
     } else if (playerCount < 4 && this.arrowRight.getOpacity() == 1) {
       this.changeNumberImage();
-      this.arrowRight.setLayoutY(500);
+      this.arrowRight.setLayoutY(420);
       this.arrowRight.setOpacity(0);
 
     } else {
@@ -207,6 +197,25 @@ public class MultiplayerOverviewController extends Controller implements Initial
     playSound("ButtonClicked.mp3");
     dictionarySelection.show();
 
+  }
+
+  /**
+   * Event method that is called when the "Manual Host Entry"-button in the UI is clicked. Creates a
+   * {@link com.scrab5.ui.PopUpMessage PopUpMessage} where the user can enter an IP address, so the
+   * user can join a specific server.
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
+  @FXML
+  private void manualHostEntry(MouseEvent event) throws IOException {
+    String message = "Enter a specific IP adress:";
+    PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.INPUT);
+    pum.show();
+    
+    //HIER NIKLAS
   }
 
   /**
