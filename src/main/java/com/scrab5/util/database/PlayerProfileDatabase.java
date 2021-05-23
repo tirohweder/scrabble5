@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Class to get and set the data for the player statistics and leaderboards.
+ * Class to get and set the data for the player statistics and leader boards.
  * 
  * @author lengist
  */

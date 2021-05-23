@@ -3,6 +3,7 @@ package com.scrab5.util.database;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
