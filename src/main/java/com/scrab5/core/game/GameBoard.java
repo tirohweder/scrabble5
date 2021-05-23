@@ -5,6 +5,12 @@ import com.scrab5.util.textParser.DictionaryScanner;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * GameBoard, represents the physical gameboard where everyone plays on. Including all functions
+ * that change or edit the gameboard.
+ *
+ * @author trohwede
+ */
 public class GameBoard implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -50,8 +56,8 @@ public class GameBoard implements Serializable {
       {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
       {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"}};
 
-  private Tile[][] gameBoard = new Tile[15][15];
-  private Tile[][] gameBoardCurrent = new Tile[15][15];
+  private final Tile[][] gameBoard = new Tile[15][15];
+  private final Tile[][] gameBoardCurrent = new Tile[15][15];
   private ArrayList<Tile> currentChanges = new ArrayList<>();
   private boolean firstTile = true;
 
@@ -83,7 +89,7 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Placing a tile in the test doesnt have to follow rules, this makes testing a lot easier
+   * Placing a tile in the test doesnt have to follow rules, this makes testing a lot easier.
    *
    * @param t      Tile you want to place
    * @param row    coordinates of the to be checked spot
@@ -188,7 +194,7 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Checks if the given coordinates, are in the same row and column and if not next to each other
+   * Checks if the given coordinates, are in the same row and column. And if not next to each other
    * if between them other tiles have already been placed
    *
    * @param row    coordinates of the to be checked spot
@@ -257,8 +263,8 @@ public class GameBoard implements Serializable {
    */
   public boolean isConnectedToOldTiles(int row, int column) {
     return ((row + 1 < 15) && gameBoard[row + 1][column] != null) || ((row - 1 >= 0)
-        && gameBoard[row - 1][column] != null) || ((column + 1 < 15) &&
-        gameBoard[row][column + 1] != null) || ((column - 1 >= 0)
+        && gameBoard[row - 1][column] != null) || ((column + 1 < 15)
+        && gameBoard[row][column + 1] != null) || ((column - 1 >= 0)
         && gameBoard[row][column - 1] != null);
   }
 

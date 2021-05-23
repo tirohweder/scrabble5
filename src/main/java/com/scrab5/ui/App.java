@@ -1,10 +1,10 @@
 package com.scrab5.ui;
 
-import java.io.IOException;
 import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -20,7 +20,7 @@ import javafx.stage.WindowEvent;
 /**
  * The App class contains some methods changing the scene seen and the sets the app up for the first
  * time it gets started.
- * 
+ *
  * @author trohwede
  * @author mherre
  */
@@ -36,15 +36,15 @@ public class App extends Application {
   /**
    * This method is called when ever the app gets startet. First it checks whether a database
    * already exists if not a new database gets created.
-   * 
+   * <p>
    * Then it sets up the app screen and shows the first scene
-   * 
+   * <p>
    * https://www.codota.com/code/java/methods/javafx.stage.Stage/setOnCloseRequest
-   * 
+   * <p>
    * TODO: Update Comments
-   * 
-   * @author mherre
+   *
    * @param stage
+   * @author mherre
    */
   public void start(Stage stage) throws IOException {
 
@@ -89,7 +89,6 @@ public class App extends Application {
   }
 
   /**
-   * 
    * @author mherre
    */
   private void setMediaPlayer() {
@@ -101,10 +100,8 @@ public class App extends Application {
   }
 
   /**
-   * 
-   * 
-   * @author mherre
    * @param stage
+   * @author mherre
    */
   private void setIcons(Stage stage) {
     Image icon1 = new Image(
@@ -116,9 +113,11 @@ public class App extends Application {
   }
 
   /**
+   * Sets the given fxml as root.
+   *
+   * @param fxml the name of the xml you want to set as root
+   * @throws IOException tried to read a local file that was no longer available
    * @author trohwede
-   * @param fxml
-   * @throws IOException
    */
   public static void setRoot(String fxml) throws IOException {
     scene.setRoot(loadFXML(fxml));
@@ -126,11 +125,11 @@ public class App extends Application {
 
   /**
    * Changes the current shown scene depending on the predescessor scene
-   * 
-   * @author mherre
+   *
    * @param fxml
    * @param predescessor
    * @throws IOException
+   * @author mherre
    */
   public static void setRoot(String fxml, String predescessor) throws IOException {
 
@@ -155,10 +154,12 @@ public class App extends Application {
   }
 
   /**
+   * Loads the given fxml and returns it as parent.
+   *
+   * @param fxml loads the fxml
+   * @return Parent
+   * @throws IOException tried to read a local file that was no longer available
    * @author trohwede
-   * @param fxml
-   * @return
-   * @throws IOException
    */
   private static Parent loadFXML(String fxml) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
@@ -166,8 +167,10 @@ public class App extends Application {
   }
 
   /**
+   * App main.
+   *
+   * @param args not needed
    * @author trohwede
-   * @param args
    */
   public static void main(String[] args) {
     launch();

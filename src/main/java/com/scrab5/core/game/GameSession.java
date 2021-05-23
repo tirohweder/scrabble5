@@ -10,12 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * GameSession host everything needed to play the game.
+ *
+ * @author trohwede
+ */
 public class GameSession implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   /**
-   * Getter for gameBoard
+   * Getter for gameBoard.
    *
    * @return gameBoard
    * @author trohweder
@@ -25,7 +30,7 @@ public class GameSession implements Serializable {
   }
 
   /**
-   * Getter for the current bag used
+   * Getter for the current bag used.
    *
    * @return bag
    * @author trohwede
@@ -36,7 +41,9 @@ public class GameSession implements Serializable {
 
 
   /**
-   * @param bag sets the bag for the game
+   * Setter for the bag.
+   *
+   * @param bag sets the bag for the game.
    * @author trohwede
    */
   public void setBag(BagOfTiles bag) {
@@ -45,7 +52,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Getter for the current list of players
+   * Getter for the current list of players.
    *
    * @return current list of players
    * @author trohwede
@@ -60,7 +67,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Getter current skipped turns
+   * Getter current skipped turns.
    *
    * @return skippedTurns
    * @author trohwede
@@ -71,7 +78,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Setter for skipped turns
+   * Setter for skipped turns.
    *
    * @param skippedTurn amount of skipped turns in a game
    * @author trohwede
@@ -81,7 +88,7 @@ public class GameSession implements Serializable {
   }
 
   /**
-   * Getter for the current round number
+   * Getter for the current round number.
    *
    * @return roundNumber
    * @author trohwede
@@ -96,7 +103,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Setter if we can end
+   * Setter if we can end.
    *
    * @return if you can end the game
    * @author trohwede
@@ -106,7 +113,7 @@ public class GameSession implements Serializable {
   }
 
   /**
-   * Setter for setting the possibility to end the game
+   * Setter for setting the possibility to end the game.
    *
    * @param canEnd sets if its possible to end the game
    * @author trohwede
@@ -117,7 +124,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Getter for current player
+   * Getter for current player.
    *
    * @return the current player
    * @author trohwede
@@ -132,7 +139,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Returns if the game is online or offline
+   * Returns if the game is online or offline.
    *
    * @return if the game is online
    * @author trohwede
@@ -143,7 +150,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Setter if the game is online or offline
+   * Setter if the game is online or offline.
    *
    * @param online is game multiplayer(online) or not
    * @author trohwede
@@ -154,7 +161,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Returns if the game is running or not
+   * Returns if the game is running or not.
    *
    * @return if the game is running
    * @author trohwede
@@ -165,7 +172,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Set if the game is running or not
+   * Set if the game is running or not.
    *
    * @param running is the game live
    * @author trohwede
@@ -176,7 +183,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Returns boolean if the game should end
+   * Returns boolean if the game should end.
    *
    * @return if the game shouldEnd
    * @author trohwede
@@ -186,7 +193,7 @@ public class GameSession implements Serializable {
   }
 
   /**
-   * Setter for shouldEnd
+   * Setter for shouldEnd.
    *
    * @param shouldEnd if the game should end when checked upon
    * @author trohwede
@@ -227,7 +234,7 @@ public class GameSession implements Serializable {
 
   /**
    * Intitializes the Gamsession, sets currentplayer, calls to create the correct bag, and fills the
-   * rack of each player
+   * rack of each player.
    *
    * @param listOfPlayers list of players in the correct order
    * @param isOnline      is the game multiplayer or singleplayer
@@ -256,7 +263,7 @@ public class GameSession implements Serializable {
 
 
   /**
-   * Reads the distribution of tiles from the database and creates the bag accordingly
+   * Reads the distribution of tiles from the database and creates the bag accordingly.
    *
    * @throws SQLException if cant connect to the database
    * @author trohwede
@@ -299,7 +306,7 @@ public class GameSession implements Serializable {
 
   /**
    * When turn is finished correctly, rack need to be refilled, round number increased,
-   * currentplayer set correctly
+   * currentplayer set correctly.
    *
    * @author trohwede
    */
@@ -335,7 +342,7 @@ public class GameSession implements Serializable {
   }
 
   /**
-   * Checks if rack and bag are empty, if yes shouldEnd is set to true
+   * Checks if rack and bag are empty, if yes shouldEnd is set to true.
    *
    * @param player that should be checked
    * @author trohwede

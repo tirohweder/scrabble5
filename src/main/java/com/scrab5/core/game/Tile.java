@@ -2,12 +2,17 @@ package com.scrab5.core.game;
 
 import java.io.Serializable;
 
+/**
+ * Tile represents a single tile in the game.
+ *
+ * @author trohwede
+ */
 public class Tile implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   /**
-   * Return where a tile is stored on the rack
+   * Return where a tile is stored on the rack.
    *
    * @return place where the tile is stored on the rack
    * @author trohwede
@@ -17,7 +22,7 @@ public class Tile implements Serializable {
   }
 
   /**
-   * Sets where a tile is stored on the rack
+   * Sets where a tile is stored on the rack.
    *
    * @param rackPlace place where the tile is stored on the rack
    * @author trohwede
@@ -27,7 +32,7 @@ public class Tile implements Serializable {
   }
 
   /**
-   * Getter for the tiles  column coordinates
+   * Getter for the tiles  column coordinates.
    *
    * @return column of the letter
    * @author trohwede
@@ -37,7 +42,7 @@ public class Tile implements Serializable {
   }
 
   /**
-   * Sets the column of the letter
+   * Sets the column of the letter.
    *
    * @param column column coordinates of the letter
    * @author trohwede
@@ -47,7 +52,7 @@ public class Tile implements Serializable {
   }
 
   /**
-   * Getter for the tiles  column coordinates
+   * Getter for the tiles  column coordinates.
    *
    * @return row of the letter
    * @author trohwede
@@ -57,7 +62,7 @@ public class Tile implements Serializable {
   }
 
   /**
-   * Sets the row of the tile
+   * Sets the row of the tile.
    *
    * @param row row coordinates of the letter
    * @author trohwede
@@ -68,7 +73,7 @@ public class Tile implements Serializable {
 
 
   /**
-   * Returns if the letter is equal to null
+   * Returns if the letter is equal to null.
    *
    * @return if the letter is null
    * @author trohwede
@@ -85,7 +90,7 @@ public class Tile implements Serializable {
 
 
   /**
-   * Constructor for a tile, where you only know tile letter and value
+   * Constructor for a tile, where you only know tile letter and value.
    *
    * @param letter String of the Tile
    * @param value  Amount of points for the Tile
@@ -115,7 +120,7 @@ public class Tile implements Serializable {
 
 
   /**
-   * Getter for String of Tile
+   * Getter for String of Tile.
    *
    * @return letter String of the Tile
    * @author trohwede
@@ -125,7 +130,7 @@ public class Tile implements Serializable {
   }
 
   /**
-   * Sets the Letter of a Tile
+   * Sets the Letter of a Tile.
    *
    * @param letter String of the TIle
    * @author trohwede
@@ -135,7 +140,7 @@ public class Tile implements Serializable {
   }
 
   /**
-   * Getter for Value of Tile
+   * Getter for Value of Tile.
    *
    * @return value Amount of points for the letter
    * @author trohwede
@@ -145,7 +150,7 @@ public class Tile implements Serializable {
   }
 
   /**
-   * Setter for Value of Tile
+   * Setter for Value of Tile.
    *
    * @param value Amount of points for the letter
    * @author trohwede

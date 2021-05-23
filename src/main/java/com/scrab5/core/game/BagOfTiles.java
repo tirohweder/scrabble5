@@ -8,19 +8,15 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Random;
 
+/**
+ * BagOfTiles represents the bag of tiles in the game, all tiles are stored in here at the
+ * beginning.
+ *
+ * @author trohwede
+ */
 public class BagOfTiles implements Serializable {
 
   private static final long serialVersionUID = 1L;
-
-
-  public ArrayList<Tile> getBag() {
-    return bag;
-  }
-
-  public void setBag(ArrayList<Tile> bag) {
-    this.bag = bag;
-  }
-
   private ArrayList<Tile> bag = new ArrayList<>();
 
   /**
@@ -50,6 +46,13 @@ public class BagOfTiles implements Serializable {
     return test;
   }
 
+  public ArrayList<Tile> getBag() {
+    return bag;
+  }
+
+  public void setBag(ArrayList<Tile> bag) {
+    this.bag = bag;
+  }
 
   /**
    * Returns the size of the bag.

@@ -5,13 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="adf5410e-0353-42a1-8012-87e126e7e129" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/scrabble5.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/BagOfTiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameBoard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameSession.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/GameTimer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Rack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/game/Tile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AiPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/core/player/AiPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/main/SuperMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/main/SuperMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/scrab5/ui/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +74,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="org.infernus.idea.checkstyle.CheckStyleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
@@ -85,17 +88,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.GameBoardTest.countScore">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AiPlayerTest.checkBagDistributionLegalTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="scrabble5" />
       <extension name="coverage">
@@ -207,8 +199,8 @@
       <item itemvalue="JUnit.AiPlayerTest.checkBagDistributionLegalTest" />
       <item itemvalue="JUnit.AiPositionTest.countScore" />
       <item itemvalue="JUnit.AiPositionTest.calculatePointsTest" />
-      <item itemvalue="Maven.scrabble5 [clean,package]" />
       <item itemvalue="JUnit.GameBoardTest.countScore" />
+      <item itemvalue="Maven.scrabble5 [clean,package]" />
     </list>
     <recent_temporary>
       <list>
@@ -256,14 +248,9 @@
       <workItem from="1621445444441" duration="3985000" />
       <workItem from="1621492380627" duration="5504000" />
       <workItem from="1621580512972" duration="9141000" />
-      <workItem from="1621666301885" duration="8326000" />
-    </task>
-    <task id="LOCAL-00008" summary="#66 added placetile functionality">
-      <created>1620721351747</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1620721351748</updated>
+      <workItem from="1621666301885" duration="8418000" />
+      <workItem from="1621751282276" duration="2954000" />
+      <workItem from="1621760054852" duration="1176000" />
     </task>
     <task id="LOCAL-00009" summary="#66 push for count">
       <created>1620747012131</created>
@@ -601,7 +588,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621682164761</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="#91 commenting all classes">
+      <created>1621709064605</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1621709064605</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -648,7 +642,6 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="#66 added placetile functionality" />
     <MESSAGE value="#66 push for count" />
     <MESSAGE value="#66 Merge branch 'develop' of ssh://swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5 into develop&#10;&#10;# Conflicts:&#10;#&#9;src/main/java/com/scrab5/core/game/EasyAI.java&#10;#&#9;src/main/java/com/scrab5/core/player/PlayerProfile.java" />
     <MESSAGE value="#66 Fixed countScore Test" />
@@ -673,7 +666,8 @@
     <MESSAGE value="#66 ai calculate points method" />
     <MESSAGE value="#88 ai calculate points method" />
     <MESSAGE value="#88 commenting ai" />
-    <option name="LAST_COMMIT_MESSAGE" value="#88 commenting ai" />
+    <MESSAGE value="#91 commenting all classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="#91 commenting all classes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
