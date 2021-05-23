@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MultiplayerLobbyController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.MultiplayerLobbyController">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="1360.0">
          <children>
@@ -179,6 +179,11 @@
                   <Image url="@images/SB05_AddPlayerButtonNotClickable.png" />
                </image>
             </ImageView>
+            <ImageView fx:id="diffSelection2" fitHeight="25.0" fitWidth="101.0" layoutX="489.0" layoutY="222.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB05_DifficultySelection.png" />
+               </image>
+            </ImageView>
             <ImageView fx:id="diffSelection3" fitHeight="25.0" fitWidth="101.0" layoutX="489.0" layoutY="260.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB05_DifficultySelection.png" />
@@ -189,6 +194,11 @@
                   <Image url="@images/SB05_DifficultySelection.png" />
                </image>
             </ImageView>
+            <Label fx:id="difficulty2" layoutX="498.0" layoutY="223.0" opacity="0.0" text="Easy" textFill="#dc161b">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
             <Label fx:id="difficulty3" layoutX="498.0" layoutY="262.0" opacity="0.0" text="Easy" textFill="#dc161b">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
@@ -199,6 +209,11 @@
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
+            <ImageView fx:id="diffButton1" fitHeight="17.0" fitWidth="18.0" layoutX="569.0" layoutY="226.0" onMouseClicked="#clickDiffBox1" onMouseEntered="#lightenArrow" onMouseExited="#darkenArrow" onMousePressed="#darkenArrow" onMouseReleased="#lightenArrow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/SB05_PlayerVoteButton.png" />
+               </image>
+            </ImageView>
             <ImageView fx:id="diffButton2" fitHeight="17.0" fitWidth="18.0" layoutX="569.0" layoutY="264.0" onMouseClicked="#clickDiffBox2" onMouseEntered="#lightenArrow" onMouseExited="#darkenArrow" onMousePressed="#darkenArrow" onMouseReleased="#lightenArrow" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB05_PlayerVoteButton.png" />
@@ -209,6 +224,7 @@
                   <Image url="@images/SB05_PlayerVoteButton.png" />
                </image>
             </ImageView>
+            <ComboBox fx:id="diffBox1" layoutX="490.0" layoutY="221.0" onAction="#setDifficulty1" onMouseClicked="#dontShow" opacity="0.0" prefHeight="25.0" prefWidth="78.0" />
             <ComboBox fx:id="diffBox2" layoutX="490.0" layoutY="259.0" onAction="#setDifficulty2" onMouseClicked="#dontShow" opacity="0.0" prefHeight="25.0" prefWidth="78.0" />
             <ComboBox fx:id="diffBox3" layoutX="490.0" layoutY="297.0" onAction="#setDifficulty3" onMouseClicked="#dontShow" opacity="0.0" prefHeight="25.0" prefWidth="78.0" />
             <ImageView fx:id="kick2" fitHeight="33.0" fitWidth="33.0" layoutX="1084.0" layoutY="219.0" onMouseClicked="#kickPlayer2" onMouseEntered="#lightenKickIcon" onMouseExited="#darkenKickIcon" onMousePressed="#darkenKickIcon" onMouseReleased="#lightenKickIcon" opacity="0.0" pickOnBounds="true" preserveRatio="true">
