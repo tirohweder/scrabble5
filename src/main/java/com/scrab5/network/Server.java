@@ -384,7 +384,7 @@ public class Server implements Serializable {
       }
     });
     this.timer = new Timer(true);
-    timer.schedule(task, 1000 * 60 * 1);
+    timer.schedule(task, 1000 * 60 * 10);
   }
 
   /**
