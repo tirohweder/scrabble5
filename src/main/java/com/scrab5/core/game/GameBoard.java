@@ -39,7 +39,7 @@ public class GameBoard implements Serializable {
     return gameBoardSpecial[row][column];
   }
 
-  private String[][] gameBoardSpecial = new String[][]{
+  private String[][] gameBoardSpecial = new String[][] {
       {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
       {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
       {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "},
@@ -65,8 +65,8 @@ public class GameBoard implements Serializable {
   /**
    * Places a tile, but only if it follows the rules.
    *
-   * @param t      Tile you want to place.
-   * @param row    coordinates of the to be checked spot
+   * @param t Tile you want to place.
+   * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if your placement was successful
    * @author trohwede
@@ -89,10 +89,10 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Placing a tile in the test doesnt have to follow rules, this makes testing a lot easier.
+   * Placing a tile in the test doesn't have to follow rules, this makes testing a lot easier.
    *
-   * @param t      Tile you want to place
-   * @param row    coordinates of the to be checked spot
+   * @param t Tile you want to place
+   * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if your placement was successful
    * @author trohwede
@@ -115,7 +115,7 @@ public class GameBoard implements Serializable {
   /**
    * Returns the tile at the given coordinates, only tiles that have already been confirmed.
    *
-   * @param row    coordinates of the to be checked spot
+   * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return Tile that has already been played.
    * @author trohwede
@@ -140,7 +140,7 @@ public class GameBoard implements Serializable {
    * Checks if it is possible to remove a tile. First is has to check if the tile is already
    * confirmed. It also has to check if it the tile in the middle.
    *
-   * @param row    coordinates of the to be checked spot
+   * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if it is possible to remove a tile
    * @author trohwede
@@ -184,7 +184,7 @@ public class GameBoard implements Serializable {
   /**
    * Will check if at the given coordinates there is already a tile placed on gameBoardCurrent.
    *
-   * @param row    coordinates of the to be checked spot
+   * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if at the given coordinates there is already a tile placed on the gameBoardCurrent
    * @author trohwede
@@ -197,7 +197,7 @@ public class GameBoard implements Serializable {
    * Checks if the given coordinates, are in the same row and column. And if not next to each other
    * if between them other tiles have already been placed
    *
-   * @param row    coordinates of the to be checked spot
+   * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if the given coordinates are in the same row or column and if they are connected.
    * @author trohwede
@@ -214,7 +214,7 @@ public class GameBoard implements Serializable {
       System.out.println("Nicht nebeinander");
     }
 
-    //gleiche reihe
+    // gleiche reihe
     if (row1 == row) {
       System.out.println("Gleiche Reihe");
       if (column1 < column) {
@@ -231,7 +231,7 @@ public class GameBoard implements Serializable {
           }
         }
       }
-      //gleiche column
+      // gleiche column
     } else if (column1 == column) {
       System.out.println("Gleiche Spalte");
       if (row1 < row) {
@@ -257,21 +257,21 @@ public class GameBoard implements Serializable {
   /**
    * Checks if the given coordinates would be connected to the previously played tiles.
    *
-   * @param row    coordinates of the to be checked spot
+   * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if the given coordinates are connected to the previously played tiles.
    */
   public boolean isConnectedToOldTiles(int row, int column) {
-    return ((row + 1 < 15) && gameBoard[row + 1][column] != null) || ((row - 1 >= 0)
-        && gameBoard[row - 1][column] != null) || ((column + 1 < 15)
-        && gameBoard[row][column + 1] != null) || ((column - 1 >= 0)
-        && gameBoard[row][column - 1] != null);
+    return ((row + 1 < 15) && gameBoard[row + 1][column] != null)
+        || ((row - 1 >= 0) && gameBoard[row - 1][column] != null)
+        || ((column + 1 < 15) && gameBoard[row][column + 1] != null)
+        || ((column - 1 >= 0) && gameBoard[row][column - 1] != null);
   }
 
   /**
    * Checks if its the given coordinates are in line with the first two tiles placed.
    *
-   * @param row    coordinates of the to be checked spot
+   * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if the given coordinates are in line with the first two tiles placed.
    * @author trohwede
@@ -323,7 +323,7 @@ public class GameBoard implements Serializable {
   /**
    * Checks if at the given coordinates its legal to play the next tile.
    *
-   * @param row    coordinates row - of the to be checked tile.
+   * @param row coordinates row - of the to be checked tile.
    * @param column coordinates column - of the to be checked tile.
    * @return boolean if at the given coordinates its possible to play the next tile.
    * @author trohwede
@@ -354,8 +354,7 @@ public class GameBoard implements Serializable {
   /**
    * We check use the function getTouchedWords() to get the tiles that are required to be counted
    * toward the score. The the same way I check for words created to check if they are legit. I go
-   * through the board add up a score. If the word ends, the word score, will be doubled or
-   * tripled.
+   * through the board add up a score. If the word ends, the word score, will be doubled or tripled.
    *
    * @return the score that was achieved during the players turn
    * @author trohwede
@@ -577,7 +576,7 @@ public class GameBoard implements Serializable {
   /**
    * Returns the Tile of gameBoardCurrent, at the given coordinates.
    *
-   * @param row    row coordinates.
+   * @param row row coordinates.
    * @param column column coordinates.
    * @return the Tile at the given coordinates.
    * @author trohwede

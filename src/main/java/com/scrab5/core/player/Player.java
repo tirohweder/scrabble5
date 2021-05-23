@@ -6,6 +6,33 @@ import java.io.Serializable;
 public class Player implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  private Rack rack;
+  private String name;
+  private boolean isHuman;
+  private PlayerProfile playerProfile;
+  private int points;
+
+  /**
+   * @param name When Player is created gives the player a name and a personal rack
+   * @author trohwede
+   */
+  public Player(String name, boolean human) {
+    this.name = name;
+    this.rack = new Rack();
+    this.points = 0;
+    this.isHuman = human;
+  }
+
+  // TODO remove
+  /**
+   * @param name When Player is created gives the player a name and a personal rack
+   * @author trohwede
+   */
+  public Player(String name) {
+    this.name = name;
+    this.rack = new Rack();
+    this.points = 0;
+  }
 
   /**
    * @return Gets Rack
@@ -62,22 +89,4 @@ public class Player implements Serializable {
   public void setPoints(int points) {
     this.points = points;
   }
-
-  private Rack rack;
-  private String name;
-  private boolean isHuman;
-  private PlayerProfile playerProfile;
-  private int points;
-
-  /**
-   * @param name When Player is created gives the player a name and a personal rack
-   * @author trohwede
-   */
-  public Player(String name) {
-    this.name = name;
-    this.rack = new Rack();
-    this.points = 0;
-  }
-
-
 }
