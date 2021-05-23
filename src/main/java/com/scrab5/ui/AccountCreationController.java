@@ -1,13 +1,13 @@
 package com.scrab5.ui;
 
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.URL;
-import java.util.ResourceBundle;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
  * The AccountCreationController class controls the components of the "AccountCreation.fxml".
  * 
  * @author mherre
- *
  */
 public class AccountCreationController extends Controller implements Initializable {
 
