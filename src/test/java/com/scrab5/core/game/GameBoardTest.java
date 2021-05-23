@@ -4,8 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import com.scrab5.util.textParser.DictionaryParser;
+import com.scrab5.util.textparser.DictionaryParser;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
