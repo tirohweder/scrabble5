@@ -9,19 +9,18 @@ import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.textParser.DictionaryScanner;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.imageio.metadata.IIOMetadataFormatImpl;
-
 
 public class AiPlayer extends Player {
 
+  static String[] lettersFromDatabase;
+  static int[] pointsPerLetterFromDatabase;
   ArrayList<AiPosition> pos;
   int counterUp;
   int counterDown;
   int counterRight;
   int counterLeft;
-  static String[] lettersFromDatabase;
-  static int[] pointsPerLetterFromDatabase;
-
+  int hardAIThreshhold = 40;
+  int easyAIThreshold = 20;
 
   /**
    * @param name
@@ -29,200 +28,6 @@ public class AiPlayer extends Player {
    */
   public AiPlayer(String name) {
     super(name);
-  }
-
-  public int getCounterUp() {
-    return this.counterUp;
-  }
-
-  public int getCounterDown() {
-    return this.counterDown;
-  }
-
-  public int getCounterLeft() {
-    return this.counterLeft;
-  }
-
-  public int getCounterRight() {
-    return this.counterRight;
-  }
-
-
-
-
-  int hardAIThreshhold= 40;
-  int easyAIThreshold= 20;
-  public void aiPlay(int aiThreshold) {
-
-    boolean foundMatchingThreshold= false;
-    int column=0;
-    int row=0;
-    ArrayList<Tile> choosenWord = new ArrayList<>();
-    
-    //go through game while threshhold is not reached
-    while(!foundMatchingThreshold && row<15) {
-      while(!foundMatchingThreshold && column<15) {
-        if(Data.getGameSession().getGameBoard().getPlayedTile(row,column)!=null) {
-          getSpotsfree(row,column,Data.getGameSession().getGameBoard());
-          ArrayList<ArrayList<Tile>> wordList;
-
-          if(counterDown+counterUp> counterLeft+counterLeft) {
-            wordList= wordGenerator(Data.getGameSession().getGameBoard().getPlayedTile(row,column).getLetter(),counterDown,counterUp,row,column,false);
-          }else {
-            wordList= wordGenerator(Data.getGameSession().getGameBoard().getPlayedTile(row,column).getLetter(),counterRight,counterLeft,row,column,true);
-          }
-
-          ArrayList<Integer> points= countScore(Data.getGameSession().getGameBoard(),wordList);
-
-          for (int k = 0; k <points.size(); k++) {
-            if(points.get(k)>= aiThreshold) {
-                choosenWord= wordList.get(k);
-                foundMatchingThreshold= true;
-                break;
-            }
-          }
-        }
-      }
-    }
-
-    //because ai uses tiles from the bag, the correct distubution needs to be set.
-    HashMap<String, Integer> currentDistru = Data.getGameSession().getBag().getCurrentBagDistribution();
-
-    if(foundMatchingThreshold) {
-      for (int i = 0; i < choosenWord.size(); i++) {
-        Data.getGameSession().getGameBoard().placeTileTest(choosenWord.get(i),choosenWord.get(i).getRow(),choosenWord.get(i).getColumn());
-        currentDistru.put()
-
-      }
-    }
-
-    Data.getGameSession().getGameBoard().finishTurn();
-    Data.getGameSession().finishTurn();
-
-  }
-
-
-
-  /**
-   * In this method all other methods will be called for the Hard AI
-   *
-   * @param
-   * @author hraza
-   */
-  /*
-   * public void playerMoveHard() { for (int i = 0; i < 15; i++) { for (int j = 0; j < 15; j++) { if
-   * (!Data.getGameSession().getGameBoard().isSpotFree(i, j)) { int x =
-   * Data.getGameSession().getGameBoard().getTile(i, j).getColumn(); int y =
-   * Data.getGameSession().getGameBoard().getTile(i, j).getRow(); this.getSpotsfree(x, y,
-   * Data.getGameSession().getGameBoard()); if (this.counterLeft > 0 | this.counterRight > 0) {
-   * this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y, x).getLetter(),
-   * this.counterLeft, this.counterRight, x, y, true); } else if (this.counterUp > 0 |
-   * this.counterDown > 0) { this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y,
-   * x).getLetter(), this.counterUp, this.counterDown, x, y, false); } else { continue; } } } } int
-   * idxBestPos = 0; for (int i = 1; i < pos.size(); i++) { if
-   * (pos.get(idxBestPos).getPoints(pos.get(idxBestPos).getIndexOfMostPoints()) < pos.get(i)
-   * .getPoints(pos.get(i).getIndexOfMostPoints())) { idxBestPos = i; } } String word=
-   * pos.get(idxBestPos).getWord(pos.get(idxBestPos).getIndexOfMostPoints()); int
-   * before=pos.get(idxBestPos).getBefore(pos.get(idxBestPos).getIndexOfMostPoints()); int after=
-   * pos.get(idxBestPos).getAfter(pos.get(idxBestPos).getIndexOfMostPoints());
-   * if(pos.get(idxBestPos).getHorizontal(pos.get(idxBestPos).getIndexOfMostPoints())) { for(int
-   * i=1;i<=before;i++) {
-   * Data.getGameSession().getGameBoard().placeTile(Data.getGameSession().getBag().pick(),
-   * pos.get(idxBestPos).getY(), pos.get(idxBestPos).getX()); } } else {
-   *
-   * } }
-   */
-
-  /**
-   * In this method all other methods will be called for the Easy AI
-   *
-   * @param
-   * @author hraza
-   */
-  /*
-   * public void playerMoveEasy() { for (int i = 0; i < 15; i++) { for (int j = 0; j < 15; j++) { if
-   * (!Data.getGameSession().getGameBoard().isSpotFree(i, j)) { int x =
-   * Data.getGameSession().getGameBoard().getTile(i, j).getColumn(); int y =
-   * Data.getGameSession().getGameBoard().getTile(i, j).getRow(); this.getSpotsfree(x, y,
-   * Data.getGameSession().getGameBoard()); if (this.counterLeft > 0 | this.counterRight > 0) {
-   * this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y, x).getLetter(),
-   * this.counterLeft, this.counterRight, x, y, true); } else if (this.counterUp > 0 |
-   * this.counterDown > 0) { this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y,
-   * x).getLetter(), this.counterUp, this.counterDown, x, y, false); } else { continue; } } } } }
-   */
-
-  /**
-   * This Method is looking for free valid Spots around the given position and initializes the
-   * counters
-   *
-   * @param x
-   * @param y
-   * @author hraza
-   */
-  public void getSpotsfree(int x, int y, GameBoard g) {
-    int counterRight = 0;
-    int counterLeft = 0;
-    int counterUp = 0;
-    int counterDown = 0;
-
-    // Checking the right Side of the Position on the Board
-    while (y < 14 && y > 0 && x + 1 + counterRight <= 14 && g.isSpotFree(y, x + 1 + counterRight)
-        && g.isSpotFree(y - 1, x + 1 + counterRight) && g.isSpotFree(y + 1, x + 1 + counterRight)) {
-      counterRight++;
-    }
-    while (y == 0 && x + 1 + counterRight <= 14 && g.isSpotFree(y, x + 1 + counterRight)
-        && g.isSpotFree(y + 1, x + 1 + counterRight)) {
-      counterRight++;
-    }
-    while (y == 14 && x + 1 + counterRight <= 14 && g.isSpotFree(y, x + 1 + counterRight)
-        && g.isSpotFree(y - 1, x + 1 + counterRight)) {
-      counterRight++;
-    }
-
-    // Checking the left Side of the Position on the Board
-    while (y < 14 && y > 0 && x - 1 - counterLeft >= 0 && g.isSpotFree(y, x - 1 - counterLeft)
-        && g.isSpotFree(y - 1, x - 1 - counterLeft) && g.isSpotFree(y + 1, x - 1 - counterLeft)) {
-      counterLeft++;
-    }
-    while (y == 0 && x - 1 - counterLeft >= 0 && g.isSpotFree(y, x - 1 - counterLeft)
-        && g.isSpotFree(y + 1, x - 1 - counterLeft)) {
-      counterLeft++;
-    }
-    while (y == 14 && x - 1 - counterLeft >= 0 && g.isSpotFree(y, x - 1 - counterLeft)
-        && g.isSpotFree(y - 1, x - 1 - counterLeft)) {
-      counterLeft++;
-    }
-
-    // Checking for free Spots under the Position x,y
-    while (y + 1 + counterDown <= 14 && x > 0 && x < 14 && g.isSpotFree(y + 1 + counterDown, x)
-        && g.isSpotFree(y + 1 + counterDown, x + 1) && g.isSpotFree(y + 1 + counterDown, x - 1)) {
-      counterDown++;
-    }
-    while (y + 1 + counterDown <= 14 && x == 0 && g.isSpotFree(y + 1 + counterDown, x)
-        && g.isSpotFree(y + 1 + counterDown, x + 1)) {
-      counterDown++;
-    }
-    while (y + 1 + counterDown <= 14 && x == 14 && g.isSpotFree(y + 1 + counterDown, x)
-        && g.isSpotFree(y + 1 + counterDown, x - 1)) {
-      counterDown++;
-    }
-    // Checking for free Spots over the Position x,y
-    while (y - 1 - counterUp >= 0 && x > 0 && x < 14 && g.isSpotFree(y - 1 - counterUp, x)
-        && g.isSpotFree(y - 1 - counterUp, x + 1) && g.isSpotFree(y - 1 - counterUp, x - 1)) {
-      counterUp++;
-    }
-    while (y - 1 - counterUp >= 0 && x == 0 && g.isSpotFree(y - 1 - counterUp, x)
-        && g.isSpotFree(y - 1 - counterUp, x + 1)) {
-      counterUp++;
-    }
-    while (y - 1 - counterUp >= 0 && x == 14 && g.isSpotFree(y - 1 - counterUp, x)
-        && g.isSpotFree(y - 1 - counterUp, x - 1)) {
-      counterUp++;
-    }
-    this.counterDown = counterDown;
-    this.counterUp = counterUp;
-    this.counterRight = counterRight;
-    this.counterLeft = counterLeft;
   }
 
   /**
@@ -240,24 +45,24 @@ public class AiPlayer extends Player {
    * could possibly lay as Tiles with coordinates and points is created and passed. Line 277 and
    * following.
    *
-   * @param fixLetter  the Letter that is already placed on the GameBoard where the Ai wants to lay
-   *                   a word next to
-   * @param before     the amount of tiles that are free before this letter
-   * @param after      the amount of tiles that are free after this letter
-   * @param x          the x-coordinate of the tile with letter fixLetter on the board
-   * @param y          the y-coordinate of the tile with letter fixLetter on the board
+   * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
+   *     word next to
+   * @param before the amount of tiles that are free before this letter
+   * @param after the amount of tiles that are free after this letter
+   * @param x the x-coordinate of the tile with letter fixLetter on the board
+   * @param y the y-coordinate of the tile with letter fixLetter on the board
    * @param horizontal is true, when the word needs to get laid horizontal and false if vertical.
-   *                   This parameter is needed later on
+   *     This parameter is needed later on
    * @author lengist
    */
-  public static ArrayList<ArrayList<Tile>> wordGenerator(String fixLetter, int before, int after, int x, int y,
-      boolean horizontal) {
+  public static ArrayList<ArrayList<Tile>> wordGenerator(
+      String fixLetter, int before, int after, int x, int y, boolean horizontal) {
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
     ArrayList<String> possibleLetters1 = new ArrayList<String>();
     ArrayList<String> finalWords = new ArrayList<String>();
     ArrayList<String> deletionRound1 = new ArrayList<String>();
     ArrayList<String> deletionRound2 = new ArrayList<String>();
-    
+
     int before2 = 0;
     int after2 = 0;
 
@@ -336,8 +141,8 @@ public class AiPlayer extends Player {
     for (String s : finalWords) {
       for (int i = 0; i < s.length(); i++) {
         int value = getPointForLetter(String.valueOf(s.charAt(i)));
-        ArrayList<Integer> coordinates = getCoordinates(s, fixLetter, String.valueOf(s.charAt(i)),
-            x, y, horizontal);
+        ArrayList<Integer> coordinates =
+            getCoordinates(s, fixLetter, String.valueOf(s.charAt(i)), x, y, horizontal);
         int row = coordinates.get(1);
         int column = coordinates.get(0);
         Tile t = new Tile(String.valueOf(s.charAt(i)), value, row, column);
@@ -358,20 +163,25 @@ public class AiPlayer extends Player {
    * of the fixLetter in word and then the place of the newLetter in word. With this information,
    * the Coordinates for the newLetter get calculated.
    *
-   * @param word       the word that contains the fixLetter and newLetter to calculate the exact
-   *                   positions of the given letters
-   * @param fixLetter  the letter that is already n the gameboard
-   * @param newLetter  a letter from the word different to fixLetter. This is the letter the
-   *                   coordinates need to be calculated for.
+   * @param word the word that contains the fixLetter and newLetter to calculate the exact positions
+   *     of the given letters
+   * @param fixLetter the letter that is already n the gameboard
+   * @param newLetter a letter from the word different to fixLetter. This is the letter the
+   *     coordinates need to be calculated for.
    * @param xfixLetter the x-Coordinate of the fixLetter
    * @param yfixLetter the y-Coordinate of the fixLetter
    * @param horizontal a boolean variable for the alignment of the word on the board. If it is true,
-   *                   the word will be laid horizontal. If not, vertical.
+   *     the word will be laid horizontal. If not, vertical.
    * @return coordinates, a ArrayList including the x- and y-Coordinate of the newLetter.
    * @author lengist
    */
-  public static ArrayList<Integer> getCoordinates(String word, String fixLetter, String newLetter,
-      int xfixLetter, int yfixLetter, boolean horizontal) {
+  public static ArrayList<Integer> getCoordinates(
+      String word,
+      String fixLetter,
+      String newLetter,
+      int xfixLetter,
+      int yfixLetter,
+      boolean horizontal) {
     int placeFixLetter = 0;
     int xnew = 0;
     int ynew = 0;
@@ -440,18 +250,18 @@ public class AiPlayer extends Player {
    * Method to test the function for the AiPlayer to generate a fitting word. Just created to test
    * this function in the JUnit test class, not for usage in the game.
    *
-   * @param fixLetter  the Letter that is already placed on the GameBoard where the Ai wants to lay
-   *                   a word next to
-   * @param before     the amount of tiles that are free before this letter
-   * @param after      the amount of tiles that are free after this letter
-   * @param x          the x-coordinate of the tile with letter fixLetter on the board
-   * @param y          the y-coordinate of the tile with letter fixLetter on the board
+   * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
+   *     word next to
+   * @param before the amount of tiles that are free before this letter
+   * @param after the amount of tiles that are free after this letter
+   * @param x the x-coordinate of the tile with letter fixLetter on the board
+   * @param y the y-coordinate of the tile with letter fixLetter on the board
    * @param horizontal is true, when the word needs to get laid horizontal and false if vertical.
-   *                   This parameter is needed later on
+   *     This parameter is needed later on
    * @author lengist
    */
-  public static String[] wordGeneratorTest(String fixLetter, int before, int after, int x, int y,
-      boolean horizontal) {
+  public static String[] wordGeneratorTest(
+      String fixLetter, int before, int after, int x, int y, boolean horizontal) {
     ArrayList<String> finalWords = new ArrayList<String>();
     ArrayList<String> deletionRound1 = new ArrayList<String>();
     ArrayList<String> deletionRound2 = new ArrayList<String>();
@@ -524,8 +334,8 @@ public class AiPlayer extends Player {
     for (String s : finalWords) {
       for (int i = 0; i < s.length(); i++) {
         int value = getPointForLetter(String.valueOf(s.charAt(i)));
-        ArrayList<Integer> coordinates = getCoordinates(s, fixLetter, String.valueOf(s.charAt(i)),
-            x, y, horizontal);
+        ArrayList<Integer> coordinates =
+            getCoordinates(s, fixLetter, String.valueOf(s.charAt(i)), x, y, horizontal);
         int row = coordinates.get(1);
         int column = coordinates.get(0);
         Tile t = new Tile(String.valueOf(s.charAt(i)), value, row, column);
@@ -543,6 +353,54 @@ public class AiPlayer extends Player {
   }
 
   /**
+   * In this method all other methods will be called for the Hard AI
+   *
+   * @param
+   * @author hraza
+   */
+  /*
+   * public void playerMoveHard() { for (int i = 0; i < 15; i++) { for (int j = 0; j < 15; j++) { if
+   * (!Data.getGameSession().getGameBoard().isSpotFree(i, j)) { int x =
+   * Data.getGameSession().getGameBoard().getTile(i, j).getColumn(); int y =
+   * Data.getGameSession().getGameBoard().getTile(i, j).getRow(); this.getSpotsfree(x, y,
+   * Data.getGameSession().getGameBoard()); if (this.counterLeft > 0 | this.counterRight > 0) {
+   * this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y, x).getLetter(),
+   * this.counterLeft, this.counterRight, x, y, true); } else if (this.counterUp > 0 |
+   * this.counterDown > 0) { this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y,
+   * x).getLetter(), this.counterUp, this.counterDown, x, y, false); } else { continue; } } } } int
+   * idxBestPos = 0; for (int i = 1; i < pos.size(); i++) { if
+   * (pos.get(idxBestPos).getPoints(pos.get(idxBestPos).getIndexOfMostPoints()) < pos.get(i)
+   * .getPoints(pos.get(i).getIndexOfMostPoints())) { idxBestPos = i; } } String word=
+   * pos.get(idxBestPos).getWord(pos.get(idxBestPos).getIndexOfMostPoints()); int
+   * before=pos.get(idxBestPos).getBefore(pos.get(idxBestPos).getIndexOfMostPoints()); int after=
+   * pos.get(idxBestPos).getAfter(pos.get(idxBestPos).getIndexOfMostPoints());
+   * if(pos.get(idxBestPos).getHorizontal(pos.get(idxBestPos).getIndexOfMostPoints())) { for(int
+   * i=1;i<=before;i++) {
+   * Data.getGameSession().getGameBoard().placeTile(Data.getGameSession().getBag().pick(),
+   * pos.get(idxBestPos).getY(), pos.get(idxBestPos).getX()); } } else {
+   *
+   * } }
+   */
+
+  /**
+   * In this method all other methods will be called for the Easy AI
+   *
+   * @param
+   * @author hraza
+   */
+  /*
+   * public void playerMoveEasy() { for (int i = 0; i < 15; i++) { for (int j = 0; j < 15; j++) { if
+   * (!Data.getGameSession().getGameBoard().isSpotFree(i, j)) { int x =
+   * Data.getGameSession().getGameBoard().getTile(i, j).getColumn(); int y =
+   * Data.getGameSession().getGameBoard().getTile(i, j).getRow(); this.getSpotsfree(x, y,
+   * Data.getGameSession().getGameBoard()); if (this.counterLeft > 0 | this.counterRight > 0) {
+   * this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y, x).getLetter(),
+   * this.counterLeft, this.counterRight, x, y, true); } else if (this.counterUp > 0 |
+   * this.counterDown > 0) { this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y,
+   * x).getLetter(), this.counterUp, this.counterDown, x, y, false); } else { continue; } } } } }
+   */
+
+  /**
    * This Method is gettig a String word and the current Bag-Occurence hashmap handed over and then
    * checks if there are enough letters in the Bag to create the word. For every Letter in the word
    * it substracts 1 from the value in the Hashmap and then checks if the value of this Letter is
@@ -553,12 +411,13 @@ public class AiPlayer extends Player {
    * @param word
    * @author hraza
    */
-  public static Boolean checkBagDistributionLegal(HashMap<String, Integer> currentDistribution,
-      String word) {
+  public static Boolean checkBagDistributionLegal(
+      HashMap<String, Integer> currentDistribution, String word) {
     boolean b = true;
     int j = 0;
     for (int i = 0; i < word.length(); i++) {
-      currentDistribution.put(Character.toString(word.charAt(i)),
+      currentDistribution.put(
+          Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) - 1);
       if (currentDistribution.get(Character.toString(word.charAt(i))) < 0) {
         b = false;
@@ -570,10 +429,197 @@ public class AiPlayer extends Player {
     }
     System.out.println(j);
     for (int i = 0; i <= j; i++) {
-      currentDistribution.put(Character.toString(word.charAt(i)),
+      currentDistribution.put(
+          Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) + 1);
     }
     return b;
+  }
+
+  public int getCounterUp() {
+    return this.counterUp;
+  }
+
+  public int getCounterDown() {
+    return this.counterDown;
+  }
+
+  public int getCounterLeft() {
+    return this.counterLeft;
+  }
+
+  public int getCounterRight() {
+    return this.counterRight;
+  }
+
+  public void aiPlay(int aiThreshold) {
+
+    boolean foundMatchingThreshold = false;
+    int column = 0;
+    int row = 0;
+    ArrayList<Tile> choosenWord = new ArrayList<>();
+
+    // go through game while threshhold is not reached
+    while (!foundMatchingThreshold && row < 15) {
+      while (!foundMatchingThreshold && column < 15) {
+        if (Data.getGameSession().getGameBoard().getPlayedTile(row, column) != null) {
+          getSpotsfree(row, column, Data.getGameSession().getGameBoard());
+          ArrayList<ArrayList<Tile>> wordList;
+
+          if (counterDown + counterUp > counterLeft + counterLeft) {
+            wordList =
+                wordGenerator(
+                    Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
+                    counterDown,
+                    counterUp,
+                    row,
+                    column,
+                    false);
+          } else {
+            wordList =
+                wordGenerator(
+                    Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
+                    counterRight,
+                    counterLeft,
+                    row,
+                    column,
+                    true);
+          }
+
+          ArrayList<Integer> points = countScore(Data.getGameSession().getGameBoard(), wordList);
+
+          for (int k = 0; k < points.size(); k++) {
+            if (points.get(k) >= aiThreshold) {
+              choosenWord = wordList.get(k);
+              foundMatchingThreshold = true;
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    // because ai uses tiles from the bag, the correct distubution needs to be
+    // set.wqeeeeeeeeeeeeeeeeeeeeeeee
+    HashMap<String, Integer> currentDistru =
+        Data.getGameSession().getBag().getCurrentBagDistribution();
+
+    if (foundMatchingThreshold) {
+      for (Tile tile : choosenWord) {
+        Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
+        currentDistru.put(tile.getLetter(), currentDistru.get(tile) - 1);
+      }
+    }
+
+    Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
+    Data.getGameSession().getGameBoard().finishTurn();
+    Data.getGameSession().finishTurn();
+  }
+
+  /**
+   * This Method is looking for free valid Spots around the given position and initializes the
+   * counters
+   *
+   * @param x
+   * @param y
+   * @author hraza
+   */
+  public void getSpotsfree(int x, int y, GameBoard g) {
+    int counterRight = 0;
+    int counterLeft = 0;
+    int counterUp = 0;
+    int counterDown = 0;
+
+    // Checking the right Side of the Position on the Board
+    while (y < 14
+        && y > 0
+        && x + 1 + counterRight <= 14
+        && g.isSpotFree(y, x + 1 + counterRight)
+        && g.isSpotFree(y - 1, x + 1 + counterRight)
+        && g.isSpotFree(y + 1, x + 1 + counterRight)) {
+      counterRight++;
+    }
+    while (y == 0
+        && x + 1 + counterRight <= 14
+        && g.isSpotFree(y, x + 1 + counterRight)
+        && g.isSpotFree(y + 1, x + 1 + counterRight)) {
+      counterRight++;
+    }
+    while (y == 14
+        && x + 1 + counterRight <= 14
+        && g.isSpotFree(y, x + 1 + counterRight)
+        && g.isSpotFree(y - 1, x + 1 + counterRight)) {
+      counterRight++;
+    }
+
+    // Checking the left Side of the Position on the Board
+    while (y < 14
+        && y > 0
+        && x - 1 - counterLeft >= 0
+        && g.isSpotFree(y, x - 1 - counterLeft)
+        && g.isSpotFree(y - 1, x - 1 - counterLeft)
+        && g.isSpotFree(y + 1, x - 1 - counterLeft)) {
+      counterLeft++;
+    }
+    while (y == 0
+        && x - 1 - counterLeft >= 0
+        && g.isSpotFree(y, x - 1 - counterLeft)
+        && g.isSpotFree(y + 1, x - 1 - counterLeft)) {
+      counterLeft++;
+    }
+    while (y == 14
+        && x - 1 - counterLeft >= 0
+        && g.isSpotFree(y, x - 1 - counterLeft)
+        && g.isSpotFree(y - 1, x - 1 - counterLeft)) {
+      counterLeft++;
+    }
+
+    // Checking for free Spots under the Position x,y
+    while (y + 1 + counterDown <= 14
+        && x > 0
+        && x < 14
+        && g.isSpotFree(y + 1 + counterDown, x)
+        && g.isSpotFree(y + 1 + counterDown, x + 1)
+        && g.isSpotFree(y + 1 + counterDown, x - 1)) {
+      counterDown++;
+    }
+    while (y + 1 + counterDown <= 14
+        && x == 0
+        && g.isSpotFree(y + 1 + counterDown, x)
+        && g.isSpotFree(y + 1 + counterDown, x + 1)) {
+      counterDown++;
+    }
+    while (y + 1 + counterDown <= 14
+        && x == 14
+        && g.isSpotFree(y + 1 + counterDown, x)
+        && g.isSpotFree(y + 1 + counterDown, x - 1)) {
+      counterDown++;
+    }
+    // Checking for free Spots over the Position x,y
+    while (y - 1 - counterUp >= 0
+        && x > 0
+        && x < 14
+        && g.isSpotFree(y - 1 - counterUp, x)
+        && g.isSpotFree(y - 1 - counterUp, x + 1)
+        && g.isSpotFree(y - 1 - counterUp, x - 1)) {
+      counterUp++;
+    }
+    while (y - 1 - counterUp >= 0
+        && x == 0
+        && g.isSpotFree(y - 1 - counterUp, x)
+        && g.isSpotFree(y - 1 - counterUp, x + 1)) {
+      counterUp++;
+    }
+    while (y - 1 - counterUp >= 0
+        && x == 14
+        && g.isSpotFree(y - 1 - counterUp, x)
+        && g.isSpotFree(y - 1 - counterUp, x - 1)) {
+      counterUp++;
+    }
+    this.counterDown = counterDown;
+    this.counterUp = counterUp;
+    this.counterRight = counterRight;
+    this.counterLeft = counterLeft;
   }
 
   /* Just for direct testing: */
@@ -585,17 +631,16 @@ public class AiPlayer extends Player {
     }
   }*/
 
-
   /**
    * Cout
    *
-   * @param gameBoard     takes the currentGameBoard
+   * @param gameBoard takes the currentGameBoard
    * @param possibleWords revices the possible words as a ArrayList<Tile>
    * @return Points per Word
    * @author trohwede
    */
-  public ArrayList<Integer> countScore(GameBoard gameBoard,
-      ArrayList<ArrayList<Tile>> possibleWords) {
+  public ArrayList<Integer> countScore(
+      GameBoard gameBoard, ArrayList<ArrayList<Tile>> possibleWords) {
     ArrayList<Integer> scoreList = new ArrayList<>();
 
     for (ArrayList<Tile> word : possibleWords) {
@@ -634,7 +679,4 @@ public class AiPlayer extends Player {
     }
     return scoreList;
   }
-
-
-
 }
