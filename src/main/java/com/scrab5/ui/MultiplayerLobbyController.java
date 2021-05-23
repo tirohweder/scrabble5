@@ -33,41 +33,48 @@ import javafx.scene.input.MouseEvent;
  */
 public class MultiplayerLobbyController extends LobbyController implements Initializable {
 
-  @FXML
-  private Label player1, player2, player3, player4;
-  @FXML
-  private Label ready1, ready2, ready3, ready4;
-  @FXML
-  private Label playerNameStats1, playerNameStats2, playerNameStats3, playerNameStats4;
-  @FXML
-  private Label played1, played2, played3, played4;
-  @FXML
-  private Label won1, won2, won3, won4;
-  @FXML
-  private Label score1, score2, score3, score4;
-  @FXML
-  private ImageView customizeButton;
-  @FXML
-  private TextArea chatBox;
-  @FXML
-  private TextField messageTextField;
-
+  private static LinkedHashMap<String, ArrayList<Integer>> votes;
+  @FXML private Label player1, player2, player3, player4;
+  @FXML private Label ready1, ready2, ready3, ready4;
+  @FXML private Label playerNameStats1, playerNameStats2, playerNameStats3, playerNameStats4;
+  @FXML private Label played1, played2, played3, played4;
+  @FXML private Label won1, won2, won3, won4;
+  @FXML private Label score1, score2, score3, score4;
+  @FXML private ImageView customizeButton;
+  @FXML private TextArea chatBox;
+  @FXML private TextField messageTextField;
   private boolean isReady = false;
   private int aiPlayerAmount = 0;
   private AiPlayer[] AIs = new AiPlayer[2];
   private boolean isHost;
-  private static LinkedHashMap<String, ArrayList<Integer>> votes;
 
   /**
-   * @author mherre
+   * Called when the lobby was closed by the host.
+   *
+   * @throws IOException
+   * @author nitterhe
    */
+  public static void lobbyClosed() {
+    try {
+      App.setRoot("MultiplayerOverview");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void addVote(String clientname, ArrayList<Integer> vote) {
+    votes.putIfAbsent(clientname, vote);
+  }
+
+  /** @author mherre */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     this.isClickable();
     this.setUpInit();
     votes = new LinkedHashMap<String, ArrayList<Integer>>();
 
-    if (Data.getPlayerClient().getUsername()
+    if (Data.getPlayerClient()
+        .getUsername()
         .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
       isHost = true;
     } else {
@@ -77,7 +84,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
 
     this.refreshUI();
-
   }
 
   /**
@@ -94,22 +100,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     Data.getPlayerClient().disconnectFromServer();
   }
 
-
-  /**
-   * Called when the lobby was closed by the host.
-   *
-   * @throws IOException
-   * @author nitterhe
-   */
-  public static void lobbyClosed() {
-    try {
-      App.setRoot("MultiplayerOverview");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
-
   @FXML
   private void ready(MouseEvent event) throws IOException {
 
@@ -122,18 +112,17 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @FXML
   private void enterChatMessage(MouseEvent event) {
 
-    Platform.runLater(new Runnable() {
+    Platform.runLater(
+        new Runnable() {
 
-      @Override
-      public void run() {
-        messageTextField.selectAll();
-        Data.getPlayerClient()
-            .sendChatMessage(Data.getCurrentUser() + ": " + messageTextField.getText() + "\n");
-      }
-    });
-
+          @Override
+          public void run() {
+            messageTextField.selectAll();
+            Data.getPlayerClient()
+                .sendChatMessage(Data.getCurrentUser() + ": " + messageTextField.getText() + "\n");
+          }
+        });
   }
-
 
   protected void addPlayer(MouseEvent event) {
 
@@ -173,7 +162,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     this.isClickable();
   }
 
-
   @FXML
   protected void kickPlayer2(MouseEvent event) {
 
@@ -186,7 +174,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.playerAmount--;
       this.freeSpaces[1] = true;
       this.isClickable();
-
     }
   }
 
@@ -211,7 +198,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.playerAmount--;
       this.freeSpaces[1] = true;
       this.isClickable();
-
     }
   }
 
@@ -236,7 +222,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.playerAmount--;
       this.freeSpaces[2] = true;
       this.isClickable();
-
     }
   }
 
@@ -291,7 +276,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       for (int l = 0; l < maximum; l++) {
         it.next();
       }
-      playerList.add(0, new Player(it.next().getUsername()));
+      playerList.add(0, new Player(it.next().getUsername(), true));
       voteResults.set(maximum, 0);
     }
 
@@ -310,7 +295,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       System.out.println("Online GameSession created");
     }
     Data.getHostedServer().startGame();
-    Data.getPlayerClient().getClientThread()
+    Data.getPlayerClient()
+        .getClientThread()
         .sendMessageToServer(new MakeTurnMessage(Data.getCurrentUser(), Data.getGameSession()));
   }
 
@@ -321,179 +307,182 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    */
   private void refreshUI() {
 
-    Thread t = new Thread(new Runnable() {
+    Thread t =
+        new Thread(
+            new Runnable() {
 
-      @Override
-      public void run() {
+              @Override
+              public void run() {
 
-        while (Data.getPlayerClient().getClientThread().isAlive()) {
+                while (Data.getPlayerClient().getClientThread().isAlive()) {
 
-          Server UIServer = Data.getPlayerClient().getCurrentServer();
-          ServerStatistics sd = UIServer.getServerStatistics();
-          Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
+                  Server UIServer = Data.getPlayerClient().getCurrentServer();
+                  ServerStatistics sd = UIServer.getServerStatistics();
+                  Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
 
-          playerAmount = UIServer.getClientCounter() + aiPlayerAmount;
+                  playerAmount = UIServer.getClientCounter() + aiPlayerAmount;
 
-          Platform.runLater(new Runnable() {
+                  Platform.runLater(
+                      new Runnable() {
 
-            @Override
-            public void run() {
+                        @Override
+                        public void run() {
 
-              chatBox.setText(Data.getChatHistory().toString());
+                          chatBox.setText(Data.getChatHistory().toString());
 
-              if (Data.getPlayerClient().getStarting()) {
-                try {
-                  Data.getPlayerClient().setStarting(false);
-                  App.setRoot("MultiPlayer");
-                } catch (IOException e) {
-                  e.printStackTrace();
-                }
-              }
+                          if (Data.getPlayerClient().getStarting()) {
+                            try {
+                              Data.getPlayerClient().setStarting(false);
+                              App.setRoot("MultiPlayer");
+                            } catch (IOException e) {
+                              e.printStackTrace();
+                            }
+                          }
 
-              boolean start = true;
-              ClientData client;
-              if (iterator.hasNext()) {
-                client = iterator.next();
-                player1.setText(client.getUsername());
-                ready1.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (!client.isReady()) {
-                  start = false;
-                }
-              } else {
-                player1.setText("");
-                ready1.setText("");
-              }
+                          boolean start = true;
+                          ClientData client;
+                          if (iterator.hasNext()) {
+                            client = iterator.next();
+                            player1.setText(client.getUsername());
+                            ready1.setText(client.isReady() ? "Ready" : "Not Ready");
+                            if (!client.isReady()) {
+                              start = false;
+                            }
+                          } else {
+                            player1.setText("");
+                            ready1.setText("");
+                          }
 
-              if (iterator.hasNext()) {
-                client = iterator.next();
-                player2.setText(client.getUsername());
-                ready2.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (isHost) {
-                  kick2.setOpacity(1.0);
-                }
-                if (!client.isReady()) {
-                  start = false;
-                }
-              } else {
-                player2.setText("");
-                ready2.setText("");
-              }
+                          if (iterator.hasNext()) {
+                            client = iterator.next();
+                            player2.setText(client.getUsername());
+                            ready2.setText(client.isReady() ? "Ready" : "Not Ready");
+                            if (isHost) {
+                              kick2.setOpacity(1.0);
+                            }
+                            if (!client.isReady()) {
+                              start = false;
+                            }
+                          } else {
+                            player2.setText("");
+                            ready2.setText("");
+                          }
 
-              if (iterator.hasNext()) {
-                client = iterator.next();
-                player3.setText(client.getUsername());
-                ready3.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (isHost) {
-                  kick3.setOpacity(1.0);
-                }
-                if (!client.isReady()) {
-                  start = false;
-                }
-              } else if (!freeSpaces[1]) {
-                player3.setText(AIs[0].getName());
-                ready3.setText("Ready");
-              } else {
-                player3.setText("");
-                ready3.setText("");
-              }
+                          if (iterator.hasNext()) {
+                            client = iterator.next();
+                            player3.setText(client.getUsername());
+                            ready3.setText(client.isReady() ? "Ready" : "Not Ready");
+                            if (isHost) {
+                              kick3.setOpacity(1.0);
+                            }
+                            if (!client.isReady()) {
+                              start = false;
+                            }
+                          } else if (!freeSpaces[1]) {
+                            player3.setText(AIs[0].getName());
+                            ready3.setText("Ready");
+                          } else {
+                            player3.setText("");
+                            ready3.setText("");
+                          }
 
-              if (iterator.hasNext()) {
-                client = iterator.next();
-                player4.setText(client.getUsername());
-                ready4.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (isHost) {
-                  kick4.setOpacity(1.0);
-                }
-                if (!client.isReady()) {
-                  start = false;
-                }
-              } else if (!freeSpaces[2]) {
-                player4.setText(AIs[1].getName());
-                ready4.setText("Ready");
-              } else {
-                player4.setText("");
-                ready4.setText("");
-              }
+                          if (iterator.hasNext()) {
+                            client = iterator.next();
+                            player4.setText(client.getUsername());
+                            ready4.setText(client.isReady() ? "Ready" : "Not Ready");
+                            if (isHost) {
+                              kick4.setOpacity(1.0);
+                            }
+                            if (!client.isReady()) {
+                              start = false;
+                            }
+                          } else if (!freeSpaces[2]) {
+                            player4.setText(AIs[1].getName());
+                            ready4.setText("Ready");
+                          } else {
+                            player4.setText("");
+                            ready4.setText("");
+                          }
 
-              if (start && Data.getPlayerClient().getCurrentServer().getClients().size() > 1
-                  && isHost) {
-                startButton.setOpacity(1.0);
-                startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                          if (start
+                              && Data.getPlayerClient().getCurrentServer().getClients().size() > 1
+                              && isHost) {
+                            startButton.setOpacity(1.0);
+                            startButton.setOnMouseClicked(
+                                new EventHandler<MouseEvent>() {
 
-                  @Override
-                  public void handle(MouseEvent event) {
+                                  @Override
+                                  public void handle(MouseEvent event) {
+                                    try {
+                                      startGame(event);
+                                    } catch (IOException | SQLException e) {
+                                      e.printStackTrace();
+                                    }
+                                  }
+                                });
+                          } else {
+                            startButton.setOpacity(0);
+                            startButton.setOnMouseClicked(null);
+                          }
+
+                          ClientStatistic help;
+                          if (null != (help = sd.get(1))) {
+                            playerNameStats1.setText(help.getClientName());
+                            played1.setText("" + help.getGamesPlayed());
+                            won1.setText("" + help.getGamesWon());
+                            if (help.getGamesPlayed() > 0) {
+                              score1.setText(
+                                  100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                            } else {
+                              score1.setText("0");
+                            }
+                          }
+                          if (null != (help = sd.get(2))) {
+                            playerNameStats2.setText(help.getClientName());
+                            played2.setText("" + help.getGamesPlayed());
+                            won2.setText("" + help.getGamesWon());
+                            if (help.getGamesPlayed() > 0) {
+                              score2.setText(
+                                  100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                            } else {
+                              score2.setText("0");
+                            }
+                          }
+                          if (null != (help = sd.get(3))) {
+                            playerNameStats3.setText(help.getClientName());
+                            played3.setText("" + help.getGamesPlayed());
+                            won3.setText("" + help.getGamesWon());
+                            if (help.getGamesPlayed() > 0) {
+                              score3.setText(
+                                  100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                            } else {
+                              score3.setText("0");
+                            }
+                          }
+                          if (null != (help = sd.get(4))) {
+                            playerNameStats4.setText(help.getClientName());
+                            played4.setText("" + help.getGamesPlayed());
+                            won4.setText("" + help.getGamesWon());
+                            if (help.getGamesPlayed() > 0) {
+                              score4.setText(
+                                  100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                            } else {
+                              score4.setText("0");
+                            }
+                          }
+                        }
+                      });
+                  synchronized (this) {
                     try {
-                      startGame(event);
-                    } catch (IOException | SQLException e) {
-                      e.printStackTrace();
+                      this.wait(200);
+                    } catch (InterruptedException e) {
+                      // e.printStackTrace();
                     }
                   }
-
-                });
-              } else {
-                startButton.setOpacity(0);
-                startButton.setOnMouseClicked(null);
-              }
-
-              ClientStatistic help;
-              if (null != (help = sd.get(1))) {
-                playerNameStats1.setText(help.getClientName());
-                played1.setText("" + help.getGamesPlayed());
-                won1.setText("" + help.getGamesWon());
-                if (help.getGamesPlayed() > 0) {
-                  score1.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
-                } else {
-                  score1.setText("0");
                 }
               }
-              if (null != (help = sd.get(2))) {
-                playerNameStats2.setText(help.getClientName());
-                played2.setText("" + help.getGamesPlayed());
-                won2.setText("" + help.getGamesWon());
-                if (help.getGamesPlayed() > 0) {
-                  score2.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
-                } else {
-                  score2.setText("0");
-                }
-              }
-              if (null != (help = sd.get(3))) {
-                playerNameStats3.setText(help.getClientName());
-                played3.setText("" + help.getGamesPlayed());
-                won3.setText("" + help.getGamesWon());
-                if (help.getGamesPlayed() > 0) {
-                  score3.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
-                } else {
-                  score3.setText("0");
-                }
-              }
-              if (null != (help = sd.get(4))) {
-                playerNameStats4.setText(help.getClientName());
-                played4.setText("" + help.getGamesPlayed());
-                won4.setText("" + help.getGamesWon());
-                if (help.getGamesPlayed() > 0) {
-                  score4.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
-                } else {
-                  score4.setText("0");
-                }
-              }
-
-            }
-          });
-          synchronized (this) {
-            try {
-              this.wait(200);
-            } catch (InterruptedException e) {
-              // e.printStackTrace();
-            }
-          }
-        }
-      }
-    });
+            });
     t.start();
-  }
-
-  public static void addVote(String clientname, ArrayList<Integer> vote) {
-    votes.putIfAbsent(clientname, vote);
   }
 
   protected void setUpInit() {

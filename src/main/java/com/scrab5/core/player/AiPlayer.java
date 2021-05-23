@@ -1,26 +1,23 @@
 package com.scrab5.core.player;
 
-import com.scrab5.core.game.AiPosition;
 import com.scrab5.core.game.BagOfTiles;
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
 import com.scrab5.ui.Data;
-import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.parser.DictionaryScanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AiPlayer extends Player {
-
   static String[] lettersFromDatabase;
   static int[] pointsPerLetterFromDatabase;
-  ArrayList<AiPosition> pos;
+
   int counterUp;
   int counterDown;
   int counterRight;
   int counterLeft;
-  int hardAIThreshhold = 40;
-  int easyAIThreshold = 20;
+  int aiThreshold;
+  private int difficulty;
 
   /**
    * @param name
@@ -28,6 +25,23 @@ public class AiPlayer extends Player {
    */
   public AiPlayer(String name) {
     super(name);
+  }
+
+  /**
+   * Constructor that creates ai, directly with diffuclty
+   *
+   * @author trohwede
+   * @param name name of ai
+   * @param difficulty 0 = easy, 1 = hard
+   */
+  public AiPlayer(String name, int difficulty) {
+    super(name);
+    this.difficulty = difficulty;
+    if (difficulty == 0) {
+      this.aiThreshold = Data.easyAiThreshold;
+    } else {
+      this.aiThreshold = Data.hardAiThreshold;
+    }
   }
 
   /**
@@ -182,6 +196,7 @@ public class AiPlayer extends Player {
       int xfixLetter,
       int yfixLetter,
       boolean horizontal) {
+
     int placeFixLetter = 0;
     int xnew = 0;
     int ynew = 0;
@@ -233,17 +248,6 @@ public class AiPlayer extends Player {
       }
     }
     return points;
-  }
-
-  /**
-   * Method to get all the points for the letters in the database to find out the points for a
-   * possible word. The values will be saved in a local variable.
-   *
-   * @author lengist
-   */
-  public static void setLetterPoints() {
-    lettersFromDatabase = UseDatabase.getAllLetters();
-    pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
   }
 
   /**
@@ -353,54 +357,6 @@ public class AiPlayer extends Player {
   }
 
   /**
-   * In this method all other methods will be called for the Hard AI
-   *
-   * @param
-   * @author hraza
-   */
-  /*
-   * public void playerMoveHard() { for (int i = 0; i < 15; i++) { for (int j = 0; j < 15; j++) { if
-   * (!Data.getGameSession().getGameBoard().isSpotFree(i, j)) { int x =
-   * Data.getGameSession().getGameBoard().getTile(i, j).getColumn(); int y =
-   * Data.getGameSession().getGameBoard().getTile(i, j).getRow(); this.getSpotsfree(x, y,
-   * Data.getGameSession().getGameBoard()); if (this.counterLeft > 0 | this.counterRight > 0) {
-   * this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y, x).getLetter(),
-   * this.counterLeft, this.counterRight, x, y, true); } else if (this.counterUp > 0 |
-   * this.counterDown > 0) { this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y,
-   * x).getLetter(), this.counterUp, this.counterDown, x, y, false); } else { continue; } } } } int
-   * idxBestPos = 0; for (int i = 1; i < pos.size(); i++) { if
-   * (pos.get(idxBestPos).getPoints(pos.get(idxBestPos).getIndexOfMostPoints()) < pos.get(i)
-   * .getPoints(pos.get(i).getIndexOfMostPoints())) { idxBestPos = i; } } String word=
-   * pos.get(idxBestPos).getWord(pos.get(idxBestPos).getIndexOfMostPoints()); int
-   * before=pos.get(idxBestPos).getBefore(pos.get(idxBestPos).getIndexOfMostPoints()); int after=
-   * pos.get(idxBestPos).getAfter(pos.get(idxBestPos).getIndexOfMostPoints());
-   * if(pos.get(idxBestPos).getHorizontal(pos.get(idxBestPos).getIndexOfMostPoints())) { for(int
-   * i=1;i<=before;i++) {
-   * Data.getGameSession().getGameBoard().placeTile(Data.getGameSession().getBag().pick(),
-   * pos.get(idxBestPos).getY(), pos.get(idxBestPos).getX()); } } else {
-   *
-   * } }
-   */
-
-  /**
-   * In this method all other methods will be called for the Easy AI
-   *
-   * @param
-   * @author hraza
-   */
-  /*
-   * public void playerMoveEasy() { for (int i = 0; i < 15; i++) { for (int j = 0; j < 15; j++) { if
-   * (!Data.getGameSession().getGameBoard().isSpotFree(i, j)) { int x =
-   * Data.getGameSession().getGameBoard().getTile(i, j).getColumn(); int y =
-   * Data.getGameSession().getGameBoard().getTile(i, j).getRow(); this.getSpotsfree(x, y,
-   * Data.getGameSession().getGameBoard()); if (this.counterLeft > 0 | this.counterRight > 0) {
-   * this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y, x).getLetter(),
-   * this.counterLeft, this.counterRight, x, y, true); } else if (this.counterUp > 0 |
-   * this.counterDown > 0) { this.wordGenerator(Data.getGameSession().getGameBoard().getTile(y,
-   * x).getLetter(), this.counterUp, this.counterDown, x, y, false); } else { continue; } } } } }
-   */
-
-  /**
    * This Method is gettig a String word and the current Bag-Occurence hashmap handed over and then
    * checks if there are enough letters in the Bag to create the word. For every Letter in the word
    * it substracts 1 from the value in the Hashmap and then checks if the value of this Letter is
@@ -436,32 +392,20 @@ public class AiPlayer extends Player {
     return b;
   }
 
-  public int getCounterUp() {
-    return this.counterUp;
-  }
-
-  public int getCounterDown() {
-    return this.counterDown;
-  }
-
-  public int getCounterLeft() {
-    return this.counterLeft;
-  }
-
-  public int getCounterRight() {
-    return this.counterRight;
-  }
-
-  public void aiPlay(int aiThreshold) {
-
+  /**
+   * This fuction is called when gamecontroller checks that player is nonhuman, will give appropiate
+   * difficulty.
+   *
+   * @author trohwede
+   */
+  public void aiPlay() {
     boolean foundMatchingThreshold = false;
-    int column = 0;
-    int row = 0;
     ArrayList<Tile> choosenWord = new ArrayList<>();
 
     // go through game while threshhold is not reached
-    while (!foundMatchingThreshold && row < 15) {
-      while (!foundMatchingThreshold && column < 15) {
+    lookingForValue:
+    for (int row = 0; row < 15; row++) {
+      for (int column = 0; column < 15; column++) {
         if (Data.getGameSession().getGameBoard().getPlayedTile(row, column) != null) {
           getSpotsfree(row, column, Data.getGameSession().getGameBoard());
           ArrayList<ArrayList<Tile>> wordList;
@@ -492,7 +436,7 @@ public class AiPlayer extends Player {
             if (points.get(k) >= aiThreshold) {
               choosenWord = wordList.get(k);
               foundMatchingThreshold = true;
-              break;
+              break lookingForValue;
             }
           }
         }
@@ -508,6 +452,8 @@ public class AiPlayer extends Player {
         Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
         currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
       }
+    } else {
+      // TODO what if no word
     }
 
     Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
@@ -621,17 +567,8 @@ public class AiPlayer extends Player {
     this.counterLeft = counterLeft;
   }
 
-  /* Just for direct testing: */
-  /*public static void main(String[] args) {
-    setLetterPoints();
-    String[] test = wordGeneratorTest("A", 3, 4, 6, 6, true);
-    for (String s : test) {
-      System.out.println(s);
-    }
-  }*/
-
   /**
-   * Cout
+   * Count the score TODO
    *
    * @param gameBoard takes the currentGameBoard
    * @param possibleWords revices the possible words as a ArrayList<Tile>
