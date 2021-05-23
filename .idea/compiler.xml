@@ -9,5 +9,8 @@
         <module name="scrabble5" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="scrabble5" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
