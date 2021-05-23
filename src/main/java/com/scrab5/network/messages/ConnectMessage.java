@@ -1,12 +1,12 @@
+package com.scrab5.network.messages;
+
+import com.scrab5.network.ClientData;
+
 /**
  * Class for messages used to connect the client with the server.
  *
  * @author nitterhe
  */
-package com.scrab5.network.messages;
-
-import com.scrab5.network.ClientData;
-
 public class ConnectMessage extends Message {
 
   private static final long serialVersionUID = 1L;

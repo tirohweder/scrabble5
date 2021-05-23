@@ -1,3 +1,14 @@
+package com.scrab5.network;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.scrab5.ui.Data;
+import com.scrab5.util.database.Database;
+import java.net.InetAddress;
+import org.junit.Test;
+
 /**
  * Class for testing the client and server communication. No separate classes for ClientTest and
  * ServerTest are implemented since the Client and Server methods need to be called in this
@@ -5,18 +16,6 @@
  * 
  * @author nitterhe
  */
-
-package com.scrab5.network;
-
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.net.InetAddress;
-import org.junit.Test;
-import com.scrab5.ui.Data;
-import com.scrab5.util.database.Database;
-
 public class ClientServerTest {
 
   Client testClient;
@@ -28,7 +27,7 @@ public class ClientServerTest {
    * @author nitterhe
    */
   @Test
-  public void ClientTest() {
+  public void clientTest() {
     try {
       testClient = new Client("clientTest");
 
@@ -48,7 +47,7 @@ public class ClientServerTest {
    * @author nitterhe
    */
   @Test
-  public void ServerTest() {
+  public void serverTest() {
     try {
       testServer = new Server("serverTest", 4, false);
 
@@ -71,7 +70,7 @@ public class ClientServerTest {
    * @author nitterhe
    */
   @Test
-  public void ClientServerCommuncationTest() {
+  public void clientServerCommuncationTest() {
     Database.reconnect();
     try {
       testClient = new Client("networkTest");
@@ -80,7 +79,7 @@ public class ClientServerTest {
 
       this.delay();
 
-      /**
+      /*
        * Testing hosting a server.
        */
       assertTrue(testServer.getClients().containsKey("networkTest"));
@@ -91,7 +90,7 @@ public class ClientServerTest {
       assertTrue(testClient.getClientThread().isAlive());
       assertTrue(st.isAlive());
 
-      /**
+      /*
        * Testing connecting to a server with multiple clients.
        */
       Client testClient2 = new Client("testClient2");
@@ -100,41 +99,41 @@ public class ClientServerTest {
       this.delay();
       assertTrue(testServer.getClients().containsKey("testClient2"));
 
-      /**
+      /*
        * Testing chat.
        */
       testClient.sendChatMessage("hallo ");
       this.delay();
       System.out.println(Data.getChatHistory().toString());
 
-      /**
+      /*
        * Testing kicking.
        */
       testServer.kickClient("testClient2");
 
-      /**
+      /*
        * Random method testing.
        */
       testClient.setReady(true, null);
       assertTrue(testClient.isReady());
 
-      /**
+      /*
        * Testing the data that the UI uses.
        */
-      Server UIInstance = testClient.getCurrentServer();
+      Server uiInstance = testClient.getCurrentServer();
       ServerStatistics.ClientStatistic realData =
           testServer.getServerStatistics().getServerStatistics().get("networkTest");
-      ServerStatistics.ClientStatistic UIData =
-          UIInstance.getServerStatistics().getServerStatistics().get("networkTest");
+      ServerStatistics.ClientStatistic uiData =
+          uiInstance.getServerStatistics().getServerStatistics().get("networkTest");
 
-      assertEquals(UIInstance.getStatus(), testServer.getStatus());
-      assertEquals(realData.getClientName(), UIData.getClientName());
-      assertEquals(realData.getIPAddress(), UIData.getIPAddress());
-      assertEquals(UIInstance.getClientCounter(), testServer.getClientCounter());
+      assertEquals(uiInstance.getStatus(), testServer.getStatus());
+      assertEquals(realData.getClientName(), uiData.getClientName());
+      assertEquals(realData.getIpAddress(), uiData.getIpAddress());
+      assertEquals(uiInstance.getClientCounter(), testServer.getClientCounter());
       assertEquals(testServer.getClients().get("networkTest").getUsername(),
-          UIInstance.getClients().get("networkTest").getUsername());
+          uiInstance.getClients().get("networkTest").getUsername());
 
-      /**
+      /*
        * Testing ServerStatistics.
        */
       int i =
@@ -145,7 +144,7 @@ public class ClientServerTest {
           testServer.getServerStatistics().getServerStatistics().get("networkTest").getGamesWon(),
           ++i);
 
-      /**
+      /*
        * Testing shutting down the server.
        */
       testClient.disconnectFromServer();

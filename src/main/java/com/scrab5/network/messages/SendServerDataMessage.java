@@ -1,11 +1,11 @@
+package com.scrab5.network.messages;
+
 /**
  * Class for messages used to send the main data from the server to the client. Reply for
  * GETSERVERDATAMESSAGEs.
  * 
  * @author nitterhe
  */
-package com.scrab5.network.messages;
-
 public class SendServerDataMessage extends Message {
   private static final long serialVersionUID = 1L;
 
@@ -20,7 +20,7 @@ public class SendServerDataMessage extends Message {
    * @author nitterhe
    * @param sender - the username of the connecting client
    * @param clientCounter - the number of clients connected to the server
-   * @param clientMaxmimum - the maximum amount of clients allowed to connect to the server
+   * @param clientMaximum - the maximum amount of clients allowed to connect to the server
    * @param status - the server's status (true = in game/ false = waiting for clients)
    */
   public SendServerDataMessage(String sender, int port, int clientCounter, int clientMaximum,
@@ -64,7 +64,7 @@ public class SendServerDataMessage extends Message {
   }
 
   /**
-   * Returns the server's status (true = in game/ false = waiting for clients)
+   * Returns the server's status (true = in game/ false = waiting for clients).
    * 
    * @author nitterhe
    * @return boolean - the status of the server

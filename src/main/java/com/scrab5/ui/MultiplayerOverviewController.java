@@ -81,7 +81,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author mherre
    */
   @FXML
@@ -121,7 +121,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author mherre
    */
   @FXML
@@ -231,7 +231,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author mherre
    * @author nitterhe
    */
@@ -240,7 +240,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     playSound("ButtonClicked.mp3");
     if (!Data.getServerList().isEmpty()) {
       String ip4 = Data.getServerList().get((int) (Data.getServerList().size() * Math.random()))
-          .getIP4Address();
+          .getIp4Address();
       if (joinServer(ip4)) {
         App.setRoot("MultiplayerLobby");
       }
@@ -267,7 +267,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -284,7 +284,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -301,7 +301,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -318,7 +318,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -335,7 +335,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -352,7 +352,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -369,7 +369,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -386,7 +386,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -467,7 +467,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param number the integer containing the number which "Join"-button has been clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -475,7 +475,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     if (Data.getServerList().size() >= number) {
       playSound("ButtonClicked.mp3");
     }
-    if (joinServer(Data.getServerList().get(number).getIP4Address())) {
+    if (joinServer(Data.getServerList().get(number).getIp4Address())) {
       App.setRoot("MultiplayerLobby");
     }
   }
@@ -493,8 +493,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   /**
    * This method is called to setup the <code>ComboBox dictionarySelection</code>, so all inserted
-   * dictionaries are getting displayed. The dictionaries must be in the same directory as the
-   * .jar.
+   * dictionaries are getting displayed. The dictionaries must be in the same directory as the .jar.
    * <p>
    * https://stackabuse.com/java-list-files-in-a-directory/
    * </p>
@@ -589,8 +588,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * "Join"-button is shown as well.
    *
    * @param serverdata contains the information needed to display everything correctly in the server
-   *                   list
-   * @param position   the integer containing the position of the server in the server list
+   *        list
+   * @param position the integer containing the position of the server in the server list
    * @author mherre
    * @author nitterhe
    */

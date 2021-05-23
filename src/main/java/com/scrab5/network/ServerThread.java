@@ -1,15 +1,5 @@
-/**
- * Thread for the server sided client-server communication. Exchanges messages with the client and
- * executes methods based on the incoming messages.
- *
- * @author nitterhe
- */
 package com.scrab5.network;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
-import java.net.SocketException;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
@@ -22,6 +12,17 @@ import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.net.SocketException;
+
+/**
+ * Thread for the server sided client-server communication. Exchanges messages with the client and
+ * executes methods based on the incoming messages.
+ *
+ * @author nitterhe
+ */
 
 public class ServerThread extends Threads {
 
@@ -112,7 +113,7 @@ public class ServerThread extends Threads {
         this.server.sendUpdateMessage();
       }
 
-      /**
+      /*
        * This is in close connection, but also here to ensure that sockets on ports are really
        * closed and no conflicts shoot when hosting the App the next time.
        */
@@ -120,7 +121,6 @@ public class ServerThread extends Threads {
       // e.printStackTrace();
       // does nothing is on purpose
     } catch (Exception e) {
-      // e.printStackTrace();
       new NetworkError(NetworkErrorType.SERVERRUN);
     }
   }
