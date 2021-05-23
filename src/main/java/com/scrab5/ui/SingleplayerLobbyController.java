@@ -31,9 +31,12 @@ import javafx.scene.input.MouseEvent;
  */
 public class SingleplayerLobbyController extends LobbyController implements Initializable {
 
-  @FXML private ComboBox<String> dictionarySelection;
-  @FXML private ImageView dropDownButton;
-  @FXML private Label dicDisplaying;
+  @FXML
+  private ComboBox<String> dictionarySelection;
+  @FXML
+  private ImageView dropDownButton;
+  @FXML
+  private Label dicDisplaying;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -311,13 +314,12 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   private void setUpDicitionaryBox() {
 
     File dir = new File(System.getProperty("user.dir"));
-    FilenameFilter filter =
-        new FilenameFilter() {
+    FilenameFilter filter = new FilenameFilter() {
 
-          public boolean accept(File dir, String name) {
-            return name.endsWith(".txt");
-          }
-        };
+      public boolean accept(File dir, String name) {
+        return name.endsWith(".txt");
+      }
+    };
 
     String[] fileNames = dir.list(filter);
 
