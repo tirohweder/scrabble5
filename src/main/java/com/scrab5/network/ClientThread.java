@@ -147,7 +147,6 @@ public class ClientThread extends Threads implements Serializable {
         this.start();
       }
     } catch (Exception e) {
-      e.printStackTrace();
       new NetworkError(NetworkErrorType.CONNECTION);
       MultiplayerLobbyController.lobbyClosed();
     }

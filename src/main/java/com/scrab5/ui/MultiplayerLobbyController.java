@@ -32,6 +32,7 @@ import javafx.scene.input.MouseEvent;
  */
 public class MultiplayerLobbyController extends LobbyController implements Initializable {
 
+  private static LinkedHashMap<String, ArrayList<Integer>> votes;
   @FXML
   private Label player1, player2, player3, player4;
   @FXML
@@ -50,15 +51,29 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private TextArea chatBox;
   @FXML
   private TextField messageTextField;
-
   private boolean isReady = false;
   private int aiPlayerAmount = 0;
   private boolean isHost;
-  private static LinkedHashMap<String, ArrayList<Integer>> votes;
 
   /**
-   * @author mherre
+   * Called when the lobby was closed by the host.
+   *
+   * @throws IOException
+   * @author nitterhe
    */
+  public static void lobbyClosed() {
+    try {
+      App.setRoot("MultiplayerOverview");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void addVote(String clientname, ArrayList<Integer> vote) {
+    votes.putIfAbsent(clientname, vote);
+  }
+
+  /** @author mherre */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     this.isClickable();
@@ -75,7 +90,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
 
     this.refreshUI();
-
   }
 
   /**
@@ -91,22 +105,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     playSound("ButtonClicked.mp3");
     Data.getPlayerClient().disconnectFromServer();
   }
-
-
-  /**
-   * Called when the lobby was closed by the host.
-   *
-   * @throws IOException
-   * @author nitterhe
-   */
-  public static void lobbyClosed() {
-    try {
-      App.setRoot("MultiplayerOverview");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
-
 
   @FXML
   private void ready(MouseEvent event) throws IOException {
@@ -129,9 +127,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
             .sendChatMessage(Data.getCurrentUser() + ": " + messageTextField.getText() + "\n");
       }
     });
-
   }
-
 
   protected void addPlayer(MouseEvent event) {
 
@@ -172,7 +168,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     this.isClickable();
   }
 
-
   @FXML
   protected void kickPlayer2(MouseEvent event) {
 
@@ -194,7 +189,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.playerAmount--;
       this.freeSpaces[1] = true;
       this.isClickable();
-
     }
   }
 
@@ -219,7 +213,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.playerAmount--;
       this.freeSpaces[1] = true;
       this.isClickable();
-
     }
   }
 
@@ -244,7 +237,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.playerAmount--;
       this.freeSpaces[2] = true;
       this.isClickable();
-
     }
   }
 
@@ -295,7 +287,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       for (int l = 0; l < maximum; l++) {
         it.next();
       }
-      playerList.add(0, new Player(it.next().getUsername()));
+      playerList.add(0, new Player(it.next().getUsername(), true));
       voteResults.set(maximum, 0);
     }
 
@@ -427,7 +419,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                       e.printStackTrace();
                     }
                   }
-
                 });
               } else {
                 startButton.setOpacity(0);
@@ -475,7 +466,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                   score4.setText("0");
                 }
               }
-
             }
           });
           synchronized (this) {
@@ -489,10 +479,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       }
     });
     t.start();
-  }
-
-  public static void addVote(String clientname, ArrayList<Integer> vote) {
-    votes.putIfAbsent(clientname, vote);
   }
 
   protected void setUpInit() {

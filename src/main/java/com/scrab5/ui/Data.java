@@ -12,29 +12,24 @@ import java.util.ArrayList;
  *
  * @author mherre
  */
-
 public class Data {
 
+  public static int easyAiThreshold = 15;
+  public static int hardAiThreshold = 25;
   private static String currentUser;
   private static String inputFieldText;
-
   private static String popUpMessage;
   private static PopUpMessageType messageType;
   private static boolean confirmed;
-
   private static Client playerClient;
   private static Server playerServer;
   private static ArrayList<ServerData> serverList;
   private static int playerCountMultiplayer;
-
   private static ArrayList<Integer> occurrencyDistribution;
   private static ArrayList<Integer> pointsDistribution;
   private static boolean hasBeenEdited = false;
-
   private static boolean isSearching = false;
-
   private static double sfxVolume = 1.0;
-
   private static StringBuffer chatHistory = new StringBuffer();
   private static GameSession gameSession;
 
@@ -44,16 +39,6 @@ public class Data {
 
   public static void setGameSession(GameSession gameSession) {
     Data.gameSession = gameSession;
-  }
-
-  /**
-   * Saves which user is currently logged in.
-   *
-   * @param username the string containing the username which will be set
-   * @author mherre
-   */
-  public static void setCurrentUser(String username) {
-    currentUser = username;
   }
 
   /**
@@ -67,14 +52,13 @@ public class Data {
   }
 
   /**
-   * Saves the text message that gets displayed on the currently opened
-   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Saves which user is currently logged in.
    *
-   * @param message the string that gets set
+   * @param username the string containing the username which will be set
    * @author mherre
    */
-  public static void setMessage(String message) {
-    popUpMessage = message;
+  public static void setCurrentUser(String username) {
+    currentUser = username;
   }
 
   /**
@@ -89,13 +73,14 @@ public class Data {
   }
 
   /**
-   * Saves what kind of {@link com.scrab5.ui.PopUpMessage PopUpMessage} is currently opened.
+   * Saves the text message that gets displayed on the currently opened {@link
+   * com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
-   * @param popUpType the PopUpMessageTyp that gets set
+   * @param message the string that gets set
    * @author mherre
    */
-  public static void setMessageType(PopUpMessageType popUpType) {
-    messageType = popUpType;
+  public static void setMessage(String message) {
+    popUpMessage = message;
   }
 
   /**
@@ -109,14 +94,13 @@ public class Data {
   }
 
   /**
-   * Saves if "Confirm" of a {@link com.scrab5.ui.PopUpMessage PopUpMessage} has been clicked or
-   * not.
+   * Saves what kind of {@link com.scrab5.ui.PopUpMessage PopUpMessage} is currently opened.
    *
-   * @param cf the boolean that gets set
+   * @param popUpType the PopUpMessageTyp that gets set
    * @author mherre
    */
-  public static void setConfirmed(boolean cf) {
-    confirmed = cf;
+  public static void setMessageType(PopUpMessageType popUpType) {
+    messageType = popUpType;
   }
 
   /**
@@ -131,14 +115,14 @@ public class Data {
   }
 
   /**
-   * Saves the text of the {@link com.scrab5.ui.PopUpMessageController#textfield textfield} from a
-   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Saves if "Confirm" of a {@link com.scrab5.ui.PopUpMessage PopUpMessage} has been clicked or
+   * not.
    *
-   * @param ipft the String that gets set
+   * @param cf the boolean that gets set
    * @author mherre
    */
-  public static void setInputFieldText(String ipft) {
-    inputFieldText = ipft;
+  public static void setConfirmed(boolean cf) {
+    confirmed = cf;
   }
 
   /**
@@ -153,39 +137,31 @@ public class Data {
   }
 
   /**
-   * 
-   * @return
+   * Saves the text of the {@link com.scrab5.ui.PopUpMessageController#textfield textfield} from a
+   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
+   *
+   * @param ipft the String that gets set
+   * @author mherre
    */
+  public static void setInputFieldText(String ipft) {
+    inputFieldText = ipft;
+  }
+
+  /** @return */
   public static Client getPlayerClient() {
     return playerClient;
   }
 
-  /**
-   * 
-   * @param client
-   */
+  /** @param client */
   public static void setPlayerClient(Client client) {
     if (playerClient == null) {
       playerClient = client;
     }
   }
 
-  /**
-   * 
-   * @param client
-   */
+  /** @param client */
   public static void updatePlayerClient(Client client) {
     playerClient = client;
-  }
-
-  /**
-   * 
-   * @param server
-   */
-  public static void setHostedServer(Server server) {
-    if (playerServer == null) {
-      playerServer = server;
-    }
   }
 
   /**
@@ -198,51 +174,36 @@ public class Data {
     return playerServer;
   }
 
-  /**
-   * 
-   * @return
-   */
+  /** @param server */
+  public static void setHostedServer(Server server) {
+    if (playerServer == null) {
+      playerServer = server;
+    }
+  }
+
+  /** @return */
   public static ArrayList<ServerData> getServerList() {
     return serverList;
   }
 
-  /**
-   * 
-   * @param slist
-   */
+  /** @param slist */
   public static void setServerList(ArrayList<ServerData> slist) {
     serverList = slist;
   }
 
-  /**
-   * 
-   * @return
-   */
+  /** @return */
   public static boolean getIsSearching() {
     return isSearching;
   }
 
-  /**
-   * 
-   * @param searching
-   */
+  /** @param searching */
   public static void setIsSearching(boolean searching) {
     isSearching = searching;
   }
 
   /**
-   * Sets the sound effects volume of the game.
-   * 
-   * @author mherre
-   * @param newVolume the double containing the new sound volume
-   */
-  public static void setSFXVolume(double newVolume) {
-    sfxVolume = newVolume;
-  }
-
-  /**
    * Returns the current set sound effects volume.
-   * 
+   *
    * @author mherre
    * @return sfxVolume the double containing the volume
    */
@@ -251,18 +212,18 @@ public class Data {
   }
 
   /**
-   * Saves the customized letter occurrences.
-   * 
+   * Sets the sound effects volume of the game.
+   *
    * @author mherre
-   * @param al the ArrayList that containing the whole customized occurrences
+   * @param newVolume the double containing the new sound volume
    */
-  public static void setOccurrencyDistribution(ArrayList<Integer> al) {
-    occurrencyDistribution = al;
+  public static void setSFXVolume(double newVolume) {
+    sfxVolume = newVolume;
   }
 
   /**
    * Returns the customized occurrences.
-   * 
+   *
    * @author mherre
    * @return occurrencyDistribution the ArrayList containing the occurrences
    */
@@ -271,18 +232,18 @@ public class Data {
   }
 
   /**
-   * Saves the customized letter points distribution.
-   * 
+   * Saves the customized letter occurrences.
+   *
    * @author mherre
-   * @param al the ArrayList that containing the whole customized points distribution
+   * @param al the ArrayList that containing the whole customized occurrences
    */
-  public static void setPointsDistribution(ArrayList<Integer> al) {
-    pointsDistribution = al;
+  public static void setOccurrencyDistribution(ArrayList<Integer> al) {
+    occurrencyDistribution = al;
   }
 
   /**
    * Returns the customized points Distribution.
-   * 
+   *
    * @author mherre
    * @return pointsDistribution the ArrayList containing the points Distribution
    */
@@ -291,18 +252,18 @@ public class Data {
   }
 
   /**
-   * Saves the information if the letters have been customized in any way.
-   * 
+   * Saves the customized letter points distribution.
+   *
    * @author mherre
-   * @param b the boolean containing the value if it has been customized
+   * @param al the ArrayList that containing the whole customized points distribution
    */
-  public static void setHasBeenEdited(boolean b) {
-    hasBeenEdited = b;
+  public static void setPointsDistribution(ArrayList<Integer> al) {
+    pointsDistribution = al;
   }
 
   /**
    * Returns the value if the letters have been customized in any way.
-   * 
+   *
    * @author mherre
    * @return hasBeenEdited the boolean containing the value if it has been edited
    */
@@ -311,18 +272,18 @@ public class Data {
   }
 
   /**
-   * Sets the current amount of players in a multiplayer lobby.
-   * 
+   * Saves the information if the letters have been customized in any way.
+   *
    * @author mherre
-   * @param i the integer containing the current amount of players
+   * @param b the boolean containing the value if it has been customized
    */
-  public static void setPlayerCountMultiplayer(int i) {
-    playerCountMultiplayer = i;
+  public static void setHasBeenEdited(boolean b) {
+    hasBeenEdited = b;
   }
 
   /**
    * Returns the current amount of players in a multiplayer lobby.
-   * 
+   *
    * @author mherre
    * @return playerCountMultiplayer the integer containing the current amount of players
    */
@@ -331,9 +292,19 @@ public class Data {
   }
 
   /**
+   * Sets the current amount of players in a multiplayer lobby.
+   *
+   * @author mherre
+   * @param i the integer containing the current amount of players
+   */
+  public static void setPlayerCountMultiplayer(int i) {
+    playerCountMultiplayer = i;
+  }
+
+  /**
    * Returns the chat history displayed in {@link com.scrab5.ui.MultiplayerLobbyController
    * MultiplayerLobby}.
-   * 
+   *
    * @author mherre
    * @return chatHistory the StringBuffer containing the chat history
    */
@@ -343,12 +314,10 @@ public class Data {
 
   /**
    * Resets the chat displayed in the UI to an empty <code>StringBuffer</code>.
-   * 
+   *
    * @author mherre
-   * 
    */
   public static void resetChatHistroy() {
     chatHistory = new StringBuffer();
   }
-
 }

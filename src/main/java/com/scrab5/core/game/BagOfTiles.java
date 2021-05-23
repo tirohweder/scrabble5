@@ -22,13 +22,12 @@ public class BagOfTiles implements Serializable {
   /**
    * This function adds the given Tile to the bag.
    *
-   * @param t - The Tile that is beeing added
+   * @param t - The Tile that is being added
    * @author trohwede
    */
   public void add(Tile t) {
     this.bag.add(t);
   }
-
 
   /**
    * Returns a random Tile from the bag.
@@ -80,7 +79,6 @@ public class BagOfTiles implements Serializable {
     return wordDistro;
   }
 
-
   /**
    * Removes all items of the bag first. And then create a new bag with the given distribution.
    *
@@ -95,12 +93,10 @@ public class BagOfTiles implements Serializable {
     while (it.hasNext()) {
       Entry<String, Integer> pair = it.next();
       for (int i = 0; i < pair.getValue(); i++) {
-        bag.add(count, new Tile(pair.getKey(),
-            UseDatabase.getPointForLetter(pair.getKey())));
+        bag.add(count, new Tile(pair.getKey(), UseDatabase.getPointForLetter(pair.getKey())));
         count++;
       }
       it.remove();
     }
   }
-
 }
