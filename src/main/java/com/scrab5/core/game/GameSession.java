@@ -329,8 +329,8 @@ public class GameSession implements Serializable {
 
   //TODO
   public void endGame() {
-    // Data.getHostedServer().endGame(winner);
-    // TODO call server method
+    // Data.getHostedServer().endGame(winner); nur beim host.
+    // TODO call server method, endGame()
 
     this.running = false;
   }
