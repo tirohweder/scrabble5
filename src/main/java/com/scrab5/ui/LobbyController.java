@@ -17,6 +17,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
+/**
+ * The LobbyController class contains some basic methods which are needed by the MultiplayerLobby-
+ * and SingleplayerLobbyController.
+ * 
+ * @author mherre
+ */
 public abstract class LobbyController extends Controller {
 
   @FXML
@@ -44,51 +50,16 @@ public abstract class LobbyController extends Controller {
 
 
   /**
-   * Event method that is called when the "Ready"-button is clicked.
-   *
-   * @param event
-   * @throws IOException
+   * Event method that is called when the "Customize"-button in the UI is clicked. Grays out the
+   * background and creates a new <code>Stage</code> that loads "LetterCustomization.fxml" (for
+   * further information check out the class {@link com.scrab5.ui.LetterCustomizationController
+   * LetterCustomizationController}.
+   * 
    * @author mherre
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>loadFXML(String fxml)</code> doesn't
+   *         exist
    */
-  @FXML
-  private void ready(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
-
-    if (!isReady[0]) {
-      this.ready1.setText("Ready");
-      this.isReady[0] = true;
-
-      if (this.isEveryoneReady() && this.isDictionarySelected) {
-
-        if (this.playerAmount >= 2) {
-          this.startButton.setOpacity(1.0);
-
-        } else {
-          String message = "Please add at least one another player in order to play the game!";
-          PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-          pum.show();
-          this.ready1.setText("Not Ready");
-          this.isReady[0] = false;
-
-        }
-
-      } else {
-        String message = "You must select a dictionary in order to play the game!";
-        PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-        pum.show();
-        this.ready1.setText("Not Ready");
-        this.isReady[0] = false;
-
-      }
-
-    } else {
-      this.ready1.setText("Not Ready");
-      this.startButton.setOpacity(0.0);
-      this.isReady[0] = false;
-
-    }
-  }
-
   @FXML
   private void customize(MouseEvent event) throws IOException {
 
@@ -109,128 +80,234 @@ public abstract class LobbyController extends Controller {
     this.darkBackground.setOpacity(0);
   }
 
-
+  /**
+   * Event method that is called when the first drop down button for the player votes in the UI is
+   * clicked.
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
-  private void clickComboBox1(MouseEvent event) throws IOException {
+  private void clickComboBox1(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     this.voteSelection1.show();
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
-  private void clickComboBox2(MouseEvent event) throws IOException {
+  private void clickComboBox2(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     this.voteSelection2.show();
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
-  private void clickComboBox3(MouseEvent event) throws IOException {
+  private void clickComboBox3(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     this.voteSelection3.show();
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
-  private void clickComboBox4(MouseEvent event) throws IOException {
+  private void clickComboBox4(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     this.voteSelection4.show();
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
-  private void clickDiffBox1(MouseEvent event) throws IOException {
+  private void clickDiffBox1(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     this.diffBox1.show();
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
-  private void clickDiffBox2(MouseEvent event) throws IOException {
+  private void clickDiffBox2(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     this.diffBox2.show();
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
-  private void clickDiffBox3(MouseEvent event) throws IOException {
+  private void clickDiffBox3(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     this.diffBox3.show();
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void setDifficulty1(ActionEvent event) {
     ComboBox<String> temp = (ComboBox<String>) event.getSource();
     this.difficulty2.setText(temp.getValue() + "");
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void setDifficulty2(ActionEvent event) {
     ComboBox<String> temp = (ComboBox<String>) event.getSource();
     this.difficulty3.setText(temp.getValue() + "");
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void setDifficulty3(ActionEvent event) {
     ComboBox<String> temp = (ComboBox<String>) event.getSource();
     this.difficulty4.setText(temp.getValue() + "");
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void setPlayerVote1(ActionEvent event) {
     ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
     this.vote1.setText(temp.getValue() + "");
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void setPlayerVote2(ActionEvent event) {
     ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
     this.vote2.setText(temp.getValue() + "");
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void setPlayerVote3(ActionEvent event) {
     ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
     this.vote3.setText(temp.getValue() + "");
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void setPlayerVote4(ActionEvent event) {
     ComboBox<Integer> temp = (ComboBox<Integer>) event.getSource();
     this.vote4.setText(temp.getValue() + "");
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void lightenKickIcon(MouseEvent event) {
     ImageView iv = (ImageView) event.getSource();
     iv.setImage(new Image("/com/scrab5/ui/images/SB05_KickIconClicked.png"));
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void darkenKickIcon(MouseEvent event) {
     ImageView iv = (ImageView) event.getSource();
     iv.setImage(new Image("/com/scrab5/ui/images/SB05_KickIcon.png"));
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void lightenArrow(MouseEvent event) {
     ImageView iv = (ImageView) event.getSource();
     iv.setImage(new Image("/com/scrab5/ui/images/SB05_PlayerVoteButtonClicked.png"));
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void darkenArrow(MouseEvent event) {
     ImageView iv = (ImageView) event.getSource();
     iv.setImage(new Image("/com/scrab5/ui/images/SB05_PlayerVoteButton.png"));
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void lightenStartButton(MouseEvent event) {
     ImageView iv = (ImageView) event.getSource();
     iv.setImage(new Image("/com/scrab5/ui/images/SB05_StartButtonClicked.png"));
   }
 
+  /**
+   * 
+   * @author mherre
+   * @param event
+   */
   @FXML
   private void darkenStartButton(MouseEvent event) {
     ImageView iv = (ImageView) event.getSource();
     iv.setImage(new Image("/com/scrab5/ui/images/SB05_StartButton.png"));
   }
 
-  private boolean isEveryoneReady() {
+  /**
+   * 
+   * @author mherre
+   * @return
+   */
+  protected boolean isEveryoneReady() {
     for (int i = 0; i < isReady.length; i++) {
       if (!isReady[i]) {
         return false;
@@ -239,6 +316,10 @@ public abstract class LobbyController extends Controller {
     return true;
   }
 
+  /**
+   * 
+   * @author mherre
+   */
   protected void setUpInit() {
     this.player1.setText(Data.getCurrentUser());
     this.ready1.setText("Not Ready");
@@ -265,19 +346,12 @@ public abstract class LobbyController extends Controller {
     this.diffBox3.getSelectionModel().select(0);
   }
 
-
   /**
-   * @param fxml
+   * 
+   * @author mherre
    * @return
-   * @throws IOException
-   * @author trohwede
    */
-  private static Parent loadFXML(String fxml) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-    return fxmlLoader.load();
-  }
-
-  public ArrayList<Integer> getPlayerVotes() {
+  protected ArrayList<Integer> getPlayerVotes() {
 
     ArrayList<Integer> al = new ArrayList<Integer>();
 
@@ -298,6 +372,17 @@ public abstract class LobbyController extends Controller {
       }
     }
     return al;
+  }
+
+  /**
+   * @param fxml
+   * @return
+   * @throws IOException
+   * @author trohwede
+   */
+  private static Parent loadFXML(String fxml) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+    return fxmlLoader.load();
   }
 
   abstract protected boolean isClickable();
