@@ -136,7 +136,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
 
-  protected void addPlayer(MouseEvent event) throws IOException {
+  protected void addPlayer(MouseEvent event) {
 
     // AIs.add(new Client("Der Zerstörinator" + (AIs.size() + 1)));
     this.updateAICounter();
