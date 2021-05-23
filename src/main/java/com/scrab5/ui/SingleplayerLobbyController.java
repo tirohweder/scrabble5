@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.core.player.Player;
 import com.scrab5.util.database.PlayerProfileDatabase;
-import com.scrab5.util.textParser.DictionaryParser;
+import com.scrab5.util.textparser.DictionaryParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
