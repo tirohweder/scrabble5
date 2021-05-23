@@ -481,15 +481,14 @@ public class AiPlayer extends Player {
       }
     }
 
-    // because ai uses tiles from the bag, the correct distubution needs to be
-    // set.wqeeeeeeeeeeeeeeeeeeeeeeee
+    // because ai uses tiles from the bag, the correct distubution needs to be set.
     HashMap<String, Integer> currentDistru =
         Data.getGameSession().getBag().getCurrentBagDistribution();
 
     if (foundMatchingThreshold) {
       for (Tile tile : choosenWord) {
         Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
-        currentDistru.put(tile.getLetter(), currentDistru.get(tile) - 1);
+        currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
       }
     }
 
