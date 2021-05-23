@@ -1,4 +1,4 @@
-package com.scrab5.util.textParser;
+package com.scrab5.util.textparser;
 
 import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.Database;

@@ -1,7 +1,7 @@
 package com.scrab5.core.game;
 
 import com.scrab5.ui.Data;
-import com.scrab5.util.textParser.DictionaryScanner;
+import com.scrab5.util.textparser.DictionaryScanner;
 import java.io.Serializable;
 import java.util.ArrayList;
 

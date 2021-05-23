@@ -1,7 +1,9 @@
-package com.scrab5.util.textParser;
+package com.scrab5.util.textparser;
 
 import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.Database;
+import com.scrab5.util.textparser.DictionaryParser;
+import com.scrab5.util.textparser.DictionaryScanner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
