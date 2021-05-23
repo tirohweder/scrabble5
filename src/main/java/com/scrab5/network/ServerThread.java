@@ -144,7 +144,7 @@ public class ServerThread extends Threads {
       throw new Exception();
     }
     server.getConnections().put(clientData, this);
-    server.updateClientCount();
+    server.getClientCounter();
     Database.disconnect();
   }
 
@@ -160,7 +160,7 @@ public class ServerThread extends Threads {
     if (null != client) {
       this.server.getConnections().remove(client);
       this.server.getClients().remove(client.getUsername());
-      this.server.updateClientCount();
+      this.server.getClientCounter();
     }
   }
 
