@@ -11,6 +11,7 @@ import com.scrab5.network.NetworkError;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.ServerData;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -260,7 +261,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
     dictionarySelection.hide();
   }
 
-
   /**
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 0
    * is actually shown.
@@ -373,7 +373,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
       this.joinGame(6);
   }
 
-
   /**
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 7
    * is actually shown.
@@ -416,6 +415,19 @@ public class MultiplayerOverviewController extends Controller implements Initial
   private void darkenJoinIcon(MouseEvent event) {
     ImageView iv = (ImageView) event.getSource();
     iv.setImage(new Image("/com/scrab5/ui/images/SB06_JoinButton.png"));
+  }
+
+  /**
+   * Event method that is called when an item in <code>dictionarySelection</code> has been selected.
+   * 
+   * @author mherre
+   * @param event the event that is created when an item has been selected
+   */
+  @FXML
+  private void setSelectedDictionary(ActionEvent event) {
+    String selected = (String) this.dictionarySelection.getValue();
+    this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
+    isDictionarySelected = true;
   }
 
   /**
