@@ -1,8 +1,10 @@
 package com.scrab5.ui;
 
 import com.scrab5.core.game.GameSession;
+import com.scrab5.core.player.AiPlayer;
 import com.scrab5.core.player.Player;
 import com.scrab5.util.database.PlayerProfileDatabase;
+import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.parser.DictionaryParser;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -13,15 +15,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
-<<<<<<< HEAD
-import com.scrab5.core.game.GameSession;
-import com.scrab5.core.player.AiPlayer;
-import com.scrab5.core.player.Player;
-import com.scrab5.util.database.PlayerProfileDatabase;
-import com.scrab5.util.database.UseDatabase;
-import com.scrab5.util.textParser.DictionaryParser;
-=======
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -242,13 +235,8 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   @FXML
   protected void startGame(MouseEvent event) throws IOException, SQLException {
 
-<<<<<<< HEAD
     ArrayList<Player> playList = new ArrayList<Player>();
     playList.add(0, new Player(Data.getCurrentUser()));
-=======
-    Player humanPlayer = new Player(Data.getCurrentUser(), true);
-    Player humanPlayer1 = new Player("Name2", true);
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
 
     for (int i = 1; i < freeSpaces.length; i++) {
       if (!freeSpaces[i]) {
@@ -292,7 +280,6 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     }
   }
 
-<<<<<<< HEAD
   /**
    * Method that creates an <code>ArrayList</code> which contains the amount of tiles of each
    * letter. The maximum amount of tiles that a bag can have, is 100.
@@ -321,9 +308,6 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   /**
    * https://stackabuse.com/java-list-files-in-a-directory/
    */
-=======
-  /** https://stackabuse.com/java-list-files-in-a-directory/ */
->>>>>>> branch 'develop' of ssh://git@swt-praktikum.informatik.uni-mannheim.de:2222/scrabble/scrabble5.git
   private void setUpDicitionaryBox() {
 
     File dir = new File(System.getProperty("user.dir"));
