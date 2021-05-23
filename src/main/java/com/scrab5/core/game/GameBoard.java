@@ -5,6 +5,12 @@ import com.scrab5.util.textParser.DictionaryScanner;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * GameBoard, represents the physical gameboard where everyone plays on. Including all functions
+ * that change or edit the gameboard.
+ *
+ * @author trohwede
+ */
 public class GameBoard implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -25,6 +31,14 @@ public class GameBoard implements Serializable {
     this.gameBoardSpecial = gameBoardSpecial;
   }
 
+  public void setSpecialAt(int row, int column, String string) {
+    this.gameBoardSpecial[row][column] = string;
+  }
+
+  public String getSpecialsAt(int row, int column) {
+    return gameBoardSpecial[row][column];
+  }
+
   private String[][] gameBoardSpecial = new String[][]{
       {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
       {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
@@ -42,39 +56,19 @@ public class GameBoard implements Serializable {
       {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
       {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"}};
 
-  private Tile[][] gameBoard = new Tile[15][15];
-  private Tile[][] gameBoardCurrent = new Tile[15][15];
-
-
+  private final Tile[][] gameBoard = new Tile[15][15];
+  private final Tile[][] gameBoardCurrent = new Tile[15][15];
   private ArrayList<Tile> currentChanges = new ArrayList<>();
-  private ArrayList<String> gameBoardWords = new ArrayList<>();
   private boolean firstTile = true;
 
 
   /**
-   * Constructor dont know if i need it
+   * Places a tile, but only if it follows the rules.
    *
-   * @author trohwede
-   */
-  public GameBoard() {
-  }
-
-
-  public void setSpecialAt(int row, int column, String string) {
-    this.gameBoardSpecial[row][column] = string;
-  }
-
-  public String getSpecialsAt(int row, int column) {
-    return gameBoardSpecial[row][column];
-  }
-
-  /**
-   * Places a tile at specific location
-   *
-   * @param t
-   * @param row
-   * @param column
-   * @return
+   * @param t      Tile you want to place.
+   * @param row    coordinates of the to be checked spot
+   * @param column coordinates of the to be checked spot
+   * @return if your placement was successful
    * @author trohwede
    */
   public boolean placeTile(Tile t, int row, int column) {
@@ -95,12 +89,13 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Placing a tile in the test doesnt have to follow rules, this makes testing a lot easier
+   * Placing a tile in the test doesnt have to follow rules, this makes testing a lot easier.
    *
-   * @param t      Tile
-   * @param row    int for row coordinates
-   * @param column int for column coordinates
-   * @return boolean if you can place a tile there
+   * @param t      Tile you want to place
+   * @param row    coordinates of the to be checked spot
+   * @param column coordinates of the to be checked spot
+   * @return if your placement was successful
+   * @author trohwede
    */
   public boolean placeTileTest(Tile t, int row, int column) {
     if (isSpotFree(row, column)) {
@@ -116,32 +111,51 @@ public class GameBoard implements Serializable {
     }
   }
 
+
+  /**
+   * Returns the tile at the given coordinates, only tiles that have already been confirmed.
+   *
+   * @param row    coordinates of the to be checked spot
+   * @param column coordinates of the to be checked spot
+   * @return Tile that has already been played.
+   * @author trohwede
+   */
   public Tile getPlayedTile(int row, int column) {
     return gameBoard[row][column];
   }
 
 
+  /**
+   * Checks if the currentPlayer is the same as the currentPerson clicking.
+   *
+   * @return if player is allowed to play
+   * @author trohwede
+   */
   public boolean isAllowedToPlay() {
     return (Data.getCurrentUser().equals(Data.getGameSession().getCurrentPlayer().getName()));
   }
 
+
+  /**
+   * Checks if it is possible to remove a tile. First is has to check if the tile is already
+   * confirmed. It also has to check if it the tile in the middle.
+   *
+   * @param row    coordinates of the to be checked spot
+   * @param column coordinates of the to be checked spot
+   * @return if it is possible to remove a tile
+   * @author trohwede
+   */
   public boolean removeTile(int row, int column) {
     if (gameBoard[row][column] != null) {
       return false;
     }
-
     if (!isSpotFree(row, column) && currentChanges.size() > 0) {
       Tile t = gameBoardCurrent[row][column];
       gameBoardCurrent[row][column] = null;
       currentChanges.remove(t);
-
-      System.out.println("removed sucker");
-      //TODO Error may appear if you try to remove in the middele
       if (row == 7 && column == 7) {
-        System.out.println("Go to hell sucker");
         firstTile = true;
       }
-
       return true;
     } else {
       return false;
@@ -149,6 +163,12 @@ public class GameBoard implements Serializable {
   }
 
 
+  /**
+   * If the turn is finished this method, will set add the new tiles placed this round to the
+   * gameBoard that has all confirmed changes. Also currentChanges have to be resettet.
+   *
+   * @author trohwede
+   */
   public void finishTurn() {
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
@@ -156,18 +176,17 @@ public class GameBoard implements Serializable {
           gameBoard[i][j] = gameBoardCurrent[i][j];
 
         }
-
       }
     }
     currentChanges.clear();
   }
 
   /**
-   * Will check if a position is already used by a Tile
+   * Will check if at the given coordinates there is already a tile placed on gameBoardCurrent.
    *
-   * @param row
-   * @param column
-   * @return boolean
+   * @param row    coordinates of the to be checked spot
+   * @param column coordinates of the to be checked spot
+   * @return if at the given coordinates there is already a tile placed on the gameBoardCurrent
    * @author trohwede
    */
   public boolean isSpotFree(int row, int column) {
@@ -175,11 +194,12 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Checks if a Spot is above, below, right or left of the first Tile placed.
+   * Checks if the given coordinates, are in the same row and column. And if not next to each other
+   * if between them other tiles have already been placed
    *
-   * @param row
-   * @param column
-   * @return
+   * @param row    coordinates of the to be checked spot
+   * @param column coordinates of the to be checked spot
+   * @return if the given coordinates are in the same row or column and if they are connected.
    * @author trohwede
    */
   public boolean isSpotNext(int row, int column) {
@@ -198,7 +218,7 @@ public class GameBoard implements Serializable {
     if (row1 == row) {
       System.out.println("Gleiche Reihe");
       if (column1 < column) {
-        System.out.println("Neue Tile is Rechts");
+        System.out.println("Neue Tile is right");
         for (int i = 1; i < column - column1; i++) {
           if (gameBoard[row][column1 + i] == null) {
             return false;
@@ -234,54 +254,28 @@ public class GameBoard implements Serializable {
   }
 
 
+  /**
+   * Checks if the given coordinates would be connected to the previously played tiles.
+   *
+   * @param row    coordinates of the to be checked spot
+   * @param column coordinates of the to be checked spot
+   * @return if the given coordinates are connected to the previously played tiles.
+   */
   public boolean isConnectedToOldTiles(int row, int column) {
     return ((row + 1 < 15) && gameBoard[row + 1][column] != null) || ((row - 1 >= 0)
-        && gameBoard[row - 1][column] != null) || ((column + 1 < 15) &&
-        gameBoard[row][column + 1] != null) || ((column - 1 >= 0)
+        && gameBoard[row - 1][column] != null) || ((column + 1 < 15)
+        && gameBoard[row][column + 1] != null) || ((column - 1 >= 0)
         && gameBoard[row][column - 1] != null);
   }
 
   /**
-   * Checks if the given coordinates would be legal to play a tile there
+   * Checks if its the given coordinates are in line with the first two tiles placed.
    *
-   * @param row
-   * @param column
-   * @return
+   * @param row    coordinates of the to be checked spot
+   * @param column coordinates of the to be checked spot
+   * @return if the given coordinates are in line with the first two tiles placed.
    * @author trohwede
    */
-  public boolean isSpotInLinev2(int row, int column) {
-    int row1 = currentChanges.get(0).getRow();
-    int column1 = currentChanges.get(0).getColumn();
-    int row2 = currentChanges.get(1).getRow();
-    int column2 = currentChanges.get(1).getColumn();
-
-    //senkrecht
-    if ((row1 == row2 + 1 && column1 == column2) || (row1 == row2 - 1 && column1 == column2)) {
-
-      for (Tile currentChange : currentChanges) {
-        if (((row == currentChange.getRow() - 1) && column == column1)
-            || ((row == currentChange.getRow() + 1) && column == column1)) {
-          return true;
-        }
-      }
-      return false;
-
-      //rechts links
-    } else if ((row1 == row2 && column1 == column2 + 1)
-        || (row1 == row2 && column1 == column2 - 1)) {
-
-      for (Tile currentChange : currentChanges) {
-        if (((column == currentChange.getColumn() - 1) && row == row1)
-            || ((column == currentChange.getColumn() + 1) && row == row1)) {
-          return true;
-        }
-      }
-      return false;
-    }
-    return false;
-  }
-
-
   public boolean isSpotInLine(int row, int column) {
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
@@ -306,14 +300,14 @@ public class GameBoard implements Serializable {
     } else if (row1 == row2 && row1 == row) {
       System.out.println("Same Row");
       if (column < column1) {
-        System.out.println("Neuer buchstabe ist Links");
+        System.out.println("Neuer buchstabe ist left");
         for (int i = 1; i < Integer.min(column1, column2) - column; i++) {
           if (gameBoardCurrent[row][Integer.min(column1, column2) - i] == null) {
             return false;
           }
         }
       } else if (column > column1) {
-        System.out.println("Neuer buchstabe ist rechts");
+        System.out.println("Neuer buchstabe ist right");
         for (int i = 1; i < column - Integer.max(column1, column2); i++) {
           if (gameBoardCurrent[row][Integer.max(column1, column2) + i] == null) {
             return false;
@@ -323,15 +317,15 @@ public class GameBoard implements Serializable {
     } else {
       return false;
     }
-
     return true;
   }
 
   /**
-   * Checks wether a tile is legal or not
+   * Checks if at the given coordinates its legal to play the next tile.
    *
-   * @param row
-   * @return
+   * @param row    coordinates row - of the to be checked tile.
+   * @param column coordinates column - of the to be checked tile.
+   * @return boolean if at the given coordinates its possible to play the next tile.
    * @author trohwede
    */
   public boolean isTileLegal(int row, int column) {
@@ -358,11 +352,12 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Will count the score of all the placed tiles of one turn. The copied the code from getting all
-   * the Words. So I go through first rows then columns, add points for everyword, and if its a
-   * tripple or double letter word i can multiply the word like this
+   * We check use the function getTouchedWords() to get the tiles that are required to be counted
+   * toward the score. The the same way I check for words created to check if they are legit. I go
+   * through the board add up a score. If the word ends, the word score, will be doubled or
+   * tripled.
    *
-   * @return the Score that was achived during the players turn
+   * @return the score that was achieved during the players turn
    * @author trohwede
    */
   public int countScore() {
@@ -425,15 +420,6 @@ public class GameBoard implements Serializable {
       word.setLength(0);
     }
 
-    if (word.length() > 1) {
-      if (tws) {
-        scoreToBe *= 3;
-      } else if (dws) {
-        scoreToBe *= 2;
-      }
-      score += scoreToBe;
-    }
-
     scoreToBe = 0;
     word.setLength(0);
 
@@ -487,29 +473,29 @@ public class GameBoard implements Serializable {
       word.setLength(0);
     }
 
-    if (word.length() > 1) {
-      if (tws) {
-        scoreToBe *= 3;
-      } else if (dws) {
-        scoreToBe *= 2;
-      }
-      score += scoreToBe;
-    }
-
     if (currentChanges.size() == 7) {
       score += 50;
     }
     return score;
   }
 
+
+  /**
+   * The goal of the function is to find all the words that will have to be checked. If there is a
+   * Tile that was already played in a previous round, touches a currentChange, the code tries to
+   * find more Tiles in the same direction. If the next tile would be null, it stops.
+   *
+   * @return returns a 2d Array of Tiles. That only contain all the newly created words.
+   * @author trohwede
+   */
   public Tile[][] getTouchedWords() {
     Tile[][] touchedTiles = new Tile[15][15];
 
     for (Tile currentChange : currentChanges) {
-      boolean drunter = false;
-      boolean drueber = false;
-      boolean rechts = false;
-      boolean links = false;
+      boolean below = false;
+      boolean top = false;
+      boolean right = false;
+      boolean left = false;
 
       int row = currentChange.getRow();
       int column = currentChange.getColumn();
@@ -520,83 +506,81 @@ public class GameBoard implements Serializable {
 
       // System.out.println("Current Tile: " + currentChanges.get(i).getLetter());
       if ((row - count >= 0) && gameBoard[row - count][column] != null) {
-        drueber = true;
+        top = true;
         // System.out.println("Drüber: " + gameBoard[row - count][column].getLetter());
       }
 
       if ((row + count < 15) && gameBoard[row + count][column] != null) {
-        drunter = true;
-        // System.out.println("Drunter: " + gameBoard[row + count][column].getLetter());
+        below = true;
+        // System.out.println("below: " + gameBoard[row + count][column].getLetter());
       }
 
       if ((column + count < 15) && gameBoard[row][column + count] != null) {
-        rechts = true;
-        // System.out.println("Rechts: " + gameBoard[row][column + count].getLetter());
+        right = true;
+        // System.out.println("right: " + gameBoard[row][column + count].getLetter());
       }
 
       if ((column - count >= 0) && gameBoard[row][column - count] != null) {
-        links = true;
-        // System.out.println("Links: " + gameBoard[row][column - count].getLetter());
+        left = true;
+        // System.out.println("left: " + gameBoard[row][column - count].getLetter());
       }
 
-      while ((row - count >= 0) && row - count >= 0 && drueber) {
+      while (row - count >= 0 && top) {
         if (gameBoard[row - count][column] != null) {
           touchedTiles[row - count][column] = gameBoard[row - count][column];
-          // System.out.println("druebersucces");
+          // System.out.println("topsucces");
           count++;
         } else {
-          drueber = false;
+          top = false;
         }
       }
 
       count = 1;
 
-      while ((row + count < 15) && row + count <= 14 && drunter) {
+      while (row + count <= 14 && below) {
         if (gameBoard[row + count][column] != null) {
           touchedTiles[row + count][column] = gameBoard[row + count][column];
-          // System.out.println("druntersucces");
+          // System.out.println("belowsucces");
           count++;
         } else {
-          drunter = false;
+          below = false;
         }
       }
 
       count = 1;
 
-      while ((column + count < 15) && column + count <= 14 && rechts) {
+      while (column + count <= 14 && right) {
         if (gameBoard[row][column + count] != null) {
           touchedTiles[row][column + count] = gameBoard[row][column + count];
-          // System.out.println("rechts succes");
+          // System.out.println("right succes");
           count++;
         } else {
-          rechts = false;
+          right = false;
         }
       }
 
       count = 1;
 
-      while ((column - count >= 0) && column - count >= 0 && links) {
+      while (column - count >= 0 && left) {
         if (gameBoard[row][column - count] != null) {
           touchedTiles[row][column - count] = gameBoard[row][column - count];
-          // System.out.println("links succes");
+          // System.out.println("left succes");
           count++;
         } else {
-          links = false;
+          left = false;
         }
       }
-
-
     }
-
     return touchedTiles;
   }
 
   /**
-   * Returns the Value of Tile at the given coordinates of the GameBoard
+   * Returns the Tile of gameBoardCurrent, at the given coordinates.
    *
-   * @param row
-   * @param column
-   * @return
+   * @param row    row coordinates.
+   * @param column column coordinates.
+   * @return the Tile at the given coordinates.
+   * @author trohwede
    */
   public Tile getTile(int row, int column) {
     if (gameBoardCurrent[row][column] != null) {
@@ -606,10 +590,11 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Returns a list of all the words placed on the gameBoard 1. add als words left to right then
-   * from top to bottom
+   * Returns a list of all the words placed on the gameBoard. First it finds all horizontal words,
+   * if there are more than 2 words next to each other it counts as an word. After that it checks
+   * all words horizontally.
    *
-   * @return List of all Words in the Game
+   * @return ArrayList including every word on the board
    * @author trohwede
    */
   public ArrayList<String> getWords() {
@@ -655,15 +640,14 @@ public class GameBoard implements Serializable {
     }
     if (word.length() > 1) {
       listOfWords.add(word.toString());
-
     }
     return listOfWords;
   }
 
   /**
-   * Checks if all the words of the Board are legit
+   * Checks if all the words generated are actually in the dictionary.
    *
-   * @return Returns if the words are legit
+   * @return boolean if all words are found in the dictionary.
    * @author trohwede
    */
   public boolean checkWordsLegit() {
@@ -676,9 +660,8 @@ public class GameBoard implements Serializable {
     return true;
   }
 
-
   /**
-   * Clears the board of all Tiles and sets them to null
+   * Clears the board of all Tiles and sets them to null.
    *
    * @author trohwede
    */
