@@ -1,14 +1,14 @@
+package com.scrab5.network.messages;
+
+import com.scrab5.network.ClientData;
+import com.scrab5.network.ServerStatistics;
+import java.util.LinkedHashMap;
+
 /**
  * Class for messages update every client's lobby.
  * 
  * @author nitterhe
  */
-package com.scrab5.network.messages;
-
-import java.util.LinkedHashMap;
-import com.scrab5.network.ClientData;
-import com.scrab5.network.ServerStatistics;
-
 public class LobbyUpdateMessage extends Message {
   private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class LobbyUpdateMessage extends Message {
   private ServerStatistics serverStatistics;
 
   /**
-   * Constructor for creating LobbyUpdateMessages
+   * Constructor for creating LobbyUpdateMessages.
    * 
    * @author nitterhe
    * @param sender - the LobbyUpdateMessage sender (always server's host)

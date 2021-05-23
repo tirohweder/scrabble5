@@ -1,12 +1,12 @@
-/**
- * Class to implement the server sided client-server-communication. Starts the ServerThread Class.
- * Provides methods for the server to communicate with the clients. Also provides methods to get
- * server information.
- *
- * @author nitterhe
- */
 package com.scrab5.network;
 
+import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.network.messages.LobbyUpdateMessage;
+import com.scrab5.network.messages.Message;
+import com.scrab5.ui.Data;
+import com.scrab5.util.database.Database;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.InetAddress;
@@ -17,15 +17,14 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Timer;
 import java.util.TimerTask;
-import com.scrab5.network.NetworkError.NetworkErrorType;
-import com.scrab5.network.messages.LobbyUpdateMessage;
-import com.scrab5.network.messages.Message;
-import com.scrab5.ui.Data;
-import com.scrab5.util.database.Database;
-import com.scrab5.util.database.FillDatabase;
-import com.scrab5.util.database.UseDatabase;
 
-
+/**
+ * Class to implement the server sided client-server-communication. Starts the ServerThread Class.
+ * Provides methods for the server to communicate with the clients. Also provides methods to get
+ * server information.
+ *
+ * @author nitterhe
+ */
 public class Server implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -40,6 +39,7 @@ public class Server implements Serializable {
   private static int clientMaximum;
   private ServerStatistics serverStatistics;
   private Timer timer;
+  private TimerTask task;
 
   private LinkedHashMap<String, ClientData> clients;
   private HashMap<ClientData, ServerThread> connections;
@@ -52,10 +52,10 @@ public class Server implements Serializable {
    *
    * @param host - the name of the server host
    * @param clientMaximum - the maximum amount of clients allowed to connect to the server
-   * @param UIServerInstance - boolean to handle if sockets must be opened
+   * @param uiServerInstance - boolean to handle if sockets must be opened
    * @author nitterhe
    */
-  public Server(String host, int clientMaximum, boolean UIServerInstance) {
+  public Server(String host, int clientMaximum, boolean uiServerInstance) {
     this.clients = new LinkedHashMap<String, ClientData>();
     this.connections = new HashMap<ClientData, ServerThread>();
     this.gameStart = false;
@@ -63,7 +63,7 @@ public class Server implements Serializable {
     Server.clientMaximum = clientMaximum;
     clientCounter = 0;
     this.startTimer();
-    if (!UIServerInstance) {
+    if (!uiServerInstance) {
       this.loadServerStatistics();
       this.openServerSocket();
     }
@@ -187,7 +187,7 @@ public class Server implements Serializable {
   }
 
   /**
-   * Returns the server's status (true = in game/ false = waiting for clients)
+   * Returns the server's status (true = in game/ false = waiting for clients).
    *
    * @return gameStart - the server's status
    * @author nitterhe
@@ -247,7 +247,9 @@ public class Server implements Serializable {
   }
 
   /**
-   *
+   * Updates all the other clients with the changes that were made (i.e. gameboard, turn skipped).
+   * 
+   * @author nitterhe
    */
   public void sendUpdateMessage() {
     this.sendMessageToAllClients(new LobbyUpdateMessage(this.getHost(), this.getStatus(),
@@ -373,15 +375,16 @@ public class Server implements Serializable {
    */
   public void startTimer() {
 
-    this.timer = new Timer();
-    TimerTask task = (new TimerTask() {
+    this.task = (new TimerTask() {
       public void run() {
         if (Data.getPlayerClient() != null) {
-          Data.getGameSession().setShouldEnd(true);
+          Server.this.shutDownServer();
+          new NetworkError(NetworkErrorType.TIMER);
         }
       }
     });
-    timer.schedule(task, 1000 * 60 * 10);
+    this.timer = new Timer(true);
+    timer.schedule(task, 1000 * 60 * 1);
   }
 
   /**
@@ -390,7 +393,7 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void resetTimer() {
-    this.timer.cancel();
+    this.cancelTimer();
     this.startTimer();
   }
 
@@ -400,7 +403,10 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void cancelTimer() {
-    this.timer.cancel();
+    synchronized (timer) {
+      this.timer.cancel();
+      this.task.cancel();
+    }
   }
 
   /**

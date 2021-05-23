@@ -40,7 +40,7 @@ public class ServerData implements Serializable {
   }
 
   /**
-   * Returns the server's host as a String
+   * Returns the server's host as a String.
    * 
    * @author nitterhe
    * @return servername - the name of the host
@@ -55,7 +55,7 @@ public class ServerData implements Serializable {
    * @author nitterhe
    * @return ip4 - the IP4Address as a String
    */
-  public String getIP4Address() {
+  public String getIp4Address() {
     return this.ip4;
   }
 

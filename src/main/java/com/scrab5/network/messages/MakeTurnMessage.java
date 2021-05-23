@@ -1,12 +1,12 @@
+package com.scrab5.network.messages;
+
+import com.scrab5.core.game.GameSession;
+
 /**
  * Class for clients to send the turn done to the server => every client.
  *
  * @author nitterhe
  */
-package com.scrab5.network.messages;
-
-import com.scrab5.core.game.GameSession;
-
 public class MakeTurnMessage extends Message {
 
   private static final long serialVersionUID = 1L;

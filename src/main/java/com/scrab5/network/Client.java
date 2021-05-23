@@ -1,19 +1,5 @@
-/**
- * Class to implement the client sided client-server-communication. Starts the ClientThread Class.
- * Provides methods for the client to communicate with the server. Serializable so the whole Client
- * object can be sent to the Server. Also fields implementing objects of other classes are
- * Serializable therefore.
- *
- * @author nitterhe
- */
 package com.scrab5.network;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.util.ArrayList;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.DisconnectMessage;
@@ -25,6 +11,21 @@ import com.scrab5.network.messages.MessageType;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.util.ArrayList;
+
+/**
+ * Class to implement the client sided client-server-communication. Starts the ClientThread Class.
+ * Provides methods for the client to communicate with the server. Serializable so the whole Client
+ * object can be sent to the Server. Also fields implementing objects of other classes are
+ * Serializable therefore.
+ *
+ * @author nitterhe
+ */
 
 public class Client implements Serializable {
 
@@ -78,7 +79,6 @@ public class Client implements Serializable {
       hostedServer.setClientMaximum(clientMaximum);
       hostedServer.loadServerStatistics();
       hostedServer.openServerSocket();
-      hostedServer.startTimer();
     }
     hostedServer.acceptClients();
     try {
@@ -323,7 +323,7 @@ public class Client implements Serializable {
   }
 
   /**
-   * Updates the current Server instance and refreshes the UI
+   * Updates the current Server instance and refreshes the UI.
    *
    * @param lum - the message from the server with the updated values
    * @author nitterhe
@@ -371,8 +371,8 @@ public class Client implements Serializable {
    * Method to set the value of the starting value. This is used to set App.setroot() once when the
    * game starts.
    * 
-   * @author nitterhe
    * @return starting - the starting variable
+   * @author nitterhe
    */
   public boolean getStarting() {
     return this.starting;
@@ -381,8 +381,8 @@ public class Client implements Serializable {
   /**
    * Method to set the value of the starting variable.
    * 
+   * @param starting - the starting variable
    * @author nitterhe
-   * @param inGame - the starting variable
    */
   public void setStarting(boolean starting) {
     this.starting = starting;

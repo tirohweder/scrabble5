@@ -11,6 +11,7 @@ import java.net.InetAddress;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -80,7 +81,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author mherre
    */
   @FXML
@@ -120,7 +121,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author mherre
    */
   @FXML
@@ -230,7 +231,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author mherre
    * @author nitterhe
    */
@@ -239,7 +240,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     playSound("ButtonClicked.mp3");
     if (!Data.getServerList().isEmpty()) {
       String ip4 = Data.getServerList().get((int) (Data.getServerList().size() * Math.random()))
-          .getIP4Address();
+          .getIp4Address();
       if (joinServer(ip4)) {
         App.setRoot("MultiplayerLobby");
       }
@@ -260,14 +261,13 @@ public class MultiplayerOverviewController extends Controller implements Initial
     dictionarySelection.hide();
   }
 
-
   /**
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 0
    * is actually shown.
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -284,7 +284,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -301,7 +301,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -318,7 +318,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -335,7 +335,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -352,7 +352,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -369,7 +369,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -380,14 +380,13 @@ public class MultiplayerOverviewController extends Controller implements Initial
     }
   }
 
-
   /**
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 7
    * is actually shown.
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -427,6 +426,19 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
+   * Event method that is called when an item in <code>dictionarySelection</code> has been selected.
+   * 
+   * @author mherre
+   * @param event the event that is created when an item has been selected
+   */
+  @FXML
+  private void setSelectedDictionary(ActionEvent event) {
+    String selected = (String) this.dictionarySelection.getValue();
+    this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
+    isDictionarySelected = true;
+  }
+
+  /**
    * Changes the image of the current <code>playerNumber</code> to the fitting
    * <code>playerCount</code>.
    *
@@ -455,7 +467,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *
    * @param number the integer containing the number which "Join"-button has been clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author nitterhe
    * @author mherre
    */
@@ -463,7 +475,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     if (Data.getServerList().size() >= number) {
       playSound("ButtonClicked.mp3");
     }
-    if (joinServer(Data.getServerList().get(number).getIP4Address())) {
+    if (joinServer(Data.getServerList().get(number).getIp4Address())) {
       App.setRoot("MultiplayerLobby");
     }
   }
@@ -481,8 +493,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   /**
    * This method is called to setup the <code>ComboBox dictionarySelection</code>, so all inserted
-   * dictionaries are getting displayed. The dictionaries must be in the same directory as the
-   * .jar.
+   * dictionaries are getting displayed. The dictionaries must be in the same directory as the .jar.
    * <p>
    * https://stackabuse.com/java-list-files-in-a-directory/
    * </p>
@@ -577,8 +588,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * "Join"-button is shown as well.
    *
    * @param serverdata contains the information needed to display everything correctly in the server
-   *                   list
-   * @param position   the integer containing the position of the server in the server list
+   *        list
+   * @param position the integer containing the position of the server in the server list
    * @author mherre
    * @author nitterhe
    */
