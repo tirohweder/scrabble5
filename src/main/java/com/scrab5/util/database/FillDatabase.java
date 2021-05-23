@@ -4,8 +4,8 @@ import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
 import java.io.IOException;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Iterator;
 
 
@@ -136,7 +136,7 @@ public class FillDatabase extends Database {
    * Method to fill table player completely. Used when a new player profile is created. Variables
    * for statistics get default values.
    *
-   * @param name String with name of the user
+   * @param name    String with name of the user
    * @param picture String with the path to the picture
    * @author lengist
    * @author hraza
@@ -181,12 +181,13 @@ public class FillDatabase extends Database {
    * Filling the table player at specific index/column. If variable for column name is from type
    * integer, variable contentString is default.
    *
-   * @param column String with the name of the column in the table where a change needs to be done
-   * @param name String with name of the user
+   * @param column        String with the name of the column in the table where a change needs to be
+   *                      done
+   * @param name          String with name of the user
    * @param contentString String that contains the new information that needs to be stored in the
-   *        database
-   * @param contentInt Integer that contains the new information that needs to be stored in the
-   *        database
+   *                      database
+   * @param contentInt    Integer that contains the new information that needs to be stored in the
+   *                      database
    * @author hraza
    * @author lengist
    */
@@ -197,7 +198,7 @@ public class FillDatabase extends Database {
 
     try {
       PreparedStatement pstmt = null;
-      
+
       try {
         if (column == "Name") {
           String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
@@ -208,93 +209,89 @@ public class FillDatabase extends Database {
           //pstmt.close();
         } else if (column == "Picture") {
           String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setString(2, contentString);
-            pstmt.setString(1, name);
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setString(2, contentString);
+          pstmt.setString(1, name);
+          pstmt.executeUpdate();
         } else if (column == "TotalPoints") {
           String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, contentInt);
-            pstmt.setString(2, name);
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setInt(1, contentInt);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         } else if (column == "PersonalHighscore") {
           String sql = "UPDATE Player SET PersonalHighscore = ? WHERE Name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, contentInt);
-            pstmt.setString(2, name);
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setInt(1, contentInt);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         } else if (column == "LaidWords") {
           String sql = "UPDATE Player SET Laidwords = ? WHERE Name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, contentInt);
-            pstmt.setString(2, name); 
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setInt(1, contentInt);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         } else if (column == "PointsPerWordRate") {
           String sql = "UPDATE Player SET PointsPerWordRate = ? WHERE Name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, contentInt);
-            pstmt.setString(2, name); 
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setInt(1, contentInt);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         } else if (column == "LongestWord") {
           String sql = "UPDATE Player SET LongestWord = ? WHERE Name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, contentInt);
-            pstmt.setString(2, name);
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setInt(1, contentInt);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         } else if (column == "TotalPlayedGames") {
           String sql = "UPDATE Player SET TotalPlayedGames = ? WHERE Name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, contentInt);
-            pstmt.setString(2, name);
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setInt(1, contentInt);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         } else if (column == "TotalWins") {
           String sql = "UPDATE Player SET TotalWins = ? WHERE Name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setInt(1, contentInt);
-            pstmt.setString(2, name);
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setInt(1, contentInt);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         } else if (column == "WinRate") {
           String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setDouble(1, doubleValues);
-            pstmt.setString(2, name);
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setDouble(1, doubleValues);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         } else if (column == "FavDic") {
           String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, contentString);
-            System.out.println("contentString: " + contentString);
-            pstmt.setString(2, name);
-            pstmt.executeUpdate(); 
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setString(1, contentString);
+          System.out.println("contentString: " + contentString);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         } else if (column == "Music") {
           String sql = "UPDATE Player SET Music = ? WHERE name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setDouble(1, doubleValues);
-            pstmt.setString(2, name);
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setDouble(1, doubleValues);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         } else if (column == "SoundEffect") {
           String sql = "UPDATE Player SET SoundEffect = ? WHERE name = ?";
-            pstmt = connection.prepareStatement(sql);
-            pstmt.setDouble(1, doubleValues);
-            pstmt.setString(2, name);
-            pstmt.executeUpdate();
+          pstmt = connection.prepareStatement(sql);
+          pstmt.setDouble(1, doubleValues);
+          pstmt.setString(2, name);
+          pstmt.executeUpdate();
         }
       } catch (SQLException e) {
         System.out.println(e.getMessage());
       } finally {
-        if(pstmt != null) {
+        if (pstmt != null) {
           pstmt.close();
         }
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
-  
-      
-      
-    
-     
+
     //closeStatement("player");
     Database.disconnect();
   }
@@ -302,7 +299,7 @@ public class FillDatabase extends Database {
   /**
    * Method to fill table server completely. Used when a new server is created.
    *
-   * @param name String with name of the user
+   * @param clientUsername with name of the user
    * @author lengist
    * @author nitterhe
    */
@@ -334,7 +331,7 @@ public class FillDatabase extends Database {
    * Updates the entries from the table server at a specific serverHostName.
    *
    * @param serverObject an object received from the server with all information needed for the
-   *        statistics in a hosted game
+   *                     statistics in a hosted game
    * @author lengist
    * @author nitterhe
    */
@@ -368,7 +365,7 @@ public class FillDatabase extends Database {
    * Inserts letters with corresponding points.
    *
    * @param letter String with the letter that needs to be inserted in the database
-   * @param point Integer with the correpsonding points for the given letter
+   * @param point  Integer with the correpsonding points for the given letter
    * @author lengist
    * @author hraza
    */
@@ -412,13 +409,14 @@ public class FillDatabase extends Database {
     for (int i = 0; i < 27; i++) {
       insertLetters(letter[i], points[i], occurrence[i]);
     }
-   Database.disconnect();
+    Database.disconnect();
   }
 
   /**
    * Updates the occurrence for a particular letter if a change is needed.
    *
-   * @param letter String with the letter where the occurrence needs to be updated in the database
+   * @param letter     String with the letter where the occurrence needs to be updated in the
+   *                   database
    * @param occurrence Integer with the new occurrence for the given letter
    * @author lengist
    */
@@ -440,7 +438,7 @@ public class FillDatabase extends Database {
    * Updates the points for a particular letter if a change is needed.
    *
    * @param letter String with the letter where the points need to be updated in the database
-   * @param point Integer with the new points for the given letter
+   * @param point  Integer with the new points for the given letter
    * @author lengist
    */
   protected synchronized static void updatePointLetters(String letter, int point) {
