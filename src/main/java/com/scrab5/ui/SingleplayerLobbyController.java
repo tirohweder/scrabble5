@@ -6,10 +6,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.ResourceBundle;
 import com.scrab5.core.game.GameSession;
+import com.scrab5.core.player.AiPlayer;
 import com.scrab5.core.player.Player;
 import com.scrab5.util.database.PlayerProfileDatabase;
+import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.textParser.DictionaryParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -101,35 +105,35 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     playSound("ButtonClicked.mp3");
     this.playerAmount++;
 
-    for (int i = 0; i < freeSpaces.length; i++) {
+    for (int i = 1; i < freeSpaces.length; i++) {
       if (freeSpaces[i]) {
         switch (i) {
-          case 0:
+          case 1:
             this.player2.setText("CPU 2");
             this.ready2.setText("Ready");
             this.difficulty2.setOpacity(1.0);
             this.kick2.setOpacity(1.0);
             this.diffSelection2.setOpacity(1.0);
             this.diffButton1.setOpacity(1.0);
-            isReady[i + 1] = true;
+            isReady[i] = true;
             break;
-          case 1:
+          case 2:
             this.player3.setText("CPU 3");
             this.ready3.setText("Ready");
             this.difficulty3.setOpacity(1.0);
             this.kick3.setOpacity(1.0);
             this.diffSelection3.setOpacity(1.0);
             this.diffButton2.setOpacity(1.0);
-            isReady[i + 1] = true;
+            isReady[i] = true;
             break;
-          case 2:
+          case 3:
             this.player4.setText("CPU 4");
             this.ready4.setText("Ready");
             this.difficulty4.setOpacity(1.0);
             this.kick4.setOpacity(1.0);
             this.diffSelection4.setOpacity(1.0);
             this.diffButton3.setOpacity(1.0);
-            isReady[i + 1] = true;
+            isReady[i] = true;
             break;
           default:
             break;
@@ -152,7 +156,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
       this.diffButton1.setOpacity(0);
       this.kick2.setOpacity(0);
       this.playerAmount--;
-      this.freeSpaces[0] = true;
+      this.freeSpaces[1] = true;
       this.isClickable();
     }
   }
@@ -169,7 +173,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
       this.diffButton2.setOpacity(0);
       this.kick3.setOpacity(0);
       this.playerAmount--;
-      this.freeSpaces[1] = true;
+      this.freeSpaces[2] = true;
       this.isClickable();
     }
   }
@@ -186,7 +190,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
       this.diffButton3.setOpacity(0);
       this.kick4.setOpacity(0);
       this.playerAmount--;
-      this.freeSpaces[2] = true;
+      this.freeSpaces[3] = true;
       this.isClickable();
     }
   }
@@ -240,27 +244,33 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   @FXML
   protected void startGame(MouseEvent event) throws IOException, SQLException {
 
-    Player humanPlayer = new Player(Data.getCurrentUser());
-    Player humanPlayer1 = new Player("Name2");
+    ArrayList<Player> playList = new ArrayList<Player>();
+    playList.add(0, new Player(Data.getCurrentUser()));
 
-    ArrayList<Player> test = new ArrayList<Player>();
-
-    test.add(0, humanPlayer);
-    test.add(1, humanPlayer1);
-
-    if (Data.getHasBeenEdited()) {
-      Data.getPointsDistribution();
-      Data.getOccurrencyDistribution();
-    } else {
-
+    for (int i = 1; i < freeSpaces.length; i++) {
+      if (!freeSpaces[i]) {
+        playList.add(new AiPlayer("CPU" + (i + 1)));
+      }
     }
 
-    Data.setGameSession(new GameSession(test, false));
-    System.out.println("Created GameSession");
+    if (Data.getHasBeenEdited()) {
+      ArrayList<Integer> tiles = createTileBag(Data.getOccurrencyDistribution());
+      Data.setGameSession(new GameSession(playList, tiles, Data.getPointsDistribution(), false));
 
-    /*
-     * TODO: #Get Player Order #Get PlayerAmount #Get Difficulties #Get Distribution
-     */
+    } else {
+      ArrayList<Integer> points = new ArrayList<Integer>();
+      ArrayList<Integer> help1 = new ArrayList<Integer>();
+      int[] help2 = UseDatabase.getAllOccurrences();
+      int[] help3 = UseDatabase.getAllPointsPerLetter();
+
+      for (int j = 0; j < help2.length; j++) {
+        help1.add(help2[j]);
+        points.add(help3[j]);
+      }
+
+      ArrayList<Integer> tiles = createTileBag(help1);
+      Data.setGameSession(new GameSession(playList, tiles, points, false));
+    }
 
     App.setRoot("SinglePlayer");
   }
@@ -277,6 +287,31 @@ public class SingleplayerLobbyController extends LobbyController implements Init
       this.addPlayerButton.setOpacity(0);
       return true;
     }
+  }
+
+  /**
+   * Method that creates an <code>ArrayList</code> which contains the amount of tiles of each
+   * letter. The maximum amount of tiles that a bag can have, is 100.
+   * 
+   * @author mherre
+   * @param al the ArrayList that contains the selected occurrences
+   * @return finalBag the ArrayList that contains the amount of tiles for each letter
+   */
+  private ArrayList<Integer> createTileBag(ArrayList<Integer> al) {
+
+    ArrayList<Integer> finalBag = new ArrayList<Integer>();
+    int numberOfTiles = 0;
+
+    for (int i = 0; i < al.size(); i++) {
+      numberOfTiles += al.get(i);
+    }
+
+    for (int i = 0; i < al.size(); i++) {
+      double letterAmount = Math.ceil(al.get(i) * 100 / numberOfTiles);
+      finalBag.add((int) letterAmount);
+    }
+
+    return finalBag;
   }
 
   /**

@@ -44,8 +44,8 @@ public abstract class LobbyController extends Controller {
   protected ComboBox<String> diffBox1, diffBox2, diffBox3;
 
   protected int playerAmount = 1;
-  protected boolean isReady[] = {false, true, true, true};
-  protected boolean freeSpaces[] = {true, true, true};
+  protected boolean[] isReady = {false, true, true, true};
+  protected boolean[] freeSpaces = {false, true, true, true};
   protected boolean isDictionarySelected = false;
 
 
