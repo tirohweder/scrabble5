@@ -9,6 +9,7 @@ import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.textParser.DictionaryScanner;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.imageio.metadata.IIOMetadataFormatImpl;
 
 
 public class AiPlayer extends Player {
@@ -45,6 +46,62 @@ public class AiPlayer extends Player {
   public int getCounterRight() {
     return this.counterRight;
   }
+
+
+
+
+  int hardAIThreshhold= 40;
+  int easyAIThreshold= 20;
+  public void aiPlay(int aiThreshold) {
+
+    boolean foundMatchingThreshold= false;
+    int column=0;
+    int row=0;
+    ArrayList<Tile> choosenWord = new ArrayList<>();
+    
+    //go through game while threshhold is not reached
+    while(!foundMatchingThreshold && row<15) {
+      while(!foundMatchingThreshold && column<15) {
+        if(Data.getGameSession().getGameBoard().getPlayedTile(row,column)!=null) {
+          getSpotsfree(row,column,Data.getGameSession().getGameBoard());
+          ArrayList<ArrayList<Tile>> wordList;
+
+          if(counterDown+counterUp> counterLeft+counterLeft) {
+            wordList= wordGenerator(Data.getGameSession().getGameBoard().getPlayedTile(row,column).getLetter(),counterDown,counterUp,row,column,false);
+          }else {
+            wordList= wordGenerator(Data.getGameSession().getGameBoard().getPlayedTile(row,column).getLetter(),counterRight,counterLeft,row,column,true);
+          }
+
+          ArrayList<Integer> points= countScore(Data.getGameSession().getGameBoard(),wordList);
+
+          for (int k = 0; k <points.size(); k++) {
+            if(points.get(k)>= aiThreshold) {
+                choosenWord= wordList.get(k);
+                foundMatchingThreshold= true;
+                break;
+            }
+          }
+        }
+      }
+    }
+
+    //because ai uses tiles from the bag, the correct distubution needs to be set.
+    HashMap<String, Integer> currentDistru = Data.getGameSession().getBag().getCurrentBagDistribution();
+
+    if(foundMatchingThreshold) {
+      for (int i = 0; i < choosenWord.size(); i++) {
+        Data.getGameSession().getGameBoard().placeTileTest(choosenWord.get(i),choosenWord.get(i).getRow(),choosenWord.get(i).getColumn());
+        currentDistru.put()
+
+      }
+    }
+
+    Data.getGameSession().getGameBoard().finishTurn();
+    Data.getGameSession().finishTurn();
+
+  }
+
+
 
   /**
    * In this method all other methods will be called for the Hard AI
@@ -193,7 +250,7 @@ public class AiPlayer extends Player {
    *                   This parameter is needed later on
    * @author lengist
    */
-  public static void wordGenerator(String fixLetter, int before, int after, int x, int y,
+  public static ArrayList<ArrayList<Tile>> wordGenerator(String fixLetter, int before, int after, int x, int y,
       boolean horizontal) {
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
     ArrayList<String> possibleLetters1 = new ArrayList<String>();
@@ -292,6 +349,8 @@ public class AiPlayer extends Player {
     /*TODO: tiles an AiPosition.countScore weitergeben*/
 
     /* TODO: Possible add: condition to end this method after for example 15 words. */
+
+    return tiles;
   }
 
   /**
@@ -443,7 +502,7 @@ public class AiPlayer extends Player {
     ArrayList<String> deletionRound3 = new ArrayList<String>();
     /*TODO: fill the hashmap for the CurrentDistribution*/
 
-    HashMap<String, Integer> currentDistribution = new HashMap<String, Integer>();
+    HashMap<String, Integer> currentDistribution = new HashMap<>();
     for (int i = 0; i < possibleLetters.length; i++) {
       currentDistribution.merge(possibleLetters[i], 1, Integer::sum);
     }
@@ -525,4 +584,57 @@ public class AiPlayer extends Player {
       System.out.println(s);
     }
   }*/
+
+
+  /**
+   * Cout
+   *
+   * @param gameBoard     takes the currentGameBoard
+   * @param possibleWords revices the possible words as a ArrayList<Tile>
+   * @return Points per Word
+   * @author trohwede
+   */
+  public ArrayList<Integer> countScore(GameBoard gameBoard,
+      ArrayList<ArrayList<Tile>> possibleWords) {
+    ArrayList<Integer> scoreList = new ArrayList<>();
+
+    for (ArrayList<Tile> word : possibleWords) {
+      int score = 0;
+      int scoreToBe = 0;
+      boolean tw = false;
+      boolean dw = false;
+      for (Tile tile : word) {
+        if (gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) {
+          switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
+            case "DL":
+              scoreToBe += tile.getValue() * 2;
+              break;
+            case "TL":
+              scoreToBe += tile.getValue() * 3;
+              break;
+            case "DW":
+              dw = true;
+              scoreToBe += tile.getValue();
+              break;
+            case "TW":
+              tw = true;
+              scoreToBe += tile.getValue();
+              break;
+            default:
+              scoreToBe += tile.getValue();
+          }
+        }
+      }
+      if (dw) {
+        score = scoreToBe * 2;
+      } else if (tw) {
+        score = scoreToBe * 3;
+      }
+      scoreList.add(score);
+    }
+    return scoreList;
+  }
+
+
+
 }
