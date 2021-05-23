@@ -1,15 +1,15 @@
 package com.scrab5.ui;
 
+import com.scrab5.network.Client;
+import com.scrab5.network.NetworkError;
+import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.network.ServerData;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.scrab5.network.Client;
-import com.scrab5.network.NetworkError;
-import com.scrab5.network.NetworkError.NetworkErrorType;
-import com.scrab5.network.ServerData;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +21,12 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * The MultiPlayerOverviewController class controls the components of the
+ * "MultiplayerOverview.fxml".
+ *
+ * @author mherre
+ */
 public class MultiplayerOverviewController extends Controller implements Initializable {
 
   @FXML
@@ -49,9 +55,9 @@ public class MultiplayerOverviewController extends Controller implements Initial
   private int playerCount = 2;
 
   /**
-   * Is called right after the scene is loaded. Sets the displayed username to the username of the
-   * current selected user / logged in user.
-   * 
+   * Call certain methods as soon as the Controller is loaded. Sets up the labels in the UI and
+   * starts searching for servers.
+   *
    * @author mherre
    * @author nitterhe
    */
@@ -68,6 +74,16 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.searchServers();
   }
 
+  /**
+   * Event method that is called when the "Start"-button in the UI is clicked. If the server
+   * settings are set up properly a new server gets created and scene gets changed to
+   * "MultiplayerLobby.fxml".
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author mherre
+   */
   @FXML
   private void start(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
@@ -80,6 +96,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     // App.setRoot("MultiplayerLobby");
     // }
     if (this.isDictionarySelected) {
+
       Data.setIsSearching(false);
       Data.setPlayerCountMultiplayer(playerCount);
       try {
@@ -88,21 +105,24 @@ public class MultiplayerOverviewController extends Controller implements Initial
       } catch (Exception e) {
         new NetworkError(NetworkErrorType.SERVERCREATION);
       }
+
     } else {
+
       String message = "To start the game please select a dictionary!";
       PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
+
     }
   }
 
   /**
-   * 
-   * Event method that is called when the "Back"-button is clicked. Scene gets changed to the
-   * predecessor "Main Menu" scene
-   * 
-   * @author mherre @author nitterhe
-   * @param event
-   * @throws IOException
+   * Event method that is called when the "Back"-button in the UI is clicked. Scene gets changed to
+   * the predecessor "MainMenu.fxml" scene.
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author mherre
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -112,16 +132,15 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * Event method that is called when the "Right Arrow"-button is clicked. The "Number of Players"
-   * number gets increased by one.Changes "Right Arrow"-button to a greyed out image of it which
-   * can't be clicked.
-   * 
+   * Event method that is called when the "Right Arrow"-button in the UIis clicked. The displayed
+   * number gets increased by one. Changes "Right Arrow"-button to a grayed out image if
+   * <code>playerCount</code> equals 4, this can't be clicked anymore.
+   *
+   * @param event the event that is created from the mouse-click
    * @author mherre
-   * @param event
-   * @throws IOException
    */
   @FXML
-  private void nextNumber(MouseEvent event) throws IOException {
+  private void nextNumber(MouseEvent event) {
     playerCount++;
     playSound("ButtonClicked.mp3");
 
@@ -145,17 +164,15 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * Event method that is called when the "Left Arrow"-button is clicked. The "Number of Players"
-   * number gets decreased by one. Changes "Left Arrow"-button to a greyed out image of it which
-   * can't be clicked.
-   * 
+   * Event method that is called when the "Left Arrow"-button in the UIis clicked. The displayed
+   * number gets decreased by one. Changes "Left Arrow"-button to a grayed out image if
+   * <code>playerCount</code> equals 2, this can't be clicked anymore.
+   *
+   * @param event the event that is created from the mouse-click
    * @author mherre
-   * @param event
-   * @throws IOException
-   * 
    */
   @FXML
-  private void previousNumber(MouseEvent event) throws IOException {
+  private void previousNumber(MouseEvent event) {
     playerCount--;
     playSound("ButtonClicked.mp3");
 
@@ -179,28 +196,26 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
+   * Event method that is called when the "Arrow Down"-button in the UI is clicked. Opens the
+   * <code>ComboBox dictionarySelection</code> displaying all available dictionaries.
    *
-   * Is called when the "dropDownButton" Button is clicked. Opens the combo box displaying all
-   * selectable dictionaries.
-   * 
+   * @param event the event that is created from the mouse-click
    * @author mherre
-   * @param event
-   * @throws IOException
-   * 
-   * 
    */
   @FXML
-  private void clickComboBox(MouseEvent event) throws IOException {
+  private void clickComboBox(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     dictionarySelection.show();
 
   }
 
   /**
-   * 
-   * 
+   * Event method that is called when the "Refresh"-button in the UI is clicked. Starts searching
+   * for new servers.
+   *
+   * @param event the event that is created from the mouse-click
    * @author mherre
-   * @param event
+   * @author nitterhe
    */
   @FXML
   private void refresh(MouseEvent event) {
@@ -209,6 +224,17 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.searchServers();
   }
 
+  /**
+   * Event method that is called when the "Find Game"-button in the UI is clicked. Puts the player
+   * into a random selected lobby that is displayed in the server list if there is at least one.
+   * Otherwise an error message is created.
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author mherre
+   * @author nitterhe
+   */
   @FXML
   private void findGame(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
@@ -224,24 +250,198 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * 
-   * Makes dictionarySelection only openable when the dropDownButton is clicked, not when the
-   * combobox (dictionarySelection) is clicked.
-   * 
+   * Event method that is called when <code>dictionarySelection</code> in the UI is clicked. Makes
+   * dictionarySelection only openable when the dropDownButton is clicked.
+   *
+   * @param event the event that is created from the mouse-click
    * @author mherre
-   * @param event
-   * @throws IOException
-   * 
    */
   @FXML
-  private void dontShow(MouseEvent event) throws IOException {
+  private void dontShow(MouseEvent event) {
     dictionarySelection.hide();
   }
 
   /**
+   * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 0
+   * is actually shown.
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author nitterhe
+   * @author mherre
+   */
+  @FXML
+  private void join0(MouseEvent event) throws IOException {
+    if (this.joinButton0.getOpacity() == 1.0) {
+      this.joinGame(0);
+    }
+  }
+
+  /**
+   * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 1
+   * is actually shown.
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author nitterhe
+   * @author mherre
+   */
+  @FXML
+  private void join1(MouseEvent event) throws IOException {
+    if (this.joinButton1.getOpacity() == 1.0) {
+      this.joinGame(1);
+    }
+  }
+
+  /**
+   * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 2
+   * is actually shown.
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author nitterhe
+   * @author mherre
+   */
+  @FXML
+  private void join2(MouseEvent event) throws IOException {
+    if (this.joinButton2.getOpacity() == 1.0) {
+      this.joinGame(2);
+    }
+  }
+
+  /**
+   * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 3
+   * is actually shown.
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author nitterhe
+   * @author mherre
+   */
+  @FXML
+  private void join3(MouseEvent event) throws IOException {
+    if (this.joinButton3.getOpacity() == 1.0) {
+      this.joinGame(3);
+    }
+  }
+
+  /**
+   * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 4
+   * is actually shown.
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author nitterhe
+   * @author mherre
+   */
+  @FXML
+  private void join4(MouseEvent event) throws IOException {
+    if (this.joinButton4.getOpacity() == 1.0) {
+      this.joinGame(4);
+    }
+  }
+
+  /**
+   * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 5
+   * is actually shown.
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author nitterhe
+   * @author mherre
+   */
+  @FXML
+  private void join5(MouseEvent event) throws IOException {
+    if (this.joinButton5.getOpacity() == 1.0) {
+      this.joinGame(5);
+    }
+  }
+
+  /**
+   * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 6
+   * is actually shown.
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author nitterhe
+   * @author mherre
+   */
+  @FXML
+  private void join6(MouseEvent event) throws IOException {
+    if (this.joinButton6.getOpacity() == 1.0) {
+      this.joinGame(6);
+    }
+  }
+
+  /**
+   * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 7
+   * is actually shown.
+   *
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
+   * @author nitterhe
+   * @author mherre
+   */
+  @FXML
+  private void join7(MouseEvent event) throws IOException {
+    if (this.joinButton7.getOpacity() == 1.0) {
+      this.joinGame(7);
+    }
+  }
+
+  /**
+   * Event method that is called when the mouse is hovering over the <code>ImageView</code> object
+   * <code>iv</code> or released after it has been clicked. Changes the <code>image</code> to
+   * "/com/scrab5/ui/images/SB06_JoinButtonClicked.png".
+   *
+   * @param event the event that is created from the hovering and releasing
+   * @author mherre
+   */
+  @FXML
+  private void lightenJoinIcon(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+    iv.setImage(new Image("/com/scrab5/ui/images/SB06_JoinButtonClicked.png"));
+  }
+
+  /**
+   * Event method that is called when the mouse is exiting the <code>ImageView</code> object
+   * <code>iv</code> or when it is pressed. Changes the <code>image</code> to
+   * "/com/scrab5/ui/images/SB06_JoinButton.png".
+   *
+   * @param event the event that is created from the hovering and releasing
+   * @author mherre
+   */
+  @FXML
+  private void darkenJoinIcon(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+    iv.setImage(new Image("/com/scrab5/ui/images/SB06_JoinButton.png"));
+  }
+
+  /**
+   * Event method that is called when an item in <code>dictionarySelection</code> has been selected.
    * 
-   * Changes the image of the current playerCount.
-   * 
+   * @author mherre
+   * @param event the event that is created when an item has been selected
+   */
+  @FXML
+  private void setSelectedDictionary(ActionEvent event) {
+    String selected = (String) this.dictionarySelection.getValue();
+    this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
+    isDictionarySelected = true;
+  }
+
+  /**
+   * Changes the image of the current <code>playerNumber</code> to the fitting
+   * <code>playerCount</code>.
+   *
    * @author mherre
    */
   private void changeNumberImage() {
@@ -262,164 +462,44 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * Method for when server 0 is clicked. Only joins if this server is actually shown.
-   * 
+   * Method that is called once a player clicked a "Join"-button. If the lobby isn't full yet, then
+   * the player joins the lobby and the scene gets changed to "MultiplayerLobby.fxml".
+   *
+   * @param number the integer containing the number which "Join"-button has been clicked
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *                     exist
    * @author nitterhe
    * @author mherre
-   * @param event - the mouse click even in the LobbyOverview
-   * @throws IOException -
-   */
-  @FXML
-  private void join0(MouseEvent event) throws IOException {
-    if (this.joinButton0.getOpacity() == 1.0)
-      this.joinGame(0);
-  }
-
-  /**
-   * Method for when server 1 is clicked. Only joins if this server is actually shown.
-   * 
-   * @author nitterhe
-   * @author mherre
-   * @param event - the mouse click even in the LobbyOverview
-   * @throws IOException -
-   */
-  @FXML
-  private void join1(MouseEvent event) throws IOException {
-    if (this.joinButton1.getOpacity() == 1.0)
-      this.joinGame(1);
-  }
-
-  /**
-   * Method for when server 2 is clicked. Only joins if this server is actually shown.
-   * 
-   * @author nitterhe
-   * @author mherre
-   * @param event - the mouse click even in the LobbyOverview
-   * @throws IOException -
-   */
-  @FXML
-  private void join2(MouseEvent event) throws IOException {
-    if (this.joinButton2.getOpacity() == 1.0)
-      this.joinGame(2);
-  }
-
-  /**
-   * Method for when server 3 is clicked. Only joins if this server is actually shown.
-   * 
-   * @author nitterhe
-   * @author mherre
-   * @param event - the mouse click even in the LobbyOverview
-   * @throws IOException -
-   */
-  @FXML
-  private void join3(MouseEvent event) throws IOException {
-    if (this.joinButton3.getOpacity() == 1.0)
-      this.joinGame(3);
-  }
-
-  /**
-   * Method for when server 4 is clicked. Only joins if this server is actually shown.
-   * 
-   * @author nitterhe
-   * @author mherre
-   * @param event - the mouse click even in the LobbyOverview
-   * @throws IOException -
-   */
-  @FXML
-  private void join4(MouseEvent event) throws IOException {
-    if (this.joinButton4.getOpacity() == 1.0)
-      this.joinGame(4);
-  }
-
-  /**
-   * Method for when server 5 is clicked. Only joins if this server is actually shown.
-   * 
-   * @author nitterhe
-   * @author mherre
-   * @param event - the mouse click even in the LobbyOverview
-   * @throws IOException -
-   */
-  @FXML
-  private void join5(MouseEvent event) throws IOException {
-    if (this.joinButton5.getOpacity() == 1.0)
-      this.joinGame(5);
-  }
-
-  /**
-   * Method for when server 6 is clicked. Only joins if this server is actually shown.
-   * 
-   * @author nitterhe
-   * @author mherre
-   * @param event - the mouse click even in the LobbyOverview
-   * @throws IOException -
-   */
-  @FXML
-  private void join6(MouseEvent event) throws IOException {
-    if (this.joinButton6.getOpacity() == 1.0)
-      this.joinGame(6);
-  }
-
-
-  /**
-   * Method for when server 7 is clicked. Only joins if this server is actually shown.
-   * 
-   * @author nitterhe
-   * @author mherre
-   * @param event - the mouse click even in the LobbyOverview
-   * @throws IOException -
-   */
-  @FXML
-  private void join7(MouseEvent event) throws IOException {
-    if (this.joinButton7.getOpacity() == 1.0)
-      this.joinGame(7);
-  }
-
-  /**
-   * 
-   * 
-   * @author nitterhe
-   * @param number
-   * @throws IOException
    */
   private void joinGame(int number) throws IOException {
-    if (Data.getServerList().size() >= number)
+    if (Data.getServerList().size() >= number) {
       playSound("ButtonClicked.mp3");
-    if (joinServer(Data.getServerList().get(number).getIP4Address()))
+    }
+    if (joinServer(Data.getServerList().get(number).getIP4Address())) {
       App.setRoot("MultiplayerLobby");
-  }
-
-  @FXML
-  private void lightenJoinIcon(MouseEvent event) {
-    ImageView iv = (ImageView) event.getSource();
-    iv.setImage(new Image("/com/scrab5/ui/images/SB06_JoinButtonClicked.png"));
-  }
-
-  @FXML
-  private void darkenJoinIcon(MouseEvent event) {
-    ImageView iv = (ImageView) event.getSource();
-    iv.setImage(new Image("/com/scrab5/ui/images/SB06_JoinButton.png"));
+    }
   }
 
   /**
-   * 
-   * 
-   * @author nitterhe
+   * KOOOOOOOOOOOMENTARE NIKLAAAAS; KOOOOOOOOOOOOOOOOOOOOOMENTAAAAAAAAAAAAAAAAAAAAAAARE
+   *
    * @param playerCount
+   * @author nitterhe
    */
   private void setupServer(int playerCount) throws Exception {
     Data.getPlayerClient().hostServer(playerCount);
     Data.setHostedServer(Data.getPlayerClient().getHostedServer());
   }
 
-  @FXML
-  private void setSelectedDictionary(ActionEvent event) {
-    String selected = (String) this.dictionarySelection.getValue();
-    this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
-    isDictionarySelected = true;
-  }
-
   /**
+   * This method is called to setup the <code>ComboBox dictionarySelection</code>, so all inserted
+   * dictionaries are getting displayed. The dictionaries must be in the same directory as the
+   * .jar.
+   * <p>
    * https://stackabuse.com/java-list-files-in-a-directory/
+   * </p>
+   *
+   * @author mherre
    */
   private void setUpDicitionaryBox() {
 
@@ -449,7 +529,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * every 2 seconds. i = 35 since the searchServers method from the class Client takes between 66
    * and 68 seconds. Therefore, after 70 seconds this method can be sure no more servers are in the
    * local network.
-   * 
+   *
    * @author nitterhe
    */
   private void searchServers() {
@@ -486,9 +566,9 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   /**
    * Joins a server with the given IPAddress.
-   * 
-   * @author nitterhe
+   *
    * @param IPAddress - the IPAddress of the server that should be joined as a String
+   * @author nitterhe
    */
   private boolean joinServer(String IPAddress) {
     try {
@@ -503,11 +583,16 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * 
+   * This method is called in {@link com.scrab5.ui.MultiplayerOverviewController#initialize
+   * initialize} and starts a <code>Thread</code> that is refreshing the server list at all time. If
+   * a new server is found the labels containing the server information are getting displayed, the
+   * "Join"-button is shown as well.
+   *
+   * @param serverdata contains the information needed to display everything correctly in the server
+   *                   list
+   * @param position   the integer containing the position of the server in the server list
    * @author mherre
    * @author nitterhe
-   * @param serverdata
-   * @param position
    */
   private void displayServer(ServerData serverdata, int position) {
     Platform.runLater(new Runnable() {
@@ -581,7 +666,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   /**
    * Resets all 8 server displays if there is at least 1 server displayed.
-   * 
+   *
    * @author nitterhe
    */
   private void clearServerDisplay() {
@@ -661,5 +746,4 @@ public class MultiplayerOverviewController extends Controller implements Initial
     this.status7.setText("");
     this.joinButton7.setOpacity(0);
   }
-
 }

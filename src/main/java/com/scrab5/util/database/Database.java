@@ -6,10 +6,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * @author lengist
+ * Entity to create a new database and establish the connection to it.
  * 
- *         entity to create a new database and establish the connection to it.
- *
+ * @author lengist
  */
 public class Database {
 

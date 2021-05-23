@@ -82,6 +82,21 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   /**
+   * This method is called when the "Back"-button is clicked. It sets the scene to
+   * "MultiplayerOverview"
+   *
+   * @param event
+   * @throws IOException
+   * @author mherre @author nitterhe
+   */
+  @FXML
+  protected void back(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    Data.getPlayerClient().disconnectFromServer();
+  }
+
+
+  /**
    * Called when the lobby was closed by the host.
    *
    * @throws IOException
@@ -95,19 +110,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
   }
 
-  /**
-   * This method is called when the "Back"-button is clicked. It sets the scene to
-   * "MultiplayerOverview"
-   *
-   * @param event
-   * @throws IOException
-   * @author mherre @author nitterhe
-   */
-  @FXML
-  protected void back(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
-    Data.getPlayerClient().disconnectFromServer();
-  }
 
   @FXML
   private void ready(MouseEvent event) throws IOException {
@@ -134,7 +136,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
 
-  protected void addPlayer(MouseEvent event) throws IOException {
+  protected void addPlayer(MouseEvent event) {
 
     // AIs.add(new Client("Der Zerstörinator" + (AIs.size() + 1)));
     this.updateAICounter();
@@ -172,16 +174,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     this.isClickable();
   }
 
-
-  @FXML
-  protected void dontShow(MouseEvent event) throws IOException {
-    voteSelection1.hide();
-    voteSelection2.hide();
-    voteSelection3.hide();
-    voteSelection4.hide();
-    diffBox2.hide();
-    diffBox3.hide();
-  }
 
   @FXML
   protected void kickPlayer2(MouseEvent event) {
@@ -237,41 +229,14 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
   }
 
-  protected void setUpInit() {
-    this.isDictionarySelected = true;
-    this.player1.setText(Data.getCurrentUser());
-    this.ready1.setText("Not Ready");
-    for (int i = 1; i <= 4; i++) {
-      this.voteSelection1.getItems().add(i);
-      this.voteSelection2.getItems().add(i);
-      this.voteSelection3.getItems().add(i);
-      this.voteSelection4.getItems().add(i);
-    }
-    this.voteSelection1.getSelectionModel().select(0);
-    this.voteSelection2.getSelectionModel().select(1);
-    this.voteSelection3.getSelectionModel().select(2);
-    this.voteSelection4.getSelectionModel().select(3);
-
-    this.diffBox2.getItems().add("Easy");
-    this.diffBox2.getItems().add("Difficult");
-    this.diffBox3.getItems().add("Easy");
-    this.diffBox3.getItems().add("Difficult");
-
-    this.diffBox2.getSelectionModel().select(0);
-    this.diffBox3.getSelectionModel().select(0);
-  }
-
-  protected boolean isClickable() {
-    if (playerAmount >= Data.getPlayerCountMultiplayer() - 1) {
-      this.addPlayerButton.setY(-44);
-      this.addPlayerButton.setOpacity(1);
-      return false;
-
-    } else {
-      this.addPlayerButton.setY(0);
-      this.addPlayerButton.setOpacity(0);
-      return true;
-    }
+  @FXML
+  protected void dontShow(MouseEvent event) {
+    voteSelection1.hide();
+    voteSelection2.hide();
+    voteSelection3.hide();
+    voteSelection4.hide();
+    diffBox2.hide();
+    diffBox3.hide();
   }
 
   /**
@@ -282,7 +247,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    */
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
-
 
     ArrayList<Player> playerList = new ArrayList<Player>();
     Collection<ClientData> clientnames =
@@ -463,21 +427,41 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 playerNameStats1.setText(help.getClientName());
                 played1.setText("" + help.getGamesPlayed());
                 won1.setText("" + help.getGamesWon());
+                if (help.getGamesPlayed() > 0) {
+                  score1.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                } else {
+                  score1.setText("0");
+                }
               }
               if (null != (help = sd.get(2))) {
                 playerNameStats2.setText(help.getClientName());
                 played2.setText("" + help.getGamesPlayed());
                 won2.setText("" + help.getGamesWon());
+                if (help.getGamesPlayed() > 0) {
+                  score2.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                } else {
+                  score2.setText("0");
+                }
               }
               if (null != (help = sd.get(3))) {
                 playerNameStats3.setText(help.getClientName());
                 played3.setText("" + help.getGamesPlayed());
                 won3.setText("" + help.getGamesWon());
+                if (help.getGamesPlayed() > 0) {
+                  score3.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                } else {
+                  score3.setText("0");
+                }
               }
               if (null != (help = sd.get(4))) {
                 playerNameStats4.setText(help.getClientName());
                 played4.setText("" + help.getGamesPlayed());
                 won4.setText("" + help.getGamesWon());
+                if (help.getGamesPlayed() > 0) {
+                  score4.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                } else {
+                  score4.setText("0");
+                }
               }
 
             }
@@ -501,5 +485,42 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
   public static void addVote(String clientname, ArrayList<Integer> vote) {
     votes.putIfAbsent(clientname, vote);
+  }
+
+  protected void setUpInit() {
+    this.isDictionarySelected = true;
+    this.player1.setText(Data.getCurrentUser());
+    this.ready1.setText("Not Ready");
+    for (int i = 1; i <= 4; i++) {
+      this.voteSelection1.getItems().add(i);
+      this.voteSelection2.getItems().add(i);
+      this.voteSelection3.getItems().add(i);
+      this.voteSelection4.getItems().add(i);
+    }
+    this.voteSelection1.getSelectionModel().select(0);
+    this.voteSelection2.getSelectionModel().select(1);
+    this.voteSelection3.getSelectionModel().select(2);
+    this.voteSelection4.getSelectionModel().select(3);
+
+    this.diffBox2.getItems().add("Easy");
+    this.diffBox2.getItems().add("Difficult");
+    this.diffBox3.getItems().add("Easy");
+    this.diffBox3.getItems().add("Difficult");
+
+    this.diffBox2.getSelectionModel().select(0);
+    this.diffBox3.getSelectionModel().select(0);
+  }
+
+  protected boolean isClickable() {
+    if (playerAmount >= Data.getPlayerCountMultiplayer() - 1) {
+      this.addPlayerButton.setY(-44);
+      this.addPlayerButton.setOpacity(1);
+      return false;
+
+    } else {
+      this.addPlayerButton.setY(0);
+      this.addPlayerButton.setOpacity(0);
+      return true;
+    }
   }
 }

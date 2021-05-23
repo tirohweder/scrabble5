@@ -1,9 +1,5 @@
 package com.scrab5.ui;
 
-import com.scrab5.core.game.GameSession;
-import com.scrab5.core.player.Player;
-import com.scrab5.util.database.PlayerProfileDatabase;
-import com.scrab5.util.textParser.DictionaryParser;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -11,6 +7,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import com.scrab5.core.game.GameSession;
+import com.scrab5.core.player.Player;
+import com.scrab5.util.database.PlayerProfileDatabase;
+import com.scrab5.util.textParser.DictionaryParser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -49,41 +49,50 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   }
 
+  /**
+   * Event method that is called when the "Ready"-button is clicked.
+   *
+   * @param event
+   * @throws IOException
+   * @author mherre
+   */
   @FXML
-  protected void startGame(MouseEvent event) throws IOException, SQLException {
+  private void ready(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
 
-    Player humanPlayer = new Player(Data.getCurrentUser());
-    Player humanPlayer1 = new Player("Name2");
+    if (!isReady[0]) {
+      this.ready1.setText("Ready");
+      this.isReady[0] = true;
 
-    ArrayList<Player> test = new ArrayList<Player>();
+      if (isEveryoneReady() && this.isDictionarySelected) {
 
-    test.add(0, humanPlayer);
-    test.add(1, humanPlayer1);
+        if (this.playerAmount >= 2) {
+          this.startButton.setOpacity(1.0);
 
-    if (Data.getHasBeenEdited()) {
-      Data.getPointsDistribution();
-      Data.getOccurrencyDistribution();
+        } else {
+          String message = "Please add at least one another player in order to play the game!";
+          PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+          pum.show();
+          this.ready1.setText("Not Ready");
+          this.isReady[0] = false;
+
+        }
+
+      } else {
+        String message = "You must select a dictionary in order to play the game!";
+        PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
+        pum.show();
+        this.ready1.setText("Not Ready");
+        this.isReady[0] = false;
+
+      }
+
     } else {
+      this.ready1.setText("Not Ready");
+      this.startButton.setOpacity(0.0);
+      this.isReady[0] = false;
 
     }
-
-    Data.setGameSession(new GameSession(test, false));
-    System.out.println("Created GameSession");
-
-    /*
-     * TODO: #Get Player Order #Get PlayerAmount #Get Difficulties #Get Distribution
-     */
-
-    App.setRoot("SinglePlayer");
-  } 
-
-  private int[] getPlayerOrder() {
-    int[] playerOrder = new int[4];
-    playerOrder[0] = Integer.parseInt(vote1.getText());
-    playerOrder[1] = Integer.parseInt(vote2.getText());
-    playerOrder[2] = Integer.parseInt(vote3.getText());
-    playerOrder[3] = Integer.parseInt(vote4.getText());
-    return playerOrder;
   }
 
   @FXML
@@ -191,7 +200,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    * @author mherre
    */
   @FXML
-  protected void dontShow(MouseEvent event) throws IOException {
+  protected void dontShow(MouseEvent event) {
     dictionarySelection.hide();
     voteSelection1.hide();
     voteSelection2.hide();
@@ -226,6 +235,34 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     System.out.println(selected);
     System.out.println("PP: " + PlayerProfileDatabase.getFavoriteDictionary(Data.getCurrentUser()));
     isDictionarySelected = true;
+  }
+
+  @FXML
+  protected void startGame(MouseEvent event) throws IOException, SQLException {
+
+    Player humanPlayer = new Player(Data.getCurrentUser());
+    Player humanPlayer1 = new Player("Name2");
+
+    ArrayList<Player> test = new ArrayList<Player>();
+
+    test.add(0, humanPlayer);
+    test.add(1, humanPlayer1);
+
+    if (Data.getHasBeenEdited()) {
+      Data.getPointsDistribution();
+      Data.getOccurrencyDistribution();
+    } else {
+
+    }
+
+    Data.setGameSession(new GameSession(test, false));
+    System.out.println("Created GameSession");
+
+    /*
+     * TODO: #Get Player Order #Get PlayerAmount #Get Difficulties #Get Distribution
+     */
+
+    App.setRoot("SinglePlayer");
   }
 
   protected boolean isClickable() {

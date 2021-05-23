@@ -18,7 +18,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user to insert into preparedStatement
    * @return String with path to picture
    */
-  public synchronized static String getPicture(String name) {
+  public static synchronized String getPicture(String name) {
     Database.disconnect();
     Database.reconnect();
     String picture = null;
@@ -28,7 +28,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT Picture FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         picture = rs.getString(1);
       }
     } catch (SQLException e) {
@@ -51,7 +51,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user to insert into preparedStatement
    * @return int Integer value of the total points from user "name" in the database
    */
-  public synchronized static int getTotalPoints(String name) {
+  public static synchronized int getTotalPoints(String name) {
     Database.reconnect();
     int points = 0;
     try {
@@ -59,7 +59,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT TotalPoints FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         points = rs.getInt(1);
       }
       rs.close();
@@ -77,7 +77,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user to insert into preparedStatement
    * @return int Integer value of the personal highscore stored in the database
    */
-  public synchronized static int getPersonalHighscore(String name) {
+  public static synchronized int getPersonalHighscore(String name) {
     Database.reconnect();
     int highscore = 0;
     ResultSet rs = null;
@@ -86,7 +86,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT PersonalHighscore FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         highscore = rs.getInt(1);
       }
       rs.close();
@@ -111,7 +111,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user to insert into preparedStatement
    * @return int Integer value of the count of laid words stored in the database
    */
-  public synchronized static int getLaidWords(String name) {
+  public static synchronized int getLaidWords(String name) {
     Database.reconnect();
     int words = 0;
     try {
@@ -119,7 +119,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT LaidWords FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         words = rs.getInt(1);
       }
       rs.close();
@@ -135,25 +135,25 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
-   * @return int Integer value of the points per word rate stored in the database
+   * @return pperWord Integer value of the points per word rate stored in the database
    */
-  public synchronized static int getPointsPerWordRate(String name) {
+  public static synchronized int getPointsPerWordRate(String name) {
     Database.reconnect();
-    int pPerWord = 0;
+    int pperWord = 0;
     try {
       PreparedStatement pstm =
           connection.prepareStatement("SELECT PointsPerWordRate FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      while(rs.next()) {
-        pPerWord = rs.getInt(1);
+      while (rs.next()) {
+        pperWord = rs.getInt(1);
       }
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
     Database.disconnect();
-    return pPerWord;
+    return pperWord;
   }
 
 
@@ -164,7 +164,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user to insert into preparedStatement
    * @return String with the longest word stored in the database
    */
-  public synchronized static String getLongestWord(String name) {
+  public static synchronized String getLongestWord(String name) {
     Database.reconnect();
     String word = null;
     try {
@@ -172,7 +172,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT LongestWord FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         word = rs.getString(1);
       }
       
@@ -192,7 +192,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user to insert into preparedStatement
    * @return int Integer value of the total played games stored in the database
    */
-  public synchronized static int getTotalPlayedGames(String name) {
+  public static synchronized int getTotalPlayedGames(String name) {
     Database.reconnect();
     int games = 0;
     try {
@@ -200,7 +200,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT TotalPlayedGames FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         games = rs.getInt(1);
       }
       rs.close();
@@ -218,7 +218,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user to insert into preparedStatement
    * @return int Integer value of the total wins stored in the database
    */
-  public synchronized static int getTotalWins(String name) {
+  public static synchronized int getTotalWins(String name) {
     Database.reconnect();
     int wins = 0;
     try {
@@ -226,7 +226,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT TotalWins FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         wins = rs.getInt(1);
       }
       rs.close();
@@ -245,7 +245,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user to insert into preparedStatement
    * @return Double value of the win rate stored in the database
    */
-  public synchronized static double getWinRate(String name) {
+  public static synchronized double getWinRate(String name) {
     Database.reconnect();
     double rate = 0.0;
     try {
@@ -253,7 +253,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT WinRate FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         rate = rs.getDouble(1);
       }
       rs.close();
@@ -271,7 +271,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user to insert into preparedStatement
    * @return String representing the favorite dictionary of the player name stored in the database
    */
-  public synchronized static String getFavoriteDictionary(String name) {
+  public static synchronized String getFavoriteDictionary(String name) {
     Database.reconnect();
     String dic = null;
     try {
@@ -279,7 +279,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT FaveDic FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         dic = rs.getString(1);
       }
       rs.close();
@@ -297,7 +297,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user where the music volume needs to be returned
    * @return double value of the music volume
    */
-  public synchronized static double getMusicVolume(String name) {
+  public static synchronized double getMusicVolume(String name) {
     Database.reconnect();
     double music = 0.0;
     try {
@@ -305,7 +305,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT Music FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         music = rs.getDouble(1);
       }
       rs.close();
@@ -323,7 +323,7 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user where the sound effect volume needs to be returned
    * @return double value of the sound effect volume
    */
-  public synchronized static double getSoundEffectVolume(String name) {
+  public static synchronized double getSoundEffectVolume(String name) {
     Database.reconnect();
     double soundEffect = 0.0;
     try {
@@ -331,7 +331,7 @@ public class PlayerProfileDatabase extends Database {
           connection.prepareStatement("SELECT SoundEffect FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
-      while(rs.next()) {
+      while (rs.next()) {
         soundEffect = rs.getDouble(1);
       }
       rs.close();
@@ -401,11 +401,11 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user where the points per word rate needs to be set
-   * @param pPerWord Integer representing the new count for points per word rate to be stored in the
+   * @param pperWord Integer representing the new count for points per word rate to be stored in the
    *        database
    */
-  public static void setPointsPerWordRate(String name, int pPerWord) {
-    FillDatabase.updatePlayer("PointsPerWordRate", name, null, pPerWord, 0.0);
+  public static void setPointsPerWordRate(String name, int pperWord) {
+    FillDatabase.updatePlayer("PointsPerWordRate", name, null, pperWord, 0.0);
   }
 
   /**
@@ -481,7 +481,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user where the sound effect volume needs to be set
-   * @param soundeffect double value of the sound effect volume
+   * @param soundEffect double value of the sound effect volume
    */
   public static void setSoundEffectVolume(String name, Double soundEffect) {
     FillDatabase.updatePlayer("SoundEffect", name, null, 0, soundEffect);

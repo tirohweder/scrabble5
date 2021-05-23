@@ -100,7 +100,6 @@ public class ClientServerTest {
       this.delay();
       assertTrue(testServer.getClients().containsKey("testClient2"));
 
-
       /**
        * Testing chat.
        */
@@ -134,6 +133,17 @@ public class ClientServerTest {
       assertEquals(UIInstance.getClientCounter(), testServer.getClientCounter());
       assertEquals(testServer.getClients().get("networkTest").getUsername(),
           UIInstance.getClients().get("networkTest").getUsername());
+
+      /**
+       * Testing ServerStatistics.
+       */
+      int i =
+          testServer.getServerStatistics().getServerStatistics().get("networkTest").getGamesWon();
+      testServer.endGame("networkTest");
+      this.delay();
+      assertEquals(
+          testServer.getServerStatistics().getServerStatistics().get("networkTest").getGamesWon(),
+          ++i);
 
       /**
        * Testing shutting down the server.
