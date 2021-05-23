@@ -1,4 +1,4 @@
-package com.scrab5.util.textparser;
+package com.scrab5.util.parser;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -177,5 +177,3 @@ public class DictionaryParser {
   }*/
 
 }
-
-
