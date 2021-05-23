@@ -486,8 +486,13 @@ public class MultiplayerOverviewController extends Controller implements Initial
     if (Data.getServerList().size() >= number) {
       playSound("ButtonClicked.mp3");
     }
-    if (joinServer(Data.getServerList().get(number).getIp4Address())) {
-      App.setRoot("MultiplayerLobby");
+    if (Data.getServerList().get(number).getClientCounter() == Data.getServerList().get(number)
+        .getClientMaximum()) {
+      new NetworkError(NetworkErrorType.SERVERFULL);
+    } else {
+      if (joinServer(Data.getServerList().get(number).getIp4Address())) {
+        App.setRoot("MultiplayerLobby");
+      }
     }
   }
 

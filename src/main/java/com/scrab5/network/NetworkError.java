@@ -73,6 +73,9 @@ public class NetworkError extends Error {
       case TIMER:
         this.dialog = "10 minute Timer run out. Server shut down.";
         break;
+      case SERVERFULL:
+        this.dialog = "Server is already full.";
+        break;
       default:
         break;
     }
@@ -110,6 +113,6 @@ public class NetworkError extends Error {
    * @author Niklas
    */
   public enum NetworkErrorType {
-    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, SERVERRUN, CLOSECONNECTION, SERVERCREATION, NAMEINUSE, NOSERVERFOUND, TIMER
+    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, SERVERRUN, CLOSECONNECTION, SERVERCREATION, NAMEINUSE, NOSERVERFOUND, TIMER, SERVERFULL
   }
 }

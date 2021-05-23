@@ -331,7 +331,7 @@ public class Client implements Serializable {
   public void updateCurrentServer(LobbyUpdateMessage lum) {
     this.getCurrentServer().setGameStart(lum.getGameStart());
     this.getCurrentServer().setClients(lum.getClients());
-    this.getCurrentServer().updateClientCount();
+    this.getCurrentServer().getClientCounter();
     this.getCurrentServer().setServerStatistics(lum.getServerStatistics());
     Data.updatePlayerClient(this);
   }
