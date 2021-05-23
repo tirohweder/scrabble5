@@ -161,56 +161,6 @@ public class AiPosition {
   }
 
 
-  /**
-   * Cout
-   *
-   * @param gameBoard     takes the currentGameBoard
-   * @param possibleWords revices the possible words as a ArrayList<Tile>
-   * @return Points per Word
-   * @author trohwede
-   */
-  public ArrayList<Integer> countScore(GameBoard gameBoard,
-      ArrayList<ArrayList<Tile>> possibleWords) {
-    ArrayList<Integer> scoreList = new ArrayList<>();
 
-    for (ArrayList<Tile> word : possibleWords) {
-      int score = 0;
-      int scoreToBe = 0;
-      boolean tw = false;
-      boolean dw = false;
-      for (Tile tile : word) {
-
-        if (gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) {
-          switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
-            case "DL":
-              scoreToBe += tile.getValue() * 2;
-              break;
-            case "TL":
-              scoreToBe += tile.getValue() * 3;
-              break;
-            case "DW":
-              dw = true;
-              scoreToBe += tile.getValue();
-              break;
-            case "TW":
-              tw = true;
-              scoreToBe += tile.getValue();
-              break;
-            default:
-              scoreToBe += tile.getValue();
-          }
-        }
-      }
-      if (dw) {
-        score = scoreToBe * 2;
-      } else if (tw) {
-        score = scoreToBe * 3;
-      }
-      scoreList.add(score);
-    }
-
-    return scoreList;
-
-  }
 
 }
