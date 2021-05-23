@@ -419,4 +419,26 @@ public class Server implements Serializable {
     this.connections.get(this.clients.get(clientname)).closeConnection();
     this.sendUpdateMessage();
   }
+
+  /**
+   * Adds a new client instance to the client list. Used for adding AIs.
+   * 
+   * @author nitterhe
+   * @param name - the name of the AiPlayer
+   */
+  public void addAi(String name) {
+    this.clients.put(name, new ClientData(name, "AI", null, true));
+    this.sendUpdateMessage();
+  }
+
+  /**
+   * Removes a new client instance to the client list. Used for adding AIs.
+   * 
+   * @author nitterhe
+   * @param name - the name of the AiPlayer
+   */
+  public void deleteAi(String name) {
+    this.clients.remove(name);
+    this.sendUpdateMessage();
+  }
 }

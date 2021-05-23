@@ -1,10 +1,10 @@
 package com.scrab5.ui;
 
-import java.util.ArrayList;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.network.Client;
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerData;
+import java.util.ArrayList;
 
 /**
  * The Data class is supposed to save temporary information that is needed between controller
@@ -36,6 +36,7 @@ public class Data {
   private static double sfxVolume = 1.0;
 
   private static StringBuffer chatHistory = new StringBuffer();
+  private static GameSession gameSession;
 
   public static GameSession getGameSession() {
     return gameSession;
@@ -44,8 +45,6 @@ public class Data {
   public static void setGameSession(GameSession gameSession) {
     Data.gameSession = gameSession;
   }
-
-  private static GameSession gameSession;
 
   /**
    * Saves which user is currently logged in.

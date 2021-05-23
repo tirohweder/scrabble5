@@ -135,7 +135,7 @@ public class ServerThread extends Threads {
    *         already on the server / was on the server
    * @author nitterher
    */
-  private void addClient(ClientData clientData) throws Exception {
+  protected void addClient(ClientData clientData) throws Exception {
     if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
       FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
           clientData.getIp());
@@ -155,7 +155,7 @@ public class ServerThread extends Threads {
    * @param sender - the disconnect message's sender
    * @author nitterhe
    */
-  private void deleteClient(String sender) {
+  protected void deleteClient(String sender) {
     ClientData client = server.getClients().get(sender);
     if (null != client) {
       this.server.getConnections().remove(client);
