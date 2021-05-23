@@ -1,16 +1,20 @@
 package com.scrab5.util.textparser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.Database;
-import com.scrab5.util.textparser.DictionaryParser;
-import com.scrab5.util.textparser.DictionaryScanner;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import com.scrab5.util.parser.DictionaryParser;
+import com.scrab5.util.parser.DictionaryScanner;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * This class tests the scanning process of a file to search a word. The method getWordsIncluding is tested relating the AiPlayer.
- * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * This class tests the scanning process of a file to search a word. 
+ * The method getWordsIncluding is tested relating the AiPlayer.
+ * Note: In the methods with access to the database to connection gets established 
+ * and disconnect individually for each method. 
+ * Because of that every test method needs to do so too.
  * 
  * @author lengist
  */
