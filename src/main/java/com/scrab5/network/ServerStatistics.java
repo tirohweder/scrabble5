@@ -1,8 +1,3 @@
-/**
- * Class for saving the statistics of all players that have ever played on the server.
- *
- * @author nitterhe
- */
 package com.scrab5.network;
 
 import java.io.Serializable;
@@ -10,6 +5,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 
+/**
+ * Class for saving the statistics of all players that have ever played on the server.
+ *
+ * @author nitterhe
+ */
 public class ServerStatistics implements Serializable {
   private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,13 @@ public class ServerStatistics implements Serializable {
     return this.serverStatistics;
   }
 
-
+  /**
+   * Returns the instance at the number i.
+   * 
+   * @author nitterhe
+   * @param i - the place the object has that should be returned.
+   * @return cs - the clientStatistic object at the position i
+   */
   public ClientStatistic get(int i) {
     Iterator<ClientStatistic> it = serverStatistics.values().iterator();
     if (i <= serverStatistics.size()) {
@@ -57,13 +63,14 @@ public class ServerStatistics implements Serializable {
    * @throws Exception - an Exception that is thrown when a similar client with the same name was
    *         already on the server
    */
-  public boolean addClient(String clientname, String IPAddress) throws Exception {
+  public boolean addClient(String clientname, String ipAddress) throws Exception {
     if (serverStatistics.containsKey(clientname)) {
-      if (this.serverStatistics.get(clientname).getIPAddress().equals(IPAddress))
+      if (this.serverStatistics.get(clientname).getIpAddress().equals(ipAddress)) {
         return false;
+      }
       throw new Exception();
     }
-    this.serverStatistics.put(clientname, new ClientStatistic(clientname, IPAddress));
+    this.serverStatistics.put(clientname, new ClientStatistic(clientname, ipAddress));
     System.out.println("player added");
     this.sort();
     return true;
@@ -73,11 +80,14 @@ public class ServerStatistics implements Serializable {
    * Used when loading ServerStatistics from the database.
    * 
    * @author nitterhe
-   * @param clientStatistic - the clientStatistic to load from the database
+   * @param clientname - the client's name
+   * @param ipAddress - the client's ip address
+   * @param gamesPlayed - the number of games played by this client
+   * @param gamesWon - the number of games won by this client
    */
-  public void loadClient(String clientname, String IPAddress, int gamesPlayed, int gamesWon) {
+  public void loadClient(String clientname, String ipAddress, int gamesPlayed, int gamesWon) {
     this.serverStatistics.put(clientname,
-        new ClientStatistic(clientname, IPAddress, gamesPlayed, gamesWon));
+        new ClientStatistic(clientname, ipAddress, gamesPlayed, gamesWon));
   }
 
   /**
@@ -113,8 +123,9 @@ public class ServerStatistics implements Serializable {
       maximum = iterator.next();
       while (iterator.hasNext()) {
         next = iterator.next();
-        if (maximum.getGamesWon() < next.getGamesWon())
+        if (maximum.getGamesWon() < next.getGamesWon()) {
           maximum = next;
+        }
       }
       help.put(maximum.getClientName(), maximum);
       this.serverStatistics.remove(maximum.getClientName());
@@ -126,13 +137,13 @@ public class ServerStatistics implements Serializable {
   /**
    * Helping class to save every clients statistics in one object.
    * 
-   * @author Niklas
+   * @author nitterhe
    */
   public class ClientStatistic implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String clientname;
-    private String IPAddress;
+    private String ipAddress;
     private int gamesPlayed;
     private int gamesWon;
 
@@ -141,11 +152,11 @@ public class ServerStatistics implements Serializable {
      * 
      * @author nitterhe
      * @param clientname - the client's username
-     * @param IPAddress - the client's IPAddress
+     * @param ipAddress - the client's ipAddress
      */
-    public ClientStatistic(String clientname, String IPAddress) {
+    public ClientStatistic(String clientname, String ipAddress) {
       this.clientname = clientname;
-      this.IPAddress = IPAddress;
+      this.ipAddress = ipAddress;
       this.gamesPlayed = 0;
       this.gamesWon = 0;
     }
@@ -156,13 +167,13 @@ public class ServerStatistics implements Serializable {
      * 
      * @author nitterhe
      * @param clientname - the client's username
-     * @param IPAddress - the client's IPAddress
+     * @param ipAddress - the client's ipAddress
      * @param gamesPlayed - the client's number of games played
      * @param gamesWon - the client's number of games won
      */
-    public ClientStatistic(String clientname, String IPAddress, int gamesPlayed, int gamesWon) {
+    public ClientStatistic(String clientname, String ipAddress, int gamesPlayed, int gamesWon) {
       this.clientname = clientname;
-      this.IPAddress = IPAddress;
+      this.ipAddress = ipAddress;
       this.gamesPlayed = gamesPlayed;
       this.gamesWon = gamesWon;
     }
@@ -183,8 +194,8 @@ public class ServerStatistics implements Serializable {
      * @author nitterhe
      * @return IPAddress - the client's IPAddress
      */
-    public String getIPAddress() {
-      return this.IPAddress;
+    public String getIpAddress() {
+      return this.ipAddress;
     }
 
     /**

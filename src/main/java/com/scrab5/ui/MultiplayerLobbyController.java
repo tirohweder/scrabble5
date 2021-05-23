@@ -136,7 +136,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
 
-  protected void addPlayer(MouseEvent event) throws IOException {
+  protected void addPlayer(MouseEvent event) {
 
     // AIs.add(new Client("Der Zerstörinator" + (AIs.size() + 1)));
     this.updateAICounter();
@@ -247,7 +247,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    */
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
-
 
     ArrayList<Player> playerList = new ArrayList<Player>();
     Collection<ClientData> clientnames =
@@ -428,21 +427,41 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 playerNameStats1.setText(help.getClientName());
                 played1.setText("" + help.getGamesPlayed());
                 won1.setText("" + help.getGamesWon());
+                if (help.getGamesPlayed() > 0) {
+                  score1.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                } else {
+                  score1.setText("0");
+                }
               }
               if (null != (help = sd.get(2))) {
                 playerNameStats2.setText(help.getClientName());
                 played2.setText("" + help.getGamesPlayed());
                 won2.setText("" + help.getGamesWon());
+                if (help.getGamesPlayed() > 0) {
+                  score2.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                } else {
+                  score2.setText("0");
+                }
               }
               if (null != (help = sd.get(3))) {
                 playerNameStats3.setText(help.getClientName());
                 played3.setText("" + help.getGamesPlayed());
                 won3.setText("" + help.getGamesWon());
+                if (help.getGamesPlayed() > 0) {
+                  score3.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                } else {
+                  score3.setText("0");
+                }
               }
               if (null != (help = sd.get(4))) {
                 playerNameStats4.setText(help.getClientName());
                 played4.setText("" + help.getGamesPlayed());
                 won4.setText("" + help.getGamesWon());
+                if (help.getGamesPlayed() > 0) {
+                  score4.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                } else {
+                  score4.setText("0");
+                }
               }
 
             }

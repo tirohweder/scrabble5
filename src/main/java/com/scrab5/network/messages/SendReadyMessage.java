@@ -1,12 +1,12 @@
+package com.scrab5.network.messages;
+
+import java.util.ArrayList;
+
 /**
  * Class for clients to inform the server (and other clients) that the player is ready.
  * 
  * @author nitterhe
  */
-package com.scrab5.network.messages;
-
-import java.util.ArrayList;
-
 public class SendReadyMessage extends Message {
   private static final long serialVersionUID = 1L;
 
@@ -14,7 +14,7 @@ public class SendReadyMessage extends Message {
   private ArrayList<Integer> order;
 
   /**
-   * Constructor for creating LobbyUpdateMessages
+   * Constructor for creating LobbyUpdateMessages.
    * 
    * @author nitterhe
    * @param sender - the LobbyUpdateMessage sender (always server's host)
@@ -27,7 +27,7 @@ public class SendReadyMessage extends Message {
   }
 
   /**
-   * Returns the client's ready status
+   * Returns the client's ready status.
    * 
    * @author nitterhe
    * @return ready - the clients's ready status

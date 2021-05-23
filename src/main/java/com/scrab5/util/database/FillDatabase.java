@@ -31,7 +31,7 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author hraza
    */
-  private synchronized static void closeStatement(String name) {
+  private static synchronized void closeStatement(String name) {
     try {
       switch (name) {
         case "delete":
@@ -70,7 +70,7 @@ public class FillDatabase extends Database {
    *
    * @author lengist
    */
-  public synchronized static void closeAllStatements() {
+  public static synchronized void closeAllStatements() {
     try {
       if ((pstmDelete != null) && (!pstmDelete.isClosed())) {
         pstmDelete.close();
@@ -96,7 +96,7 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author hraza
    */
-  protected synchronized static void deleteTable(String name) {
+  protected static synchronized void deleteTable(String name) {
     Database.reconnect();
     Statement statement;
     try {
@@ -117,7 +117,7 @@ public class FillDatabase extends Database {
    * @param name String with name of the user
    * @author lengist
    */
-  public synchronized static void deletePlayer(String name) {
+  public static synchronized void deletePlayer(String name) {
     Database.reconnect();
     try {
       String sql = "DELETE FROM Player WHERE Name = ?";
@@ -141,7 +141,7 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author hraza
    */
-  public synchronized static boolean createPlayer(String name, String picture) {
+  public static synchronized boolean createPlayer(String name, String picture) {
     Database.reconnect();
     boolean created = false;
     try {
@@ -191,7 +191,7 @@ public class FillDatabase extends Database {
    * @author hraza
    * @author lengist
    */
-  protected synchronized static void updatePlayer(String column, String name, String contentString,
+  protected static synchronized void updatePlayer(String column, String name, String contentString,
       int contentInt, double doubleValues) {
     Database.reconnect();
     System.out.println("Fill");
@@ -299,21 +299,24 @@ public class FillDatabase extends Database {
   /**
    * Method to fill table server completely. Used when a new server is created.
    *
-   * @param clientUsername with name of the user
    * @author lengist
    * @author nitterhe
+   * @param serverHost the name of the host of the server
+   * @param clientUsername with name of the user
+   * @param ipAddress the ip adress of the server
    */
-  public synchronized static void createServerRow(String ServerHost, String clientUsername,
-      String IPAddress) {
+  public static synchronized void createServerRow(String serverHost, String clientUsername,
+      String ipAddress) {
     Database.reconnect();
     try {
       pstmServer = connection.prepareStatement(
-          "INSERT INTO Server (ServerHostName, ClientUsername, GamesPlayed, GamesWon, IPAddress) VALUES (?,?,?,?, ?);");
-      pstmServer.setString(1, ServerHost);
+          "INSERT INTO Server (ServerHostName, ClientUsername, GamesPlayed, "
+          + "GamesWon, IPAddress) VALUES (?,?,?,?, ?);");
+      pstmServer.setString(1, serverHost);
       pstmServer.setString(2, clientUsername);
       pstmServer.setInt(3, 0);
       pstmServer.setInt(4, 0);
-      pstmServer.setString(5, IPAddress);
+      pstmServer.setString(5, ipAddress);
       pstmServer.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -335,10 +338,11 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author nitterhe
    */
-  public synchronized static void updateServer(Server serverObject) {
+  public static synchronized void updateServer(Server serverObject) {
     Database.reconnect();
     String sql =
-        "UPDATE Server SET gamesPlayed = ?, gamesWon = ? WHERE ServerHostName = ? AND ClientUsername = ?;";
+        "UPDATE Server SET gamesPlayed = ?, gamesWon = ? "
+        + "WHERE ServerHostName = ? AND ClientUsername = ?;";
     PreparedStatement pstm;
     try {
       Iterator<ClientStatistic> iterator =
@@ -369,7 +373,7 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author hraza
    */
-  public synchronized static void insertLetters(String letter, int point, int occurrence) {
+  public static synchronized void insertLetters(String letter, int point, int occurrence) {
     Database.reconnect();
     try {
       pstmDic = connection
@@ -397,15 +401,15 @@ public class FillDatabase extends Database {
    * @throws IOException Exception from insertLetters
    * @author lengist
    */
-  public synchronized static void fillLetters() {
+  public static synchronized void fillLetters() {
     deleteTable("Letters");
     Database.reconnect();
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
         "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
-    int[] points =
-        {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10, 0};
-    int[] occurrence =
-        {9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1, 2};
+    int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 
+        4, 10, 0};
+    int[] occurrence = {9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2,
+        1, 2, 1, 2};
     for (int i = 0; i < 27; i++) {
       insertLetters(letter[i], points[i], occurrence[i]);
     }
@@ -420,7 +424,7 @@ public class FillDatabase extends Database {
    * @param occurrence Integer with the new occurrence for the given letter
    * @author lengist
    */
-  protected synchronized static void updateOccurrenceLetters(String letter, int occurrence) {
+  protected static synchronized void updateOccurrenceLetters(String letter, int occurrence) {
     Database.reconnect();
     try {
       pstmDic = connection.prepareStatement("UPDATE Letters SET Occurrence = ? WHERE Letter = ?");
@@ -441,7 +445,7 @@ public class FillDatabase extends Database {
    * @param point  Integer with the new points for the given letter
    * @author lengist
    */
-  protected synchronized static void updatePointLetters(String letter, int point) {
+  protected static synchronized void updatePointLetters(String letter, int point) {
     Database.reconnect();
     try {
       pstmDic = connection.prepareStatement("UPDATE Letters SET Points = ? WHERE Letter = ?");

@@ -8,6 +8,11 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class to scan a document.
+ * 
+ * @author lengist
+ */
 public class DictionaryScanner {
 
   /**
@@ -52,7 +57,7 @@ public class DictionaryScanner {
   }
   
   /**
-   * Method to return words that conatins the letter "letter" and are at most "length" chars long.
+   * Method to return words that contains the letter "letter" and are at most "length" chars long.
    * 
    * @author lengist
    * @param letter the letter that needs to be in the wanted word
@@ -62,14 +67,14 @@ public class DictionaryScanner {
   public static ArrayList<String> getWordsIncluding(String letter, int length) {
     ArrayList<String> list = new ArrayList<String>();
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-    + "src/main/resources/com/scrab5/util/textParser/"
-    + "Built-In Standard DictionaryParsed.txt");
+        + "src/main/resources/com/scrab5/util/textParser/" 
+        + "Built-In Standard DictionaryParsed.txt");
     //needs to be changed back to DictionaryParser.getNewFileName(); 
     try {
       Scanner scanner = new Scanner(file);
-      while(scanner.hasNextLine()) {
+      while (scanner.hasNextLine()) {
         String line = scanner.nextLine();
-        if(line.contains(letter) && line.length() <= length) {
+        if (line.contains(letter) && line.length() <= length) {
           list.add(line);
         }
       }
@@ -92,8 +97,8 @@ public class DictionaryScanner {
    */
   public static ArrayList<String> getWordsIncludingFrom(ArrayList<String> words, String letter) {
     ArrayList<String> checked = new ArrayList<String>();
-    for(String line : words) {
-      if(line.contains(letter)) {
+    for (String line : words) {
+      if (line.contains(letter)) {
         checked.add(line);
       }
     }

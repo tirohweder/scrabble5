@@ -1,15 +1,15 @@
+package com.scrab5.network;
+
+import com.scrab5.ui.PopUpMessage;
+import com.scrab5.ui.PopUpMessageType;
+import java.io.IOException;
+import javafx.application.Platform;
+
 /**
  * Class for c reating MessageDialogs with error notifications.
  * 
  * @author nitterhe
  */
-package com.scrab5.network;
-
-import java.io.IOException;
-import com.scrab5.ui.PopUpMessage;
-import com.scrab5.ui.PopUpMessageType;
-import javafx.application.Platform;
-
 public class NetworkError extends Error {
   private static final long serialVersionUID = 1L;
 
@@ -21,7 +21,7 @@ public class NetworkError extends Error {
    * MessageDialog.
    * 
    * @author nitterhe
-   * @param errorType
+   * @param errorType - the type of error, influences the message shown
    */
   public NetworkError(NetworkErrorType errorType) {
     this.errorType = errorType;
@@ -70,6 +70,9 @@ public class NetworkError extends Error {
       case NOSERVERFOUND:
         this.dialog = "No servers in your local network found";
         break;
+      case TIMER:
+        this.dialog = "10 minute Timer run out. Server shut down.";
+        break;
       default:
         break;
     }
@@ -107,6 +110,6 @@ public class NetworkError extends Error {
    * @author Niklas
    */
   public enum NetworkErrorType {
-    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, SERVERRUN, CLOSECONNECTION, SERVERCREATION, NAMEINUSE, NOSERVERFOUND
+    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, SERVERRUN, CLOSECONNECTION, SERVERCREATION, NAMEINUSE, NOSERVERFOUND, TIMER
   }
 }

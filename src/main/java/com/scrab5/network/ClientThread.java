@@ -1,17 +1,5 @@
-/**
- * Thread for the client sided client-server communication. Exchanges messages with the server and
- * executes methods based on the incoming messages.
- *
- * @author nitterhe
- */
 package com.scrab5.network;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.net.InetAddress;
-import java.net.Socket;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
@@ -22,16 +10,28 @@ import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.Socket;
 import javafx.application.Platform;
 
+/**
+ * Thread for the client sided client-server communication. Exchanges messages with the server and
+ * executes methods based on the incoming messages.
+ *
+ * @author nitterhe
+ */
 public class ClientThread extends Threads implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  transient private Client client;
-  transient private ObjectOutputStream toServer;
-  transient private ObjectInputStream fromServer;
-  transient private Socket socketToServer;
+  private transient Client client;
+  private transient ObjectOutputStream toServer;
+  private transient ObjectInputStream fromServer;
+  private transient Socket socketToServer;
   public final String sender;
 
   /**
@@ -115,7 +115,7 @@ public class ClientThread extends Threads implements Serializable {
           public void run() {
             try {
               PopUpMessage npm = new PopUpMessage(
-                  "The connection has been closed since a player disconnected or you have been kicked.",
+                  "The connection has been closed. A player disconnected or you have been kicked.",
                   PopUpMessageType.NOTIFICATION);
               npm.show();
             } catch (IOException e) {
@@ -140,8 +140,8 @@ public class ClientThread extends Threads implements Serializable {
    */
   public void connectToServer(ServerData serverdata) {
     try {
-      if (InetAddress.getByName(serverdata.getIP4Address()).isReachable(10000)) {
-        this.socketToServer = new Socket(serverdata.getIP4Address(), serverdata.getPort());
+      if (InetAddress.getByName(serverdata.getIp4Address()).isReachable(10000)) {
+        this.socketToServer = new Socket(serverdata.getIp4Address(), serverdata.getPort());
         this.toServer = new ObjectOutputStream(socketToServer.getOutputStream());
         this.fromServer = new ObjectInputStream(socketToServer.getInputStream());
         this.start();

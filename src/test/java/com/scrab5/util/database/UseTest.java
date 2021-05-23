@@ -2,22 +2,24 @@ package com.scrab5.util.database;
 
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
-import java.util.LinkedHashMap;
-import java.util.Map.Entry;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * In this class the required functions that need to be tested separately from FillDatabase.java and need to return important information for other functions are tested.
- * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * In this class the required functions that need to be tested separately 
+ * from FillDatabase.java and need to return important information for other functions are tested.
+ * Note: In the methods with access to the database to connection gets established and disconnect 
+ * individually for each method. Because of that every test method needs to do so too.
  * 
- * @author lauraengist
+ * @author lengist
  */
 @Disabled
 class UseTest {
@@ -81,12 +83,12 @@ class UseTest {
    * @author lengist
    */
   @Test
-  void testGetAllPlayerRS() {
+  void testGetAllPlayerRs() {
     CreateDatabase cdb = new CreateDatabase();
     FillDatabase.createPlayer("Alpha", null);
     FillDatabase.createPlayer("Beta", null);
 
-    ResultSet rs = UseDatabase.getAllPlayerRS();
+    ResultSet rs = UseDatabase.getAllPlayerRs();
     String[] name = new String[2];
     int i = 0;
     try {
@@ -171,7 +173,7 @@ class UseTest {
     assertEquals(false, list.isEmpty());
     assertEquals("Laura", server.getHost());
     assertEquals("client", client);
-    assertEquals("12345", cs.getIPAddress());
+    assertEquals("12345", cs.getIpAddress());
     Database.disconnect();
   }
 
