@@ -165,7 +165,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @FXML
   protected void kickPlayer2(MouseEvent event) {
 
-    if (kick2.getOpacity() == 1.0) { // AI oder echter Spieler?
+    if (kick2.getOpacity() == 1.0) {
       Data.getHostedServer().kickClient(this.player2.getText());
       playSound("ButtonClicked.mp3");
       this.player2.setText("");
@@ -180,7 +180,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @FXML
   protected void kickPlayer3(MouseEvent event) {
 
-    if (kick3.getOpacity() == 1.0) { // AI oder echter Spieler?
+    if (kick3.getOpacity() == 1.0) {
       if (!this.freeSpaces[1]) {
         AIs[0] = null;
         this.freeSpaces[1] = true;
@@ -204,10 +204,10 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @FXML
   protected void kickPlayer4(MouseEvent event) {
 
-    if (kick4.getOpacity() == 1.0) { // AI oder echter Spieler?
+    if (kick4.getOpacity() == 1.0) {
       if (!this.freeSpaces[2]) {
         AIs[1] = null;
-        this.freeSpaces[1] = true;
+        this.freeSpaces[2] = true;
         this.aiPlayerAmount--;
       } else {
         Data.getHostedServer().kickClient(this.player4.getText());
@@ -510,7 +510,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   protected boolean isClickable() {
-    if (playerAmount >= Data.getPlayerCountMultiplayer() - 1) {
+    if (playerAmount >= Data.getPlayerCountMultiplayer() - 1
+        || aiPlayerAmount == Data.getPlayerCountMultiplayer() - 2) {
       this.addPlayerButton.setY(-44);
       this.addPlayerButton.setOpacity(1);
       return false;

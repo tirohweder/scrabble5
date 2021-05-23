@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AiPlayer extends Player {
+
   static String[] lettersFromDatabase;
   static int[] pointsPerLetterFromDatabase;
 
@@ -17,7 +18,6 @@ public class AiPlayer extends Player {
   int counterRight;
   int counterLeft;
   int aiThreshold;
-  private int difficulty;
 
   /**
    * @param name
@@ -28,15 +28,14 @@ public class AiPlayer extends Player {
   }
 
   /**
-   * Constructor that creates ai, directly with diffuclty
+   * Constructor for Tile
    *
+   * @param name
    * @author trohwede
-   * @param name name of ai
-   * @param difficulty 0 = easy, 1 = hard
    */
   public AiPlayer(String name, int difficulty) {
     super(name);
-    this.difficulty = difficulty;
+
     if (difficulty == 0) {
       this.aiThreshold = Data.easyAiThreshold;
     } else {
@@ -165,7 +164,7 @@ public class AiPlayer extends Player {
       tiles.add(innerList);
     }
 
-    /*TODO: tiles an AiPosition.countScore weitergeben*/
+    /* TODO: tiles an AiPosition.countScore weitergeben */
 
     /* TODO: Possible add: condition to end this method after for example 15 words. */
 
@@ -196,7 +195,6 @@ public class AiPlayer extends Player {
       int xfixLetter,
       int yfixLetter,
       boolean horizontal) {
-
     int placeFixLetter = 0;
     int xnew = 0;
     int ynew = 0;
@@ -314,7 +312,7 @@ public class AiPlayer extends Player {
     finalWords.removeAll(deletionRound2);
 
     ArrayList<String> deletionRound3 = new ArrayList<String>();
-    /*TODO: fill the hashmap for the CurrentDistribution*/
+    /* TODO: fill the hashmap for the CurrentDistribution */
 
     HashMap<String, Integer> currentDistribution = new HashMap<>();
     for (int i = 0; i < possibleLetters.length; i++) {
@@ -344,12 +342,11 @@ public class AiPlayer extends Player {
         int column = coordinates.get(0);
         Tile t = new Tile(String.valueOf(s.charAt(i)), value, row, column);
         innerList.add(t);
-        /*System.out.println("s: " + s);
-        System.out.println("s x: " + x);
-        System.out.println("s y: " + y);
-        System.out.println("char: " + s.charAt(i));
-        System.out.println("xNew: " + column);
-        System.out.println("yNew: " + row);*/
+        /*
+         * System.out.println("s: " + s); System.out.println("s x: " + x);
+         * System.out.println("s y: " + y); System.out.println("char: " + s.charAt(i));
+         * System.out.println("xNew: " + column); System.out.println("yNew: " + row);
+         */
       }
       tiles.add(innerList);
     }
@@ -392,20 +389,16 @@ public class AiPlayer extends Player {
     return b;
   }
 
-  /**
-   * This fuction is called when gamecontroller checks that player is nonhuman, will give appropiate
-   * difficulty.
-   *
-   * @author trohwede
-   */
-  public void aiPlay() {
+  public void aiPlay(int aiThreshold) {
+
     boolean foundMatchingThreshold = false;
+    int column = 0;
+    int row = 0;
     ArrayList<Tile> choosenWord = new ArrayList<>();
 
     // go through game while threshhold is not reached
-    lookingForValue:
-    for (int row = 0; row < 15; row++) {
-      for (int column = 0; column < 15; column++) {
+    while (!foundMatchingThreshold && row < 15) {
+      while (!foundMatchingThreshold && column < 15) {
         if (Data.getGameSession().getGameBoard().getPlayedTile(row, column) != null) {
           getSpotsfree(row, column, Data.getGameSession().getGameBoard());
           ArrayList<ArrayList<Tile>> wordList;
@@ -436,7 +429,7 @@ public class AiPlayer extends Player {
             if (points.get(k) >= aiThreshold) {
               choosenWord = wordList.get(k);
               foundMatchingThreshold = true;
-              break lookingForValue;
+              break;
             }
           }
         }
@@ -452,8 +445,6 @@ public class AiPlayer extends Player {
         Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
         currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
       }
-    } else {
-      // TODO what if no word
     }
 
     Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
@@ -568,7 +559,7 @@ public class AiPlayer extends Player {
   }
 
   /**
-   * Count the score TODO
+   * Cout
    *
    * @param gameBoard takes the currentGameBoard
    * @param possibleWords revices the possible words as a ArrayList<Tile>
