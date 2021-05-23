@@ -18,6 +18,64 @@ import java.util.ArrayList;
 public class GameSession implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  private final GameBoard gameBoard = new GameBoard();
+  private BagOfTiles bag = new BagOfTiles();
+  private ArrayList<Player> listOfPlayers;
+  private int skippedTurn = 0;
+  private int roundNumber = 0;
+  private boolean canEnd = false;
+  private Player currentPlayer;
+  private boolean shouldEnd = false;
+  private boolean running = true;
+  private boolean online;
+
+  // TODO might delete
+  public GameSession(
+      ArrayList<Player> listOfPlayers,
+      ArrayList<Integer> letters,
+      ArrayList<Integer> points,
+      boolean isOnline)
+      throws SQLException {
+    this.listOfPlayers = listOfPlayers;
+    currentPlayer = listOfPlayers.get(0);
+    this.online = isOnline;
+    if (this.online) {
+      Data.getHostedServer().startGame();
+    }
+    initializeBag(letters, points);
+    for (Player listOfPlayer : listOfPlayers) {
+      listOfPlayer.getRack().fill(bag);
+    }
+  }
+
+  /**
+   * Intitializes the Gamsession, sets currentplayer, calls to create the correct bag, and fills the
+   * rack of each player.
+   *
+   * @param listOfPlayers list of players in the correct order
+   * @param isOnline is the game multiplayer or singleplayer
+   * @throws SQLException if Database cant connect //TODO is this the right way
+   * @author trohwede
+   */
+  public GameSession(ArrayList<Player> listOfPlayers, boolean isOnline) throws SQLException {
+    this.listOfPlayers = listOfPlayers;
+    currentPlayer = listOfPlayers.get(0);
+    this.online = isOnline;
+    if (this.online) {
+      Data.getHostedServer().startGame();
+    }
+    System.out.println("Created Game Session");
+
+    initializeBag();
+
+    for (Player player : listOfPlayers) {
+      if (player.isHuman()) {
+        player.getRack().fill(bag);
+      }
+      System.out.println("Im creating new GameSession right now");
+      System.out.println("Tile AT 0:" + currentPlayer.getRack().getTileAt(0));
+    }
+  }
 
   /**
    * Getter for gameBoard.
@@ -39,7 +97,6 @@ public class GameSession implements Serializable {
     return bag;
   }
 
-
   /**
    * Setter for the bag.
    *
@@ -49,7 +106,6 @@ public class GameSession implements Serializable {
   public void setBag(BagOfTiles bag) {
     this.bag = bag;
   }
-
 
   /**
    * Getter for the current list of players.
@@ -65,7 +121,6 @@ public class GameSession implements Serializable {
     this.listOfPlayers = listOfPlayers;
   }
 
-
   /**
    * Getter current skipped turns.
    *
@@ -75,7 +130,6 @@ public class GameSession implements Serializable {
   public int getSkippedTurn() {
     return skippedTurn;
   }
-
 
   /**
    * Setter for skipped turns.
@@ -101,7 +155,6 @@ public class GameSession implements Serializable {
     this.roundNumber = roundNumber;
   }
 
-
   /**
    * Setter if we can end.
    *
@@ -122,7 +175,6 @@ public class GameSession implements Serializable {
     this.canEnd = canEnd;
   }
 
-
   /**
    * Getter for current player.
    *
@@ -137,7 +189,6 @@ public class GameSession implements Serializable {
     this.currentPlayer = currentPlayer;
   }
 
-
   /**
    * Returns if the game is online or offline.
    *
@@ -147,7 +198,6 @@ public class GameSession implements Serializable {
   public boolean isOnline() {
     return online;
   }
-
 
   /**
    * Setter if the game is online or offline.
@@ -159,7 +209,6 @@ public class GameSession implements Serializable {
     this.online = online;
   }
 
-
   /**
    * Returns if the game is running or not.
    *
@@ -169,7 +218,6 @@ public class GameSession implements Serializable {
   public boolean isRunning() {
     return running;
   }
-
 
   /**
    * Set if the game is running or not.
@@ -181,6 +229,7 @@ public class GameSession implements Serializable {
     this.running = running;
   }
 
+  // initialize bag fills the bag with the selected tiles
 
   /**
    * Returns boolean if the game should end.
@@ -201,66 +250,6 @@ public class GameSession implements Serializable {
   public void setShouldEnd(boolean shouldEnd) {
     this.shouldEnd = shouldEnd;
   }
-
-  private final GameBoard gameBoard = new GameBoard();
-  private BagOfTiles bag = new BagOfTiles();
-  private ArrayList<Player> listOfPlayers;
-  private int skippedTurn = 0;
-  private int roundNumber = 0;
-  private boolean canEnd = false;
-  private Player currentPlayer;
-  private boolean shouldEnd = false;
-  private boolean running = true;
-
-
-  private boolean online;
-
-  // initialize bag fills the bag with the selected tiles
-
-  //TODO might delete
-  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
-      ArrayList<Integer> points, boolean isOnline) throws SQLException {
-    this.listOfPlayers = listOfPlayers;
-    currentPlayer = listOfPlayers.get(0);
-    this.online = isOnline;
-    if (this.online) {
-      Data.getHostedServer().startGame();
-    }
-    initializeBag(letters, points);
-    for (Player listOfPlayer : listOfPlayers) {
-      listOfPlayer.getRack().fill(bag);
-    }
-  }
-
-  /**
-   * Intitializes the Gamsession, sets currentplayer, calls to create the correct bag, and fills the
-   * rack of each player.
-   *
-   * @param listOfPlayers list of players in the correct order
-   * @param isOnline      is the game multiplayer or singleplayer
-   * @throws SQLException if Database cant connect //TODO is this the right way
-   * @author trohwede
-   */
-  public GameSession(ArrayList<Player> listOfPlayers, boolean isOnline) throws SQLException {
-    this.listOfPlayers = listOfPlayers;
-    currentPlayer = listOfPlayers.get(0);
-    this.online = isOnline;
-    if (this.online) {
-      Data.getHostedServer().startGame();
-    }
-    System.out.println("Created Game Session");
-
-    initializeBag();
-
-    for (Player player : listOfPlayers) {
-      if (player.isHuman()) {
-        player.getRack().fill(bag);
-      }
-      System.out.println("Im creating new GameSession right now");
-      System.out.println("Tile AT 0:" + currentPlayer.getRack().getTileAt(0));
-    }
-  }
-
 
   /**
    * Reads the distribution of tiles from the database and creates the bag accordingly.
@@ -286,23 +275,25 @@ public class GameSession implements Serializable {
     Database.disconnect();
   }
 
-
-  //TODO might delte later
-  public void initializeBag(ArrayList<Integer> letters, ArrayList<Integer> points)
+  // TODO might delte later
+  public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points)
       throws SQLException {
-    if (!Data.getHasBeenEdited()) {
-      ResultSet rs = UseDatabase.viewLetters();
-      while (rs.next()) {
-        this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
-      }
-    } else {
-      for (int i = 0; i < letters.size(); i++) {
 
+    // TODO joker richtig bennen
+    String[] buchstaben = {
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+      "T", "U", "V", "W", "X", "Y", "Z", "joker"
+    };
+
+    for (int i = 0; i < lettersOccurrence.size(); i++) {
+      for (int j = 0; j < lettersOccurrence.get(i); j++) {
+
+        this.bag.add(new Tile(buchstaben[i], points.get(i)));
       }
     }
+
     Database.disconnect();
   }
-
 
   /**
    * When turn is finished correctly, rack need to be refilled, round number increased,
@@ -320,14 +311,10 @@ public class GameSession implements Serializable {
     }
   }
 
+  // TODO
+  public void checkEndScreen() {}
 
-  //TODO
-  public void checkEndScreen() {
-
-  }
-
-
-  //TODO
+  // TODO
   public void endGame() {
     // Data.getHostedServer().endGame(winner); nur beim host.
     // TODO call server method, endGame()
@@ -335,8 +322,7 @@ public class GameSession implements Serializable {
     this.running = false;
   }
 
-
-  //TODO
+  // TODO
   public boolean giveUp() {
     return false;
   }
@@ -362,5 +348,4 @@ public class GameSession implements Serializable {
   public boolean calculateEndPossibility() {
     return this.skippedTurn >= 6;
   }
-
 }
