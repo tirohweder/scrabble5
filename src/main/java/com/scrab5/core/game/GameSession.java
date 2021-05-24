@@ -306,10 +306,11 @@ public class GameSession implements Serializable {
     currentPlayer.getRack().fill(bag);
     roundNumber++;
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
-
-    if (!currentPlayer.isHuman()) {
+    System.out.println("Current Player= " + currentPlayer.getName());
+    if (currentPlayer instanceof AiPlayer) {
       System.out.println("Ai will try to play now: ");
-      ((AiPlayer) currentPlayer).aiPlay();
+      AiPlayer aiPlayer = (AiPlayer) currentPlayer;
+      aiPlayer.aiPlay();
     }
     gameBoard.finishTurn();
     if (online) {

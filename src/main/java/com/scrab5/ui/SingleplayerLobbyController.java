@@ -12,8 +12,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,12 +29,9 @@ import javafx.scene.input.MouseEvent;
  */
 public class SingleplayerLobbyController extends LobbyController implements Initializable {
 
-  @FXML
-  private ComboBox<String> dictionarySelection;
-  @FXML
-  private ImageView dropDownButton;
-  @FXML
-  private Label dicDisplaying;
+  @FXML private ComboBox<String> dictionarySelection;
+  @FXML private ImageView dropDownButton;
+  @FXML private Label dicDisplaying;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -243,7 +238,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
     for (int i = 1; i < freeSpaces.length; i++) {
       if (!freeSpaces[i]) {
-        playList.add(new AiPlayer("CPU" + (i + 1)));
+        playList.add(new AiPlayer("CPU" + (i + 1), 0));
       }
     }
 
@@ -286,7 +281,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   /**
    * Method that creates an <code>ArrayList</code> which contains the amount of tiles of each
    * letter. The maximum amount of tiles that a bag can have, is 100.
-   * 
+   *
    * @author mherre
    * @param al the ArrayList that contains the selected occurrences
    * @return finalBag the ArrayList that contains the amount of tiles for each letter
@@ -308,18 +303,17 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     return finalBag;
   }
 
-  /**
-   * https://stackabuse.com/java-list-files-in-a-directory/
-   */
+  /** https://stackabuse.com/java-list-files-in-a-directory/ */
   private void setUpDicitionaryBox() {
 
     File dir = new File(System.getProperty("user.dir"));
-    FilenameFilter filter = new FilenameFilter() {
+    FilenameFilter filter =
+        new FilenameFilter() {
 
-      public boolean accept(File dir, String name) {
-        return name.endsWith(".txt");
-      }
-    };
+          public boolean accept(File dir, String name) {
+            return name.endsWith(".txt");
+          }
+        };
 
     String[] fileNames = dir.list(filter);
 

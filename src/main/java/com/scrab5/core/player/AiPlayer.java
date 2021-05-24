@@ -4,6 +4,7 @@ import com.scrab5.core.game.BagOfTiles;
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.parser.DictionaryScanner;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,9 +24,9 @@ public class AiPlayer extends Player {
    * @param name
    * @author hraza
    */
-  public AiPlayer(String name) {
-    super(name);
-  }
+  // public AiPlayer(String name) {
+  //   super(name);
+  // }
 
   /**
    * Constructor for Tile
@@ -34,7 +35,7 @@ public class AiPlayer extends Player {
    * @author trohwede
    */
   public AiPlayer(String name, int difficulty) {
-    super(name);
+    super(name, false);
 
     if (difficulty == 0) {
       this.aiThreshold = Data.easyAiThreshold;
@@ -93,7 +94,10 @@ public class AiPlayer extends Player {
     }
 
     int maximumLength = before + 1 + after;
+
     ArrayList<String> first = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
+    System.out.println("1. Final Words length: " + first.size());
+
     for (String b1 : possibleLetters) {
       first = DictionaryScanner.getWordsIncludingFrom(first, b1);
       for (String s : first) {
@@ -101,7 +105,7 @@ public class AiPlayer extends Player {
       }
     }
 
-    System.out.println("Final Words length: " + finalWords.size());
+    System.out.println("2. Final Words length: " + finalWords.size());
 
     StringBuilder sb = new StringBuilder();
     for (String s : possibleLetters) {
@@ -116,6 +120,8 @@ public class AiPlayer extends Player {
       }
     }
     finalWords.removeAll(deletionRound1);
+
+    System.out.println("After Deltion round 1: " + finalWords.size());
 
     if (finalWords.isEmpty()) {
       /* TODO: change next spot */
@@ -138,6 +144,8 @@ public class AiPlayer extends Player {
     }
     finalWords.removeAll(deletionRound2);
 
+    System.out.println("After Deltion round 2: " + finalWords.size());
+
     if (finalWords.isEmpty()) {
       /* TODO: change next spot */
     }
@@ -150,13 +158,14 @@ public class AiPlayer extends Player {
       }
     }
     finalWords.removeAll(deletionRound3);
-    System.out.println("Final Words length: " + fixLetter.length());
+    System.out.println("Final Words length 3. : " + finalWords.size());
 
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
     ArrayList<Tile> innerList = new ArrayList<Tile>();
     for (String s : finalWords) {
       for (int i = 0; i < s.length(); i++) {
-        System.out.println("Trying to get value");
+        // System.out.println("Trying to get value");
+        // System.out.println(s.charAt(i));
         int value = getPointForLetter(String.valueOf(s.charAt(i)));
         ArrayList<Integer> coordinates =
             getCoordinates(s, fixLetter, String.valueOf(s.charAt(i)), x, y, horizontal);
@@ -166,6 +175,7 @@ public class AiPlayer extends Player {
         innerList.add(t);
       }
       tiles.add(innerList);
+      innerList.clear();
     }
 
     /* TODO: tiles an AiPosition.countScore weitergeben */
@@ -202,8 +212,6 @@ public class AiPlayer extends Player {
     int placeFixLetter = 0;
     int xnew = 0;
     int ynew = 0;
-
-    System.out.println("Trying to get coordinates");
 
     for (int i = 0; i < word.length(); i++) {
       if (word.charAt(i) == fixLetter.charAt(0)) {
@@ -246,7 +254,7 @@ public class AiPlayer extends Player {
    */
   public static int getPointForLetter(String letter) {
     int points = 0;
-    System.out.println("Letter length" + lettersFromDatabase.length);
+    // System.out.println("Letter length" + lettersFromDatabase.length);
     for (int i = 0; i < lettersFromDatabase.length; i++) {
       if (lettersFromDatabase[i].equals(letter)) {
         points = pointsPerLetterFromDatabase[i];
@@ -394,77 +402,62 @@ public class AiPlayer extends Player {
           currentDistribution.get(Character.toString(word.charAt(i))) + 1);
     }
 
-    System.out.println("Word: " + word + " is : " + b);
+    // System.out.println("Word: " + word + " is : " + b);
     return b;
   }
 
-  public void aiPlay() {
+  /**
+   * Cout
+   *
+   * @param gameBoard takes the currentGameBoard
+   * @param possibleWords revices the possible words as a ArrayList<Tile>
+   * @return Points per Word
+   * @author trohwede
+   */
+  public static ArrayList<Integer> countScore(
+      GameBoard gameBoard, ArrayList<ArrayList<Tile>> possibleWords) {
+    ArrayList<Integer> scoreList = new ArrayList<>();
 
-    boolean foundMatchingThreshold = false;
+    System.out.println("Counting score " + possibleWords.size());
+    System.out.println("Possible " + possibleWords.get(0).size());
 
-    ArrayList<Tile> choosenWord = new ArrayList<>();
-    System.out.println("Starting to find word");
-    // go through game while threshhold is not reached
+    for (ArrayList<Tile> word : possibleWords) {
 
-    findacceptable:
-    for (int row = 0; row < 15; row++) {
-      for (int column = 0; column < 15; column++) {
-        System.out.println("Checking " + row + " : " + column);
-
-        if (Data.getGameSession().getGameBoard().getPlayedTile(row, column) != null) {
-          getSpotsfree(row, column, Data.getGameSession().getGameBoard());
-          ArrayList<ArrayList<Tile>> wordList;
-
-          System.out.println("Trying someting");
-
-          if (counterDown + counterUp > counterLeft + counterLeft) {
-            wordList =
-                wordGenerator(
-                    Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
-                    counterDown,
-                    counterUp,
-                    row,
-                    column,
-                    false);
-          } else {
-            wordList =
-                wordGenerator(
-                    Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
-                    counterRight,
-                    counterLeft,
-                    row,
-                    column,
-                    true);
-          }
-
-          System.out.println("Checked all");
-          ArrayList<Integer> points = countScore(Data.getGameSession().getGameBoard(), wordList);
-
-          for (int k = 0; k < points.size(); k++) {
-            if (points.get(k) >= aiThreshold) {
-              choosenWord = wordList.get(k);
-              foundMatchingThreshold = true;
-              break findacceptable;
-            }
+      int score = 0;
+      int scoreToBe = 0;
+      boolean tw = false;
+      boolean dw = false;
+      for (Tile tile : word) {
+        // System.out.println(tile.getLetter());
+        if (gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) {
+          switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
+            case "DL":
+              scoreToBe += tile.getValue() * 2;
+              break;
+            case "TL":
+              scoreToBe += tile.getValue() * 3;
+              break;
+            case "DW":
+              dw = true;
+              scoreToBe += tile.getValue();
+              break;
+            case "TW":
+              tw = true;
+              scoreToBe += tile.getValue();
+              break;
+            default:
+              scoreToBe += tile.getValue();
           }
         }
       }
-    }
-
-    // because ai uses tiles from the bag, the correct distubution needs to be set.
-    HashMap<String, Integer> currentDistru =
-        Data.getGameSession().getBag().getCurrentBagDistribution();
-
-    if (foundMatchingThreshold) {
-      for (Tile tile : choosenWord) {
-        Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
-        currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
+      if (dw) {
+        score = scoreToBe * 2;
+      } else if (tw) {
+        score = scoreToBe * 3;
       }
+      scoreList.add(score);
     }
-
-    Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
-    Data.getGameSession().getGameBoard().finishTurn();
-    Data.getGameSession().finishTurn();
+    return scoreList;
   }
 
   /**
@@ -575,54 +568,119 @@ public class AiPlayer extends Player {
     this.counterLeft = counterLeft;
   }
 
-  /**
-   * Cout
-   *
-   * @param gameBoard takes the currentGameBoard
-   * @param possibleWords revices the possible words as a ArrayList<Tile>
-   * @return Points per Word
-   * @author trohwede
-   */
-  public ArrayList<Integer> countScore(
-      GameBoard gameBoard, ArrayList<ArrayList<Tile>> possibleWords) {
-    ArrayList<Integer> scoreList = new ArrayList<>();
+  public void aiPlay() {
+    lettersFromDatabase = UseDatabase.getAllLetters();
+    pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
 
-    System.out.println("Counting score");
+    boolean foundMatchingThreshold = false;
 
-    for (ArrayList<Tile> word : possibleWords) {
-      int score = 0;
-      int scoreToBe = 0;
-      boolean tw = false;
-      boolean dw = false;
-      for (Tile tile : word) {
-        if (gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) {
-          switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
-            case "DL":
-              scoreToBe += tile.getValue() * 2;
-              break;
-            case "TL":
-              scoreToBe += tile.getValue() * 3;
-              break;
-            case "DW":
-              dw = true;
-              scoreToBe += tile.getValue();
-              break;
-            case "TW":
-              tw = true;
-              scoreToBe += tile.getValue();
-              break;
-            default:
-              scoreToBe += tile.getValue();
+    ArrayList<Tile> choosenWord = new ArrayList<>();
+    System.out.println("Starting to find word");
+    // go through game while threshhold is not reached
+
+    findacceptable:
+    for (int row = 0; row < 15; row++) {
+      for (int column = 0; column < 15; column++) {
+        System.out.println("Checking " + row + " : " + column);
+
+        if (Data.getGameSession().getGameBoard().getPlayedTile(row, column) != null) {
+          getSpotsfree(row, column, Data.getGameSession().getGameBoard());
+          ArrayList<ArrayList<Tile>> wordList;
+
+          System.out.println("Trying someting");
+
+          if (counterDown + counterUp > counterLeft + counterLeft) {
+            wordList =
+                AiPlayer.wordGenerator(
+                    Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
+                    counterDown,
+                    counterUp,
+                    row,
+                    column,
+                    false);
+          } else {
+            wordList =
+                wordGenerator(
+                    Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
+                    counterRight,
+                    counterLeft,
+                    row,
+                    column,
+                    true);
+          }
+
+          System.out.println("Checked all");
+          ArrayList<Integer> points = countScore(Data.getGameSession().getGameBoard(), wordList);
+
+          System.out.println(aiThreshold);
+
+          for (int k = 0; k < points.size(); k++) {
+            System.out.println("Points: " + points + " word: " + wordList.get(k));
+
+            if (points.get(k) >= aiThreshold) {
+              choosenWord = wordList.get(k);
+              foundMatchingThreshold = true;
+              System.out.println("DID BREAK");
+              break findacceptable;
+            }
           }
         }
       }
-      if (dw) {
-        score = scoreToBe * 2;
-      } else if (tw) {
-        score = scoreToBe * 3;
-      }
-      scoreList.add(score);
     }
-    return scoreList;
+
+    // because ai uses tiles from the bag, the correct distubution needs to be set.
+    HashMap<String, Integer> currentDistru =
+        Data.getGameSession().getBag().getCurrentBagDistribution();
+
+    if (foundMatchingThreshold) {
+      for (Tile tile : choosenWord) {
+        Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
+        currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
+      }
+    }
+
+    Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
+    Data.getGameSession().getGameBoard().finishTurn();
+    Data.getGameSession().finishTurn();
+  }
+
+  public int getCounterUp() {
+    return counterUp;
+  }
+
+  public void setCounterUp(int counterUp) {
+    this.counterUp = counterUp;
+  }
+
+  public int getCounterDown() {
+    return counterDown;
+  }
+
+  public void setCounterDown(int counterDown) {
+    this.counterDown = counterDown;
+  }
+
+  public int getCounterRight() {
+    return counterRight;
+  }
+
+  public void setCounterRight(int counterRight) {
+    this.counterRight = counterRight;
+  }
+
+  public int getCounterLeft() {
+    return counterLeft;
+  }
+
+  public void setCounterLeft(int counterLeft) {
+    this.counterLeft = counterLeft;
+  }
+
+  public int getAiThreshold() {
+    return aiThreshold;
+  }
+
+  public void setAiThreshold(int aiThreshold) {
+    this.aiThreshold = aiThreshold;
   }
 }

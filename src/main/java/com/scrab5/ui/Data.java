@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class Data {
 
-  public static int easyAiThreshold = 15;
+  public static int easyAiThreshold = 5;
   public static int hardAiThreshold = 25;
   private static String currentUser;
   private static String inputFieldText;
@@ -32,7 +32,7 @@ public class Data {
   private static double sfxVolume = 1.0;
   private static StringBuffer chatHistory = new StringBuffer();
   private static GameSession gameSession;
-  
+
   private static boolean okayClicked = false;
 
   public static GameSession getGameSession() {
@@ -126,7 +126,7 @@ public class Data {
   public static void setConfirmed(boolean cf) {
     confirmed = cf;
   }
-  
+
   /**
    * Returns the value of <code>okayClicked</code> and thus gives information if the "Okay" button
    * of a {@link com.scrab5.ui.PopUpMessage PopUpMessage} was clicked.
@@ -139,8 +139,7 @@ public class Data {
   }
 
   /**
-   * Saves if "Okay" of a {@link com.scrab5.ui.PopUpMessage PopUpMessage} has been clicked or
-   * not.
+   * Saves if "Okay" of a {@link com.scrab5.ui.PopUpMessage PopUpMessage} has been clicked or not.
    *
    * @param ok the boolean that gets set
    * @author mherre

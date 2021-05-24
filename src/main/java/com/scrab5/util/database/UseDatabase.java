@@ -1,20 +1,18 @@
 package com.scrab5.util.database;
 
 import com.scrab5.network.ServerStatistics;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
- * Note: To save the database and make sure that not two clients at the same 
- * time are able to make a request to the database file, 
- * the connection gets established and disconnected in 
- * every method individual where it is necessary.
- * 
+ * Note: To save the database and make sure that not two clients at the same time are able to make a
+ * request to the database file, the connection gets established and disconnected in every method
+ * individual where it is necessary.
+ *
  * @author lengist
  */
 public class UseDatabase extends Database {
@@ -33,7 +31,7 @@ public class UseDatabase extends Database {
       rs = stm.executeQuery("SELECT * FROM Letters");
     } catch (SQLException e) {
       e.printStackTrace();
-    } 
+    }
     return rs;
   }
 
@@ -156,9 +154,8 @@ public class UseDatabase extends Database {
    *
    * @author lengist
    * @return integer array containing all points saved in the database
-   * 
-   *         code line to convert list to array from:
-   *         https://www.techiedelight.com/convert-list-integer-array-int/
+   *     <p>code line to convert list to array from:
+   *     https://www.techiedelight.com/convert-list-integer-array-int/
    */
   public static synchronized int[] getAllPointsPerLetter() {
     Database.reconnect();
@@ -187,9 +184,8 @@ public class UseDatabase extends Database {
    * Returns all the Occurrences of the letters as array.
    *
    * @return integer array containing all occurrences saved in the database
-   * 
-   *         code line to convert list to array from:
-   *         https://www.techiedelight.com/convert-list-integer-array-int/
+   *     <p>code line to convert list to array from:
+   *     https://www.techiedelight.com/convert-list-integer-array-int/
    * @author lengist
    */
   public static synchronized int[] getAllOccurrences() {
@@ -214,11 +210,11 @@ public class UseDatabase extends Database {
     }
     return occurrences;
   }
-  
+
   /**
-   * Returns the points for a letter saved in the table Letters to calculate the points 
-   * for a laid word.
-   * 
+   * Returns the points for a letter saved in the table Letters to calculate the points for a laid
+   * word.
+   *
    * @author lengist
    * @param letter representing the letter for which the points need to be known
    * @return int value of the points for the letter
@@ -230,7 +226,8 @@ public class UseDatabase extends Database {
     ArrayList<Integer> point = new ArrayList<Integer>();
     try {
       stm = connection.createStatement();
-      rs = stm.executeQuery("SELECT Points FROM Letters WHERE Letter = " + letter);
+      rs = stm.executeQuery("SELECT Points FROM Letters WHERE (Letter = " + letter + ");");
+
       while (rs.next()) {
         point.add(rs.getInt(1));
         return rs.getInt(1);
@@ -255,10 +252,11 @@ public class UseDatabase extends Database {
     ResultSet s = null;
     try {
       Statement stm = connection.createStatement();
-      s = stm
-          .executeQuery("SELECT * FROM Server WHERE (ServerHostName = '" + serverHostName + "');");
+      s =
+          stm.executeQuery(
+              "SELECT * FROM Server WHERE (ServerHostName = '" + serverHostName + "');");
       ServerStatistics ss = new ServerStatistics();
-      String client = ""; 
+      String client = "";
       String ipAddress = "";
       int gamesPlayed;
       int gamesWon;
@@ -284,7 +282,6 @@ public class UseDatabase extends Database {
     }
   }
 
-
   /**
    * Changes the points for the letter letter in the table letters when a user chooses to
    * individualize.
@@ -308,34 +305,36 @@ public class UseDatabase extends Database {
   public static synchronized void setOccurrenceLetters(String letter, int occurrence) {
     FillDatabase.updateOccurrenceLetters(letter, occurrence);
   }
-  
+
   /**
    * Updates the values in the table Letters after a user customized it.
-   * 
+   *
    * @author lengist
    * @param points a ArrayList for all the points that need to be saved.
    * @param occurrences a ArrayList for al the occurrences that need to be saved.
    */
-  public static synchronized void updateLetterCustomization(ArrayList<Integer> points, 
-      ArrayList<Integer> occurrences) {
+  public static synchronized void updateLetterCustomization(
+      ArrayList<Integer> points, ArrayList<Integer> occurrences) {
     Database.reconnect();
     FillDatabase.deleteTable("Letters");
-    String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
-        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    String[] letter = {
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+      "T", "U", "V", "W", "X", "Y", "Z", "*"
+    };
     int[] point = new int[points.size()];
     int count = 0;
     for (int n : points) {
       point[count] = n;
       count++;
     }
-    
+
     int count2 = 0;
     int[] occurrence = new int[occurrences.size()];
     for (int n : occurrences) {
       occurrence[count2] = n;
       count2++;
     }
-    
+
     for (int i = 0; i < letter.length; i++) {
       FillDatabase.insertLetters(letter[i], point[i], occurrence[i]);
     }
@@ -348,7 +347,7 @@ public class UseDatabase extends Database {
    * @return boolean returning true if player with name "name" already exists
    * @author lengist
    */
-  public static synchronized  boolean playerExists(String name) {
+  public static synchronized boolean playerExists(String name) {
     Database.reconnect();
     boolean exists = false;
     ResultSet rs = null;
