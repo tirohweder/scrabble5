@@ -90,10 +90,6 @@ public class BagOfTiles implements Serializable {
     bag.clear();
 
     String[] test = UseDatabase.getAllLetters();
-    System.out.println("test letters: ");
-    for (String s : test) {
-      System.out.println(s);
-    }
 
     Iterator<Entry<String, Integer>> it = newWordDistro.entrySet().iterator();
     int count = 0;

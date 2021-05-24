@@ -19,6 +19,10 @@ public class AiPlayer extends Player {
   int counterRight;
   int counterLeft;
   int aiThreshold;
+  
+  static int currentFixX;
+  static int currentFixY;
+  static String currentFixLetter;
 
   /**
    * @param name
@@ -71,6 +75,15 @@ public class AiPlayer extends Player {
    */
   public static ArrayList<ArrayList<Tile>> wordGenerator(
       String fixLetter, int before, int after, int x, int y, boolean horizontal) {
+    System.out.println();
+    System.out.println("fixLetter: " + fixLetter);
+    System.out.println("x: " + x);
+    System.out.println("y: " + y);
+    System.out.println();
+    System.out.println("Saved fixLetter: " + currentFixLetter);
+    System.out.println("saved x: " + currentFixX);
+    System.out.println("saved y: " + currentFixY);
+    System.out.println();
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
     ArrayList<String> possibleLetters1 = new ArrayList<String>();
     ArrayList<String> finalWords = new ArrayList<String>();
@@ -95,17 +108,9 @@ public class AiPlayer extends Player {
 
     int maximumLength = before + 1 + after;
 
-    ArrayList<String> first = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
-    System.out.println("1. Final Words length: " + first.size());
+    finalWords = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
+    System.out.println("1. Final Words length: " + finalWords.size());
 
-    for (String b1 : possibleLetters) {
-      first = DictionaryScanner.getWordsIncludingFrom(first, b1);
-      for (String s : first) {
-        finalWords.add(s);
-      }
-    }
-
-    System.out.println("2. Final Words length: " + finalWords.size());
 
     StringBuilder sb = new StringBuilder();
     for (String s : possibleLetters) {
@@ -122,10 +127,6 @@ public class AiPlayer extends Player {
     finalWords.removeAll(deletionRound1);
 
     System.out.println("After Deltion round 1: " + finalWords.size());
-
-    if (finalWords.isEmpty()) {
-      /* TODO: change next spot */
-    }
 
     for (String s : finalWords) {
       for (int i = 0; i < s.length(); i++) {
@@ -146,10 +147,6 @@ public class AiPlayer extends Player {
 
     System.out.println("After Deltion round 2: " + finalWords.size());
 
-    if (finalWords.isEmpty()) {
-      /* TODO: change next spot */
-    }
-
     ArrayList<String> deletionRound3 = new ArrayList<String>();
     HashMap<String, Integer> currentDistribution = bag.getCurrentBagDistribution();
     for (String s : finalWords) {
@@ -162,8 +159,8 @@ public class AiPlayer extends Player {
 
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
     for (String s : finalWords) {
-      System.out.println("test word: " + s);
-      tiles.add(wordToTiles(s, fixLetter, x, y, horizontal));
+      //System.out.println("test word: " + s);
+      tiles.add(wordToTiles(s, fixLetter, currentFixX, currentFixY, horizontal));
     }
     return tiles;
   }
@@ -190,7 +187,8 @@ public class AiPlayer extends Player {
     for (int i = 0; i < word.length(); i++) {
       value = getPointForLetter(String.valueOf(word.charAt(i)));
       coordinates =
-          getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)), x, y, horizontal);
+          getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)),
+              currentFixX, currentFixY, horizontal);
       row = coordinates.get(1);
       column = coordinates.get(0);
       Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
@@ -275,111 +273,6 @@ public class AiPlayer extends Player {
       }
     }
     return points;
-  }
-
-  /**
-   * Method to test the function for the AiPlayer to generate a fitting word. Just created to test
-   * this function in the JUnit test class, not for usage in the game.
-   *
-   * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
-   *     word next to
-   * @param before the amount of tiles that are free before this letter
-   * @param after the amount of tiles that are free after this letter
-   * @param x the x-coordinate of the tile with letter fixLetter on the board
-   * @param y the y-coordinate of the tile with letter fixLetter on the board
-   * @param horizontal is true, when the word needs to get laid horizontal and false if vertical.
-   *     This parameter is needed later on
-   * @author lengist
-   */
-  public static String[] wordGeneratorTest(
-      String fixLetter, int before, int after, int x, int y, boolean horizontal) {
-    ArrayList<String> finalWords = new ArrayList<String>();
-    ArrayList<String> deletionRound1 = new ArrayList<String>();
-    ArrayList<String> deletionRound2 = new ArrayList<String>();
-    int maximumLength = before + 1 + after;
-    int before2 = 0;
-    int after2 = 0;
-    String[] possibleLetters = {"A", "L", "I", "V", "E", "O", "N"};
-
-    ArrayList<String> first = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
-    for (String b1 : possibleLetters) {
-      first = DictionaryScanner.getWordsIncludingFrom(first, b1);
-      for (String s : first) {
-        finalWords.add(s);
-      }
-    }
-
-    StringBuilder sb = new StringBuilder();
-    for (String s : possibleLetters) {
-      sb.append(s);
-    }
-    String b = sb.toString();
-    for (String s : finalWords) {
-      for (int i = 0; i < s.length(); i++) {
-        if (b.indexOf(s.charAt(i)) == -1) {
-          deletionRound1.add(s);
-        }
-      }
-    }
-    finalWords.removeAll(deletionRound1);
-
-    for (String s : finalWords) {
-      for (int i = 0; i < s.length(); i++) {
-
-        if (s.charAt(i) == fixLetter.charAt(0)) {
-          before2 = i;
-          after2 = s.length() - i;
-
-          if (before2 > before) {
-            deletionRound2.add(s);
-          } else if (after2 > after) {
-            deletionRound2.add(s);
-          }
-        }
-      }
-    }
-    finalWords.removeAll(deletionRound2);
-
-    ArrayList<String> deletionRound3 = new ArrayList<String>();
-    /* TODO: fill the hashmap for the CurrentDistribution */
-
-    HashMap<String, Integer> currentDistribution = new HashMap<>();
-    for (int i = 0; i < possibleLetters.length; i++) {
-      currentDistribution.merge(possibleLetters[i], 1, Integer::sum);
-    }
-
-    for (String s : finalWords) {
-      if (!checkBagDistributionLegal(currentDistribution, s)) {
-        deletionRound3.add(s);
-      }
-    }
-    finalWords.removeAll(deletionRound3);
-
-    String[] ready = new String[finalWords.size()];
-    for (int i = 0; i < ready.length; i++) {
-      ready[i] = finalWords.get(i);
-    }
-
-    ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
-    ArrayList<Tile> innerList = new ArrayList<Tile>();
-    for (String s : finalWords) {
-      for (int i = 0; i < s.length(); i++) {
-        int value = getPointForLetter(String.valueOf(s.charAt(i)));
-        ArrayList<Integer> coordinates =
-            getCoordinates(s, fixLetter, String.valueOf(s.charAt(i)), x, y, horizontal);
-        int row = coordinates.get(1);
-        int column = coordinates.get(0);
-        Tile t = new Tile(String.valueOf(s.charAt(i)), value, row, column);
-        innerList.add(t);
-        /*
-         * System.out.println("s: " + s); System.out.println("s x: " + x);
-         * System.out.println("s y: " + y); System.out.println("char: " + s.charAt(i));
-         * System.out.println("xNew: " + column); System.out.println("yNew: " + row);
-         */
-      }
-      tiles.add(innerList);
-    }
-    return ready;
   }
 
   /**
@@ -710,27 +603,43 @@ public class AiPlayer extends Player {
         if (Data.getGameSession().getGameBoard().getPlayedTile(row, column) != null) {
           getSpotsfree(row, column, Data.getGameSession().getGameBoard());
           ArrayList<ArrayList<Tile>> wordList;
+          System.out.println("row: " + row);
+          System.out.println("column: " + column);
 
           System.out.println("Trying someting");
 
           if (counterDown + counterUp > counterLeft + counterLeft) {
+            currentFixLetter = 
+                Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter();
+            currentFixX = column;
+            currentFixY = row;
             wordList =
-                AiPlayer.wordGenerator(
+                wordGenerator(
                     Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
                     counterDown,
                     counterUp,
-                    row,
                     column,
+                    row,
                     false);
+            if (wordList.isEmpty()) {
+              break;
+            }
           } else {
+            currentFixLetter = 
+                Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter();
+            currentFixX = column;
+            currentFixY = row;
             wordList =
                 wordGenerator(
                     Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
                     counterRight,
                     counterLeft,
-                    row,
                     column,
+                    row,
                     true);
+            if (wordList.isEmpty()) {
+              break;
+            }
           }
 
           System.out.println("Checked all");
@@ -785,10 +694,10 @@ public class AiPlayer extends Player {
     Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
     Data.getGameSession().getGameBoard().finishTurn();
 
-    System.out.println(
+    /*System.out.println(
         Data.getGameSession()
             .getGameBoard()
-            .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()));
+            .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()).getLetter());*/
 
     Data.getGameSession().finishTurn();
   }
