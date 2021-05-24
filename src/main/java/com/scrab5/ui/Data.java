@@ -75,8 +75,8 @@ public class Data {
   }
 
   /**
-   * Saves the text message that gets displayed on the currently opened {@link
-   * com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Saves the text message that gets displayed on the currently opened
+   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
    * @param message the string that gets set
    * @author mherre

@@ -76,10 +76,10 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * settings are set up properly a new server gets created and scene gets changed to
    * "MultiplayerLobby.fxml".
    *
+   * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author mherre
    */
   @FXML
   private void start(MouseEvent event) throws IOException {
@@ -109,10 +109,10 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Back"-button in the UI is clicked. Scene gets changed to
    * the predecessor "MainMenu.fxml" scene.
    *
+   * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author mherre
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -126,8 +126,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * number gets increased by one. Changes "Right Arrow"-button to a grayed out image if
    * <code>playerCount</code> equals 4, this can't be clicked anymore.
    *
-   * @param event the event that is created from the mouse-click
    * @author mherre
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void nextNumber(MouseEvent event) {
@@ -158,8 +158,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * number gets decreased by one. Changes "Left Arrow"-button to a grayed out image if
    * <code>playerCount</code> equals 2, this can't be clicked anymore.
    *
-   * @param event the event that is created from the mouse-click
    * @author mherre
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void previousNumber(MouseEvent event) {
@@ -189,8 +189,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Arrow Down"-button in the UI is clicked. Opens the
    * <code>ComboBox dictionarySelection</code> displaying all available dictionaries.
    *
-   * @param event the event that is created from the mouse-click
    * @author mherre
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void clickComboBox(MouseEvent event) {
@@ -229,9 +229,9 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Refresh"-button in the UI is clicked. Starts searching
    * for new servers.
    *
-   * @param event the event that is created from the mouse-click
    * @author mherre
    * @author nitterhe
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void refresh(MouseEvent event) {
@@ -245,11 +245,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * into a random selected lobby that is displayed in the server list if there is at least one.
    * Otherwise an error message is created.
    *
+   * @author mherre
+   * @author nitterhe
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author mherre
-   * @author nitterhe
    */
   @FXML
   private void findGame(MouseEvent event) throws IOException {
@@ -269,8 +269,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when <code>dictionarySelection</code> in the UI is clicked. Makes
    * dictionarySelection only openable when the dropDownButton is clicked.
    *
-   * @param event the event that is created from the mouse-click
    * @author mherre
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void dontShow(MouseEvent event) {
@@ -281,11 +281,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 0
    * is actually shown.
    *
+   * @author nitterhe
+   * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author nitterhe
-   * @author mherre
    */
   @FXML
   private void join0(MouseEvent event) throws IOException {
@@ -298,11 +298,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 1
    * is actually shown.
    *
+   * @author nitterhe
+   * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author nitterhe
-   * @author mherre
    */
   @FXML
   private void join1(MouseEvent event) throws IOException {
@@ -315,11 +315,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 2
    * is actually shown.
    *
+   * @author nitterhe
+   * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author nitterhe
-   * @author mherre
    */
   @FXML
   private void join2(MouseEvent event) throws IOException {
@@ -332,11 +332,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 3
    * is actually shown.
    *
+   * @author nitterhe
+   * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author nitterhe
-   * @author mherre
    */
   @FXML
   private void join3(MouseEvent event) throws IOException {
@@ -349,11 +349,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 4
    * is actually shown.
    *
+   * @author nitterhe
+   * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author nitterhe
-   * @author mherre
    */
   @FXML
   private void join4(MouseEvent event) throws IOException {
@@ -366,11 +366,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 5
    * is actually shown.
    *
+   * @author nitterhe
+   * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author nitterhe
-   * @author mherre
    */
   @FXML
   private void join5(MouseEvent event) throws IOException {
@@ -383,11 +383,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 6
    * is actually shown.
    *
+   * @author nitterhe
+   * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author nitterhe
-   * @author mherre
    */
   @FXML
   private void join6(MouseEvent event) throws IOException {
@@ -400,11 +400,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the "Join"-button in the UI is clicked. Only joins if server 7
    * is actually shown.
    *
+   * @author nitterhe
+   * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author nitterhe
-   * @author mherre
    */
   @FXML
   private void join7(MouseEvent event) throws IOException {
@@ -418,8 +418,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * <code>iv</code> or released after it has been clicked. Changes the <code>image</code> to
    * "/com/scrab5/ui/images/SB06_JoinButtonClicked.png".
    *
-   * @param event the event that is created from the hovering and releasing
    * @author mherre
+   * @param event the event that is created from the hovering and releasing
    */
   @FXML
   private void lightenJoinIcon(MouseEvent event) {
@@ -431,9 +431,9 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Event method that is called when the mouse is exiting the <code>ImageView</code> object
    * <code>iv</code> or when it is pressed. Changes the <code>image</code> to
    * "/com/scrab5/ui/images/SB06_JoinButton.png".
-   *
-   * @param event the event that is created from the hovering and releasing
+   * 
    * @author mherre
+   * @param event the event that is created from the exiting and pressing
    */
   @FXML
   private void darkenJoinIcon(MouseEvent event) {
@@ -481,11 +481,12 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method that is called once a player clicked a "Join"-button. If the lobby isn't full yet, then
    * the player joins the lobby and the scene gets changed to "MultiplayerLobby.fxml".
    *
+   *
+   * @author nitterhe
+   * @author mherre
    * @param number the integer containing the number which "Join"-button has been clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @author nitterhe
-   * @author mherre
    */
   private void joinGame(int number) throws IOException {
     if (Data.getServerList().size() >= number) {
@@ -611,11 +612,11 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * a new server is found the labels containing the server information are getting displayed, the
    * "Join"-button is shown as well.
    *
+   * @author mherre
+   * @author nitterhe
    * @param serverdata contains the information needed to display everything correctly in the server
    *        list
    * @param position the integer containing the position of the server in the server list
-   * @author mherre
-   * @author nitterhe
    */
   private void displayServer(ServerData serverdata, int position) {
     Platform.runLater(new Runnable() {

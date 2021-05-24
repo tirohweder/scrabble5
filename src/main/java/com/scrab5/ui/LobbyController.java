@@ -82,10 +82,10 @@ public abstract class LobbyController extends Controller {
 
   /**
    * Event method that is called when the first drop down button for the player votes in the UI is
-   * clicked.
+   * clicked. Opens the associated <code>ComboBox</code>.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void clickComboBox1(MouseEvent event) {
@@ -94,9 +94,11 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when the second drop down button for the player votes in the UI is
+   * clicked. Opens the associated <code>ComboBox</code>.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void clickComboBox2(MouseEvent event) {
@@ -105,9 +107,11 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when the third drop down button for the player votes in the UI is
+   * clicked. Opens the associated <code>ComboBox</code>.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void clickComboBox3(MouseEvent event) {
@@ -116,9 +120,11 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when the fourth drop down button for the player votes in the UI is
+   * clicked. Opens the associated <code>ComboBox</code>.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void clickComboBox4(MouseEvent event) {
@@ -127,9 +133,11 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when the first drop down button for the difficulty selection in the
+   * UI is clicked. Opens the associated <code>ComboBox</code>.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void clickDiffBox1(MouseEvent event) {
@@ -138,9 +146,11 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when the second drop down button for the difficulty selection in
+   * the UI is clicked. Opens the associated <code>ComboBox</code>.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void clickDiffBox2(MouseEvent event) {
@@ -149,9 +159,11 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when the third drop down button for the difficulty selection in the
+   * UI is clicked. Opens the associated <code>ComboBox</code>.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void clickDiffBox3(MouseEvent event) {
@@ -160,9 +172,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when an item (difficulty) in the first difficulty selection for the
+   * AI has been selected. Refreshes the <code>Label</code> that displays the difficulty.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created when an item in the associated <code>ComboBox</code> is
+   *        selected
    */
   @FXML
   private void setDifficulty1(ActionEvent event) {
@@ -171,9 +186,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when an item (difficulty) in the second difficulty selection for
+   * the AI has been selected. Refreshes the <code>Label</code> that displays the difficulty.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created when an item in the associated <code>ComboBox</code> is
+   *        selected
    */
   @FXML
   private void setDifficulty2(ActionEvent event) {
@@ -182,9 +200,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when an item (difficulty) in the third difficulty selection for the
+   * AI has been selected. Refreshes the <code>Label</code> that displays the difficulty.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created when an item in the associated <code>ComboBox</code> is
+   *        selected
    */
   @FXML
   private void setDifficulty3(ActionEvent event) {
@@ -193,9 +214,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when an item (votes) in the first vote selection for the players/AI
+   * has been selected. Refreshes the <code>Label</code> that displays the votes.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created when an item in the associated <code>ComboBox</code> is
+   *        selected
    */
   @FXML
   private void setPlayerVote1(ActionEvent event) {
@@ -204,9 +228,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when an item (votes) in the second vote selection for the
+   * players/AI has been selected. Refreshes the <code>Label</code> that displays the votes.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created when an item in the associated <code>ComboBox</code> is
+   *        selected
    */
   @FXML
   private void setPlayerVote2(ActionEvent event) {
@@ -215,9 +242,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when an item (votes) in the third vote selection for the players/AI
+   * has been selected. Refreshes the <code>Label</code> that displays the votes.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created when an item in the associated <code>ComboBox</code> is
+   *        selected
    */
   @FXML
   private void setPlayerVote3(ActionEvent event) {
@@ -226,9 +256,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when an item (votes) in the fourth vote selection for the
+   * players/AI has been selected. Refreshes the <code>Label</code> that displays the votes.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created when an item in the associated <code>ComboBox</code> is
+   *        selected
    */
   @FXML
   private void setPlayerVote4(ActionEvent event) {
@@ -237,9 +270,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
-   * 
+   * Event method that is called when the mouse is hovering over the <code>ImageView</code> object
+   * <code>iv</code> or released after it has been clicked. Changes the <code>image</code> to
+   * "/com/scrab5/ui/images/SB06_KickIconClicked.png".
+   *
    * @author mherre
-   * @param event
+   * @param event the event that is created from the hovering and releasing
    */
   @FXML
   private void lightenKickIcon(MouseEvent event) {
@@ -248,9 +284,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when the mouse is exiting the <code>ImageView</code> object
+   * <code>iv</code> or when it is pressed. Changes the <code>image</code> to
+   * "/com/scrab5/ui/images/SB05_KickIcon.png".
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the exiting and pressing
    */
   @FXML
   private void darkenKickIcon(MouseEvent event) {
@@ -259,9 +298,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
-   * 
+   * Event method that is called when the mouse is hovering over the <code>ImageView</code> object
+   * <code>iv</code> or released after it has been clicked. Changes the <code>image</code> to
+   * "/com/scrab5/ui/images/SB05_PlayerVoteButtonClicked.png".
+   *
    * @author mherre
-   * @param event
+   * @param event the event that is created from the hovering and releasing
    */
   @FXML
   private void lightenArrow(MouseEvent event) {
@@ -270,9 +312,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when the mouse is exiting the <code>ImageView</code> object
+   * <code>iv</code> or when it is pressed. Changes the <code>image</code> to
+   * "/com/scrab5/ui/images/SB05_PlayerVoteButton.png".
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the exiting and pressing
    */
   @FXML
   private void darkenArrow(MouseEvent event) {
@@ -281,9 +326,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
-   * 
+   * Event method that is called when the mouse is hovering over the <code>ImageView</code> object
+   * <code>iv</code> or released after it has been clicked. Changes the <code>image</code> to
+   * "/com/scrab5/ui/images/SB05_StartButtonClicked.png".
+   *
    * @author mherre
-   * @param event
+   * @param event the event that is created from the hovering and releasing
    */
   @FXML
   private void lightenStartButton(MouseEvent event) {
@@ -292,9 +340,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Event method that is called when the mouse is exiting the <code>ImageView</code> object
+   * <code>iv</code> or when it is pressed. Changes the <code>image</code> to
+   * "/com/scrab5/ui/images/SB05_StartButton.png".
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the exiting and pressing
    */
   @FXML
   private void darkenStartButton(MouseEvent event) {
@@ -303,9 +354,10 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Method that checks if everyone in the lobby clicked ready / is ready.
    * 
    * @author mherre
-   * @return
+   * @return the boolean valuing if everyone is ready
    */
   protected boolean isEveryoneReady() {
     for (int i = 0; i < isReady.length; i++) {
@@ -317,6 +369,9 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Method that is called in the initialize methods of Multiplayer- and
+   * SingleplayerLobbyController. Sets up all ComboBoxes (Player votes, difficulty) and two Labels
+   * (name displaying, ready status).
    * 
    * @author mherre
    */
@@ -347,9 +402,12 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Method that is called to get the cast votes of each player. The votes are returned in form of
+   * an <code>ArrayList</code>. The first item in the list is the amount of votes for the first
+   * player, the second item for the second player, ...
    * 
    * @author mherre
-   * @return
+   * @return al the ArrayList that cotains the votes
    */
   protected ArrayList<Integer> getPlayerVotes() {
 
