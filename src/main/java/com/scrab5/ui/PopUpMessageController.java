@@ -76,6 +76,7 @@ public class PopUpMessageController extends Controller implements Initializable 
         img = new Image("/com/scrab5/ui/images/Confirmation_CancelButtonClicked.png");
         this.okayButtonClicked.setImage(img);
         this.confirmButton.setOpacity(1);
+        Data.setConfirmed(false);
         break;
 
       default:
