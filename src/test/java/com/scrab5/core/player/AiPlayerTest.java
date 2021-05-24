@@ -39,7 +39,7 @@ class AiPlayerTest {
     test.getSpotsfree(6, 6, g);
     assertEquals(6, test.counterLeft);
     assertEquals(8, test.counterRight);
-    assertEquals(1, test.counterDown);
+    assertEquals(0, test.counterDown);
     assertEquals(6, test.counterUp);
 
     test.getSpotsfree(0, 0, g);
@@ -70,7 +70,7 @@ class AiPlayerTest {
     test.getSpotsfree(6, 6, g);
     assertEquals(6, test.counterLeft);
     assertEquals(8, test.counterRight);
-    assertEquals(1, test.counterDown);
+    assertEquals(0, test.counterDown);
     assertEquals(2, test.counterUp);
 
     g.removeTile(3, 7);
@@ -79,15 +79,25 @@ class AiPlayerTest {
     test.getSpotsfree(6, 6, g);
     assertEquals(6, test.counterLeft);
     assertEquals(8, test.counterRight);
-    assertEquals(1, test.counterDown);
+    assertEquals(0, test.counterDown);
     assertEquals(2, test.counterUp);
 
     g.placeTileTest(new Tile("T", 3), 5, 9);
     test.getSpotsfree(6, 6, g);
     assertEquals(6, test.counterLeft);
     assertEquals(2, test.counterRight);
-    assertEquals(1, test.counterDown);
+    assertEquals(0, test.counterDown);
     assertEquals(2, test.counterUp);
+
+
+    GameBoard g2 = new GameBoard();
+    g2.placeTileTest(new Tile("A ", 1), 6, 0);
+    g2.placeTileTest(new Tile("A ", 1), 8, 0);
+    test.getSpotsfree(0, 6, g2);
+    assertEquals(0, test.counterLeft);
+    assertEquals(14, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(6, test.counterUp);
   }
 
   @Test
@@ -114,6 +124,23 @@ class AiPlayerTest {
     testResult.add(45);
 
     assertEquals(testResult, test.countScore(new GameBoard(), possibleWords));
+
+
+    /*
+     * ArrayList<ArrayList<Tile>> tilesList = new ArrayList<ArrayList<Tile>>(); Tile t1 = new
+     * Tile("H", 1, 7, 6); Tile t2 = new Tile("E", 1, 7, 7); Tile t3 = new Tile("L", 1, 7, 8); Tile
+     * t4 = new Tile("L", 1, 7, 9); Tile t5 = new Tile("O", 1, 7, 10); Tile w2 = new Tile("O", 1, 8,
+     * 6); Tile w3 = new Tile("W", 1, 9, 6);
+     * 
+     * ArrayList<Tile> hello = new ArrayList<Tile>(); hello.add(t1); hello.add(t2); hello.add(t3);
+     * hello.add(t4); hello.add(t5);
+     * 
+     * ArrayList<Tile> how = new ArrayList<Tile>(); how.add(t1); how.add(w2); how.add(w3);
+     * 
+     * tilesList.add(hello); tilesList.add(how); ArrayList<Integer> scoreList = new
+     * ArrayList<Integer>(); scoreList.add(10); scoreList.add(6); assertEquals(scoreList,
+     * test.countScore(new GameBoard(), tilesList));
+     */
   }
 
   @Test
