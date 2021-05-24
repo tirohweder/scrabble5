@@ -6,6 +6,7 @@ import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -306,7 +307,7 @@ public class GameSession implements Serializable {
     currentPlayer.getRack().fill(bag);
     roundNumber++;
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
-    System.out.println("Current Player= " + currentPlayer.getName());
+    // System.out.println("Current Player= " + currentPlayer.getName());
     if (currentPlayer instanceof AiPlayer) {
       System.out.println("Ai will try to play now: ");
       AiPlayer aiPlayer = (AiPlayer) currentPlayer;
@@ -322,9 +323,16 @@ public class GameSession implements Serializable {
   public void checkEndScreen() {}
 
   // TODO
-  public void endGame() {
+  public void endGame() throws IOException {
     // Data.getHostedServer().endGame(winner); nur beim host.
     // TODO call server method, endGame()
+
+    //
+    for (Player player : listOfPlayers) {
+      player.getPlayerProfile().addPoints(10);
+    }
+
+    //
 
     this.running = false;
   }

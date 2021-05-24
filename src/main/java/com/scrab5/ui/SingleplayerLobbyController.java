@@ -238,6 +238,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
     for (int i = 1; i < freeSpaces.length; i++) {
       if (!freeSpaces[i]) {
+        // TODO set difficulty
         playList.add(new AiPlayer("CPU" + (i + 1), 0));
       }
     }

@@ -5,9 +5,7 @@ import com.scrab5.util.database.PlayerProfileDatabase;
 import java.io.IOException;
 import java.io.Serializable;
 
-/**
- * @author trohwede
- */
+/** @author trohwede */
 public class PlayerProfile implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -38,18 +36,6 @@ public class PlayerProfile implements Serializable {
   public static String getPicture() {
     picture = PlayerProfileDatabase.getPicture(name);
     return picture;
-  }
-
-  /**
-   * Adds the achieved points to the current points of the user "name" in the database.
-   *
-   * @param points the user achieved in the played game
-   * @author lengist
-   */
-  public static void addPoints(int points) throws IOException {
-    int currentPoints = PlayerProfileDatabase.getTotalPoints(name);
-    int newPoints = currentPoints + points;
-    PlayerProfileDatabase.setTotalPoints(name, newPoints);
   }
 
   /**
@@ -241,5 +227,17 @@ public class PlayerProfile implements Serializable {
    */
   public static String getFavoriteDictionary() {
     return PlayerProfileDatabase.getFavoriteDictionary(name);
+  }
+
+  /**
+   * Adds the achieved points to the current points of the user "name" in the database.
+   *
+   * @param points the user achieved in the played game
+   * @author lengist
+   */
+  public void addPoints(int points) throws IOException {
+    int currentPoints = PlayerProfileDatabase.getTotalPoints(name);
+    int newPoints = currentPoints + points;
+    PlayerProfileDatabase.setTotalPoints(name, newPoints);
   }
 }

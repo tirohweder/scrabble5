@@ -21,14 +21,6 @@ public class AiPlayer extends Player {
   int aiThreshold;
 
   /**
-   * @param name
-   * @author hraza
-   */
-  // public AiPlayer(String name) {
-  //   super(name);
-  // }
-
-  /**
    * Constructor for Tile
    *
    * @param name
@@ -473,6 +465,8 @@ public class AiPlayer extends Player {
         score = scoreToBe * 2;
       } else if (tw) {
         score = scoreToBe * 3;
+      } else {
+        score += scoreToBe;
       }
 
       // System.out.println("score: " + score);

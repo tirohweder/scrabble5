@@ -22,8 +22,6 @@ public class Player implements Serializable {
     this.points = 0;
     this.isHuman = human;
   }
-
-  // TODO remove
   /**
    * @param name When Player is created gives the player a name and a personal rack
    * @author trohwede
@@ -32,6 +30,16 @@ public class Player implements Serializable {
     this.name = name;
     this.rack = new Rack();
     this.points = 0;
+  }
+
+  public PlayerProfile getPlayerProfile() {
+    return playerProfile;
+  }
+
+  // TODO remove
+
+  public void setPlayerProfile(PlayerProfile playerProfile) {
+    this.playerProfile = playerProfile;
   }
 
   /**
