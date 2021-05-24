@@ -206,7 +206,7 @@ public class Client implements Serializable {
    * @author nitterhe
    */
   public void connectToServer(String ip) throws Exception {
-    connectToServer(new ServerData(null, ip, serverPort, 0, 0, false));
+    connectToServer(new ServerData(null, ip.trim(), serverPort, 0, 0, false));
   }
 
   /**
@@ -331,7 +331,7 @@ public class Client implements Serializable {
   public void updateCurrentServer(LobbyUpdateMessage lum) {
     this.getCurrentServer().setGameStart(lum.getGameStart());
     this.getCurrentServer().setClients(lum.getClients());
-    this.getCurrentServer().updateClientCount();
+    this.getCurrentServer().getClientCounter();
     this.getCurrentServer().setServerStatistics(lum.getServerStatistics());
     Data.updatePlayerClient(this);
   }

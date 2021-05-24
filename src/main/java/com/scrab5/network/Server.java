@@ -227,23 +227,13 @@ public class Server implements Serializable {
   }
 
   /**
-   * Returns the number of connected clients as an int.
+   * Returns the number of connected clients as an int after updating it.
    *
    * @return client count - number of connected clients
    * @author nitterhe
    */
   public int getClientCounter() {
-    return clientCounter;
-  }
-
-  /**
-   * Sets clientCounter to the current size of the clients ArrayList.
-   *
-   * @author nitterhe
-   */
-  public void updateClientCount() {
-    clientCounter = clients.size();
-    this.sendUpdateMessage();
+    return clientCounter = clients.size();
   }
 
   /**
@@ -318,7 +308,7 @@ public class Server implements Serializable {
     this.clients.clear();
     this.connections.clear();
     this.serverStatistics.getServerStatistics().clear();
-    this.updateClientCount();
+    this.getClientCounter();
     this.gameStart = false;
     Data.setGameSession(null);
     Database.disconnect();
@@ -416,7 +406,30 @@ public class Server implements Serializable {
    * @param clientname - the name of the client that was kicked
    */
   public void kickClient(String clientname) {
-    this.connections.get(this.clients.get(clientname)).closeConnection();
+    if (this.clients.get(clientname).getIp().equals("AI")) {
+      this.clients.remove(clientname);
+    } else {
+      this.connections.get(this.clients.get(clientname)).closeConnection();
+    }
     this.sendUpdateMessage();
   }
+
+  /**
+   * Adds a new client instance to the client list. Used for adding AIs.
+   * 
+   * @author nitterhe
+   * @param name - the name of the AiPlayer
+   */
+  public void addAi(String name) {
+    this.clients.put(name, new ClientData(name, "AI", null, true));
+    this.sendUpdateMessage();
+  }
+
+  /**
+   * Removes a new client instance to the client list. Used for adding AIs.
+   * 
+   * @author nitterhe
+   * @param name - the name of the AiPlayer
+   */
+
 }

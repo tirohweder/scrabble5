@@ -9,6 +9,7 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,7 +17,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -35,8 +35,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
   private ImageView playerNumber, arrowRight, arrowLeft;
   @FXML
   private ComboBox<String> dictionarySelection;
-  @FXML
-  private TextField serverName;
   @FXML
   private ImageView dropDownButton;
   @FXML
@@ -62,7 +60,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author nitterhe
    */
   public void initialize(URL arg0, ResourceBundle arg1) {
-    this.serverName.setFocusTraversable(false);
     this.userPlaying.setText(Data.getCurrentUser());
     this.setUpDicitionaryBox();
 
@@ -88,13 +85,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
   private void start(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
 
-    // if (serverName.getText().isEmpty()) {
-    // String message = "You must enter a server name to continue";
-    // PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
-    // pum.show();
-    // } else {
-    // App.setRoot("MultiplayerLobby");
-    // }
     if (this.isDictionarySelected) {
 
       Data.setIsSearching(false);
@@ -149,12 +139,12 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
     } else if (playerCount == 4) {
       this.changeNumberImage();
-      this.arrowRight.setLayoutY(458);
+      this.arrowRight.setLayoutY(384);
       this.arrowRight.setOpacity(1);
 
     } else if (playerCount > 2 && this.arrowLeft.getOpacity() == 1) {
       this.changeNumberImage();
-      this.arrowLeft.setLayoutY(500);
+      this.arrowLeft.setLayoutY(420);
       this.arrowLeft.setOpacity(0);
 
     } else {
@@ -181,12 +171,12 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
     } else if (playerCount == 2) {
       this.changeNumberImage();
-      this.arrowLeft.setLayoutY(458);
+      this.arrowLeft.setLayoutY(384);
       this.arrowLeft.setOpacity(1);
 
     } else if (playerCount < 4 && this.arrowRight.getOpacity() == 1) {
       this.changeNumberImage();
-      this.arrowRight.setLayoutY(500);
+      this.arrowRight.setLayoutY(420);
       this.arrowRight.setOpacity(0);
 
     } else {
@@ -207,6 +197,27 @@ public class MultiplayerOverviewController extends Controller implements Initial
     playSound("ButtonClicked.mp3");
     dictionarySelection.show();
 
+  }
+
+  /**
+   * Event method that is called when the "Manual Host Entry"-button in the UI is clicked. Creates a
+   * {@link com.scrab5.ui.PopUpMessage PopUpMessage} where the user can enter an IP address, so the
+   * user can join a specific server.
+   * 
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
+  @FXML
+  private void manualHostEntry(MouseEvent event) throws IOException {
+    String message = "Enter a specific IP adress:";
+    PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.INPUT);
+    pum.show();
+
+    if (this.joinServer(Data.getInputFieldText())) {
+      App.setRoot("MultiplayerLobby");
+    }
   }
 
   /**
@@ -475,8 +486,13 @@ public class MultiplayerOverviewController extends Controller implements Initial
     if (Data.getServerList().size() >= number) {
       playSound("ButtonClicked.mp3");
     }
-    if (joinServer(Data.getServerList().get(number).getIp4Address())) {
-      App.setRoot("MultiplayerLobby");
+    if (Data.getServerList().get(number).getClientCounter() == Data.getServerList().get(number)
+        .getClientMaximum()) {
+      new NetworkError(NetworkErrorType.SERVERFULL);
+    } else {
+      if (joinServer(Data.getServerList().get(number).getIp4Address())) {
+        App.setRoot("MultiplayerLobby");
+      }
     }
   }
 
@@ -575,7 +591,10 @@ public class MultiplayerOverviewController extends Controller implements Initial
         Data.getPlayerClient().connectToServer(IPAddress);
         return true;
       }
+    } catch (UnknownHostException e) {
+      new NetworkError(NetworkErrorType.NOSERVERFOUND);
     } catch (Exception e) {
+      new NetworkError(NetworkErrorType.CONNECTION);
       e.printStackTrace();
     }
     return false;
