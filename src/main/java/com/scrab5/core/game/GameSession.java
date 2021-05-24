@@ -308,6 +308,7 @@ public class GameSession implements Serializable {
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
 
     if (!currentPlayer.isHuman()) {
+      System.out.println("Ai will try to play now: ");
       ((AiPlayer) currentPlayer).aiPlay();
     }
     gameBoard.finishTurn();

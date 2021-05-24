@@ -240,6 +240,7 @@ public class AiPlayer extends Player {
    */
   public static int getPointForLetter(String letter) {
     int points = 0;
+    System.out.println("Letter length" + lettersFromDatabase.length);
     for (int i = 0; i < lettersFromDatabase.length; i++) {
       if (lettersFromDatabase[i].equals(letter)) {
         points = pointsPerLetterFromDatabase[i];
@@ -392,16 +393,21 @@ public class AiPlayer extends Player {
   public void aiPlay() {
 
     boolean foundMatchingThreshold = false;
-    int column = 0;
-    int row = 0;
-    ArrayList<Tile> choosenWord = new ArrayList<>();
 
+    ArrayList<Tile> choosenWord = new ArrayList<>();
+    System.out.println("Starting to find word");
     // go through game while threshhold is not reached
-    while (!foundMatchingThreshold && row < 15) {
-      while (!foundMatchingThreshold && column < 15) {
+
+    findacceptable:
+    for (int row = 0; row < 15; row++) {
+      for (int column = 0; column < 15; column++) {
+        System.out.println("Checking " + row + " : " + column);
+
         if (Data.getGameSession().getGameBoard().getPlayedTile(row, column) != null) {
           getSpotsfree(row, column, Data.getGameSession().getGameBoard());
           ArrayList<ArrayList<Tile>> wordList;
+
+          System.out.println("Trying someting");
 
           if (counterDown + counterUp > counterLeft + counterLeft) {
             wordList =
@@ -429,7 +435,7 @@ public class AiPlayer extends Player {
             if (points.get(k) >= aiThreshold) {
               choosenWord = wordList.get(k);
               foundMatchingThreshold = true;
-              break;
+              break findacceptable;
             }
           }
         }
