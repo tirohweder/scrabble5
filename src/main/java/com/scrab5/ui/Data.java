@@ -32,6 +32,8 @@ public class Data {
   private static double sfxVolume = 1.0;
   private static StringBuffer chatHistory = new StringBuffer();
   private static GameSession gameSession;
+  
+  private static boolean okayClicked = false;
 
   public static GameSession getGameSession() {
     return gameSession;
@@ -107,7 +109,7 @@ public class Data {
    * Returns the value of <code>confirmed</code> and thus gives information if the "Confirm" button
    * of a {@link com.scrab5.ui.PopUpMessage PopUpMessage} was clicked.
    *
-   * @return confirmed
+   * @return confirmed the boolean representing if it was clicked or not
    * @author mherre
    */
   public static boolean isConfirmed() {
@@ -123,6 +125,28 @@ public class Data {
    */
   public static void setConfirmed(boolean cf) {
     confirmed = cf;
+  }
+  
+  /**
+   * Returns the value of <code>okayClicked</code> and thus gives information if the "Okay" button
+   * of a {@link com.scrab5.ui.PopUpMessage PopUpMessage} was clicked.
+   *
+   * @return okayClicked the boolean representing if it was clicked or not
+   * @author mherre
+   */
+  public static boolean isOkayClicked() {
+    return okayClicked;
+  }
+
+  /**
+   * Saves if "Okay" of a {@link com.scrab5.ui.PopUpMessage PopUpMessage} has been clicked or
+   * not.
+   *
+   * @param ok the boolean that gets set
+   * @author mherre
+   */
+  public static void setOkayClicked(boolean ok) {
+    okayClicked = ok;
   }
 
   /**
