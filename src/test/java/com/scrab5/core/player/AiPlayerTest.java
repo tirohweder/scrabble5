@@ -126,21 +126,35 @@ class AiPlayerTest {
     assertEquals(testResult, test.countScore(new GameBoard(), possibleWords));
 
 
-    /*
-     * ArrayList<ArrayList<Tile>> tilesList = new ArrayList<ArrayList<Tile>>(); Tile t1 = new
-     * Tile("H", 1, 7, 6); Tile t2 = new Tile("E", 1, 7, 7); Tile t3 = new Tile("L", 1, 7, 8); Tile
-     * t4 = new Tile("L", 1, 7, 9); Tile t5 = new Tile("O", 1, 7, 10); Tile w2 = new Tile("O", 1, 8,
-     * 6); Tile w3 = new Tile("W", 1, 9, 6);
-     * 
-     * ArrayList<Tile> hello = new ArrayList<Tile>(); hello.add(t1); hello.add(t2); hello.add(t3);
-     * hello.add(t4); hello.add(t5);
-     * 
-     * ArrayList<Tile> how = new ArrayList<Tile>(); how.add(t1); how.add(w2); how.add(w3);
-     * 
-     * tilesList.add(hello); tilesList.add(how); ArrayList<Integer> scoreList = new
-     * ArrayList<Integer>(); scoreList.add(10); scoreList.add(6); assertEquals(scoreList,
-     * test.countScore(new GameBoard(), tilesList));
-     */
+
+    ArrayList<ArrayList<Tile>> tilesList = new ArrayList<ArrayList<Tile>>();
+    Tile t1 = new Tile("H", 1, 7, 6);
+    Tile t2 = new Tile("E", 1, 7, 7);
+    Tile t3 = new Tile("L", 1, 7, 8);
+    Tile t4 = new Tile("L", 1, 7, 9);
+    Tile t5 = new Tile("O", 1, 7, 10);
+    Tile w2 = new Tile("O", 1, 8, 6);
+    Tile w3 = new Tile("W", 1, 9, 6);
+
+    ArrayList<Tile> hello = new ArrayList<Tile>();
+    hello.add(t1);
+    hello.add(t2);
+    hello.add(t3);
+    hello.add(t4);
+    hello.add(t5);
+
+    ArrayList<Tile> how = new ArrayList<Tile>();
+    how.add(t1);
+    how.add(w2);
+    how.add(w3);
+
+    tilesList.add(hello);
+    tilesList.add(how);
+    ArrayList<Integer> scoreList = new ArrayList<Integer>();
+    scoreList.add(10);
+    scoreList.add(4);
+    assertEquals(scoreList, test.countScore(new GameBoard(), tilesList));
+
   }
 
   @Test
