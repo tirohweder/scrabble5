@@ -130,8 +130,6 @@ public abstract class InGameController implements Initializable {
 
   Boolean[] rackChanges = new Boolean[7];
 
-  private int changes = 0;
-
 
   private ArrayList<String> choosenTiles = new ArrayList<String>();
 
@@ -257,8 +255,7 @@ public abstract class InGameController implements Initializable {
   protected void initGameboard() {
 
     double layoutX = 263.0, layoutY = 53.0;
-    System.out.println(Data.getGameSession().getSkippedTurn());
-    if (changes == 0) {
+    if (Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0) {
       skipPlay.setText("Skip");
     } else {
       skipPlay.setText("Play");
@@ -334,7 +331,6 @@ public abstract class InGameController implements Initializable {
             placeLetter(clickedLetter, clickedLabel);
             choosenTiles.add(iv.getId());
             exchangeable = true;
-            changes++;;
           } else {
             newPum(
                 "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -422,7 +418,6 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
-          changes++;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -476,7 +471,6 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
-          changes++;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -530,7 +524,6 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
-          changes++;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -584,7 +577,6 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
-          changes++;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -638,7 +630,6 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
-          changes++;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -694,7 +685,6 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
-          changes++;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -752,7 +742,6 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
           exchangeable = true;
-          changes++;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -1019,7 +1008,6 @@ public abstract class InGameController implements Initializable {
     clickedTile = null;
     tileClicked = false;
     letterClicked = false;
-    changes--;
   }
 
   /**
@@ -1188,6 +1176,11 @@ public abstract class InGameController implements Initializable {
     if (endPossible) {
       Data.getGameSession().setShouldEnd(true);
       Data.getGameSession().endGame();
+      if(Data.getPlayerClient() != null) {
+        App.setRoot("EndGameMultiplayer");
+      }else {
+        App.setRoot("EndGameSingleplayer");
+      }
     }
   }
 
@@ -1262,6 +1255,7 @@ public abstract class InGameController implements Initializable {
     PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
     pum.show();
     if (Data.isConfirmed()) {
+      Data.getGameSession().setShouldEnd(true);
       Data.getGameSession().endGame();
       if (Data.getPlayerClient() != null) {
         App.setRoot("EndGameMultiplayer");
