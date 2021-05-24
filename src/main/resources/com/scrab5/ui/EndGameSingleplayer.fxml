@@ -125,12 +125,12 @@
                   <Image url="@board_Images/popUpBackground.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="wonScreen" fitHeight="375.0" fitWidth="581.0" layoutX="329.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="wonScreen" fitHeight="375.0" fitWidth="581.0" layoutX="329.0" layoutY="169.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@endImages/WonScreen.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="lostScreen" fitHeight="375.0" fitWidth="581.0" layoutX="329.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="lostScreen" fitHeight="375.0" fitWidth="581.0" layoutX="329.0" layoutY="169.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@endImages/LostScreen.png" />
                </image>
@@ -140,11 +140,51 @@
                   <Image url="@endImages/WonMenuClicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="42.0" fitWidth="91.0" layoutX="798.0" layoutY="465.0" opacity="0" onMouseClicked="#playAgainClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="42.0" fitWidth="91.0" layoutX="798.0" layoutY="465.0" onMouseClicked="#playAgainClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@endImages/wonPlayAgainClicked.png" />
                </image>
             </ImageView>
+            <Label fx:id="firstPlayer" layoutX="435.0" layoutY="303.0" opacity="0.0" prefHeight="32.0" prefWidth="250.0" text="Label" textFill="#eeecbf">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="secondPlayer" layoutX="435.0" layoutY="337.0" opacity="0.0" prefHeight="32.0" prefWidth="235.0" text="Label" textFill="#eeecbf">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="thirdPlayer" layoutX="435.0" layoutY="372.0" opacity="0.0" prefHeight="32.0" prefWidth="235.0" text="Label" textFill="#eeecbf">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="fourthPlayer" layoutX="435.0" layoutY="407.0" opacity="0.0" prefHeight="32.0" prefWidth="235.0" text="Label" textFill="#eeecbf">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="firstPlayerPoints" layoutX="760.0" layoutY="303.0" opacity="0.0" text="Label" textFill="#8a1818">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="secondPlayerPoints" layoutX="760.0" layoutY="337.0" opacity="0.0" text="Label" textFill="#8a1818">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="thirdPlayerPoints" layoutX="760.0" layoutY="372.0" opacity="0.0" text="Label" textFill="#8a1818">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="fourthPlayerPoints" layoutX="760.0" layoutY="407.0" opacity="0.0" text="Label" textFill="#8a1818">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
