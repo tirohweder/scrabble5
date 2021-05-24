@@ -1270,6 +1270,8 @@ public abstract class InGameController implements Initializable {
           rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()));
       isChoosen(clickedTile);
       exchangeable = true;
+      
+      //TODO exchange
     }
   }
 
