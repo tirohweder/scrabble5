@@ -163,6 +163,7 @@ public class AiPlayer extends Player {
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
     ArrayList<Tile> innerList = new ArrayList<Tile>();
     for (String s : finalWords) {
+      innerList.clear();
       for (int i = 0; i < s.length(); i++) {
         // System.out.println("Trying to get value");
         // System.out.println(s.charAt(i));
@@ -173,9 +174,11 @@ public class AiPlayer extends Player {
         int column = coordinates.get(0);
         Tile t = new Tile(String.valueOf(s.charAt(i)), value, row, column);
         innerList.add(t);
+        // System.out.print(t.getLetter());
       }
+      // System.out.println("\nNEW WORD::::");
+
       tiles.add(innerList);
-      innerList.clear();
     }
 
     /* TODO: tiles an AiPosition.countScore weitergeben */
@@ -421,6 +424,11 @@ public class AiPlayer extends Player {
     System.out.println("Counting score " + possibleWords.size());
     System.out.println("Possible " + possibleWords.get(0).size());
 
+    for (int i = 0; i < possibleWords.get(0).size(); i++) {
+      System.out.println(possibleWords.get(0).get(i).getLetter());
+      System.out.println("VALUE of Tile: " + possibleWords.get(0).get(0).getValue());
+    }
+
     for (ArrayList<Tile> word : possibleWords) {
 
       int score = 0;
@@ -457,6 +465,9 @@ public class AiPlayer extends Player {
       }
       scoreList.add(score);
     }
+
+    System.out.println(scoreList.get(0).toString());
+
     return scoreList;
   }
 
@@ -612,10 +623,13 @@ public class AiPlayer extends Player {
           System.out.println("Checked all");
           ArrayList<Integer> points = countScore(Data.getGameSession().getGameBoard(), wordList);
 
+          System.out.println("Points size :" + points.size());
+          System.out.println("Points size :" + points.get(0).toString());
           System.out.println(aiThreshold);
 
           for (int k = 0; k < points.size(); k++) {
-            System.out.println("Points: " + points + " word: " + wordList.get(k));
+            // System.out.println("Points: " + points + " word: " + wordList.get(k));
+            // System.out.print(points.get(k) + " : ");
 
             if (points.get(k) >= aiThreshold) {
               choosenWord = wordList.get(k);
@@ -642,45 +656,5 @@ public class AiPlayer extends Player {
     Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
     Data.getGameSession().getGameBoard().finishTurn();
     Data.getGameSession().finishTurn();
-  }
-
-  public int getCounterUp() {
-    return counterUp;
-  }
-
-  public void setCounterUp(int counterUp) {
-    this.counterUp = counterUp;
-  }
-
-  public int getCounterDown() {
-    return counterDown;
-  }
-
-  public void setCounterDown(int counterDown) {
-    this.counterDown = counterDown;
-  }
-
-  public int getCounterRight() {
-    return counterRight;
-  }
-
-  public void setCounterRight(int counterRight) {
-    this.counterRight = counterRight;
-  }
-
-  public int getCounterLeft() {
-    return counterLeft;
-  }
-
-  public void setCounterLeft(int counterLeft) {
-    this.counterLeft = counterLeft;
-  }
-
-  public int getAiThreshold() {
-    return aiThreshold;
-  }
-
-  public void setAiThreshold(int aiThreshold) {
-    this.aiThreshold = aiThreshold;
   }
 }

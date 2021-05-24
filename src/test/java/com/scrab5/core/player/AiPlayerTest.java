@@ -4,10 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
+import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 
 class AiPlayerTest {
+
+  AiPlayer test = new AiPlayer("Hans", 0);
 
   @Test
   void checkBagDistributionLegalTest() {
@@ -85,6 +88,32 @@ class AiPlayerTest {
     assertEquals(2, test.counterRight);
     assertEquals(1, test.counterDown);
     assertEquals(2, test.counterUp);
+  }
+
+  @Test
+  void countScore() {
+
+    ArrayList<Tile> testList = new ArrayList<>();
+    testList.add(new Tile("W", 4, 7, 7));
+    testList.add(new Tile("E", 1, 7, 8));
+    testList.add(new Tile("L", 1, 7, 9));
+    testList.add(new Tile("L", 1, 7, 10));
+
+    ArrayList<Tile> testList2 = new ArrayList<>();
+    testList2.add(new Tile("H", 4, 11, 7));
+    testList2.add(new Tile("I", 1, 12, 7));
+    testList2.add(new Tile("P", 3, 13, 7));
+    testList2.add(new Tile("P", 3, 14, 7));
+
+    ArrayList<ArrayList<Tile>> possibleWords = new ArrayList<>();
+    possibleWords.add(testList);
+    possibleWords.add(testList2);
+
+    ArrayList<Integer> testResult = new ArrayList<>();
+    testResult.add(14);
+    testResult.add(45);
+
+    assertEquals(testResult, test.countScore(new GameBoard(), possibleWords));
   }
 
   @Test
