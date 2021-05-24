@@ -389,8 +389,8 @@ public class AiPlayer extends Player {
    * still positive. If it is negative, the boolean will be changed to false, the loop breaks and
    * the hashmap will be resetted and false is given back
    *
-   * @param currentDistribution
-   * @param word
+   * @param currentDistribution is the current letter-occurence of the tiles in the bag
+   * @param word is the word that is going to be checked
    * @author hraza
    */
   public static Boolean checkBagDistributionLegal(
@@ -473,6 +473,8 @@ public class AiPlayer extends Player {
         score = scoreToBe * 2;
       } else if (tw) {
         score = scoreToBe * 3;
+      } else {
+        score= scoreToBe;
       }
 
       // System.out.println("score: " + score);
@@ -486,10 +488,10 @@ public class AiPlayer extends Player {
 
   /**
    * This Method is looking for free valid Spots around the given position and initializes the
-   * counters
+   * counters.
    *
-   * @param x
-   * @param y
+   * @param x is the column-position from where it starts countin on the current gameBoard
+   * @param y is the row-position from where it starts countin on the current gameBoard
    * @author hraza
    */
   public void getSpotsfree(int x, int y, GameBoard g) {
