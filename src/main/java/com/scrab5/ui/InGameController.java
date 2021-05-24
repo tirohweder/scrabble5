@@ -201,11 +201,8 @@ public abstract class InGameController implements Initializable {
 
     for (Player p : Data.getGameSession().getListOfPlayers()) {
       String s = p.getName();
-      System.out.println(s);
-      System.out.println(currentUser);
-      System.out.println(s.equalsIgnoreCase(currentUser));
       if (s.equalsIgnoreCase(currentUser)) {
-        p.getRack().fill(Data.getGameSession().getBag());
+        //p.getRack().fill(Data.getGameSession().getBag());
         myRack = p.getRack();
       } else {
         continue;
@@ -873,7 +870,7 @@ public abstract class InGameController implements Initializable {
           pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
           pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
         }
-
+        
         initRack();
         initPlayers();
         exchangeable = false;
