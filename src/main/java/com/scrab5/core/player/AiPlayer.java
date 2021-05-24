@@ -153,6 +153,7 @@ public class AiPlayer extends Player {
     ArrayList<Tile> innerList = new ArrayList<Tile>();
     for (String s : finalWords) {
       for (int i = 0; i < s.length(); i++) {
+        System.out.println("Trying to get value");
         int value = getPointForLetter(String.valueOf(s.charAt(i)));
         ArrayList<Integer> coordinates =
             getCoordinates(s, fixLetter, String.valueOf(s.charAt(i)), x, y, horizontal);
@@ -198,6 +199,8 @@ public class AiPlayer extends Player {
     int placeFixLetter = 0;
     int xnew = 0;
     int ynew = 0;
+
+    System.out.println("Trying to get coordinates");
 
     for (int i = 0; i < word.length(); i++) {
       if (word.charAt(i) == fixLetter.charAt(0)) {
@@ -429,6 +432,7 @@ public class AiPlayer extends Player {
                     true);
           }
 
+          System.out.println("Checked all");
           ArrayList<Integer> points = countScore(Data.getGameSession().getGameBoard(), wordList);
 
           for (int k = 0; k < points.size(); k++) {
@@ -471,6 +475,8 @@ public class AiPlayer extends Player {
     int counterLeft = 0;
     int counterUp = 0;
     int counterDown = 0;
+
+    System.out.println("Finding free Spots");
 
     // Checking the right Side of the Position on the Board
     while (y < 14
@@ -575,6 +581,8 @@ public class AiPlayer extends Player {
   public ArrayList<Integer> countScore(
       GameBoard gameBoard, ArrayList<ArrayList<Tile>> possibleWords) {
     ArrayList<Integer> scoreList = new ArrayList<>();
+
+    System.out.println("Counting score");
 
     for (ArrayList<Tile> word : possibleWords) {
       int score = 0;
