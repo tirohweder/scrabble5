@@ -53,7 +53,7 @@ public class PopUpMessageController extends Controller implements Initializable 
     switch (Data.getMessageType()) {
 
       case INPUT:
-        this.textfield.setText(Data.getCurrentUser());
+        this.textfield.setText("");
         this.textfield.setOpacity(1);
         confirmButtonClicked.setOnMouseEntered(null);
         break;
@@ -101,6 +101,7 @@ public class PopUpMessageController extends Controller implements Initializable 
     switch (Data.getMessageType()) {
       case INPUT:
         Data.setInputFieldText(textfield.getText());
+        Data.setOkayClicked(true);
       default:
         break;
     }
