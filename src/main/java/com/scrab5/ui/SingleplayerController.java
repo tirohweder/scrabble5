@@ -10,7 +10,7 @@ public class SingleplayerController extends InGameController implements Initiali
   
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-
+    
     refreshUI();
 
   }
@@ -28,9 +28,9 @@ public class SingleplayerController extends InGameController implements Initiali
 
             @Override
             public void run() {
-
-              initPlayers();
+              
               initRack();
+              initPlayers();
               initGameboard();
 
             }
