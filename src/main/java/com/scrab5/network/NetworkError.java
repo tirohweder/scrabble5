@@ -39,36 +39,36 @@ public class NetworkError extends Error {
     switch (this.errorType) {
 
       case CONNECTION:
-        this.dialog = "Could not connect to the Server, try refreshing the server list";
+        this.dialog = "Could not connect to the Server, try refreshing the server list.";
         break;
       case COMMUNICATION:
         this.dialog =
-            "Could not reach server. Server could have been closed, try again or try to reconnect";
+            "Could not reach server. Server could have been closed, try again or try to reconnect.";
         break;
       case IP:
-        this.dialog = "Could not identify IP";
+        this.dialog = "Could not identify IP.";
         break;
       case SEARCHSERVERS:
-        this.dialog = "Could not search for servers in the local network";
+        this.dialog = "Could not search for servers in the local network.";
         break;
       case CLIENTRUN:
-        this.dialog = "Could not read incoming message from the server";
+        this.dialog = "Could not read incoming message from the server.";
         break;
       case SERVERRUN:
-        this.dialog = "Could not read incoming message from a client";
+        this.dialog = "Could not read incoming message from a client.";
         break;
       case CLOSECONNECTION:
-        this.dialog = "Closing the connection failed, maybe sockets already have been closed";
+        this.dialog = "Closing the connection failed, maybe sockets already have been closed.";
         break;
       case SERVERCREATION:
-        this.dialog = "Could not host server";
+        this.dialog = "Could not host server.";
         break;
       case NAMEINUSE:
         this.dialog =
-            "Name is already taken on this server. Please edit your username in the settings";
+            "Name is already taken on this server. Please edit your username in the settings.";
         break;
       case NOSERVERFOUND:
-        this.dialog = "No servers in your local network found";
+        this.dialog = "No servers in your local network found.";
         break;
       case TIMER:
         this.dialog = "10 minute Timer run out. Server shut down.";

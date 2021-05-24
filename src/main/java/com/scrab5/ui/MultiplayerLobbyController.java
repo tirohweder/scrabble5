@@ -76,7 +76,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   /** @author mherre */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    this.isClickable();
+    // this.isClickable();
     this.setUpInit();
     votes = new LinkedHashMap<String, ArrayList<Integer>>();
 
@@ -158,7 +158,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.getHostedServer().kickClient(this.player2.getText());
     }
     playSound("ButtonClicked.mp3");
-    this.isClickable();
+    // this.isClickable();
   }
 
   @FXML
@@ -168,7 +168,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.getHostedServer().kickClient(this.player3.getText());
     }
     playSound("ButtonClicked.mp3");
-    this.isClickable();
+    // this.isClickable();
   }
 
   @FXML
@@ -178,7 +178,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.getHostedServer().kickClient(this.player4.getText());
     }
     playSound("ButtonClicked.mp3");
-    this.isClickable();
+    // this.isClickable();
   }
 
   @FXML
@@ -468,29 +468,29 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     t.start();
   }
 
-//  protected void setUpInit() {
-//    this.isDictionarySelected = true;
-//    this.player1.setText(Data.getCurrentUser());
-//    this.ready1.setText("Not Ready");
-//    for (int i = 1; i <= 4; i++) {
-//      this.voteSelection1.getItems().add(i);
-//      this.voteSelection2.getItems().add(i);
-//      this.voteSelection3.getItems().add(i);
-//      this.voteSelection4.getItems().add(i);
-//    }
-//    this.voteSelection1.getSelectionModel().select(0);
-//    this.voteSelection2.getSelectionModel().select(1);
-//    this.voteSelection3.getSelectionModel().select(2);
-//    this.voteSelection4.getSelectionModel().select(3);
-//
-//    this.diffBox2.getItems().add("Easy");
-//    this.diffBox2.getItems().add("Difficult");
-//    this.diffBox3.getItems().add("Easy");
-//    this.diffBox3.getItems().add("Difficult");
-//
-//    this.diffBox2.getSelectionModel().select(0);
-//    this.diffBox3.getSelectionModel().select(0);
-//  }
+  // protected void setUpInit() {
+  // this.isDictionarySelected = true;
+  // this.player1.setText(Data.getCurrentUser());
+  // this.ready1.setText("Not Ready");
+  // for (int i = 1; i <= 4; i++) {
+  // this.voteSelection1.getItems().add(i);
+  // this.voteSelection2.getItems().add(i);
+  // this.voteSelection3.getItems().add(i);
+  // this.voteSelection4.getItems().add(i);
+  // }
+  // this.voteSelection1.getSelectionModel().select(0);
+  // this.voteSelection2.getSelectionModel().select(1);
+  // this.voteSelection3.getSelectionModel().select(2);
+  // this.voteSelection4.getSelectionModel().select(3);
+  //
+  // this.diffBox2.getItems().add("Easy");
+  // this.diffBox2.getItems().add("Difficult");
+  // this.diffBox3.getItems().add("Easy");
+  // this.diffBox3.getItems().add("Difficult");
+  //
+  // this.diffBox2.getSelectionModel().select(0);
+  // this.diffBox3.getSelectionModel().select(0);
+  // }
 
   protected boolean isClickable() {
     if (playerAmount == Data.getPlayerClient().getCurrentServer().getClientMaximum()
