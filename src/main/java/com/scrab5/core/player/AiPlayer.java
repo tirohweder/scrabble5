@@ -161,30 +161,41 @@ public class AiPlayer extends Player {
     System.out.println("Final Words length 3. : " + finalWords.size());
 
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
-    ArrayList<Tile> innerList = new ArrayList<Tile>();
     for (String s : finalWords) {
-      innerList.clear();
-      for (int i = 0; i < s.length(); i++) {
-        // System.out.println("Trying to get value");
-        // System.out.println(s.charAt(i));
-        int value = getPointForLetter(String.valueOf(s.charAt(i)));
-        ArrayList<Integer> coordinates =
-            getCoordinates(s, fixLetter, String.valueOf(s.charAt(i)), x, y, horizontal);
-        int row = coordinates.get(1);
-        int column = coordinates.get(0);
-        Tile t = new Tile(String.valueOf(s.charAt(i)), value, row, column);
-        innerList.add(t);
-        // System.out.print(t.getLetter());
-      }
-      // System.out.println("\nNEW WORD::::");
-
-      tiles.add(innerList);
+      System.out.println("test word: " + s);
+      tiles.add(wordToTiles(s, fixLetter, x, y, horizontal));
     }
-
-    /* TODO: tiles an AiPosition.countScore weitergeben */
-
-    /* TODO: Possible add: condition to end this method after for example 15 words. */
-
+    return tiles;
+  }
+  
+  /**
+   * Creates the tiles for a word.
+   * 
+   * @author lengist
+   * @param word the word that needs to be converted into tiles
+   * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
+   *     word next to
+   * @param x the x-coordinate of the tile with letter fixLetter on the board
+   * @param y the y-coordinate of the tile with letter fixLetter on the board
+   * @param horizontal is true, when the word needs to get laid horizontal and false if vertical
+   * @return tiles a ArrayList containing all tiles for the word word
+   */
+  public static ArrayList<Tile> wordToTiles(String word, String fixLetter, int x, int y, 
+      boolean horizontal) {
+    ArrayList<Tile> tiles = new ArrayList<Tile>();
+    ArrayList<Integer> coordinates = new ArrayList<Integer>();
+    int value = 0;
+    int row = 0;
+    int column = 0;
+    for (int i = 0; i < word.length(); i++) {
+      value = getPointForLetter(String.valueOf(word.charAt(i)));
+      coordinates =
+          getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)), x, y, horizontal);
+      row = coordinates.get(1);
+      column = coordinates.get(0);
+      Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
+      tiles.add(t);
+    }
     return tiles;
   }
 
@@ -651,6 +662,12 @@ public class AiPlayer extends Player {
         }
       }
     }
+    System.out.println("chosen word: ");
+    for (Tile t : choosenWord) {
+      System.out.println(t.getLetter());
+    }
+    
+    
 
     // because ai uses tiles from the bag, the correct distubution needs to be set.
     HashMap<String, Integer> currentDistru =
