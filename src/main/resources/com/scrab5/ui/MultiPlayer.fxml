@@ -1395,7 +1395,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@board_Images/endButtonClicked.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="jokerPane" layoutY="67.0" prefHeight="617.0" prefWidth="259.0">
+            <AnchorPane fx:id="jokerPane" layoutY="67.0"  opacity="0" prefHeight="617.0" prefWidth="259.0">
                <children>
                   <ImageView fitHeight="545.0" fitWidth="273.0" layoutX="17.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -1660,16 +1660,6 @@ The method specification which implements what to do when a field is clicked/ en
                   <ImageView id="Z" fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="426.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/Letter%20clicked.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="43.0" fitWidth="81.0" layoutX="148.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@board_Images/JokerChoose.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="43.0" fitWidth="81.0" layoutX="148.0" layoutY="538.0" onMouseClicked="#chooseClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@board_Images/JokerChooseClicked.png" />
                      </image>
                   </ImageView>
                </children>
