@@ -1,5 +1,6 @@
 package com.scrab5.core.game;
 
+import com.scrab5.core.player.AiPlayer;
 import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
@@ -305,6 +306,11 @@ public class GameSession implements Serializable {
     currentPlayer.getRack().fill(bag);
     roundNumber++;
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
+
+    if (!currentPlayer.isHuman()) {
+      System.out.println("Ai will try to play now: ");
+      ((AiPlayer) currentPlayer).aiPlay();
+    }
     gameBoard.finishTurn();
     if (online) {
       Data.getPlayerClient().makeTurn();

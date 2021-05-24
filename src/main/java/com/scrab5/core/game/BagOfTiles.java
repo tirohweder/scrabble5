@@ -1,5 +1,6 @@
 package com.scrab5.core.game;
 
+import com.scrab5.ui.Data;
 import com.scrab5.util.database.UseDatabase;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -70,9 +71,9 @@ public class BagOfTiles implements Serializable {
    * @author trohwede
    */
   public HashMap<String, Integer> getCurrentBagDistribution() {
-    HashMap<String, Integer> wordDistro = null;
+    HashMap<String, Integer> wordDistro = new HashMap<>();
 
-    for (Tile tile : bag) {
+    for (Tile tile : Data.getGameSession().getBag().bag) {
       wordDistro.merge(tile.getLetter(), 1, Integer::sum);
     }
 
