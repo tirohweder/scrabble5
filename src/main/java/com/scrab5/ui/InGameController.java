@@ -1281,6 +1281,7 @@ public abstract class InGameController implements Initializable {
       if (Data.getPlayerClient() != null) {
         Data.getPlayerClient().disconnectFromServer();
       }
+      Data.getGameSession().setShouldEnd(true);
       App.setRoot("MainMenu");
     }
   }

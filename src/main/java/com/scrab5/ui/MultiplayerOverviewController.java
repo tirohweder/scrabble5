@@ -215,10 +215,13 @@ public class MultiplayerOverviewController extends Controller implements Initial
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.INPUT);
     pum.show();
 
-    if (Data.isOkayClicked() && Data.getInputFieldText().equals("")
+
+    if (Data.isOkayClicked() && !Data.getInputFieldText().equals("")
         && this.joinServer(Data.getInputFieldText())) {
       Data.setOkayClicked(false);
       App.setRoot("MultiplayerLobby");
+    } else {
+      new NetworkError(NetworkErrorType.IP);
     }
   }
 
