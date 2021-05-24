@@ -167,10 +167,10 @@ public class AiPlayer extends Player {
     }
     return tiles;
   }
-  
+
   /**
    * Creates the tiles for a word.
-   * 
+   *
    * @author lengist
    * @param word the word that needs to be converted into tiles
    * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
@@ -180,8 +180,8 @@ public class AiPlayer extends Player {
    * @param horizontal is true, when the word needs to get laid horizontal and false if vertical
    * @return tiles a ArrayList containing all tiles for the word word
    */
-  public static ArrayList<Tile> wordToTiles(String word, String fixLetter, int x, int y, 
-      boolean horizontal) {
+  public static ArrayList<Tile> wordToTiles(
+      String word, String fixLetter, int x, int y, boolean horizontal) {
     ArrayList<Tile> tiles = new ArrayList<Tile>();
     ArrayList<Integer> coordinates = new ArrayList<Integer>();
     int value = 0;
@@ -501,114 +501,186 @@ public class AiPlayer extends Player {
     System.out.println("Finding free Spots");
 
     // Checking the right Side of the Position on the Board
-    while (y < 14 && y > 0 && x + 2 + counterRight <= 14 && g.isSpotFree(y, x + 1 + counterRight)
-        && g.isSpotFree(y, x + 2 + counterRight) && g.isSpotFree(y - 1, x + 1 + counterRight)
+    while (y < 14
+        && y > 0
+        && x + 2 + counterRight <= 14
+        && g.isSpotFree(y, x + 1 + counterRight)
+        && g.isSpotFree(y, x + 2 + counterRight)
+        && g.isSpotFree(y - 1, x + 1 + counterRight)
         && g.isSpotFree(y + 1, x + 1 + counterRight)) {
       counterRight++;
     }
-    while (y < 14 && y > 0 && x + 2 + counterRight == 15 && g.isSpotFree(y, x + 1 + counterRight)
-        && g.isSpotFree(y - 1, x + 1 + counterRight) && g.isSpotFree(y + 1, x + 1 + counterRight)) {
+    while (y < 14
+        && y > 0
+        && x + 2 + counterRight == 15
+        && g.isSpotFree(y, x + 1 + counterRight)
+        && g.isSpotFree(y - 1, x + 1 + counterRight)
+        && g.isSpotFree(y + 1, x + 1 + counterRight)) {
       counterRight++;
     }
-    while (y == 0 && x + 2 + counterRight <= 14 && g.isSpotFree(y, x + 1 + counterRight)
-        && g.isSpotFree(y, x + 2 + counterRight) && g.isSpotFree(y + 1, x + 1 + counterRight)) {
+    while (y == 0
+        && x + 2 + counterRight <= 14
+        && g.isSpotFree(y, x + 1 + counterRight)
+        && g.isSpotFree(y, x + 2 + counterRight)
+        && g.isSpotFree(y + 1, x + 1 + counterRight)) {
       counterRight++;
     }
 
-    while (y == 0 && x + 2 + counterRight == 15 && g.isSpotFree(y, x + 1 + counterRight)
+    while (y == 0
+        && x + 2 + counterRight == 15
+        && g.isSpotFree(y, x + 1 + counterRight)
         && g.isSpotFree(y + 1, x + 1 + counterRight)) {
       counterRight++;
     }
-    while (y == 14 && x + 2 + counterRight <= 14 && g.isSpotFree(y, x + 1 + counterRight)
-        && g.isSpotFree(y, x + 2 + counterRight) && g.isSpotFree(y - 1, x + 1 + counterRight)) {
+    while (y == 14
+        && x + 2 + counterRight <= 14
+        && g.isSpotFree(y, x + 1 + counterRight)
+        && g.isSpotFree(y, x + 2 + counterRight)
+        && g.isSpotFree(y - 1, x + 1 + counterRight)) {
       counterRight++;
     }
-    while (y == 14 && x + 2 + counterRight == 15 && g.isSpotFree(y, x + 1 + counterRight)
+    while (y == 14
+        && x + 2 + counterRight == 15
+        && g.isSpotFree(y, x + 1 + counterRight)
         && g.isSpotFree(y - 1, x + 1 + counterRight)) {
       counterRight++;
     }
 
     // Checking the left Side of the Position on the Board
-    while (y < 14 && y > 0 && x - 2 - counterLeft >= 0 && g.isSpotFree(y, x - 1 - counterLeft)
-        && g.isSpotFree(y, x - 2 - counterLeft) && g.isSpotFree(y - 1, x - 1 - counterLeft)
+    while (y < 14
+        && y > 0
+        && x - 2 - counterLeft >= 0
+        && g.isSpotFree(y, x - 1 - counterLeft)
+        && g.isSpotFree(y, x - 2 - counterLeft)
+        && g.isSpotFree(y - 1, x - 1 - counterLeft)
         && g.isSpotFree(y + 1, x - 1 - counterLeft)) {
       counterLeft++;
       // System.out.println("y="+ y +"; counterLeft ="+counterLeft);
     }
-    while (y < 14 && y > 0 && x - 2 - counterLeft == -1 && g.isSpotFree(y, x - 1 - counterLeft)
-        && g.isSpotFree(y - 1, x - 1 - counterLeft) && g.isSpotFree(y + 1, x - 1 - counterLeft)) {
+    while (y < 14
+        && y > 0
+        && x - 2 - counterLeft == -1
+        && g.isSpotFree(y, x - 1 - counterLeft)
+        && g.isSpotFree(y - 1, x - 1 - counterLeft)
+        && g.isSpotFree(y + 1, x - 1 - counterLeft)) {
       counterLeft++;
       System.out.println("y=" + y + "; counterLeft =" + counterLeft);
     }
-    while (y == 0 && x - 2 - counterLeft >= 0 && g.isSpotFree(y, x - 1 - counterLeft)
-        && g.isSpotFree(y, x - 2 - counterLeft) && g.isSpotFree(y + 1, x - 1 - counterLeft)) {
-      counterLeft++;
-    }
-    while (y == 0 && x - 2 - counterLeft == -1 && g.isSpotFree(y, x - 1 - counterLeft)
+    while (y == 0
+        && x - 2 - counterLeft >= 0
+        && g.isSpotFree(y, x - 1 - counterLeft)
+        && g.isSpotFree(y, x - 2 - counterLeft)
         && g.isSpotFree(y + 1, x - 1 - counterLeft)) {
       counterLeft++;
     }
-    while (y == 14 && x - 2 - counterLeft >= 0 && g.isSpotFree(y, x - 1 - counterLeft)
-        && g.isSpotFree(y, x - 2 - counterLeft) && g.isSpotFree(y - 1, x - 1 - counterLeft)) {
+    while (y == 0
+        && x - 2 - counterLeft == -1
+        && g.isSpotFree(y, x - 1 - counterLeft)
+        && g.isSpotFree(y + 1, x - 1 - counterLeft)) {
       counterLeft++;
     }
-    while (y == 14 && x - 2 - counterLeft == -1 && g.isSpotFree(y, x - 1 - counterLeft)
+    while (y == 14
+        && x - 2 - counterLeft >= 0
+        && g.isSpotFree(y, x - 1 - counterLeft)
+        && g.isSpotFree(y, x - 2 - counterLeft)
+        && g.isSpotFree(y - 1, x - 1 - counterLeft)) {
+      counterLeft++;
+    }
+    while (y == 14
+        && x - 2 - counterLeft == -1
+        && g.isSpotFree(y, x - 1 - counterLeft)
         && g.isSpotFree(y - 1, x - 1 - counterLeft)) {
       counterLeft++;
     }
 
     // Checking for free Spots under the Position x,y
-    while (y + 2 + counterDown <= 14 && x > 0 && x < 14 && g.isSpotFree(y + 1 + counterDown, x)
-        && g.isSpotFree(y + 2 + counterDown, x) && g.isSpotFree(y + 1 + counterDown, x + 1)
+    while (y + 2 + counterDown <= 14
+        && x > 0
+        && x < 14
+        && g.isSpotFree(y + 1 + counterDown, x)
+        && g.isSpotFree(y + 2 + counterDown, x)
+        && g.isSpotFree(y + 1 + counterDown, x + 1)
         && g.isSpotFree(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
-    while (y + 2 + counterDown == 15 && x > 0 && x < 14 && g.isSpotFree(y + 1 + counterDown, x)
-        && g.isSpotFree(y + 1 + counterDown, x + 1) && g.isSpotFree(y + 1 + counterDown, x - 1)) {
+    while (y + 2 + counterDown == 15
+        && x > 0
+        && x < 14
+        && g.isSpotFree(y + 1 + counterDown, x)
+        && g.isSpotFree(y + 1 + counterDown, x + 1)
+        && g.isSpotFree(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
 
-    while (y + 2 + counterDown <= 14 && x == 0 && g.isSpotFree(y + 1 + counterDown, x)
-        && g.isSpotFree(y + 2 + counterDown, x) && g.isSpotFree(y + 1 + counterDown, x + 1)) {
-      counterDown++;
-    }
-    while (y + 2 + counterDown == 15 && x == 0 && g.isSpotFree(y + 1 + counterDown, x)
+    while (y + 2 + counterDown <= 14
+        && x == 0
+        && g.isSpotFree(y + 1 + counterDown, x)
+        && g.isSpotFree(y + 2 + counterDown, x)
         && g.isSpotFree(y + 1 + counterDown, x + 1)) {
       counterDown++;
     }
-    while (y + 2 + counterDown <= 14 && x == 14 && g.isSpotFree(y + 1 + counterDown, x)
-        && g.isSpotFree(y + 2 + counterDown, x) && g.isSpotFree(y + 1 + counterDown, x - 1)) {
+    while (y + 2 + counterDown == 15
+        && x == 0
+        && g.isSpotFree(y + 1 + counterDown, x)
+        && g.isSpotFree(y + 1 + counterDown, x + 1)) {
       counterDown++;
     }
-    while (y + 2 + counterDown == 15 && x == 14 && g.isSpotFree(y + 1 + counterDown, x)
+    while (y + 2 + counterDown <= 14
+        && x == 14
+        && g.isSpotFree(y + 1 + counterDown, x)
+        && g.isSpotFree(y + 2 + counterDown, x)
+        && g.isSpotFree(y + 1 + counterDown, x - 1)) {
+      counterDown++;
+    }
+    while (y + 2 + counterDown == 15
+        && x == 14
+        && g.isSpotFree(y + 1 + counterDown, x)
         && g.isSpotFree(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
     // Checking for free Spots above the Position x,y
-    while (y - 2 - counterUp >= 0 && x > 0 && x < 14 && g.isSpotFree(y - 1 - counterUp, x)
-        && g.isSpotFree(y - 2 - counterUp, x) && g.isSpotFree(y - 1 - counterUp, x + 1)
+    while (y - 2 - counterUp >= 0
+        && x > 0
+        && x < 14
+        && g.isSpotFree(y - 1 - counterUp, x)
+        && g.isSpotFree(y - 2 - counterUp, x)
+        && g.isSpotFree(y - 1 - counterUp, x + 1)
         && g.isSpotFree(y - 1 - counterUp, x - 1)) {
       counterUp++;
       System.out.println("y=" + y + "; counterUp =" + counterUp);
     }
-    while (x > 0 && x < 14 && y - 2 - counterUp == -1 && g.isSpotFree(y - 1 - counterUp, x)
-        && g.isSpotFree(y - 1 - counterUp, x + 1) && g.isSpotFree(y - 1 - counterUp, x - 1)) {
+    while (x > 0
+        && x < 14
+        && y - 2 - counterUp == -1
+        && g.isSpotFree(y - 1 - counterUp, x)
+        && g.isSpotFree(y - 1 - counterUp, x + 1)
+        && g.isSpotFree(y - 1 - counterUp, x - 1)) {
       counterUp++;
       System.out.println("y=" + y + "; counterUp =" + counterUp);
     }
-    while (y - 2 - counterUp >= 0 && x == 0 && g.isSpotFree(y - 1 - counterUp, x)
-        && g.isSpotFree(y - 2 - counterUp, x) && g.isSpotFree(y - 1 - counterUp, x + 1)) {
-      counterUp++;
-    }
-    while (y - 2 - counterUp == -1 && x == 0 && g.isSpotFree(y - 1 - counterUp, x)
+    while (y - 2 - counterUp >= 0
+        && x == 0
+        && g.isSpotFree(y - 1 - counterUp, x)
+        && g.isSpotFree(y - 2 - counterUp, x)
         && g.isSpotFree(y - 1 - counterUp, x + 1)) {
       counterUp++;
     }
-    while (y - 2 - counterUp >= 0 && x == 14 && g.isSpotFree(y - 1 - counterUp, x)
-        && g.isSpotFree(y - 2 - counterUp, x) && g.isSpotFree(y - 1 - counterUp, x - 1)) {
+    while (y - 2 - counterUp == -1
+        && x == 0
+        && g.isSpotFree(y - 1 - counterUp, x)
+        && g.isSpotFree(y - 1 - counterUp, x + 1)) {
       counterUp++;
     }
-    while (y - 2 - counterUp == -1 && x == 14 && g.isSpotFree(y - 1 - counterUp, x)
+    while (y - 2 - counterUp >= 0
+        && x == 14
+        && g.isSpotFree(y - 1 - counterUp, x)
+        && g.isSpotFree(y - 2 - counterUp, x)
+        && g.isSpotFree(y - 1 - counterUp, x - 1)) {
+      counterUp++;
+    }
+    while (y - 2 - counterUp == -1
+        && x == 14
+        && g.isSpotFree(y - 1 - counterUp, x)
         && g.isSpotFree(y - 1 - counterUp, x - 1)) {
       counterUp++;
     }
@@ -617,7 +689,6 @@ public class AiPlayer extends Player {
     this.counterRight = counterRight;
     this.counterLeft = counterLeft;
   }
-
 
   public void aiPlay() {
     lettersFromDatabase = UseDatabase.getAllLetters();
@@ -628,7 +699,7 @@ public class AiPlayer extends Player {
     ArrayList<Tile> choosenWord = new ArrayList<>();
     System.out.println("Starting to find word");
     // go through game while threshhold is not reached
-
+    int pointsForRound = 0;
     findacceptable:
     for (int row = 0; row < 15; row++) {
       for (int column = 0; column < 15; column++) {
@@ -681,6 +752,7 @@ public class AiPlayer extends Player {
 
             if (points.get(k) >= aiThreshold) {
               choosenWord = wordList.get(k);
+              pointsForRound = points.get(k);
               foundMatchingThreshold = true;
               System.out.println("DID BREAK");
               break findacceptable;
@@ -693,8 +765,6 @@ public class AiPlayer extends Player {
     for (Tile t : choosenWord) {
       System.out.println(t.getLetter());
     }
-    
-    
 
     // because ai uses tiles from the bag, the correct distubution needs to be set.
     HashMap<String, Integer> currentDistru =
@@ -707,6 +777,9 @@ public class AiPlayer extends Player {
       }
     }
 
+    Data.getGameSession()
+        .getCurrentPlayer()
+        .setPoints(Data.getGameSession().getCurrentPlayer().getPoints() + pointsForRound);
     Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
     Data.getGameSession().getGameBoard().finishTurn();
 
