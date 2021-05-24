@@ -44,6 +44,7 @@ public abstract class InGameController implements Initializable {
 
   String currentUser = Data.getCurrentUser();
   String currentPlayer = Data.getGameSession().getCurrentPlayer().getName();
+  String letterJoker;
 
 
   /**
@@ -88,6 +89,9 @@ public abstract class InGameController implements Initializable {
 
   @FXML
   private AnchorPane mainPane;
+
+  @FXML
+  private AnchorPane jokerPane;
 
 
   @FXML
@@ -136,7 +140,7 @@ public abstract class InGameController implements Initializable {
   private ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
   private int playerAmount = players.size();
 
-  private boolean exchangeable = false;
+  private boolean exchangeable = false, chooseJoker = false, turn = true;
 
 
   @Override
@@ -144,7 +148,10 @@ public abstract class InGameController implements Initializable {
 
     initRack();
     initPlayers();
-    initGameboard();
+    try {
+      initGameboard();
+    } catch (IOException e) {
+    }
 
   }
 
@@ -249,7 +256,13 @@ public abstract class InGameController implements Initializable {
 
   }
 
-  protected void initGameboard() {
+  protected void initGameboard() throws IOException {
+
+    if (turn && Data.getGameSession().getCurrentPlayer().getName()
+        .equalsIgnoreCase(Data.getCurrentUser())) {
+      turn = false;
+      newPum("IT'S YOUR TURN");
+    }
 
     double layoutX = 263.0, layoutY = 53.0;
     if (Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0) {
@@ -325,9 +338,13 @@ public abstract class InGameController implements Initializable {
               Data.getGameSession().getCurrentPlayer().getRack().getTileAt(rackClicked),
               rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))
               && rackClicked < 7) {
-            placeLetter(clickedLetter, clickedLabel);
-            choosenTiles.add(iv.getId());
-            exchangeable = true;
+            if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+              setJoker();
+            } else {
+              placeLetter(clickedLetter, clickedLabel);
+              choosenTiles.add(iv.getId());
+              exchangeable = true;
+            }
           } else {
             newPum(
                 "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -409,12 +426,18 @@ public abstract class InGameController implements Initializable {
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(0),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          placeLetter(clickedLetter, pointsRack1);
-          rackPlace1.setOpacity(0);
-          choosenTiles.add(clickedTile.getId());
-          clickedTile = null;
-          tileClicked = false;
-          exchangeable = true;
+          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+            setJoker();
+          } else {
+            chooseJoker = false;
+            jokerPane.setOpacity(0);
+            placeLetter(clickedLetter, pointsRack1);
+            rackPlace1.setOpacity(0);
+            choosenTiles.add(clickedTile.getId());
+            clickedTile = null;
+            tileClicked = false;
+            exchangeable = true;
+          }
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -462,12 +485,18 @@ public abstract class InGameController implements Initializable {
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(1),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          placeLetter(clickedLetter, pointsRack2);
-          rackPlace2.setOpacity(0);
-          choosenTiles.add(clickedTile.getId());
-          clickedTile = null;
-          tileClicked = false;
-          exchangeable = true;
+          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+            setJoker();
+          } else {
+            chooseJoker = false;
+            jokerPane.setOpacity(0);
+            placeLetter(clickedLetter, pointsRack2);
+            rackPlace2.setOpacity(0);
+            choosenTiles.add(clickedTile.getId());
+            clickedTile = null;
+            tileClicked = false;
+            exchangeable = true;
+          }
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -515,12 +544,18 @@ public abstract class InGameController implements Initializable {
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(2),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          placeLetter(clickedLetter, pointsRack3);
-          rackPlace3.setOpacity(0);
-          choosenTiles.add(clickedTile.getId());
-          clickedTile = null;
-          tileClicked = false;
-          exchangeable = true;
+          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+            setJoker();
+          } else {
+            chooseJoker = false;
+            jokerPane.setOpacity(0);
+            placeLetter(clickedLetter, pointsRack3);
+            rackPlace3.setOpacity(0);
+            choosenTiles.add(clickedTile.getId());
+            clickedTile = null;
+            tileClicked = false;
+            exchangeable = true;
+          }
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -568,12 +603,18 @@ public abstract class InGameController implements Initializable {
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(3),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          placeLetter(clickedLetter, pointsRack4);
-          rackPlace4.setOpacity(0);
-          choosenTiles.add(clickedTile.getId());
-          clickedTile = null;
-          tileClicked = false;
-          exchangeable = true;
+          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+            setJoker();
+          } else {
+            chooseJoker = false;
+            jokerPane.setOpacity(0);
+            placeLetter(clickedLetter, pointsRack4);
+            rackPlace4.setOpacity(0);
+            choosenTiles.add(clickedTile.getId());
+            clickedTile = null;
+            tileClicked = false;
+            exchangeable = true;
+          }
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -620,13 +661,18 @@ public abstract class InGameController implements Initializable {
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(4),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-
-          placeLetter(clickedLetter, pointsRack5);
-          rackPlace5.setOpacity(0);
-          choosenTiles.add(clickedTile.getId());
-          clickedTile = null;
-          tileClicked = false;
-          exchangeable = true;
+          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+            setJoker();
+          } else {
+            chooseJoker = false;
+            jokerPane.setOpacity(0);
+            placeLetter(clickedLetter, pointsRack5);
+            rackPlace5.setOpacity(0);
+            choosenTiles.add(clickedTile.getId());
+            clickedTile = null;
+            tileClicked = false;
+            exchangeable = true;
+          }
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -676,12 +722,18 @@ public abstract class InGameController implements Initializable {
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(5),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          placeLetter(clickedLetter, pointsRack6);
-          rackPlace6.setOpacity(0);
-          choosenTiles.add(clickedTile.getId());
-          clickedTile = null;
-          tileClicked = false;
-          exchangeable = true;
+          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+            setJoker();
+          } else {
+            chooseJoker = false;
+            jokerPane.setOpacity(0);
+            placeLetter(clickedLetter, pointsRack6);
+            rackPlace6.setOpacity(0);
+            choosenTiles.add(clickedTile.getId());
+            clickedTile = null;
+            tileClicked = false;
+            exchangeable = true;
+          }
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -733,12 +785,18 @@ public abstract class InGameController implements Initializable {
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(6),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          placeLetter(clickedLetter, pointsRack7);
-          rackPlace7.setOpacity(0);
-          choosenTiles.add(clickedTile.getId());
-          clickedTile = null;
-          tileClicked = false;
-          exchangeable = true;
+          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+            setJoker();
+          } else {
+            chooseJoker = false;
+            jokerPane.setOpacity(0);
+            placeLetter(clickedLetter, pointsRack7);
+            rackPlace7.setOpacity(0);
+            choosenTiles.add(clickedTile.getId());
+            clickedTile = null;
+            tileClicked = false;
+            exchangeable = true;
+          }
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -870,7 +928,7 @@ public abstract class InGameController implements Initializable {
           pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
           pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
         }
-        
+
         initRack();
         initPlayers();
         exchangeable = false;
@@ -879,6 +937,7 @@ public abstract class InGameController implements Initializable {
         tileClicked = false;
         clickedLetter = null;
         clickedTile = null;
+        turn = true;
 
         Data.getGameSession().checkBagAndRack(current);
 
@@ -1165,6 +1224,34 @@ public abstract class InGameController implements Initializable {
     point.setOpacity(1);
   }
 
+  // Joker handling
+
+  private void setJoker() throws IOException {
+    jokerPane.setOpacity(1);
+    chooseJoker = true;
+    newPum("Choose a letter on the left\n the Joker stands for!");
+  }
+
+
+  @FXML
+  private void jokerLetterChoosen(MouseEvent event) {
+    ImageView iv = (ImageView) event.getSource();
+
+    if (chooseJoker) {
+      letterJoker = iv.getId();
+    }
+  }
+
+
+
+  @FXML
+  private void chooseClicked(MouseEvent event) {
+    if (chooseJoker) {
+      setNewTile(clickedLetter, clickedLabel, letterJoker, 0);
+      chooseJoker = false;
+      jokerPane.setOpacity(0);
+    }
+  }
 
 
   @FXML
@@ -1172,9 +1259,9 @@ public abstract class InGameController implements Initializable {
     if (endPossible) {
       Data.getGameSession().setShouldEnd(true);
       Data.getGameSession().endGame();
-      if(Data.getPlayerClient() != null) {
+      if (Data.getPlayerClient() != null) {
         App.setRoot("EndGameMultiplayer");
-      }else {
+      } else {
         App.setRoot("EndGameSingleplayer");
       }
     }

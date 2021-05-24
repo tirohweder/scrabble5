@@ -31,7 +31,12 @@ public class SingleplayerController extends InGameController implements Initiali
               
               initRack();
               initPlayers();
-              initGameboard();
+              try {
+                initGameboard();
+              } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+              }
 
             }
           }

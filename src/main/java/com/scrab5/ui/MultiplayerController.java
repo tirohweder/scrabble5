@@ -91,12 +91,15 @@ public class MultiplayerController extends InGameController implements Initializ
             public void run() {
 
               textArea.setText(Data.getChatHistory().toString());
-              // chatBox.setText(chatHistory.toString());
 
               initPlayers();
               initRack();
-              initGameboard();
-              // nur als reminder, nenn es wie du willst
+              try {
+                initGameboard();
+              } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+              }
 
             }
           });

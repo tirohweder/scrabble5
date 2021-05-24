@@ -1395,6 +1395,285 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@board_Images/endButtonClicked.png" />
                </image>
             </ImageView>
+            <AnchorPane fx:id="jokerPane" layoutY="67.0" prefHeight="617.0" prefWidth="259.0">
+               <children>
+                  <ImageView fitHeight="545.0" fitWidth="273.0" layoutX="17.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/JokerChooseMenu.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileA.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileC.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileB.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="191.0" layoutY="81.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileD.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileE.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileF.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileG.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="191.0" layoutY="137.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileH.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileI.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileJ.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileK.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="190.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileL.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileM.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileN.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileO.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="191.0" layoutY="251.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileP.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileQ.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileR.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileS.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="190.0" layoutY="310.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileT.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileU.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileV.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileW.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="191.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileX.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileY.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="426.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@letter_Images/tileZ.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="A" fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="81.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="B" fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="81.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="C" fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="81.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="D" fitHeight="48.0" fitWidth="43.0" layoutX="191.0" layoutY="81.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="E" fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="137.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="F" fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="137.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="G" fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="137.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="H" fitHeight="48.0" fitWidth="43.0" layoutX="191.0" layoutY="137.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="I" fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="194.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="J" fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="194.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="K" fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="194.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="L" fitHeight="48.0" fitWidth="43.0" layoutX="188.0" layoutY="194.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="M" fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="251.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="N" fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="251.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="O" fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="251.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="P" fitHeight="48.0" fitWidth="43.0" layoutX="190.0" layoutY="251.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Q" fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="310.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="R" fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="310.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="S" fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="310.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="T" fitHeight="48.0" fitWidth="43.0" layoutX="188.0" layoutY="310.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="U" fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="367.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="V" fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="367.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="W" fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="367.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="X" fitHeight="48.0" fitWidth="43.0" layoutX="191.0" layoutY="367.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Y" fitHeight="48.0" fitWidth="43.0" layoutX="28.0" layoutY="426.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView id="Z" fitHeight="48.0" fitWidth="43.0" layoutX="81.0" layoutY="426.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/Letter%20clicked.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="43.0" fitWidth="81.0" layoutX="148.0" layoutY="538.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/JokerChoose.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="43.0" fitWidth="81.0" layoutX="148.0" layoutY="538.0" onMouseClicked="#chooseClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@board_Images/JokerChooseClicked.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
