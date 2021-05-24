@@ -314,6 +314,11 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                     diffButton1.setOpacity(1.0);
                   }
                 }
+                if (client.getIp().equals("AI")) {
+                  difficulty2.setOpacity(1.0);
+                  diffSelection2.setOpacity(1.0);
+                  diffButton1.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -338,6 +343,11 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                     diffButton2.setOpacity(1.0);
                   }
                 }
+                if (client.getIp().equals("AI")) {
+                  difficulty3.setOpacity(1.0);
+                  diffSelection3.setOpacity(1.0);
+                  diffButton2.setOpacity(1.0);
+                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -361,6 +371,11 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                     diffSelection4.setOpacity(1.0);
                     diffButton3.setOpacity(1.0);
                   }
+                }
+                if (client.getIp().equals("AI")) {
+                  difficulty4.setOpacity(1.0);
+                  diffSelection4.setOpacity(1.0);
+                  diffButton3.setOpacity(1.0);
                 }
                 if (!client.isReady()) {
                   start = false;
