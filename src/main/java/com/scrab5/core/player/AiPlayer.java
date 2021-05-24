@@ -389,8 +389,7 @@ public class AiPlayer extends Player {
     return b;
   }
 
-  /** @param aiThreshold */
-  public void aiPlay(int aiThreshold) {
+  public void aiPlay() {
 
     boolean foundMatchingThreshold = false;
     int column = 0;
