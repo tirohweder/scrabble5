@@ -426,7 +426,7 @@ public class AiPlayer extends Player {
 
     for (int i = 0; i < possibleWords.get(0).size(); i++) {
       System.out.println(possibleWords.get(0).get(i).getLetter());
-      System.out.println("VALUE of Tile: " + possibleWords.get(0).get(0).getValue());
+      System.out.println("VALUE of Tile: " + possibleWords.get(0).get(i).getValue());
     }
 
     for (ArrayList<Tile> word : possibleWords) {
@@ -437,7 +437,7 @@ public class AiPlayer extends Player {
       boolean dw = false;
       for (Tile tile : word) {
         // System.out.println(tile.getLetter());
-        if (gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) {
+        if (true) { // gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) {
           switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
             case "DL":
               scoreToBe += tile.getValue() * 2;
@@ -463,6 +463,8 @@ public class AiPlayer extends Player {
       } else if (tw) {
         score = scoreToBe * 3;
       }
+
+      // System.out.println("score: " + score);
       scoreList.add(score);
     }
 
@@ -621,10 +623,18 @@ public class AiPlayer extends Player {
           }
 
           System.out.println("Checked all");
+
+          ArrayList<ArrayList<Tile>> wordListtest = new ArrayList<>();
+
+          // for (int i = 0; i < 10; i++) {
+          // wordListtest.add(wordList.get(i));
+          // }
+
           ArrayList<Integer> points = countScore(Data.getGameSession().getGameBoard(), wordList);
 
           System.out.println("Points size :" + points.size());
-          System.out.println("Points size :" + points.get(0).toString());
+          System.out.println(
+              "How many letters does the first word have:" + points.get(0).toString());
           System.out.println(aiThreshold);
 
           for (int k = 0; k < points.size(); k++) {
@@ -655,6 +665,12 @@ public class AiPlayer extends Player {
 
     Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
     Data.getGameSession().getGameBoard().finishTurn();
+
+    System.out.println(
+        Data.getGameSession()
+            .getGameBoard()
+            .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()));
+
     Data.getGameSession().finishTurn();
   }
 }

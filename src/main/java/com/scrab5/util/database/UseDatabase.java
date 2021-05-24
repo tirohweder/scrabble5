@@ -226,7 +226,7 @@ public class UseDatabase extends Database {
     ArrayList<Integer> point = new ArrayList<Integer>();
     try {
       stm = connection.createStatement();
-      rs = stm.executeQuery("SELECT Points FROM Letters WHERE (Letter = " + letter + ");");
+      rs = stm.executeQuery("SELECT Points FROM Letters WHERE (Letter = '" + letter + "');");
 
       while (rs.next()) {
         point.add(rs.getInt(1));
