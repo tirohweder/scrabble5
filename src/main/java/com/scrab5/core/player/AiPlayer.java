@@ -101,6 +101,8 @@ public class AiPlayer extends Player {
       }
     }
 
+    System.out.println("Final Words length: " + finalWords.size());
+
     StringBuilder sb = new StringBuilder();
     for (String s : possibleLetters) {
       sb.append(s);
@@ -148,6 +150,7 @@ public class AiPlayer extends Player {
       }
     }
     finalWords.removeAll(deletionRound3);
+    System.out.println("Final Words length: " + fixLetter.length());
 
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
     ArrayList<Tile> innerList = new ArrayList<Tile>();
@@ -384,12 +387,14 @@ public class AiPlayer extends Player {
         j = word.length() - 1;
       }
     }
-    System.out.println(j);
+
     for (int i = 0; i <= j; i++) {
       currentDistribution.put(
           Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) + 1);
     }
+
+    System.out.println("Word: " + word + " is : " + b);
     return b;
   }
 
