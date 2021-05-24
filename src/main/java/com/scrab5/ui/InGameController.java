@@ -1156,7 +1156,6 @@ public abstract class InGameController implements Initializable {
     } else {
       letter = "tile" + letter.toUpperCase();
     }
-    System.out.println(letter);
     Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter + ".png");
     rackPlace.setImage(letterImage);
     if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
