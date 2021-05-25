@@ -1,6 +1,7 @@
 package com.scrab5.core.player;
 
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import java.io.IOException;
 import java.io.Serializable;
@@ -236,9 +237,13 @@ public class PlayerProfile implements Serializable {
    * @author lengist
    */
   public void addPoints(int points) {
+    Database.reconnect();
     int currentPoints = PlayerProfileDatabase.getTotalPoints(name);
+    System.out.println("geht noch");
+    Database.disconnect();
     int newPoints = currentPoints + points;
     // System.out.println(name + " " + newPoints);
     PlayerProfileDatabase.setTotalPoints(name, newPoints);
+    Database.disconnect();
   }
 }

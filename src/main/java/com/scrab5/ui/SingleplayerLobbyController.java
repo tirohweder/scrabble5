@@ -407,7 +407,9 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     ArrayList<Player> playerList = new ArrayList<Player>();
     for (int i = 0; i < temp.size(); i++) {
       if (temp.get(i)[1] == 0) {
-        playerList.add(new Player(Data.getCurrentUser()));
+        Player user = new Player(Data.getCurrentUser());
+        user.setHuman(true);
+        playerList.add(user);
       } else {
         switch (temp.get(i)[1]) {
           case 1:

@@ -189,6 +189,8 @@ public class FillDatabase extends Database {
           pstmt.setString(1, name);
           pstmt.executeUpdate();
         } else if (column.equals("TotalPoints")) {
+          System.out.println("richtiger Part.");
+          Database.disconnect();
           String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
