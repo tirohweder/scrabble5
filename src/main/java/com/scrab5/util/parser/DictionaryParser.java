@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -123,7 +123,6 @@ public class DictionaryParser {
       String line;
       while ((line = buf.readLine()) != null) {
         filterWords(line);
-
       }
       buf.close();
     } catch (FileNotFoundException e1) {
@@ -171,7 +170,7 @@ public class DictionaryParser {
       e1.printStackTrace();
     }
   }
-  
+
   /**
    * Returns the file of the current Dictionary.
    * 
@@ -183,6 +182,36 @@ public class DictionaryParser {
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + "src/main/resources/com/scrab5/util/textParser/" + dictionaryName);
     return file;
+  }
+  
+  /**
+   * Saves a new file from another client.
+   * 
+   * @author lengist
+   * @param file the file from the other user
+   * @param newFileName the name of the file sent
+   */
+  public static void insertFile(File file, String newFileName) {
+    File newFile = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
+    String line = null;
+    FileInputStream fileInput;
+    try {
+      fileInput = new FileInputStream(newFile);
+      BufferedReader buf =
+          new BufferedReader(new InputStreamReader(fileInput, StandardCharsets.UTF_8));
+      while ((line = buf.readLine()) != null) {
+        bufWriter.write(line);
+        bufWriter.newLine();
+      }
+      buf.close();
+    } catch (FileNotFoundException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    } catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
   }
 
 }

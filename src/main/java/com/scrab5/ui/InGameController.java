@@ -239,22 +239,22 @@ public abstract class InGameController implements Initializable {
             setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
             break;
           case 1:
-            setNewTile(rackPlace2, pointsRack2, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+           setNewTile(rackPlace2, pointsRack2, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
             break;
           case 2:
-            setNewTile(rackPlace3, pointsRack3, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+           setNewTile(rackPlace3, pointsRack3, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
             break;
           case 3:
-            setNewTile(rackPlace4, pointsRack4, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+          setNewTile(rackPlace4, pointsRack4, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
             break;
           case 4:
-            setNewTile(rackPlace5, pointsRack5, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+           setNewTile(rackPlace5, pointsRack5, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
             break;
           case 5:
-            setNewTile(rackPlace6, pointsRack6, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+             setNewTile(rackPlace6, pointsRack6, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
             break;
           case 6:
-            setNewTile(rackPlace7, pointsRack7, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+          setNewTile(rackPlace7, pointsRack7, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
             break;
           default:
             break;
