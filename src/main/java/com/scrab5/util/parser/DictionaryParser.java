@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.InputStreamReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -171,7 +171,7 @@ public class DictionaryParser {
       e1.printStackTrace();
     }
   }
-  
+
   /**
    * Returns the file of the current Dictionary.
    * 

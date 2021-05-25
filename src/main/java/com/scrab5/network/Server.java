@@ -1,12 +1,14 @@
 package com.scrab5.network;
 
 import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.network.messages.DictionaryMessage;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.InetAddress;
@@ -433,5 +435,17 @@ public class Server implements Serializable {
   public void addAi(String name) {
     this.clients.put(name, new ClientData(name, "AI", null, true));
     this.sendUpdateMessage();
+  }
+
+  /**
+   * Sends the given dictionary to all clients so checking if the word is included in the dictionary
+   * takes place at the client.
+   * 
+   * @author nitterhe
+   * @param dictionaryName - the name of the dictionary
+   * @param dictionary - the dictionary
+   */
+  public void sendDictionary(String dictionaryName, File dictionary) {
+    sendMessageToAllClients(new DictionaryMessage(this.host, dictionaryName, dictionary));
   }
 }

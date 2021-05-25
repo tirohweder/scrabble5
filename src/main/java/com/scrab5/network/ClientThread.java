@@ -3,6 +3,7 @@ package com.scrab5.network;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.ConnectMessage;
+import com.scrab5.network.messages.DictionaryMessage;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
@@ -91,13 +92,15 @@ public class ClientThread extends Threads implements Serializable {
             this.client.updateCurrentServer(lum);
             break;
           case MAKETURN:
-
             MakeTurnMessage mtm = (MakeTurnMessage) message;
             Data.setGameSession(mtm.getGameSession());
-
             if (mtm.getGameSession().getRoundNumber() == 0) {
               this.client.setStarting(true);
             }
+            break;
+          case DICTIONARY:
+            DictionaryMessage dm = (DictionaryMessage) message;
+            Data.setSelectedDictionary(dm.getDictionaryName());
             break;
           default:
             break;

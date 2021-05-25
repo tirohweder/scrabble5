@@ -55,7 +55,7 @@ public class DictionaryScanner {
     }
     return found;
   }
-  
+
   /**
    * Method to return words that contains the letter "letter" and are at most "length" chars long.
    * 
@@ -67,9 +67,9 @@ public class DictionaryScanner {
   public static ArrayList<String> getWordsIncluding(String letter, int length) {
     ArrayList<String> list = new ArrayList<String>();
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/" 
+        + "src/main/resources/com/scrab5/util/textParser/"
         + "Built-In Standard DictionaryParsed.txt");
-    //needs to be changed back to DictionaryParser.getNewFileName(); 
+    // needs to be changed back to DictionaryParser.getNewFileName();
     try {
       Scanner scanner = new Scanner(file);
       while (scanner.hasNextLine()) {
@@ -83,10 +83,10 @@ public class DictionaryScanner {
     }
     String[] suitableWords = new String[list.size()];
     suitableWords = list.toArray(suitableWords);
-    
+
     return list;
   }
-  
+
   /**
    * Returns a new array that contains the words from the parameter array which include letter.
    * 
@@ -104,8 +104,8 @@ public class DictionaryScanner {
     }
     return checked;
   }
-  
-  
+
+
 
   /**
    * main method to test the implementation.
@@ -126,13 +126,13 @@ public class DictionaryScanner {
     // System.out.println(scan("JOK*R"));
     System.out.println(scan("ZZZ"));
     System.out.println();
-    
+
     System.out.println("before");
     System.out.println();
-    //String[] test = getWordsIncluding("A", 3);
-    /*for(int i = 0; i < test.length; i++) {
-      System.out.println(test[i]);
-    }
-    System.out.println("after");*/
+    // String[] test = getWordsIncluding("A", 3);
+    /*
+     * for(int i = 0; i < test.length; i++) { System.out.println(test[i]); }
+     * System.out.println("after");
+     */
   }
 }
