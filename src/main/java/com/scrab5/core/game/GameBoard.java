@@ -200,6 +200,18 @@ public class GameBoard implements Serializable {
   }
 
   /**
+   * Will check if at the given coordinates there is already a tile placed on gameBoardCurrent.
+   *
+   * @param row coordinates of the to be checked spot
+   * @param column coordinates of the to be checked spot
+   * @return if at the given coordinates there is already a tile placed on the gameBoardCurrent
+   * @author trohwede
+   */
+  public boolean isSpotFreeOld(int row, int column) {
+    return gameBoard[row][column] == null;
+  }
+
+  /**
    * Checks if the given coordinates, are in the same row and column. And if not next to each other
    * if between them other tiles have already been placed
    *
