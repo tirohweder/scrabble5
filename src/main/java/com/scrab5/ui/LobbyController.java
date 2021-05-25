@@ -413,7 +413,7 @@ public abstract class LobbyController extends Controller {
 
     ArrayList<Integer> al = new ArrayList<Integer>();
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < Data.getPlayerCountMultiplayer(); i++) {
 
       if (i == 0) {
         al.add(voteSelection1.getValue());

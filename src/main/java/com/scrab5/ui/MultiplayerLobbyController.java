@@ -88,7 +88,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.customizeButton.setY(-34);
       this.customizeButton.setOpacity(1.0);
     }
-
+    System.out.println(this.isHost);
     this.refreshUI();
   }
 
