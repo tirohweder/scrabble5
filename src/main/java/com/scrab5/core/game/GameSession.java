@@ -335,9 +335,6 @@ public class GameSession implements Serializable {
       }
 
     }
-
-    //
-
     this.running = false;
   }
 

@@ -484,7 +484,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * Method that is called once a player clicked a "Join"-button. If the lobby isn't full yet, then
    * the player joins the lobby and the scene gets changed to "MultiplayerLobby.fxml".
    *
-   *
    * @author nitterhe
    * @author mherre
    * @param number the integer containing the number which "Join"-button has been clicked
