@@ -78,7 +78,7 @@ public class AiPlayer extends Player {
     System.out.println("x: " + x);
     System.out.println("y: " + y);
     System.out.println();
-    
+
     System.out.println("Saved fixLetter: " + currentFixLetter);
     System.out.println("saved x: " + currentFixX);
     System.out.println("saved y: " + currentFixY);
@@ -667,10 +667,12 @@ public class AiPlayer extends Player {
     this.counterRight = counterRight;
     this.counterLeft = counterLeft;
 
-    if (counterLeft == 0 | counterRight == 0) {
+    if (counterLeft == 0 || counterRight == 0) {
       this.counterLeft = 0;
       this.counterRight = 0;
-    } else if (counterUp == 0 | counterDown == 0) {
+    }
+
+    if (counterUp == 0 || counterDown == 0) {
       this.counterDown = 0;
       this.counterUp = 0;
     }
@@ -746,7 +748,7 @@ public class AiPlayer extends Player {
               break;
             }
           }
-          
+
           System.out.println("left: " + counterLeft);
           System.out.println("right: " + counterRight);
           System.out.println("uo: " + counterUp);
