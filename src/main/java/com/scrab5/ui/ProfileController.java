@@ -189,8 +189,51 @@ public class ProfileController extends Controller implements Initializable {
    * @author lengist
    */
   private synchronized void setupStats() {
+    
 
-    Database.reconnect();
+    String name = Data.getCurrentUser();
+
+    String longestWord = PlayerProfileDatabase.getLongestWord(name);
+    this.longestWord.setText(longestWord);
+
+    String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
+    if (!favoriteDictionary.equals("")) {
+      this.favDic.setText(favoriteDictionary.substring(0, favoriteDictionary.length() - 4));
+    } else {
+      this.favDic.setText("-");
+    }
+    
+    int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
+    this.totalPoints.setText(String.valueOf(totalPoints));
+
+    int personalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
+    this.mostPoints.setText(String.valueOf(personalHighscore));
+
+    int laidWords = PlayerProfileDatabase.getLaidWords(name);
+    this.laidWords.setText(String.valueOf(laidWords));
+
+    int pointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
+    this.averagePointsWord.setText(String.valueOf(pointsPerWordRate));
+
+    int totalPlayedGames = PlayerProfileDatabase.getTotalPlayedGames(name);
+    this.totalGames.setText(String.valueOf(totalPlayedGames));
+
+    int totalWins = PlayerProfileDatabase.getTotalWins(name);
+    this.totalWins.setText(String.valueOf(totalWins));
+
+    double winRate = PlayerProfileDatabase.getWinRate(name);
+    this.winPercentage.setText(String.valueOf(winRate));
+
+    if (totalPoints == 0 || totalPlayedGames == 0) {
+      this.averagePointsGame.setText("0");
+
+    } else {
+      int averagePointsPerGame = totalPoints / totalPlayedGames;
+      this.averagePointsGame.setText(String.valueOf(averagePointsPerGame));
+
+    }
+
+    /*Database.reconnect();
     String name = Data.getCurrentUser();
     Database.disconnect();
 
@@ -250,6 +293,6 @@ public class ProfileController extends Controller implements Initializable {
       int averagePointsPerGame = totalPoints / totalPlayedGames;
       this.averagePointsGame.setText(String.valueOf(averagePointsPerGame));
 
-    }
+    }*/
   }
 }
