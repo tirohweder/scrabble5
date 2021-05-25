@@ -151,17 +151,14 @@ public abstract class InGameController implements Initializable {
   
   private boolean chooseJoker = false;
   private boolean turn = true;
+  
 
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
-    initRack();
-    initPlayers();
-    try {
-      initGameboard();
-    } catch (IOException e) {
-    }
+    
+    System.out.println("hallo");
 
   }
 
@@ -221,7 +218,6 @@ public abstract class InGameController implements Initializable {
     for (Player p : Data.getGameSession().getListOfPlayers()) {
       String s = p.getName();
       if (s.equalsIgnoreCase(currentUser)) {
-        // p.getRack().fill(Data.getGameSession().getBag());
         myRack = p.getRack();
       } else {
         continue;
@@ -1342,6 +1338,10 @@ public abstract class InGameController implements Initializable {
     }else {
       iv.setOpacity(1);
     }
+  }
+  
+  protected void aiTurn() {
+    Data.getGameSession().isAiFirstTurn();
   }
 
   /**
