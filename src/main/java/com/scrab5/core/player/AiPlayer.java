@@ -78,6 +78,7 @@ public class AiPlayer extends Player {
     System.out.println("x: " + x);
     System.out.println("y: " + y);
     System.out.println();
+    
     System.out.println("Saved fixLetter: " + currentFixLetter);
     System.out.println("saved x: " + currentFixX);
     System.out.println("saved y: " + currentFixY);
@@ -737,6 +738,11 @@ public class AiPlayer extends Player {
               break;
             }
           }
+          
+          System.out.println("left: " + counterLeft);
+          System.out.println("right: " + counterRight);
+          System.out.println("uo: " + counterUp);
+          System.out.println("down: " + counterDown);
 
           System.out.println("Checked all");
 
