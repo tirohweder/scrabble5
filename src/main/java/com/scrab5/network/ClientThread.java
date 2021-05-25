@@ -11,6 +11,7 @@ import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
+import com.scrab5.util.parser.DictionaryParser;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -101,6 +102,7 @@ public class ClientThread extends Threads implements Serializable {
           case DICTIONARY:
             DictionaryMessage dm = (DictionaryMessage) message;
             Data.setSelectedDictionary(dm.getDictionaryName());
+            DictionaryParser.insertFile(dm.getDictionary(), dm.getDictionaryName());
             break;
           default:
             break;

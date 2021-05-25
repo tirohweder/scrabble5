@@ -183,7 +183,7 @@ public class DictionaryParser {
         + "src/main/resources/com/scrab5/util/textParser/" + dictionaryName);
     return file;
   }
-  
+
   /**
    * Saves a new file from another client.
    * 
@@ -192,6 +192,7 @@ public class DictionaryParser {
    * @param newFileName the name of the file sent
    */
   public static void insertFile(File file, String newFileName) {
+    System.out.println(newFileName);
     File newFile = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
     String line = null;
@@ -205,6 +206,7 @@ public class DictionaryParser {
         bufWriter.newLine();
       }
       buf.close();
+      parseFile(newFileName);
     } catch (FileNotFoundException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
@@ -213,5 +215,4 @@ public class DictionaryParser {
       e.printStackTrace();
     }
   }
-
 }

@@ -202,8 +202,12 @@ public class ProfileController extends Controller implements Initializable {
     Database.reconnect();
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
     Database.disconnect();
-    this.favDic.setText(favoriteDictionary.substring(0, favoriteDictionary.length() - 4));
-
+    if (!favoriteDictionary.equals("")) {
+      this.favDic.setText(favoriteDictionary.substring(0, favoriteDictionary.length() - 4));
+    } else {
+      this.favDic.setText("-");
+    }
+    
     Database.reconnect();
     int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
     Database.disconnect();
