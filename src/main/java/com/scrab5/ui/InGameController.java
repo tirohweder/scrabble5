@@ -428,7 +428,7 @@ public abstract class InGameController implements Initializable {
         if (clickedLetter != null) {
           if (clickedLetter == rackPlace1) {
             unclickLetter(rackPlace1);
-          } else if(rackPlace1.getOpacity() != 0){
+          } else if (rackPlace1.getOpacity() != 0) {
             switchClickedLetter(rackPlace1);
           }
         }
@@ -549,7 +549,7 @@ public abstract class InGameController implements Initializable {
         if (clickedLetter != null) {
           if (clickedLetter == rackPlace3) {
             unclickLetter(rackPlace3);
-          } else if(rackPlace3.getOpacity() != 0){
+          } else if (rackPlace3.getOpacity() != 0) {
             switchClickedLetter(rackPlace3);
           }
         }
@@ -611,7 +611,7 @@ public abstract class InGameController implements Initializable {
         if (clickedLetter != null) {
           if (clickedLetter == rackPlace4) {
             unclickLetter(rackPlace4);
-          } else if(rackPlace4.getOpacity() != 0){
+          } else if (rackPlace4.getOpacity() != 0) {
             switchClickedLetter(rackPlace4);
           }
         }
@@ -671,7 +671,7 @@ public abstract class InGameController implements Initializable {
         if (clickedLetter != null) {
           if (clickedLetter == rackPlace5) {
             unclickLetter(rackPlace5);
-          } else if(rackPlace5.getOpacity() != 0){
+          } else if (rackPlace5.getOpacity() != 0) {
             switchClickedLetter(rackPlace5);
           }
         }
@@ -734,7 +734,7 @@ public abstract class InGameController implements Initializable {
         if (clickedLetter != null) {
           if (clickedLetter == rackPlace6) {
             unclickLetter(rackPlace6);
-          } else if(rackPlace6.getOpacity() != 0){
+          } else if (rackPlace6.getOpacity() != 0) {
             switchClickedLetter(rackPlace6);
           }
         }
@@ -799,7 +799,7 @@ public abstract class InGameController implements Initializable {
         if (clickedLetter != null) {
           if (clickedLetter == rackPlace7) {
             unclickLetter(rackPlace7);
-          } else if(rackPlace7.getOpacity() != 0){
+          } else if (rackPlace7.getOpacity() != 0) {
             switchClickedLetter(rackPlace7);
           }
         }
@@ -1031,6 +1031,7 @@ public abstract class InGameController implements Initializable {
 
       }
     } else {
+      System.out.println(tilePlacedOrder.get(0));
       if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 0) {
         rackPlace1.setOpacity(1);
         pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
@@ -1038,42 +1039,42 @@ public abstract class InGameController implements Initializable {
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 1) {
+      } else if (tilePlacedOrder.get(0) == 1) {
         rackPlace2.setOpacity(1);
         pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 2) {
+      } else if (tilePlacedOrder.get(0) == 2) {
         rackPlace3.setOpacity(1);
         pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 3) {
+      } else if (tilePlacedOrder.get(0) == 3) {
         rackPlace4.setOpacity(1);
         pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 4) {
+      } else if (tilePlacedOrder.get(0) == 4) {
         rackPlace5.setOpacity(1);
         pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 5) {
+      } else if (tilePlacedOrder.get(0) == 5) {
         rackPlace6.setOpacity(1);
         pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 6) {
+      } else if (tilePlacedOrder.get(0) == 6) {
         rackPlace7.setOpacity(1);
         pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
@@ -1081,6 +1082,7 @@ public abstract class InGameController implements Initializable {
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
       }
+      tilePlacedOrder.remove(0);
     }
 
     iv.setImage(markedTile);
@@ -1088,7 +1090,6 @@ public abstract class InGameController implements Initializable {
     tileClicked = false;
     letterClicked = false;
     changes.remove(changes.size() - 1);
-    tilePlacedOrder.remove(tilePlacedOrder.size() - 1);
 
   }
 
@@ -1113,7 +1114,6 @@ public abstract class InGameController implements Initializable {
     clickedLetter = null;
     letterClicked = false;
     tileClicked = false;
-    clickedTile = null;
   }
 
   /**
@@ -1232,7 +1232,11 @@ public abstract class InGameController implements Initializable {
     playSound("ButtonClicked.mp3");
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       if ((Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0)) {
-        App.setRoot("Exchange");
+        if (Data.getGameSession().getBag().getSize() > 7) {
+          App.setRoot("Exchange");
+        }else {
+          newPum("Sorry there are not enough tile left in the bag");
+        }
       } else {
         newPum(
             "You can't place tiles and exchange in the same turn!\nRemove all before exchanging");
