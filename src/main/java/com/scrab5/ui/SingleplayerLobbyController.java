@@ -394,7 +394,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     while (unsorted) {
       unsorted = false;
       for (int i = 0; i < temp.size() - 1; i++) {
-        if (temp.get(i + 1)[0] > temp.get(i)[0]) {
+        if (temp.get(i + 1)[0] < temp.get(i)[0]) {
           int[] help = temp.get(i);
           temp.set(i, temp.get(i + 1));
           temp.set(i + 1, help);
