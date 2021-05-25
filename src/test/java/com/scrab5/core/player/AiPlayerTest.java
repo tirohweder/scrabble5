@@ -239,5 +239,26 @@ class AiPlayerTest {
     assertEquals(12, tiles3.get(5).getColumn());
     assertEquals(7, tiles3.get(5).getRow());
     
+    ArrayList<Tile> tiles4 = test.wordToTiles("HELLO", "O", 7, 9, true);
+    assertEquals("H", tiles4.get(0).getLetter());
+    assertEquals(3, tiles4.get(0).getColumn());
+    assertEquals(9, tiles4.get(0).getRow());
+    /*E*/
+    assertEquals("E", tiles4.get(1).getLetter());
+    assertEquals(4, tiles4.get(1).getColumn());
+    assertEquals(9, tiles4.get(1).getRow());
+    /*L*/
+    assertEquals("L", tiles4.get(2).getLetter());
+    assertEquals(5, tiles4.get(2).getColumn());
+    assertEquals(9, tiles4.get(2).getRow());
+    /*L*/
+    assertEquals("L", tiles4.get(3).getLetter());
+    assertEquals(6, tiles4.get(3).getColumn());
+    assertEquals(9, tiles4.get(3).getRow());
+    /*O*/
+    assertEquals("O", tiles4.get(4).getLetter());
+    assertEquals(7, tiles4.get(4).getColumn());
+    assertEquals(9, tiles4.get(4).getRow());
+    
   }
 }

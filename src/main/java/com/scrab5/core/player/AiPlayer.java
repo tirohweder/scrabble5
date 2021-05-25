@@ -178,10 +178,6 @@ public class AiPlayer extends Player {
   public static ArrayList<Tile> wordToTiles(
       String word, String fixLetter, int x, int y, boolean horizontal) {
     ArrayList<Tile> tiles = new ArrayList<Tile>();
-    ArrayList<Integer> coordinates = new ArrayList<Integer>();
-    int value = 0;
-    int row = 0;
-    int column = 0;
     tiles = getCoordinatesRep(word, fixLetter, x, y, horizontal);
     /*if (!isLetterExistingRepeatedly(word)) {
     /*for (int i = 0; i < word.length(); i++) {
@@ -238,8 +234,9 @@ public class AiPlayer extends Player {
     if (horizontal) {
       for (int i = 0; i < fixPosition; i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
+        System.out.println(word.charAt(i));
         row = yfixLetter;
-        column = xfixLetter - i;
+        column = xfixLetter - (fixPosition - i);
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
         tiles.add(t);
       }
@@ -248,14 +245,14 @@ public class AiPlayer extends Player {
       for (int i = fixPosition + 1; i < word.length(); i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
         row = yfixLetter;
-        column = xfixLetter + i;
+        column = xfixLetter + (i - fixPosition);
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
         tiles.add(t);
       }
     } else {
       for (int i = 0; i < fixPosition; i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
-        row = yfixLetter - i;
+        row = yfixLetter - (fixPosition - i);
         column = xfixLetter;
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
         tiles.add(t);
@@ -264,7 +261,7 @@ public class AiPlayer extends Player {
       tiles.add(t1);
       for (int i = fixPosition + 1; i < word.length(); i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
-        row = yfixLetter + i;
+        row = yfixLetter +  (i - fixPosition);
         column = xfixLetter;
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
         tiles.add(t);
