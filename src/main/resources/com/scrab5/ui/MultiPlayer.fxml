@@ -1385,6 +1385,11 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font size="10.0" />
                </font>
             </TextField>
+            <Label fx:id="skipPlay" layoutX="927.0" layoutY="728.0" prefHeight="48.0" prefWidth="56.0" text="Label" textFill="#eadcb4">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
             <ImageView fx:id="endGame" fitHeight="48.0" fitWidth="59.0" layoutX="1061.0" layoutY="690.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/endButton.png" />
@@ -1664,6 +1669,21 @@ The method specification which implements what to do when a field is clicked/ en
                   </ImageView>
                </children>
             </AnchorPane>
+            <ImageView fx:id="undoButton" fitHeight="55.0" fitWidth="58.0" layoutX="990.0" layoutY="686.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/SIngleplayer_undo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="55.0" fitWidth="58.0" layoutX="990.0" layoutY="686.0" onMouseClicked="#undoClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Singleplayer_undo_Clicked.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="undoLabel" layoutX="991.0" layoutY="727.0" opacity="0.0" prefHeight="48.0" prefWidth="56.0" text="Undo" textFill="#eadcb4">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
