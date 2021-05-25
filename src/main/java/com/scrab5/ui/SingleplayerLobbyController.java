@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -328,24 +329,10 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   @FXML
   protected void startGame(MouseEvent event) throws IOException, SQLException {
 
-    ArrayList<Player> playList = new ArrayList<Player>();
-    playList.add(0, new Player(Data.getCurrentUser()));
-
-    ArrayList<Integer> s = getPlayerVotes();
-    for (int i = 0; i < s.size(); i++) {
-      System.out.println(i + ". Position: " + s.get(i) + " Votes!");
-    }
-
-    for (int i = 1; i < freeSpaces.length; i++) {
-      if (!freeSpaces[i]) {
-        // TODO set difficulty and order
-        playList.add(new AiPlayer("CPU" + (i + 1), 0));
-      }
-    }
-
     if (Data.getHasBeenEdited()) {
       ArrayList<Integer> tiles = createTileBag(Data.getOccurrencyDistribution());
-      Data.setGameSession(new GameSession(playList, tiles, Data.getPointsDistribution(), false));
+      Data.setGameSession(new GameSession(setPlayerOrder(getPlayerVotes()), tiles,
+          Data.getPointsDistribution(), false));
 
     } else {
       ArrayList<Integer> points = new ArrayList<Integer>();
@@ -359,10 +346,87 @@ public class SingleplayerLobbyController extends LobbyController implements Init
       }
 
       ArrayList<Integer> tiles = createTileBag(help1);
-      Data.setGameSession(new GameSession(playList, tiles, points, false));
+      Data.setGameSession(new GameSession(setPlayerOrder(getPlayerVotes()), tiles, points, false));
     }
 
     App.setRoot("SinglePlayer");
+  }
+
+  /**
+   * This method is needed to create a <code>GameSession</code>. It sets the correct play order of
+   * the players and creates the AI players as well as the player itself.
+   * <p>
+   * 1. A new <code>ArrayList temp</code> is created which contains the amount of votes as well as
+   * the position of the corresponding player.
+   * </p>
+   * 2. The votes get multiplied by 1000, this way we can easily randomize the position of two
+   * players in case they have the same amount of votes.
+   * <p>
+   * 3. <code>temp</code> gets sorted by a Bubble Sort algorithm.
+   * </p>
+   * 4. The players are created and added to <code>playerList</code> which then is returned.
+   * 
+   * @author mherre
+   * @param playerVotes the <code>ArrayList</code> which contains the votes of the postion 1 - 4
+   * @return playerList the <code>ArrayList</code> which contains the correct order of newly created
+   *         players
+   */
+  private ArrayList<Player> setPlayerOrder(ArrayList<Integer> playerVotes) {
+
+    ArrayList<int[]> temp = new ArrayList<int[]>();
+    for (int i = 0; i < playerVotes.size(); i++) {
+      if (!freeSpaces[i]) {
+        temp.add(new int[] {playerVotes.get(i), i});
+      }
+    }
+
+
+    for (int i = 0; i < temp.size(); i++) {
+      Random r = new Random();
+      int low = temp.get(i)[0] * 1000;
+      int high = temp.get(i)[0] * 1000 + 999;
+
+      temp.get(i)[0] = r.nextInt(high - low) + low;
+    }
+
+
+    boolean unsorted = true;
+    while (unsorted) {
+      unsorted = false;
+      for (int i = 0; i < temp.size() - 1; i++) {
+        if (temp.get(i + 1)[0] > temp.get(i)[0]) {
+          int[] help = temp.get(i);
+          temp.set(i, temp.get(i + 1));
+          temp.set(i + 1, help);
+          unsorted = true;
+        }
+      }
+    }
+
+
+    ArrayList<Player> playerList = new ArrayList<Player>();
+    for (int i = 0; i < temp.size(); i++) {
+      if (temp.get(i)[1] == 0) {
+        playerList.add(new Player(Data.getCurrentUser()));
+      } else {
+        switch (temp.get(i)[1]) {
+          case 1:
+            playerList.add(new AiPlayer("CPU" + (temp.get(i)[1] + 1),
+                diffBox1.getSelectionModel().getSelectedIndex()));
+            break;
+          case 2:
+            playerList.add(new AiPlayer("CPU" + (temp.get(i)[1] + 1),
+                diffBox2.getSelectionModel().getSelectedIndex()));
+            break;
+          default:
+            playerList.add(new AiPlayer("CPU" + (temp.get(i)[1] + 1),
+                diffBox3.getSelectionModel().getSelectedIndex()));
+            break;
+        }
+      }
+    }
+
+    return playerList;
   }
 
   /**
