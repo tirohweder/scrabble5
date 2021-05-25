@@ -695,7 +695,7 @@ public class AiPlayer extends Player {
             || Data.getGameSession().getGameBoard().isFirstTile()) {
           getSpotsfree(row, column, Data.getGameSession().getGameBoard());
 
-          ArrayList<ArrayList<Tile>> wordList;
+          ArrayList<ArrayList<Tile>> wordList = new ArrayList<>();
 
           System.out.println("row: " + row);
           System.out.println("column: " + column);
@@ -705,7 +705,8 @@ public class AiPlayer extends Player {
             currentFixLetter = "B";
             wordList = wordGenerator("B", 5, 4, 7, 7, true);
 
-          } else if (counterDown + counterUp > counterLeft + counterLeft) {
+          } else if (counterDown + counterUp > counterLeft + counterRight
+              && counterDown + counterUp + counterRight + counterLeft > 0) {
             currentFixLetter =
                 Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter();
             currentFixX = column;
@@ -721,7 +722,7 @@ public class AiPlayer extends Player {
             if (wordList.isEmpty()) {
               break;
             }
-          } else {
+          } else if (counterDown + counterUp + counterRight + counterLeft > 0) {
             currentFixLetter =
                 Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter();
             currentFixX = column;
@@ -734,6 +735,7 @@ public class AiPlayer extends Player {
                     column,
                     row,
                     true);
+
             if (wordList.isEmpty()) {
               break;
             }
