@@ -81,7 +81,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     // this.isClickable();
     this.setUpInit();
     votes = new LinkedHashMap<String, ArrayList<Integer>>();
-    this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4());
+    this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4() + " DDDDDDDDDDDD");
 
     if (Data.getPlayerClient().getUsername()
         .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
