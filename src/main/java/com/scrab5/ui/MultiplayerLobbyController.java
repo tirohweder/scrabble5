@@ -80,7 +80,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   public void initialize(URL location, ResourceBundle resources) {
     this.setUpInit();
     votes = new LinkedHashMap<String, ArrayList<Integer>>();
-    this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4());
+    this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4() + " DDDDDDDDDDDD");
 
     if (Data.getPlayerClient().getUsername()
         .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
