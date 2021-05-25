@@ -102,7 +102,7 @@ public class ClientThread extends Threads implements Serializable {
           case DICTIONARY:
             DictionaryMessage dm = (DictionaryMessage) message;
             Data.setSelectedDictionary(dm.getDictionaryName());
-            DictionaryParser.insertFile(dm.getDictionary(), dm.getDictionaryName());
+            DictionaryParser.addDictionary(dm.getDictionary(), dm.getDictionaryName());
             break;
           default:
             break;
