@@ -302,6 +302,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
     DictionaryParser.setCurrentDictionary(selected);
     DictionaryParser.parseFile(selected);
+    Data.setSelectedDictionary(selected);
     PlayerProfileDatabase.setFavoriteDictionary(Data.getCurrentUser(), selected);
     isDictionarySelected = true;
   }

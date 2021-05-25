@@ -7,6 +7,7 @@ import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
 import com.scrab5.network.messages.MakeTurnMessage;
+import com.scrab5.util.parser.DictionaryParser;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -80,7 +81,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   public void initialize(URL location, ResourceBundle resources) {
     this.setUpInit();
     votes = new LinkedHashMap<String, ArrayList<Integer>>();
-    this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4() + " DDDDDDDDDDDD");
 
     if (Data.getPlayerClient().getUsername()
         .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
@@ -90,6 +90,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.customizeButton.setY(-34);
       this.customizeButton.setOpacity(1.0);
     }
+    this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4());
     this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4());
     this.refreshUI();
   }
@@ -201,6 +202,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
 
+    Data.getHostedServer().sendDictionary(Data.getSelectedDictionary(),
+        DictionaryParser.getDictionaryFile(Data.getSelectedDictionary()));
     ArrayList<Player> playerList = new ArrayList<Player>();
     ArrayList<Integer> voteResults = new ArrayList<Integer>();
     Collection<ClientData> clientnames =
@@ -247,6 +250,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.setGameSession(gs);
       System.out.println("Online GameSession created");
     }
+
     Data.getHostedServer().startGame();
     Data.getPlayerClient().getClientThread()
         .sendMessageToServer(new MakeTurnMessage(Data.getCurrentUser(), Data.getGameSession()));

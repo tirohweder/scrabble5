@@ -986,39 +986,40 @@ public abstract class InGameController implements Initializable {
    */
   private void backToRack(ImageView iv, int place) {
 
-    if (jokerPlacedAt.size() > 0 && jokerPlacedAt.get(jokerPlacedAt.size() - 1) == (changes.size() - 1)) {
-        if (place == 0) {
-          rackPlace1.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 1) {
-          rackPlace2.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 2) {
-          rackPlace3.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 3) {
-          rackPlace4.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 4) {
-          rackPlace5.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 5) {
-          rackPlace6.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 6) {
-          rackPlace7.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        }
-        jokerPlacedAt.remove(jokerPlacedAt.size() - 1);
+    if (jokerPlacedAt.size() > 0
+        && jokerPlacedAt.get(jokerPlacedAt.size() - 1) == (changes.size() - 1)) {
+      if (place == 0) {
+        rackPlace1.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 1) {
+        rackPlace2.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 2) {
+        rackPlace3.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 3) {
+        rackPlace4.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 4) {
+        rackPlace5.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 5) {
+        rackPlace6.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 6) {
+        rackPlace7.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      }
+      jokerPlacedAt.remove(jokerPlacedAt.size() - 1);
     } else {
-      System.out.println("hallo2"+tilePlacedOrder.get(tilePlacedOrder.size()-1));
+      System.out.println("hallo2" + tilePlacedOrder.get(tilePlacedOrder.size() - 1));
       if (place == 0) {
         rackPlace1.setOpacity(1);
         pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
@@ -1070,8 +1071,8 @@ public abstract class InGameController implements Initializable {
             columnTransformation(iv.getId()));
       }
     }
-    
-    tilePlacedOrder.remove(tilePlacedOrder.size()-1);
+
+    tilePlacedOrder.remove(tilePlacedOrder.size() - 1);
     iv.setImage(markedTile);
     clickedTile = null;
     tileClicked = false;
@@ -1311,7 +1312,8 @@ public abstract class InGameController implements Initializable {
     if (undoButton.getOpacity() == 1) {
       playSound("ButtonClicked.mp3");
       if (changes.size() > 0) {
-        backToRack(changes.get(changes.size()-1),tilePlacedOrder.get(tilePlacedOrder.size()-1));
+        backToRack(changes.get(changes.size() - 1),
+            tilePlacedOrder.get(tilePlacedOrder.size() - 1));
       }
     }
   }
