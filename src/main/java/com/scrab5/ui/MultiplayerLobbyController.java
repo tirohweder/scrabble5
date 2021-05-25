@@ -206,12 +206,12 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     Collection<ClientData> clientnames =
         Data.getPlayerClient().getCurrentServer().getClients().values();
 
-    for (int i = 0; i < this.playerAmount; i++) {
+    for (int i = 0; i < clientnames.size(); i++) {
       voteResults.add(0);
     }
 
     for (ArrayList<Integer> vote : votes.values()) {
-      for (int j = 0; j < vote.size(); j++) {
+      for (int j = 0; j < clientnames.size(); j++) {
         voteResults.add(j, vote.get(j) + voteResults.remove(j));
       }
     }
@@ -220,7 +220,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     Iterator<ClientData> it;
     for (int clients = 0; clients < clientnames.size(); clients++) {
       maximum = 0;
-      for (int k = 1; k < voteResults.size(); k++) {
+      for (int k = 1; k < clientnames.size(); k++) {
         if (voteResults.get(maximum) < voteResults.get(k)) {
           maximum = k;
         }
