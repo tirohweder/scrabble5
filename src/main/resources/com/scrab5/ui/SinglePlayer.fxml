@@ -1363,7 +1363,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
-            <ImageView fx:id="endGame" fitHeight="48.0" fitWidth="59.0" layoutX="1061.0" layoutY="690.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="endGame" fitHeight="48.0" fitWidth="59.0" layoutX="1061.0" layoutY="690.0" opacity="0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/endButton.png" />
                </image>
@@ -1373,7 +1373,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@board_Images/endButtonClicked.png" />
                </image>
             </ImageView>
-            <AnchorPane fx:id="jokerPane" layoutY="67.0" prefHeight="617.0" prefWidth="259.0" opacity="0">
+            <AnchorPane fx:id="jokerPane" layoutY="67.0" opacity="0" prefHeight="617.0" prefWidth="259.0">
                <children>
                   <ImageView fitHeight="545.0" fitWidth="273.0" layoutX="17.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -1642,6 +1642,21 @@ The method specification which implements what to do when a field is clicked/ en
                   </ImageView>
                </children>
             </AnchorPane>
+            <ImageView fx:id="undoButton" fitHeight="55.0" fitWidth="58.0" layoutX="990.0" layoutY="686.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/SIngleplayer_undo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="55.0" fitWidth="58.0" layoutX="990.0" layoutY="686.0" onMouseClicked="#undoClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Singleplayer_undo_Clicked.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="undoLabel" layoutX="991.0" layoutY="727.0" opacity="0.0" prefHeight="48.0" prefWidth="56.0" text="Undo" textFill="#eadcb4">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>
