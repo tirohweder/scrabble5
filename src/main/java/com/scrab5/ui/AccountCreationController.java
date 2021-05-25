@@ -75,7 +75,8 @@ public class AccountCreationController extends Controller implements Initializab
   @FXML
   private void enterPressed(KeyEvent event) throws IOException {
     if (event.getCode() == KeyCode.ENTER && this.isUsernameValid(this.nickname.getText())) {
-      App.setMusicVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
+      System.out.println("AccountCreationController: get sound effect");
+      App.setMusicVolume(PlayerProfileDatabase.getMusicVolume(Data.getCurrentUser()));
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       App.setRoot("MainMenu");
     }
@@ -94,6 +95,7 @@ public class AccountCreationController extends Controller implements Initializab
   private void enter(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     if (this.isUsernameValid(this.nickname.getText())) {
+      System.out.println("AccountCreationController: get music");
       App.setMusicVolume(PlayerProfileDatabase.getMusicVolume(Data.getCurrentUser()));
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       App.setRoot("MainMenu");
