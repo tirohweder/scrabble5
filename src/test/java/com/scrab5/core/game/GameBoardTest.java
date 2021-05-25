@@ -13,7 +13,6 @@ class GameBoardTest {
 
   private final GameBoard gameBoardTest = new GameBoard();
 
-
   @Test
   void placeTileTest() {
     gameBoardTest.placeTileTest(new Tile("T", 3), 6, 5);
@@ -24,7 +23,6 @@ class GameBoardTest {
     assertEquals(5, test.getColumn());
     assertNull(test.getRackPlace());
     assertEquals(test, gameBoardTest.getCurrentChanges().get(0));
-
   }
 
   @Test
@@ -33,7 +31,6 @@ class GameBoardTest {
     assertFalse(gameBoardTest.isSpotFree(0, 0));
     assertTrue(gameBoardTest.isSpotFree(1, 0));
   }
-
 
   @Test
   void removeTile() {
@@ -48,7 +45,6 @@ class GameBoardTest {
     gameBoardTest.finishTurn();
 
     assertFalse(gameBoardTest.removeTile(0, 0));
-
   }
 
   @Test
@@ -68,7 +64,7 @@ class GameBoardTest {
     gameBoardTest.finishTurn();
 
     gameBoardTest.placeTileTest(new Tile("T", 3), 1, 4);
-    //gameBoardTest.placeTileTest(new Tile("T", 3), 6, 4);
+    // gameBoardTest.placeTileTest(new Tile("T", 3), 6, 4);
 
     assertTrue(gameBoardTest.isSpotNext(6, 4));
     assertTrue(gameBoardTest.isSpotNext(0, 4));
@@ -79,8 +75,6 @@ class GameBoardTest {
     assertFalse(gameBoardTest.isSpotNext(1, 2));
     assertFalse(gameBoardTest.isSpotNext(8, 4));
     assertFalse(gameBoardTest.isSpotNext(5, 3));
-
-
   }
 
   @Test
@@ -144,9 +138,7 @@ class GameBoardTest {
     assertTrue(gameBoardTest.isTileLegal(7, 8));
 
     assertFalse(gameBoardTest.isTileLegal(8, 9));
-
   }
-
 
   @Test
   void countScore() {
@@ -161,6 +153,8 @@ class GameBoardTest {
     gameBoardTest.placeTileTest(t3, 7, 9);
     gameBoardTest.placeTileTest(t4, 5, 6);
     gameBoardTest.placeTileTest(t5, 5, 7);
+
+    assertEquals(24, gameBoardTest.countScore());
 
     gameBoardTest.finishTurn();
 
@@ -183,7 +177,9 @@ class GameBoardTest {
     gameBoardTest.placeTileTest(t6, 13, 5);
 
     assertEquals(48, gameBoardTest.countScore());
-
+    gameBoardTest.finishTurn();
+    gameBoardTest.placeTileTest(new Tile("9", 3), 13, 6);
+    assertEquals(21, gameBoardTest.countScore());
     gameBoardTest.clearBoard();
 
     gameBoardTest.placeTileTest(t7, 0, 0);
@@ -200,12 +196,24 @@ class GameBoardTest {
     gameBoardTest.placeTileTest(t6, 5, 14);
 
     assertEquals(63, gameBoardTest.countScore());
+
+    gameBoardTest.finishTurn();
+    gameBoardTest.placeTileTest(t7, 6, 14);
+
+    assertEquals(21, gameBoardTest.countScore());
+
+    gameBoardTest.clearBoard();
+
+    gameBoardTest.placeTileTest(t1, 0, 14);
+    gameBoardTest.placeTileTest(t2, 1, 14);
+    gameBoardTest.placeTileTest(t3, 2, 14);
+    gameBoardTest.placeTileTest(t4, 3, 14);
+    gameBoardTest.placeTileTest(t5, 4, 14);
+    gameBoardTest.placeTileTest(t6, 5, 14);
     gameBoardTest.placeTileTest(t7, 6, 14);
 
     assertEquals(122, gameBoardTest.countScore());
-
   }
-
 
   @Test
   void getTouchedWords() {
@@ -251,7 +259,6 @@ class GameBoardTest {
 
     // assertEquals("456", gameBoardTest.getWords().get(0).toString());
   }
-
 
   @Test
   void getWords() {
@@ -301,7 +308,6 @@ class GameBoardTest {
     gameBoardTest.placeTileTest(new Tile("w", 3), 6, 14);
 
     assertEquals(resultArray, gameBoardTest.getWords());
-
   }
 
   @Test
@@ -327,10 +333,7 @@ class GameBoardTest {
     gameBoardTest.placeTileTest(new Tile("X", 3), 4, 3);
 
     assertFalse(gameBoardTest.checkWordsLegit());
-
-
   }
-
 
   @Test
   void clearBoard() {
@@ -339,6 +342,4 @@ class GameBoardTest {
 
     assertNull(gameBoardTest.getTile(4, 0));
   }
-
-
 }

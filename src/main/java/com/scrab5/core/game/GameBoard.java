@@ -14,6 +14,28 @@ import java.util.ArrayList;
 public class GameBoard implements Serializable {
 
   private static final long serialVersionUID = 1L;
+  private final Tile[][] gameBoard = new Tile[15][15];
+  private final Tile[][] gameBoardCurrent = new Tile[15][15];
+  private String[][] gameBoardSpecial =
+      new String[][] {
+        {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
+        {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
+        {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "},
+        {"DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"},
+        {"  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "},
+        {"  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "},
+        {"  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "},
+        {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
+        {"  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "},
+        {"  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "},
+        {"  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "},
+        {"DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"},
+        {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "},
+        {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
+        {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"}
+      };
+  private ArrayList<Tile> currentChanges = new ArrayList<>();
+  private boolean firstTile = true;
 
   public ArrayList<Tile> getCurrentChanges() {
     return currentChanges;
@@ -38,29 +60,6 @@ public class GameBoard implements Serializable {
   public String getSpecialsAt(int row, int column) {
     return gameBoardSpecial[row][column];
   }
-
-  private String[][] gameBoardSpecial = new String[][] {
-      {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
-      {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
-      {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "},
-      {"DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"},
-      {"  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "},
-      {"  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "},
-      {"  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "},
-      {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
-      {"  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "},
-      {"  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "},
-      {"  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "},
-      {"DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"},
-      {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "},
-      {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
-      {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"}};
-
-  private final Tile[][] gameBoard = new Tile[15][15];
-  private final Tile[][] gameBoardCurrent = new Tile[15][15];
-  private ArrayList<Tile> currentChanges = new ArrayList<>();
-  private boolean firstTile = true;
-
 
   /**
    * Places a tile, but only if it follows the rules.
@@ -111,7 +110,6 @@ public class GameBoard implements Serializable {
     }
   }
 
-
   /**
    * Returns the tile at the given coordinates, only tiles that have already been confirmed.
    *
@@ -124,7 +122,6 @@ public class GameBoard implements Serializable {
     return gameBoard[row][column];
   }
 
-
   /**
    * Checks if the currentPlayer is the same as the currentPerson clicking.
    *
@@ -134,7 +131,6 @@ public class GameBoard implements Serializable {
   public boolean isAllowedToPlay() {
     return (Data.getCurrentUser().equals(Data.getGameSession().getCurrentPlayer().getName()));
   }
-
 
   /**
    * Checks if it is possible to remove a tile. First is has to check if the tile is already
@@ -162,7 +158,6 @@ public class GameBoard implements Serializable {
     }
   }
 
-
   /**
    * If the turn is finished this method, will set add the new tiles placed this round to the
    * gameBoard that has all confirmed changes. Also currentChanges have to be resettet.
@@ -174,7 +169,6 @@ public class GameBoard implements Serializable {
       for (int j = 0; j < 15; j++) {
         if (gameBoardCurrent[i][j] != null) {
           gameBoard[i][j] = gameBoardCurrent[i][j];
-
         }
       }
     }
@@ -207,8 +201,10 @@ public class GameBoard implements Serializable {
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
 
-    if ((row == row1 + 1 && column == column1) || (row == row1 - 1 && column == column1)
-        || (row == row1 && column == column1 + 1) || (row == row1 && column == column1 - 1)) {
+    if ((row == row1 + 1 && column == column1)
+        || (row == row1 - 1 && column == column1)
+        || (row == row1 && column == column1 + 1)
+        || (row == row1 && column == column1 - 1)) {
       return true;
     } else {
       System.out.println("Nicht nebeinander");
@@ -252,7 +248,6 @@ public class GameBoard implements Serializable {
     }
     return true;
   }
-
 
   /**
    * Checks if the given coordinates would be connected to the previously played tiles.
@@ -373,6 +368,7 @@ public class GameBoard implements Serializable {
       for (int j = 0; j < 15; j++) {
         if (changedWords[i][j] != null) { // Tile is empty
           word.append(getTile(i, j).getLetter());
+          System.out.print(getTile(i, j).getLetter() + " tile: ");
           switch (gameBoardSpecial[i][j]) {
             case "TL":
               scoreToBe += changedWords[i][j].getValue() * 3;
@@ -445,6 +441,7 @@ public class GameBoard implements Serializable {
               scoreToBe += changedWords[i][j].getValue();
               break;
           }
+          gameBoardSpecial[i][j] = "  ";
 
         } else { // Tile is empty
           if (word.length() > 1) {
@@ -470,6 +467,7 @@ public class GameBoard implements Serializable {
       }
       scoreToBe = 0;
       word.setLength(0);
+      System.out.println(score);
     }
 
     if (currentChanges.size() == 7) {
@@ -477,7 +475,6 @@ public class GameBoard implements Serializable {
     }
     return score;
   }
-
 
   /**
    * The goal of the function is to find all the words that will have to be checked. If there is a
@@ -640,6 +637,10 @@ public class GameBoard implements Serializable {
     if (word.length() > 1) {
       listOfWords.add(word.toString());
     }
+
+    for (String word1 : listOfWords) {
+      System.out.println(word1);
+    }
     return listOfWords;
   }
 
@@ -672,6 +673,52 @@ public class GameBoard implements Serializable {
     }
     currentChanges.clear();
     firstTile = true;
+
+    gameBoardSpecial =
+        new String[][] {
+          {
+            "TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"
+          },
+          {
+            "  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "
+          },
+          {
+            "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "
+          },
+          {
+            "DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"
+          },
+          {
+            "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "
+          },
+          {
+            "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "
+          },
+          {
+            "  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "
+          },
+          {
+            "TW", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"
+          },
+          {
+            "  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "
+          },
+          {
+            "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "
+          },
+          {
+            "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "
+          },
+          {
+            "DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"
+          },
+          {
+            "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "
+          },
+          {
+            "  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "
+          },
+          {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"}
+        };
   }
 }
-
