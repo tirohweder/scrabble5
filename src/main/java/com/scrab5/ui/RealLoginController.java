@@ -43,7 +43,7 @@ public class RealLoginController extends Controller implements Initializable {
    * otherwise a Pop-Up message is created.
    *
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
+   *         exist
    * @author mherre
    */
   @FXML
@@ -111,8 +111,7 @@ public class RealLoginController extends Controller implements Initializable {
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *                     exist
-   * @author mherre
+   *         exist
    * @author mherre
    */
   @FXML

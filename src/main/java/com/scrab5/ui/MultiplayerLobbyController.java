@@ -46,6 +46,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @FXML
   private Label score1, score2, score3, score4;
   @FXML
+  private Label ipAddress;
+  @FXML
   private ImageView customizeButton;
   @FXML
   private TextArea chatBox;
@@ -79,6 +81,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     // this.isClickable();
     this.setUpInit();
     votes = new LinkedHashMap<String, ArrayList<Integer>>();
+    this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4());
 
     if (Data.getPlayerClient().getUsername()
         .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
@@ -88,7 +91,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.customizeButton.setY(-34);
       this.customizeButton.setOpacity(1.0);
     }
-
+    System.out.println(this.isHost);
     this.refreshUI();
   }
 
