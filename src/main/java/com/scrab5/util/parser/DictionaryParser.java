@@ -171,9 +171,18 @@ public class DictionaryParser {
       e1.printStackTrace();
     }
   }
-
-  /*public static void main(String[] args) {
-    parseFile("Built-In Standard Dictionary.txt");
-  }*/
+  
+  /**
+   * Returns the file of the current Dictionary.
+   * 
+   * @author lengist
+   * @param dictionaryName the name of the current set dictionary
+   * @return the dictionary file to send to all clients
+   */
+  public static File getDictionaryFile(String dictionaryName) {
+    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + "src/main/resources/com/scrab5/util/textParser/" + dictionaryName);
+    return file;
+  }
 
 }
