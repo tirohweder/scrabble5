@@ -984,97 +984,84 @@ public abstract class InGameController implements Initializable {
    *        clicked attributes (Letter/ Tile) for source and destination
    * @author apilgrim
    */
-  private void backToRack(ImageView iv) {
+  private void backToRack(ImageView iv, int place) {
 
-    if (jokerPlacedAt.size() > 0) {
-      if (jokerPlacedAt.get(jokerPlacedAt.size() - 1) == (changes.size() - 1)) {
-
-        if (rackPlace1 != null && rackPlace1.getImage().getUrl().contains("placeHolder")
-            && rackPlace1.getOpacity() == 0) {
-
+    if (jokerPlacedAt.size() > 0 && jokerPlacedAt.get(jokerPlacedAt.size() - 1) == (changes.size() - 1)) {
+        if (place == 0) {
           rackPlace1.setOpacity(1);
           Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
               columnTransformation(iv.getId()));
-
-        } else if (rackPlace2 != null && rackPlace2.getImage().getUrl().contains("placeHolder")
-            && rackPlace2.getOpacity() == 0) {
+        } else if (place == 1) {
           rackPlace2.setOpacity(1);
           Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
               columnTransformation(iv.getId()));
-        } else if (rackPlace3 != null && rackPlace3.getImage().getUrl().contains("placeHolder")
-            && rackPlace3.getOpacity() == 0) {
+        } else if (place == 2) {
           rackPlace3.setOpacity(1);
           Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
               columnTransformation(iv.getId()));
-        } else if (rackPlace4 != null && rackPlace4.getImage().getUrl().contains("placeHolder")
-            && rackPlace4.getOpacity() == 0) {
+        } else if (place == 3) {
           rackPlace4.setOpacity(1);
           Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
               columnTransformation(iv.getId()));
-        } else if (rackPlace5 != null && rackPlace5.getImage().getUrl().contains("placeHolder")
-            && rackPlace5.getOpacity() == 0) {
+        } else if (place == 4) {
           rackPlace5.setOpacity(1);
           Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
               columnTransformation(iv.getId()));
-        } else if (rackPlace6 != null && rackPlace6.getImage().getUrl().contains("placeHolder")
-            && rackPlace6.getOpacity() == 0) {
+        } else if (place == 5) {
           rackPlace6.setOpacity(1);
           Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
               columnTransformation(iv.getId()));
-        } else if (rackPlace7 != null && rackPlace7.getImage().getUrl().contains("placeHolder")
-            && rackPlace7.getOpacity() == 0) {
+        } else if (place == 6) {
           rackPlace7.setOpacity(1);
           Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
               columnTransformation(iv.getId()));
         }
         jokerPlacedAt.remove(jokerPlacedAt.size() - 1);
-
-      }
     } else {
-      System.out.println(tilePlacedOrder.get(0));
-      if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 0) {
+      System.out.println("hallo2"+tilePlacedOrder.get(tilePlacedOrder.size()-1));
+      if (place == 0) {
         rackPlace1.setOpacity(1);
         pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(0) == 1) {
+      } else if (place == 1) {
         rackPlace2.setOpacity(1);
         pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(0) == 2) {
+      } else if (place == 2) {
         rackPlace3.setOpacity(1);
         pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(0) == 3) {
+      } else if (place == 3) {
         rackPlace4.setOpacity(1);
         pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(0) == 4) {
+      } else if (place == 4) {
         rackPlace5.setOpacity(1);
         pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(0) == 5) {
+      } else if (place == 5) {
         rackPlace6.setOpacity(1);
         pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
         iv.setImage(markedTile);
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
-      } else if (tilePlacedOrder.get(0) == 6) {
+      } else if (place == 6) {
         rackPlace7.setOpacity(1);
         pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
         pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
@@ -1082,9 +1069,9 @@ public abstract class InGameController implements Initializable {
         Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
             columnTransformation(iv.getId()));
       }
-      tilePlacedOrder.remove(0);
     }
-
+    
+    tilePlacedOrder.remove(tilePlacedOrder.size()-1);
     iv.setImage(markedTile);
     clickedTile = null;
     tileClicked = false;
@@ -1324,7 +1311,7 @@ public abstract class InGameController implements Initializable {
     if (undoButton.getOpacity() == 1) {
       playSound("ButtonClicked.mp3");
       if (changes.size() > 0) {
-        backToRack(changes.get(changes.size() - 1));
+        backToRack(changes.get(changes.size()-1),tilePlacedOrder.get(tilePlacedOrder.size()-1));
       }
     }
   }

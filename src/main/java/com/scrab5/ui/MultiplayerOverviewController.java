@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import com.scrab5.network.Client;
 import com.scrab5.network.NetworkError;
 import com.scrab5.network.NetworkError.NetworkErrorType;
+import com.scrab5.util.parser.DictionaryParser;
 import com.scrab5.network.ServerData;
 import java.io.File;
 import java.io.FilenameFilter;
@@ -451,6 +452,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
   private void setSelectedDictionary(ActionEvent event) {
     String selected = (String) this.dictionarySelection.getValue();
     this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
+    DictionaryParser.setCurrentDictionary(selected);
+    DictionaryParser.parseFile(selected);
     isDictionarySelected = true;
   }
 
