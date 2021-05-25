@@ -417,7 +417,7 @@ public abstract class LobbyController extends Controller {
     if (Data.getPlayerCountMultiplayer() > 0) {
       help = Data.getPlayerCountMultiplayer();
     }
-    for (int i = 0; i < Data.getPlayerCountMultiplayer(); i++) {
+    for (int i = 0; i < help; i++) {
 
       if (i == 0) {
         al.add(voteSelection1.getValue());
