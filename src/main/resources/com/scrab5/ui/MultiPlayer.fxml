@@ -1385,6 +1385,11 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font size="10.0" />
                </font>
             </TextField>
+            <ImageView fitHeight="20.0" fitWidth="65.0" layoutX="921.0" layoutY="744.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@board_Images/Green.png" />
+               </image>
+            </ImageView>
             <Label fx:id="skipPlay" layoutX="927.0" layoutY="728.0" prefHeight="48.0" prefWidth="56.0" text="Label" textFill="#eadcb4">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />

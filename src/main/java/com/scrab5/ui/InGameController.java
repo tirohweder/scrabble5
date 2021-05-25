@@ -87,10 +87,10 @@ public abstract class InGameController implements Initializable {
 
   @FXML
   private ImageView endGame;
-  
+
   @FXML
   private ImageView undoButton;
-  
+
   @FXML
   private Label undoLabel;
 
@@ -141,24 +141,23 @@ public abstract class InGameController implements Initializable {
 
   Boolean[] rackChanges = new Boolean[7];
 
-
-  private ArrayList<String> choosenTiles = new ArrayList<String>();
-  
   ArrayList<ImageView> changes = new ArrayList<ImageView>();
 
   private ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
   private int playerAmount = players.size();
-  
+
+  private ArrayList<Integer> jokerPlacedAt = new ArrayList<>();
+  private ArrayList<Integer> tilePlacedOrder = new ArrayList<>();
+
+  int place = 0;
+
   private boolean chooseJoker = false;
   private boolean turn = true;
-  
+
 
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-
-    
-    System.out.println("hallo");
 
   }
 
@@ -264,11 +263,11 @@ public abstract class InGameController implements Initializable {
   }
 
   protected void initGameboard() throws IOException {
-    
-    if(changes.size()!= 0) {
+
+    if (changes.size() != 0) {
       undoLabel.setOpacity(1);
       undoButton.setOpacity(1);
-    }else {
+    } else {
       undoLabel.setOpacity(0);
       undoButton.setOpacity(0);
     }
@@ -361,7 +360,6 @@ public abstract class InGameController implements Initializable {
             } else {
               changes.add(clickedTile);
               placeLetter(clickedLetter, clickedLabel);
-              choosenTiles.add(iv.getId());
             }
           } else {
             newPum(
@@ -418,7 +416,6 @@ public abstract class InGameController implements Initializable {
             jokerPane.setOpacity(0);
             placeLetter(clickedLetter, pointsRack1);
             rackPlace1.setOpacity(0);
-            choosenTiles.add(clickedTile.getId());
             clickedTile = null;
             tileClicked = false;
           }
@@ -428,10 +425,12 @@ public abstract class InGameController implements Initializable {
         }
 
       } else {
-        if (clickedLetter == rackPlace1) {
-          unclickLetter(rackPlace1);
-        } else {
-          switchClickedLetter(rackPlace1);
+        if (clickedLetter != null) {
+          if (clickedLetter == rackPlace1) {
+            unclickLetter(rackPlace1);
+          } else if(rackPlace1.getOpacity() != 0){
+            switchClickedLetter(rackPlace1);
+          }
         }
       }
     } else {
@@ -478,7 +477,6 @@ public abstract class InGameController implements Initializable {
             jokerPane.setOpacity(0);
             placeLetter(clickedLetter, pointsRack2);
             rackPlace2.setOpacity(0);
-            choosenTiles.add(clickedTile.getId());
             clickedTile = null;
             tileClicked = false;
           }
@@ -488,10 +486,12 @@ public abstract class InGameController implements Initializable {
         }
 
       } else {
-        if (clickedLetter == rackPlace2) {
-          unclickLetter(rackPlace2);
-        } else {
-          switchClickedLetter(rackPlace2);
+        if (clickedLetter != null) {
+          if (clickedLetter == rackPlace2) {
+            unclickLetter(rackPlace2);
+          } else if (rackPlace2.getOpacity() != 0) {
+            switchClickedLetter(rackPlace2);
+          }
         }
       }
     } else {
@@ -538,7 +538,6 @@ public abstract class InGameController implements Initializable {
             jokerPane.setOpacity(0);
             placeLetter(clickedLetter, pointsRack3);
             rackPlace3.setOpacity(0);
-            choosenTiles.add(clickedTile.getId());
             clickedTile = null;
             tileClicked = false;
           }
@@ -547,10 +546,12 @@ public abstract class InGameController implements Initializable {
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
       } else {
-        if (clickedLetter == rackPlace3) {
-          unclickLetter(rackPlace3);
-        } else {
-          switchClickedLetter(rackPlace3);
+        if (clickedLetter != null) {
+          if (clickedLetter == rackPlace3) {
+            unclickLetter(rackPlace3);
+          } else if(rackPlace3.getOpacity() != 0){
+            switchClickedLetter(rackPlace3);
+          }
         }
       }
     } else {
@@ -598,7 +599,6 @@ public abstract class InGameController implements Initializable {
             jokerPane.setOpacity(0);
             placeLetter(clickedLetter, pointsRack4);
             rackPlace4.setOpacity(0);
-            choosenTiles.add(clickedTile.getId());
             clickedTile = null;
             tileClicked = false;
           }
@@ -608,10 +608,12 @@ public abstract class InGameController implements Initializable {
         }
 
       } else {
-        if (clickedLetter == rackPlace4) {
-          unclickLetter(rackPlace4);
-        } else {
-          switchClickedLetter(rackPlace4);
+        if (clickedLetter != null) {
+          if (clickedLetter == rackPlace4) {
+            unclickLetter(rackPlace4);
+          } else if(rackPlace4.getOpacity() != 0){
+            switchClickedLetter(rackPlace4);
+          }
         }
       }
     } else {
@@ -657,7 +659,6 @@ public abstract class InGameController implements Initializable {
             jokerPane.setOpacity(0);
             placeLetter(clickedLetter, pointsRack5);
             rackPlace5.setOpacity(0);
-            choosenTiles.add(clickedTile.getId());
             clickedTile = null;
             tileClicked = false;
           }
@@ -667,10 +668,12 @@ public abstract class InGameController implements Initializable {
         }
 
       } else {
-        if (clickedLetter == rackPlace5) {
-          unclickLetter(rackPlace5);
-        } else {
-          switchClickedLetter(rackPlace5);
+        if (clickedLetter != null) {
+          if (clickedLetter == rackPlace5) {
+            unclickLetter(rackPlace5);
+          } else if(rackPlace5.getOpacity() != 0){
+            switchClickedLetter(rackPlace5);
+          }
         }
       }
     } else {
@@ -719,7 +722,6 @@ public abstract class InGameController implements Initializable {
             jokerPane.setOpacity(0);
             placeLetter(clickedLetter, pointsRack6);
             rackPlace6.setOpacity(0);
-            choosenTiles.add(clickedTile.getId());
             clickedTile = null;
             tileClicked = false;
           }
@@ -729,10 +731,12 @@ public abstract class InGameController implements Initializable {
         }
 
       } else {
-        if (clickedLetter == rackPlace6) {
-          unclickLetter(rackPlace6);
-        } else {
-          switchClickedLetter(rackPlace6);
+        if (clickedLetter != null) {
+          if (clickedLetter == rackPlace6) {
+            unclickLetter(rackPlace6);
+          } else if(rackPlace6.getOpacity() != 0){
+            switchClickedLetter(rackPlace6);
+          }
         }
       }
     } else {
@@ -783,7 +787,6 @@ public abstract class InGameController implements Initializable {
             jokerPane.setOpacity(0);
             placeLetter(clickedLetter, pointsRack7);
             rackPlace7.setOpacity(0);
-            choosenTiles.add(clickedTile.getId());
             clickedTile = null;
             tileClicked = false;
           }
@@ -793,10 +796,12 @@ public abstract class InGameController implements Initializable {
         }
 
       } else {
-        if (clickedLetter == rackPlace7) {
-          unclickLetter(rackPlace7);
-        } else {
-          switchClickedLetter(rackPlace7);
+        if (clickedLetter != null) {
+          if (clickedLetter == rackPlace7) {
+            unclickLetter(rackPlace7);
+          } else if(rackPlace7.getOpacity() != 0){
+            switchClickedLetter(rackPlace7);
+          }
         }
       }
     } else {
@@ -925,7 +930,6 @@ public abstract class InGameController implements Initializable {
 
         initRack();
         initPlayers();
-        choosenTiles.clear();
         letterClicked = false;
         tileClicked = false;
         clickedLetter = null;
@@ -982,75 +986,110 @@ public abstract class InGameController implements Initializable {
    */
   private void backToRack(ImageView iv) {
 
-    // check which ragPlace to replace and turn back to rack
-    if (rackPlace1 != null
-        && iv.getImage().getUrl().equalsIgnoreCase(rackPlace1.getImage().getUrl())
-        && rackPlace1.getOpacity() == 0) {
-      rackPlace1.setOpacity(1);
-      pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-          columnTransformation(iv.getId()));
-    } else if (rackPlace2 != null
-        && iv.getImage().getUrl().equalsIgnoreCase(rackPlace2.getImage().getUrl())
-        && rackPlace2.getOpacity() == 0) {
-      rackPlace2.setOpacity(1);
-      pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-          columnTransformation(iv.getId()));
-    } else if (rackPlace3 != null
-        && iv.getImage().getUrl().equalsIgnoreCase(rackPlace3.getImage().getUrl())
-        && rackPlace3.getOpacity() == 0) {
-      rackPlace3.setOpacity(1);
-      pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-          columnTransformation(iv.getId()));
-    } else if (rackPlace4 != null
-        && iv.getImage().getUrl().equalsIgnoreCase(rackPlace4.getImage().getUrl())
-        && rackPlace4.getOpacity() == 0) {
-      rackPlace4.setOpacity(1);
-      pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-          columnTransformation(iv.getId()));
-    } else if (rackPlace5 != null
-        && iv.getImage().getUrl().equalsIgnoreCase(rackPlace5.getImage().getUrl())
-        && rackPlace5.getOpacity() == 0) {
-      rackPlace5.setOpacity(1);
-      pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-          columnTransformation(iv.getId()));
-    } else if (rackPlace6 != null
-        && iv.getImage().getUrl().equalsIgnoreCase(rackPlace6.getImage().getUrl())
-        && rackPlace6.getOpacity() == 0) {
-      rackPlace6.setOpacity(1);
-      pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-          columnTransformation(iv.getId()));
-    } else if (rackPlace7 != null
-        && iv.getImage().getUrl().equalsIgnoreCase(rackPlace7.getImage().getUrl())
-        && rackPlace7.getOpacity() == 0) {
-      rackPlace7.setOpacity(1);
-      pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
-      pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
-      iv.setImage(markedTile);
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-          columnTransformation(iv.getId()));
+    if (jokerPlacedAt.size() > 0) {
+      if (jokerPlacedAt.get(jokerPlacedAt.size() - 1) == (changes.size() - 1)) {
+
+        if (rackPlace1 != null && rackPlace1.getImage().getUrl().contains("placeHolder")
+            && rackPlace1.getOpacity() == 0) {
+
+          rackPlace1.setOpacity(1);
+          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+              columnTransformation(iv.getId()));
+
+        } else if (rackPlace2 != null && rackPlace2.getImage().getUrl().contains("placeHolder")
+            && rackPlace2.getOpacity() == 0) {
+          rackPlace2.setOpacity(1);
+          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+              columnTransformation(iv.getId()));
+        } else if (rackPlace3 != null && rackPlace3.getImage().getUrl().contains("placeHolder")
+            && rackPlace3.getOpacity() == 0) {
+          rackPlace3.setOpacity(1);
+          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+              columnTransformation(iv.getId()));
+        } else if (rackPlace4 != null && rackPlace4.getImage().getUrl().contains("placeHolder")
+            && rackPlace4.getOpacity() == 0) {
+          rackPlace4.setOpacity(1);
+          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+              columnTransformation(iv.getId()));
+        } else if (rackPlace5 != null && rackPlace5.getImage().getUrl().contains("placeHolder")
+            && rackPlace5.getOpacity() == 0) {
+          rackPlace5.setOpacity(1);
+          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+              columnTransformation(iv.getId()));
+        } else if (rackPlace6 != null && rackPlace6.getImage().getUrl().contains("placeHolder")
+            && rackPlace6.getOpacity() == 0) {
+          rackPlace6.setOpacity(1);
+          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+              columnTransformation(iv.getId()));
+        } else if (rackPlace7 != null && rackPlace7.getImage().getUrl().contains("placeHolder")
+            && rackPlace7.getOpacity() == 0) {
+          rackPlace7.setOpacity(1);
+          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+              columnTransformation(iv.getId()));
+        }
+        jokerPlacedAt.remove(jokerPlacedAt.size() - 1);
+
+      }
+    } else {
+      if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 0) {
+        rackPlace1.setOpacity(1);
+        pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack1.setLayoutY(rackPlace1.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 1) {
+        rackPlace2.setOpacity(1);
+        pointsRack2.setLayoutX(rackPlace2.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack2.setLayoutY(rackPlace2.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 2) {
+        rackPlace3.setOpacity(1);
+        pointsRack3.setLayoutX(rackPlace3.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack3.setLayoutY(rackPlace3.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 3) {
+        rackPlace4.setOpacity(1);
+        pointsRack4.setLayoutX(rackPlace4.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack4.setLayoutY(rackPlace4.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 4) {
+        rackPlace5.setOpacity(1);
+        pointsRack5.setLayoutX(rackPlace5.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack5.setLayoutY(rackPlace5.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 5) {
+        rackPlace6.setOpacity(1);
+        pointsRack6.setLayoutX(rackPlace6.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack6.setLayoutY(rackPlace6.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (tilePlacedOrder.get(tilePlacedOrder.size() - 1) == 6) {
+        rackPlace7.setOpacity(1);
+        pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
+        pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
+        iv.setImage(markedTile);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      }
     }
+
     iv.setImage(markedTile);
     clickedTile = null;
     tileClicked = false;
     letterClicked = false;
+    changes.remove(changes.size() - 1);
+    tilePlacedOrder.remove(tilePlacedOrder.size() - 1);
+
   }
 
   /**
@@ -1064,14 +1103,17 @@ public abstract class InGameController implements Initializable {
    */
   private void placeLetter(ImageView iv, Label l) {
 
+    tilePlacedOrder.add(rackClicked);
+
     markedTile = clickedTile.getImage();
     clickedTile.setImage(iv.getImage());
     l.setLayoutX(clickedTile.getLayoutX() + LABEL_X_CORD);
     l.setLayoutY(clickedTile.getLayoutY() + LABEL_Y_CORD);
-    choosenTiles.add(clickedTile.getId());
     clickedLetter.setOpacity(0);
+    clickedLetter = null;
     letterClicked = false;
     tileClicked = false;
+    clickedTile = null;
   }
 
   /**
@@ -1188,9 +1230,13 @@ public abstract class InGameController implements Initializable {
   @FXML
   private void exchangeClicked(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    if (Data.getGameSession().getGameBoard().isAllowedToPlay()
-        && (Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0)) {
-      App.setRoot("Exchange");
+    if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
+      if ((Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0)) {
+        App.setRoot("Exchange");
+      } else {
+        newPum(
+            "You can't place tiles and exchange in the same turn!\nRemove all before exchanging");
+      }
     } else {
       PopUpMessage pum =
           new PopUpMessage("Sorry, you're not the current Player", PopUpMessageType.NOTIFICATION);
@@ -1237,9 +1283,13 @@ public abstract class InGameController implements Initializable {
       placeLetter(clickedLetter, clickedLabel);
       chooseJoker = false;
       jokerPane.setOpacity(0);
+      // TODO
+      System.out.println(letterJoker);
       Data.getGameSession().getGameBoard().placeTile(new Tile(letterJoker, 0),
           rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()));
       changes.add(clickedTile);
+
+      jokerPlacedAt.add(changes.size() - 1);
     }
   }
 
@@ -1262,19 +1312,15 @@ public abstract class InGameController implements Initializable {
       }
     }
   }
-  
+
   @FXML
   private void undoClicked(MouseEvent event) throws IOException {
-    if(undoButton.getOpacity()==1) {
+    if (undoButton.getOpacity() == 1) {
       playSound("ButtonClicked.mp3");
-      
-      backToRack(changes.get(changes.size()-1));
-      System.out.println("Halooooo"+changes.get(changes.size()-1).getId());
-      changes.remove(changes.size()-1);
-      
-      
+      if (changes.size() > 0) {
+        backToRack(changes.get(changes.size() - 1));
+      }
     }
-    
   }
 
 
@@ -1331,15 +1377,17 @@ public abstract class InGameController implements Initializable {
       if (endPossible) {
         iv.setOpacity(1);
       }
-    } else if(iv.getImage().getUrl().contains("undo")){
-      if(undoButton.getOpacity() == 1) {
+    } else if (iv.getImage().getUrl().contains("undo")) {
+      if (undoButton.getOpacity() == 1) {
         iv.setOpacity(1);
+      } else {
+        darken(event);
       }
-    }else {
+    } else {
       iv.setOpacity(1);
     }
   }
-  
+
   protected void aiTurn() {
     Data.getGameSession().isAiFirstTurn();
   }
