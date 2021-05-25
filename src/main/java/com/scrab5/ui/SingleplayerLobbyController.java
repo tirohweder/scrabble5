@@ -324,7 +324,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
    *         exist
-   * @throws SQLException
+   * @throws SQLException if the database hasn't been correctly initialized
    */
   @FXML
   protected void startGame(MouseEvent event) throws IOException, SQLException {
