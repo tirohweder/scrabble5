@@ -86,7 +86,7 @@ public class AiPlayer extends Player {
     System.out.println();
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
     ArrayList<String> possibleLetters1 = new ArrayList<String>();
-    ArrayList<String> finalWords = new ArrayList<String>();
+    
     ArrayList<String> deletionRound1 = new ArrayList<String>();
     ArrayList<String> deletionRound2 = new ArrayList<String>();
 
@@ -108,6 +108,7 @@ public class AiPlayer extends Player {
 
     int maximumLength = before + 1 + after;
 
+    ArrayList<String> finalWords = new ArrayList<String>();
     finalWords = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
     System.out.println("1. Final Words length: " + finalWords.size());
 
@@ -184,16 +185,98 @@ public class AiPlayer extends Player {
     int value = 0;
     int row = 0;
     int column = 0;
+    tiles = getCoordinatesRep(word, fixLetter, x, y, horizontal);
+    /*if (!isLetterExistingRepeatedly(word)) {
+      /*for (int i = 0; i < word.length(); i++) {
+      
+        value = getPointForLetter(String.valueOf(word.charAt(i)));
+        coordinates =
+            getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)),
+                x, y, horizontal);
+        row = coordinates.get(1);
+        column = coordinates.get(0);
+        Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
+        tiles.add(t);
+      }*/
+    /*} else {
+      tiles = getCoordinatesRep(word, fixLetter, x, y, horizontal);
+      /*for (int i = 0; i < word.length(); i++) {
+        
+        value = getPointForLetter(String.valueOf(word.charAt(i)));
+        coordinates =
+            getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)),
+                x, y, horizontal);
+        row = coordinates.get(1);        
+        column = coordinates.get(0);
+        Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
+        tiles.add(t);
+      }
+      
+      for (int i = 1; i < word.length(); i++) {
+        if (word.charAt(i) == word.charAt(i - 1)) {
+          if (!horizontal) {
+            tiles.get(i - 1).setRow(tiles.get(i).getRow() - 1);
+          } else {
+            tiles.get(i - 1).setColumn(tiles.get(i).getColumn() - 1);
+          }     
+        }
+      } */
+    //} 
+    return tiles;
+  }
+  
+  public static ArrayList<Tile> getCoordinatesRep(String word,
+      String fixLetter,
+      int xfixLetter,
+      int yfixLetter,
+      boolean horizontal){
+    int fixPosition = 0;
+    ArrayList<Integer> list = new ArrayList<Integer>();
+    ArrayList<Tile> tiles = new ArrayList<Tile>();
+    int row = 0;
+    int column = 0;
+    int value = 0;
     for (int i = 0; i < word.length(); i++) {
-      value = getPointForLetter(String.valueOf(word.charAt(i)));
-      coordinates =
-          getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)),
-              currentFixX, currentFixY, horizontal);
-      row = coordinates.get(1);
-      column = coordinates.get(0);
-      Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
-      tiles.add(t);
+      if (word.charAt(i) == fixLetter.charAt(0)) {
+        fixPosition = i;
+      }
     }
+    if (horizontal) {
+      for (int i = 0; i < fixPosition; i++) {
+        value = getPointForLetter(String.valueOf(word.charAt(i)));
+        row = yfixLetter;
+        column = xfixLetter - i;
+        Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
+        tiles.add(t);
+      }
+      Tile t1 = new Tile(fixLetter, getPointForLetter(fixLetter), yfixLetter, xfixLetter);
+      tiles.add(t1);
+      for (int i = fixPosition + 1; i < word.length(); i++) {
+        value = getPointForLetter(String.valueOf(word.charAt(i)));
+        row = yfixLetter;
+        column = xfixLetter + i;
+        Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
+        tiles.add(t);
+      }
+    } else {
+      for (int i = 0; i < fixPosition; i++) {
+        value = getPointForLetter(String.valueOf(word.charAt(i)));
+        row = yfixLetter - i;
+        column = xfixLetter;
+        Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
+        tiles.add(t);
+      }
+      Tile t1 = new Tile(fixLetter, getPointForLetter(fixLetter), yfixLetter, xfixLetter);
+      tiles.add(t1);
+      for (int i = fixPosition + 1; i < word.length(); i++) {
+        value = getPointForLetter(String.valueOf(word.charAt(i)));
+        row = yfixLetter + i;
+        column = xfixLetter;
+        Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
+        tiles.add(t);
+      }
+    }
+    
     return tiles;
   }
 
@@ -230,7 +313,6 @@ public class AiPlayer extends Player {
         placeFixLetter = i;
       }
     }
-
     for (int i = 0; i < word.length(); i++) {
       if (word.charAt(i) == newLetter.charAt(0)) {
         if (horizontal) {
@@ -250,13 +332,21 @@ public class AiPlayer extends Player {
         }
       }
     }
-
     ArrayList<Integer> coordinates = new ArrayList<Integer>();
     coordinates.add(xnew);
     coordinates.add(ynew);
     return coordinates;
   }
-
+  
+  public static boolean isLetterExistingRepeatedly(String word) {
+    for (int i = 1; i < word.length(); i++) {
+      if (word.charAt(i) == word.charAt(i - 1)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
   /**
    * Method to return the points for a letter saved in the database.
    *
@@ -265,6 +355,7 @@ public class AiPlayer extends Player {
    * @author lengist
    */
   public static int getPointForLetter(String letter) {
+    
     int points = 0;
     // System.out.println("Letter length" + lettersFromDatabase.length);
     for (int i = 0; i < lettersFromDatabase.length; i++) {
@@ -682,10 +773,16 @@ public class AiPlayer extends Player {
         Data.getGameSession().getBag().getCurrentBagDistribution();
 
     if (foundMatchingThreshold) {
+      System.out.println("chosen word 720: ");
       for (Tile tile : choosenWord) {
+        System.out.println(tile.getLetter());
+        System.out.println("y: " + tile.getRow());
+        System.out.println("x: " + tile.getColumn());
+        
         Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
         currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
       }
+      System.out.println("placed");
     }
 
     Data.getGameSession()
