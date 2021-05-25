@@ -13,16 +13,14 @@ public class AiPlayer extends Player {
 
   static String[] lettersFromDatabase;
   static int[] pointsPerLetterFromDatabase;
-
+  static int currentFixX;
+  static int currentFixY;
+  static String currentFixLetter;
   int counterUp;
   int counterDown;
   int counterRight;
   int counterLeft;
   int aiThreshold;
-  
-  static int currentFixX;
-  static int currentFixY;
-  static String currentFixLetter;
 
   /**
    * @param name
@@ -86,7 +84,7 @@ public class AiPlayer extends Player {
     System.out.println();
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
     ArrayList<String> possibleLetters1 = new ArrayList<String>();
-    
+
     ArrayList<String> deletionRound1 = new ArrayList<String>();
     ArrayList<String> deletionRound2 = new ArrayList<String>();
 
@@ -111,7 +109,6 @@ public class AiPlayer extends Player {
     ArrayList<String> finalWords = new ArrayList<String>();
     finalWords = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
     System.out.println("1. Final Words length: " + finalWords.size());
-
 
     StringBuilder sb = new StringBuilder();
     for (String s : possibleLetters) {
@@ -160,7 +157,7 @@ public class AiPlayer extends Player {
 
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
     for (String s : finalWords) {
-      //System.out.println("test word: " + s);
+      // System.out.println("test word: " + s);
       tiles.add(wordToTiles(s, fixLetter, currentFixX, currentFixY, horizontal));
     }
     return tiles;
@@ -187,49 +184,46 @@ public class AiPlayer extends Player {
     int column = 0;
     tiles = getCoordinatesRep(word, fixLetter, x, y, horizontal);
     /*if (!isLetterExistingRepeatedly(word)) {
-      /*for (int i = 0; i < word.length(); i++) {
-      
-        value = getPointForLetter(String.valueOf(word.charAt(i)));
-        coordinates =
-            getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)),
-                x, y, horizontal);
-        row = coordinates.get(1);
-        column = coordinates.get(0);
-        Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
-        tiles.add(t);
-      }*/
+    /*for (int i = 0; i < word.length(); i++) {
+
+      value = getPointForLetter(String.valueOf(word.charAt(i)));
+      coordinates =
+          getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)),
+              x, y, horizontal);
+      row = coordinates.get(1);
+      column = coordinates.get(0);
+      Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
+      tiles.add(t);
+    }*/
     /*} else {
-      tiles = getCoordinatesRep(word, fixLetter, x, y, horizontal);
-      /*for (int i = 0; i < word.length(); i++) {
-        
-        value = getPointForLetter(String.valueOf(word.charAt(i)));
-        coordinates =
-            getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)),
-                x, y, horizontal);
-        row = coordinates.get(1);        
-        column = coordinates.get(0);
-        Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
-        tiles.add(t);
-      }
-      
-      for (int i = 1; i < word.length(); i++) {
-        if (word.charAt(i) == word.charAt(i - 1)) {
-          if (!horizontal) {
-            tiles.get(i - 1).setRow(tiles.get(i).getRow() - 1);
-          } else {
-            tiles.get(i - 1).setColumn(tiles.get(i).getColumn() - 1);
-          }     
+    tiles = getCoordinatesRep(word, fixLetter, x, y, horizontal);
+    /*for (int i = 0; i < word.length(); i++) {
+
+      value = getPointForLetter(String.valueOf(word.charAt(i)));
+      coordinates =
+          getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)),
+              x, y, horizontal);
+      row = coordinates.get(1);
+      column = coordinates.get(0);
+      Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
+      tiles.add(t);
+    }
+
+    for (int i = 1; i < word.length(); i++) {
+      if (word.charAt(i) == word.charAt(i - 1)) {
+        if (!horizontal) {
+          tiles.get(i - 1).setRow(tiles.get(i).getRow() - 1);
+        } else {
+          tiles.get(i - 1).setColumn(tiles.get(i).getColumn() - 1);
         }
-      } */
-    //} 
+      }
+    } */
+    // }
     return tiles;
   }
-  
-  public static ArrayList<Tile> getCoordinatesRep(String word,
-      String fixLetter,
-      int xfixLetter,
-      int yfixLetter,
-      boolean horizontal){
+
+  public static ArrayList<Tile> getCoordinatesRep(
+      String word, String fixLetter, int xfixLetter, int yfixLetter, boolean horizontal) {
     int fixPosition = 0;
     ArrayList<Integer> list = new ArrayList<Integer>();
     ArrayList<Tile> tiles = new ArrayList<Tile>();
@@ -276,7 +270,7 @@ public class AiPlayer extends Player {
         tiles.add(t);
       }
     }
-    
+
     return tiles;
   }
 
@@ -337,7 +331,7 @@ public class AiPlayer extends Player {
     coordinates.add(ynew);
     return coordinates;
   }
-  
+
   public static boolean isLetterExistingRepeatedly(String word) {
     for (int i = 1; i < word.length(); i++) {
       if (word.charAt(i) == word.charAt(i - 1)) {
@@ -346,7 +340,7 @@ public class AiPlayer extends Player {
     }
     return false;
   }
-  
+
   /**
    * Method to return the points for a letter saved in the database.
    *
@@ -355,7 +349,7 @@ public class AiPlayer extends Player {
    * @author lengist
    */
   public static int getPointForLetter(String letter) {
-    
+
     int points = 0;
     // System.out.println("Letter length" + lettersFromDatabase.length);
     for (int i = 0; i < lettersFromDatabase.length; i++) {
@@ -686,21 +680,33 @@ public class AiPlayer extends Player {
     System.out.println("Starting to find word");
     // go through game while threshhold is not reached
     int pointsForRound = 0;
+
+    if (Data.getGameSession().getGameBoard().isFirstTile()) {
+      getSpotsfree(7, 7, Data.getGameSession().getGameBoard());
+    }
+
     findacceptable:
     for (int row = 0; row < 15; row++) {
       for (int column = 0; column < 15; column++) {
         System.out.println("Checking " + row + " : " + column);
 
-        if (Data.getGameSession().getGameBoard().getPlayedTile(row, column) != null) {
+        // If tile is already used on the gameBoard or if FirstTile
+        if (Data.getGameSession().getGameBoard().getPlayedTile(row, column) != null
+            || Data.getGameSession().getGameBoard().isFirstTile()) {
           getSpotsfree(row, column, Data.getGameSession().getGameBoard());
+
           ArrayList<ArrayList<Tile>> wordList;
+
           System.out.println("row: " + row);
           System.out.println("column: " + column);
-
           System.out.println("Trying someting");
 
-          if (counterDown + counterUp > counterLeft + counterLeft) {
-            currentFixLetter = 
+          if (Data.getGameSession().getGameBoard().isFirstTile()) {
+            currentFixLetter = "B";
+            wordList = wordGenerator("B", 5, 4, 7, 7, true);
+
+          } else if (counterDown + counterUp > counterLeft + counterLeft) {
+            currentFixLetter =
                 Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter();
             currentFixX = column;
             currentFixY = row;
@@ -716,7 +722,7 @@ public class AiPlayer extends Player {
               break;
             }
           } else {
-            currentFixLetter = 
+            currentFixLetter =
                 Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter();
             currentFixX = column;
             currentFixY = row;
@@ -745,7 +751,7 @@ public class AiPlayer extends Player {
 
           System.out.println("Points size :" + points.size());
           System.out.println(
-              "How many letters does the first word have:" + points.get(0).toString());
+              "How many points does the first word give:" + points.get(0).toString());
           System.out.println(aiThreshold);
 
           for (int k = 0; k < points.size(); k++) {
@@ -763,10 +769,12 @@ public class AiPlayer extends Player {
         }
       }
     }
+
     System.out.println("chosen word: ");
     for (Tile t : choosenWord) {
-      System.out.println(t.getLetter());
+      System.out.print(t.getLetter());
     }
+    System.out.println();
 
     // because ai uses tiles from the bag, the correct distubution needs to be set.
     HashMap<String, Integer> currentDistru =
@@ -778,7 +786,7 @@ public class AiPlayer extends Player {
         System.out.println(tile.getLetter());
         System.out.println("y: " + tile.getRow());
         System.out.println("x: " + tile.getColumn());
-        
+
         Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
         currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
       }
@@ -792,9 +800,9 @@ public class AiPlayer extends Player {
     Data.getGameSession().getGameBoard().finishTurn();
 
     /*System.out.println(
-        Data.getGameSession()
-            .getGameBoard()
-            .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()).getLetter());*/
+    Data.getGameSession()
+        .getGameBoard()
+        .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()).getLetter());*/
 
     Data.getGameSession().finishTurn();
   }
