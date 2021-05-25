@@ -1,5 +1,6 @@
 package com.scrab5.ui;
 
+import com.scrab5.util.database.PlayerProfileDatabase;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
@@ -7,7 +8,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import com.scrab5.util.database.PlayerProfileDatabase;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -75,7 +75,8 @@ public class SettingsController extends Controller implements Initializable {
 
     if (source != null) {
       String fileName = source.getName();
-      File destination = new File(System.getProperty("user.dir") + "\\" + fileName);
+      File destination = new File(
+          System.getProperty("user.dir") + System.getProperty("file.separator") + fileName);
       this.copyFile(source, destination);
     }
   }

@@ -143,7 +143,7 @@ public class DictionaryParser {
   private static void filterWords(String line) {
     /* regex: only words with at least two letters */
     String regex = "[A-Za-z]{2,}";
-    String[] word = line.split("\\W+");
+    String[] word = line.split("\s");
     String[] toCorrect = {"Ä", "ä", "Ö", "ö", "Ü", "ü", "ß"};
     String[] correct = {"Ae", "ae", "Oe", "oe", "Ue", "ue", "ss"};
     for (int i = 0; i < word.length; i++) {
@@ -164,6 +164,7 @@ public class DictionaryParser {
    */
   public static void createDoc(String word) {
     try {
+      System.out.println(word);
       bufWriter.write(word);
       bufWriter.newLine();
     } catch (IOException e1) {
@@ -185,34 +186,80 @@ public class DictionaryParser {
   }
 
   /**
-   * Saves a new file from another client.
+   * Saves a new dictionary as a file with given name and content.
    * 
-   * @author lengist
-   * @param file the file from the other user
-   * @param newFileName the name of the file sent
+   * @author nitterhe
+   * @param dictionary - the dictionary as a String
+   * @param dictionaryName - the name that the dictionary should have
    */
-  public static void insertFile(File file, String newFileName) {
-    System.out.println(newFileName);
-    File newFile = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
-    String line = null;
-    FileInputStream fileInput;
+  public static void addDictionary(String dictionary, String dictionaryName) {
+    Thread t = new Thread(new Runnable() {
+      public void run() {
+        File file = new File(
+            System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
+        try {
+          if (file.createNewFile()) {
+            bufWriter = new BufferedWriter(new FileWriter(file));
+            filterWords(dictionary);
+          } else {
+            System.out.println("dictionary already exists");
+          }
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+    });
+    t.start();
+
+    // bullshit, needs reimplementation
+
+    // System.out.println(newFileName);
+    // File newFile = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+    // + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
+    // String line = null;
+    // FileInputStream fileInput;
+    // try {
+    // fileInput = new FileInputStream(newFile);
+    // BufferedReader buf =
+    // new BufferedReader(new InputStreamReader(fileInput, StandardCharsets.UTF_8));
+    // while ((line = buf.readLine()) != null) {
+    // bufWriter.write(line);
+    // bufWriter.newLine();
+    // }
+    // buf.close();
+    // parseFile(newFileName);
+    // } catch (FileNotFoundException e) {
+    // // TODO Auto-generated catch block
+    // e.printStackTrace();
+    // } catch (IOException e) {
+    // // TODO Auto-generated catch block
+    // e.printStackTrace();
+    // }
+  }
+
+  /**
+   * Transforms a dictionary file to a String.
+   * 
+   * @author nitterhe
+   * @param dictionaryName - the name of the dictionary to be transformed
+   * @return dictionary - the dictionary as a String
+   */
+  public static String getDictionary(String dictionaryName) {
+    String dictionary = "";
+    File file = new File(
+        System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
     try {
-      fileInput = new FileInputStream(newFile);
+      FileInputStream fileInput = new FileInputStream(file);
+      String line = "";
       BufferedReader buf =
           new BufferedReader(new InputStreamReader(fileInput, StandardCharsets.UTF_8));
       while ((line = buf.readLine()) != null) {
-        bufWriter.write(line);
-        bufWriter.newLine();
+        dictionary = dictionary + " " + line;
       }
       buf.close();
-      parseFile(newFileName);
-    } catch (FileNotFoundException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
+    } catch (Exception e) {
       e.printStackTrace();
     }
+    return dictionary;
   }
 }

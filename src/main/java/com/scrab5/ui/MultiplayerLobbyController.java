@@ -202,8 +202,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
 
-    Data.getHostedServer().sendDictionary(Data.getSelectedDictionary(),
-        DictionaryParser.getDictionaryFile(Data.getSelectedDictionary()));
     ArrayList<Player> playerList = new ArrayList<Player>();
     ArrayList<Integer> voteResults = new ArrayList<Integer>();
     Collection<ClientData> clientnames =
@@ -252,6 +250,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
 
     Data.getHostedServer().startGame();
+    Data.getHostedServer().sendDictionary(Data.getSelectedDictionary(),
+        DictionaryParser.getDictionary(Data.getSelectedDictionary()));
     Data.getPlayerClient().getClientThread()
         .sendMessageToServer(new MakeTurnMessage(Data.getCurrentUser(), Data.getGameSession()));
   }

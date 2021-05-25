@@ -8,7 +8,6 @@ import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
-import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.InetAddress;
@@ -445,7 +444,7 @@ public class Server implements Serializable {
    * @param dictionaryName - the name of the dictionary
    * @param dictionary - the dictionary
    */
-  public void sendDictionary(String dictionaryName, File dictionary) {
+  public void sendDictionary(String dictionaryName, String dictionary) {
     sendMessageToAllClients(new DictionaryMessage(this.host, dictionaryName, dictionary));
   }
 }
