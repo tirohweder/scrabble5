@@ -78,7 +78,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   /** @author mherre */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    // this.isClickable();
     this.setUpInit();
     votes = new LinkedHashMap<String, ArrayList<Integer>>();
     this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4() + " DDDDDDDDDDDD");
@@ -91,7 +90,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.customizeButton.setY(-34);
       this.customizeButton.setOpacity(1.0);
     }
-    System.out.println(this.isHost);
+    this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4());
     this.refreshUI();
   }
 
@@ -161,7 +160,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.getHostedServer().kickClient(this.player2.getText());
     }
     playSound("ButtonClicked.mp3");
-    // this.isClickable();
   }
 
   @FXML
@@ -171,7 +169,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.getHostedServer().kickClient(this.player3.getText());
     }
     playSound("ButtonClicked.mp3");
-    // this.isClickable();
   }
 
   @FXML
@@ -181,7 +178,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.getHostedServer().kickClient(this.player4.getText());
     }
     playSound("ButtonClicked.mp3");
-    // this.isClickable();
   }
 
   @FXML

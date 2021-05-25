@@ -13,6 +13,7 @@ public class LobbyUpdateMessage extends Message {
   private static final long serialVersionUID = 1L;
 
   private boolean gameStart;
+  private String ip4;
   private LinkedHashMap<String, ClientData> clients;
   private int clientMaximum;
   private ServerStatistics serverStatistics;
@@ -23,11 +24,12 @@ public class LobbyUpdateMessage extends Message {
    * @author nitterhe
    * @param sender - the LobbyUpdateMessage sender (always server's host)
    */
-  public LobbyUpdateMessage(String sender, boolean gameStart,
+  public LobbyUpdateMessage(String sender, String ip4, boolean gameStart,
       LinkedHashMap<String, ClientData> clients, int clientMaximum,
       ServerStatistics serverStatistics) {
     super(sender);
     this.type = MessageType.LOBBYUPDATE;
+    this.ip4 = ip4;
     this.gameStart = gameStart;
     this.clients = clients;
     this.clientMaximum = clientMaximum;
@@ -42,6 +44,16 @@ public class LobbyUpdateMessage extends Message {
    */
   public boolean getGameStart() {
     return this.gameStart;
+  }
+
+  /**
+   * Returns the server host's IP4Address.
+   * 
+   * @return ip4 - the IP4Address as a string.
+   * @author nitterhe
+   */
+  public String getIp4() {
+    return this.ip4;
   }
 
   /**
