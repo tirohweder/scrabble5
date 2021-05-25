@@ -167,42 +167,50 @@ public abstract class InGameController implements Initializable {
   protected void initPlayers() {
 
     if (0 < playerAmount) {
-      pointsPlayer1.setText(Integer.toString(players.get(0).getPoints()));
+      pointsPlayer1
+          .setText(Integer.toString(Data.getGameSession().getListOfPlayers().get(0).getPoints()));
       player1.setText(players.get(0).getName());
-      if (players.get(0).getName().equalsIgnoreCase(currentPlayer)) {
+      if (players.get(0).getName()
+          .equalsIgnoreCase(Data.getGameSession().getCurrentPlayer().getName())) {
         playerProfile1Passive.setOpacity(0);
       }
     }
     if (1 < playerAmount) {
       player2.setText(players.get(1).getName());
       player2.setOpacity(1);
-      pointsPlayer2.setText(Integer.toString(players.get(1).getPoints()));
+      pointsPlayer2
+          .setText(Integer.toString(Data.getGameSession().getListOfPlayers().get(1).getPoints()));
       pointsPlayer2.setOpacity(1);
       playerProfile2Active.setOpacity(1);
       playerProfile2Passive.setOpacity(1);
-      if (players.get(1).getName().equalsIgnoreCase(currentPlayer)) {
+      if (players.get(1).getName()
+          .equalsIgnoreCase(Data.getGameSession().getCurrentPlayer().getName())) {
         playerProfile1Passive.setOpacity(0);
       }
     }
     if (2 < playerAmount) {
       player3.setText(players.get(2).getName());
       player3.setOpacity(1);
-      pointsPlayer3.setText(Integer.toString(players.get(2).getPoints()));
+      pointsPlayer3
+          .setText(Integer.toString(Data.getGameSession().getListOfPlayers().get(2).getPoints()));
       pointsPlayer3.setOpacity(1);
       playerProfile3Active.setOpacity(1);
       playerProfile3Passive.setOpacity(1);
-      if (players.get(2).getName().equalsIgnoreCase(currentPlayer)) {
+      if (players.get(2).getName()
+          .equalsIgnoreCase(Data.getGameSession().getCurrentPlayer().getName())) {
         playerProfile1Passive.setOpacity(0);
       }
     }
     if (3 < playerAmount) {
       player4.setText(players.get(3).getName());
       player4.setOpacity(1);
-      pointsPlayer4.setText(Integer.toString(players.get(3).getPoints()));
+      pointsPlayer4
+          .setText(Integer.toString(Data.getGameSession().getListOfPlayers().get(3).getPoints()));
       pointsPlayer4.setOpacity(1);
       playerProfile4Active.setOpacity(1);
       playerProfile4Passive.setOpacity(1);
-      if (players.get(3).getName().equalsIgnoreCase(currentPlayer)) {
+      if (players.get(3).getName()
+          .equalsIgnoreCase(Data.getGameSession().getCurrentPlayer().getName())) {
         playerProfile1Passive.setOpacity(0);
       }
     }
@@ -231,28 +239,22 @@ public abstract class InGameController implements Initializable {
             setNewTile(rackPlace1, pointsRack1, "*", myRack.getTileAt(i).getValue());
             break;
           case 1:
-            setNewTile(rackPlace2, pointsRack2, myRack.getTileAt(i).getLetter(),
-                myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace2, pointsRack2, "i", myRack.getTileAt(i).getValue());
             break;
           case 2:
-            setNewTile(rackPlace3, pointsRack3, myRack.getTileAt(i).getLetter(),
-                myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace3, pointsRack3, "i", myRack.getTileAt(i).getValue());
             break;
           case 3:
-            setNewTile(rackPlace4, pointsRack4, myRack.getTileAt(i).getLetter(),
-                myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace4, pointsRack4, "r", myRack.getTileAt(i).getValue());
             break;
           case 4:
-            setNewTile(rackPlace5, pointsRack5, myRack.getTileAt(i).getLetter(),
-                myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace5, pointsRack5, "w", myRack.getTileAt(i).getValue());
             break;
           case 5:
-            setNewTile(rackPlace6, pointsRack6, myRack.getTileAt(i).getLetter(),
-                myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace6, pointsRack6, "e", myRack.getTileAt(i).getValue());
             break;
           case 6:
-            setNewTile(rackPlace7, pointsRack7, myRack.getTileAt(i).getLetter(),
-                myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace7, pointsRack7, "y", myRack.getTileAt(i).getValue());
             break;
           default:
             break;
@@ -986,39 +988,40 @@ public abstract class InGameController implements Initializable {
    */
   private void backToRack(ImageView iv, int place) {
 
-    if (jokerPlacedAt.size() > 0 && jokerPlacedAt.get(jokerPlacedAt.size() - 1) == (changes.size() - 1)) {
-        if (place == 0) {
-          rackPlace1.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 1) {
-          rackPlace2.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 2) {
-          rackPlace3.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 3) {
-          rackPlace4.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 4) {
-          rackPlace5.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 5) {
-          rackPlace6.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        } else if (place == 6) {
-          rackPlace7.setOpacity(1);
-          Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
-              columnTransformation(iv.getId()));
-        }
-        jokerPlacedAt.remove(jokerPlacedAt.size() - 1);
+    if (jokerPlacedAt.size() > 0
+        && jokerPlacedAt.get(jokerPlacedAt.size() - 1) == (changes.size() - 1)) {
+      if (place == 0) {
+        rackPlace1.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 1) {
+        rackPlace2.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 2) {
+        rackPlace3.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 3) {
+        rackPlace4.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 4) {
+        rackPlace5.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 5) {
+        rackPlace6.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      } else if (place == 6) {
+        rackPlace7.setOpacity(1);
+        Data.getGameSession().getGameBoard().removeTile(rowTransformation(iv.getId()),
+            columnTransformation(iv.getId()));
+      }
+      jokerPlacedAt.remove(jokerPlacedAt.size() - 1);
     } else {
-      System.out.println("hallo2"+tilePlacedOrder.get(tilePlacedOrder.size()-1));
+      System.out.println("hallo2" + tilePlacedOrder.get(tilePlacedOrder.size() - 1));
       if (place == 0) {
         rackPlace1.setOpacity(1);
         pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
@@ -1070,8 +1073,8 @@ public abstract class InGameController implements Initializable {
             columnTransformation(iv.getId()));
       }
     }
-    
-    tilePlacedOrder.remove(tilePlacedOrder.size()-1);
+
+    tilePlacedOrder.remove(tilePlacedOrder.size() - 1);
     iv.setImage(markedTile);
     clickedTile = null;
     tileClicked = false;
@@ -1311,7 +1314,8 @@ public abstract class InGameController implements Initializable {
     if (undoButton.getOpacity() == 1) {
       playSound("ButtonClicked.mp3");
       if (changes.size() > 0) {
-        backToRack(changes.get(changes.size()-1),tilePlacedOrder.get(tilePlacedOrder.size()-1));
+        backToRack(changes.get(changes.size() - 1),
+            tilePlacedOrder.get(tilePlacedOrder.size() - 1));
       }
     }
   }
