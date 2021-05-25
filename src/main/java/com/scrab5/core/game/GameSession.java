@@ -322,13 +322,22 @@ public class GameSession implements Serializable {
   // TODO
   public void checkEndScreen() {}
 
-  // TODO
-  public void endGame() throws IOException {
+  /**
+   * ZEUG.
+   * 
+   * @author mherre
+   */
+  public void endGame()  {
     // Data.getHostedServer().endGame(winner); nur beim host.
     // TODO call server method, endGame()
 
     for (Player player : Data.getGameSession().getListOfPlayers()) {
-      player.getPlayerProfile().addPoints(player.getPoints());
+      if (player.isHuman()) {
+        player.getPlayerProfile().addPoints(player.getPoints());
+        System.out.println(player.getPlayerProfile().getName() + "MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM");
+
+      }
+
     }
 
     //

@@ -235,9 +235,10 @@ public class PlayerProfile implements Serializable {
    * @param points the user achieved in the played game
    * @author lengist
    */
-  public void addPoints(int points) throws IOException {
+  public void addPoints(int points) {
     int currentPoints = PlayerProfileDatabase.getTotalPoints(name);
     int newPoints = currentPoints + points;
+    // System.out.println(name + " " + newPoints);
     PlayerProfileDatabase.setTotalPoints(name, newPoints);
   }
 }
