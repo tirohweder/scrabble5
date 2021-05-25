@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class GameSession implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  private final GameBoard gameBoard = new GameBoard();
+  private final GameBoard gameBoard;
   private BagOfTiles bag = new BagOfTiles();
   private ArrayList<Player> listOfPlayers;
   private int skippedTurn = 0;
@@ -40,6 +40,7 @@ public class GameSession implements Serializable {
       throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
+
     this.online = isOnline;
     if (this.online) {
       Data.getHostedServer().startGame();
@@ -48,6 +49,7 @@ public class GameSession implements Serializable {
     for (Player listOfPlayer : listOfPlayers) {
       listOfPlayer.getRack().fill(bag);
     }
+    gameBoard = new GameBoard();
   }
 
   /**
@@ -69,7 +71,7 @@ public class GameSession implements Serializable {
     System.out.println("Created Game Session");
 
     initializeBag();
-
+    gameBoard = new GameBoard();
     for (Player player : listOfPlayers) {
       if (player.isHuman()) {
         player.getRack().fill(bag);
@@ -334,6 +336,14 @@ public class GameSession implements Serializable {
     //
 
     this.running = false;
+  }
+
+  public void isAiFirstTurn() {
+    if (currentPlayer instanceof AiPlayer && this.gameBoard.isFirstTile()) {
+      System.out.println("Ai will try to play now: ");
+      AiPlayer aiPlayer = (AiPlayer) currentPlayer;
+      aiPlayer.aiPlay();
+    }
   }
 
   // TODO
