@@ -1234,7 +1234,7 @@ public abstract class InGameController implements Initializable {
       if ((Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0)) {
         if (Data.getGameSession().getBag().getSize() > 7) {
           App.setRoot("Exchange");
-        }else {
+        } else {
           newPum("Sorry there are not enough tile left in the bag");
         }
       } else {
@@ -1289,6 +1289,8 @@ public abstract class InGameController implements Initializable {
       jokerPane.setOpacity(0);
       // TODO
       System.out.println(letterJoker);
+      Data.getGameSession().getGameBoard().removeTile(rowTransformation(clickedTile.getId()),
+          columnTransformation(clickedTile.getId()));
       Data.getGameSession().getGameBoard().placeTile(new Tile(letterJoker, 0),
           rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()));
       changes.add(clickedTile);
