@@ -64,31 +64,6 @@ public class FillDatabase extends Database {
     }
   }
 
-
-  /**
-   * Closes all prepared statements when the application gets closed.
-   *
-   * @author lengist
-   */
-  public static synchronized void closeAllStatements() {
-    try {
-      if ((pstmDelete != null) && (!pstmDelete.isClosed())) {
-        pstmDelete.close();
-      }
-      if ((pstmPlayer != null) && (!pstmPlayer.isClosed())) {
-        pstmPlayer.close();
-      }
-      if ((pstmServer != null) && (!pstmServer.isClosed())) {
-        pstmServer.close();
-      }
-      if ((pstmDic != null) && (!pstmDic.isClosed())) {
-        pstmDic.close();
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-  }
-
   /**
    * Deleting all entries from the table "name".
    *
