@@ -242,8 +242,8 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void sendUpdateMessage() {
-    this.sendMessageToAllClients(new LobbyUpdateMessage(this.getHost(), this.getStatus(),
-        this.getClients(), this.getClientMaximum(), this.getServerStatistics()));
+    this.sendMessageToAllClients(new LobbyUpdateMessage(this.getHost(), this.getIp4(),
+        this.getStatus(), this.getClients(), this.getClientMaximum(), this.getServerStatistics()));
   }
 
   /**
@@ -359,6 +359,16 @@ public class Server implements Serializable {
   }
 
   /**
+   * Sets the IP4Address of this server object to the given String.
+   * 
+   * @param ip4 - the IP4Address as a String
+   * @author nitterhe
+   */
+  public void setIp4(String ip4) {
+    this.ip4 = ip4;
+  }
+
+  /**
    * Starts a 10 min timer for a client to make his turn. Server shuts down after 10 mins.
    *
    * @author nitterhe, trohwede
@@ -424,12 +434,4 @@ public class Server implements Serializable {
     this.clients.put(name, new ClientData(name, "AI", null, true));
     this.sendUpdateMessage();
   }
-
-  /**
-   * Removes a new client instance to the client list. Used for adding AIs.
-   * 
-   * @author nitterhe
-   * @param name - the name of the AiPlayer
-   */
-
 }

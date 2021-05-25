@@ -503,9 +503,9 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * KOOOOOOOOOOOMENTARE NIKLAAAAS; KOOOOOOOOOOOOOOOOOOOOOMENTAAAAAAAAAAAAAAAAAAAAAAARE
+   * Sets up the server.
    *
-   * @param playerCount
+   * @param playerCount - the number of players allowed to join the server. ( the player maximum)
    * @author nitterhe
    */
   private void setupServer(int playerCount) throws Exception {

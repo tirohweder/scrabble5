@@ -333,6 +333,7 @@ public class Client implements Serializable {
     this.getCurrentServer().setClients(lum.getClients());
     this.getCurrentServer().getClientCounter();
     this.getCurrentServer().setServerStatistics(lum.getServerStatistics());
+    this.getCurrentServer().setIp4(lum.getIp4());
     Data.updatePlayerClient(this);
   }
 
