@@ -16,25 +16,33 @@ public class Data {
 
   public static int easyAiThreshold = 5;
   public static int hardAiThreshold = 25;
+  
   private static String currentUser;
+  
   private static String inputFieldText;
   private static String popUpMessage;
   private static PopUpMessageType messageType;
   private static boolean confirmed;
+  private static boolean okayClicked = false;
+  
   private static Client playerClient;
   private static Server playerServer;
   private static ArrayList<ServerData> serverList;
   private static int playerCountMultiplayer;
+  private static boolean isSearching = false;
+  private static String selectedDictionary;
+  
   private static ArrayList<Integer> occurrencyDistribution;
   private static ArrayList<Integer> pointsDistribution;
   private static boolean hasBeenEdited = false;
-  private static boolean isSearching = false;
+  
   private static double sfxVolume = 1.0;
+  
   private static StringBuffer chatHistory = new StringBuffer();
   private static GameSession gameSession;
 
-  private static boolean okayClicked = false;
-
+  
+  
   public static GameSession getGameSession() {
     return gameSession;
   }
@@ -61,6 +69,26 @@ public class Data {
    */
   public static void setCurrentUser(String username) {
     currentUser = username;
+  }
+  
+  /**
+   * Returns the name of the dictionary which is currently selected.
+   *
+   * @return selectedDictionary the string containing the name of the dictionary
+   * @author mherre
+   */
+  public static String getSelectedDictionaary() {
+    return selectedDictionary;
+  }
+
+  /**
+   * Saves which user is currently logged in.
+   *
+   * @param dictionary the string containing the dictionary which will be set
+   * @author mherre
+   */
+  public static void setSelectedDictionary(String dictionary) {
+    selectedDictionary = dictionary;
   }
 
   /**
