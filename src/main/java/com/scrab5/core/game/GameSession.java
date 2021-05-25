@@ -32,12 +32,8 @@ public class GameSession implements Serializable {
   private boolean online;
 
   // TODO might delete
-  public GameSession(
-      ArrayList<Player> listOfPlayers,
-      ArrayList<Integer> letters,
-      ArrayList<Integer> points,
-      boolean isOnline)
-      throws SQLException {
+  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
+      ArrayList<Integer> points, boolean isOnline) throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
     this.online = isOnline;
@@ -282,10 +278,8 @@ public class GameSession implements Serializable {
       throws SQLException {
 
     // TODO joker richtig bennen
-    String[] buchstaben = {
-      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-      "T", "U", "V", "W", "X", "Y", "Z", "*"
-    };
+    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -327,12 +321,10 @@ public class GameSession implements Serializable {
     // Data.getHostedServer().endGame(winner); nur beim host.
     // TODO call server method, endGame()
 
-    //
-    for (Player player : listOfPlayers) {
-      player.getPlayerProfile().addPoints(10);
-    }
+    // for (Player player : listOfPlayers) {
+    // player.getPlayerProfile().addPoints(10);
+    // }
 
-    //
 
     this.running = false;
   }

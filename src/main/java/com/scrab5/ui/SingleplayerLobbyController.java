@@ -331,10 +331,15 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     ArrayList<Player> playList = new ArrayList<Player>();
     playList.add(0, new Player(Data.getCurrentUser()));
 
+    ArrayList<Integer> s = getPlayerVotes();
+    for (int i = 0; i < s.size(); i++) {
+      System.out.println(i + ". Position: " + s.get(i) + " Votes!");
+    }
+
     for (int i = 1; i < freeSpaces.length; i++) {
       if (!freeSpaces[i]) {
         // TODO set difficulty and order
-        playList.add(new AiPlayer("CPU" + (i + 1), this.getPlayerVotes().get(i)));
+        playList.add(new AiPlayer("CPU" + (i + 1), 0));
       }
     }
 

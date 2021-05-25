@@ -39,8 +39,8 @@ public class Data {
     return gameSession;
   }
 
-  public static void setGameSession(GameSession gameSession) {
-    Data.gameSession = gameSession;
+  public static void setGameSession(GameSession gs) {
+    gameSession = gs;
   }
 
   /**
