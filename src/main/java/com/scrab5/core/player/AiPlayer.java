@@ -261,7 +261,7 @@ public class AiPlayer extends Player {
       tiles.add(t1);
       for (int i = fixPosition + 1; i < word.length(); i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
-        row = yfixLetter +  (i - fixPosition);
+        row = yfixLetter + (i - fixPosition);
         column = xfixLetter;
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
         tiles.add(t);
@@ -423,7 +423,7 @@ public class AiPlayer extends Player {
       boolean dw = false;
       for (Tile tile : word) {
         // System.out.println(tile.getLetter());
-        if (true) { // gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) {
+        if (gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) { // ) {
           switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
             case "DL":
               scoreToBe += tile.getValue() * 2;
@@ -665,6 +665,14 @@ public class AiPlayer extends Player {
     this.counterUp = counterUp;
     this.counterRight = counterRight;
     this.counterLeft = counterLeft;
+
+    if (counterLeft == 0 | counterRight == 0) {
+      this.counterLeft = 0;
+      this.counterRight = 0;
+    } else if (counterUp == 0 | counterDown == 0) {
+      this.counterDown = 0;
+      this.counterUp = 0;
+    }
   }
 
   public void aiPlay() {
