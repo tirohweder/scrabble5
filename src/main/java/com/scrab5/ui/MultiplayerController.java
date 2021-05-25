@@ -29,8 +29,18 @@ public class MultiplayerController extends InGameController implements Initializ
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    
+
+    synchronized (this) {
+      try {
+        wait(300);
+      } catch (Exception e) {
+        // do nothing. this is just so dictionaries and database can be loaded and prepared at every
+        // client
+      }
+    }
+
     aiTurn();
+
     refreshUI();
 
   }

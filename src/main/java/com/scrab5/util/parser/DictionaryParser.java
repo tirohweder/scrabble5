@@ -1,5 +1,6 @@
 package com.scrab5.util.parser;
 
+import com.scrab5.network.messages.DictionaryMessage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -164,7 +165,6 @@ public class DictionaryParser {
    */
   public static void createDoc(String word) {
     try {
-      System.out.println(word);
       bufWriter.write(word);
       bufWriter.newLine();
     } catch (IOException e1) {
@@ -186,55 +186,28 @@ public class DictionaryParser {
   }
 
   /**
-   * Saves a new dictionary as a file with given name and content.
+   * Saves a new dictionary as a file with given name and content. Dictionary is a single string but
+   * this works fine for the size of dictionaries.
    * 
    * @author nitterhe
    * @param dictionary - the dictionary as a String
    * @param dictionaryName - the name that the dictionary should have
+   * @see DictionaryMessage
    */
   public static void addDictionary(String dictionary, String dictionaryName) {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        File file = new File(
-            System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
-        try {
-          if (file.createNewFile()) {
-            bufWriter = new BufferedWriter(new FileWriter(file));
-            filterWords(dictionary);
-          } else {
-            System.out.println("dictionary already exists");
-          }
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
+
+    File file = new File(
+        System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
+    try {
+      if (file.createNewFile()) {
+        bufWriter = new BufferedWriter(new FileWriter(file));
+        filterWords(dictionary);
+      } else {
+        System.out.println("dictionary already exists");
       }
-    });
-    t.start();
-
-    // bullshit, needs reimplementation
-
-    // System.out.println(newFileName);
-    // File newFile = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-    // + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
-    // String line = null;
-    // FileInputStream fileInput;
-    // try {
-    // fileInput = new FileInputStream(newFile);
-    // BufferedReader buf =
-    // new BufferedReader(new InputStreamReader(fileInput, StandardCharsets.UTF_8));
-    // while ((line = buf.readLine()) != null) {
-    // bufWriter.write(line);
-    // bufWriter.newLine();
-    // }
-    // buf.close();
-    // parseFile(newFileName);
-    // } catch (FileNotFoundException e) {
-    // // TODO Auto-generated catch block
-    // e.printStackTrace();
-    // } catch (IOException e) {
-    // // TODO Auto-generated catch block
-    // e.printStackTrace();
-    // }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -254,7 +227,7 @@ public class DictionaryParser {
       BufferedReader buf =
           new BufferedReader(new InputStreamReader(fileInput, StandardCharsets.UTF_8));
       while ((line = buf.readLine()) != null) {
-        dictionary = dictionary + " " + line;
+        dictionary = dictionary + "\n" + line;
       }
       buf.close();
     } catch (Exception e) {
