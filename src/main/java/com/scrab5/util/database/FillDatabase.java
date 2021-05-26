@@ -168,7 +168,7 @@ public class FillDatabase extends Database {
    */
   protected static synchronized void updatePlayer(String column, String name, String contentString,
       int contentInt, double doubleValues) {
-    //Database.reconnect();
+    Database.reconnect();
     System.out.println("Fill");
 
     try {
@@ -176,8 +176,9 @@ public class FillDatabase extends Database {
 
       try {
         if (column.equals("Name")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
+          System.out.println("name aufgerufen.");
           String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setString(1, contentString);
@@ -185,8 +186,8 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
           //pstmt.close();
         } else if (column.equals("Picture")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setString(2, contentString);
@@ -196,7 +197,7 @@ public class FillDatabase extends Database {
           System.out.println("richtiger Part.");
           //Database.disconnect();
           //
-          Database.reconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           System.out.println("bye 1");
@@ -208,64 +209,64 @@ public class FillDatabase extends Database {
           pstmt.close();
           System.out.println("gesetzt");
         } else if (column.equals("PersonalHighscore")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET PersonalHighscore = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("LaidWords")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET Laidwords = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("PointsPerWordRate")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET PointsPerWordRate = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("LongestWord")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET LongestWord = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("TotalPlayedGames")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET TotalPlayedGames = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("TotalWins")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET TotalWins = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("WinRate")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setDouble(1, doubleValues);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("FavDic")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setString(1, contentString);
@@ -273,16 +274,16 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("Music")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET Music = ? WHERE name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setDouble(1, doubleValues);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("SoundEffect")) {
-          Database.disconnect();
-          Database.reconnect();
+          //Database.disconnect();
+          //Database.reconnect();
           String sql = "UPDATE Player SET SoundEffect = ? WHERE name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setDouble(1, doubleValues);
@@ -295,6 +296,7 @@ public class FillDatabase extends Database {
       } finally {
         if (pstmt != null) {
           pstmt.close();
+          System.out.println("wurde geschlossen.");
         }
       }
     } catch (SQLException e) {
@@ -337,7 +339,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     //closeStatement("server");
-    // Database.disconnect();
+    Database.disconnect();
   }
 
   /**

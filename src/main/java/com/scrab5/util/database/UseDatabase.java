@@ -343,9 +343,9 @@ public class UseDatabase extends Database {
   /**
    * Returns a boolean if the player "name" already exists.
    *
+   * @author lengist
    * @param name String of the name of the user to use in the prepared Statement
    * @return boolean returning true if player with name "name" already exists
-   * @author lengist
    */
   public static synchronized boolean playerExists(String name) {
     Database.reconnect();
