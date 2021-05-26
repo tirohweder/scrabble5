@@ -389,11 +389,12 @@ public abstract class InGameController implements Initializable {
     playSound("ButtonClicked.mp3");
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       rackPlace1 = (ImageView) event.getSource();
+      rackClicked = 0;
+      
       // no other letter is clicked
       if (!letterClicked && rackPlace1.getOpacity() != 0) {
 
         clickedLetter = rackPlace1;
-        rackClicked = 0;
         letterClicked = true;
         clickedLabel = pointsRack1;
 
@@ -426,7 +427,7 @@ public abstract class InGameController implements Initializable {
           if (clickedLetter == rackPlace1) {
             unclickLetter(rackPlace1);
           } else if (rackPlace1.getOpacity() != 0) {
-            switchClickedLetter(rackPlace1);
+            switchClickedLetter(rackPlace1, pointsRack1);
           }
         }
       }
@@ -450,12 +451,13 @@ public abstract class InGameController implements Initializable {
     playSound("ButtonClicked.mp3");
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       rackPlace2 = (ImageView) event.getSource();
+      rackClicked = 1;
+      
       // no other letter is clicked
       if (!letterClicked && rackPlace2.getOpacity() != 0) {
 
         clickedLetter = rackPlace2;
         letterClicked = true;
-        rackClicked = 1;
         clickedLabel = pointsRack2;
 
         // no destination tile chosen
@@ -487,7 +489,7 @@ public abstract class InGameController implements Initializable {
           if (clickedLetter == rackPlace2) {
             unclickLetter(rackPlace2);
           } else if (rackPlace2.getOpacity() != 0) {
-            switchClickedLetter(rackPlace2);
+            switchClickedLetter(rackPlace2, pointsRack2);
           }
         }
       }
@@ -511,12 +513,13 @@ public abstract class InGameController implements Initializable {
     playSound("ButtonClicked.mp3");
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       rackPlace3 = (ImageView) event.getSource();
+      rackClicked = 2;
+      
       // no other letter is clicked
       if (!letterClicked && rackPlace3.getOpacity() != 0) {
 
         clickedLetter = rackPlace3;
         letterClicked = true;
-        rackClicked = 2;
         clickedLabel = pointsRack3;
 
         // no destination tile chosen
@@ -547,7 +550,7 @@ public abstract class InGameController implements Initializable {
           if (clickedLetter == rackPlace3) {
             unclickLetter(rackPlace3);
           } else if (rackPlace3.getOpacity() != 0) {
-            switchClickedLetter(rackPlace3);
+            switchClickedLetter(rackPlace3, pointsRack3);
           }
         }
       }
@@ -570,14 +573,14 @@ public abstract class InGameController implements Initializable {
   private void rackPlace4clicked(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
-
       rackPlace4 = (ImageView) event.getSource();
+      rackClicked = 3;
+      
       // no other letter is clicked
       if (!letterClicked && rackPlace4.getOpacity() != 0) {
 
         clickedLetter = rackPlace4;
         letterClicked = true;
-        rackClicked = 3;
         clickedLabel = pointsRack4;
 
         // no destination tile chosen
@@ -609,7 +612,7 @@ public abstract class InGameController implements Initializable {
           if (clickedLetter == rackPlace4) {
             unclickLetter(rackPlace4);
           } else if (rackPlace4.getOpacity() != 0) {
-            switchClickedLetter(rackPlace4);
+            switchClickedLetter(rackPlace4, pointsRack4);
           }
         }
       }
@@ -632,12 +635,13 @@ public abstract class InGameController implements Initializable {
     playSound("ButtonClicked.mp3");
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       rackPlace5 = (ImageView) event.getSource();
+      rackClicked = 4;
+      
       // no other letter is clicked
       if (!letterClicked && rackPlace5.getOpacity() != 0) {
 
         clickedLetter = rackPlace5;
         letterClicked = true;
-        rackClicked = 4;
         clickedLabel = pointsRack5;
 
         // no destination tile chosen
@@ -669,7 +673,7 @@ public abstract class InGameController implements Initializable {
           if (clickedLetter == rackPlace5) {
             unclickLetter(rackPlace5);
           } else if (rackPlace5.getOpacity() != 0) {
-            switchClickedLetter(rackPlace5);
+            switchClickedLetter(rackPlace5, pointsRack5);
           }
         }
       }
@@ -693,14 +697,14 @@ public abstract class InGameController implements Initializable {
     playSound("ButtonClicked.mp3");
 
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
-
       rackPlace6 = (ImageView) event.getSource();
+      rackClicked = 5;
+      
       // no other letter is clicked
       if (!letterClicked && rackPlace6.getOpacity() != 0) {
 
         clickedLetter = rackPlace6;
         letterClicked = true;
-        rackClicked = 5;
         clickedLabel = pointsRack6;
 
         // no destination tile chosen
@@ -732,7 +736,7 @@ public abstract class InGameController implements Initializable {
           if (clickedLetter == rackPlace6) {
             unclickLetter(rackPlace6);
           } else if (rackPlace6.getOpacity() != 0) {
-            switchClickedLetter(rackPlace6);
+            switchClickedLetter(rackPlace6, pointsRack6);
           }
         }
       }
@@ -756,14 +760,15 @@ public abstract class InGameController implements Initializable {
     playSound("ButtonClicked.mp3");
 
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
-
+      
       rackPlace7 = (ImageView) event.getSource();
+      rackClicked = 6;
+      
       // no other letter is clicked
       if (!letterClicked && rackPlace7.getOpacity() != 0) {
 
         clickedLetter = rackPlace7;
         letterClicked = true;
-        rackClicked = 6;
         clickedLabel = pointsRack7;
 
         // if no destination tile is chosen the letter is highlighted and the letterClicked is set
@@ -797,7 +802,7 @@ public abstract class InGameController implements Initializable {
           if (clickedLetter == rackPlace7) {
             unclickLetter(rackPlace7);
           } else if (rackPlace7.getOpacity() != 0) {
-            switchClickedLetter(rackPlace7);
+            switchClickedLetter(rackPlace7, pointsRack7);
           }
         }
       }
@@ -961,11 +966,13 @@ public abstract class InGameController implements Initializable {
   private void unclickLetter(ImageView rackPlace) {
     letterClicked = false;
     clickedLetter = null;
+    clickedLabel = null;
     rackPlace.setOpacity(1);
   }
 
-  private void switchClickedLetter(ImageView rackPlace) {
+  private void switchClickedLetter(ImageView rackPlace, Label points) {
     clickedLetter = rackPlace;
+    clickedLabel = points;
     unclickAll();
     rackPlace.setOpacity(0.8);
   }
@@ -1079,26 +1086,26 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param iv - ImageView
-   *        <p>
-   *        This method is called when a destination Tile is clicked on the GameBoard and a Letter
-   *        Tile is selected. It changes the Image on the Board and "deletes" the Letter from the
-   *        Board thru the opacity and resets the boolean clicked attributes (Letter/ Tile) for
-   *        source and destination
+   * @param iv - ImageView This method is called when a destination Tile is clicked on the GameBoard
+   *        and a Letter Tile is selected. It changes the Image on the Board and "deletes" the
+   *        Letter from the Board thru the opacity and resets the boolean clicked attributes
+   *        (Letter/ Tile) for source and destination
    * @author apilgrim
    */
   private void placeLetter(ImageView iv, Label l) {
 
     tilePlacedOrder.add(rackClicked);
-
+    
     markedTile = clickedTile.getImage();
     clickedTile.setImage(iv.getImage());
     l.setLayoutX(clickedTile.getLayoutX() + LABEL_X_CORD);
     l.setLayoutY(clickedTile.getLayoutY() + LABEL_Y_CORD);
     clickedLetter.setOpacity(0);
     clickedLetter = null;
+    clickedLabel = null;
     letterClicked = false;
     tileClicked = false;
+    clickedTile = null;
   }
 
   /**
