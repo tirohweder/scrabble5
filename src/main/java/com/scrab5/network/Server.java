@@ -4,7 +4,6 @@ import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.DictionaryMessage;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.Message;
-import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
@@ -39,8 +38,8 @@ public class Server implements Serializable {
   private static int clientCounter;
   private static int clientMaximum;
   private ServerStatistics serverStatistics;
-  private Timer timer;
-  private TimerTask task;
+  private Timer timer = new Timer(true);
+  private static TimerTask task;
 
   private LinkedHashMap<String, ClientData> clients;
   private HashMap<ClientData, ServerThread> connections;
@@ -65,6 +64,7 @@ public class Server implements Serializable {
     clientCounter = 0;
     this.startTimer();
     if (!uiServerInstance) {
+      System.out.println("NNNNNNNNNNNNNEEEEEEEEEWWWWWW SEEEEEEEEEERVERRR");
       this.loadServerStatistics();
       this.openServerSocket();
     }
@@ -311,7 +311,6 @@ public class Server implements Serializable {
     this.serverStatistics.getServerStatistics().clear();
     this.getClientCounter();
     this.gameStart = false;
-    Data.setGameSession(null);
     Database.disconnect();
   }
 
@@ -375,16 +374,12 @@ public class Server implements Serializable {
    * @author nitterhe, trohwede
    */
   public void startTimer() {
-
-    this.task = (new TimerTask() {
+    task = (new TimerTask() {
       public void run() {
-        if (Data.getPlayerClient() != null) {
-          Server.this.shutDownServer();
-          new NetworkError(NetworkErrorType.TIMER);
-        }
+        Server.this.shutDownServer();
+        new NetworkError(NetworkErrorType.TIMER);
       }
     });
-    this.timer = new Timer(true);
     timer.schedule(task, 1000 * 60 * 1);
   }
 
@@ -394,8 +389,11 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void resetTimer() {
-    this.cancelTimer();
-    this.startTimer();
+    synchronized (this) {
+      task.cancel();
+      this.timer.purge();
+      this.startTimer();
+    }
   }
 
   /**
@@ -404,10 +402,8 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void cancelTimer() {
-    synchronized (timer) {
-      this.timer.cancel();
-      this.task.cancel();
-    }
+    this.timer.cancel();
+    this.timer.purge();
   }
 
   /**

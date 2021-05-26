@@ -121,6 +121,7 @@ public class ServerThread extends Threads {
       // e.printStackTrace();
       // does nothing is on purpose
     } catch (Exception e) {
+      e.printStackTrace();
       new NetworkError(NetworkErrorType.SERVERRUN);
     }
   }
