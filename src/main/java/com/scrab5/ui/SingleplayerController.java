@@ -1,5 +1,6 @@
 package com.scrab5.ui;
 
+import com.scrab5.core.player.Player;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -8,13 +9,18 @@ import javafx.fxml.Initializable;
 
 public class SingleplayerController extends InGameController implements Initializable {
 
+  Player current;
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
-    // aiTurn();
+    aiTurn();
     refreshUI();
+    current = Data.getGameSession().getCurrentPlayer();
 
   }
+
+  int counter = 0;
 
   private void refreshUI() {
 
@@ -29,16 +35,18 @@ public class SingleplayerController extends InGameController implements Initiali
 
             @Override
             public void run() {
-
               initRack();
               initPlayers();
-              try {
-                initGameboard();
-              } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-              }
 
+              if (Data.getGameSession().getCurrentPlayer() != current) {
+                try {
+                  initGameboard();
+                } catch (IOException e) {
+                  // TODO Auto-generated catch block
+                  e.printStackTrace();
+                }
+                current = Data.getGameSession().getCurrentPlayer();
+              }
             }
           });
           synchronized (this) {
