@@ -94,6 +94,7 @@ class AiPlayerTest {
     GameBoard g2 = new GameBoard();
     g2.placeTileTest(new Tile("A ", 1), 6, 0);
     g2.placeTileTest(new Tile("A ", 1), 8, 0);
+    g2.finishTurn();
     test.getSpotsfree(0, 6, g2);
     assertEquals(0, test.counterLeft);
     assertEquals(14, test.counterRight);
