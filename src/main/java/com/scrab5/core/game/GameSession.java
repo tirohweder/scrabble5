@@ -6,6 +6,7 @@ import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -295,6 +296,7 @@ public class GameSession implements Serializable {
    */
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
 
+    // TODO joker richtig bennen
     String[] buchstaben = {
       "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
       "T", "U", "V", "W", "X", "Y", "Z", "*"
