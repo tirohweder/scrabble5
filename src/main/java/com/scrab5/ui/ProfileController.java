@@ -189,17 +189,20 @@ public class ProfileController extends Controller implements Initializable {
    * @author lengist
    */
   private synchronized void setupStats() {
+    
 
-    Database.reconnect();
     String name = Data.getCurrentUser();
-    Database.disconnect();
 
     String longestWord = PlayerProfileDatabase.getLongestWord(name);
     this.longestWord.setText(longestWord);
 
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
-    this.favDic.setText(favoriteDictionary.substring(0, favoriteDictionary.length() - 4));
-
+    if (!favoriteDictionary.equals("")) {
+      this.favDic.setText(favoriteDictionary.substring(0, favoriteDictionary.length() - 4));
+    } else {
+      this.favDic.setText("-");
+    }
+    
     int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
     this.totalPoints.setText(String.valueOf(totalPoints));
 
@@ -229,5 +232,67 @@ public class ProfileController extends Controller implements Initializable {
       this.averagePointsGame.setText(String.valueOf(averagePointsPerGame));
 
     }
+
+    /*Database.reconnect();
+    String name = Data.getCurrentUser();
+    Database.disconnect();
+
+    Database.reconnect();
+    String longestWord = PlayerProfileDatabase.getLongestWord(name);
+    Database.disconnect();
+    this.longestWord.setText(longestWord);
+
+    Database.reconnect();
+    String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
+    Database.disconnect();
+    if (!favoriteDictionary.equals("")) {
+      this.favDic.setText(favoriteDictionary.substring(0, favoriteDictionary.length() - 4));
+    } else {
+      this.favDic.setText("-");
+    }
+    
+    Database.reconnect();
+    int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
+    Database.disconnect();
+    this.totalPoints.setText(String.valueOf(totalPoints));
+
+    Database.reconnect();
+    int personalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
+    Database.disconnect();
+    this.mostPoints.setText(String.valueOf(personalHighscore));
+
+    Database.reconnect();
+    int laidWords = PlayerProfileDatabase.getLaidWords(name);
+    Database.disconnect();
+    this.laidWords.setText(String.valueOf(laidWords));
+
+    Database.reconnect();
+    int pointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
+    Database.disconnect();
+    this.averagePointsWord.setText(String.valueOf(pointsPerWordRate));
+
+    Database.reconnect();
+    int totalPlayedGames = PlayerProfileDatabase.getTotalPlayedGames(name);
+    Database.disconnect();
+    this.totalGames.setText(String.valueOf(totalPlayedGames));
+
+    Database.reconnect();
+    int totalWins = PlayerProfileDatabase.getTotalWins(name);
+    Database.disconnect();
+    this.totalWins.setText(String.valueOf(totalWins));
+
+    Database.reconnect();
+    double winRate = PlayerProfileDatabase.getWinRate(name);
+    Database.disconnect();
+    this.winPercentage.setText(String.valueOf(winRate));
+
+    if (totalPoints == 0 || totalPlayedGames == 0) {
+      this.averagePointsGame.setText("0");
+
+    } else {
+      int averagePointsPerGame = totalPoints / totalPlayedGames;
+      this.averagePointsGame.setText(String.valueOf(averagePointsPerGame));
+
+    }*/
   }
 }

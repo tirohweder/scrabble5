@@ -1,5 +1,6 @@
 package com.scrab5.util.parser;
 
+import com.scrab5.network.messages.DictionaryMessage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -123,7 +124,6 @@ public class DictionaryParser {
       String line;
       while ((line = buf.readLine()) != null) {
         filterWords(line);
-
       }
       buf.close();
     } catch (FileNotFoundException e1) {
@@ -144,7 +144,7 @@ public class DictionaryParser {
   private static void filterWords(String line) {
     /* regex: only words with at least two letters */
     String regex = "[A-Za-z]{2,}";
-    String[] word = line.split("\\W+");
+    String[] word = line.split("\s");
     String[] toCorrect = {"Ä", "ä", "Ö", "ö", "Ü", "ü", "ß"};
     String[] correct = {"Ae", "ae", "Oe", "oe", "Ue", "ue", "ss"};
     for (int i = 0; i < word.length; i++) {
@@ -185,4 +185,54 @@ public class DictionaryParser {
     return file;
   }
 
+  /**
+   * Saves a new dictionary as a file with given name and content. Dictionary is a single string but
+   * this works fine for the size of dictionaries.
+   * 
+   * @author nitterhe
+   * @param dictionary - the dictionary as a String
+   * @param dictionaryName - the name that the dictionary should have
+   * @see DictionaryMessage
+   */
+  public static void addDictionary(String dictionary, String dictionaryName) {
+
+    File file = new File(
+        System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
+    try {
+      if (file.createNewFile()) {
+        bufWriter = new BufferedWriter(new FileWriter(file));
+        filterWords(dictionary);
+      } else {
+        System.out.println("dictionary already exists");
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  /**
+   * Transforms a dictionary file to a String.
+   * 
+   * @author nitterhe
+   * @param dictionaryName - the name of the dictionary to be transformed
+   * @return dictionary - the dictionary as a String
+   */
+  public static String getDictionary(String dictionaryName) {
+    String dictionary = "";
+    File file = new File(
+        System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
+    try {
+      FileInputStream fileInput = new FileInputStream(file);
+      String line = "";
+      BufferedReader buf =
+          new BufferedReader(new InputStreamReader(fileInput, StandardCharsets.UTF_8));
+      while ((line = buf.readLine()) != null) {
+        dictionary = dictionary + "\n" + line;
+      }
+      buf.close();
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return dictionary;
+  }
 }

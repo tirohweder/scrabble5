@@ -312,6 +312,7 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    System.out.println("music geholt");
     Database.disconnect();
     return music;
   }
@@ -338,6 +339,8 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
+    System.out.println("sound effect geholt");
+    Database.disconnect();
     return soundEffect;
   }
 
@@ -350,6 +353,7 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setName(String name, String newName) {
     FillDatabase.updatePlayer("Name", name, newName, 0, 0.0);
+    Database.disconnect();
   }
 
   /**
@@ -361,6 +365,7 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setPicture(String name, String picture) {
     FillDatabase.updatePlayer("Picture", name, picture, 0, 0.0);
+    Database.disconnect();
   }
 
   /**
@@ -371,7 +376,6 @@ public class PlayerProfileDatabase extends Database {
    * @param points Integer representing the new points to be stored in the database
    */
   public static void setTotalPoints(String name, int points) {
-    Database.disconnect();
     FillDatabase.updatePlayer("TotalPoints", name, null, points, 0.0);
   }
 
@@ -384,6 +388,7 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setPersonalHighscore(String name, int highscore) {
     FillDatabase.updatePlayer("PersonalHighscore", name, null, highscore, 0.0);
+    Database.disconnect();
   }
 
   /**
@@ -395,6 +400,7 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setLaidWords(String name, int words) {
     FillDatabase.updatePlayer("LaidWords", name, null, words, 0.0);
+    Database.disconnect();
   }
 
   /**
@@ -407,6 +413,7 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setPointsPerWordRate(String name, int pperWord) {
     FillDatabase.updatePlayer("PointsPerWordRate", name, null, pperWord, 0.0);
+    Database.disconnect();
   }
 
   /**
@@ -418,6 +425,7 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setLongestWord(String name, String longestWord) {
     FillDatabase.updatePlayer("LongestWord", name, longestWord, 0, 0.0);
+    Database.disconnect();
   }
 
   /**
@@ -429,6 +437,7 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setTotalPlayedGames(String name, int games) {
     FillDatabase.updatePlayer("TotalPlayedGames", name, null, games, 0.0);
+    Database.disconnect();
   }
 
   /**
@@ -440,6 +449,7 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setTotalWins(String name, int wins) {
     FillDatabase.updatePlayer("TotalWins", name, null, wins, 0.0);
+    Database.disconnect();
   }
 
   /**
@@ -451,6 +461,7 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setWinRate(String name, double rate) {
     FillDatabase.updatePlayer("WinRate", name, null, 0, rate);
+    Database.disconnect();
   }
 
   /**
@@ -462,6 +473,7 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setFavoriteDictionary(String name, String language) {
     FillDatabase.updatePlayer("FavDic", name, language, 0, 0.0);
+    Database.disconnect();
   }
 
   /**
@@ -472,6 +484,7 @@ public class PlayerProfileDatabase extends Database {
    * @param music double value of the music volume
    */
   public static void setMusicVolume(String name, Double music) {
+    Database.reconnect();
     FillDatabase.updatePlayer("Music", name, null, 0, music);
     Database.disconnect();
     System.out.println("VolumeFertig");
@@ -489,9 +502,4 @@ public class PlayerProfileDatabase extends Database {
     Database.disconnect();
     System.out.println("EffectFertig");
   }
-
-  public static void main(String[] args) {
-    FillDatabase.updatePlayer("Name", "laura", "neuLaura", 0, 0.0);
-  }
-
 }

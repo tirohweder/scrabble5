@@ -6,6 +6,7 @@ import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -325,7 +326,7 @@ public class GameSession implements Serializable {
 
   /**
    * ZEUG.
-   *
+   * 
    * @author mherre
    */
   public void endGame() {
@@ -334,10 +335,15 @@ public class GameSession implements Serializable {
 
     for (Player player : Data.getGameSession().getListOfPlayers()) {
       if (player.isHuman()) {
+        //System.out.println("kommen wir hier rein?");
+        //Database.disconnect();
         player.getPlayerProfile().addPoints(player.getPoints());
-        // System.out.println(player.getPlayerProfile().getName() + player.getPoints());
+        //System.out.println("first");
+        //Database.disconnect();
+        //System.out.println(player.getPlayerProfile().getName() + player.getPoints());
 
       }
+
     }
 
     //
