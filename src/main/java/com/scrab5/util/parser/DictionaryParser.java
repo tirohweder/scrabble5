@@ -22,6 +22,7 @@ public class DictionaryParser {
   private static String currentDictionary;
   // private static String currentDictionary = "Built-In Standard Dictionary.txt";
   private static String newFileName = null;
+  private static String dictionary;
 
   /**
    * Sets the name of the current dictionary based on the new dictionary that needs to be inserted.
@@ -76,12 +77,8 @@ public class DictionaryParser {
    */
   public static void createSearchableFile(String dictionaryFile) {
 
-    File file =
-        new File(
-            System.getProperty("user.dir")
-                + System.getProperty("file.separator")
-                + "src/main/resources/com/scrab5/util/textParser/"
-                + newFileName);
+    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
 
     try {
       if (!file.exists()) {
@@ -179,12 +176,8 @@ public class DictionaryParser {
    * @return the dictionary file to send to all clients
    */
   public static File getDictionaryFile(String dictionaryName) {
-    File file =
-        new File(
-            System.getProperty("user.dir")
-                + System.getProperty("file.separator")
-                + "src/main/resources/com/scrab5/util/textParser/"
-                + dictionaryName);
+    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + "src/main/resources/com/scrab5/util/textParser/" + dictionaryName);
     return file;
   }
 
@@ -198,20 +191,24 @@ public class DictionaryParser {
    * @see DictionaryMessage
    */
   public static void addDictionary(String dictionary, String dictionaryName) {
-
-    File file =
-        new File(
-            System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
-    try {
-      if (file.createNewFile()) {
-        bufWriter = new BufferedWriter(new FileWriter(file));
-        filterWords(dictionary);
-      } else {
-        System.out.println("dictionary already exists");
+    Thread t = new Thread(new Runnable() {
+      public void run() {
+        File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+            + "src/main/resources/com/scrab5/util/textParser/"
+            + dictionaryName.replace(".", "Parsed."));
+        try {
+          if (file.createNewFile()) {
+            bufWriter = new BufferedWriter(new FileWriter(file));
+            filterWords(dictionary);
+          } else {
+            System.out.println("dictionary already exists");
+          }
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
       }
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    });
+    t.start();
   }
 
   /**
@@ -222,17 +219,23 @@ public class DictionaryParser {
    * @return dictionary - the dictionary as a String
    */
   public static String getDictionary(String dictionaryName) {
-    String dictionary = "";
-    File file =
-        new File(
-            System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
+    File file = new File(
+        System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
     try {
       FileInputStream fileInput = new FileInputStream(file);
       String line = "";
       BufferedReader buf =
           new BufferedReader(new InputStreamReader(fileInput, StandardCharsets.UTF_8));
+      String help = "";
+      int count = 0;
       while ((line = buf.readLine()) != null) {
-        dictionary = dictionary + "\n" + line;
+        count++;
+        help = help + "\n" + line;
+        if (count == 100) {
+          dictionary = dictionary + help;
+          help = "";
+          count = 0;
+        }
       }
       buf.close();
     } catch (Exception e) {

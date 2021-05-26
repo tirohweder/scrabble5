@@ -1159,5 +1159,6 @@ public class AiPlayer extends Player {
         .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()).getLetter());*/
 
     Data.getGameSession().finishTurn();
+    Database.disconnect();
   }
 }

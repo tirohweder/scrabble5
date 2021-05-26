@@ -19,7 +19,6 @@ public class MainMenuController extends Controller implements Initializable {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     //TODO
-    PlayerProfileDatabase.setLaidWords(Data.getCurrentUser(), 2);
   }
 
 
