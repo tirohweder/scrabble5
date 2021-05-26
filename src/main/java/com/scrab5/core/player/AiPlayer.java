@@ -1136,11 +1136,10 @@ public class AiPlayer extends Player {
         Data.getGameSession().getBag().getCurrentBagDistribution();
 
     if (foundMatchingThreshold) {
-      System.out.println("chosen word 720: ");
+      System.out.println("chosen word : ");
       for (Tile tile : choosenWord) {
-        // System.out.println(tile.getLetter());
-        // System.out.println("y: " + tile.getRow());
-        // System.out.println("x: " + tile.getColumn());
+        System.out.print(tile.getLetter());
+        System.out.println("Row: " + tile.getRow() + " column: " + tile.getColumn());
 
         Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
         currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
