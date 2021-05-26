@@ -462,6 +462,16 @@ public class AiPlayer extends Player {
     return scoreList;
   }
 
+  public void getSpotsFree(int row, int column, GameBoard gameBoard) {
+
+    int count = 1;
+    // up
+    while (column - count >= 0) {
+
+      // if(gameBoard[row][column] == null && gameBoard[row]);
+    }
+  }
+
   /**
    * This Method is looking for free valid Spots around the given position and initializes the
    * counters.
@@ -559,7 +569,7 @@ public class AiPlayer extends Player {
         && g.isSpotFreeOld(y - 1, x - 1 - counterLeft)
         && g.isSpotFreeOld(y + 1, x - 1 - counterLeft)) {
       counterLeft++;
-      System.out.println("y=" + y + "; counterLeft =" + counterLeft);
+      // System.out.println("y=" + y + "; counterLeft =" + counterLeft);
     }
     while (y == 0
         && x - 2 - counterLeft >= 0
@@ -676,7 +686,7 @@ public class AiPlayer extends Player {
         && g.isSpotFreeOld(y - 1 - counterUp, x + 1)
         && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
-      System.out.println("y=" + y + "; counterUp =" + counterUp);
+      // System.out.println("y=" + y + "; counterUp =" + counterUp);
     }
     while (x > 0
         && x < 14
@@ -685,7 +695,7 @@ public class AiPlayer extends Player {
         && g.isSpotFreeOld(y - 1 - counterUp, x + 1)
         && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
-      System.out.println("y=" + y + "; counterUp =" + counterUp);
+      // System.out.println("y=" + y + "; counterUp =" + counterUp);
     }
     while (y - 2 - counterUp >= 0
         && x == 0
@@ -762,10 +772,10 @@ public class AiPlayer extends Player {
       this.counterDown = 0;
     }
 
-    System.out.println("left: " + counterLeft);
-    System.out.println("right: " + counterRight);
-    System.out.println("up: " + counterUp);
-    System.out.println("down: " + counterDown);
+    System.out.println("left: " + this.counterLeft);
+    System.out.println("right: " + this.counterRight);
+    System.out.println("up: " + this.counterUp);
+    System.out.println("down: " + this.counterDown);
   }
 
   /**

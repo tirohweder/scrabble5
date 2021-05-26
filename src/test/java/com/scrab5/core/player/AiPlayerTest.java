@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
-import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.UseDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +41,7 @@ class AiPlayerTest {
     assertEquals(0, test.counterRight);
     assertEquals(0, test.counterDown);
     assertEquals(0, test.counterUp);
-    
+
     GameBoard g3 = new GameBoard();
     g3.placeTileTest(new Tile("A ", 1), 5, 6);
     g3.placeTileTest(new Tile("A ", 1), 5, 7);
@@ -53,6 +52,26 @@ class AiPlayerTest {
     assertEquals(0, test.counterRight);
     assertEquals(0, test.counterDown);
     assertEquals(5, test.counterUp);
+
+    GameBoard g4 = new GameBoard();
+    g4.placeTileTest(new Tile("A ", 1), 7, 6);
+    g4.placeTileTest(new Tile("A ", 1), 7, 7);
+    g4.placeTileTest(new Tile("A ", 1), 7, 8);
+    g4.placeTileTest(new Tile("A ", 1), 7, 9);
+    g4.placeTileTest(new Tile("A ", 1), 7, 10);
+
+    g4.placeTileTest(new Tile("A ", 1), 6, 10);
+    g4.placeTileTest(new Tile("A ", 1), 8, 10);
+
+    g4.placeTileTest(new Tile("A ", 1), 8, 7);
+    g4.placeTileTest(new Tile("A ", 1), 9, 7);
+
+    g4.finishTurn();
+    test.getSpotsfree(8, 7, g4);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(7, test.counterUp);
   }
 
   @Test
@@ -79,8 +98,6 @@ class AiPlayerTest {
     testResult.add(45);
 
     assertEquals(testResult, test.countScore(new GameBoard(), possibleWords));
-
-
 
     ArrayList<ArrayList<Tile>> tilesList = new ArrayList<ArrayList<Tile>>();
     Tile t1 = new Tile("H", 1, 7, 6);
@@ -109,19 +126,18 @@ class AiPlayerTest {
     scoreList.add(10);
     scoreList.add(4);
     assertEquals(scoreList, test.countScore(new GameBoard(), tilesList));
-
   }
 
   @Test
   void aiPlay() {}
-  
+
   @Test
   void getCoordinatesTest() {
     /*ArrayList<Integer> coordinates = new ArrayList<>();
     coordinates.add(7);
     coordinates.add(6);
     assertEquals(coordinates, test.getCoordinates("HELLO", "L", "L", 6, 6, true));*/
-    
+
     /*ArrayList<Integer> c = test.createCoordinates("HEY", "H", "H", 7, 7, true);
     assertEquals(7, c.get(0));
     assertEquals(7, c.get(1));
@@ -135,9 +151,9 @@ class AiPlayerTest {
     /*ArrayList<Integer> coordinates1 = new ArrayList<>();
     coordinates1.add(6);
     coordinates1.add(4);*/
-    //assertEquals(coordinates1, test.getCoordinates2("HELLO", "L", "H", 6, 6, false, 2));
+    // assertEquals(coordinates1, test.getCoordinates2("HELLO", "L", "H", 6, 6, false, 2));
   }
-  
+
   @Test
   void wordToTilesTest() {
     test.lettersFromDatabase = UseDatabase.getAllLetters();
@@ -157,7 +173,7 @@ class AiPlayerTest {
     /*O*/
     assertEquals(11, tiles.get(4).getColumn());
     assertEquals(7, tiles.get(4).getRow());
-    
+
     ArrayList<Tile> tiles2 = test.wordToTiles("HELLO", "H", 7, 7, false);
     assertEquals(7, tiles2.get(0).getColumn());
     assertEquals(7, tiles2.get(0).getRow());
@@ -173,7 +189,7 @@ class AiPlayerTest {
     /*O*/
     assertEquals(7, tiles2.get(4).getColumn());
     assertEquals(11, tiles2.get(4).getRow());
-    
+
     ArrayList<Tile> tiles3 = test.wordToTiles("DELETE", "D", 7, 7, true);
     assertEquals(7, tiles3.get(0).getColumn());
     assertEquals(7, tiles3.get(0).getRow());
@@ -192,7 +208,7 @@ class AiPlayerTest {
     /*5*/
     assertEquals(12, tiles3.get(5).getColumn());
     assertEquals(7, tiles3.get(5).getRow());
-    
+
     ArrayList<Tile> tiles4 = test.wordToTiles("HELLO", "O", 7, 9, true);
     assertEquals("H", tiles4.get(0).getLetter());
     assertEquals(3, tiles4.get(0).getColumn());
@@ -213,6 +229,5 @@ class AiPlayerTest {
     assertEquals("O", tiles4.get(4).getLetter());
     assertEquals(7, tiles4.get(4).getColumn());
     assertEquals(9, tiles4.get(4).getRow());
-    
   }
 }
