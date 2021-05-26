@@ -121,7 +121,4 @@ public class ExchangeController extends InGameController implements Initializabl
       rackPlace7.setOpacity(0.8);
     }
   }
-  
-  
-
 }

@@ -18,7 +18,7 @@ public class EndGameController extends InGameController implements Initializable
   private ImageView wonScreen;
   @FXML
   private ImageView lostScreen;
-  
+
   @FXML
   private Label firstPlayer;
   @FXML
@@ -35,7 +35,7 @@ public class EndGameController extends InGameController implements Initializable
   private Label thirdPlayerPoints;
   @FXML
   private Label fourthPlayerPoints;
-  
+
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -49,61 +49,64 @@ public class EndGameController extends InGameController implements Initializable
     Player p, swap;
     Iterator<Player> it = players.iterator();
     int counter = 0;
-    
+
     Player[] order = new Player[players.size()];
-    while(it.hasNext()) {
+    while (it.hasNext()) {
       p = it.next();
-      if(counter == 0) {
+      if (counter == 0) {
         order[counter] = p;
-      }else if(order[counter-1].getPoints() > p.getPoints()) {
-        swap = order[counter-1];
-        order[counter-1] = p;
+      } else if (order[counter - 1].getPoints() > p.getPoints()) {
+        swap = order[counter - 1];
+        order[counter - 1] = p;
         order[counter] = swap;
-      }else {
+      } else {
         order[counter] = p;
       }
       counter++;
     }
-    
+
     counter--;
-    
-    if(order[counter].getName().equalsIgnoreCase(Data.getCurrentUser())) {
+
+    if (order[counter].getName().equalsIgnoreCase(Data.getCurrentUser())) {
       wonScreen.setOpacity(1);
-    }else {
+    } else {
       lostScreen.setOpacity(1);
     }
-    
-    if(0<players.size()) {
-      firstPlayer.setText("1. "+order[counter].getName());
+
+    if (Data.getGameSession().isOnline()) {
+      // order[counter]
+    }
+
+    if (0 < players.size()) {
+      firstPlayer.setText("1. " + order[counter].getName());
       firstPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
       firstPlayer.setOpacity(1);
       firstPlayerPoints.setOpacity(1);
       counter--;
     }
-    if(1<players.size()) {
-      secondPlayer.setText("2. "+order[counter].getName());
+    if (1 < players.size()) {
+      secondPlayer.setText("2. " + order[counter].getName());
       secondPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
       secondPlayer.setOpacity(1);
       secondPlayerPoints.setOpacity(1);
       counter--;
     }
-    if(2<players.size()) {
-      thirdPlayer.setText("3. "+order[counter].getName());
+    if (2 < players.size()) {
+      thirdPlayer.setText("3. " + order[counter].getName());
       thirdPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
       thirdPlayer.setOpacity(1);
       thirdPlayerPoints.setOpacity(1);
       counter--;
     }
-    if(3<players.size()) {
-      fourthPlayer.setText("4. "+order[counter].getName());
+    if (3 < players.size()) {
+      fourthPlayer.setText("4. " + order[counter].getName());
       fourthPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
       fourthPlayer.setOpacity(1);
       fourthPlayerPoints.setOpacity(1);
       counter--;
     }
-    
   }
-  
+
 
   @FXML
   private void mainMenuClicked(MouseEvent event) throws IOException {
@@ -116,5 +119,3 @@ public class EndGameController extends InGameController implements Initializable
     App.setRoot("SingleplayerLobby");
   }
 }
-
-
