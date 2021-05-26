@@ -61,6 +61,7 @@ public class PlayerProfile implements Serializable {
    */
   public void addPoints(int points) {
     Database.reconnect();
+    //int current = PlayerProfileDatabase.getTotalPoints(name);
     int newPoints = currentPoints + points;
     // System.out.println(name + " " + newPoints);
     PlayerProfileDatabase.setTotalPoints(name, newPoints);

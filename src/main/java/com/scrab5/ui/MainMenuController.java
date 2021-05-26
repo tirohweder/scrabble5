@@ -1,5 +1,6 @@
 package com.scrab5.ui;
 
+import com.scrab5.util.database.PlayerProfileDatabase;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ public class MainMenuController extends Controller implements Initializable {
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     // TODO Auto-generated method stub
+    PlayerProfileDatabase.setLaidWords(Data.getCurrentUser(), 2);
   }
 
 

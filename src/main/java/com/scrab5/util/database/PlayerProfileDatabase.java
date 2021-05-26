@@ -52,7 +52,7 @@ public class PlayerProfileDatabase extends Database {
    * @return int Integer value of the total points from user "name" in the database
    */
   public static synchronized int getTotalPoints(String name) {
-    Database.reconnect();
+    //Database.reconnect();
     int points = 0;
     try {
       PreparedStatement pstm =

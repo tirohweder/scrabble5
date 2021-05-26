@@ -194,49 +194,37 @@ public class ProfileController extends Controller implements Initializable {
 
     String longestWord = PlayerProfileDatabase.getLongestWord(name);
     this.longestWord.setText(longestWord);
-    Data.getGameSession().getCurrentPlayer().getPlayerProfile().setCurrentLongestWord(longestWord);
     
 
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
     if (!favoriteDictionary.equals("")) {
       this.favDic.setText(favoriteDictionary.substring(0, favoriteDictionary.length() - 4));
-      Data.getGameSession().getCurrentPlayer().getPlayerProfile().setCurrentDictionary(
-          favoriteDictionary);
     } else {
       this.favDic.setText("-");
-      Data.getGameSession().getCurrentPlayer().getPlayerProfile().setCurrentDictionary("-");
     }
     
     int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
     this.totalPoints.setText(String.valueOf(totalPoints));
-    Data.getGameSession().getCurrentPlayer().getPlayerProfile().setCurrentPoints(totalPoints);
 
     int personalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
     this.mostPoints.setText(String.valueOf(personalHighscore));
-    Data.getGameSession().getCurrentPlayer().getPlayerProfile().setCurrentPersonalHighscore(
-        personalHighscore);
 
     int laidWords = PlayerProfileDatabase.getLaidWords(name);
     this.laidWords.setText(String.valueOf(laidWords));
-    Data.getGameSession().getCurrentPlayer().getPlayerProfile().setCurrentWordCount(laidWords);
 
     int pointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
     this.averagePointsWord.setText(String.valueOf(pointsPerWordRate));
-    Data.getGameSession().getCurrentPlayer().getPlayerProfile().setCurrentPointsPerWordRate(
-        pointsPerWordRate);
+
 
     int totalPlayedGames = PlayerProfileDatabase.getTotalPlayedGames(name);
     this.totalGames.setText(String.valueOf(totalPlayedGames));
-    Data.getGameSession().getCurrentPlayer().getPlayerProfile().setCurrentGamesCount(
-        totalPlayedGames);
+
 
     int totalWins = PlayerProfileDatabase.getTotalWins(name);
     this.totalWins.setText(String.valueOf(totalWins));
-    Data.getGameSession().getCurrentPlayer().getPlayerProfile().setCurrentWinCount(totalWins);
 
     double winRate = PlayerProfileDatabase.getWinRate(name);
     this.winPercentage.setText(String.valueOf(winRate));
-    Data.getGameSession().getCurrentPlayer().getPlayerProfile().setCurrentWinRate(winRate);
 
     if (totalPoints == 0 || totalPlayedGames == 0) {
       this.averagePointsGame.setText("0");
