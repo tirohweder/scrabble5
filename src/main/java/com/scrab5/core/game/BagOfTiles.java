@@ -1,7 +1,6 @@
 package com.scrab5.core.game;
 
 import com.scrab5.ui.Data;
-import com.scrab5.util.database.Database;
 import com.scrab5.util.database.UseDatabase;
 import java.io.Serializable;
 import java.util.ArrayList;

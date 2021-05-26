@@ -94,7 +94,7 @@ public class MultiplayerController extends InGameController implements Initializ
       @Override
       public void run() {
 
-        while (Data.getPlayerClient().threadIsRunning()) {
+        while (Data.getGameSession().isRunning()) {
 
           Platform.runLater(new Runnable() {
 
