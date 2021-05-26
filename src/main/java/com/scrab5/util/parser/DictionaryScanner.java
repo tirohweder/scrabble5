@@ -25,12 +25,13 @@ public class DictionaryScanner {
    */
 
   public static boolean scan(String searchedWord) {
-    /*File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/"
-        + "Built-In Standard DictionaryParsed.txt");*/
+    /*
+     * File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+     * + "src/main/resources/com/scrab5/util/textParser/" +
+     * "Built-In Standard DictionaryParsed.txt");
+     */
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/"
-        + DictionaryParser.getNewFileName());
+        + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
     boolean found = false;
     // String[] possibleLetters = UseDatabase.getAllLetters();
     // String test;
@@ -65,12 +66,12 @@ public class DictionaryScanner {
    */
   public static ArrayList<String> getWordsIncluding(String letter, int length) {
     ArrayList<String> list = new ArrayList<String>();
-    /*File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/"
-        + "Built-In Standard DictionaryParsed.txt");*/
+    /*
+     * File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") +
+     * "src/main/resources/com/scrab5/util/textParser/" + "Built-In Standard DictionaryParsed.txt");
+     */
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/"
-        + DictionaryParser.getNewFileName());
+        + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
     try {
       Scanner scanner = new Scanner(file);
       while (scanner.hasNextLine()) {
@@ -114,27 +115,27 @@ public class DictionaryScanner {
    * @author lengist
    * @param args
    */
-  public static void main(String[] args) {
-    Database db = new Database();
-    CreateDatabase cdb = new CreateDatabase();
-    FillDatabase fd = new FillDatabase();
-    fd.fillLetters();
-
-
-    // DictionaryParser.setCurrentDictionary("words.txt");
-    // DictionaryParser.parseFile("words.txt");
-    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
-    // System.out.println(scan("JOK*R"));
-    System.out.println(scan("ZZZ"));
-    System.out.println();
-
-    System.out.println("before: ");
-    System.out.println(scan("before"));
-    System.out.println();
-    // String[] test = getWordsIncluding("A", 3);
-    /*
-     * for(int i = 0; i < test.length; i++) { System.out.println(test[i]); }
-     * System.out.println("after");
-     */
-  }
+  // public static void main(String[] args) {
+  // Database db = new Database();
+  // CreateDatabase cdb = new CreateDatabase();
+  // FillDatabase fd = new FillDatabase();
+  // fd.fillLetters();
+  //
+  //
+  // // DictionaryParser.setCurrentDictionary("words.txt");
+  // // DictionaryParser.parseFile("words.txt");
+  // DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
+  // // System.out.println(scan("JOK*R"));
+  // System.out.println(scan("ZZZ"));
+  // System.out.println();
+  //
+  // System.out.println("before: ");
+  // System.out.println(scan("before"));
+  // System.out.println();
+  // // String[] test = getWordsIncluding("A", 3);
+  // /*
+  // * for(int i = 0; i < test.length; i++) { System.out.println(test[i]); }
+  // * System.out.println("after");
+  // */
+  // }
 }

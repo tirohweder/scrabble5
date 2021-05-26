@@ -73,6 +73,10 @@ public class EndGameController extends InGameController implements Initializable
       lostScreen.setOpacity(1);
     }
 
+    if (Data.getGameSession().isOnline()) {
+      // order[counter]
+    }
+
     if (0 < players.size()) {
       firstPlayer.setText("1. " + order[counter].getName());
       firstPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
@@ -101,7 +105,6 @@ public class EndGameController extends InGameController implements Initializable
       fourthPlayerPoints.setOpacity(1);
       counter--;
     }
-
   }
 
 
