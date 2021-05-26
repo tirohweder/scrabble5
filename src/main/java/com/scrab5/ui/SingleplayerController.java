@@ -8,13 +8,18 @@ import javafx.fxml.Initializable;
 
 public class SingleplayerController extends InGameController implements Initializable {
 
+  private int roundNumber;
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
-    // aiTurn();
+    aiTurn();
     refreshUI();
+    roundNumber = Data.getGameSession().getRoundNumber();
 
   }
+
+  int counter = 0;
 
   private void refreshUI() {
 
@@ -29,16 +34,18 @@ public class SingleplayerController extends InGameController implements Initiali
 
             @Override
             public void run() {
-
               initRack();
-              initPlayers();
               try {
-                initGameboard();
+                initPlayers();
               } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
               }
 
+              if (Data.getGameSession().getRoundNumber() != roundNumber) {
+                  initGameboard();
+                roundNumber = Data.getGameSession().getRoundNumber();
+              }
             }
           });
           synchronized (this) {

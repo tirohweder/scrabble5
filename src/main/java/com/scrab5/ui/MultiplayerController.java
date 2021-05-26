@@ -26,6 +26,7 @@ public class MultiplayerController extends InGameController implements Initializ
   TextArea textArea;
 
   private boolean chatOpen = false;
+  private int roundNumber;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -42,6 +43,7 @@ public class MultiplayerController extends InGameController implements Initializ
     aiTurn();
 
     refreshUI();
+    roundNumber = Data.getGameSession().getRoundNumber();
 
   }
 
@@ -103,13 +105,16 @@ public class MultiplayerController extends InGameController implements Initializ
 
               textArea.setText(Data.getChatHistory().toString());
 
-              initPlayers();
-              initRack();
               try {
-                initGameboard();
+                initPlayers();
               } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+              }
+              initRack();
+              if (Data.getGameSession().getRoundNumber() != roundNumber) {
+                initGameboard();
+                roundNumber = Data.getGameSession().getRoundNumber();
               }
 
             }

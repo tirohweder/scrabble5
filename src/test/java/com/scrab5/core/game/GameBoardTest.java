@@ -9,10 +9,20 @@ import com.scrab5.util.parser.DictionaryParser;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
+/**
+ * All test here are used to test the functionality of the GameBoard functions.
+ *
+ * @author trohwede
+ */
 class GameBoardTest {
 
   private final GameBoard gameBoardTest = new GameBoard();
 
+  /**
+   * Checks if Tiles are placed correctly.
+   *
+   * @author trohwede
+   */
   @Test
   void placeTileTest() {
     gameBoardTest.placeTileTest(new Tile("T", 3), 6, 5);
@@ -25,6 +35,11 @@ class GameBoardTest {
     assertEquals(test, gameBoardTest.getCurrentChanges().get(0));
   }
 
+  /**
+   * Checks if a spot is actually free.
+   *
+   * @author trohwede
+   */
   @Test
   void isSpotFree() {
     gameBoardTest.placeTileTest(new Tile("T", 3), 0, 0);
@@ -32,6 +47,11 @@ class GameBoardTest {
     assertTrue(gameBoardTest.isSpotFree(1, 0));
   }
 
+  /**
+   * Checks if removeTiles actually removes the correct tile.
+   *
+   * @author trohwede
+   */
   @Test
   void removeTile() {
     Tile x = new Tile("T", 3);
@@ -47,6 +67,11 @@ class GameBoardTest {
     assertFalse(gameBoardTest.removeTile(0, 0));
   }
 
+  /**
+   * Checks if the given coordinates .
+   *
+   * @author trohwede
+   */
   @Test
   void isSpotNext() {
     gameBoardTest.placeTileTest(new Tile("T", 3), 2, 4);
