@@ -105,15 +105,15 @@ public class MultiplayerController extends InGameController implements Initializ
 
               textArea.setText(Data.getChatHistory().toString());
 
-              initPlayers();
+              try {
+                initPlayers();
+              } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+              }
               initRack();
               if (Data.getGameSession().getRoundNumber() != roundNumber) {
-                try {
-                  initGameboard();
-                } catch (IOException e) {
-                  // TODO Auto-generated catch block
-                  e.printStackTrace();
-                }
+                initGameboard();
                 roundNumber = Data.getGameSession().getRoundNumber();
               }
 
