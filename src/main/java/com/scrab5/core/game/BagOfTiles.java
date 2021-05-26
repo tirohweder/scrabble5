@@ -23,8 +23,8 @@ public class BagOfTiles implements Serializable {
   /**
    * This function adds the given Tile to the bag.
    *
-   * @param t - The Tile that is being added
    * @author trohwede
+   * @param t - The Tile that is being added
    */
   public void add(Tile t) {
     this.bag.add(t);
@@ -33,8 +33,8 @@ public class BagOfTiles implements Serializable {
   /**
    * Returns a random Tile from the bag.
    *
-   * @return a random Tile inside of the bag. If the Bag is empty returns null.
    * @author trohwede
+   * @return a random Tile inside of the bag. If the Bag is empty returns null.
    */
   public Tile pick() {
     if (bag.isEmpty()) {
@@ -57,8 +57,8 @@ public class BagOfTiles implements Serializable {
   /**
    * Returns the size of the bag.
    *
-   * @return the size of the bag.
    * @author trohwede
+   * @return the size of the bag.
    */
   public int getSize() {
     return this.bag.size();
@@ -67,8 +67,8 @@ public class BagOfTiles implements Serializable {
   /**
    * Returns the current distribution of the bag, in a HashMap format.
    *
-   * @return the current Bags distribution.
    * @author trohwede
+   * @return the current Bags distribution.
    */
   public HashMap<String, Integer> getCurrentBagDistribution() {
     HashMap<String, Integer> wordDistro = new HashMap<>();
@@ -83,8 +83,8 @@ public class BagOfTiles implements Serializable {
   /**
    * Removes all items of the bag first. And then create a new bag with the given distribution.
    *
-   * @param newWordDistro the new distribution for the bag.
    * @author trohwede
+   * @param newWordDistro the new distribution for the bag.
    */
   public void setBagWithDistribution(HashMap<String, Integer> newWordDistro) {
     bag.clear();

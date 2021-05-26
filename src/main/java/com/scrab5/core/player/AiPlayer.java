@@ -10,6 +10,13 @@ import com.scrab5.util.parser.DictionaryScanner;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Ai Class. Here everything concerning the ai is happening.
+ *
+ * @author trohwede
+ * @author lengist
+ * @author hraza
+ */
 public class AiPlayer extends Player {
 
   static String[] lettersFromDatabase;
@@ -24,15 +31,7 @@ public class AiPlayer extends Player {
   int aiThreshold;
 
   /**
-   * @param name
-   * @author hraza
-   */
-  // public AiPlayer(String name) {
-  //   super(name);
-  // }
-
-  /**
-   * Constructor for Tile
+   * Constructor for AiPlayer. Needs difficulty set.
    *
    * @param name
    * @author trohwede
@@ -82,8 +81,8 @@ public class AiPlayer extends Player {
     System.out.println("row: " + row);
     System.out.println("horizontal: " + horizontal);
 
-    //System.out.println(
-       // "Saved fixLetter: " + currentFixLetter + " x: " + currentFixX + "y: " + currentFixY);
+    // System.out.println(
+    // "Saved fixLetter: " + currentFixLetter + " x: " + currentFixX + "y: " + currentFixY);
 
     System.out.println();
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
@@ -162,7 +161,7 @@ public class AiPlayer extends Player {
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
     for (String s : finalWords) {
       // System.out.println("test word: " + s);
-      //tiles.add(wordToTiles(s, fixLetter, currentFixX, currentFixY, horizontal));
+      // tiles.add(wordToTiles(s, fixLetter, currentFixX, currentFixY, horizontal));
       tiles.add(wordToTiles(s, fixLetter, column, row, horizontal));
     }
     return tiles;
@@ -401,12 +400,12 @@ public class AiPlayer extends Player {
   }
 
   /**
-   * Cout
+   * Because we create the possible words as tile lists, because when we want
    *
+   * @author trohwede
    * @param gameBoard takes the currentGameBoard
    * @param possibleWords revices the possible words as a ArrayList<Tile>
    * @return Points per Word
-   * @author trohwede
    */
   public static ArrayList<Integer> countScore(
       GameBoard gameBoard, ArrayList<ArrayList<Tile>> possibleWords) {
@@ -466,6 +465,15 @@ public class AiPlayer extends Player {
     return scoreList;
   }
 
+  /**
+   * The idea of the fuction is to find out how much space it has to play with the given coordinates
+   * so that it creates only one word and dosnt touch any other tiles.
+   *
+   * @author trohwede
+   * @param row coordinates row
+   * @param column coordinates column
+   * @param g gameBoard used
+   */
   public void getSpotsFree2(int row, int column, GameBoard g) {
     Tile[][] gameBoard = g.getGameBoard();
 
@@ -475,7 +483,7 @@ public class AiPlayer extends Player {
     counterRight = 0;
 
     int count = 0;
-    //System.out.println(" ---  Up  --- ");
+    // System.out.println(" ---  Up  --- ");
     // up
 
     while (row - 2 - count >= 0) {
@@ -483,7 +491,7 @@ public class AiPlayer extends Player {
           && gameBoard[row - 1 - count][column + 1] == null
           && gameBoard[row - 1 - count][column] == null
           && gameBoard[row - 2 - count][column] == null) {
-        //System.out.println(count);
+        // System.out.println(count);
         counterUp++;
         count++;
       } else if (column == 0) {
@@ -494,7 +502,7 @@ public class AiPlayer extends Player {
           && gameBoard[row - 1 - count][column - 1] == null
           && gameBoard[row - 1 - count][column] == null
           && gameBoard[row - 2 - count][column] == null) {
-        //System.out.println(count);
+        // System.out.println(count);
         counterUp++;
         count++;
       } else if (column == 14) {
@@ -507,7 +515,7 @@ public class AiPlayer extends Player {
           && gameBoard[row - 1 - count][column + 1] == null
           && gameBoard[row - 1 - count][column] == null
           && gameBoard[row - 2 - count][column] == null) {
-        //System.out.println(count);
+        // System.out.println(count);
         counterUp++;
         count++;
       } else if (column != 0 && column != 14) {
@@ -525,7 +533,7 @@ public class AiPlayer extends Player {
       counterUp = 0;
     }
 
-    //System.out.println(" --- DOWN --- ");
+    // System.out.println(" --- DOWN --- ");
 
     count = 0;
     // down
@@ -535,11 +543,11 @@ public class AiPlayer extends Player {
           && gameBoard[row + 1 + count][column + 1] == null
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
-        //System.out.println(count);
+        // System.out.println(count);
         counterDown++;
         count++;
       } else if (column == 0) {
-        //System.out.println("Down 1");
+        // System.out.println("Down 1");
         break;
       }
 
@@ -547,11 +555,11 @@ public class AiPlayer extends Player {
           && gameBoard[row + 1 + count][column - 1] == null
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
-        //System.out.println(count);
+        // System.out.println(count);
         counterDown++;
         count++;
       } else if (column == 14) {
-        //System.out.println("Down 2");
+        // System.out.println("Down 2");
         break;
       }
 
@@ -562,10 +570,10 @@ public class AiPlayer extends Player {
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
         counterDown++;
-        //System.out.println(count);
+        // System.out.println(count);
         count++;
       } else if (column != 0 && column != 14) {
-        //System.out.println("Down 3");
+        // System.out.println("Down 3");
         break;
       }
     }
@@ -580,7 +588,7 @@ public class AiPlayer extends Player {
       counterDown = 0;
     }
 
-    //System.out.println(" --- RIGHT --- ");
+    // System.out.println(" --- RIGHT --- ");
     count = 0;
     // right
     while (column + 2 + count < 15) {
@@ -590,7 +598,7 @@ public class AiPlayer extends Player {
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
 
-        //System.out.println(count);
+        // System.out.println(count);
         counterRight++;
         count++;
       } else if (row == 0) {
@@ -600,7 +608,7 @@ public class AiPlayer extends Player {
           && gameBoard[row - 1][column + 1 + count] == null
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
-        //System.out.println(count);
+        // System.out.println(count);
         counterRight++;
         count++;
       } else if (row == 14) {
@@ -614,7 +622,7 @@ public class AiPlayer extends Player {
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
         counterRight++;
-        //System.out.println(count);
+        // System.out.println(count);
         count++;
       } else if (row != 0 && row != 14) {
         break;
@@ -642,7 +650,7 @@ public class AiPlayer extends Player {
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
 
-        //System.out.println(count);
+        // System.out.println(count);
         counterLeft++;
         count++;
       } else if (row == 0) {
@@ -652,7 +660,7 @@ public class AiPlayer extends Player {
           && gameBoard[row - 1][column - 1 - count] == null
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
-        //System.out.println(count);
+        // System.out.println(count);
         counterLeft++;
         count++;
       } else if (row == 14) {
@@ -666,7 +674,7 @@ public class AiPlayer extends Player {
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
         counterLeft++;
-        //System.out.println(count);
+        // System.out.println(count);
         count++;
       } else if (row != 0 && row != 14) {
         break;

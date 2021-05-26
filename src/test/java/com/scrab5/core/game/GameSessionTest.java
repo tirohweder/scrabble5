@@ -7,19 +7,14 @@ import org.junit.jupiter.api.Test;
 
 class GameSessionTest {
 
+  @Test
+  void createGameSession() {}
 
   @Test
-  void createGameSession() {
-
-  }
+  void initializeBag() {}
 
   @Test
-  void initializeBag() {
-
-  }
-
-  @Test
-  void testInitializeBag() throws SQLException {
+  void InitializeBag() throws SQLException {
     Player p1 = new Player("Player1");
     Player p2 = new Player("Player2");
 
@@ -28,19 +23,14 @@ class GameSessionTest {
     test.add(0, p1);
     test.add(0, p2);
     GameSession testGameSession = new GameSession(test, false);
-
-
   }
 
   @Test
-  void finishTurn() {
-  }
+  void finishTurn() {}
 
   @Test
-  void endGame() {
-  }
+  void endGame() {}
 
   @Test
-  void giveUp() {
-  }
+  void giveUp() {}
 }
