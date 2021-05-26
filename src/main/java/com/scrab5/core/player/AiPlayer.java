@@ -483,7 +483,10 @@ public class AiPlayer extends Player {
         System.out.println(count);
         counterUp++;
         count++;
+      } else if (column == 0) {
+        break;
       }
+
       if (column == 14
           && gameBoard[row - 1 - count][column - 1] == null
           && gameBoard[row - 1 - count][column] == null
@@ -491,16 +494,20 @@ public class AiPlayer extends Player {
         System.out.println(count);
         counterUp++;
         count++;
+      } else if (column == 14) {
+        break;
       }
 
-      if (gameBoard[row - 1 - count][column - 1] == null
+      if (column != 0
+          && column != 14
+          && gameBoard[row - 1 - count][column - 1] == null
           && gameBoard[row - 1 - count][column + 1] == null
           && gameBoard[row - 1 - count][column] == null
           && gameBoard[row - 2 - count][column] == null) {
         System.out.println(count);
         counterUp++;
         count++;
-      } else {
+      } else if (column != 0 && column != 14) {
         break;
       }
     }
@@ -511,7 +518,7 @@ public class AiPlayer extends Player {
       }
     }
 
-    if (gameBoard[row + 1][column] != null) {
+    if (row != 14 && gameBoard[row + 1][column] != null) {
       counterUp = 0;
     }
 
@@ -526,8 +533,11 @@ public class AiPlayer extends Player {
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
         System.out.println(count);
-        counterUp++;
+        counterDown++;
         count++;
+      } else if (column == 0) {
+        System.out.println("Down 1");
+        break;
       }
 
       if (column == 14
@@ -535,18 +545,24 @@ public class AiPlayer extends Player {
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
         System.out.println(count);
-        counterUp++;
+        counterDown++;
         count++;
+      } else if (column == 14) {
+        System.out.println("Down 2");
+        break;
       }
 
-      if (gameBoard[row + 1 + count][column - 1] == null
+      if (column != 0
+          && column != 14
+          && gameBoard[row + 1 + count][column - 1] == null
           && gameBoard[row + 1 + count][column + 1] == null
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
         counterDown++;
         System.out.println(count);
         count++;
-      } else {
+      } else if (column != 0 && column != 14) {
+        System.out.println("Down 3");
         break;
       }
     }
@@ -557,7 +573,7 @@ public class AiPlayer extends Player {
       }
     }
 
-    if (gameBoard[row - 1][column] != null) {
+    if (row != 0 && gameBoard[row - 1][column] != null) {
       counterDown = 0;
     }
 
@@ -572,26 +588,32 @@ public class AiPlayer extends Player {
           && gameBoard[row][column + 2 + count] == null) {
 
         System.out.println(count);
-        counterUp++;
+        counterRight++;
         count++;
+      } else if (row == 0) {
+        break;
       }
       if (row == 14
           && gameBoard[row - 1][column + 1 + count] == null
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
         System.out.println(count);
-        counterUp++;
+        counterRight++;
         count++;
+      } else if (row == 14) {
+        break;
       }
 
-      if (gameBoard[row - 1][column + 1 + count] == null
+      if (row != 0
+          && row != 14
+          && gameBoard[row - 1][column + 1 + count] == null
           && gameBoard[row + 1][column + 1 + count] == null
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
         counterRight++;
         System.out.println(count);
         count++;
-      } else {
+      } else if (row != 0 && row != 14) {
         break;
       }
     }
@@ -602,7 +624,7 @@ public class AiPlayer extends Player {
       }
     }
 
-    if (gameBoard[row][column - 1] != null) {
+    if (column != 0 && gameBoard[row][column - 1] != null) {
       counterRight = 0;
     }
 
@@ -618,26 +640,32 @@ public class AiPlayer extends Player {
           && gameBoard[row][column - 2 - count] == null) {
 
         System.out.println(count);
-        counterUp++;
+        counterLeft++;
         count++;
+      } else if (row == 0) {
+        break;
       }
       if (row == 14
           && gameBoard[row - 1][column - 1 - count] == null
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
         System.out.println(count);
-        counterUp++;
+        counterLeft++;
         count++;
+      } else if (row == 14) {
+        break;
       }
 
-      if (gameBoard[row - 1][column - 1 - count] == null
+      if (row != 0
+          && row != 14
+          && gameBoard[row - 1][column - 1 - count] == null
           && gameBoard[row + 1][column - 1 - count] == null
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
         counterLeft++;
         System.out.println(count);
         count++;
-      } else {
+      } else if (row != 0 && row != 14) {
         break;
       }
     }
@@ -648,7 +676,7 @@ public class AiPlayer extends Player {
       }
     }
 
-    if (gameBoard[row][column + 1] != null) {
+    if (column != 14 && gameBoard[row][column + 1] != null) {
       counterLeft = 0;
     }
   }
@@ -731,8 +759,8 @@ public class AiPlayer extends Player {
     if (x + 2 == 15 && y == 14 && g.isSpotFree(y, x + 1) && !g.isSpotFree(y - 1, x + 1)) {
       counterRight = -1;
     }
-    if(x-1>=0 && !g.isSpotFree(y, x - 1)  ) {
-      counterRight=-1;
+    if (x - 1 >= 0 && !g.isSpotFree(y, x - 1)) {
+      counterRight = -1;
     }
 
     // Checking the left Side of the Position on the Board
@@ -798,8 +826,8 @@ public class AiPlayer extends Player {
     if (x - 2 == -1 && y == 14 && g.isSpotFree(y, x - 1) && !g.isSpotFree(y - 1, x - 1)) {
       counterLeft = -1;
     }
-    if(x+1<=14 && !g.isSpotFree(y, x + 1)  ) {
-      counterLeft=-1;
+    if (x + 1 <= 14 && !g.isSpotFree(y, x + 1)) {
+      counterLeft = -1;
     }
 
     // Checking for free Spots under the Position x,y
@@ -862,11 +890,11 @@ public class AiPlayer extends Player {
       counterDown = -1;
     }
     if (y + 2 == 15 && x == 14 && g.isSpotFree(y + 1, x) && !g.isSpotFree(y + 1, x - 1)) {
-      counterDown = -1; 
+      counterDown = -1;
     }
 
-    if(y-1>=0 && !g.isSpotFree(y-1, x )  ) {
-      counterDown=-1;
+    if (y - 1 >= 0 && !g.isSpotFree(y - 1, x)) {
+      counterDown = -1;
     }
     // Checking for free Spots above the Position x,y
     while (y - 2 - counterUp >= 0
@@ -887,14 +915,14 @@ public class AiPlayer extends Player {
         && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
       // System.out.println("y=" + y + "; counterUp =" + counterUp);
-    } 
+    }
     while (y - 2 - counterUp >= 0
         && x == 0
         && g.isSpotFreeOld(y - 1 - counterUp, x)
         && g.isSpotFreeOld(y - 2 - counterUp, x)
         && g.isSpotFreeOld(y - 1 - counterUp, x + 1)) {
       counterUp++;
-    } 
+    }
     while (y - 2 - counterUp == -1
         && x == 0
         && g.isSpotFreeOld(y - 1 - counterUp, x)
@@ -933,8 +961,8 @@ public class AiPlayer extends Player {
       counterUp = -1;
     }
 
-    if(y+1<=14 && !g.isSpotFree(y+1, x )  ) {
-      counterUp=-1;
+    if (y + 1 <= 14 && !g.isSpotFree(y + 1, x)) {
+      counterUp = -1;
     }
 
     this.counterDown = counterDown;
@@ -955,7 +983,7 @@ public class AiPlayer extends Player {
       this.counterRight = 0;
       this.counterLeft = 0;
     }
-    
+
     if (counterUp <= 0 && counterDown >= 0) {
       this.counterUp = 0;
       this.counterDown = counterDown;
