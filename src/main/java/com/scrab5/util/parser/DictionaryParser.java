@@ -13,14 +13,14 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Parses a dictionary and saves it as a new file.
- * 
+ *
  * @author lengist
  */
 public class DictionaryParser {
 
   static BufferedWriter bufWriter = null;
   private static String currentDictionary;
-  //private static String currentDictionary = "Built-In Standard Dictionary.txt";
+  // private static String currentDictionary = "Built-In Standard Dictionary.txt";
   private static String newFileName = null;
 
   /**
@@ -35,7 +35,7 @@ public class DictionaryParser {
 
   /**
    * Returns the name of the current inserted and used dictionary file.
-   * 
+   *
    * @author lengist
    * @return String representation of the current inserted dictionary file name
    */
@@ -45,7 +45,7 @@ public class DictionaryParser {
 
   /**
    * Returns the name of the new file to scan.
-   * 
+   *
    * @author lengist
    * @return String representation of the new file name
    */
@@ -70,14 +70,18 @@ public class DictionaryParser {
 
   /**
    * Creates a new file with all the words that can be scanned now.
-   * 
+   *
    * @author lengist
    * @param dictionaryFile The file the user inserts as new dictionary
    */
   public static void createSearchableFile(String dictionaryFile) {
 
-    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
+    File file =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + "src/main/resources/com/scrab5/util/textParser/"
+                + newFileName);
 
     try {
       if (!file.exists()) {
@@ -99,7 +103,7 @@ public class DictionaryParser {
 
   /**
    * Loads a file from the path and passes the lines of the document on to filterWords.
-   * 
+   *
    * @author lengist
    * @param file with the name of the file for the dictionary
    */
@@ -139,7 +143,7 @@ public class DictionaryParser {
   private static void filterWords(String line) {
     /* regex: only words with at least two letters */
     String regex = "[A-Za-z]{2,}";
-    String[] word = line.split("\s");
+    String[] word = line.split("\\s");
     String[] toCorrect = {"Ä", "ä", "Ö", "ö", "Ü", "ü", "ß"};
     String[] correct = {"Ae", "ae", "Oe", "oe", "Ue", "ue", "ss"};
     for (int i = 0; i < word.length; i++) {
@@ -169,21 +173,25 @@ public class DictionaryParser {
 
   /**
    * Returns the file of the current Dictionary.
-   * 
+   *
    * @author lengist
    * @param dictionaryName the name of the current set dictionary
    * @return the dictionary file to send to all clients
    */
   public static File getDictionaryFile(String dictionaryName) {
-    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/" + dictionaryName);
+    File file =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + "src/main/resources/com/scrab5/util/textParser/"
+                + dictionaryName);
     return file;
   }
 
   /**
    * Saves a new dictionary as a file with given name and content. Dictionary is a single string but
    * this works fine for the size of dictionaries.
-   * 
+   *
    * @author nitterhe
    * @param dictionary - the dictionary as a String
    * @param dictionaryName - the name that the dictionary should have
@@ -191,8 +199,9 @@ public class DictionaryParser {
    */
   public static void addDictionary(String dictionary, String dictionaryName) {
 
-    File file = new File(
-        System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
+    File file =
+        new File(
+            System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
     try {
       if (file.createNewFile()) {
         bufWriter = new BufferedWriter(new FileWriter(file));
@@ -207,15 +216,16 @@ public class DictionaryParser {
 
   /**
    * Transforms a dictionary file to a String.
-   * 
+   *
    * @author nitterhe
    * @param dictionaryName - the name of the dictionary to be transformed
    * @return dictionary - the dictionary as a String
    */
   public static String getDictionary(String dictionaryName) {
     String dictionary = "";
-    File file = new File(
-        System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
+    File file =
+        new File(
+            System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
     try {
       FileInputStream fileInput = new FileInputStream(file);
       String line = "";

@@ -688,6 +688,18 @@ public class AiPlayer extends Player {
     System.out.println("4down: " + this.counterDown);
   }
 
+  /**
+   * This methods makes the ai play. First we find a tile that is already in play. From this tile we
+   * check out which coordinates in which way are free. We want to create words, that only create 1
+   * new word on the game board. So it returns the integer value for each row we have space. With
+   * word generator, we can give the tile a fixed letter and it will try to create as many words as
+   * possible with the space and letters given. Then we calculate all the points for each word. And
+   * then select the word that fit the difficulty threshold. If the spot found doesnt give a good
+   * enough word, we check out the next tile. Then chosen word is then placed on the board and the
+   * required tiles for that word are removed from the bag of tiles.
+   *
+   * @author trohwede
+   */
   public void aiPlay() {
     lettersFromDatabase = UseDatabase.getAllLetters();
     pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
