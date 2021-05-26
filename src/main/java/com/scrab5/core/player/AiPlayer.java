@@ -79,9 +79,9 @@ public class AiPlayer extends Player {
     System.out.println("y: " + y);
     System.out.println();
 
-    System.out.println("Saved fixLetter: " + currentFixLetter);
-    System.out.println("saved x: " + currentFixX);
-    System.out.println("saved y: " + currentFixY);
+    System.out.println(
+        "Saved fixLetter: " + currentFixLetter + " x: " + currentFixX + "y: " + currentFixY);
+
     System.out.println();
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
     ArrayList<String> possibleLetters1 = new ArrayList<String>();
@@ -235,7 +235,7 @@ public class AiPlayer extends Player {
     if (horizontal) {
       for (int i = 0; i < fixPosition; i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
-        System.out.println(word.charAt(i));
+        // System.out.println(word.charAt(i));
         row = yfixLetter;
         column = xfixLetter - (fixPosition - i);
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
@@ -408,8 +408,8 @@ public class AiPlayer extends Player {
       GameBoard gameBoard, ArrayList<ArrayList<Tile>> possibleWords) {
     ArrayList<Integer> scoreList = new ArrayList<>();
 
-    System.out.println("Counting score " + possibleWords.size());
-    System.out.println("Possible " + possibleWords.get(0).size());
+    System.out.println("How big is the possible word size " + possibleWords.size());
+    System.out.println("First Word size" + possibleWords.get(0).size());
 
     for (int i = 0; i < possibleWords.get(0).size(); i++) {
       System.out.println(possibleWords.get(0).get(i).getLetter());
@@ -457,7 +457,7 @@ public class AiPlayer extends Player {
       scoreList.add(score);
     }
 
-    System.out.println(scoreList.get(0).toString());
+    // System.out.println(scoreList.get(0).toString());
 
     return scoreList;
   }
@@ -470,13 +470,17 @@ public class AiPlayer extends Player {
    * @param y is the row-position from where it starts countin on the current gameBoard
    * @author hraza
    */
-  public void getSpotsfree(int x, int y, GameBoard g) {
+
+  // Wrong coordinates...
+  public void getSpotsfree(int y, int x, GameBoard g) {
     int counterRight = 0;
     int counterLeft = 0;
     int counterUp = 0;
     int counterDown = 0;
 
-    System.out.println("Finding free Spots");
+    System.out.println("Getting row: " + y + " | column :" + x);
+
+    // System.out.println("Finding free Spots");
 
     // Checking the right Side of the Position on the Board
     while (y < 14
@@ -542,7 +546,7 @@ public class AiPlayer extends Player {
         && g.isSpotFreeOld(y - 1, x - 1 - counterLeft)
         && g.isSpotFreeOld(y + 1, x - 1 - counterLeft)) {
       counterLeft++;
-      System.out.println("y=" + y + "; counterLeft =" + counterLeft);
+      // System.out.println("y=" + y + "; counterLeft =" + counterLeft);
     }
     while (y == 0
         && x - 2 - counterLeft >= 0
@@ -625,7 +629,7 @@ public class AiPlayer extends Player {
         && g.isSpotFreeOld(y - 1 - counterUp, x + 1)
         && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
-      System.out.println("y=" + y + "; counterUp =" + counterUp);
+      // System.out.println("y=" + y + "; counterUp =" + counterUp);
     }
     while (x > 0
         && x < 14
@@ -634,7 +638,7 @@ public class AiPlayer extends Player {
         && g.isSpotFreeOld(y - 1 - counterUp, x + 1)
         && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
-      System.out.println("y=" + y + "; counterUp =" + counterUp);
+      // System.out.println("y=" + y + "; counterUp =" + counterUp);
     }
     while (y - 2 - counterUp >= 0
         && x == 0
@@ -662,6 +666,7 @@ public class AiPlayer extends Player {
         && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
     }
+
     this.counterDown = counterDown;
     this.counterUp = counterUp;
     this.counterRight = counterRight;
@@ -676,6 +681,11 @@ public class AiPlayer extends Player {
       this.counterDown = 0;
       this.counterUp = 0;
     }
+
+    System.out.println("1left: " + this.counterLeft);
+    System.out.println("2right: " + this.counterRight);
+    System.out.println("3up: " + this.counterUp);
+    System.out.println("4down: " + this.counterDown);
   }
 
   public void aiPlay() {
@@ -748,47 +758,48 @@ public class AiPlayer extends Player {
               break;
             }
           }
+          if (wordList.size() > 0) {
+            System.out.println("left: " + counterLeft);
+            System.out.println("right: " + counterRight);
+            System.out.println("up: " + counterUp);
+            System.out.println("down: " + counterDown);
 
-          System.out.println("left: " + counterLeft);
-          System.out.println("right: " + counterRight);
-          System.out.println("uo: " + counterUp);
-          System.out.println("down: " + counterDown);
+            System.out.println("Checked all");
 
-          System.out.println("Checked all");
+            ArrayList<ArrayList<Tile>> wordListtest = new ArrayList<>();
 
-          ArrayList<ArrayList<Tile>> wordListtest = new ArrayList<>();
+            // for (int i = 0; i < 10; i++) {
+            // wordListtest.add(wordList.get(i));
+            // }
 
-          // for (int i = 0; i < 10; i++) {
-          // wordListtest.add(wordList.get(i));
-          // }
+            ArrayList<Integer> points = countScore(Data.getGameSession().getGameBoard(), wordList);
 
-          ArrayList<Integer> points = countScore(Data.getGameSession().getGameBoard(), wordList);
+            System.out.println("Points size :" + points.size());
+            System.out.println(
+                "How many points does the first word give:" + points.get(0).toString());
+            // System.out.println(aiThreshold);
 
-          System.out.println("Points size :" + points.size());
-          System.out.println(
-              "How many points does the first word give:" + points.get(0).toString());
-          System.out.println(aiThreshold);
+            for (int k = 0; k < points.size(); k++) {
+              // System.out.println("Points: " + points + " word: " + wordList.get(k));
+              // System.out.print(points.get(k) + " : ");
 
-          for (int k = 0; k < points.size(); k++) {
-            // System.out.println("Points: " + points + " word: " + wordList.get(k));
-            // System.out.print(points.get(k) + " : ");
-
-            if (points.get(k) >= aiThreshold) {
-              choosenWord = wordList.get(k);
-              pointsForRound = points.get(k);
-              foundMatchingThreshold = true;
-              System.out.println("DID BREAK");
-              break findacceptable;
+              if (points.get(k) >= aiThreshold) {
+                choosenWord = wordList.get(k);
+                pointsForRound = points.get(k);
+                foundMatchingThreshold = true;
+                System.out.println("DID BREAK");
+                break findacceptable;
+              }
             }
           }
         }
       }
     }
 
-    System.out.println("chosen word: ");
-    for (Tile t : choosenWord) {
-      System.out.print(t.getLetter());
-    }
+    System.out.println("chosen word length : " + choosenWord.size());
+    // for (Tile t : choosenWord) {
+    // System.out.print(t.getLetter());
+    // }
     System.out.println();
 
     // because ai uses tiles from the bag, the correct distubution needs to be set.
@@ -798,9 +809,9 @@ public class AiPlayer extends Player {
     if (foundMatchingThreshold) {
       System.out.println("chosen word 720: ");
       for (Tile tile : choosenWord) {
-        System.out.println(tile.getLetter());
-        System.out.println("y: " + tile.getRow());
-        System.out.println("x: " + tile.getColumn());
+        // System.out.println(tile.getLetter());
+        // System.out.println("y: " + tile.getRow());
+        // System.out.println("x: " + tile.getColumn());
 
         Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
         currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);

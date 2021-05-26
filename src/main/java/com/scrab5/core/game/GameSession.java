@@ -6,7 +6,6 @@ import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
-import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,8 +31,12 @@ public class GameSession implements Serializable {
   private boolean online;
 
   // TODO might delete
-  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
-      ArrayList<Integer> points, boolean isOnline) throws SQLException {
+  public GameSession(
+      ArrayList<Player> listOfPlayers,
+      ArrayList<Integer> letters,
+      ArrayList<Integer> points,
+      boolean isOnline)
+      throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -72,8 +75,8 @@ public class GameSession implements Serializable {
       if (player.isHuman()) {
         player.getRack().fill(bag);
       }
-      System.out.println("Im creating new GameSession right now");
-      System.out.println("Tile AT 0:" + currentPlayer.getRack().getTileAt(0));
+      // System.out.println("Im creating new GameSession right now");
+      // System.out.println("Tile AT 0:" + currentPlayer.getRack().getTileAt(0));
     }
   }
 
@@ -267,7 +270,7 @@ public class GameSession implements Serializable {
     ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
       this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
-      System.out.println(rs.getString("Letter") + " : " + rs.getInt("Points"));
+      // System.out.println(rs.getString("Letter") + " : " + rs.getInt("Points"));
     }
 
     System.out.println("Finished Initialized Bag");
@@ -280,8 +283,10 @@ public class GameSession implements Serializable {
       throws SQLException {
 
     // TODO joker richtig bennen
-    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    String[] buchstaben = {
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+      "T", "U", "V", "W", "X", "Y", "Z", "*"
+    };
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -320,7 +325,7 @@ public class GameSession implements Serializable {
 
   /**
    * ZEUG.
-   * 
+   *
    * @author mherre
    */
   public void endGame() {
@@ -328,12 +333,11 @@ public class GameSession implements Serializable {
     // TODO call server method, endGame()
 
     for (Player player : Data.getGameSession().getListOfPlayers()) {
-      if (player.isHuman()) {        
+      if (player.isHuman()) {
         player.getPlayerProfile().addPoints(player.getPoints());
-        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
+        // System.out.println(player.getPlayerProfile().getName() + player.getPoints());
 
       }
-
     }
 
     //
