@@ -551,6 +551,9 @@ public class AiPlayer extends Player {
     if (x + 2 == 15 && y == 14 && g.isSpotFree(y, x + 1) && !g.isSpotFree(y - 1, x + 1)) {
       counterRight = -1;
     }
+    if(x-1>=0 && !g.isSpotFree(y, x - 1)  ) {
+      counterRight=-1;
+    }
 
     // Checking the left Side of the Position on the Board
     while (y < 14
@@ -615,6 +618,9 @@ public class AiPlayer extends Player {
     if (x - 2 == -1 && y == 14 && g.isSpotFree(y, x - 1) && !g.isSpotFree(y - 1, x - 1)) {
       counterLeft = -1;
     }
+    if(x+1<=14 && !g.isSpotFree(y, x + 1)  ) {
+      counterLeft=-1;
+    }
 
     // Checking for free Spots under the Position x,y
     while (y + 2 + counterDown <= 14
@@ -676,7 +682,11 @@ public class AiPlayer extends Player {
       counterDown = -1;
     }
     if (y + 2 == 15 && x == 14 && g.isSpotFree(y + 1, x) && !g.isSpotFree(y + 1, x - 1)) {
-      counterDown = -1;
+      counterDown = -1; 
+    }
+
+    if(y-1>=0 && !g.isSpotFree(y-1, x )  ) {
+      counterDown=-1;
     }
     // Checking for free Spots above the Position x,y
     while (y - 2 - counterUp >= 0
@@ -697,14 +707,14 @@ public class AiPlayer extends Player {
         && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
       // System.out.println("y=" + y + "; counterUp =" + counterUp);
-    }
+    } 
     while (y - 2 - counterUp >= 0
         && x == 0
         && g.isSpotFreeOld(y - 1 - counterUp, x)
         && g.isSpotFreeOld(y - 2 - counterUp, x)
         && g.isSpotFreeOld(y - 1 - counterUp, x + 1)) {
       counterUp++;
-    }
+    } 
     while (y - 2 - counterUp == -1
         && x == 0
         && g.isSpotFreeOld(y - 1 - counterUp, x)
@@ -743,34 +753,41 @@ public class AiPlayer extends Player {
       counterUp = -1;
     }
 
+    if(y+1<=14 && !g.isSpotFree(y+1, x )  ) {
+      counterUp=-1;
+    }
+
     this.counterDown = counterDown;
     this.counterUp = counterUp;
     this.counterRight = counterRight;
     this.counterLeft = counterLeft;
 
-    if (counterLeft < 0 && counterRight > 0) {
+    if (counterLeft <= 0 && counterRight >= 0) {
       this.counterLeft = 0;
       this.counterRight = counterRight;
     }
-    if (counterLeft > 0 && counterRight < 0) {
+    if (counterLeft >= 0 && counterRight <= 0) {
       this.counterRight = 0;
       this.counterLeft = counterLeft;
     }
-    if (counterLeft == 0 || counterRight == 0) {
-      this.counterLeft = 0;
+
+    if (counterLeft <= 0 && counterRight <= 0) {
       this.counterRight = 0;
+      this.counterLeft = 0;
     }
-    if (counterUp < 0 && counterDown > 0) {
+    
+    if (counterUp <= 0 && counterDown >= 0) {
       this.counterUp = 0;
       this.counterDown = counterDown;
     }
-    if (counterUp > 0 && counterDown < 0) {
+    if (counterUp >= 0 && counterDown <= 0) {
       this.counterDown = 0;
       this.counterUp = counterUp;
     }
-    if (counterUp == 0 || counterDown == 0) {
-      this.counterUp = 0;
+
+    if (counterUp <= 0 && counterDown <= 0) {
       this.counterDown = 0;
+      this.counterUp = 0;
     }
 
     System.out.println("left: " + this.counterLeft);
