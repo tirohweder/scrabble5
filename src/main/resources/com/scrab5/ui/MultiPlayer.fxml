@@ -1186,7 +1186,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Image url="@board_Images/Singleplayer_Shuffle_Clicked.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="164.0" layoutY="693.0" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="46.0" fitWidth="56.0" layoutX="164.0" layoutY="693.0" onMouseClicked="#giveUpClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@board_Images/Singleplayer_GiveUp_Clicked.png" />
                </image>

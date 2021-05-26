@@ -73,6 +73,7 @@ public class EndGameController extends InGameController implements Initializable
       lostScreen.setOpacity(1);
     }
 
+
     if (Data.getGameSession().isOnline() && Data.getPlayerClient().getCurrentServer().getHost()
         .equals(Data.getPlayerClient().getUsername())) {
       Data.getHostedServer().endGame(order[counter].getName());

@@ -36,9 +36,12 @@ public class GameBoard implements Serializable {
       };
   private ArrayList<Tile> currentChanges = new ArrayList<>();
   private boolean firstTile = true;
-
   public GameBoard() {
     firstTile = true;
+  }
+
+  public Tile[][] getGameBoard() {
+    return gameBoard;
   }
 
   public boolean isFirstTile() {

@@ -24,7 +24,7 @@ import javafx.scene.media.MediaPlayer;
 
 public abstract class InGameController implements Initializable {
 
-  
+
   private boolean tileClicked = false;
   private boolean letterClicked = false;
   private ImageView clickedTile;
@@ -34,7 +34,7 @@ public abstract class InGameController implements Initializable {
   private MediaPlayer mediaPlayer;
 
   private Image markedTile;
-  
+
   private static final double LABEL_X_CORD = 30.0;
   private static final double LABEL_Y_CORD = 23.0;
   private static final double LABEL_X_CORD_BACK = 46.0;
@@ -223,25 +223,32 @@ public abstract class InGameController implements Initializable {
         switch (i) {
 
           case 0:
-            setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
             break;
           case 1:
-           setNewTile(rackPlace2, pointsRack2, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace2, pointsRack2, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
             break;
           case 2:
-           setNewTile(rackPlace3, pointsRack3, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace3, pointsRack3, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
             break;
           case 3:
-          setNewTile(rackPlace4, pointsRack4, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace4, pointsRack4, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
             break;
           case 4:
-           setNewTile(rackPlace5, pointsRack5, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace5, pointsRack5, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
             break;
           case 5:
-             setNewTile(rackPlace6, pointsRack6, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace6, pointsRack6, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
             break;
           case 6:
-          setNewTile(rackPlace7, pointsRack7, myRack.getTileAt(i).getLetter(), myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace7, pointsRack7, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
             break;
           default:
             break;
@@ -267,7 +274,8 @@ public abstract class InGameController implements Initializable {
       newPum("IT'S YOUR TURN");
     }
 
-    double layoutX = 263.0, layoutY = 53.0;
+    double layoutX = 263.0;
+    double layoutY = 53.0;
     if (Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0) {
       skipPlay.setText("Skip");
     } else {
@@ -351,8 +359,8 @@ public abstract class InGameController implements Initializable {
               placeLetter(clickedLetter, clickedLabel);
             }
           } else {
-            newPum(
-                "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
+            newPum("Sorry, the tile can't be placed here"
+                + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
           }
         } else if (tileClicked && (clickedTile == (ImageView) event.getSource())) {
           darken(event);
@@ -409,8 +417,8 @@ public abstract class InGameController implements Initializable {
             tileClicked = false;
           }
         } else {
-          newPum(
-              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
+          newPum("Sorry, the tile can't be placed here"
+              + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -1287,7 +1295,7 @@ public abstract class InGameController implements Initializable {
     if (Data.isConfirmed()) {
       Data.getGameSession().setShouldEnd(true);
       Data.getGameSession().endGame();
-      if (Data.getPlayerClient() != null) {
+      if (Data.getGameSession().isOnline()) {
         App.setRoot("EndGameMultiplayer");
       } else {
         App.setRoot("EndGameSingleplayer");
@@ -1397,7 +1405,7 @@ public abstract class InGameController implements Initializable {
     if (endPossible) {
       Data.getGameSession().setShouldEnd(true);
       Data.getGameSession().endGame();
-      if (Data.getPlayerClient() != null) {
+      if (Data.getGameSession().isOnline()) {
         App.setRoot("EndGameMultiplayer");
       } else {
         App.setRoot("EndGameSingleplayer");
@@ -1442,7 +1450,7 @@ public abstract class InGameController implements Initializable {
     pum.show();
     if (Data.isConfirmed()) {
       Data.getGameSession().endGame();
-      if (Data.getPlayerClient() != null) {
+      if (Data.getGameSession().isOnline()) {
         Data.getPlayerClient().disconnectFromServer();
       }
       Data.getGameSession().setShouldEnd(true);
