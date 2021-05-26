@@ -4,6 +4,7 @@ import com.scrab5.core.game.BagOfTiles;
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.parser.DictionaryScanner;
 import java.util.ArrayList;
@@ -793,6 +794,7 @@ public class AiPlayer extends Player {
   public void aiPlay() {
     lettersFromDatabase = UseDatabase.getAllLetters();
     pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
+    Database.disconnect();
 
     boolean foundMatchingThreshold = false;
 
