@@ -196,7 +196,7 @@ public class FillDatabase extends Database {
           System.out.println("richtiger Part.");
           //Database.disconnect();
           //
-          //Database.reconnect();
+          Database.reconnect();
           String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           System.out.println("bye 1");

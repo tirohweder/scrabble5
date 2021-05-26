@@ -13,6 +13,8 @@ public class PlayerProfile implements Serializable {
 
   private static String name = Data.getCurrentUser();
   private static String picture;
+  
+  private int currentPoints;
   /*
    * private static int totalPoints; private static int laidWords; private static int
    * totalPlayedGames; private static int totalWins; private static String favoriteDictionary;
@@ -37,6 +39,14 @@ public class PlayerProfile implements Serializable {
   public static String getPicture() {
     picture = PlayerProfileDatabase.getPicture(name);
     return picture;
+  }
+  
+  public int getCurrentPoints() {
+    return currentPoints;
+  }
+  
+  public void setCurrentPoints(int newPoints) {
+    currentPoints = newPoints;
   }
 
   /**
@@ -238,12 +248,13 @@ public class PlayerProfile implements Serializable {
    */
   public void addPoints(int points) {
     Database.reconnect();
-    int currentPoints = PlayerProfileDatabase.getTotalPoints(name);
-    System.out.println("geht noch");
-    Database.disconnect();
+    int currentPoints = getCurrentPoints();
+    //int currentPoints = PlayerProfileDatabase.getTotalPoints(name);
+    //System.out.println("geht noch");
+    //Database.disconnect();
     int newPoints = currentPoints + points;
     // System.out.println(name + " " + newPoints);
     PlayerProfileDatabase.setTotalPoints(name, newPoints);
-    Database.disconnect();
+    //Database.disconnect();
   }
 }
