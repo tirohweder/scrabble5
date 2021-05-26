@@ -37,7 +37,7 @@ public class AiPlayer extends Player {
    * @author trohwede
    */
   public AiPlayer(String name, int difficulty) {
-    super(name, false);
+    super(name);
 
     if (difficulty == 0) {
       this.aiThreshold = Data.easyAiThreshold;
