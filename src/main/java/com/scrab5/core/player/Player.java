@@ -15,17 +15,6 @@ public class Player implements Serializable {
    * @param name When Player is created gives the player a name and a personal rack
    * @author trohwede
    */
-  public Player(String name, boolean human) {
-    this.name = name;
-    this.rack = new Rack();
-    this.points = 0;
-    this.playerProfile = new PlayerProfile();
-  }
-
-  /**
-   * @param name When Player is created gives the player a name and a personal rack
-   * @author trohwede
-   */
   public Player(String name) {
     this.name = name;
     this.rack = new Rack();
