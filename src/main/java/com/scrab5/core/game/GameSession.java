@@ -342,16 +342,17 @@ public class GameSession implements Serializable {
     // Data.getHostedServer().endGame(winner); nur beim host.
     // TODO call server method, endGame()
 
-    for (Player player : Data.getGameSession().getListOfPlayers()) {
-      if (player.isHuman()) {
-        Data.getGameSession().getCurrentPlayer().getPlayerProfile()
-            .setCurrentPoints(PlayerProfileDatabase.getTotalPoints(Data.getCurrentUser()));
-        System.out.println("geht");
-        //Database.disconnect();
-        player.getPlayerProfile().addPoints(player.getPoints());
-        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
-      }
-    }
+    // for (Player player : Data.getGameSession().getListOfPlayers()) {
+    // if (player.isHuman()) {
+    // Data.getGameSession().getCurrentPlayer().getPlayerProfile()
+    // .setCurrentPoints(PlayerProfileDatabase.getTotalPoints(Data.getCurrentUser()));
+    // System.out.println("geht");
+    // player.getPlayerProfile().addPoints(player.getPoints());
+    // }
+    // }
+
+    // PlayerProfileDatabase.setLaidWords(Data.getCurrentUser(), 2);
+
     this.running = false;
   }
 

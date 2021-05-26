@@ -58,7 +58,7 @@ public class MainMenuController extends Controller implements Initializable {
    */
   @FXML
   private void tutorialClicked(MouseEvent event) throws IOException {
-     App.setRoot("Tutorial");
+    App.setRoot("Tutorial");
 
   }
 

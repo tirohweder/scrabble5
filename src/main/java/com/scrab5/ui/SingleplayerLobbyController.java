@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.core.player.AiPlayer;
 import com.scrab5.core.player.Player;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.parser.DictionaryParser;
