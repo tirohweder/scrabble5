@@ -388,4 +388,8 @@ public class Client implements Serializable {
   public void setStarting(boolean starting) {
     this.starting = starting;
   }
+
+  public boolean threadIsRunning() {
+    return this.clientThread.running;
+  }
 }

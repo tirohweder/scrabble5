@@ -186,6 +186,7 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
           //pstmt.close();
         } else if (column.equals("Picture")) {
+          System.out.println("pic aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
@@ -194,7 +195,7 @@ public class FillDatabase extends Database {
           pstmt.setString(1, name);
           pstmt.executeUpdate();
         } else if (column.equals("TotalPoints")) {
-          System.out.println("richtiger Part.");
+          System.out.println("points aufgerufen");
           //Database.disconnect();
           //
           //Database.reconnect();
@@ -209,6 +210,7 @@ public class FillDatabase extends Database {
           pstmt.close();
           System.out.println("gesetzt");
         } else if (column.equals("PersonalHighscore")) {
+          System.out.println("highscore aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET PersonalHighscore = ? WHERE Name = ?";
@@ -217,6 +219,7 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("LaidWords")) {
+          System.out.println("laid words aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET Laidwords = ? WHERE Name = ?";
@@ -225,6 +228,7 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("PointsPerWordRate")) {
+          System.out.println("ppwordrate aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET PointsPerWordRate = ? WHERE Name = ?";
@@ -233,6 +237,7 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("LongestWord")) {
+          System.out.println("longest word aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET LongestWord = ? WHERE Name = ?";
@@ -241,6 +246,7 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("TotalPlayedGames")) {
+          System.out.println("total played aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET TotalPlayedGames = ? WHERE Name = ?";
@@ -249,6 +255,7 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("TotalWins")) {
+          System.out.println("total wins aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET TotalWins = ? WHERE Name = ?";
@@ -257,6 +264,7 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("WinRate")) {
+          System.out.println("win rate aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
@@ -265,6 +273,7 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("FavDic")) {
+          System.out.println("dic aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
@@ -274,6 +283,7 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("Music")) {
+          System.out.println("music aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET Music = ? WHERE name = ?";
@@ -282,6 +292,7 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("SoundEffect")) {
+          System.out.println("se aufgerufen.");
           //Database.disconnect();
           //Database.reconnect();
           String sql = "UPDATE Player SET SoundEffect = ? WHERE name = ?";

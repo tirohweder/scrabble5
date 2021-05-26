@@ -1,8 +1,6 @@
 package com.scrab5.util.parser;
 
-import com.scrab5.util.database.CreateDatabase;
-import com.scrab5.util.database.Database;
-import com.scrab5.util.database.FillDatabase;
+import com.scrab5.ui.Data;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -31,7 +29,8 @@ public class DictionaryScanner {
      * "Built-In Standard DictionaryParsed.txt");
      */
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
+        + "src/main/resources/com/scrab5/util/textParser/"
+        + Data.getSelectedDictionary().replace(".", "Parsed."));
     boolean found = false;
     // String[] possibleLetters = UseDatabase.getAllLetters();
     // String test;
@@ -71,7 +70,8 @@ public class DictionaryScanner {
      * "src/main/resources/com/scrab5/util/textParser/" + "Built-In Standard DictionaryParsed.txt");
      */
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
+        + "src/main/resources/com/scrab5/util/textParser/"
+        + Data.getSelectedDictionary().replace(".", "Parsed."));
     try {
       Scanner scanner = new Scanner(file);
       while (scanner.hasNextLine()) {

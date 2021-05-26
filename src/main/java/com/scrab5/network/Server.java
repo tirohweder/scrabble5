@@ -433,6 +433,11 @@ public class Server implements Serializable {
    */
   public void addAi(String name) {
     this.clients.put(name, new ClientData(name, "AI", null, true));
+    try {
+      this.serverStatistics.addClient(name, "AI");
+    } catch (Exception e) {
+      // does nothing, is wanted
+    }
     this.sendUpdateMessage();
   }
 
