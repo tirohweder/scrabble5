@@ -38,7 +38,7 @@ public class Server implements Serializable {
   private static int clientCounter;
   private static int clientMaximum;
   private ServerStatistics serverStatistics;
-  private Timer timer = new Timer(true);
+  private static Timer timer;
   private static TimerTask task;
 
   private LinkedHashMap<String, ClientData> clients;
@@ -62,9 +62,9 @@ public class Server implements Serializable {
     this.host = host;
     Server.clientMaximum = clientMaximum;
     clientCounter = 0;
-    this.startTimer();
     if (!uiServerInstance) {
-      System.out.println("NNNNNNNNNNNNNEEEEEEEEEWWWWWW SEEEEEEEEEERVERRR");
+      timer = new Timer(true);
+      this.startTimer();
       this.loadServerStatistics();
       this.openServerSocket();
     }
@@ -380,7 +380,8 @@ public class Server implements Serializable {
         new NetworkError(NetworkErrorType.TIMER);
       }
     });
-    timer.schedule(task, 1000 * 60 * 1);
+    timer.schedule(task, 1000 * 60 * 10);
+    System.out.println("timer scheduuuuuuuuuuuuuuuled" + System.currentTimeMillis());
   }
 
   /**
@@ -391,7 +392,7 @@ public class Server implements Serializable {
   public void resetTimer() {
     synchronized (this) {
       task.cancel();
-      this.timer.purge();
+      timer.purge();
       this.startTimer();
     }
   }
@@ -402,8 +403,8 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void cancelTimer() {
-    this.timer.cancel();
-    this.timer.purge();
+    timer.cancel();
+    timer.purge();
   }
 
   /**
