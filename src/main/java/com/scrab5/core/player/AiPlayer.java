@@ -62,17 +62,17 @@ public class AiPlayer extends Player {
    * following.
    *
    * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
-   *     word next to
+   *        word next to
    * @param before the amount of tiles that are free before this letter
    * @param after the amount of tiles that are free after this letter
    * @param x the x-coordinate of the tile with letter fixLetter on the board
    * @param y the y-coordinate of the tile with letter fixLetter on the board
    * @param horizontal is true, when the word needs to get laid horizontal and false if vertical.
-   *     This parameter is needed later on
+   *        This parameter is needed later on
    * @author lengist
    */
-  public static ArrayList<ArrayList<Tile>> wordGenerator(
-      String fixLetter, int before, int after, int column, int row, boolean horizontal) {
+  public static ArrayList<ArrayList<Tile>> wordGenerator(String fixLetter, int before, int after,
+      int column, int row, boolean horizontal) {
     System.out.println();
     System.out.println("fixLetter: " + fixLetter);
     System.out.println("before: " + before);
@@ -173,57 +173,43 @@ public class AiPlayer extends Player {
    * @author lengist
    * @param word the word that needs to be converted into tiles
    * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
-   *     word next to
+   *        word next to
    * @param x the x-coordinate of the tile with letter fixLetter on the board
    * @param y the y-coordinate of the tile with letter fixLetter on the board
    * @param horizontal is true, when the word needs to get laid horizontal and false if vertical
    * @return tiles a ArrayList containing all tiles for the word word
    */
-  public static ArrayList<Tile> wordToTiles(
-      String word, String fixLetter, int column, int row, boolean horizontal) {
+  public static ArrayList<Tile> wordToTiles(String word, String fixLetter, int column, int row,
+      boolean horizontal) {
     ArrayList<Tile> tiles = new ArrayList<Tile>();
     tiles = getCoordinatesRep(word, fixLetter, column, row, horizontal);
-    /*if (!isLetterExistingRepeatedly(word)) {
-    /*for (int i = 0; i < word.length(); i++) {
-
-      value = getPointForLetter(String.valueOf(word.charAt(i)));
-      coordinates =
-          getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)),
-              x, y, horizontal);
-      row = coordinates.get(1);
-      column = coordinates.get(0);
-      Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
-      tiles.add(t);
-    }*/
-    /*} else {
-    tiles = getCoordinatesRep(word, fixLetter, x, y, horizontal);
-    /*for (int i = 0; i < word.length(); i++) {
-
-      value = getPointForLetter(String.valueOf(word.charAt(i)));
-      coordinates =
-          getCoordinates(word, fixLetter, String.valueOf(word.charAt(i)),
-              x, y, horizontal);
-      row = coordinates.get(1);
-      column = coordinates.get(0);
-      Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
-      tiles.add(t);
-    }
-
-    for (int i = 1; i < word.length(); i++) {
-      if (word.charAt(i) == word.charAt(i - 1)) {
-        if (!horizontal) {
-          tiles.get(i - 1).setRow(tiles.get(i).getRow() - 1);
-        } else {
-          tiles.get(i - 1).setColumn(tiles.get(i).getColumn() - 1);
-        }
-      }
-    } */
+    /*
+     * if (!isLetterExistingRepeatedly(word)) { /*for (int i = 0; i < word.length(); i++) {
+     * 
+     * value = getPointForLetter(String.valueOf(word.charAt(i))); coordinates = getCoordinates(word,
+     * fixLetter, String.valueOf(word.charAt(i)), x, y, horizontal); row = coordinates.get(1);
+     * column = coordinates.get(0); Tile t = new Tile(String.valueOf(word.charAt(i)), value, row,
+     * column); tiles.add(t); }
+     */
+    /*
+     * } else { tiles = getCoordinatesRep(word, fixLetter, x, y, horizontal); /*for (int i = 0; i <
+     * word.length(); i++) {
+     * 
+     * value = getPointForLetter(String.valueOf(word.charAt(i))); coordinates = getCoordinates(word,
+     * fixLetter, String.valueOf(word.charAt(i)), x, y, horizontal); row = coordinates.get(1);
+     * column = coordinates.get(0); Tile t = new Tile(String.valueOf(word.charAt(i)), value, row,
+     * column); tiles.add(t); }
+     * 
+     * for (int i = 1; i < word.length(); i++) { if (word.charAt(i) == word.charAt(i - 1)) { if
+     * (!horizontal) { tiles.get(i - 1).setRow(tiles.get(i).getRow() - 1); } else { tiles.get(i -
+     * 1).setColumn(tiles.get(i).getColumn() - 1); } } }
+     */
     // }
     return tiles;
   }
 
-  public static ArrayList<Tile> getCoordinatesRep(
-      String word, String fixLetter, int columnFixLetter, int rowFixLetter, boolean horizontal) {
+  public static ArrayList<Tile> getCoordinatesRep(String word, String fixLetter,
+      int columnFixLetter, int rowFixLetter, boolean horizontal) {
     int fixPosition = 0;
     ArrayList<Integer> list = new ArrayList<Integer>();
     ArrayList<Tile> tiles = new ArrayList<Tile>();
@@ -281,24 +267,19 @@ public class AiPlayer extends Player {
    * the Coordinates for the newLetter get calculated.
    *
    * @param word the word that contains the fixLetter and newLetter to calculate the exact positions
-   *     of the given letters
+   *        of the given letters
    * @param fixLetter the letter that is already n the gameboard
    * @param newLetter a letter from the word different to fixLetter. This is the letter the
-   *     coordinates need to be calculated for.
+   *        coordinates need to be calculated for.
    * @param xfixLetter the x-Coordinate of the fixLetter
    * @param yfixLetter the y-Coordinate of the fixLetter
    * @param horizontal a boolean variable for the alignment of the word on the board. If it is true,
-   *     the word will be laid horizontal. If not, vertical.
+   *        the word will be laid horizontal. If not, vertical.
    * @return coordinates, a ArrayList including the x- and y-Coordinate of the newLetter.
    * @author lengist
    */
-  public static ArrayList<Integer> getCoordinates(
-      String word,
-      String fixLetter,
-      String newLetter,
-      int xfixLetter,
-      int yfixLetter,
-      boolean horizontal) {
+  public static ArrayList<Integer> getCoordinates(String word, String fixLetter, String newLetter,
+      int xfixLetter, int yfixLetter, boolean horizontal) {
     int placeFixLetter = 0;
     int xnew = 0;
     int ynew = 0;
@@ -372,13 +353,12 @@ public class AiPlayer extends Player {
    * @param word is the word that is going to be checked
    * @author hraza
    */
-  public static Boolean checkBagDistributionLegal(
-      HashMap<String, Integer> currentDistribution, String word) {
+  public static Boolean checkBagDistributionLegal(HashMap<String, Integer> currentDistribution,
+      String word) {
     boolean b = true;
     int j = 0;
     for (int i = 0; i < word.length(); i++) {
-      currentDistribution.put(
-          Character.toString(word.charAt(i)),
+      currentDistribution.put(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) - 1);
       if (currentDistribution.get(Character.toString(word.charAt(i))) < 0) {
         b = false;
@@ -390,8 +370,7 @@ public class AiPlayer extends Player {
     }
 
     for (int i = 0; i <= j; i++) {
-      currentDistribution.put(
-          Character.toString(word.charAt(i)),
+      currentDistribution.put(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) + 1);
     }
 
@@ -407,8 +386,8 @@ public class AiPlayer extends Player {
    * @param possibleWords revices the possible words as a ArrayList<Tile>
    * @return Points per Word
    */
-  public static ArrayList<Integer> countScore(
-      GameBoard gameBoard, ArrayList<ArrayList<Tile>> possibleWords) {
+  public static ArrayList<Integer> countScore(GameBoard gameBoard,
+      ArrayList<ArrayList<Tile>> possibleWords) {
     ArrayList<Integer> scoreList = new ArrayList<>();
 
     System.out.println("How big is the possible word size " + possibleWords.size());
@@ -483,12 +462,11 @@ public class AiPlayer extends Player {
     counterRight = 0;
 
     int count = 0;
-    // System.out.println(" ---  Up  --- ");
+    // System.out.println(" --- Up --- ");
     // up
 
     while (row - 2 - count >= 0) {
-      if (column == 0
-          && gameBoard[row - 1 - count][column + 1] == null
+      if (column == 0 && gameBoard[row - 1 - count][column + 1] == null
           && gameBoard[row - 1 - count][column] == null
           && gameBoard[row - 2 - count][column] == null) {
         // System.out.println(count);
@@ -498,8 +476,7 @@ public class AiPlayer extends Player {
         break;
       }
 
-      if (column == 14
-          && gameBoard[row - 1 - count][column - 1] == null
+      if (column == 14 && gameBoard[row - 1 - count][column - 1] == null
           && gameBoard[row - 1 - count][column] == null
           && gameBoard[row - 2 - count][column] == null) {
         // System.out.println(count);
@@ -509,9 +486,7 @@ public class AiPlayer extends Player {
         break;
       }
 
-      if (column != 0
-          && column != 14
-          && gameBoard[row - 1 - count][column - 1] == null
+      if (column != 0 && column != 14 && gameBoard[row - 1 - count][column - 1] == null
           && gameBoard[row - 1 - count][column + 1] == null
           && gameBoard[row - 1 - count][column] == null
           && gameBoard[row - 2 - count][column] == null) {
@@ -539,8 +514,7 @@ public class AiPlayer extends Player {
     // down
 
     while (row + 2 + count < 15) {
-      if (column == 0
-          && gameBoard[row + 1 + count][column + 1] == null
+      if (column == 0 && gameBoard[row + 1 + count][column + 1] == null
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
         // System.out.println(count);
@@ -551,8 +525,7 @@ public class AiPlayer extends Player {
         break;
       }
 
-      if (column == 14
-          && gameBoard[row + 1 + count][column - 1] == null
+      if (column == 14 && gameBoard[row + 1 + count][column - 1] == null
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
         // System.out.println(count);
@@ -563,9 +536,7 @@ public class AiPlayer extends Player {
         break;
       }
 
-      if (column != 0
-          && column != 14
-          && gameBoard[row + 1 + count][column - 1] == null
+      if (column != 0 && column != 14 && gameBoard[row + 1 + count][column - 1] == null
           && gameBoard[row + 1 + count][column + 1] == null
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
@@ -593,8 +564,7 @@ public class AiPlayer extends Player {
     // right
     while (column + 2 + count < 15) {
 
-      if (row == 0
-          && gameBoard[row + 1][column + 1 + count] == null
+      if (row == 0 && gameBoard[row + 1][column + 1 + count] == null
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
 
@@ -604,8 +574,7 @@ public class AiPlayer extends Player {
       } else if (row == 0) {
         break;
       }
-      if (row == 14
-          && gameBoard[row - 1][column + 1 + count] == null
+      if (row == 14 && gameBoard[row - 1][column + 1 + count] == null
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
         // System.out.println(count);
@@ -615,9 +584,7 @@ public class AiPlayer extends Player {
         break;
       }
 
-      if (row != 0
-          && row != 14
-          && gameBoard[row - 1][column + 1 + count] == null
+      if (row != 0 && row != 14 && gameBoard[row - 1][column + 1 + count] == null
           && gameBoard[row + 1][column + 1 + count] == null
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
@@ -645,8 +612,7 @@ public class AiPlayer extends Player {
     System.out.println(" --- LEFT --- ");
     while (column - 2 - count >= 0) {
 
-      if (row == 0
-          && gameBoard[row + 1][column - 1 - count] == null
+      if (row == 0 && gameBoard[row + 1][column - 1 - count] == null
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
 
@@ -656,8 +622,7 @@ public class AiPlayer extends Player {
       } else if (row == 0) {
         break;
       }
-      if (row == 14
-          && gameBoard[row - 1][column - 1 - count] == null
+      if (row == 14 && gameBoard[row - 1][column - 1 - count] == null
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
         // System.out.println(count);
@@ -667,9 +632,7 @@ public class AiPlayer extends Player {
         break;
       }
 
-      if (row != 0
-          && row != 14
-          && gameBoard[row - 1][column - 1 - count] == null
+      if (row != 0 && row != 14 && gameBoard[row - 1][column - 1 - count] == null
           && gameBoard[row + 1][column - 1 - count] == null
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
@@ -709,47 +672,32 @@ public class AiPlayer extends Player {
     System.out.println("Finding free Spots at: " + y + " : " + x);
 
     // Checking the right Side of the Position on the Board
-    while (y < 14
-        && y > 0
-        && x + 2 + counterRight <= 14
-        && g.isSpotFreeOld(y, x + 1 + counterRight)
-        && g.isSpotFreeOld(y, x + 2 + counterRight)
+    while (y < 14 && y > 0 && x + 2 + counterRight <= 14 && g.isSpotFreeOld(y, x + 1 + counterRight)
+        && g.isSpotFreeOld(y, x + 2 + counterRight) && g.isSpotFreeOld(y - 1, x + 1 + counterRight)
+        && g.isSpotFreeOld(y + 1, x + 1 + counterRight)) {
+      counterRight++;
+    }
+    while (y < 14 && y > 0 && x + 2 + counterRight == 15 && g.isSpotFreeOld(y, x + 1 + counterRight)
         && g.isSpotFreeOld(y - 1, x + 1 + counterRight)
         && g.isSpotFreeOld(y + 1, x + 1 + counterRight)) {
       counterRight++;
     }
-    while (y < 14
-        && y > 0
-        && x + 2 + counterRight == 15
-        && g.isSpotFreeOld(y, x + 1 + counterRight)
-        && g.isSpotFreeOld(y - 1, x + 1 + counterRight)
-        && g.isSpotFreeOld(y + 1, x + 1 + counterRight)) {
-      counterRight++;
-    }
-    while (y == 0
-        && x + 2 + counterRight <= 14
-        && g.isSpotFreeOld(y, x + 1 + counterRight)
+    while (y == 0 && x + 2 + counterRight <= 14 && g.isSpotFreeOld(y, x + 1 + counterRight)
         && g.isSpotFreeOld(y, x + 2 + counterRight)
         && g.isSpotFreeOld(y + 1, x + 1 + counterRight)) {
       counterRight++;
     }
 
-    while (y == 0
-        && x + 2 + counterRight == 15
-        && g.isSpotFreeOld(y, x + 1 + counterRight)
+    while (y == 0 && x + 2 + counterRight == 15 && g.isSpotFreeOld(y, x + 1 + counterRight)
         && g.isSpotFreeOld(y + 1, x + 1 + counterRight)) {
       counterRight++;
     }
-    while (y == 14
-        && x + 2 + counterRight <= 14
-        && g.isSpotFreeOld(y, x + 1 + counterRight)
+    while (y == 14 && x + 2 + counterRight <= 14 && g.isSpotFreeOld(y, x + 1 + counterRight)
         && g.isSpotFreeOld(y, x + 2 + counterRight)
         && g.isSpotFreeOld(y - 1, x + 1 + counterRight)) {
       counterRight++;
     }
-    while (y == 14
-        && x + 2 + counterRight == 15
-        && g.isSpotFreeOld(y, x + 1 + counterRight)
+    while (y == 14 && x + 2 + counterRight == 15 && g.isSpotFreeOld(y, x + 1 + counterRight)
         && g.isSpotFreeOld(y - 1, x + 1 + counterRight)) {
       counterRight++;
     }
@@ -757,10 +705,7 @@ public class AiPlayer extends Player {
       counterRight = -1;
     }
 
-    if (x + 2 == 15
-        && y > 0
-        && y < 14
-        && g.isSpotFree(y, x + 1)
+    if (x + 2 == 15 && y > 0 && y < 14 && g.isSpotFree(y, x + 1)
         && (!g.isSpotFree(y - 1, x + 1) || !g.isSpotFree(y + 1, x + 1))) {
       counterRight = -1;
     }
@@ -775,48 +720,31 @@ public class AiPlayer extends Player {
     }
 
     // Checking the left Side of the Position on the Board
-    while (y < 14
-        && y > 0
-        && x - 2 - counterLeft >= 0
-        && g.isSpotFreeOld(y, x - 1 - counterLeft)
-        && g.isSpotFreeOld(y, x - 2 - counterLeft)
-        && g.isSpotFreeOld(y - 1, x - 1 - counterLeft)
+    while (y < 14 && y > 0 && x - 2 - counterLeft >= 0 && g.isSpotFreeOld(y, x - 1 - counterLeft)
+        && g.isSpotFreeOld(y, x - 2 - counterLeft) && g.isSpotFreeOld(y - 1, x - 1 - counterLeft)
         && g.isSpotFreeOld(y + 1, x - 1 - counterLeft)) {
       counterLeft++;
       // System.out.println("y="+ y +"; counterLeft ="+counterLeft);
     }
-    while (y < 14
-        && y > 0
-        && x - 2 - counterLeft == -1
-        && g.isSpotFreeOld(y, x - 1 - counterLeft)
+    while (y < 14 && y > 0 && x - 2 - counterLeft == -1 && g.isSpotFreeOld(y, x - 1 - counterLeft)
         && g.isSpotFreeOld(y - 1, x - 1 - counterLeft)
         && g.isSpotFreeOld(y + 1, x - 1 - counterLeft)) {
       counterLeft++;
       // System.out.println("y=" + y + "; counterLeft =" + counterLeft);
     }
-    while (y == 0
-        && x - 2 - counterLeft >= 0
-        && g.isSpotFreeOld(y, x - 1 - counterLeft)
-        && g.isSpotFreeOld(y, x - 2 - counterLeft)
+    while (y == 0 && x - 2 - counterLeft >= 0 && g.isSpotFreeOld(y, x - 1 - counterLeft)
+        && g.isSpotFreeOld(y, x - 2 - counterLeft) && g.isSpotFreeOld(y + 1, x - 1 - counterLeft)) {
+      counterLeft++;
+    }
+    while (y == 0 && x - 2 - counterLeft == -1 && g.isSpotFreeOld(y, x - 1 - counterLeft)
         && g.isSpotFreeOld(y + 1, x - 1 - counterLeft)) {
       counterLeft++;
     }
-    while (y == 0
-        && x - 2 - counterLeft == -1
-        && g.isSpotFreeOld(y, x - 1 - counterLeft)
-        && g.isSpotFreeOld(y + 1, x - 1 - counterLeft)) {
+    while (y == 14 && x - 2 - counterLeft >= 0 && g.isSpotFreeOld(y, x - 1 - counterLeft)
+        && g.isSpotFreeOld(y, x - 2 - counterLeft) && g.isSpotFreeOld(y - 1, x - 1 - counterLeft)) {
       counterLeft++;
     }
-    while (y == 14
-        && x - 2 - counterLeft >= 0
-        && g.isSpotFreeOld(y, x - 1 - counterLeft)
-        && g.isSpotFreeOld(y, x - 2 - counterLeft)
-        && g.isSpotFreeOld(y - 1, x - 1 - counterLeft)) {
-      counterLeft++;
-    }
-    while (y == 14
-        && x - 2 - counterLeft == -1
-        && g.isSpotFreeOld(y, x - 1 - counterLeft)
+    while (y == 14 && x - 2 - counterLeft == -1 && g.isSpotFreeOld(y, x - 1 - counterLeft)
         && g.isSpotFreeOld(y - 1, x - 1 - counterLeft)) {
       counterLeft++;
     }
@@ -824,10 +752,7 @@ public class AiPlayer extends Player {
       counterLeft = -1;
     }
 
-    if (x - 2 == -1
-        && y > 0
-        && y < 14
-        && g.isSpotFree(y, x - 1)
+    if (x - 2 == -1 && y > 0 && y < 14 && g.isSpotFree(y, x - 1)
         && (!g.isSpotFree(y - 1, x - 1) || !g.isSpotFree(y + 1, x - 1))) {
       counterLeft = -1;
     }
@@ -842,47 +767,30 @@ public class AiPlayer extends Player {
     }
 
     // Checking for free Spots under the Position x,y
-    while (y + 2 + counterDown <= 14
-        && x > 0
-        && x < 14
-        && g.isSpotFreeOld(y + 1 + counterDown, x)
-        && g.isSpotFreeOld(y + 2 + counterDown, x)
-        && g.isSpotFreeOld(y + 1 + counterDown, x + 1)
+    while (y + 2 + counterDown <= 14 && x > 0 && x < 14 && g.isSpotFreeOld(y + 1 + counterDown, x)
+        && g.isSpotFreeOld(y + 2 + counterDown, x) && g.isSpotFreeOld(y + 1 + counterDown, x + 1)
         && g.isSpotFreeOld(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
-    while (y + 2 + counterDown == 15
-        && x > 0
-        && x < 14
-        && g.isSpotFreeOld(y + 1 + counterDown, x)
+    while (y + 2 + counterDown == 15 && x > 0 && x < 14 && g.isSpotFreeOld(y + 1 + counterDown, x)
         && g.isSpotFreeOld(y + 1 + counterDown, x + 1)
         && g.isSpotFreeOld(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
 
-    while (y + 2 + counterDown <= 14
-        && x == 0
-        && g.isSpotFreeOld(y + 1 + counterDown, x)
-        && g.isSpotFreeOld(y + 2 + counterDown, x)
+    while (y + 2 + counterDown <= 14 && x == 0 && g.isSpotFreeOld(y + 1 + counterDown, x)
+        && g.isSpotFreeOld(y + 2 + counterDown, x) && g.isSpotFreeOld(y + 1 + counterDown, x + 1)) {
+      counterDown++;
+    }
+    while (y + 2 + counterDown == 15 && x == 0 && g.isSpotFreeOld(y + 1 + counterDown, x)
         && g.isSpotFreeOld(y + 1 + counterDown, x + 1)) {
       counterDown++;
     }
-    while (y + 2 + counterDown == 15
-        && x == 0
-        && g.isSpotFreeOld(y + 1 + counterDown, x)
-        && g.isSpotFreeOld(y + 1 + counterDown, x + 1)) {
+    while (y + 2 + counterDown <= 14 && x == 14 && g.isSpotFreeOld(y + 1 + counterDown, x)
+        && g.isSpotFreeOld(y + 2 + counterDown, x) && g.isSpotFreeOld(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
-    while (y + 2 + counterDown <= 14
-        && x == 14
-        && g.isSpotFreeOld(y + 1 + counterDown, x)
-        && g.isSpotFreeOld(y + 2 + counterDown, x)
-        && g.isSpotFreeOld(y + 1 + counterDown, x - 1)) {
-      counterDown++;
-    }
-    while (y + 2 + counterDown == 15
-        && x == 14
-        && g.isSpotFreeOld(y + 1 + counterDown, x)
+    while (y + 2 + counterDown == 15 && x == 14 && g.isSpotFreeOld(y + 1 + counterDown, x)
         && g.isSpotFreeOld(y + 1 + counterDown, x - 1)) {
       counterDown++;
     }
@@ -890,10 +798,7 @@ public class AiPlayer extends Player {
       counterDown = -1;
     }
 
-    if (y + 2 == 15
-        && x > 0
-        && x < 14
-        && g.isSpotFree(y + 1, x)
+    if (y + 2 == 15 && x > 0 && x < 14 && g.isSpotFree(y + 1, x)
         && (!g.isSpotFree(y + 1, x + 1) || !g.isSpotFree(y + 1, x - 1))) {
       counterDown = -1;
     }
@@ -908,48 +813,30 @@ public class AiPlayer extends Player {
       counterDown = -1;
     }
     // Checking for free Spots above the Position x,y
-    while (y - 2 - counterUp >= 0
-        && x > 0
-        && x < 14
-        && g.isSpotFreeOld(y - 1 - counterUp, x)
-        && g.isSpotFreeOld(y - 2 - counterUp, x)
-        && g.isSpotFreeOld(y - 1 - counterUp, x + 1)
+    while (y - 2 - counterUp >= 0 && x > 0 && x < 14 && g.isSpotFreeOld(y - 1 - counterUp, x)
+        && g.isSpotFreeOld(y - 2 - counterUp, x) && g.isSpotFreeOld(y - 1 - counterUp, x + 1)
         && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
       // System.out.println("y=" + y + "; counterUp =" + counterUp);
     }
-    while (x > 0
-        && x < 14
-        && y - 2 - counterUp == -1
-        && g.isSpotFreeOld(y - 1 - counterUp, x)
-        && g.isSpotFreeOld(y - 1 - counterUp, x + 1)
-        && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
+    while (x > 0 && x < 14 && y - 2 - counterUp == -1 && g.isSpotFreeOld(y - 1 - counterUp, x)
+        && g.isSpotFreeOld(y - 1 - counterUp, x + 1) && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
       // System.out.println("y=" + y + "; counterUp =" + counterUp);
     }
-    while (y - 2 - counterUp >= 0
-        && x == 0
-        && g.isSpotFreeOld(y - 1 - counterUp, x)
-        && g.isSpotFreeOld(y - 2 - counterUp, x)
+    while (y - 2 - counterUp >= 0 && x == 0 && g.isSpotFreeOld(y - 1 - counterUp, x)
+        && g.isSpotFreeOld(y - 2 - counterUp, x) && g.isSpotFreeOld(y - 1 - counterUp, x + 1)) {
+      counterUp++;
+    }
+    while (y - 2 - counterUp == -1 && x == 0 && g.isSpotFreeOld(y - 1 - counterUp, x)
         && g.isSpotFreeOld(y - 1 - counterUp, x + 1)) {
       counterUp++;
     }
-    while (y - 2 - counterUp == -1
-        && x == 0
-        && g.isSpotFreeOld(y - 1 - counterUp, x)
-        && g.isSpotFreeOld(y - 1 - counterUp, x + 1)) {
+    while (y - 2 - counterUp >= 0 && x == 14 && g.isSpotFreeOld(y - 1 - counterUp, x)
+        && g.isSpotFreeOld(y - 2 - counterUp, x) && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
     }
-    while (y - 2 - counterUp >= 0
-        && x == 14
-        && g.isSpotFreeOld(y - 1 - counterUp, x)
-        && g.isSpotFreeOld(y - 2 - counterUp, x)
-        && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
-      counterUp++;
-    }
-    while (y - 2 - counterUp == -1
-        && x == 14
-        && g.isSpotFreeOld(y - 1 - counterUp, x)
+    while (y - 2 - counterUp == -1 && x == 14 && g.isSpotFreeOld(y - 1 - counterUp, x)
         && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) {
       counterUp++;
     }
@@ -958,10 +845,7 @@ public class AiPlayer extends Player {
       counterUp = -1;
     }
 
-    if (y - 2 == -1
-        && x > 0
-        && x < 14
-        && g.isSpotFree(y - 1, x)
+    if (y - 2 == -1 && x > 0 && x < 14 && g.isSpotFree(y - 1, x)
         && (!g.isSpotFree(y - 1, x - 1) || !g.isSpotFree(y - 1, x + 1))) {
       counterUp = -1;
     }
@@ -976,43 +860,26 @@ public class AiPlayer extends Player {
       counterUp = -1;
     }
 
-    /*this.counterDown = counterDown;
-    this.counterUp = counterUp;
-    this.counterRight = counterRight;
-    this.counterLeft = counterLeft;
-
-    if (counterLeft <= 0 && counterRight >= 0) {
-      this.counterLeft = 0;
-      this.counterRight = counterRight;
-    }
-    if (counterLeft >= 0 && counterRight <= 0) {
-      this.counterRight = 0;
-      this.counterLeft = counterLeft;
-    }
-
-    if (counterLeft <= 0 && counterRight <= 0) {
-      this.counterRight = 0;
-      this.counterLeft = 0;
-    }
-
-    if (counterUp <= 0 && counterDown >= 0) {
-      this.counterUp = 0;
-      this.counterDown = counterDown;
-    }
-    if (counterUp >= 0 && counterDown <= 0) {
-      this.counterDown = 0;
-      this.counterUp = counterUp;
-    }
-
-    if (counterUp <= 0 && counterDown <= 0) {
-      this.counterDown = 0;
-      this.counterUp = 0;
-    }
-
-    System.out.println("left: " + this.counterLeft);
-    System.out.println("right: " + this.counterRight);
-    System.out.println("up: " + this.counterUp);
-    System.out.println("down: " + this.counterDown);*/
+    /*
+     * this.counterDown = counterDown; this.counterUp = counterUp; this.counterRight = counterRight;
+     * this.counterLeft = counterLeft;
+     * 
+     * if (counterLeft <= 0 && counterRight >= 0) { this.counterLeft = 0; this.counterRight =
+     * counterRight; } if (counterLeft >= 0 && counterRight <= 0) { this.counterRight = 0;
+     * this.counterLeft = counterLeft; }
+     * 
+     * if (counterLeft <= 0 && counterRight <= 0) { this.counterRight = 0; this.counterLeft = 0; }
+     * 
+     * if (counterUp <= 0 && counterDown >= 0) { this.counterUp = 0; this.counterDown = counterDown;
+     * } if (counterUp >= 0 && counterDown <= 0) { this.counterDown = 0; this.counterUp = counterUp;
+     * }
+     * 
+     * if (counterUp <= 0 && counterDown <= 0) { this.counterDown = 0; this.counterUp = 0; }
+     * 
+     * System.out.println("left: " + this.counterLeft); System.out.println("right: " +
+     * this.counterRight); System.out.println("up: " + this.counterUp); System.out.println("down: "
+     * + this.counterDown);
+     */
   }
 
   /**
@@ -1043,8 +910,7 @@ public class AiPlayer extends Player {
       getSpotsFree2(7, 7, Data.getGameSession().getGameBoard());
     }
 
-    findacceptable:
-    for (int row = 0; row < 15; row++) {
+    findacceptable: for (int row = 0; row < 15; row++) {
       for (int column = 0; column < 15; column++) {
         System.out.println("Checking " + row + " : " + column);
 
@@ -1069,14 +935,9 @@ public class AiPlayer extends Player {
                 Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter();
             currentFixX = column;
             currentFixY = row;
-            wordList =
-                wordGenerator(
-                    Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
-                    counterUp,
-                    counterDown,
-                    column,
-                    row,
-                    false);
+            wordList = wordGenerator(
+                Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
+                counterUp, counterDown, column, row, false);
             if (wordList.isEmpty()) {
               break;
             }
@@ -1085,14 +946,9 @@ public class AiPlayer extends Player {
                 Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter();
             currentFixX = column;
             currentFixY = row;
-            wordList =
-                wordGenerator(
-                    Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
-                    counterLeft,
-                    counterRight,
-                    column,
-                    row,
-                    true);
+            wordList = wordGenerator(
+                Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
+                counterLeft, counterRight, column, row, true);
 
             if (wordList.isEmpty()) {
               break;
@@ -1115,8 +971,8 @@ public class AiPlayer extends Player {
             ArrayList<Integer> points = countScore(Data.getGameSession().getGameBoard(), wordList);
 
             System.out.println("Points size :" + points.size());
-            System.out.println(
-                "How many points does the first word give:" + points.get(0).toString());
+            System.out
+                .println("How many points does the first word give:" + points.get(0).toString());
             // System.out.println(aiThreshold);
 
             for (int k = 0; k < points.size(); k++) {
@@ -1158,8 +1014,7 @@ public class AiPlayer extends Player {
       System.out.println("placed");
     }
 
-    Data.getGameSession()
-        .getCurrentPlayer()
+    Data.getGameSession().getCurrentPlayer()
         .setPoints(Data.getGameSession().getCurrentPlayer().getPoints() + pointsForRound);
     System.out.println("erster");
     Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
@@ -1167,10 +1022,10 @@ public class AiPlayer extends Player {
     Data.getGameSession().getGameBoard().finishTurn();
     System.out.println("dritter");
 
-    /*System.out.println(
-    Data.getGameSession()
-        .getGameBoard()
-        .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()).getLetter());*/
+    /*
+     * System.out.println( Data.getGameSession() .getGameBoard()
+     * .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()).getLetter());
+     */
 
     Data.getGameSession().finishTurn();
     System.out.println("will hier jetzt wieder schließen.");
