@@ -1,6 +1,5 @@
 package com.scrab5.ui;
 
-import com.scrab5.core.player.Player;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,14 +8,14 @@ import javafx.fxml.Initializable;
 
 public class SingleplayerController extends InGameController implements Initializable {
 
-  Player current;
+  private int roundNumber;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
     aiTurn();
     refreshUI();
-    current = Data.getGameSession().getCurrentPlayer();
+    roundNumber = Data.getGameSession().getRoundNumber();
 
   }
 
@@ -38,14 +37,14 @@ public class SingleplayerController extends InGameController implements Initiali
               initRack();
               initPlayers();
 
-              if (Data.getGameSession().getCurrentPlayer() != current) {
+              if (Data.getGameSession().getRoundNumber() != roundNumber) {
                 try {
                   initGameboard();
                 } catch (IOException e) {
                   // TODO Auto-generated catch block
                   e.printStackTrace();
                 }
-                current = Data.getGameSession().getCurrentPlayer();
+                roundNumber = Data.getGameSession().getRoundNumber();
               }
             }
           });

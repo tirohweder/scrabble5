@@ -1,7 +1,6 @@
 package com.scrab5.ui;
 
 
-import com.scrab5.core.player.Player;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,7 +26,7 @@ public class MultiplayerController extends InGameController implements Initializ
   TextArea textArea;
 
   private boolean chatOpen = false;
-  private Player current;
+  private int roundNumber;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -44,7 +43,7 @@ public class MultiplayerController extends InGameController implements Initializ
     aiTurn();
 
     refreshUI();
-    current = Data.getGameSession().getCurrentPlayer();
+    roundNumber = Data.getGameSession().getRoundNumber();
 
   }
 
@@ -108,14 +107,14 @@ public class MultiplayerController extends InGameController implements Initializ
 
               initPlayers();
               initRack();
-              if (Data.getGameSession().getCurrentPlayer() != current) {
+              if (Data.getGameSession().getRoundNumber() != roundNumber) {
                 try {
                   initGameboard();
                 } catch (IOException e) {
                   // TODO Auto-generated catch block
                   e.printStackTrace();
                 }
-                current = Data.getGameSession().getCurrentPlayer();
+                roundNumber = Data.getGameSession().getRoundNumber();
               }
 
             }
