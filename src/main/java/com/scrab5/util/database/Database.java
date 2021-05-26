@@ -36,10 +36,11 @@ public class Database {
     try {
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
-      System.out.println("connected!");
+      System.out.println("reconnected!");
     } catch (ClassNotFoundException e) {
       System.out.println("Connection not possible" + e.getMessage());
     } catch (SQLException e1) {
+      System.out.println("reconnect: Connection not possible" + e1.getMessage());
       System.out.println("Sql Exception: " + e1.getMessage());
       System.out.println("Sql State: " + e1.getSQLState());
       System.out.println("Sql Error: " + e1.getErrorCode());
@@ -65,7 +66,7 @@ public class Database {
   public static void disconnect() {
     try {
       connection.close();
-      //  System.out.println("disconnected!");
+      System.out.println("disconnected!");
     } catch (SQLException e) {
       System.out.println("Problem with closing connection: " + e.getMessage());
       e.printStackTrace();
@@ -82,10 +83,11 @@ public class Database {
     try {
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:" + file);
-      // System.out.println("connected");
+      System.out.println("connected");
     } catch (ClassNotFoundException e) {
       System.out.println("Connection not possible" + e.getMessage());
     } catch (SQLException e1) {
+      System.out.println("connect: Connection not possible" + e1.getMessage());
       System.out.println("Sql Exception: " + e1.getMessage());
       System.out.println("Sql State: " + e1.getSQLState());
       System.out.println("Sql Error: " + e1.getErrorCode());
