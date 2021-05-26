@@ -239,18 +239,21 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
 
     int max;
-    for (ClientData c : clientdata) {
+    for (int i = 0; i < playerList.size(); i++) {
       max = 0;
       for (int k = 1; k < clientdata.size(); k++) {
         if (voteResults.get(max) < voteResults.get(k)) {
           max = k;
         }
-        if (max <= playerList.size()) {
-          gameSessionList.add(0, playerList.get(max));
-        }
       }
+      gameSessionList.add(0, playerList.get(max));
       voteResults.set(max, 0);
     }
+
+    for (Player p : gameSessionList) {
+      System.out.println(p.getName());
+    }
+
 
     // int maximum;
     // Iterator<ClientData> iterator;

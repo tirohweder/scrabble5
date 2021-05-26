@@ -73,15 +73,17 @@ public class AiPlayer extends Player {
    * @author lengist
    */
   public static ArrayList<ArrayList<Tile>> wordGenerator(
-      String fixLetter, int before, int after, int x, int y, boolean horizontal) {
+      String fixLetter, int before, int after, int column, int row, boolean horizontal) {
     System.out.println();
     System.out.println("fixLetter: " + fixLetter);
-    System.out.println("x: " + x);
-    System.out.println("y: " + y);
-    System.out.println();
+    System.out.println("before: " + before);
+    System.out.println("after: " + after);
+    System.out.println("column: " + column);
+    System.out.println("row: " + row);
+    System.out.println("horizontal: " + horizontal);
 
-    System.out.println(
-        "Saved fixLetter: " + currentFixLetter + " x: " + currentFixX + "y: " + currentFixY);
+    //System.out.println(
+       // "Saved fixLetter: " + currentFixLetter + " x: " + currentFixX + "y: " + currentFixY);
 
     System.out.println();
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
@@ -160,7 +162,8 @@ public class AiPlayer extends Player {
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
     for (String s : finalWords) {
       // System.out.println("test word: " + s);
-      tiles.add(wordToTiles(s, fixLetter, currentFixX, currentFixY, horizontal));
+      //tiles.add(wordToTiles(s, fixLetter, currentFixX, currentFixY, horizontal));
+      tiles.add(wordToTiles(s, fixLetter, column, row, horizontal));
     }
     return tiles;
   }
@@ -178,9 +181,9 @@ public class AiPlayer extends Player {
    * @return tiles a ArrayList containing all tiles for the word word
    */
   public static ArrayList<Tile> wordToTiles(
-      String word, String fixLetter, int x, int y, boolean horizontal) {
+      String word, String fixLetter, int column, int row, boolean horizontal) {
     ArrayList<Tile> tiles = new ArrayList<Tile>();
-    tiles = getCoordinatesRep(word, fixLetter, x, y, horizontal);
+    tiles = getCoordinatesRep(word, fixLetter, column, row, horizontal);
     /*if (!isLetterExistingRepeatedly(word)) {
     /*for (int i = 0; i < word.length(); i++) {
 
@@ -221,7 +224,7 @@ public class AiPlayer extends Player {
   }
 
   public static ArrayList<Tile> getCoordinatesRep(
-      String word, String fixLetter, int xfixLetter, int yfixLetter, boolean horizontal) {
+      String word, String fixLetter, int columnFixLetter, int rowFixLetter, boolean horizontal) {
     int fixPosition = 0;
     ArrayList<Integer> list = new ArrayList<Integer>();
     ArrayList<Tile> tiles = new ArrayList<Tile>();
@@ -237,34 +240,34 @@ public class AiPlayer extends Player {
       for (int i = 0; i < fixPosition; i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
         // System.out.println(word.charAt(i));
-        row = yfixLetter;
-        column = xfixLetter - (fixPosition - i);
+        row = rowFixLetter;
+        column = columnFixLetter - (fixPosition - i);
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
         tiles.add(t);
       }
-      Tile t1 = new Tile(fixLetter, getPointForLetter(fixLetter), yfixLetter, xfixLetter);
+      Tile t1 = new Tile(fixLetter, getPointForLetter(fixLetter), rowFixLetter, columnFixLetter);
       tiles.add(t1);
       for (int i = fixPosition + 1; i < word.length(); i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
-        row = yfixLetter;
-        column = xfixLetter + (i - fixPosition);
+        row = rowFixLetter;
+        column = columnFixLetter + (i - fixPosition);
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
         tiles.add(t);
       }
     } else {
       for (int i = 0; i < fixPosition; i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
-        row = yfixLetter - (fixPosition - i);
-        column = xfixLetter;
+        row = rowFixLetter - (fixPosition - i);
+        column = columnFixLetter;
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
         tiles.add(t);
       }
-      Tile t1 = new Tile(fixLetter, getPointForLetter(fixLetter), yfixLetter, xfixLetter);
+      Tile t1 = new Tile(fixLetter, getPointForLetter(fixLetter), rowFixLetter, columnFixLetter);
       tiles.add(t1);
       for (int i = fixPosition + 1; i < word.length(); i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
-        row = yfixLetter + (i - fixPosition);
-        column = xfixLetter;
+        row = rowFixLetter + (i - fixPosition);
+        column = columnFixLetter;
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);
         tiles.add(t);
       }
@@ -472,7 +475,7 @@ public class AiPlayer extends Player {
     counterRight = 0;
 
     int count = 0;
-    System.out.println(" ---  Up  --- ");
+    //System.out.println(" ---  Up  --- ");
     // up
 
     while (row - 2 - count >= 0) {
@@ -480,7 +483,7 @@ public class AiPlayer extends Player {
           && gameBoard[row - 1 - count][column + 1] == null
           && gameBoard[row - 1 - count][column] == null
           && gameBoard[row - 2 - count][column] == null) {
-        System.out.println(count);
+        //System.out.println(count);
         counterUp++;
         count++;
       } else if (column == 0) {
@@ -491,7 +494,7 @@ public class AiPlayer extends Player {
           && gameBoard[row - 1 - count][column - 1] == null
           && gameBoard[row - 1 - count][column] == null
           && gameBoard[row - 2 - count][column] == null) {
-        System.out.println(count);
+        //System.out.println(count);
         counterUp++;
         count++;
       } else if (column == 14) {
@@ -504,7 +507,7 @@ public class AiPlayer extends Player {
           && gameBoard[row - 1 - count][column + 1] == null
           && gameBoard[row - 1 - count][column] == null
           && gameBoard[row - 2 - count][column] == null) {
-        System.out.println(count);
+        //System.out.println(count);
         counterUp++;
         count++;
       } else if (column != 0 && column != 14) {
@@ -522,7 +525,7 @@ public class AiPlayer extends Player {
       counterUp = 0;
     }
 
-    System.out.println(" --- DOWN --- ");
+    //System.out.println(" --- DOWN --- ");
 
     count = 0;
     // down
@@ -532,11 +535,11 @@ public class AiPlayer extends Player {
           && gameBoard[row + 1 + count][column + 1] == null
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
-        System.out.println(count);
+        //System.out.println(count);
         counterDown++;
         count++;
       } else if (column == 0) {
-        System.out.println("Down 1");
+        //System.out.println("Down 1");
         break;
       }
 
@@ -544,11 +547,11 @@ public class AiPlayer extends Player {
           && gameBoard[row + 1 + count][column - 1] == null
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
-        System.out.println(count);
+        //System.out.println(count);
         counterDown++;
         count++;
       } else if (column == 14) {
-        System.out.println("Down 2");
+        //System.out.println("Down 2");
         break;
       }
 
@@ -559,10 +562,10 @@ public class AiPlayer extends Player {
           && gameBoard[row + 1 + count][column] == null
           && gameBoard[row + 2 + count][column] == null) {
         counterDown++;
-        System.out.println(count);
+        //System.out.println(count);
         count++;
       } else if (column != 0 && column != 14) {
-        System.out.println("Down 3");
+        //System.out.println("Down 3");
         break;
       }
     }
@@ -577,7 +580,7 @@ public class AiPlayer extends Player {
       counterDown = 0;
     }
 
-    System.out.println(" --- RIGHT --- ");
+    //System.out.println(" --- RIGHT --- ");
     count = 0;
     // right
     while (column + 2 + count < 15) {
@@ -587,7 +590,7 @@ public class AiPlayer extends Player {
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
 
-        System.out.println(count);
+        //System.out.println(count);
         counterRight++;
         count++;
       } else if (row == 0) {
@@ -597,7 +600,7 @@ public class AiPlayer extends Player {
           && gameBoard[row - 1][column + 1 + count] == null
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
-        System.out.println(count);
+        //System.out.println(count);
         counterRight++;
         count++;
       } else if (row == 14) {
@@ -611,7 +614,7 @@ public class AiPlayer extends Player {
           && gameBoard[row][column + 1 + count] == null
           && gameBoard[row][column + 2 + count] == null) {
         counterRight++;
-        System.out.println(count);
+        //System.out.println(count);
         count++;
       } else if (row != 0 && row != 14) {
         break;
@@ -639,7 +642,7 @@ public class AiPlayer extends Player {
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
 
-        System.out.println(count);
+        //System.out.println(count);
         counterLeft++;
         count++;
       } else if (row == 0) {
@@ -649,7 +652,7 @@ public class AiPlayer extends Player {
           && gameBoard[row - 1][column - 1 - count] == null
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
-        System.out.println(count);
+        //System.out.println(count);
         counterLeft++;
         count++;
       } else if (row == 14) {
@@ -663,7 +666,7 @@ public class AiPlayer extends Player {
           && gameBoard[row][column - 1 - count] == null
           && gameBoard[row][column - 2 - count] == null) {
         counterLeft++;
-        System.out.println(count);
+        //System.out.println(count);
         count++;
       } else if (row != 0 && row != 14) {
         break;
@@ -965,7 +968,7 @@ public class AiPlayer extends Player {
       counterUp = -1;
     }
 
-    this.counterDown = counterDown;
+    /*this.counterDown = counterDown;
     this.counterUp = counterUp;
     this.counterRight = counterRight;
     this.counterLeft = counterLeft;
@@ -1001,7 +1004,7 @@ public class AiPlayer extends Player {
     System.out.println("left: " + this.counterLeft);
     System.out.println("right: " + this.counterRight);
     System.out.println("up: " + this.counterUp);
-    System.out.println("down: " + this.counterDown);
+    System.out.println("down: " + this.counterDown);*/
   }
 
   /**
@@ -1061,8 +1064,8 @@ public class AiPlayer extends Player {
             wordList =
                 wordGenerator(
                     Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
-                    counterDown,
                     counterUp,
+                    counterDown,
                     column,
                     row,
                     false);
@@ -1077,8 +1080,8 @@ public class AiPlayer extends Player {
             wordList =
                 wordGenerator(
                     Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter(),
-                    counterRight,
                     counterLeft,
+                    counterRight,
                     column,
                     row,
                     true);
@@ -1150,8 +1153,11 @@ public class AiPlayer extends Player {
     Data.getGameSession()
         .getCurrentPlayer()
         .setPoints(Data.getGameSession().getCurrentPlayer().getPoints() + pointsForRound);
+    System.out.println("erster");
     Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
+    System.out.println("zweiter");
     Data.getGameSession().getGameBoard().finishTurn();
+    System.out.println("dritter");
 
     /*System.out.println(
     Data.getGameSession()
@@ -1159,6 +1165,7 @@ public class AiPlayer extends Player {
         .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()).getLetter());*/
 
     Data.getGameSession().finishTurn();
+    System.out.println("will hier jetzt wieder schließen.");
     Database.disconnect();
   }
 }

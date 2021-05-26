@@ -116,7 +116,7 @@ public class MultiplayerController extends InGameController implements Initializ
           });
           synchronized (this) {
             try {
-              this.wait(200);
+              this.wait(300);
             } catch (InterruptedException e) {
               // e.printStackTrace();
             }
