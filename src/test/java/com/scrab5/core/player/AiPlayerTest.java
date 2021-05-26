@@ -67,11 +67,59 @@ class AiPlayerTest {
     g4.placeTileTest(new Tile("A ", 1), 9, 7);
 
     g4.finishTurn();
-    test.getSpotsfree(8, 7, g4);
+    test.getSpotsfree(8,7, g4);
     assertEquals(0, test.counterLeft);
     assertEquals(0, test.counterRight);
     assertEquals(0, test.counterDown);
     assertEquals(7, test.counterUp);
+    
+    test.getSpotsfree(10,8, g4);
+    assertEquals(0, test.counterLeft);
+    assertEquals(4, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(0, test.counterUp);
+
+    test.getSpotsfree(10,7, g4);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(0, test.counterUp);
+    
+    test.getSpotsfree(10,6, g4);
+    assertEquals(0, test.counterLeft);
+    assertEquals(4, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(0, test.counterUp);
+    
+    test.getSpotsfree(9,7, g4);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(0, test.counterUp);
+    
+    test.getSpotsfree(7,7, g4);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(0, test.counterUp);
+    
+    test.getSpotsfree(6,7, g4);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(7, test.counterUp);
+    
+    test.getSpotsfree(7,8, g4);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(0, test.counterUp);
+    
+    test.getSpotsfree(7,9, g4);
+    assertEquals(7, test.counterLeft);
+    assertEquals(2, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(0, test.counterUp);
   }
 
   @Test

@@ -3,6 +3,7 @@ package com.scrab5.ui;
 import com.scrab5.core.game.GameSession;
 import com.scrab5.core.player.AiPlayer;
 import com.scrab5.core.player.Player;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.parser.DictionaryParser;
@@ -349,7 +350,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
       ArrayList<Integer> tiles = createTileBag(help1);
       Data.setGameSession(new GameSession(setPlayerOrder(getPlayerVotes()), tiles, points, false));
     }
-
+    //Database.disconnect();
     App.setRoot("SinglePlayer");
   }
 

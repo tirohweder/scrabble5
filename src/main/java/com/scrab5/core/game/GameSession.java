@@ -5,8 +5,8 @@ import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
-import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,11 +41,8 @@ public class GameSession implements Serializable {
    * @param points how many * points each letter gives
    * @param isOnline is the game multiplayer or singleplayer
    */
-  public GameSession(
-      ArrayList<Player> listOfPlayers,
-      ArrayList<Integer> letters,
-      ArrayList<Integer> points,
-      boolean isOnline) {
+  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
+      ArrayList<Integer> points, boolean isOnline) throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -297,10 +294,8 @@ public class GameSession implements Serializable {
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
 
     // TODO joker richtig bennen
-    String[] buchstaben = {
-      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-      "T", "U", "V", "W", "X", "Y", "Z", "*"
-    };
+    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -339,27 +334,21 @@ public class GameSession implements Serializable {
 
   /**
    * ZEUG.
-   *
+   * 
    * @author mherre
    */
   public void endGame() {
-    // Data.getHostedServer().endGame(winner); nur beim host.
-    // TODO call server method, endGame()
 
-    for (Player player : Data.getGameSession().getListOfPlayers()) {
-      if (player.isHuman()) {
-        // System.out.println("kommen wir hier rein?");
-        // Database.disconnect();
-        player.getPlayerProfile().addPoints(player.getPoints());
-        // System.out.println("first");
-        // Database.disconnect();
-        // System.out.println(player.getPlayerProfile().getName() + player.getPoints());
-
-      }
-    }
-
-    //
-
+//    for (Player player : Data.getGameSession().getListOfPlayers()) {
+//      if (player.isHuman()) {
+//        Data.getGameSession().getCurrentPlayer().getPlayerProfile()
+//            .setCurrentPoints(PlayerProfileDatabase.getTotalPoints(Data.getCurrentUser()));
+//        System.out.println("geht");
+//        // Database.disconnect();
+//        player.getPlayerProfile().addPoints(player.getPoints());
+//        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
+//      }
+//    }
     this.running = false;
   }
 
