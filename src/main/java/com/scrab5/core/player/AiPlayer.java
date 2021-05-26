@@ -1161,8 +1161,11 @@ public class AiPlayer extends Player {
     Data.getGameSession()
         .getCurrentPlayer()
         .setPoints(Data.getGameSession().getCurrentPlayer().getPoints() + pointsForRound);
+    System.out.println("erster");
     Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
+    System.out.println("zweiter");
     Data.getGameSession().getGameBoard().finishTurn();
+    System.out.println("dritter");
 
     /*System.out.println(
     Data.getGameSession()
@@ -1170,6 +1173,7 @@ public class AiPlayer extends Player {
         .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()).getLetter());*/
 
     Data.getGameSession().finishTurn();
+    System.out.println("will hier jetzt wieder schließen.");
     Database.disconnect();
   }
 }

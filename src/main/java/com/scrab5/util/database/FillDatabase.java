@@ -152,6 +152,24 @@ public class FillDatabase extends Database {
     return created;
   }
 
+  public static synchronized void updatePoints(String userName, int newPoints) {
+    Database.reconnect();
+    PreparedStatement pstm;
+    String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
+    try {
+      pstm = connection.prepareStatement(sql);
+      pstm.setInt(1, newPoints);
+      pstm.setString(2, userName);
+      pstm.executeUpdate();
+      pstm.close();
+    } catch (SQLException e) {
+      System.out.println("in update points");
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    
+    System.out.println("gesetzt");
+  }
   /**
    * Filling the table player at specific index/column. If variable for column name is from type
    * integer, variable contentString is default.
@@ -168,6 +186,7 @@ public class FillDatabase extends Database {
    */
   protected static synchronized void updatePlayer(String column, String name, String contentString,
       int contentInt, double doubleValues) {
+    Database.disconnect();
     Database.reconnect();
     System.out.println("Fill");
 

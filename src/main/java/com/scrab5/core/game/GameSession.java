@@ -343,6 +343,15 @@ public class GameSession implements Serializable {
    * @author mherre
    */
   public void endGame() {
+    
+    for (Player player : Data.getGameSession().getListOfPlayers()) {
+      if (player.isHuman()) {
+        //FillDatabase.updatePoints(player.getName(), player.getPoints());
+        //PlayerProfileDatabase.setTotalPoints(player.getName(), player.getPoints());
+        player.getPlayerProfile().addPoints(player.getName(), player.getPoints());
+        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
+      }
+    }
 
     //    for (Player player : Data.getGameSession().getListOfPlayers()) {
     //      if (player.isHuman()) {

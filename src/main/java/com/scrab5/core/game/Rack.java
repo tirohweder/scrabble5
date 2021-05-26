@@ -29,6 +29,7 @@ public class Rack implements Serializable {
       if (this.rack[i] == null && bag.getSize() >= 1) {
         rack[i] = bag.pick();
         rack[i].setRackPlace(i);
+        System.out.println("hier?");
       }
     }
     System.out.println("Trying to fill rack of " + Data.getCurrentUser());
