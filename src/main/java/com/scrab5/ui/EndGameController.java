@@ -45,6 +45,7 @@ public class EndGameController extends InGameController implements Initializable
   }
 
   private void initEndGame() {
+    Data.getGameSession().setRunning(false);
     ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
     Player p, swap;
     Iterator<Player> it = players.iterator();
