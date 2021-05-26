@@ -335,19 +335,10 @@ public class GameSession implements Serializable {
 
     for (Player player : Data.getGameSession().getListOfPlayers()) {
       if (player.isHuman()) {
-        //System.out.println("kommen wir hier rein?");
-        //Database.disconnect();
         player.getPlayerProfile().addPoints(player.getPoints());
-        //System.out.println("first");
-        //Database.disconnect();
-        //System.out.println(player.getPlayerProfile().getName() + player.getPoints());
-
+        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
       }
-
     }
-
-    //
-
     this.running = false;
   }
 
