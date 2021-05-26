@@ -8,7 +8,6 @@ public class Player implements Serializable {
   private static final long serialVersionUID = 1L;
   private Rack rack;
   private String name;
-  private boolean isHuman;
   private PlayerProfile playerProfile;
   private int points;
 
@@ -20,7 +19,6 @@ public class Player implements Serializable {
     this.name = name;
     this.rack = new Rack();
     this.points = 0;
-    this.isHuman = human;
     this.playerProfile = new PlayerProfile();
   }
 
@@ -78,34 +76,20 @@ public class Player implements Serializable {
   }
 
   /**
+   * Getter for points.
+   *
    * @author trohwede
-   * @return Returns if human is or not
-   */
-  public boolean isHuman() {
-    return isHuman;
-  }
-
-  /**
-   * @author trohwede
-   * @param human Set Player to be Human or AI
-   */
-  public void setHuman(boolean human) {
-    isHuman = human;
-  }
-
-  /**
-   * @author trohwede
-   * @return
+   * @return points the player has.
    */
   public int getPoints() {
     return points;
   }
 
   /**
-   * Setter for the
+   * Setter for points.
    *
    * @author trohwede
-   * @param points
+   * @param points amount of points you want to set.
    */
   public void setPoints(int points) {
     this.points = points;
