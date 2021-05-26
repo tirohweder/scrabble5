@@ -153,7 +153,7 @@ public abstract class InGameController implements Initializable {
 
 
   protected void initPlayers() throws IOException {
-    
+
 
     if (changes.size() != 0) {
       undoLabel.setOpacity(1);
@@ -168,7 +168,7 @@ public abstract class InGameController implements Initializable {
       turn = false;
       newPum("IT'S YOUR TURN");
     }
-    
+
     if (Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0) {
       skipPlay.setText("Skip");
     } else {
@@ -249,8 +249,7 @@ public abstract class InGameController implements Initializable {
         switch (i) {
 
           case 0:
-            setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(),
-                myRack.getTileAt(i).getValue());
+            setNewTile(rackPlace1, pointsRack1, "joker", myRack.getTileAt(i).getValue());
             break;
           case 1:
             setNewTile(rackPlace2, pointsRack2, myRack.getTileAt(i).getLetter(),
@@ -288,7 +287,7 @@ public abstract class InGameController implements Initializable {
 
     double layoutX = 263.0;
     double layoutY = 53.0;
-    
+
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
         if (Data.getGameSession().getGameBoard().getPlayedTile(i, j) != null) {
@@ -351,16 +350,14 @@ public abstract class InGameController implements Initializable {
           if (!letterClicked) {
             lighten(event);
             tileClicked = true;
+          } else if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+            setJoker();
           } else if (Data.getGameSession().getGameBoard().placeTile(
               Data.getGameSession().getCurrentPlayer().getRack().getTileAt(rackClicked),
               rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))
               && rackClicked < 7) {
-            if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
-              setJoker();
-            } else {
-              changes.add(clickedTile);
-              placeLetter(clickedLetter, clickedLabel);
-            }
+            changes.add(clickedTile);
+            placeLetter(clickedLetter, clickedLabel);
           } else {
             newPum("Sorry, the tile can't be placed here"
                 + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -406,20 +403,18 @@ public abstract class InGameController implements Initializable {
           rackPlace1.setOpacity(0.8);
 
           // destination chosen
+        } else if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+          setJoker();
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(0),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
-            setJoker();
-          } else {
-            changes.add(clickedTile);
-            chooseJoker = false;
-            jokerPane.setOpacity(0);
-            placeLetter(clickedLetter, pointsRack1);
-            rackPlace1.setOpacity(0);
-            clickedTile = null;
-            tileClicked = false;
-          }
+          changes.add(clickedTile);
+          chooseJoker = false;
+          jokerPane.setOpacity(0);
+          placeLetter(clickedLetter, pointsRack1);
+          rackPlace1.setOpacity(0);
+          clickedTile = null;
+          tileClicked = false;
         } else {
           newPum("Sorry, the tile can't be placed here"
               + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -468,20 +463,18 @@ public abstract class InGameController implements Initializable {
           rackPlace2.setOpacity(0.8);
 
           // destination chosen
+        } else if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+          setJoker();
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(1),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
-            setJoker();
-          } else {
-            changes.add(clickedTile);
-            chooseJoker = false;
-            jokerPane.setOpacity(0);
-            placeLetter(clickedLetter, pointsRack2);
-            rackPlace2.setOpacity(0);
-            clickedTile = null;
-            tileClicked = false;
-          }
+          changes.add(clickedTile);
+          chooseJoker = false;
+          jokerPane.setOpacity(0);
+          placeLetter(clickedLetter, pointsRack2);
+          rackPlace2.setOpacity(0);
+          clickedTile = null;
+          tileClicked = false;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -530,20 +523,19 @@ public abstract class InGameController implements Initializable {
           rackPlace3.setOpacity(0.8);
 
           // destination chosen
+        } else if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+          setJoker();
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(2),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
-            setJoker();
-          } else {
-            changes.add(clickedTile);
-            chooseJoker = false;
-            jokerPane.setOpacity(0);
-            placeLetter(clickedLetter, pointsRack3);
-            rackPlace3.setOpacity(0);
-            clickedTile = null;
-            tileClicked = false;
-          }
+
+          changes.add(clickedTile);
+          chooseJoker = false;
+          jokerPane.setOpacity(0);
+          placeLetter(clickedLetter, pointsRack3);
+          rackPlace3.setOpacity(0);
+          clickedTile = null;
+          tileClicked = false;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -591,20 +583,18 @@ public abstract class InGameController implements Initializable {
           rackPlace4.setOpacity(0.8);
 
           // destination chosen
+        } else if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+          setJoker();
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(3),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
-            setJoker();
-          } else {
-            changes.add(clickedTile);
-            chooseJoker = false;
-            jokerPane.setOpacity(0);
-            placeLetter(clickedLetter, pointsRack4);
-            rackPlace4.setOpacity(0);
-            clickedTile = null;
-            tileClicked = false;
-          }
+          changes.add(clickedTile);
+          chooseJoker = false;
+          jokerPane.setOpacity(0);
+          placeLetter(clickedLetter, pointsRack4);
+          rackPlace4.setOpacity(0);
+          clickedTile = null;
+          tileClicked = false;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -652,20 +642,18 @@ public abstract class InGameController implements Initializable {
           rackPlace5.setOpacity(0.8);
 
           // destination chosen
+        } else if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+          setJoker();
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(4),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
-            setJoker();
-          } else {
-            changes.add(clickedTile);
-            chooseJoker = false;
-            jokerPane.setOpacity(0);
-            placeLetter(clickedLetter, pointsRack5);
-            rackPlace5.setOpacity(0);
-            clickedTile = null;
-            tileClicked = false;
-          }
+          changes.add(clickedTile);
+          chooseJoker = false;
+          jokerPane.setOpacity(0);
+          placeLetter(clickedLetter, pointsRack5);
+          rackPlace5.setOpacity(0);
+          clickedTile = null;
+          tileClicked = false;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -715,20 +703,18 @@ public abstract class InGameController implements Initializable {
           rackPlace6.setOpacity(0.8);
 
           // destination chosen
+        } else if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+          setJoker();
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(5),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
-            setJoker();
-          } else {
-            changes.add(clickedTile);
-            chooseJoker = false;
-            jokerPane.setOpacity(0);
-            placeLetter(clickedLetter, pointsRack6);
-            rackPlace6.setOpacity(0);
-            clickedTile = null;
-            tileClicked = false;
-          }
+          changes.add(clickedTile);
+          chooseJoker = false;
+          jokerPane.setOpacity(0);
+          placeLetter(clickedLetter, pointsRack6);
+          rackPlace6.setOpacity(0);
+          clickedTile = null;
+          tileClicked = false;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -781,20 +767,18 @@ public abstract class InGameController implements Initializable {
           rackPlace7.setOpacity(0.8);
 
           // desination chosen
+        } else if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
+          setJoker();
         } else if (Data.getGameSession().getGameBoard().placeTile(
             Data.getGameSession().getCurrentPlayer().getRack().getTileAt(6),
             rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-          if (clickedLetter.getImage().getUrl().contains("placeHolder")) {
-            setJoker();
-          } else {
-            changes.add(clickedTile);
-            chooseJoker = false;
-            jokerPane.setOpacity(0);
-            placeLetter(clickedLetter, pointsRack7);
-            rackPlace7.setOpacity(0);
-            clickedTile = null;
-            tileClicked = false;
-          }
+          changes.add(clickedTile);
+          chooseJoker = false;
+          jokerPane.setOpacity(0);
+          placeLetter(clickedLetter, pointsRack7);
+          rackPlace7.setOpacity(0);
+          clickedTile = null;
+          tileClicked = false;
         } else {
           newPum(
               "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
@@ -1115,6 +1099,7 @@ public abstract class InGameController implements Initializable {
    */
   private void placeLetter(ImageView iv, Label l) {
 
+    System.out.println();
     tilePlacedOrder.add(rackClicked);
 
     markedTile = clickedTile.getImage();
@@ -1289,25 +1274,30 @@ public abstract class InGameController implements Initializable {
 
 
   @FXML
-  private void jokerLetterChoosen(MouseEvent event) {
+  private void jokerLetterChoosen(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
     ImageView iv = (ImageView) event.getSource();
 
     if (chooseJoker) {
       letterJoker = iv.getId();
       setNewTile(clickedLetter, clickedLabel, letterJoker, 0);
-      placeLetter(clickedLetter, clickedLabel);
-      chooseJoker = false;
-      jokerPane.setOpacity(0);
+      if (clickedLetter != null)
+        System.out.println(clickedLetter.getImage().getUrl());
       // TODO
       System.out.println(letterJoker);
-      Data.getGameSession().getGameBoard().removeTile(rowTransformation(clickedTile.getId()),
-          columnTransformation(clickedTile.getId()));
-      Data.getGameSession().getGameBoard().placeTile(new Tile(letterJoker, 0),
-          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()));
-      changes.add(clickedTile);
+      if (Data.getGameSession().getGameBoard().placeTile(new Tile(letterJoker, 0),
+          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
+        chooseJoker = false;
+        placeLetter(clickedLetter, clickedLabel);
+        changes.add(clickedTile);
+        jokerPlacedAt.add(changes.size() - 1);
+      } else {
+        System.out.println(Data.getGameSession().getGameBoard().getTile(7, 7).getLetter());
+        newPum("Sorry, the tile can't be placed here."
+            + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
+      }
 
-      jokerPlacedAt.add(changes.size() - 1);
+      jokerPane.setOpacity(0);
     }
   }
 
