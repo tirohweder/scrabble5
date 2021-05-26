@@ -30,76 +30,48 @@ class AiPlayerTest {
 
   @Test
   void getSpotsFreeTest() {
-    Tile middle = new Tile("A", 1);
-    Tile middle2 = new Tile("A", 1);
-    GameBoard g = new GameBoard();
-    g.placeTileTest(middle, 6, 6);
-    g.placeTileTest(middle2, 8, 6);
-    AiPlayer test = new AiPlayer("test", 0);
-
-    test.getSpotsfree(6, 6, g);
-    assertEquals(6, test.counterLeft);
-    assertEquals(8, test.counterRight);
-    assertEquals(0, test.counterDown);
-    assertEquals(6, test.counterUp);
-
-    test.getSpotsfree(0, 0, g);
-    assertEquals(0, test.counterLeft);
-    assertEquals(14, test.counterRight);
-    assertEquals(14, test.counterDown);
-    assertEquals(0, test.counterUp);
-
-    test.getSpotsfree(14, 14, g);
-    assertEquals(14, test.counterLeft);
-    assertEquals(0, test.counterRight);
-    assertEquals(0, test.counterDown);
-    assertEquals(14, test.counterUp);
-
-    test.getSpotsfree(0, 14, g);
-    assertEquals(0, test.counterLeft);
-    assertEquals(14, test.counterRight);
-    assertEquals(0, test.counterDown);
-    assertEquals(14, test.counterUp);
-
-    test.getSpotsfree(14, 0, g);
-    assertEquals(14, test.counterLeft);
-    assertEquals(0, test.counterRight);
-    assertEquals(14, test.counterDown);
-    assertEquals(0, test.counterUp);
-
-    g.placeTileTest(new Tile("T", 3), 3, 7);
-    test.getSpotsfree(6, 6, g);
-    assertEquals(6, test.counterLeft);
-    assertEquals(8, test.counterRight);
-    assertEquals(0, test.counterDown);
-    assertEquals(2, test.counterUp);
-
-    g.removeTile(3, 7);
-
-    g.placeTileTest(new Tile("T", 3), 3, 5);
-    test.getSpotsfree(6, 6, g);
-    assertEquals(6, test.counterLeft);
-    assertEquals(8, test.counterRight);
-    assertEquals(0, test.counterDown);
-    assertEquals(2, test.counterUp);
-
-    g.placeTileTest(new Tile("T", 3), 5, 9);
-    test.getSpotsfree(6, 6, g);
-    assertEquals(6, test.counterLeft);
-    assertEquals(2, test.counterRight);
-    assertEquals(0, test.counterDown);
-    assertEquals(2, test.counterUp);
-
 
     GameBoard g2 = new GameBoard();
-    g2.placeTileTest(new Tile("A ", 1), 6, 0);
-    g2.placeTileTest(new Tile("A ", 1), 8, 0);
+    g2.placeTileTest(new Tile("A ", 1), 7, 3);
+    g2.placeTileTest(new Tile("A ", 1), 7, 4);
+    g2.placeTileTest(new Tile("A ", 1), 8, 3);
     g2.finishTurn();
-    test.getSpotsfree(0, 6, g2);
+    test.getSpotsfree(3, 7, g2);
     assertEquals(0, test.counterLeft);
-    assertEquals(14, test.counterRight);
+    assertEquals(0, test.counterRight);
     assertEquals(0, test.counterDown);
-    assertEquals(6, test.counterUp);
+    assertEquals(0, test.counterUp);
+
+    GameBoard g3 = new GameBoard();
+    g3.placeTileTest(new Tile("A ", 1), 5, 6);
+    g3.placeTileTest(new Tile("A ", 1), 5, 7);
+    g3.placeTileTest(new Tile("A ", 1), 7, 6);
+    g3.finishTurn();
+    test.getSpotsfree(6, 5, g3);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(5, test.counterUp);
+
+    GameBoard g4 = new GameBoard();
+    g4.placeTileTest(new Tile("A ", 1), 7, 6);
+    g4.placeTileTest(new Tile("A ", 1), 7, 7);
+    g4.placeTileTest(new Tile("A ", 1), 7, 8);
+    g4.placeTileTest(new Tile("A ", 1), 7, 9);
+    g4.placeTileTest(new Tile("A ", 1), 7, 10);
+
+    g4.placeTileTest(new Tile("A ", 1), 6, 10);
+    g4.placeTileTest(new Tile("A ", 1), 8, 10);
+
+    g4.placeTileTest(new Tile("A ", 1), 8, 7);
+    g4.placeTileTest(new Tile("A ", 1), 9, 7);
+
+    g4.finishTurn();
+    test.getSpotsfree(8, 7, g4);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(7, test.counterUp);
   }
 
   @Test
@@ -126,8 +98,6 @@ class AiPlayerTest {
     testResult.add(45);
 
     assertEquals(testResult, test.countScore(new GameBoard(), possibleWords));
-
-
 
     ArrayList<ArrayList<Tile>> tilesList = new ArrayList<ArrayList<Tile>>();
     Tile t1 = new Tile("H", 1, 7, 6);
@@ -156,19 +126,18 @@ class AiPlayerTest {
     scoreList.add(10);
     scoreList.add(4);
     assertEquals(scoreList, test.countScore(new GameBoard(), tilesList));
-
   }
 
   @Test
   void aiPlay() {}
-  
+
   @Test
   void getCoordinatesTest() {
     /*ArrayList<Integer> coordinates = new ArrayList<>();
     coordinates.add(7);
     coordinates.add(6);
     assertEquals(coordinates, test.getCoordinates("HELLO", "L", "L", 6, 6, true));*/
-    
+
     /*ArrayList<Integer> c = test.createCoordinates("HEY", "H", "H", 7, 7, true);
     assertEquals(7, c.get(0));
     assertEquals(7, c.get(1));
@@ -182,9 +151,9 @@ class AiPlayerTest {
     /*ArrayList<Integer> coordinates1 = new ArrayList<>();
     coordinates1.add(6);
     coordinates1.add(4);*/
-    //assertEquals(coordinates1, test.getCoordinates2("HELLO", "L", "H", 6, 6, false, 2));
+    // assertEquals(coordinates1, test.getCoordinates2("HELLO", "L", "H", 6, 6, false, 2));
   }
-  
+
   @Test
   void wordToTilesTest() {
     test.lettersFromDatabase = UseDatabase.getAllLetters();
@@ -204,7 +173,7 @@ class AiPlayerTest {
     /*O*/
     assertEquals(11, tiles.get(4).getColumn());
     assertEquals(7, tiles.get(4).getRow());
-    
+
     ArrayList<Tile> tiles2 = test.wordToTiles("HELLO", "H", 7, 7, false);
     assertEquals(7, tiles2.get(0).getColumn());
     assertEquals(7, tiles2.get(0).getRow());
@@ -220,7 +189,7 @@ class AiPlayerTest {
     /*O*/
     assertEquals(7, tiles2.get(4).getColumn());
     assertEquals(11, tiles2.get(4).getRow());
-    
+
     ArrayList<Tile> tiles3 = test.wordToTiles("DELETE", "D", 7, 7, true);
     assertEquals(7, tiles3.get(0).getColumn());
     assertEquals(7, tiles3.get(0).getRow());
@@ -239,7 +208,7 @@ class AiPlayerTest {
     /*5*/
     assertEquals(12, tiles3.get(5).getColumn());
     assertEquals(7, tiles3.get(5).getRow());
-    
+
     ArrayList<Tile> tiles4 = test.wordToTiles("HELLO", "O", 7, 9, true);
     assertEquals("H", tiles4.get(0).getLetter());
     assertEquals(3, tiles4.get(0).getColumn());
@@ -260,6 +229,5 @@ class AiPlayerTest {
     assertEquals("O", tiles4.get(4).getLetter());
     assertEquals(7, tiles4.get(4).getColumn());
     assertEquals(9, tiles4.get(4).getRow());
-    
   }
 }

@@ -7,7 +7,6 @@ import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
-import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,7 +31,16 @@ public class GameSession implements Serializable {
   private boolean running = true;
   private boolean online;
 
-  // TODO might delete
+  /**
+   * Intitializes the Gamsession, sets currentplayer, calls to create the correct bag, and fills the
+   * rack of each player.
+   *
+   * @author trohwede
+   * @param listOfPlayers list of players in the correct order
+   * @param letters how often each letter is there
+   * @param points how many * points each letter gives
+   * @param isOnline is the game multiplayer or singleplayer
+   */
   public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
       ArrayList<Integer> points, boolean isOnline) throws SQLException {
     this.listOfPlayers = listOfPlayers;
@@ -276,9 +284,14 @@ public class GameSession implements Serializable {
     Database.disconnect();
   }
 
-  // TODO might delte later
-  public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points)
-      throws SQLException {
+  /**
+   * When the gameSession is created, fills the bagOfTiles with the tiles set in the lobby.
+   *
+   * @author trohwede
+   * @param lettersOccurrence how often each letter is there
+   * @param points how many points each letter gives
+   */
+  public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
 
     // TODO joker richtig bennen
     String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
@@ -325,15 +338,13 @@ public class GameSession implements Serializable {
    * @author mherre
    */
   public void endGame() {
-    // Data.getHostedServer().endGame(winner); nur beim host.
-    // TODO call server method, endGame()
 
     for (Player player : Data.getGameSession().getListOfPlayers()) {
       if (player.isHuman()) {
         Data.getGameSession().getCurrentPlayer().getPlayerProfile()
             .setCurrentPoints(PlayerProfileDatabase.getTotalPoints(Data.getCurrentUser()));
         System.out.println("geht");
-        //Database.disconnect();
+        // Database.disconnect();
         player.getPlayerProfile().addPoints(player.getPoints());
         System.out.println(player.getPlayerProfile().getName() + player.getPoints());
       }
@@ -341,6 +352,7 @@ public class GameSession implements Serializable {
     this.running = false;
   }
 
+  /** Checks if its the Ai Turn and if the first tile has to be played yet. If yes makes it play. */
   public void isAiFirstTurn() {
     if (currentPlayer instanceof AiPlayer && this.gameBoard.isFirstTile()) {
       System.out.println("Ai will try to play now: ");
