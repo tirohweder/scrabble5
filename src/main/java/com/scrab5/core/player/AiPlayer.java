@@ -689,7 +689,7 @@ public class AiPlayer extends Player {
    * @param y is the row-position from where it starts countin on the current gameBoard
    * @author hraza
    */
-  public void getSpotsfree(int x, int y, GameBoard g) {
+  public void getSpotsFree(int x, int y, GameBoard g) {
     int counterRight = 0;
     int counterLeft = 0;
     int counterUp = 0;

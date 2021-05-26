@@ -7,15 +7,15 @@ import javafx.application.Platform;
 import javafx.fxml.Initializable;
 
 public class SingleplayerController extends InGameController implements Initializable {
-  
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    
+
     // aiTurn();
     refreshUI();
 
   }
-  
+
   private void refreshUI() {
 
     Thread t = new Thread(new Runnable() {
@@ -29,7 +29,7 @@ public class SingleplayerController extends InGameController implements Initiali
 
             @Override
             public void run() {
-              
+
               initRack();
               initPlayers();
               try {
@@ -40,8 +40,7 @@ public class SingleplayerController extends InGameController implements Initiali
               }
 
             }
-          }
-              );
+          });
           synchronized (this) {
             try {
               this.wait(200);
@@ -54,6 +53,5 @@ public class SingleplayerController extends InGameController implements Initiali
     });
     t.start();
   }
-  
+
 }
-  
