@@ -230,4 +230,50 @@ class AiPlayerTest {
     assertEquals(7, tiles4.get(4).getColumn());
     assertEquals(9, tiles4.get(4).getRow());
   }
+
+  @Test
+  void getSpotsFree2() {
+
+    GameBoard g2 = new GameBoard();
+    g2.placeTileTest(new Tile("A ", 1), 7, 3);
+    g2.placeTileTest(new Tile("A ", 1), 7, 4);
+    g2.placeTileTest(new Tile("A ", 1), 8, 3);
+    g2.finishTurn();
+    test.getSpotsFree2(7, 3, g2);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(0, test.counterUp);
+
+    GameBoard g3 = new GameBoard();
+    g3.placeTileTest(new Tile("A ", 1), 5, 6);
+    g3.placeTileTest(new Tile("A ", 1), 5, 7);
+    g3.placeTileTest(new Tile("A ", 1), 7, 6);
+    g3.finishTurn();
+    test.getSpotsFree2(5, 6, g3);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+    assertEquals(5, test.counterUp);
+
+    GameBoard g4 = new GameBoard();
+    g4.placeTileTest(new Tile("A ", 1), 7, 6);
+    g4.placeTileTest(new Tile("A ", 1), 7, 7);
+    g4.placeTileTest(new Tile("A ", 1), 7, 8);
+    g4.placeTileTest(new Tile("A ", 1), 7, 9);
+    g4.placeTileTest(new Tile("A ", 1), 7, 10);
+
+    g4.placeTileTest(new Tile("A ", 1), 6, 10);
+    g4.placeTileTest(new Tile("A ", 1), 8, 10);
+
+    g4.placeTileTest(new Tile("A ", 1), 8, 7);
+    g4.placeTileTest(new Tile("A ", 1), 9, 7);
+
+    g4.finishTurn();
+    test.getSpotsFree2(7, 8, g4);
+    assertEquals(7, test.counterUp);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
+  }
 }
