@@ -64,6 +64,7 @@ public class ClientThread extends Threads implements Serializable {
           case DISCONNECT:
             MultiplayerLobbyController.lobbyClosed();
             this.closeConnection();
+            Data.getGameSession().setRunning(false);
             break;
           case CHAT:
             ChatMessage chatMessage = (ChatMessage) message;
@@ -109,7 +110,7 @@ public class ClientThread extends Threads implements Serializable {
         }
       }
     } catch (Exception e) {
-      // e.printStackTrace();
+      e.printStackTrace();
       new NetworkError(NetworkErrorType.CLIENTRUN);
     }
 
@@ -182,6 +183,5 @@ public class ClientThread extends Threads implements Serializable {
    */
   protected void closeConnection() {
     this.stopThread();
-    Data.getGameSession().setRunning(false);;
   }
 }
