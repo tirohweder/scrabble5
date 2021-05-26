@@ -381,7 +381,6 @@ public class Server implements Serializable {
       }
     });
     timer.schedule(task, 1000 * 60 * 10);
-    System.out.println("timer scheduuuuuuuuuuuuuuuled" + System.currentTimeMillis());
   }
 
   /**
