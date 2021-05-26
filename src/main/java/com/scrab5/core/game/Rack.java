@@ -19,8 +19,8 @@ public class Rack implements Serializable {
   /**
    * For every empty place in the rack, fill will pick a tile from the bag and place it in the rack.
    *
-   * @param bag bag of which to fill the rack with
    * @author trohwede
+   * @param bag bag of which to fill the rack with
    */
   public void fill(BagOfTiles bag) {
     for (int i = 0; i < 7; i++) {
@@ -38,8 +38,8 @@ public class Rack implements Serializable {
   /**
    * Returns if the rack is full.
    *
-   * @return if the Rack is full
    * @author trohwede
+   * @return if the Rack is full
    */
   public boolean isRackFull() {
     for (int i = 0; i < 7; i++) {
@@ -50,19 +50,12 @@ public class Rack implements Serializable {
     return true;
   }
 
-  public boolean exchangeRack(int place) {
-
-    if (rack[place] != null) {}
-
-    return false;
-  }
-
   /**
-   * Adds the tile t to the position pos in the rack.
+   * Adds the tile t to the position pos in the rack. //TODO ASK why not needed
    *
+   * @author trohwede
    * @param t the tile that wants to be added
    * @param pos position of where to add the tile in the rack
-   * @author trohwede
    */
   public void addToRack(Tile t, int pos) {
     this.rack[pos] = t;
@@ -71,8 +64,8 @@ public class Rack implements Serializable {
   /**
    * Removes a tile from the rack at the given position.
    *
-   * @param pos position of the rack you want to remove the tile from
    * @author trohwede
+   * @param pos position of the rack you want to remove the tile from
    */
   public boolean removeTileFromRack(int pos) {
     if (this.rack[pos] != null) {
@@ -83,25 +76,12 @@ public class Rack implements Serializable {
     }
   }
 
-  /** @author trohwede */
-  public void resetRack() {
-    for (int i = 6; i >= 0; i--) {
-      this.rack[i] = null;
-    }
-  }
-
-  /** @author hraza */
-  public String toString() {
-    StringBuilder s = new StringBuilder();
-    for (int i = 0; i < 7; i++) {
-      s.append(this.rack[i].getLetter());
-    }
-    return s.toString();
-  }
-
-  /** @author apilgrim */
+  /**
+   * //TODO AARON.
+   *
+   * @author apilgrim
+   */
   public void shuffleRack(ArrayList<Integer> order) {
-
     Random rand = new Random();
     int random, values = order.size(), swapWith, swapOther;
     Tile swap;
@@ -121,7 +101,11 @@ public class Rack implements Serializable {
     }
   }
 
-  /** @author apilgrim */
+  /**
+   * //TODO AARON.
+   *
+   * @author apilgrim
+   */
   public Tile getTileAt(int pos) {
     return rack[pos];
   }

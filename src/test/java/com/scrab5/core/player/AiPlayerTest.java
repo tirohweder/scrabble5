@@ -122,6 +122,11 @@ class AiPlayerTest {
     assertEquals(0, test.counterUp);
   }
 
+  /**
+   * C
+   *
+   * @author trohwede
+   */
   @Test
   void countScore() {
 

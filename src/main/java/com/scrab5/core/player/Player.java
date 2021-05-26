@@ -46,57 +46,67 @@ public class Player implements Serializable {
   }
 
   /**
-   * @return Gets Rack
    * @author trohwede
+   * @return Gets Rack
    */
   public Rack getRack() {
     return rack;
   }
 
   /**
-   * @param rack setsRack for person
    * @author trohwede
+   * @param rack setsRack for person
    */
   public void setRack(Rack rack) {
     this.rack = rack;
   }
 
   /**
-   * @return Gets Name of Player
    * @author trohwede
+   * @return Gets Name of Player
    */
   public String getName() {
     return name;
   }
 
   /**
-   * @param name Sets name of Player
    * @author trohwede
+   * @param name Sets name of Player
    */
   public void setName(String name) {
     this.name = name;
   }
 
   /**
-   * @return Returns if human is or not
    * @author trohwede
+   * @return Returns if human is or not
    */
   public boolean isHuman() {
     return isHuman;
   }
 
   /**
-   * @param human Set Player to be Human or AI
    * @author trohwede
+   * @param human Set Player to be Human or AI
    */
   public void setHuman(boolean human) {
     isHuman = human;
   }
 
+  /**
+   * @author trohwede
+   * @return
+   */
   public int getPoints() {
     return points;
   }
 
+  /**
+   * Setter for the
+   *
+   * @author trohwede
+   * @param points
+   */
   public void setPoints(int points) {
     this.points = points;
   }

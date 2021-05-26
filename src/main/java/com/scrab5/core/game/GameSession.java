@@ -5,7 +5,6 @@ import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
-import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -41,8 +40,12 @@ public class GameSession implements Serializable {
    * @param points how many * points each letter gives
    * @param isOnline is the game multiplayer or singleplayer
    */
-  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
-      ArrayList<Integer> points, boolean isOnline) throws SQLException {
+  public GameSession(
+      ArrayList<Player> listOfPlayers,
+      ArrayList<Integer> letters,
+      ArrayList<Integer> points,
+      boolean isOnline)
+      throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -61,10 +64,10 @@ public class GameSession implements Serializable {
    * Intitializes the Gamsession, sets currentplayer, calls to create the correct bag, and fills the
    * rack of each player.
    *
+   * @author trohwede
    * @param listOfPlayers list of players in the correct order
    * @param isOnline is the game multiplayer or singleplayer
    * @throws SQLException if Database cant connect //TODO is this the right way
-   * @author trohwede
    */
   public GameSession(ArrayList<Player> listOfPlayers, boolean isOnline) throws SQLException {
     this.listOfPlayers = listOfPlayers;
@@ -89,8 +92,8 @@ public class GameSession implements Serializable {
   /**
    * Getter for gameBoard.
    *
-   * @return gameBoard
    * @author trohweder
+   * @return gameBoard
    */
   public GameBoard getGameBoard() {
     return gameBoard;
@@ -99,8 +102,8 @@ public class GameSession implements Serializable {
   /**
    * Getter for the current bag used.
    *
-   * @return bag
    * @author trohwede
+   * @return bag
    */
   public BagOfTiles getBag() {
     return bag;
@@ -109,8 +112,8 @@ public class GameSession implements Serializable {
   /**
    * Setter for the bag.
    *
-   * @param bag sets the bag for the game.
    * @author trohwede
+   * @param bag sets the bag for the game.
    */
   public void setBag(BagOfTiles bag) {
     this.bag = bag;
@@ -119,8 +122,8 @@ public class GameSession implements Serializable {
   /**
    * Getter for the current list of players.
    *
-   * @return current list of players
    * @author trohwede
+   * @return current list of players
    */
   public ArrayList<Player> getListOfPlayers() {
     return listOfPlayers;
@@ -133,8 +136,8 @@ public class GameSession implements Serializable {
   /**
    * Getter current skipped turns.
    *
-   * @return skippedTurns
    * @author trohwede
+   * @return skippedTurns
    */
   public int getSkippedTurn() {
     return skippedTurn;
@@ -143,8 +146,8 @@ public class GameSession implements Serializable {
   /**
    * Setter for skipped turns.
    *
-   * @param skippedTurn amount of skipped turns in a game
    * @author trohwede
+   * @param skippedTurn amount of skipped turns in a game
    */
   public void setSkippedTurn(int skippedTurn) {
     this.skippedTurn = skippedTurn;
@@ -153,8 +156,8 @@ public class GameSession implements Serializable {
   /**
    * Getter for the current round number.
    *
-   * @return roundNumber
    * @author trohwede
+   * @return roundNumber
    */
   public int getRoundNumber() {
     return roundNumber;
@@ -167,8 +170,8 @@ public class GameSession implements Serializable {
   /**
    * Setter if we can end.
    *
-   * @return if you can end the game
    * @author trohwede
+   * @return if you can end the game
    */
   public boolean isCanEnd() {
     return canEnd;
@@ -177,8 +180,8 @@ public class GameSession implements Serializable {
   /**
    * Setter for setting the possibility to end the game.
    *
-   * @param canEnd sets if its possible to end the game
    * @author trohwede
+   * @param canEnd sets if its possible to end the game
    */
   public void setCanEnd(boolean canEnd) {
     this.canEnd = canEnd;
@@ -187,8 +190,8 @@ public class GameSession implements Serializable {
   /**
    * Getter for current player.
    *
-   * @return the current player
    * @author trohwede
+   * @return the current player
    */
   public Player getCurrentPlayer() {
     return currentPlayer;
@@ -201,8 +204,8 @@ public class GameSession implements Serializable {
   /**
    * Returns if the game is online or offline.
    *
-   * @return if the game is online
    * @author trohwede
+   * @return if the game is online
    */
   public boolean isOnline() {
     return online;
@@ -211,8 +214,8 @@ public class GameSession implements Serializable {
   /**
    * Setter if the game is online or offline.
    *
-   * @param online is game multiplayer(online) or not
    * @author trohwede
+   * @param online is game multiplayer(online) or not
    */
   public void setOnline(boolean online) {
     this.online = online;
@@ -221,8 +224,8 @@ public class GameSession implements Serializable {
   /**
    * Returns if the game is running or not.
    *
-   * @return if the game is running
    * @author trohwede
+   * @return if the game is running
    */
   public boolean isRunning() {
     return running;
@@ -231,8 +234,8 @@ public class GameSession implements Serializable {
   /**
    * Set if the game is running or not.
    *
-   * @param running is the game live
    * @author trohwede
+   * @param running is the game live
    */
   public void setRunning(boolean running) {
     this.running = running;
@@ -243,8 +246,8 @@ public class GameSession implements Serializable {
   /**
    * Returns boolean if the game should end.
    *
-   * @return if the game shouldEnd
    * @author trohwede
+   * @return if the game shouldEnd
    */
   public boolean isShouldEnd() {
     return shouldEnd;
@@ -253,8 +256,8 @@ public class GameSession implements Serializable {
   /**
    * Setter for shouldEnd.
    *
-   * @param shouldEnd if the game should end when checked upon
    * @author trohwede
+   * @param shouldEnd if the game should end when checked upon
    */
   public void setShouldEnd(boolean shouldEnd) {
     this.shouldEnd = shouldEnd;
@@ -263,8 +266,8 @@ public class GameSession implements Serializable {
   /**
    * Reads the distribution of tiles from the database and creates the bag accordingly.
    *
-   * @throws SQLException if cant connect to the database
    * @author trohwede
+   * @throws SQLException if cant connect to the database
    */
   public void initializeBag() throws SQLException {
 
@@ -294,8 +297,10 @@ public class GameSession implements Serializable {
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
 
     // TODO joker richtig bennen
-    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    String[] buchstaben = {
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+      "T", "U", "V", "W", "X", "Y", "Z", "*"
+    };
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -334,7 +339,7 @@ public class GameSession implements Serializable {
 
   /**
    * ZEUG.
-   * 
+   *
    * @author mherre
    */
   public void endGame() {
@@ -348,20 +353,24 @@ public class GameSession implements Serializable {
       }
     }
 
-//    for (Player player : Data.getGameSession().getListOfPlayers()) {
-//      if (player.isHuman()) {
-//        Data.getGameSession().getCurrentPlayer().getPlayerProfile()
-//            .setCurrentPoints(PlayerProfileDatabase.getTotalPoints(Data.getCurrentUser()));
-//        System.out.println("geht");
-//        // Database.disconnect();
-//        player.getPlayerProfile().addPoints(player.getPoints());
-//        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
-//      }
-//    }
+    //    for (Player player : Data.getGameSession().getListOfPlayers()) {
+    //      if (player.isHuman()) {
+    //        Data.getGameSession().getCurrentPlayer().getPlayerProfile()
+    //            .setCurrentPoints(PlayerProfileDatabase.getTotalPoints(Data.getCurrentUser()));
+    //        System.out.println("geht");
+    //        // Database.disconnect();
+    //        player.getPlayerProfile().addPoints(player.getPoints());
+    //        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
+    //      }
+    //    }
     this.running = false;
   }
 
-  /** Checks if its the Ai Turn and if the first tile has to be played yet. If yes makes it play. */
+  /**
+   * Checks if its the Ai Turn and if the first tile has to be played yet. If yes makes it play.
+   *
+   * @author trohwede
+   */
   public void isAiFirstTurn() {
     if (currentPlayer instanceof AiPlayer && this.gameBoard.isFirstTile()) {
       System.out.println("Ai will try to play now: ");
@@ -378,8 +387,8 @@ public class GameSession implements Serializable {
   /**
    * Checks if rack and bag are empty, if yes shouldEnd is set to true.
    *
-   * @param player that should be checked
    * @author trohwede
+   * @param player that should be checked
    */
   public void checkBagAndRack(Player player) {
     if (bag.getSize() == 0 && !player.getRack().isRackFull()) {
@@ -390,8 +399,8 @@ public class GameSession implements Serializable {
   /**
    * Calculates if the more than 5 turns have been skipped in a row.
    *
-   * @return if its possible to end the game, because of skipped turns
    * @author trohwede
+   * @return if its possible to end the game, because of skipped turns
    */
   public boolean calculateEndPossibility() {
     return this.skippedTurn >= 6;

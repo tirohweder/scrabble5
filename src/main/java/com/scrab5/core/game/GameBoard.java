@@ -36,6 +36,7 @@ public class GameBoard implements Serializable {
       };
   private ArrayList<Tile> currentChanges = new ArrayList<>();
   private boolean firstTile = true;
+
   public GameBoard() {
     firstTile = true;
   }
@@ -79,11 +80,11 @@ public class GameBoard implements Serializable {
   /**
    * Places a tile, but only if it follows the rules.
    *
+   * @author trohwede
    * @param t Tile you want to place.
    * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if your placement was successful
-   * @author trohwede
    */
   public boolean placeTile(Tile t, int row, int column) {
 
@@ -105,11 +106,11 @@ public class GameBoard implements Serializable {
   /**
    * Placing a tile in the test doesn't have to follow rules, this makes testing a lot easier.
    *
+   * @author trohwede
    * @param t Tile you want to place
    * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if your placement was successful
-   * @author trohwede
    */
   public boolean placeTileTest(Tile t, int row, int column) {
     if (isSpotFree(row, column)) {
@@ -128,10 +129,10 @@ public class GameBoard implements Serializable {
   /**
    * Returns the tile at the given coordinates, only tiles that have already been confirmed.
    *
+   * @author trohwede
    * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return Tile that has already been played.
-   * @author trohwede
    */
   public Tile getPlayedTile(int row, int column) {
     return gameBoard[row][column];
@@ -140,8 +141,8 @@ public class GameBoard implements Serializable {
   /**
    * Checks if the currentPlayer is the same as the currentPerson clicking.
    *
-   * @return if player is allowed to play
    * @author trohwede
+   * @return if player is allowed to play
    */
   public boolean isAllowedToPlay() {
     return (Data.getCurrentUser().equals(Data.getGameSession().getCurrentPlayer().getName()));
@@ -151,10 +152,10 @@ public class GameBoard implements Serializable {
    * Checks if it is possible to remove a tile. First is has to check if the tile is already
    * confirmed. It also has to check if it the tile in the middle.
    *
+   * @author trohwede
    * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if it is possible to remove a tile
-   * @author trohwede
    */
   public boolean removeTile(int row, int column) {
     if (gameBoard[row][column] != null) {
@@ -193,10 +194,10 @@ public class GameBoard implements Serializable {
   /**
    * Will check if at the given coordinates there is already a tile placed on gameBoardCurrent.
    *
+   * @author trohwede
    * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if at the given coordinates there is already a tile placed on the gameBoardCurrent
-   * @author trohwede
    */
   public boolean isSpotFree(int row, int column) {
     return gameBoardCurrent[row][column] == null;
@@ -205,10 +206,10 @@ public class GameBoard implements Serializable {
   /**
    * Will check if at the given coordinates there is already a tile placed on gameBoardCurrent.
    *
+   * @author trohwede
    * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if at the given coordinates there is already a tile placed on the gameBoardCurrent
-   * @author trohwede
    */
   public boolean isSpotFreeOld(int row, int column) {
     return gameBoard[row][column] == null;
@@ -218,10 +219,10 @@ public class GameBoard implements Serializable {
    * Checks if the given coordinates, are in the same row and column. And if not next to each other
    * if between them other tiles have already been placed
    *
+   * @author trohwede
    * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if the given coordinates are in the same row or column and if they are connected.
-   * @author trohwede
    */
   public boolean isSpotNext(int row, int column) {
     System.out.println("Start");
@@ -279,6 +280,7 @@ public class GameBoard implements Serializable {
   /**
    * Checks if the given coordinates would be connected to the previously played tiles.
    *
+   * @author trohwede
    * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if the given coordinates are connected to the previously played tiles.
@@ -293,10 +295,10 @@ public class GameBoard implements Serializable {
   /**
    * Checks if its the given coordinates are in line with the first two tiles placed.
    *
+   * @author trohwede
    * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
    * @return if the given coordinates are in line with the first two tiles placed.
-   * @author trohwede
    */
   public boolean isSpotInLine(int row, int column) {
     int row1 = currentChanges.get(0).getRow();
@@ -345,10 +347,10 @@ public class GameBoard implements Serializable {
   /**
    * Checks if at the given coordinates its legal to play the next tile.
    *
+   * @author trohwede
    * @param row coordinates row - of the to be checked tile.
    * @param column coordinates column - of the to be checked tile.
    * @return boolean if at the given coordinates its possible to play the next tile.
-   * @author trohwede
    */
   public boolean isTileLegal(int row, int column) {
 
@@ -378,8 +380,8 @@ public class GameBoard implements Serializable {
    * toward the score. The the same way I check for words created to check if they are legit. I go
    * through the board add up a score. If the word ends, the word score, will be doubled or tripled.
    *
-   * @return the score that was achieved during the players turn
    * @author trohwede
+   * @return the score that was achieved during the players turn
    */
   public int countScore() {
     int score = 0;
@@ -508,8 +510,8 @@ public class GameBoard implements Serializable {
    * Tile that was already played in a previous round, touches a currentChange, the code tries to
    * find more Tiles in the same direction. If the next tile would be null, it stops.
    *
-   * @return returns a 2d Array of Tiles. That only contain all the newly created words.
    * @author trohwede
+   * @return returns a 2d Array of Tiles. That only contain all the newly created words.
    */
   public Tile[][] getTouchedWords() {
     Tile[][] touchedTiles = new Tile[15][15];
@@ -600,10 +602,10 @@ public class GameBoard implements Serializable {
   /**
    * Returns the Tile of gameBoardCurrent, at the given coordinates.
    *
+   * @author trohwede
    * @param row row coordinates.
    * @param column column coordinates.
    * @return the Tile at the given coordinates.
-   * @author trohwede
    */
   public Tile getTile(int row, int column) {
     if (gameBoardCurrent[row][column] != null) {
@@ -617,8 +619,8 @@ public class GameBoard implements Serializable {
    * if there are more than 2 words next to each other it counts as an word. After that it checks
    * all words horizontally.
    *
-   * @return ArrayList including every word on the board
    * @author trohwede
+   * @return ArrayList including every word on the board
    */
   public ArrayList<String> getWords() {
     ArrayList<String> listOfWords = new ArrayList<>();
@@ -674,8 +676,8 @@ public class GameBoard implements Serializable {
   /**
    * Checks if all the words generated are actually in the dictionary.
    *
-   * @return boolean if all words are found in the dictionary.
    * @author trohwede
+   * @return boolean if all words are found in the dictionary.
    */
   public boolean checkWordsLegit() {
     ArrayList<String> gameWords = getWords();
