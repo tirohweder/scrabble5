@@ -142,18 +142,12 @@ public abstract class InGameController implements Initializable {
   private boolean chooseJoker = false;
   private boolean turn = true;
 
-
-
   @Override
-  public void initialize(URL arg0, ResourceBundle arg1) {
-
-  }
+  public void initialize(URL arg0, ResourceBundle arg1) {}
 
   // init section
 
-
   protected void initPlayers() throws IOException {
-
 
     if (changes.size() != 0) {
       undoLabel.setOpacity(1);
@@ -163,8 +157,11 @@ public abstract class InGameController implements Initializable {
       undoButton.setOpacity(0);
     }
 
-    if (turn && Data.getGameSession().getCurrentPlayer().getName()
-        .equalsIgnoreCase(Data.getCurrentUser())) {
+    if (turn
+        && Data.getGameSession()
+            .getCurrentPlayer()
+            .getName()
+            .equalsIgnoreCase(Data.getCurrentUser())) {
       turn = false;
       newPum("IT'S YOUR TURN");
     }
@@ -181,10 +178,12 @@ public abstract class InGameController implements Initializable {
     }
 
     if (0 < playerAmount) {
-      pointsPlayer1
-          .setText(Integer.toString(Data.getGameSession().getListOfPlayers().get(0).getPoints()));
+      pointsPlayer1.setText(
+          Integer.toString(Data.getGameSession().getListOfPlayers().get(0).getPoints()));
       player1.setText(players.get(0).getName());
-      if (players.get(0).getName()
+      if (players
+          .get(0)
+          .getName()
           .equalsIgnoreCase(Data.getGameSession().getCurrentPlayer().getName())) {
         playerProfile1Passive.setOpacity(0);
       }
@@ -192,12 +191,14 @@ public abstract class InGameController implements Initializable {
     if (1 < playerAmount) {
       player2.setText(players.get(1).getName());
       player2.setOpacity(1);
-      pointsPlayer2
-          .setText(Integer.toString(Data.getGameSession().getListOfPlayers().get(1).getPoints()));
+      pointsPlayer2.setText(
+          Integer.toString(Data.getGameSession().getListOfPlayers().get(1).getPoints()));
       pointsPlayer2.setOpacity(1);
       playerProfile2Active.setOpacity(1);
       playerProfile2Passive.setOpacity(1);
-      if (players.get(1).getName()
+      if (players
+          .get(1)
+          .getName()
           .equalsIgnoreCase(Data.getGameSession().getCurrentPlayer().getName())) {
         playerProfile1Passive.setOpacity(0);
       }
@@ -205,8 +206,8 @@ public abstract class InGameController implements Initializable {
     if (2 < playerAmount) {
       player3.setText(players.get(2).getName());
       player3.setOpacity(1);
-      pointsPlayer3
-          .setText(Integer.toString(Data.getGameSession().getListOfPlayers().get(2).getPoints()));
+      pointsPlayer3.setText(
+          Integer.toString(Data.getGameSession().getListOfPlayers().get(2).getPoints()));
       pointsPlayer3.setOpacity(1);
       playerProfile3Active.setOpacity(1);
       playerProfile3Passive.setOpacity(1);
