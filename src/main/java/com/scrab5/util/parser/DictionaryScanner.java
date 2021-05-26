@@ -25,13 +25,12 @@ public class DictionaryScanner {
    */
 
   public static boolean scan(String searchedWord) {
-    /*
-     * File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-     * + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
-     */
+    /*File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + "src/main/resources/com/scrab5/util/textParser/"
+        + "Built-In Standard DictionaryParsed.txt");*/
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + "src/main/resources/com/scrab5/util/textParser/"
-        + "Built-In Standard DictionaryParsed.txt");
+        + DictionaryParser.getNewFileName());
     boolean found = false;
     // String[] possibleLetters = UseDatabase.getAllLetters();
     // String test;
@@ -66,10 +65,12 @@ public class DictionaryScanner {
    */
   public static ArrayList<String> getWordsIncluding(String letter, int length) {
     ArrayList<String> list = new ArrayList<String>();
+    /*File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + "src/main/resources/com/scrab5/util/textParser/"
+        + "Built-In Standard DictionaryParsed.txt");*/
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + "src/main/resources/com/scrab5/util/textParser/"
-        + "Built-In Standard DictionaryParsed.txt");
-    // needs to be changed back to DictionaryParser.getNewFileName();
+        + DictionaryParser.getNewFileName());
     try {
       Scanner scanner = new Scanner(file);
       while (scanner.hasNextLine()) {
@@ -127,7 +128,8 @@ public class DictionaryScanner {
     System.out.println(scan("ZZZ"));
     System.out.println();
 
-    System.out.println("before");
+    System.out.println("before: ");
+    System.out.println(scan("before"));
     System.out.println();
     // String[] test = getWordsIncluding("A", 3);
     /*
