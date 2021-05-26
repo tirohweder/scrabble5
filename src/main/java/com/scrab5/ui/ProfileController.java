@@ -195,7 +195,6 @@ public class ProfileController extends Controller implements Initializable {
     String longestWord = PlayerProfileDatabase.getLongestWord(name);
     this.longestWord.setText(longestWord);
     
-
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
     if (!favoriteDictionary.equals("")) {
       this.favDic.setText(favoriteDictionary.substring(0, favoriteDictionary.length() - 4));
@@ -215,10 +214,8 @@ public class ProfileController extends Controller implements Initializable {
     int pointsPerWordRate = PlayerProfileDatabase.getPointsPerWordRate(name);
     this.averagePointsWord.setText(String.valueOf(pointsPerWordRate));
 
-
     int totalPlayedGames = PlayerProfileDatabase.getTotalPlayedGames(name);
     this.totalGames.setText(String.valueOf(totalPlayedGames));
-
 
     int totalWins = PlayerProfileDatabase.getTotalWins(name);
     this.totalWins.setText(String.valueOf(totalWins));

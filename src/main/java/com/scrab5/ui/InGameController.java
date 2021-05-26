@@ -24,15 +24,9 @@ import javafx.scene.media.MediaPlayer;
 
 public abstract class InGameController implements Initializable {
 
-  /**
-   * boolean which is set when a tile from the Board/ a letter from the rack is clicked (selected)
-   */
+  
   private boolean tileClicked = false;
   private boolean letterClicked = false;
-
-  /**
-   * a copy of the tile from the Board/ a letter from the rack which are currently selected
-   */
   private ImageView clickedTile;
   private ImageView clickedLetter;
   private Label clickedLabel;
@@ -40,6 +34,7 @@ public abstract class InGameController implements Initializable {
   private MediaPlayer mediaPlayer;
 
   private Image markedTile;
+  
   private static final double LABEL_X_CORD = 30.0;
   private static final double LABEL_Y_CORD = 23.0;
   private static final double LABEL_X_CORD_BACK = 46.0;
@@ -47,27 +42,22 @@ public abstract class InGameController implements Initializable {
 
   private boolean endPossible = false;
 
-
-  String currentUser = Data.getCurrentUser();
-  String currentPlayer = Data.getGameSession().getCurrentPlayer().getName();
-  String letterJoker;
-
-
+  private String letterJoker;
 
   @FXML
-  ImageView rackPlace1;
+  protected ImageView rackPlace1;
   @FXML
-  ImageView rackPlace2;
+  protected ImageView rackPlace2;
   @FXML
-  ImageView rackPlace3;
+  protected ImageView rackPlace3;
   @FXML
-  ImageView rackPlace4;
+  protected ImageView rackPlace4;
   @FXML
-  ImageView rackPlace5;
+  protected ImageView rackPlace5;
   @FXML
-  ImageView rackPlace6;
+  protected ImageView rackPlace6;
   @FXML
-  ImageView rackPlace7;
+  protected ImageView rackPlace7;
 
   @FXML
   private ImageView playerProfile1Passive;
@@ -141,15 +131,13 @@ public abstract class InGameController implements Initializable {
 
   Boolean[] rackChanges = new Boolean[7];
 
-  ArrayList<ImageView> changes = new ArrayList<ImageView>();
+  private ArrayList<ImageView> changes = new ArrayList<ImageView>();
 
   private ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
   private int playerAmount = players.size();
 
   private ArrayList<Integer> jokerPlacedAt = new ArrayList<>();
   private ArrayList<Integer> tilePlacedOrder = new ArrayList<>();
-
-  int place = 0;
 
   private boolean chooseJoker = false;
   private boolean turn = true;
@@ -219,12 +207,11 @@ public abstract class InGameController implements Initializable {
   }
 
   protected void initRack() {
-    String currentUser = Data.getCurrentUser();
     Rack myRack = null;
 
     for (Player p : Data.getGameSession().getListOfPlayers()) {
       String s = p.getName();
-      if (s.equalsIgnoreCase(currentUser)) {
+      if (s.equalsIgnoreCase(Data.getCurrentUser())) {
         myRack = p.getRack();
       } else {
         continue;
@@ -1152,7 +1139,6 @@ public abstract class InGameController implements Initializable {
   private void shuffleClicked(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
-    currentUser = Data.getCurrentUser();
     ArrayList<Integer> order = new ArrayList<>();
 
     if (rackPlace1.getOpacity() != 0) {
@@ -1181,7 +1167,7 @@ public abstract class InGameController implements Initializable {
     while (it.hasNext()) {
       Player p = it.next();
       String s = p.getName();
-      if (s.equals(currentUser)) {
+      if (s.equals(Data.getCurrentUser())) {
         p.getRack().shuffleRack(order);
         initRack();
       } else {
@@ -1346,13 +1332,12 @@ public abstract class InGameController implements Initializable {
 
   protected void rackRemoveTile(int pos) {
     ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
-    currentUser = Data.getCurrentUser();
 
     Iterator<Player> it = players.iterator();
     while (it.hasNext()) {
       Player p = it.next();
       String s = p.getName();
-      if (s.equals(currentUser)) {
+      if (s.equals(Data.getCurrentUser())) {
         p.getRack().removeTileFromRack(pos);
         p.getRack().fill(Data.getGameSession().getBag());
       } else {

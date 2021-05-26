@@ -339,16 +339,16 @@ public class GameSession implements Serializable {
    */
   public void endGame() {
 
-    for (Player player : Data.getGameSession().getListOfPlayers()) {
-      if (player.isHuman()) {
-        Data.getGameSession().getCurrentPlayer().getPlayerProfile()
-            .setCurrentPoints(PlayerProfileDatabase.getTotalPoints(Data.getCurrentUser()));
-        System.out.println("geht");
-        // Database.disconnect();
-        player.getPlayerProfile().addPoints(player.getPoints());
-        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
-      }
-    }
+//    for (Player player : Data.getGameSession().getListOfPlayers()) {
+//      if (player.isHuman()) {
+//        Data.getGameSession().getCurrentPlayer().getPlayerProfile()
+//            .setCurrentPoints(PlayerProfileDatabase.getTotalPoints(Data.getCurrentUser()));
+//        System.out.println("geht");
+//        // Database.disconnect();
+//        player.getPlayerProfile().addPoints(player.getPoints());
+//        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
+//      }
+//    }
     this.running = false;
   }
 
