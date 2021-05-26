@@ -23,6 +23,7 @@ public class Player implements Serializable {
     this.isHuman = human;
     this.playerProfile = new PlayerProfile();
   }
+
   /**
    * @param name When Player is created gives the player a name and a personal rack
    * @author trohwede

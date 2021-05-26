@@ -1,6 +1,7 @@
 package com.scrab5.ui;
 
 import com.scrab5.core.game.GameSession;
+import com.scrab5.core.player.AiPlayer;
 import com.scrab5.core.player.Player;
 import com.scrab5.network.ClientData;
 import com.scrab5.network.Server;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -194,6 +196,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   /**
+   * Starts the game in a multipalyer session. You will not understand the code but it works fine.
+   * 
    * @param event
    * @throws IOException
    * @throws SQLException
@@ -202,37 +206,74 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
 
-    ArrayList<Player> playerList = new ArrayList<Player>();
+    ArrayList<Player> gameSessionList = new ArrayList<Player>();
     ArrayList<Integer> voteResults = new ArrayList<Integer>();
-    Collection<ClientData> clientnames =
+    Collection<ClientData> clientdata =
         Data.getPlayerClient().getCurrentServer().getClients().values();
+    int[] difficulties = new int[] {this.diffBox1.getSelectionModel().getSelectedIndex(),
+        this.diffBox2.getSelectionModel().getSelectedIndex(),
+        this.diffBox3.getSelectionModel().getSelectedIndex()};
+    LinkedList<Player> playerList = new LinkedList<Player>();
 
-    for (int i = 0; i < clientnames.size(); i++) {
+    Iterator<ClientData> it = clientdata.iterator();
+    ClientData current;
+    int counter = 0;
+    while (it.hasNext()) {
+      current = it.next();
+      if (current.getIp().equals("AI")) {
+        playerList.add(playerList.size(),
+            new AiPlayer(current.getUsername(), difficulties[counter]));
+      } else {
+        playerList.add(playerList.size(), new Player(current.getUsername(), true));
+      }
+    }
+
+    for (int i = 0; i < clientdata.size(); i++) {
       voteResults.add(0);
     }
 
     for (ArrayList<Integer> vote : votes.values()) {
-      for (int j = 0; j < clientnames.size(); j++) {
+      for (int j = 0; j < clientdata.size(); j++) {
         voteResults.add(j, vote.get(j) + voteResults.remove(j));
       }
     }
 
-    int maximum;
-    Iterator<ClientData> it;
-    for (int clients = 0; clients < clientnames.size(); clients++) {
-      maximum = 0;
-      for (int k = 1; k < clientnames.size(); k++) {
-        if (voteResults.get(maximum) < voteResults.get(k)) {
-          maximum = k;
+    int max;
+    for (ClientData c : clientdata) {
+      max = 0;
+      for (int k = 1; k < clientdata.size(); k++) {
+        if (voteResults.get(max) < voteResults.get(k)) {
+          max = k;
+        }
+        if (max <= playerList.size()) {
+          gameSessionList.add(0, playerList.get(max));
         }
       }
-      it = clientnames.iterator();
-      for (int l = 0; l < maximum; l++) {
-        it.next();
-      }
-      playerList.add(0, new Player(it.next().getUsername(), true));
-      voteResults.set(maximum, 0);
+      voteResults.set(max, 0);
     }
+
+    // int maximum;
+    // Iterator<ClientData> iterator;
+    // ClientData cd;
+    // for (int clients = 0; clients < clientnames.size(); clients++) {
+    // maximum = 0;
+    // for (int k = 1; k < clientnames.size(); k++) {
+    // if (voteResults.get(maximum) < voteResults.get(k)) {
+    // maximum = k;
+    // }
+    // }
+    // it = clientnames.iterator();
+    // for (int l = 0; l < maximum; l++) {
+    // it.next();
+    // }
+    // cd = it.next();
+    // if (cd.getIp().equals("AI")) {
+    // playerList.add(0, new AiPlayer(cd.getUsername(), dificulties[maximum]));
+    // } else {
+    // playerList.add(0, new Player(it.next().getUsername(), true));
+    // }
+    // voteResults.set(maximum, 0);
+    // }
 
     GameSession gs;
 
@@ -240,11 +281,11 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       ArrayList<Integer> pointsDito = Data.getPointsDistribution();
       ArrayList<Integer> occurrencyDisto = Data.getOccurrencyDistribution();
 
-      gs = new GameSession(playerList, pointsDito, occurrencyDisto, true);
+      gs = new GameSession(gameSessionList, pointsDito, occurrencyDisto, true);
       Data.setGameSession(gs);
 
     } else {
-      gs = new GameSession(playerList, true);
+      gs = new GameSession(gameSessionList, true);
       Data.setGameSession(gs);
       System.out.println("Online GameSession created");
     }

@@ -112,6 +112,7 @@ public class EndGameController extends InGameController implements Initializable
 
   @FXML
   private void mainMenuClicked(MouseEvent event) throws IOException {
+    Data.getPlayerClient().disconnectFromServer();
     App.setRoot("MainMenu");
   }
 
