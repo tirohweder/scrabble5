@@ -39,15 +39,18 @@ public class EndGameController extends InGameController implements Initializable
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    try {
-      initPlayers();
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
+    
+      try {
+        initPlayers();
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
 
     initEndGame();
   }
+  
+  
 
   private void initEndGame() {
     Data.getGameSession().setRunning(false);
