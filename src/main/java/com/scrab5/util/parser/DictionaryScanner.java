@@ -22,8 +22,12 @@ public class DictionaryScanner {
    * @return boolean of the file contains a searched word
    */
   public static boolean scan(String searchedWord) {
+    /*
+     * File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+     * + "src/main/resources/com/scrab5/util/textParser/" +
+     * Data.getSelectedDictionary().replace(".", "Parsed."));
+     */
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/"
         + Data.getSelectedDictionary().replace(".", "Parsed."));
     boolean found = false;
     // String[] possibleLetters = UseDatabase.getAllLetters();
@@ -48,10 +52,13 @@ public class DictionaryScanner {
     }
     return found;
   }
-  
+
   public static boolean scanTest(String searchedWord) {
+    /*
+     * File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+     * + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
+     */
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/"
         + DictionaryParser.getNewFileName());
     boolean found = false;
 
@@ -84,8 +91,12 @@ public class DictionaryScanner {
      * File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") +
      * "src/main/resources/com/scrab5/util/textParser/" + "Built-In Standard DictionaryParsed.txt");
      */
+    /*
+     * File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") +
+     * "src/main/resources/com/scrab5/util/textParser/" + Data.getSelectedDictionary().replace(".",
+     * "Parsed."));
+     */
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/"
         + Data.getSelectedDictionary().replace(".", "Parsed."));
     try {
       Scanner scanner = new Scanner(file);
@@ -121,36 +132,4 @@ public class DictionaryScanner {
     }
     return checked;
   }
-
-
-
-  /**
-   * main method to test the implementation.
-   * 
-   * @author lengist
-   * @param args
-   */
-  // public static void main(String[] args) {
-  // Database db = new Database();
-  // CreateDatabase cdb = new CreateDatabase();
-  // FillDatabase fd = new FillDatabase();
-  // fd.fillLetters();
-  //
-  //
-  // // DictionaryParser.setCurrentDictionary("words.txt");
-  // // DictionaryParser.parseFile("words.txt");
-  // DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
-  // // System.out.println(scan("JOK*R"));
-  // System.out.println(scan("ZZZ"));
-  // System.out.println();
-  //
-  // System.out.println("before: ");
-  // System.out.println(scan("before"));
-  // System.out.println();
-  // // String[] test = getWordsIncluding("A", 3);
-  // /*
-  // * for(int i = 0; i < test.length; i++) { System.out.println(test[i]); }
-  // * System.out.println("after");
-  // */
-  // }
 }
