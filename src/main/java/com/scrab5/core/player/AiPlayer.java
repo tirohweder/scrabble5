@@ -357,12 +357,6 @@ public class AiPlayer extends Player {
       int scoreToBe = 0;
 
       for (Tile tile : word) {
-
-        String[][] test = Data.getGameSession().getGameBoard().getGameBoardSpecial();
-        if (test[tile.getRow()][tile.getColumn()] != "  ") {
-          System.out.println(test[tile.getRow()][tile.getColumn()]);
-        }
-
         switch (Data.getGameSession()
             .getGameBoard()
             .getSpecialsAt(tile.getRow(), tile.getColumn())) {
@@ -418,8 +412,8 @@ public class AiPlayer extends Player {
     counterRight = 0;
 
     int count = 0;
-    // up
 
+    // ----------------------- UP -------------------------- //
     while (row - 2 - count >= 0) {
       if (column == 0
           && gameBoard[row - 1 - count][column + 1] == null
@@ -452,7 +446,13 @@ public class AiPlayer extends Player {
       }
     }
     if (row - 2 - count < 0) {
-      if (gameBoard[0][column] == null) {
+      if (column == 0 && gameBoard[0][0] == null && gameBoard[0][1] == null) {
+        counterUp++;
+      } else if (column == 14 && gameBoard[0][14] == null && gameBoard[0][13] == null) {
+        counterUp++;
+      } else if (gameBoard[0][column] == null
+          && gameBoard[0][column - 1] == null
+          && gameBoard[0][column + 1] == null) {
         counterUp++;
       }
     }
@@ -461,7 +461,7 @@ public class AiPlayer extends Player {
     }
 
     count = 0;
-    // down
+    // ----------------------- DOWN -------------------------- //
     while (row + 2 + count < 15) {
       if (column == 0
           && gameBoard[row + 1 + count][column + 1] == null
@@ -493,8 +493,15 @@ public class AiPlayer extends Player {
         break;
       }
     }
+
     if (row + 2 + count == 15) {
-      if (gameBoard[14][column] == null) {
+      if (column == 0 && gameBoard[14][0] == null && gameBoard[14][1] == null) {
+        counterDown++;
+      } else if (column == 14 && gameBoard[14][14] == null && gameBoard[14][13] == null) {
+        counterDown++;
+      } else if (gameBoard[14][column] == null
+          && gameBoard[14][column - 1] == null
+          && gameBoard[14][column + 1] == null) {
         counterDown++;
       }
     }
@@ -504,7 +511,7 @@ public class AiPlayer extends Player {
 
     count = 0;
 
-    // right
+    // ----------------------- RIGHT -------------------------- //
     while (column + 2 + count < 15) {
       if (row == 0
           && gameBoard[row + 1][column + 1 + count] == null
@@ -536,8 +543,15 @@ public class AiPlayer extends Player {
         break;
       }
     }
+
     if (column + 2 + count == 15) {
-      if (gameBoard[row][14] == null) {
+      if (row == 0 && gameBoard[0][14] == null && gameBoard[1][14] == null) {
+        counterRight++;
+      } else if (row == 14 && gameBoard[14][14] == null && gameBoard[13][14] == null) {
+        counterRight++;
+      } else if (gameBoard[row][14] == null
+          && gameBoard[row - 1][14] == null
+          && gameBoard[row + 1][14] == null) {
         counterRight++;
       }
     }
@@ -547,7 +561,7 @@ public class AiPlayer extends Player {
 
     count = 0;
 
-    // left
+    // ----------------------- Left -------------------------- //
     while (column - 2 - count >= 0) {
       if (row == 0
           && gameBoard[row + 1][column - 1 - count] == null
@@ -582,7 +596,13 @@ public class AiPlayer extends Player {
     }
 
     if (column - 2 - count < 0) {
-      if (gameBoard[row][0] == null) {
+      if (row == 0 && gameBoard[0][0] == null && gameBoard[1][0] == null) {
+        counterLeft++;
+      } else if (row == 14 && gameBoard[14][0] == null && gameBoard[13][0] == null) {
+        counterLeft++;
+      } else if (gameBoard[row][0] == null
+          && gameBoard[row - 1][0] == null
+          && gameBoard[row + 1][0] == null) {
         counterLeft++;
       }
     }
