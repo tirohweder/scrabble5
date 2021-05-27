@@ -19,7 +19,8 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
 /**
- * The InGameController class controls the components of the "AccountCreation.fxml".
+ * The InGameController class handels everything that happens during playing the game. Plus is
+ * needed for the EndGame-/ Singleplayer-/ Multiplayer-/ ExchangeController
  * 
  * @author apilgrim
  */
@@ -122,11 +123,19 @@ public abstract class InGameController implements Initializable {
   private boolean chooseJoker = false;
   private boolean turn = true;
 
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {}
 
+
   // init section
 
+  /**
+   * initPlayers() initiliazes the points, names and active/ passive profiles of the ingame (thru
+   * opacity/ text setting of Labels and ImageViews).
+   * 
+   * @author apilgrim
+   */
   protected void initPlayers() {
 
     if (0 < playerAmount) {
@@ -180,9 +189,15 @@ public abstract class InGameController implements Initializable {
 
     nextPlayer();
   }
-  
+
+  /**
+   * initButtons() initiliazes the undo/ skip/play / end Game Buttons and Labels of the ingame (thru
+   * opacity/ text setting of Labels and ImageViews). Checks also the 
+   * 
+   * @author apilgrim
+   */
   protected void initButtons() throws IOException {
-    
+
     if (changes.size() != 0) {
       undoLabel.setOpacity(1);
       undoButton.setOpacity(1);
