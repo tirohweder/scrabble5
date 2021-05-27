@@ -1062,6 +1062,17 @@ public class AiPlayer extends Player {
 
         Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
         currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
+        if (Data.getGameSession()
+            .getGameBoard()
+            .getSpecialsAt(tile.getRow(), tile.getColumn())
+            .equals("TW")) {
+          if (Data.getGameSession().isOnline()) {
+            Data.getPlayerClient().playSound(false);
+          } else {
+            Data.getGameSession().playSound(false);
+          }
+        }
+
         Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
       }
       System.out.println("placed");
