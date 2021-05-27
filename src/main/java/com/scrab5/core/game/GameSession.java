@@ -373,9 +373,9 @@ public class GameSession implements Serializable {
         if (temp.getLaidWords() != 0) {
           temp.adjustPointsPerWordRate(temp.getTotalPoints() / temp.getLaidWords());
         }
-        if (temp.getLongestWord().length() > PlayerProfileDatabase.getLongestWord(player.getName())
-            .length()) {
+        if (temp.getLongestWord() > PlayerProfileDatabase.getLongestWord(player.getName())) {
           temp.adjustLongestWord(temp.getLongestWord());
+          /* TODO: connect to change the value for the longest word */
         }
         if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {
           temp.adjustPersonalHighscore(player.getPoints());
@@ -441,7 +441,6 @@ public class GameSession implements Serializable {
    * @param tob - the variable if Triple.mp3 or Bingo.mp3 shall be played.
    */
   public void playSound(boolean tob) {
-    System.out.println("PLAAAAAAAAAYYYYYYYYYYYYYYYY SSSSSSOUUUNNDDDDDD2");
     String file = "";
     if (tob) {
       file = "Bingo.mp3";

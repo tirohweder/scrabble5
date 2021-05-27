@@ -405,6 +405,11 @@ public class GameBoard implements Serializable {
             case "TW":
               scoreToBe += changedWords[i][j].getValue();
               tws = true;
+              if (Data.getGameSession().isOnline()) {
+                Data.getPlayerClient().playSound(false);
+              } else {
+                Data.getGameSession().playSound(false);
+              }
               break;
             case "DW":
               scoreToBe += changedWords[i][j].getValue();
@@ -419,12 +424,6 @@ public class GameBoard implements Serializable {
           if (word.length() > 1) {
             if (tws) {
               scoreToBe *= 3;
-              System.out.println("PLAAAAAAAAAAAAYYYYYYYYYYYYYY");
-              if (Data.getGameSession().isOnline()) {
-                Data.getPlayerClient().playSound(false);
-              } else {
-                Data.getGameSession().playSound(false);
-              }
             } else if (dws) {
               scoreToBe *= 2;
             }
@@ -443,6 +442,7 @@ public class GameBoard implements Serializable {
         }
         score += scoreToBe;
       }
+
       scoreToBe = 0;
       word.setLength(0);
     }
