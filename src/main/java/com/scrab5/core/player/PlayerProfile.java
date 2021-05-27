@@ -16,7 +16,6 @@ public class PlayerProfile implements Serializable {
   private static final long serialVersionUID = 1L;
 
   private static String name = Data.getCurrentUser();
-  private static String picture;
   
   private int currentPersonalHighscore;
   private int currentWordCount;
@@ -66,10 +65,11 @@ public class PlayerProfile implements Serializable {
    * @author lengist
    */
   public void adjustPersonalHighscore(int lastPersonalHighscore) {
-    //int savedPersonalHighscore = PlayerProfileDatabase.getPersonalHighscore(name);
-    if (lastPersonalHighscore > currentPersonalHighscore) {
+    Database.reconnect();
+    int current = PlayerProfileDatabase.getPersonalHighscore(name);
+    if (lastPersonalHighscore > current) {
       PlayerProfileDatabase.setPersonalHighscore(name, lastPersonalHighscore);
-      setCurrentPersonalHighscore(lastPersonalHighscore);
+      //setCurrentPersonalHighscore(lastPersonalHighscore);
     }
   }
   

@@ -1252,6 +1252,8 @@ public abstract class InGameController implements Initializable {
     if (Data.isConfirmed()) {
       Data.getGameSession().setShouldEnd(true);
       Data.getGameSession().endGame();
+      changes.clear();
+      Data.getGameSession().setSkippedTurn(0);
       if (Data.getGameSession().isOnline()) {
         App.setRoot("EndGameMultiplayer");
       } else {
