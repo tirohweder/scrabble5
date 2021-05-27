@@ -322,7 +322,7 @@ public abstract class InGameController implements Initializable {
     double layoutX = 263.0;
     double layoutY = 53.0;
 
-    bagSize.setText("bag size: " + Integer.toString(Data.getGameSession().getBag().getSize()));
+    bagSize.setText("Bag size: " + Integer.toString(Data.getGameSession().getBag().getSize()));
 
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
