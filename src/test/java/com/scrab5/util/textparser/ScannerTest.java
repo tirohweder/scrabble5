@@ -35,6 +35,7 @@ class ScannerTest {
 
     assertEquals(true, DictionaryScanner.scan("ZZZ"));
     assertEquals(false, DictionaryScanner.scan("XXXX"));
+    assertEquals(true, DictionaryScanner.scan("before"));
     Database.disconnect();
   }
 

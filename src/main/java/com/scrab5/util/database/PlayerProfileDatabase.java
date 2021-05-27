@@ -331,8 +331,8 @@ public class PlayerProfileDatabase extends Database {
    * @param points Integer representing the new points to be stored in the database
    */
   public static void setTotalPoints(String name, int points) {
-    //FillDatabase.updatePlayer("TotalPoints", name, null, points, 0.0);
-    FillDatabase.updatePoints(name, points);
+    FillDatabase.updatePlayer("TotalPoints", name, null, points, 0.0);
+    //FillDatabase.updatePoints(name, points);
     Database.disconnect();
   }
 

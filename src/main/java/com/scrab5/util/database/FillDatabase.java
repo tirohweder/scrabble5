@@ -12,8 +12,8 @@ import java.util.Iterator;
 /**
  * class with methods to fill all tables, edit certain entries or delete a table or certain entries
  * in the database. Note: To save the database and make sure that not two clients at the same time
- * are able to make a request to the database file, the connection gets established and disconnected
- * in every method individual where it is necessary.
+ * are able to make a request/change to the database file, the connection gets established and
+ * disconnected in every method individual where it is necessary.
  *
  * @author lengist
  * @author hraza
@@ -67,9 +67,9 @@ public class FillDatabase extends Database {
   /**
    * Deleting all entries from the table "name".
    *
-   * @param name String with name of the user
    * @author lengist
    * @author hraza
+   * @param name String with name of the user
    */
   protected static synchronized void deleteTable(String name) {
     Database.reconnect();
@@ -89,8 +89,8 @@ public class FillDatabase extends Database {
   /**
    * Deletes a certain player with name "name" in the table Player.
    *
-   * @param name String with name of the user
    * @author lengist
+   * @param name String with name of the user
    */
   public static synchronized void deletePlayer(String name) {
     Database.reconnect();
@@ -111,10 +111,9 @@ public class FillDatabase extends Database {
    * Method to fill table player completely. Used when a new player profile is created. Variables
    * for statistics get default values.
    *
-   * @param name    String with name of the user
-   * @param picture String with the path to the picture
    * @author lengist
    * @author hraza
+   * @param name String with the name of the user
    */
   public static synchronized boolean createPlayer(String name) {
     Database.reconnect();
@@ -150,7 +149,7 @@ public class FillDatabase extends Database {
     return created;
   }
 
-  public static synchronized void updatePoints(String userName, int newPoints) {
+  /*public static synchronized void updatePoints(String userName, int newPoints) {
     Database.reconnect();
     PreparedStatement pstm;
     String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
@@ -164,22 +163,23 @@ public class FillDatabase extends Database {
       System.out.println("in update points");
       e.printStackTrace();
     }
-    
+
     System.out.println("gesetzt");
-  }
+  }*/
+
   /**
-   * Filling the table player at specific index/column. If variable for column name is from type
-   * integer, variable contentString is default.
+   * Filling the table player at a specific index/column. If the variable for column name is from
+   * type integer, the variable contentString is default.
    *
-   * @param column        String with the name of the column in the table where a change needs to be
-   *                      done
-   * @param name          String with name of the user
-   * @param contentString String that contains the new information that needs to be stored in the
-   *                      database
-   * @param contentInt    Integer that contains the new information that needs to be stored in the
-   *                      database
    * @author hraza
    * @author lengist
+   * @param column String with the name of the column in the table where a change needs to be done
+   * @param name String with name of the user
+   * @param contentString String that contains the new information that needs to be stored in the
+   *        database
+   * @param contentInt Integer that contains the new information that needs to be stored in the
+   *        database
+   * @param doubleValues the values for the rate, given as double
    */
   protected static synchronized void updatePlayer(String column, String name, String contentString,
       int contentInt, double doubleValues) {
@@ -192,34 +192,22 @@ public class FillDatabase extends Database {
 
       try {
         if (column.equals("Name")) {
-          //Database.disconnect();
-          //Database.reconnect();
           System.out.println("name aufgerufen.");
           String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setString(1, contentString);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
-          //pstmt.close();
         } else if (column.equals("TotalPoints")) {
           System.out.println("points aufgerufen");
-          //Database.disconnect();
-          //
-          //Database.reconnect();
           String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
-          System.out.println("bye 1");
           pstmt.setInt(1, contentInt);
-          System.out.println("bye 2");
           pstmt.setString(2, name);
-          System.out.println("bye 3");
           pstmt.executeUpdate();
-          pstmt.close();
           System.out.println("gesetzt");
         } else if (column.equals("PersonalHighscore")) {
           System.out.println("highscore aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
           String sql = "UPDATE Player SET PersonalHighscore = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
@@ -227,8 +215,6 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
         } else if (column.equals("LaidWords")) {
           System.out.println("laid words aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
           String sql = "UPDATE Player SET Laidwords = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
@@ -236,8 +222,6 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
         } else if (column.equals("PointsPerWordRate")) {
           System.out.println("ppwordrate aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
           String sql = "UPDATE Player SET PointsPerWordRate = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
@@ -245,8 +229,6 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
         } else if (column.equals("LongestWord")) {
           System.out.println("longest word aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
           String sql = "UPDATE Player SET LongestWord = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
@@ -254,8 +236,6 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
         } else if (column.equals("TotalPlayedGames")) {
           System.out.println("total played aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
           String sql = "UPDATE Player SET TotalPlayedGames = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
@@ -263,8 +243,6 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
         } else if (column.equals("TotalWins")) {
           System.out.println("total wins aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
           String sql = "UPDATE Player SET TotalWins = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
@@ -272,8 +250,6 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
         } else if (column.equals("WinRate")) {
           System.out.println("win rate aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
           String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setDouble(1, doubleValues);
@@ -281,8 +257,6 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
         } else if (column.equals("FavDic")) {
           System.out.println("dic aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
           String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setString(1, contentString);
@@ -291,8 +265,6 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
         } else if (column.equals("Music")) {
           System.out.println("music aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
           String sql = "UPDATE Player SET Music = ? WHERE name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setDouble(1, doubleValues);
@@ -300,8 +272,6 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
         } else if (column.equals("SoundEffect")) {
           System.out.println("se aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
           String sql = "UPDATE Player SET SoundEffect = ? WHERE name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setDouble(1, doubleValues);
@@ -310,16 +280,13 @@ public class FillDatabase extends Database {
         }
       } catch (SQLException e) {
         System.out.println(e.getMessage());
-        System.out.println("line 264");
       } finally {
         if (pstmt != null) {
           pstmt.close();
-          System.out.println("wurde geschlossen.");
         }
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
-      System.out.println("line 284");
     }
     Database.disconnect();
   }
@@ -337,9 +304,9 @@ public class FillDatabase extends Database {
       String ipAddress) {
     Database.reconnect();
     try {
-      pstmServer = connection.prepareStatement(
-          "INSERT INTO Server (ServerHostName, ClientUsername, GamesPlayed, "
-          + "GamesWon, IPAddress) VALUES (?,?,?,?,?);");
+      pstmServer = connection
+          .prepareStatement("INSERT INTO Server (ServerHostName, ClientUsername, GamesPlayed, "
+              + "GamesWon, IPAddress) VALUES (?,?,?,?,?);");
       pstmServer.setString(1, serverHost);
       pstmServer.setString(2, clientUsername);
       pstmServer.setInt(3, 0);
@@ -354,22 +321,20 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    //closeStatement("server");
     Database.disconnect();
   }
 
   /**
-   * Updates the entries from the table server at a specific serverHostName.
+   * Updates the entries from the table server for a specific serverHostName.
    *
-   * @param serverObject an object received from the server with all information needed for the
-   *                     statistics in a hosted game
    * @author lengist
    * @author nitterhe
+   * @param serverObject an object received from the server with all information needed for the
+   *        statistics in a hosted game
    */
   public static synchronized void updateServer(Server serverObject) {
     Database.reconnect();
-    String sql =
-        "UPDATE Server SET gamesPlayed = ?, gamesWon = ? "
+    String sql = "UPDATE Server SET gamesPlayed = ?, gamesWon = ? "
         + "WHERE ServerHostName = ? AND ClientUsername = ?;";
     PreparedStatement pstm;
     try {
@@ -389,17 +354,17 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    closeStatement("server");
     Database.disconnect();
   }
 
   /**
    * Inserts letters with corresponding points.
    *
-   * @param letter String with the letter that needs to be inserted in the database
-   * @param point  Integer with the correpsonding points for the given letter
    * @author lengist
    * @author hraza
+   * @param letter String with the letter that needs to be inserted in the database
+   * @param point int with the corresponding points for the given letter
+   * @param occurrence int with the occurrence of the letter in the bag
    */
   public static synchronized void insertLetters(String letter, int point, int occurrence) {
     Database.reconnect();
@@ -419,14 +384,12 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    //closeStatement("dic");
     Database.disconnect();
   }
 
   /**
-   * Fills table letters initial.
+   * Fills table letters initially.
    *
-   * @throws IOException Exception from insertLetters
    * @author lengist
    */
   public static synchronized void fillLetters() {
@@ -434,10 +397,10 @@ public class FillDatabase extends Database {
     Database.reconnect();
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
         "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
-    int[] points = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 
-        4, 10, 0};
-    int[] occurrence = {9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2,
-        1, 2, 1, 2};
+    int[] points =
+        {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10, 0};
+    int[] occurrence =
+        {9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1, 2};
     for (int i = 0; i < 27; i++) {
       insertLetters(letter[i], points[i], occurrence[i]);
     }
@@ -447,10 +410,9 @@ public class FillDatabase extends Database {
   /**
    * Updates the occurrence for a particular letter if a change is needed.
    *
-   * @param letter     String with the letter where the occurrence needs to be updated in the
-   *                   database
-   * @param occurrence Integer with the new occurrence for the given letter
    * @author lengist
+   * @param letter String with the letter where the occurrence needs to be updated in the database
+   * @param occurrence int with the new occurrence for the given letter
    */
   protected static synchronized void updateOccurrenceLetters(String letter, int occurrence) {
     Database.reconnect();
@@ -469,9 +431,9 @@ public class FillDatabase extends Database {
   /**
    * Updates the points for a particular letter if a change is needed.
    *
-   * @param letter String with the letter where the points need to be updated in the database
-   * @param point  Integer with the new points for the given letter
    * @author lengist
+   * @param letter String with the letter where the points need to be updated in the database
+   * @param point int with the new points for the given letter
    */
   protected static synchronized void updatePointLetters(String letter, int point) {
     Database.reconnect();
