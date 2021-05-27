@@ -77,13 +77,18 @@ public class Rack implements Serializable {
   }
 
   /**
-   * //TODO AARON.
+   * Method to shuffle the order of the remaining (not placed) tiles on the rack while playing.
    *
    * @author apilgrim
+   * @param order - ArrayList(Integer) with the tiles from the rack not already placed. Comes from
+   *        IngameController method shuffleClicked.
    */
   public void shuffleRack(ArrayList<Integer> order) {
     Random rand = new Random();
-    int random, values = order.size(), swapWith, swapOther;
+    int random;
+    int values = order.size();
+    int swapWith;
+    int swapOther;
     Tile swap;
 
     for (int i = 0; i < order.size(); i++) {
@@ -102,9 +107,11 @@ public class Rack implements Serializable {
   }
 
   /**
-   * //TODO AARON.
-   *
+   * Getter to get the tile from the rack at position "pos".
+   * 
    * @author apilgrim
+   * @param pos - position from the tile.
+   * @return rack[pos] - Tile from rack at position "pos".
    */
   public Tile getTileAt(int pos) {
     return rack[pos];
