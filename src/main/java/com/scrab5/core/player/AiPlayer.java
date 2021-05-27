@@ -11,6 +11,7 @@ import com.scrab5.util.constants.Constants;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.parser.DictionaryScanner;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -895,7 +896,7 @@ public class AiPlayer extends Player {
    *
    * @author trohwede
    */
-  public void aiPlay() {
+  public void aiPlay() throws IOException {
     lettersFromDatabase = UseDatabase.getAllLetters();
     pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
     Database.disconnect();
@@ -994,11 +995,13 @@ public class AiPlayer extends Player {
             Collections.shuffle(randomSelector);
 
             for (int i = 0; i < points.size(); i++) {
-              if (points.get(randomSelector.get(i)) >= aiThreshold) {
+              if (points.get(randomSelector.get(i)) >= aiThreshold
+                  && points.get(randomSelector.get(i)) <= aiThreshold + 7) {
                 choosenWord = wordList.get(randomSelector.get(i));
                 pointsForRound = points.get(randomSelector.get(i));
                 foundMatchingThreshold = true;
-                System.out.println("DID BREAK");
+
+                System.out.println("DID BREAK : " + points.get(randomSelector.get(i)));
                 break findacceptable;
               }
             }

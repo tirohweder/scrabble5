@@ -3,10 +3,13 @@ package com.scrab5.core.game;
 import com.scrab5.core.player.AiPlayer;
 import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
+import com.scrab5.ui.PopUpMessage;
+import com.scrab5.ui.PopUpMessageType;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.IOException;
 import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -41,8 +44,12 @@ public class GameSession implements Serializable {
    * @param points how many * points each letter gives
    * @param isOnline is the game multiplayer or singleplayer
    */
-  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
-      ArrayList<Integer> points, boolean isOnline) throws SQLException {
+  public GameSession(
+      ArrayList<Player> listOfPlayers,
+      ArrayList<Integer> letters,
+      ArrayList<Integer> points,
+      boolean isOnline)
+      throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -294,8 +301,10 @@ public class GameSession implements Serializable {
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
 
     // TODO joker richtig bennen
-    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    String[] buchstaben = {
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+      "T", "U", "V", "W", "X", "Y", "Z", "*"
+    };
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -313,13 +322,15 @@ public class GameSession implements Serializable {
    *
    * @author trohwede
    */
-  public void finishTurn() {
+  public void finishTurn() throws IOException {
     currentPlayer.getRack().fill(bag);
     roundNumber++;
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
     // System.out.println("Current Player= " + currentPlayer.getName());
     if (currentPlayer instanceof AiPlayer) {
-      System.out.println("Ai will try to play now: ");
+
+      PopUpMessage pum = new PopUpMessage("AI will Play now.", PopUpMessageType.NOTIFICATION);
+      pum.show();
       AiPlayer aiPlayer = (AiPlayer) currentPlayer;
       aiPlayer.aiPlay();
     }
@@ -356,7 +367,7 @@ public class GameSession implements Serializable {
    *
    * @author trohwede
    */
-  public void isAiFirstTurn() {
+  public void isAiFirstTurn() throws IOException {
     if (currentPlayer instanceof AiPlayer && this.gameBoard.isFirstTile()) {
       System.out.println("Ai will try to play now: ");
       AiPlayer aiPlayer = (AiPlayer) currentPlayer;
