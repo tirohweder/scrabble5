@@ -348,17 +348,21 @@ public class AiPlayer extends Player {
 
     ArrayList<Integer> scoreList = new ArrayList<>();
 
-    boolean tw = false;
-    boolean dw = false;
+    boolean tw;
+    boolean dw;
     for (ArrayList<Tile> word : possibleWords) {
+      tw = false;
+      dw = false;
       int score = 0;
       int scoreToBe = 0;
+
       for (Tile tile : word) {
-        System.out.println(
-            "SPECIAL : "
-                + Data.getGameSession()
-                    .getGameBoard()
-                    .getSpecialsAt(tile.getRow(), tile.getColumn()));
+
+        String[][] test = Data.getGameSession().getGameBoard().getGameBoardSpecial();
+        if (test[tile.getRow()][tile.getColumn()] != "  ") {
+          System.out.println(test[tile.getRow()][tile.getColumn()]);
+        }
+
         switch (Data.getGameSession()
             .getGameBoard()
             .getSpecialsAt(tile.getRow(), tile.getColumn())) {
@@ -379,7 +383,7 @@ public class AiPlayer extends Player {
           default:
             scoreToBe += tile.getValue();
         }
-        Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
+        // Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
       }
 
       if (dw) {
@@ -391,7 +395,7 @@ public class AiPlayer extends Player {
       }
       scoreList.add(score);
     }
-
+    System.out.println("------- NEW WORD ----------");
     // TODO bingo einführen
     return scoreList;
   }
@@ -1038,6 +1042,7 @@ public class AiPlayer extends Player {
 
         Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
         currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
+        Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
       }
       System.out.println("placed");
     } else {
