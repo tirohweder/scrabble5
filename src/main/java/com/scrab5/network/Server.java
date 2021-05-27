@@ -413,9 +413,11 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void cancelTimer() {
-    timer.cancel();
-    timer.purge();
-    timer = null;
+    if (timer != null) {
+      timer.cancel();
+      timer.purge();
+      timer = null;
+    }
   }
 
   /**
