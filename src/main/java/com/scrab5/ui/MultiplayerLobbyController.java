@@ -272,16 +272,10 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     // voteResults.set(maximum, 0);
     // }
 
-    GameSession gs;
-
-    ArrayList<Integer> pointsDito;
-    ArrayList<Integer> occurrencyDisto;
-
     if (Data.getHasBeenEdited()) {
       ArrayList<Integer> tiles = createTileBag(Data.getOccurrencyDistribution());
-      new GameSession(
-          gameSessionList, tiles, Data.getPointsDistribution(), true));
-    }else {
+      new GameSession(gameSessionList, tiles, Data.getPointsDistribution(), true);
+    } else {
       int[] help2 = UseDatabase.getAllOccurrences();
       int[] help3 = UseDatabase.getAllPointsPerLetter();
 
@@ -303,31 +297,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     Data.getPlayerClient()
         .getClientThread()
         .sendMessageToServer(new MakeTurnMessage(Data.getCurrentUser(), Data.getGameSession()));
-  }
-
-  /**
-   * Method that creates an <code>ArrayList</code> which contains the amount of tiles of each
-   * letter. The maximum amount of tiles that a bag can have, is 100.
-   *
-   * @author mherre
-   * @param al the ArrayList that contains the selected occurrences
-   * @return finalBag the ArrayList that contains the amount of tiles for each letter
-   */
-  private ArrayList<Integer> createTileBag(ArrayList<Integer> al) {
-
-    ArrayList<Integer> finalBag = new ArrayList<Integer>();
-    int numberOfTiles = 0;
-
-    for (int i = 0; i < al.size(); i++) {
-      numberOfTiles += al.get(i);
-    }
-
-    for (int i = 0; i < al.size(); i++) {
-      double letterAmount = Math.ceil(al.get(i) * 100 / numberOfTiles);
-      finalBag.add((int) letterAmount);
-    }
-
-    return finalBag;
   }
 
   /**
