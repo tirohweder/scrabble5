@@ -64,7 +64,8 @@ public class DictionaryParser {
   public static void parseFile(String originalFile) {
     StringBuilder sb = new StringBuilder(originalFile);
     sb.setLength(sb.length() - 4);
-    newFileName = sb.toString() + "Parsed.txt";
+    //newFileName = sb.toString() + "Parsed.txt";
+    newFileName = originalFile + "Parsed.txt";
     System.out.println(newFileName);
     createSearchableFile(originalFile);
   }
@@ -112,7 +113,7 @@ public class DictionaryParser {
        * "words.txt");
        */
       File fileOne =
-          new File(System.getProperty("user.dir") + System.getProperty("file.separator") + file);
+          new File(System.getProperty("user.dir") + System.getProperty("file.separator") + file + ".txt");
       FileInputStream fileInput = new FileInputStream(fileOne);
 
       BufferedReader buf =

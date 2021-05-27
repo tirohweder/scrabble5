@@ -21,13 +21,7 @@ public class DictionaryScanner {
    * @param searchedWord the String of the laid Word to check
    * @return boolean of the file contains a searched word
    */
-
   public static boolean scan(String searchedWord) {
-    /*
-     * File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-     * + "src/main/resources/com/scrab5/util/textParser/" +
-     * "Built-In Standard DictionaryParsed.txt");
-     */
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + "src/main/resources/com/scrab5/util/textParser/"
         + Data.getSelectedDictionary().replace(".", "Parsed."));
@@ -44,6 +38,27 @@ public class DictionaryScanner {
          * = searchedWord.replace((char) 42, possibleLetters[j].charAt(0)); if (line.contains(test))
          * { scanner.close(); return true; } } }
          */
+        if (line.equalsIgnoreCase(searchedWord)) {
+          found = true;
+        }
+      }
+      scanner.close();
+    } catch (FileNotFoundException e) {
+      System.out.println("File not found");
+    }
+    return found;
+  }
+  
+  public static boolean scanTest(String searchedWord) {
+    File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + "src/main/resources/com/scrab5/util/textParser/"
+        + DictionaryParser.getNewFileName());
+    boolean found = false;
+
+    try {
+      Scanner scanner = new Scanner(fileOne);
+      while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
         if (line.equalsIgnoreCase(searchedWord)) {
           found = true;
         }

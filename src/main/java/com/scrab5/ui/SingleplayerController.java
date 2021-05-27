@@ -13,9 +13,9 @@ public class SingleplayerController extends InGameController implements Initiali
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
+    roundNumber = Data.getGameSession().getRoundNumber();
     aiTurn();
     refreshUI();
-    roundNumber = Data.getGameSession().getRoundNumber();
 
   }
 
