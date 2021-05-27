@@ -1,12 +1,12 @@
 package com.scrab5.ui;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -189,19 +189,19 @@ public class ProfileController extends Controller implements Initializable {
    * @author lengist
    */
   private synchronized void setupStats() {
-    
+
     String name = Data.getCurrentUser();
 
     String longestWord = PlayerProfileDatabase.getLongestWord(name);
     this.longestWord.setText(longestWord);
-    
+
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
     if (!favoriteDictionary.equals("")) {
       this.favDic.setText(favoriteDictionary.substring(0, favoriteDictionary.length() - 4));
     } else {
       this.favDic.setText("-");
     }
-    
+
     int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
     this.totalPoints.setText(String.valueOf(totalPoints));
 
@@ -221,7 +221,7 @@ public class ProfileController extends Controller implements Initializable {
     this.totalWins.setText(String.valueOf(totalWins));
 
     double winRate = PlayerProfileDatabase.getWinRate(name);
-    this.winPercentage.setText(String.valueOf(winRate));
+    this.winPercentage.setText(String.valueOf(winRate * 100));
 
     if (totalPoints == 0 || totalPlayedGames == 0) {
       this.averagePointsGame.setText("0");

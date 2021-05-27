@@ -2,6 +2,7 @@ package com.scrab5.core.game;
 
 import com.scrab5.core.player.AiPlayer;
 import com.scrab5.core.player.Player;
+import com.scrab5.core.player.PlayerProfile;
 import com.scrab5.ui.Data;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
@@ -350,13 +351,37 @@ public class GameSession implements Serializable {
    */
   public void endGame() {
 
+    int mostPoints = 0;
+    String name = "";
+    for (int i = 0; i < Data.getGameSession().getListOfPlayers().size() - 1; i++) {
+      Player one = Data.getGameSession().getListOfPlayers().get(i);
+      if (mostPoints < one.getPoints()) {
+        mostPoints = one.getPoints();
+      }
+    }
     for (Player player : Data.getGameSession().getListOfPlayers()) {
       if (!(player instanceof AiPlayer)) {
-        player.getPlayerProfile().addPoints(player.getName(), player.getPoints());
+        PlayerProfile temp = player.getPlayerProfile();
+        temp.addPoints(player.getName(), player.getPoints());
+        temp.addWords(temp.getLaidWords());
+        temp.addGames(1);
+
 
         if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {
-          player.getPlayerProfile().adjustPersonalHighscore(player.getPoints());
+          temp.adjustPersonalHighscore(player.getPoints());
         }
+        if ((temp.getName().equals(name)) && (player.getPoints() != 0)) {
+          temp.addWins(1);
+          System.out.println("ADDED A WIN");
+        }
+        if (temp.getTotalPlayedGames() != 0) {
+          temp.adjustWinRate(temp.getTotalWins() / temp.getTotalPlayedGames());
+        }
+
+        System.out.println(
+            (temp.getTotalWins() / temp.getTotalPlayedGames()) + " " + temp.getTotalWins());
+        System.out.println("ttal Wins: " + temp.getTotalWins());
+        System.out.println("ttal played games: " + temp.getTotalPlayedGames());
       }
     }
     this.running = false;
