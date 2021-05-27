@@ -45,12 +45,8 @@ public class GameSession implements Serializable {
    * @param points how many * points each letter gives
    * @param isOnline is the game multiplayer or singleplayer
    */
-  public GameSession(
-      ArrayList<Player> listOfPlayers,
-      ArrayList<Integer> letters,
-      ArrayList<Integer> points,
-      boolean isOnline)
-      throws SQLException {
+  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
+      ArrayList<Integer> points, boolean isOnline) throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -302,10 +298,8 @@ public class GameSession implements Serializable {
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
 
     // TODO joker richtig bennen
-    String[] buchstaben = {
-      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-      "T", "U", "V", "W", "X", "Y", "Z", "*"
-    };
+    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -346,7 +340,9 @@ public class GameSession implements Serializable {
   public void checkEndScreen() {}
 
   /**
-   * ZEUG.
+   * This method is called when the "Exit"- or "Give Up"-button in the UI is clicked. It first
+   * determines the winner of the game. In the second step all statistics which can be found in
+   * "Profile.fxml" are getting updated.
    *
    * @author mherre
    */
@@ -354,31 +350,35 @@ public class GameSession implements Serializable {
 
     int mostPoints = 0;
     String name = "";
-    for (int i = 0; i < Data.getGameSession().getListOfPlayers().size() - 1; i++) {
+    for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
       Player one = Data.getGameSession().getListOfPlayers().get(i);
       if (mostPoints < one.getPoints()) {
         mostPoints = one.getPoints();
         name = one.getName();
       }
     }
+
+
     for (Player player : Data.getGameSession().getListOfPlayers()) {
       if (!(player instanceof AiPlayer)) {
         PlayerProfile temp = player.getPlayerProfile();
         temp.addPoints(player.getName(), player.getPoints());
         temp.addWords(player.getCorrectWords());
+
         temp.addGames(1);
 
         if (temp.getLaidWords() != 0) {
           temp.adjustPointsPerWordRate(temp.getTotalPoints() / temp.getLaidWords());
         }
-        if (temp.getLongestWord().length()
-            > PlayerProfileDatabase.getLongestWord(player.getName()).length()) {
+        if (temp.getLongestWord().length() > PlayerProfileDatabase.getLongestWord(player.getName())
+            .length()) {
           temp.adjustLongestWord(temp.getLongestWord());
         }
         if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {
           temp.adjustPersonalHighscore(player.getPoints());
         }
-        if ((temp.getName().equals(name)) && (player.getPoints() != 0)) {
+        if ((player.getName().equals(name)) && (player.getPoints() != 0)
+            && (player.getPoints() == mostPoints)) {
           temp.addWins(1);
         }
         if (temp.getTotalPlayedGames() != 0) {
