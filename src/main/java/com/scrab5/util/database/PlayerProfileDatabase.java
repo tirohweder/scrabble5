@@ -332,7 +332,6 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setTotalPoints(String name, int points) {
     FillDatabase.updatePlayer("TotalPoints", name, null, points, 0.0);
-    //FillDatabase.updatePoints(name, points);
     Database.disconnect();
   }
 
@@ -441,7 +440,6 @@ public class PlayerProfileDatabase extends Database {
    * @param music double value of the music volume
    */
   public static void setMusicVolume(String name, Double music) {
-    //Database.reconnect();
     FillDatabase.updatePlayer("Music", name, null, 0, music);
     Database.disconnect();
     System.out.println("VolumeFertig");
