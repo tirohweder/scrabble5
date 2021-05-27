@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /**
- * In the PlayerProfile the information for the statistics is saved and accessible.
+ * In the PlayerProfile the information for the statistics is saved and made accessible.
  * 
  * @author lengist
  * @author trohwede
