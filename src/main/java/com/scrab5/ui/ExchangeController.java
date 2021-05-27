@@ -17,7 +17,11 @@ public class ExchangeController extends InGameController implements Initializabl
 
   @FXML
   private void backClicked(MouseEvent event) throws IOException {
-    App.setRoot("SinglePlayer");
+    if (Data.getGameSession().isOnline()) {
+      App.setRoot("MultiPlayer");
+    } else {
+      App.setRoot("SinglePlayer");
+    }
   }
 
   @FXML

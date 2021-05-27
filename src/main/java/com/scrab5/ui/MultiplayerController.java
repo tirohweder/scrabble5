@@ -43,7 +43,7 @@ public class MultiplayerController extends InGameController implements Initializ
     } catch (IOException e) {
       e.printStackTrace();
     }
-
+    initGameboard();
     refreshUI();
 
   }

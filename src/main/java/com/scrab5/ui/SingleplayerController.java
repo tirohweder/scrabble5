@@ -21,6 +21,7 @@ public class SingleplayerController extends InGameController implements Initiali
       e.printStackTrace();
     }
     refreshUI();
+    initGameboard();
   }
 
   private void refreshUI() {
