@@ -89,17 +89,11 @@ public class BagOfTiles implements Serializable {
    */
   public void setBagWithDistribution(HashMap<String, Integer> newWordDistro) {
     bag.clear();
-
     FillDatabase.fillLetters();
-
     String[] letter = UseDatabase.getAllLetters();
     int[] points = UseDatabase.getAllPointsPerLetter();
 
-    for (int i = 0; i < points.length; i++) {
-      System.out.println(letter[i] + " : " + points[i]);
-    }
-
-    int set = 0;
+    int match = 0;
 
     Iterator<Entry<String, Integer>> it = newWordDistro.entrySet().iterator();
     int count = 0;
@@ -108,15 +102,11 @@ public class BagOfTiles implements Serializable {
       Entry<String, Integer> pair = it.next();
       for (int i = 0; i < pair.getValue(); i++) {
         for (int j = 0; j < letter.length; j++) {
-          System.out.println(pair.getKey() + " : " + letter[j]);
-
           if (pair.getKey().equals(letter[j])) {
-            set = j;
-            System.out.println("WKJEi");
+            match = j;
           }
         }
-        System.out.println(pair.getKey() + " : " + points[set]);
-        bag.add(count, new Tile(pair.getKey(), points[set]));
+        bag.add(count, new Tile(pair.getKey(), points[match]));
         count++;
       }
       it.remove();
