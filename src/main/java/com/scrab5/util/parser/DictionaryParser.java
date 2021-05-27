@@ -65,7 +65,6 @@ public class DictionaryParser {
     StringBuilder sb = new StringBuilder(originalFile);
     sb.setLength(sb.length() - 4);
     newFileName = sb.toString() + "Parsed.txt";
-    //newFileName = originalFile + "Parsed.txt";
     System.out.println(newFileName);
     createSearchableFile(originalFile);
   }
