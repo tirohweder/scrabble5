@@ -128,5 +128,3 @@ public class EndGameController extends InGameController implements Initializable
     App.setRoot("SingleplayerLobby");
   }
 }
-
-

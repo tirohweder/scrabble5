@@ -337,27 +337,28 @@ class GameBoardTest {
 
   @Test
   void checkWordsLegit() {
-    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary");
+    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
+    DictionaryParser.parseFile("Built-In Standard Dictionary.txt");
     gameBoardTest.placeTileTest(new Tile("H", 3), 0, 0);
     gameBoardTest.placeTileTest(new Tile("E", 3), 0, 1);
     gameBoardTest.placeTileTest(new Tile("L", 3), 0, 2);
     gameBoardTest.placeTileTest(new Tile("L", 3), 0, 3);
 
-    assertTrue(gameBoardTest.checkWordsLegit());
+    assertTrue(gameBoardTest.checkWordsLegitTest());
 
     gameBoardTest.placeTileTest(new Tile("W", 3), 2, 0);
     gameBoardTest.placeTileTest(new Tile("E", 3), 2, 1);
     gameBoardTest.placeTileTest(new Tile("L", 3), 2, 2);
     gameBoardTest.placeTileTest(new Tile("L", 3), 2, 3);
 
-    assertTrue(gameBoardTest.checkWordsLegit());
+    assertTrue(gameBoardTest.checkWordsLegitTest());
 
     gameBoardTest.placeTileTest(new Tile("X", 3), 4, 0);
     gameBoardTest.placeTileTest(new Tile("X", 3), 4, 1);
     gameBoardTest.placeTileTest(new Tile("X", 3), 4, 2);
     gameBoardTest.placeTileTest(new Tile("X", 3), 4, 3);
 
-    assertFalse(gameBoardTest.checkWordsLegit());
+    assertFalse(gameBoardTest.checkWordsLegitTest());
   }
 
   @Test

@@ -103,11 +103,12 @@ public class Client implements Serializable {
         for (int j = 0; j < 256 && Data.getIsSearching(); j++) {
           for (int k = 0; k < 256 && Data.getIsSearching(); k++) {
             final String ip4 = "192.168." + j + "." + k;
-
+            final String ip42 = "168.254." + j + "." + k;
             Thread t = new Thread(new Runnable() {
               public void run() {
                 try {
                   InetAddress serverCheck = InetAddress.getByName(ip4);
+                  InetAddress serverCheck2 = InetAddress.getByName(ip42);
                   if (serverCheck.isReachable(1000)) {
                     Socket getServerDataSocket = new Socket(ip4, serverPort);
                     getServerDataSocket.setSoTimeout(10000);
@@ -132,6 +133,30 @@ public class Client implements Serializable {
                     getServerDataSocket.shutdownOutput();
                     getServerDataSocket.close();
                   }
+                  if (serverCheck2.isReachable(1000)) {
+                    Socket getServerDataSocket = new Socket(ip42, serverPort);
+                    getServerDataSocket.setSoTimeout(10000);
+
+                    ObjectOutputStream out =
+                        new ObjectOutputStream(getServerDataSocket.getOutputStream());
+                    ObjectInputStream in =
+                        new ObjectInputStream(getServerDataSocket.getInputStream());
+
+                    out.writeObject(new GetServerDataMessage(username));
+                    out.flush();
+                    out.reset();
+
+                    Message m = (Message) in.readObject();
+                    if (m.getType() == MessageType.SENDSERVERDATA) {
+                      SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
+                      addServerToServerList(new ServerData(ssdMessage.getSender(), ip42,
+                          ssdMessage.getPort(), ssdMessage.getClientCounter(),
+                          ssdMessage.getClientMaximum(), ssdMessage.getStatus()));
+                    }
+                    getServerDataSocket.shutdownInput();
+                    getServerDataSocket.shutdownOutput();
+                    getServerDataSocket.close();
+                  }
                 } catch (Exception e) {
                   // e.printStackTrace();
                   // does nothing here
@@ -139,6 +164,8 @@ public class Client implements Serializable {
               }
             });
             t.start();
+
+
             // otherwise too many Threads start at the same time
             synchronized (this) {
               try {
