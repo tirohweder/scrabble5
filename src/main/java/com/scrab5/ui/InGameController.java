@@ -126,32 +126,7 @@ public abstract class InGameController implements Initializable {
 
   // init section
 
-  protected void initPlayers() throws IOException {
-
-    if (changes.size() != 0) {
-      undoLabel.setOpacity(1);
-      undoButton.setOpacity(1);
-    } else {
-      undoLabel.setOpacity(0);
-      undoButton.setOpacity(0);
-    }
-
-    if (turn && Data.getGameSession().getCurrentPlayer().getName()
-        .equalsIgnoreCase(Data.getCurrentUser())) {
-      turn = false;
-      newPum("IT'S YOUR TURN");
-    }
-
-    if (Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0) {
-      skipPlay.setText("Skip");
-    } else {
-      skipPlay.setText("Play");
-    }
-
-    if (Data.getGameSession().getSkippedTurn() >= 6) {
-      endGame.setOpacity(1);
-      endPossible = true;
-    }
+  protected void initPlayers() {
 
     if (0 < playerAmount) {
       pointsPlayer1
@@ -203,6 +178,34 @@ public abstract class InGameController implements Initializable {
     }
 
     nextPlayer();
+  }
+  
+  protected void initButtons() throws IOException {
+    
+    if (changes.size() != 0) {
+      undoLabel.setOpacity(1);
+      undoButton.setOpacity(1);
+    } else {
+      undoLabel.setOpacity(0);
+      undoButton.setOpacity(0);
+    }
+
+    if (turn && Data.getGameSession().getCurrentPlayer().getName()
+        .equalsIgnoreCase(Data.getCurrentUser())) {
+      turn = false;
+      newPum("IT'S YOUR TURN");
+    }
+
+    if (Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0) {
+      skipPlay.setText("Skip");
+    } else {
+      skipPlay.setText("Play");
+    }
+
+    if (Data.getGameSession().getSkippedTurn() >= 6) {
+      endGame.setOpacity(1);
+      endPossible = true;
+    }
   }
 
   protected void initRack() {

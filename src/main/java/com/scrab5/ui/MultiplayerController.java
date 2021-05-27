@@ -103,15 +103,15 @@ public class MultiplayerController extends InGameController implements Initializ
             @Override
             public void run() {
 
+              initRack();
+              initPlayers();
               textArea.setText(Data.getChatHistory().toString());
-
               try {
-                initPlayers();
+                initButtons();
               } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
               }
-              initRack();
               if (Data.getGameSession().getRoundNumber() != roundNumber) {
                 initGameboard();
                 roundNumber = Data.getGameSession().getRoundNumber();

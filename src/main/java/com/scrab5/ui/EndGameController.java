@@ -39,18 +39,13 @@ public class EndGameController extends InGameController implements Initializable
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    
-      try {
-        initPlayers();
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+
+    initPlayers();
 
     initEndGame();
   }
-  
-  
+
+
 
   private void initEndGame() {
     Data.getGameSession().setRunning(false);
@@ -121,7 +116,9 @@ public class EndGameController extends InGameController implements Initializable
 
   @FXML
   private void mainMenuClicked(MouseEvent event) throws IOException {
-    Data.getPlayerClient().disconnectFromServer();
+    if (Data.getGameSession().isOnline()) {
+      Data.getPlayerClient().disconnectFromServer();
+    }
     App.setRoot("MainMenu");
   }
 

@@ -11,13 +11,8 @@ public class ExchangeController extends InGameController implements Initializabl
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    try {
-      initPlayers();
-    } catch (IOException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
-
+    
+    initPlayers();
     initRack();
 
 
