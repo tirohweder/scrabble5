@@ -7,6 +7,7 @@ import com.scrab5.network.messages.DictionaryMessage;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
+import com.scrab5.network.messages.PlaySoundMessage;
 import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.ui.PopUpMessage;
@@ -106,6 +107,10 @@ public class ClientThread extends Threads implements Serializable {
             DictionaryMessage dm = (DictionaryMessage) message;
             Data.setSelectedDictionary(dm.getDictionaryName());
             DictionaryParser.addDictionary(dm.getDictionary(), dm.getDictionaryName());
+            break;
+          case PLAYSOUND:
+            PlaySoundMessage psm = (PlaySoundMessage) message;
+            Data.getGameSession().playSound(psm.getTripleOrBingo());
             break;
           default:
             break;

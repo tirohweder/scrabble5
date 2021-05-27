@@ -192,8 +192,8 @@ public class ProfileController extends Controller implements Initializable {
 
     String name = Data.getCurrentUser();
 
-    String longestWord = PlayerProfileDatabase.getLongestWord(name);
-    this.longestWord.setText(longestWord);
+    int longestWord = PlayerProfileDatabase.getLongestWord(name);
+    this.longestWord.setText(String.valueOf(longestWord));
 
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
     if (!favoriteDictionary.equals("")) {

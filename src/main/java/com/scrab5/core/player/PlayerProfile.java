@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.Serializable;
 
 /**
- * In the PlayerProfile the information for the statistics is saved and accessible.
+ * In the PlayerProfile the information for the statistics is saved and made accessible.
  * 
  * @author lengist
  * @author trohwede
@@ -81,9 +81,9 @@ public class PlayerProfile implements Serializable {
    * @author lengist
    * @param longestWord the user laid in the played game
    */
-  public void adjustLongestWord(String longestWord) {
-    String currentLongestW = PlayerProfileDatabase.getLongestWord(name);
-    if (longestWord.length() > currentLongestW.length()) {
+  public void adjustLongestWord(int longestWord) {
+    int currentLongestW = PlayerProfileDatabase.getLongestWord(name);
+    if (longestWord > currentLongestW) {
       PlayerProfileDatabase.setLongestWord(name, longestWord);
     }
   }
@@ -174,12 +174,13 @@ public class PlayerProfile implements Serializable {
   }
 
   /**
-   * Returns the longest word in the database for the current player name.
+   * Returns the length of the previous longest laid word in the database for the current player
+   * name.
    *
    * @author lengist
-   * @return String the saved longest word from table Player
+   * @return int the saved longest length from table Player
    */
-  public String getLongestWord() {
+  public int getLongestWord() {
     return PlayerProfileDatabase.getLongestWord(name);
   }
 
