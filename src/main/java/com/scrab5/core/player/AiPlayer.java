@@ -353,27 +353,27 @@ public class AiPlayer extends Player {
       boolean tw = false;
       boolean dw = false;
       for (Tile tile : word) {
-        if (gameBoard.getPlayedTile(tile.getRow(), tile.getColumn()) == null) { // ) {
-          switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
-            case "DL":
-              scoreToBe += tile.getValue() * 2;
-              break;
-            case "TL":
-              scoreToBe += tile.getValue() * 3;
-              break;
-            case "DW":
-              dw = true;
-              scoreToBe += tile.getValue();
-              break;
-            case "TW":
-              tw = true;
-              scoreToBe += tile.getValue();
-              break;
-            default:
-              scoreToBe += tile.getValue();
-          }
+        switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
+          case "DL":
+            scoreToBe += tile.getValue() * 2;
+            break;
+          case "TL":
+            scoreToBe += tile.getValue() * 3;
+            break;
+          case "DW":
+            dw = true;
+            scoreToBe += tile.getValue();
+            break;
+          case "TW":
+            tw = true;
+            scoreToBe += tile.getValue();
+            break;
+          default:
+            scoreToBe += tile.getValue();
         }
+        Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
       }
+
       if (dw) {
         score = scoreToBe * 2;
       } else if (tw) {
@@ -1030,6 +1030,8 @@ public class AiPlayer extends Player {
         currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
       }
       System.out.println("placed");
+    } else {
+      Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn() + 1);
     }
 
     Data.getGameSession()
