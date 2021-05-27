@@ -1,6 +1,7 @@
 package com.scrab5.core.game;
 
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -89,8 +90,14 @@ public class BagOfTiles implements Serializable {
   public void setBagWithDistribution(HashMap<String, Integer> newWordDistro) {
     bag.clear();
 
+    FillDatabase.fillLetters();
+
     String[] letter = UseDatabase.getAllLetters();
     int[] points = UseDatabase.getAllPointsPerLetter();
+
+    for (int i = 0; i < points.length; i++) {
+      System.out.println(points[i]);
+    }
 
     int set = 0;
 
@@ -105,6 +112,7 @@ public class BagOfTiles implements Serializable {
             set = j;
           }
         }
+        System.out.println(pair.getKey() + " : " + points[set]);
         bag.add(count, new Tile(pair.getKey(), points[set]));
         count++;
       }
