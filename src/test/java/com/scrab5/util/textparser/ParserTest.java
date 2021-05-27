@@ -1,14 +1,13 @@
 package com.scrab5.util.textparser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.scrab5.util.parser.DictionaryParser;
 import java.io.File;
 import org.junit.jupiter.api.Test;
 
 /**
- * filter words
- * This class tests the parsing of a dictionary file into a new file to be scanned. The method to filter for words is tested in ScannerTest.java.
+ * filter words This class tests the parsing of a dictionary file into a new file to be scanned. The
+ * method to filter for words is tested in ScannerTest.java.
  * 
  * @author lengist
  */

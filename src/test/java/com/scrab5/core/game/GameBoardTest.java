@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.scrab5.util.parser.DictionaryParser;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -169,79 +168,58 @@ class GameBoardTest {
   @Test
   void countScore() throws SQLException {
     /*
-     Tile t1 = new Tile("1", 3);
-     Tile t2 = new Tile("2", 3);
-     Tile t3 = new Tile("3", 3);
-     Tile t4 = new Tile("4", 3);
-     Tile t5 = new Tile("5", 3);
-
-     gameBoardTest.placeTileTest(t1, 7, 7);
-     gameBoardTest.placeTileTest(t2, 7, 8);
-     gameBoardTest.placeTileTest(t3, 7, 9);
-     gameBoardTest.placeTileTest(t4, 5, 6);
-     gameBoardTest.placeTileTest(t5, 5, 7);
-
-     assertEquals(24, gameBoardTest.countScore());
-
-     gameBoardTest.finishTurn();
-
-     Tile t6 = new Tile("6", 3);
-     Tile t7 = new Tile("7", 3);
-     Tile t8 = new Tile("8", 3);
-     gameBoardTest.placeTileTest(t5, 5, 8);
-     gameBoardTest.placeTileTest(t7, 6, 8);
-     gameBoardTest.placeTileTest(t8, 8, 8);
-
-     assertEquals(27, gameBoardTest.countScore());
-
-     gameBoardTest.clearBoard();
-
-     gameBoardTest.placeTileTest(t1, 13, 0);
-     gameBoardTest.placeTileTest(t2, 13, 1);
-     gameBoardTest.placeTileTest(t3, 13, 2);
-     gameBoardTest.placeTileTest(t4, 13, 3);
-     gameBoardTest.placeTileTest(t5, 13, 4);
-     gameBoardTest.placeTileTest(t6, 13, 5);
-
-     assertEquals(48, gameBoardTest.countScore());
-     gameBoardTest.finishTurn();
-     gameBoardTest.placeTileTest(new Tile("9", 3), 13, 6);
-     assertEquals(21, gameBoardTest.countScore());
-     gameBoardTest.clearBoard();
-
-     gameBoardTest.placeTileTest(t7, 0, 0);
-     gameBoardTest.placeTileTest(t8, 0, 1);
-     assertEquals(18, gameBoardTest.countScore());
-
-     gameBoardTest.clearBoard();
-
-     gameBoardTest.placeTileTest(t1, 0, 14);
-     gameBoardTest.placeTileTest(t2, 1, 14);
-     gameBoardTest.placeTileTest(t3, 2, 14);
-     gameBoardTest.placeTileTest(t4, 3, 14);
-     gameBoardTest.placeTileTest(t5, 4, 14);
-     gameBoardTest.placeTileTest(t6, 5, 14);
-
-     assertEquals(63, gameBoardTest.countScore());
-
-     gameBoardTest.finishTurn();
-     gameBoardTest.placeTileTest(t7, 6, 14);
-
-     assertEquals(21, gameBoardTest.countScore());
-
-     gameBoardTest.clearBoard();
-
-     gameBoardTest.placeTileTest(t1, 0, 14);
-     gameBoardTest.placeTileTest(t2, 1, 14);
-     gameBoardTest.placeTileTest(t3, 2, 14);
-     gameBoardTest.placeTileTest(t4, 3, 14);
-     gameBoardTest.placeTileTest(t5, 4, 14);
-     gameBoardTest.placeTileTest(t6, 5, 14);
-     gameBoardTest.placeTileTest(t7, 6, 14);
-
-     assertEquals(122, gameBoardTest.countScore());
-
-    */
+     * Tile t1 = new Tile("1", 3); Tile t2 = new Tile("2", 3); Tile t3 = new Tile("3", 3); Tile t4 =
+     * new Tile("4", 3); Tile t5 = new Tile("5", 3);
+     * 
+     * gameBoardTest.placeTileTest(t1, 7, 7); gameBoardTest.placeTileTest(t2, 7, 8);
+     * gameBoardTest.placeTileTest(t3, 7, 9); gameBoardTest.placeTileTest(t4, 5, 6);
+     * gameBoardTest.placeTileTest(t5, 5, 7);
+     * 
+     * assertEquals(24, gameBoardTest.countScore());
+     * 
+     * gameBoardTest.finishTurn();
+     * 
+     * Tile t6 = new Tile("6", 3); Tile t7 = new Tile("7", 3); Tile t8 = new Tile("8", 3);
+     * gameBoardTest.placeTileTest(t5, 5, 8); gameBoardTest.placeTileTest(t7, 6, 8);
+     * gameBoardTest.placeTileTest(t8, 8, 8);
+     * 
+     * assertEquals(27, gameBoardTest.countScore());
+     * 
+     * gameBoardTest.clearBoard();
+     * 
+     * gameBoardTest.placeTileTest(t1, 13, 0); gameBoardTest.placeTileTest(t2, 13, 1);
+     * gameBoardTest.placeTileTest(t3, 13, 2); gameBoardTest.placeTileTest(t4, 13, 3);
+     * gameBoardTest.placeTileTest(t5, 13, 4); gameBoardTest.placeTileTest(t6, 13, 5);
+     * 
+     * assertEquals(48, gameBoardTest.countScore()); gameBoardTest.finishTurn();
+     * gameBoardTest.placeTileTest(new Tile("9", 3), 13, 6); assertEquals(21,
+     * gameBoardTest.countScore()); gameBoardTest.clearBoard();
+     * 
+     * gameBoardTest.placeTileTest(t7, 0, 0); gameBoardTest.placeTileTest(t8, 0, 1);
+     * assertEquals(18, gameBoardTest.countScore());
+     * 
+     * gameBoardTest.clearBoard();
+     * 
+     * gameBoardTest.placeTileTest(t1, 0, 14); gameBoardTest.placeTileTest(t2, 1, 14);
+     * gameBoardTest.placeTileTest(t3, 2, 14); gameBoardTest.placeTileTest(t4, 3, 14);
+     * gameBoardTest.placeTileTest(t5, 4, 14); gameBoardTest.placeTileTest(t6, 5, 14);
+     * 
+     * assertEquals(63, gameBoardTest.countScore());
+     * 
+     * gameBoardTest.finishTurn(); gameBoardTest.placeTileTest(t7, 6, 14);
+     * 
+     * assertEquals(21, gameBoardTest.countScore());
+     * 
+     * gameBoardTest.clearBoard();
+     * 
+     * gameBoardTest.placeTileTest(t1, 0, 14); gameBoardTest.placeTileTest(t2, 1, 14);
+     * gameBoardTest.placeTileTest(t3, 2, 14); gameBoardTest.placeTileTest(t4, 3, 14);
+     * gameBoardTest.placeTileTest(t5, 4, 14); gameBoardTest.placeTileTest(t6, 5, 14);
+     * gameBoardTest.placeTileTest(t7, 6, 14);
+     * 
+     * assertEquals(122, gameBoardTest.countScore());
+     * 
+     */
   }
 
   @Test
