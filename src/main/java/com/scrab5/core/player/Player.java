@@ -15,6 +15,7 @@ public class Player implements Serializable {
   private Rack rack;
   private PlayerProfile playerProfile;
   private int points;
+  private int correctWords = 0;
 
   /**
    * Constructor for Player. Sets name, creates new Rack, sets points to 0, and creates a new
@@ -78,5 +79,25 @@ public class Player implements Serializable {
    */
   public void setPoints(int points) {
     this.points = points;
+  }
+
+  /**
+   * Getter for the correct placed words.
+   * 
+   * @author apilgrim
+   * @return correctWords - the player place during the game.
+   */
+  public int getCorrectWords() {
+    return correctWords;
+  }
+
+  /**
+   * Setter for the correct placed words.
+   * 
+   * @author apilgrim
+   * @param correctWords - the correct placed words to set
+   */
+  public void setCorrectWords(int correctWords) {
+    this.correctWords = correctWords;
   }
 }

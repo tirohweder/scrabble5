@@ -37,6 +37,7 @@ public class MultiplayerController extends InGameController implements Initializ
         // client
       }
     }
+    initRack();
     roundNumber = Data.getGameSession().getRoundNumber();
     try {
       aiTurn();
@@ -100,7 +101,7 @@ public class MultiplayerController extends InGameController implements Initializ
             @Override
             public void run() {
 
-              initRack();
+
               initPlayers();
               textArea.setText(Data.getChatHistory().toString());
               try {
@@ -110,6 +111,7 @@ public class MultiplayerController extends InGameController implements Initializ
                 e.printStackTrace();
               }
               if (Data.getGameSession().getRoundNumber() != roundNumber) {
+                initRack();
                 initGameboard();
                 roundNumber = Data.getGameSession().getRoundNumber();
               }
