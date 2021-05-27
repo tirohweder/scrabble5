@@ -370,7 +370,7 @@ public class GameSession implements Serializable {
         }
         if (temp.getTotalPlayedGames() != 0) {
           double newWinRate = (double) temp.getTotalWins() / (double) temp.getTotalPlayedGames();
-          temp.adjustWinRate(newWinRate);
+          temp.adjustWinRate(Math.round(newWinRate * 10) / 10);
         }
       }
     }

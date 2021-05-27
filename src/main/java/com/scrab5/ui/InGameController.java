@@ -219,7 +219,6 @@ public abstract class InGameController implements Initializable {
     }
 
     for (int i = 0; i < 7; i++) {
-      System.out.println(myRack.getTileAt(i).getValue());
       switch (i) {
         case 0:
           if (myRack.getTileAt(i) != null) {
@@ -871,8 +870,7 @@ public abstract class InGameController implements Initializable {
           pum.show();
 
           Player current = Data.getGameSession().getCurrentPlayer();
-
-          Data.getGameSession().getGameBoard().finishTurn();
+          
           Data.getGameSession().finishTurn();
 
           // reset Opacity on the Rag Board if not null
@@ -983,8 +981,6 @@ public abstract class InGameController implements Initializable {
       }
     } else {
       Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn() + 1);
-
-      Data.getGameSession().getGameBoard().finishTurn();
       Data.getGameSession().finishTurn();
     }
   }
@@ -1266,7 +1262,7 @@ public abstract class InGameController implements Initializable {
         if (Data.getGameSession().getBag().getSize() > 7) {
           App.setRoot("Exchange");
         } else {
-          newPum("Sorry there are not enough tile left in the bag");
+          newPum("Sorry there are not enough tiles left in the bag");
         }
       } else {
         newPum(

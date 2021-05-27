@@ -433,6 +433,31 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
+   * Method that creates an <code>ArrayList</code> which contains the amount of tiles of each
+   * letter. The maximum amount of tiles that a bag can have, is 100.
+   *
+   * @author mherre
+   * @param al the ArrayList that contains the selected occurrences
+   * @return finalBag the ArrayList that contains the amount of tiles for each letter
+   */
+  protected ArrayList<Integer> createTileBag(ArrayList<Integer> al) {
+
+    ArrayList<Integer> finalBag = new ArrayList<Integer>();
+    int numberOfTiles = 0;
+
+    for (int i = 0; i < al.size(); i++) {
+      numberOfTiles += al.get(i);
+    }
+
+    for (int i = 0; i < al.size(); i++) {
+      double letterAmount = Math.ceil(al.get(i) * 100 / numberOfTiles);
+      finalBag.add((int) letterAmount);
+    }
+
+    return finalBag;
+  }
+
+  /**
    * @param fxml
    * @return
    * @throws IOException
