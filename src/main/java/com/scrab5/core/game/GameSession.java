@@ -45,8 +45,12 @@ public class GameSession implements Serializable {
    * @param points how many * points each letter gives
    * @param isOnline is the game multiplayer or singleplayer
    */
-  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
-      ArrayList<Integer> points, boolean isOnline) throws SQLException {
+  public GameSession(
+      ArrayList<Player> listOfPlayers,
+      ArrayList<Integer> letters,
+      ArrayList<Integer> points,
+      boolean isOnline)
+      throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -298,8 +302,10 @@ public class GameSession implements Serializable {
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
 
     // TODO joker richtig bennen
-    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    String[] buchstaben = {
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+      "T", "U", "V", "W", "X", "Y", "Z", "*"
+    };
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -322,6 +328,7 @@ public class GameSession implements Serializable {
     roundNumber++;
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
     // System.out.println("Current Player= " + currentPlayer.getName());
+    gameBoard.finishTurn();
     if (currentPlayer instanceof AiPlayer) {
 
       PopUpMessage pum = new PopUpMessage("AI will Play now.", PopUpMessageType.NOTIFICATION);
@@ -329,7 +336,7 @@ public class GameSession implements Serializable {
       AiPlayer aiPlayer = (AiPlayer) currentPlayer;
       aiPlayer.aiPlay();
     }
-    gameBoard.finishTurn();
+
     if (online) {
       Data.getPlayerClient().makeTurn();
     }
@@ -364,8 +371,8 @@ public class GameSession implements Serializable {
         if (temp.getLaidWords() != 0) {
           temp.adjustPointsPerWordRate(temp.getTotalPoints() / temp.getLaidWords());
         }
-        if (temp.getLongestWord().length() > PlayerProfileDatabase.getLongestWord(player.getName())
-            .length()) {
+        if (temp.getLongestWord().length()
+            > PlayerProfileDatabase.getLongestWord(player.getName()).length()) {
           temp.adjustLongestWord(temp.getLongestWord());
         }
         if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {
@@ -422,5 +429,4 @@ public class GameSession implements Serializable {
   public boolean calculateEndPossibility() {
     return this.skippedTurn >= 6;
   }
-
 }
