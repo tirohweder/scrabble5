@@ -105,7 +105,7 @@ public class Client implements Serializable {
         for (int j = 0; j < 256 && Data.getIsSearching(); j++) {
           for (int k = 0; k < 256 && Data.getIsSearching(); k++) {
             final String ip4 = "192.168." + j + "." + k;
-            final String ip42 = "168.254." + j + "." + k;
+            final String ip42 = "169.254." + j + "." + k;
             Thread t = new Thread(new Runnable() {
               public void run() {
                 try {
