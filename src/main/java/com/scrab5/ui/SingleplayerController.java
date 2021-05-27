@@ -35,15 +35,15 @@ public class SingleplayerController extends InGameController implements Initiali
             @Override
             public void run() {
               initRack();
-                initPlayers();
-                try {
-                  initButtons();
-                } catch (IOException e) {
-                  e.printStackTrace();
-                }
+              initPlayers();
+              try {
+                initButtons();
+              } catch (IOException e) {
+                e.printStackTrace();
+              }
 
               if (Data.getGameSession().getRoundNumber() != roundNumber) {
-                  initGameboard();
+                initGameboard();
                 roundNumber = Data.getGameSession().getRoundNumber();
               }
             }

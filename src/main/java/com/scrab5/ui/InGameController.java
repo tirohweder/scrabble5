@@ -192,7 +192,8 @@ public abstract class InGameController implements Initializable {
 
   /**
    * initButtons() initiliazes the undo/ skip/play / end Game Buttons and Labels of the ingame (thru
-   * opacity/ text setting of Labels and ImageViews). Checks also the 
+   * opacity/ text setting of Labels and ImageViews). Checks also the turn and displays a message
+   * when it's youre turn.
    * 
    * @author apilgrim
    */
@@ -224,6 +225,13 @@ public abstract class InGameController implements Initializable {
     }
   }
 
+  /**
+   * initButtons() initiliazes the ui rack representation in the ingame (thru opacity/ text setting
+   * of Labels and ImageViews rackplace1-7 and pointsRack1-7). Checks which rack is yours and gets
+   * all informations for each tile from core.game Rack.java
+   * 
+   * @author apilgrim
+   */
   protected void initRack() {
     Rack myRack = null;
 
@@ -237,38 +245,65 @@ public abstract class InGameController implements Initializable {
     }
 
     for (int i = 0; i < 7; i++) {
-      if (myRack.getTileAt(i) != null) {
-        switch (i) {
-          case 0:
-            setNewTile(rackPlace1, pointsRack1, "joker", myRack.getTileAt(i).getValue());
-            break;
-          case 1:
+      switch (i) {
+        case 0:
+          if (myRack.getTileAt(i) != null) {
+            setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
+          } else {
+            rackPlace1.setOpacity(0);
+          }
+          break;
+        case 1:
+          if (myRack.getTileAt(i) != null) {
             setNewTile(rackPlace2, pointsRack2, myRack.getTileAt(i).getLetter(),
                 myRack.getTileAt(i).getValue());
-            break;
-          case 2:
+          } else {
+            rackPlace2.setOpacity(0);
+          }
+          break;
+        case 2:
+          if (myRack.getTileAt(i) != null) {
             setNewTile(rackPlace3, pointsRack3, myRack.getTileAt(i).getLetter(),
                 myRack.getTileAt(i).getValue());
-            break;
-          case 3:
+          } else {
+            rackPlace3.setOpacity(0);
+          }
+          break;
+        case 3:
+          if (myRack.getTileAt(i) != null) {
             setNewTile(rackPlace4, pointsRack4, myRack.getTileAt(i).getLetter(),
                 myRack.getTileAt(i).getValue());
-            break;
-          case 4:
+          } else {
+            rackPlace4.setOpacity(0);
+          }
+          break;
+        case 4:
+          if (myRack.getTileAt(i) != null) {
             setNewTile(rackPlace5, pointsRack5, myRack.getTileAt(i).getLetter(),
                 myRack.getTileAt(i).getValue());
-            break;
-          case 5:
+          } else {
+            rackPlace5.setOpacity(0);
+          }
+          break;
+        case 5:
+          if (myRack.getTileAt(i) != null) {
             setNewTile(rackPlace6, pointsRack6, myRack.getTileAt(i).getLetter(),
                 myRack.getTileAt(i).getValue());
-            break;
-          case 6:
+          } else {
+            rackPlace6.setOpacity(0);
+          }
+          break;
+        case 6:
+          if (myRack.getTileAt(i) != null) {
             setNewTile(rackPlace7, pointsRack7, myRack.getTileAt(i).getLetter(),
                 myRack.getTileAt(i).getValue());
-            break;
-          default:
-            break;
-        }
+          } else {
+            rackPlace7.setOpacity(0);
+          }
+          break;
+        default:
+          break;
       }
     }
   }
@@ -1219,7 +1254,7 @@ public abstract class InGameController implements Initializable {
     if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
       rackPlace.setOpacity(1);
     }
-    if (!letter.equals("placeHolder")) {
+    if (!Integer.toString(points).equals("0")) {
       point.setText(Integer.toString(points));
       point.setOpacity(1);
     } else {
