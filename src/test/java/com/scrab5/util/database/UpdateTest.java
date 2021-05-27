@@ -8,14 +8,17 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * This class tests the methods to change a entry in a table in the database.
- * The other required functions supported by methods in FillDatabase.java, UseDatabase.java and PlayerProfileDatabase.java are getting tested in other test classes.
- * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * This class tests the methods to change a entry in a table in the database. The other required
+ * functions supported by methods in FillDatabase.java, UseDatabase.java and
+ * PlayerProfileDatabase.java are getting tested in other test classes. Note: In the methods with
+ * access to the database the connection gets established and disconnect individually for each
+ * method. Because of that every test method needs to do so too.
  * 
  * @author lauraengist
  */
 @Disabled
 class UpdateTest {
+  CreateDatabase cd = new CreateDatabase();
 
   /**
    * Tests the function to change the name in the table Player. Test for Use Case 1 update.
@@ -25,9 +28,8 @@ class UpdateTest {
 
   @Test
   void testUpdatePlayer() {
-    Database.reconnect();
-    CreateDatabase db = new CreateDatabase();
-    FillDatabase.createPlayer("Laura", "Bild");
+    cd.createTest();
+    FillDatabase.createPlayer("Laura");
     FillDatabase.updatePlayer("Name", "Laura", "Maria", 0, 0.0);
     Database.reconnect();
     Statement stm;
@@ -36,7 +38,6 @@ class UpdateTest {
       stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
       assertEquals("Maria", rs.getString("Name"));
-      assertEquals("Bild", rs.getString("Picture"));
       assertEquals(0, rs.getInt("TotalPoints"));
       assertEquals(0, rs.getInt("PersonalHighscore"));
       assertEquals(0, rs.getInt("LaidWords"));
@@ -62,8 +63,7 @@ class UpdateTest {
    */
   @Test
   void testUpdateLetters() {
-    Database.reconnect();
-    CreateDatabase db = new CreateDatabase();
+    cd.createTest();
     FillDatabase.insertLetters("L", 4, 6);
     FillDatabase.updatePointLetters("L", 2);
     FillDatabase.updateOccurrenceLetters("L", 7);

@@ -16,6 +16,20 @@ public class CreateDatabase extends Database {
   }
 
   /**
+   * Method to test the functions of this class. To test everything, new tables need to be created
+   * for each test.
+   * 
+   * @author lengist
+   */
+  public void createTest() {
+    reconnect();
+    removeTable("Player");
+    removeTable("Server");
+    removeTable("Letters");
+    createTable();
+  }
+
+  /**
    * Create all tables initialy.
    * 
    * @author lengist
@@ -49,12 +63,11 @@ public class CreateDatabase extends Database {
   public void createTablePlayer() {
     removeTable("Player");
     try (Statement stm = connection.createStatement()) {
-      String sql = "CREATE TABLE Player (Name TEXT NOT NULL,"
-          + "TotalPoints INTEGER NOT NULL," + "PersonalHighscore INTEGER NOT NULL,"
-          + "LaidWords INTEGER NOT NULL," + "PointsPerWordRate INTEGER NOT NULL,"
-          + "LongestWord TEXT," + "TotalPlayedGames INTEGER NOT NULL,"
-          + "TotalWins INTEGER NOT NULL," + "WinRate REAL," + "FaveDic TEXT," + "Music REAL,"
-          + "SoundEffect REAL)";
+      String sql = "CREATE TABLE Player (Name TEXT NOT NULL," + "TotalPoints INTEGER NOT NULL,"
+          + "PersonalHighscore INTEGER NOT NULL," + "LaidWords INTEGER NOT NULL,"
+          + "PointsPerWordRate INTEGER NOT NULL," + "LongestWord TEXT,"
+          + "TotalPlayedGames INTEGER NOT NULL," + "TotalWins INTEGER NOT NULL," + "WinRate REAL,"
+          + "FaveDic TEXT," + "Music REAL," + "SoundEffect REAL)";
       stm.executeUpdate(sql);
     } catch (SQLException e) {
       e.printStackTrace();
@@ -86,8 +99,7 @@ public class CreateDatabase extends Database {
   private void createTableLetters() {
     removeTable("Letters");
     try (Statement stm = connection.createStatement()) {
-      String sql =
-          "CREATE TABLE Letters (Letter TEXT NOT NULL, Points INTEGER NOT NULL, "
+      String sql = "CREATE TABLE Letters (Letter TEXT NOT NULL, Points INTEGER NOT NULL, "
           + "Occurrence INTEGER NOT NULL)";
       stm.executeUpdate(sql);
     } catch (SQLException e) {

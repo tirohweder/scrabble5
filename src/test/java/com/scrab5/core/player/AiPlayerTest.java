@@ -4,14 +4,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
+import com.scrab5.util.database.CreateDatabase;
+import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 class AiPlayerTest {
 
   AiPlayer test = new AiPlayer("Hans", 0);
+  CreateDatabase cd = new CreateDatabase();
 
   @Test
   void checkBagDistributionLegalTest() {
@@ -184,31 +188,11 @@ class AiPlayerTest {
   @Test
   void aiPlay() {}
 
-  @Test
-  void getCoordinatesTest() {
-    /*ArrayList<Integer> coordinates = new ArrayList<>();
-    coordinates.add(7);
-    coordinates.add(6);
-    assertEquals(coordinates, test.getCoordinates("HELLO", "L", "L", 6, 6, true));*/
-
-    /*ArrayList<Integer> c = test.createCoordinates("HEY", "H", "H", 7, 7, true);
-    assertEquals(7, c.get(0));
-    assertEquals(7, c.get(1));
-    ArrayList<Integer> c1 = test.createCoordinates("HEY", "H", "E", 7, 7, true);
-    assertEquals(8, c1.get(0));
-    assertEquals(7, c1.get(1));
-    /*ArrayList<Integer> c2 = test.getCoordinates("HELLO", "H", "L", 7, 7, true);
-    assertEquals(9, c2.get(0));
-    assertEquals(7, c2.get(1));*/
-
-    /*ArrayList<Integer> coordinates1 = new ArrayList<>();
-    coordinates1.add(6);
-    coordinates1.add(4);*/
-    // assertEquals(coordinates1, test.getCoordinates2("HELLO", "L", "H", 6, 6, false, 2));
-  }
-
+  @Disabled
   @Test
   void wordToTilesTest() {
+    cd.createTest();
+    FillDatabase.fillLetters();
     test.lettersFromDatabase = UseDatabase.getAllLetters();
     test.pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
     ArrayList<Tile> tiles = test.wordToTiles("HELLO", "H", 7, 7, true);

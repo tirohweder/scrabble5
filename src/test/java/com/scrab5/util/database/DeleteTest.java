@@ -8,14 +8,16 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * This class tests the deletion of either the content of a whole table or just the deletion of a single entry. 
- * Concerning CreateDatabase.java and Use Case 1.
- * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * This class tests the deletion of either the content of a whole table or just the deletion of a
+ * single entry. Concerning CreateDatabase.java and Use Case 1. Note: In the methods with access to
+ * the database to connection gets established and disconnect individually for each method. Because
+ * of that every test method needs to do so too.
  * 
  * @author lengist
  */
 @Disabled
 class DeleteTest {
+  CreateDatabase cd = new CreateDatabase();
 
   /**
    * Tests the deletion of the whole table "Player".
@@ -24,9 +26,8 @@ class DeleteTest {
    */
   @Test
   void testDeleteTable() {
-    Database.reconnect();
-    CreateDatabase cdb = new CreateDatabase();
-    FillDatabase.createPlayer("Laura", null);
+    cd.createTest();
+    FillDatabase.createPlayer("Laura");
     FillDatabase.deleteTable("Player");
     Database.reconnect();
     Statement stm;
@@ -49,8 +50,8 @@ class DeleteTest {
   @Test
   void testDeletePlayer() {
     Database.reconnect();
-    CreateDatabase cdb = new CreateDatabase();
-    FillDatabase.createPlayer("Laura", null);
+    cd.createTest();
+    FillDatabase.createPlayer("Laura");
     FillDatabase.deletePlayer("Laura");
     Database.reconnect();
 

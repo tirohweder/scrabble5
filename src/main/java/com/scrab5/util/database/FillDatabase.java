@@ -116,7 +116,7 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author hraza
    */
-  public static synchronized boolean createPlayer(String name, String picture) {
+  public static synchronized boolean createPlayer(String name) {
     Database.reconnect();
     boolean created = false;
     try {

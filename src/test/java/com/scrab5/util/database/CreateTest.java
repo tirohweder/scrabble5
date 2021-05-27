@@ -8,18 +8,19 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
- * In this class the creation of a new player in the database table, 
- * the insertion of a letter with corresponding points and occurrence 
- * and the initial filling of the table letter with all letters from the alphabet and the initial points and  is tested.
- * The other methods from class CreateDatabase like removeTable() are tested in DeleteTest.java
- * 
- * Note: In the methods with access to the database to connection gets established and disconnect individually for each method. Because of that every test method needs to do so too.
+ * In this class the creation of a new player in the database table, the insertion of a letter with
+ * corresponding points and occurrence and the initial filling of the table letter with all letters
+ * from the alphabet and the initial points and is tested. The other methods from class
+ * CreateDatabase like removeTable() are tested in DeleteTest.java. Note: In the methods with access
+ * to the database the connection gets established and disconnect individually for each method.
+ * Because of that every test method needs to do so too.
  * 
  * @author lengist
  */
 @Disabled
 class CreateTest {
 
+  CreateDatabase cd = new CreateDatabase();
   /**
    * Tests the function to create a new Player in the database. Test for Use Case 1 create.
    * 
@@ -27,8 +28,8 @@ class CreateTest {
    */
   @Test
   void testCreatePlayer() {
-    CreateDatabase cdb = new CreateDatabase();
-    FillDatabase.createPlayer("Laura", "Bild");
+    cd.createTest();
+    FillDatabase.createPlayer("Laura");
     Database.reconnect();
 
 
@@ -38,7 +39,6 @@ class CreateTest {
       stm = Database.connection.createStatement();
       ResultSet rs = stm.executeQuery("SELECT * FROM Player");
       assertEquals("Laura", rs.getString("Name"));
-      assertEquals("Bild", rs.getString("Picture"));
       assertEquals(0, rs.getInt("TotalPoints"));
       assertEquals(0, rs.getInt("PersonalHighscore"));
       assertEquals(0, rs.getInt("LaidWords"));
@@ -58,14 +58,14 @@ class CreateTest {
   }
 
   /**
-   * Tests the function to insert a letter and the corresponding points into the table Letters.
+   * Tests the function to insert a letter and the corresponding points and the occurrence into the
+   * table Letters.
    * 
    * @author lengist
    */
   @Test
   void testInsertLetters() {
-    Database.reconnect();
-    CreateDatabase cdb = new CreateDatabase();
+    cd.createTest();
     FillDatabase.insertLetters("L", 4, 5);
     Database.reconnect();
     Statement stm;
@@ -89,8 +89,7 @@ class CreateTest {
    */
   @Test
   void testFillLetters() {
-    Database.reconnect();
-    CreateDatabase cdb = new CreateDatabase();
+    cd.createTest();
     FillDatabase.fillLetters();
     Database.reconnect();
     Statement stm;

@@ -138,7 +138,7 @@ public class AccountCreationController extends Controller implements Initializab
       if (!UseDatabase.playerExists(this.nickname.getText())) {
         this.createdUsername = username;
         Data.setCurrentUser(this.createdUsername);
-        FillDatabase.createPlayer(this.createdUsername, null);
+        FillDatabase.createPlayer(this.createdUsername);
         FillDatabase.createServerRow(Data.getCurrentUser(), Data.getCurrentUser(),
             InetAddress.getLocalHost().getHostAddress());
 

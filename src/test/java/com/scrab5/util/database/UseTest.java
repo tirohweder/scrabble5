@@ -24,6 +24,7 @@ import org.junit.jupiter.api.Test;
  */
 @Disabled
 class UseTest {
+  CreateDatabase cd = new CreateDatabase();
 
   /**
    * Tests the function to return all the letters with their corresponding points that are saved in
@@ -33,8 +34,7 @@ class UseTest {
    */
   @Test
   void testViewLetters() {
-    Database.reconnect();
-    CreateDatabase cdb = new CreateDatabase();
+    cd.createTest();
     FillDatabase.insertLetters("A", 4, 5);
     FillDatabase.insertLetters("B", 1, 4);
     FillDatabase.insertLetters("C", 2, 10);
@@ -72,7 +72,7 @@ class UseTest {
    */
   @Test
   void testTablePlayerIsEmpty() {
-    CreateDatabase cdb = new CreateDatabase();
+    cd.createTest();
     assertEquals(true, UseDatabase.tablePlayerIsEmpty());
     Database.disconnect();
   }
@@ -85,9 +85,9 @@ class UseTest {
    */
   @Test
   void testGetAllPlayerRs() {
-    CreateDatabase cdb = new CreateDatabase();
-    FillDatabase.createPlayer("Alpha", null);
-    FillDatabase.createPlayer("Beta", null);
+    cd.createTest();
+    FillDatabase.createPlayer("Alpha");
+    FillDatabase.createPlayer("Beta");
 
     ResultSet rs = UseDatabase.getAllPlayerRs();
     String[] name = new String[2];
@@ -112,7 +112,7 @@ class UseTest {
    */
   @Test
   void testGetAllLetter() {
-    CreateDatabase cdb = new CreateDatabase();
+    cd.createTest();
     FillDatabase.fillLetters();
 
     String[] letter = UseDatabase.getAllLetters();
@@ -128,7 +128,7 @@ class UseTest {
    */
   @Test
   void testGetAllPointsPerLetter() {
-    CreateDatabase cdb = new CreateDatabase();
+    cd.createTest();
     FillDatabase.fillLetters();
 
     int[] point = UseDatabase.getAllPointsPerLetter();
@@ -144,7 +144,7 @@ class UseTest {
    */
   @Test
   void testGetAllOccurrences() {
-    CreateDatabase cdb = new CreateDatabase();
+    cd.createTest();
     FillDatabase.fillLetters();
 
     int[] occurrence = UseDatabase.getAllOccurrences();
@@ -160,7 +160,7 @@ class UseTest {
    */
   @Test
   void testGetServerStatistics() {
-    CreateDatabase cdb = new CreateDatabase();
+    cd.createTest();
     Server server = new Server("Laura", 4, true);
     FillDatabase.createServerRow(server.getHost(), "client", "12345");
     ServerStatistics ss = UseDatabase.getServerStatistics(server.getHost());
@@ -186,8 +186,8 @@ class UseTest {
    */
   @Test
   void testPlayerExists() {
-    CreateDatabase cdb = new CreateDatabase();
-    FillDatabase.createPlayer("Laura", null);
+    cd.createTest();
+    FillDatabase.createPlayer("Laura");
     assertEquals(true, UseDatabase.playerExists("Laura"));
     assertEquals(false, UseDatabase.playerExists("Peter"));
     Database.disconnect();
