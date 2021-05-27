@@ -11,7 +11,9 @@ import com.scrab5.util.constants.Constants;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.parser.DictionaryScanner;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -894,7 +896,7 @@ public class AiPlayer extends Player {
    *
    * @author trohwede
    */
-  public void aiPlay() {
+  public void aiPlay() throws IOException {
     lettersFromDatabase = UseDatabase.getAllLetters();
     pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
     Database.disconnect();
@@ -985,16 +987,21 @@ public class AiPlayer extends Player {
             System.out.println(
                 "How many points does the first word give:" + points.get(0).toString());
             // System.out.println(aiThreshold);
+            ArrayList<Integer> randomSelector = new ArrayList<>();
 
             for (int k = 0; k < points.size(); k++) {
-              // System.out.println("Points: " + points + " word: " + wordList.get(k));
-              // System.out.print(points.get(k) + " : ");
+              randomSelector.add(k);
+            }
+            Collections.shuffle(randomSelector);
 
-              if (points.get(k) >= aiThreshold) {
-                choosenWord = wordList.get(k);
-                pointsForRound = points.get(k);
+            for (int i = 0; i < points.size(); i++) {
+              if (points.get(randomSelector.get(i)) >= aiThreshold
+                  && points.get(randomSelector.get(i)) <= aiThreshold + 7) {
+                choosenWord = wordList.get(randomSelector.get(i));
+                pointsForRound = points.get(randomSelector.get(i));
                 foundMatchingThreshold = true;
-                System.out.println("DID BREAK");
+
+                System.out.println("DID BREAK : " + points.get(randomSelector.get(i)));
                 break findacceptable;
               }
             }

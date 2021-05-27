@@ -684,6 +684,16 @@ public class GameBoard implements Serializable {
     }
     return true;
   }
+  
+  public boolean checkWordsLegitTest() {
+    ArrayList<String> gameWords = getWords();
+    for (String gameWord : gameWords) {
+      if (!DictionaryScanner.scanTest(gameWord)) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   /**
    * Clears the board of all Tiles and sets them to null.
