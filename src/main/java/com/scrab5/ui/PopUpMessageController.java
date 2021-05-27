@@ -1,6 +1,5 @@
 package com.scrab5.ui;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -14,8 +13,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
- * The PopUpMessageController class is supposed to control the components of all kind of
- * PopUpMessages
+ * The PopUpMessageController controls the components of the "PopUpMessage.fxml".
  * 
  * @author mherre
  */
@@ -27,29 +25,25 @@ public class PopUpMessageController extends Controller implements Initializable 
   @FXML
   private ImageView messageIcon;
   @FXML
-  private ImageView okayButton;
+  private ImageView okayButton, okayButtonClicked;
   @FXML
-  private ImageView okayButtonClicked;
-  @FXML
-  private ImageView confirmButton;
-  @FXML
-  private ImageView confirmButtonClicked;
+  private ImageView confirmButton, confirmButtonClicked;
   @FXML
   private TextField textfield;
 
   /**
    * The initialize method is called once the scene of this controller is loaded. Depending on what
-   * kind of Pop-Up got opened the different cases come ino play.
-   * 
+   * kind of Pop-Up got opened the different cases come into play.
+   * <p>
    * In case of an "INPUT" PopUp the nickname of the current user gets placed in the textfield,
    * furthermore the opacity of the textfield gets set to "1".
-   * 
+   * </p>
    * In case of an "ERROR" PopUp the original icon of the PopUp message gets changed to a warning
    * symbol.
-   * 
+   * <p>
    * In case of a "CONFIRMATION" PopUp the "Okay"-button gets changed to a "Cancel"-button and the
    * icon to a questionmark. A "Confirm"-button is also added.
-   * 
+   * </p>
    * 
    * @author mherre
    */
@@ -59,7 +53,7 @@ public class PopUpMessageController extends Controller implements Initializable 
     switch (Data.getMessageType()) {
 
       case INPUT:
-        this.textfield.setText(Data.getCurrentUser());
+        this.textfield.setText("");
         this.textfield.setOpacity(1);
         confirmButtonClicked.setOnMouseEntered(null);
         break;
@@ -82,6 +76,7 @@ public class PopUpMessageController extends Controller implements Initializable 
         img = new Image("/com/scrab5/ui/images/Confirmation_CancelButtonClicked.png");
         this.okayButtonClicked.setImage(img);
         this.confirmButton.setOpacity(1);
+        Data.setConfirmed(false);
         break;
 
       default:
@@ -93,19 +88,21 @@ public class PopUpMessageController extends Controller implements Initializable 
   }
 
   /**
-   * This method will be called if the "Okay"- or "Cancel"-Button is clicked (this can be the case
-   * for all PopUpMessageTypes). In case the Pop-Up is from the type "INPUT", "currentUser" in
-   * "Data" gets updated. In any case: The Pop-Up will close afterwards
+   * Event method that is called when the "Okay"- or "Cancel"-button in the UI is clicked. In case
+   * the pop up is from the type "INPUT", <code>currentUser</code> in {@link com.scrab5.ui.Data
+   * Data} gets updated. In any case: The pop up will close afterwards.
    * 
    * @author mherre
-   * @param event
+   * @param event the event that is created from the mouse-click
    */
   @FXML
   private void okay(MouseEvent event) {
+    playSound("ButtonClicked.mp3");
 
     switch (Data.getMessageType()) {
       case INPUT:
         Data.setInputFieldText(textfield.getText());
+        Data.setOkayClicked(true);
       default:
         break;
     }
@@ -115,19 +112,17 @@ public class PopUpMessageController extends Controller implements Initializable 
   }
 
   /**
-   * This method will only be called if the Pop-Up is from the PopUpMessageType "CONFIRMATION" and
-   * the user presses the button "Confirm". If called the boolean "confirmed" in "Data" is set to
-   * true and the Pop-Up gets closed.
+   * Event method that is called when the "Confirm"-button in the UI is clicked. Saves the action in
+   * {@link com.scrab5.ui.Data Data} and the pop up closes.
    * 
-   * @param event
-   * @throws IOException
+   * @author mherre
+   * @param event the event that is created from the mouse-click
    */
   @FXML
-  private void confirm(MouseEvent event) throws IOException {
+  private void confirm(MouseEvent event) {
+    playSound("ButtonClicked.mp3");
     Data.setConfirmed(true);
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();
   }
-
-
 }

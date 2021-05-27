@@ -1,13 +1,13 @@
+package com.scrab5.network.messages;
+
+import java.io.Serializable;
+
 /**
  * Class for the Message objects that are exchanged between client and server. All ***Message
  * Objects extend this class.
  * 
  * @author nitterhe
  */
-package com.scrab5.network.messages;
-
-import java.io.Serializable;
-
 public class Message implements Serializable {
   private static final long serialVersionUID = 1L;
 

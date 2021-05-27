@@ -1,10 +1,10 @@
+package com.scrab5.network.messages;
+
 /**
  * Class for messages used to chat with other clients via the server.
  * 
  * @author nitterhe
  */
-package com.scrab5.network.messages;
-
 public class ChatMessage extends Message {
   private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class ChatMessage extends Message {
    * Returns the text of the ChatMessage.
    * 
    * @author nitterhe
-   * @return text -t the text of the ChatMessage
+   * @return text - the text of the ChatMessage
    */
   public String getText() {
     return this.text;

@@ -3,28 +3,48 @@ package com.scrab5.util.database;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Creation of all tables in the database.
+ * 
+ * @author lengist
+ */
 public class CreateDatabase extends Database {
 
   public CreateDatabase() {
+    reconnect();
     createTable();
   }
 
   /**
-   * @author lengist
+   * Method to test the functions of this class. To test everything, new tables need to be created
+   * for each test.
    * 
-   *         Create all tables initialy.
+   * @author lengist
    */
-  public void createTable() {
+  public void createTest() {
+    reconnect();
+    removeTable("Player");
+    removeTable("Server");
+    removeTable("Letters");
+    createTable();
+  }
+
+  /**
+   * Create all tables initialy.
+   * 
+   * @author lengist
+   */
+  protected void createTable() {
     createTablePlayer();
     createTableServer();
     createTableLetters();
   }
 
   /**
-   * @author lengist
-   * @param name
+   * Remove a table with the name "name". For example in case of a new start.
    * 
-   *        Remove a table with the name "name". For example in case of a new start.
+   * @author lengist
+   * @param name String representing the name of the player who's column needs to be deleted
    */
   private void removeTable(String name) {
     try (Statement stm = connection.createStatement()) {
@@ -36,53 +56,52 @@ public class CreateDatabase extends Database {
   }
 
   /**
-   * @author lengist
+   * Generates the table "Player" with all required columns.
    * 
-   *         Generates the table "player" with all required columns.
+   * @author lengist
    */
   public void createTablePlayer() {
     removeTable("Player");
     try (Statement stm = connection.createStatement()) {
-      String sql = "CREATE TABLE Player (Name TEXT NOT NULL," + "Picture TEXT,"
-          + "TotalPoints INTEGER NOT NULL," + "PersonalHighscore INTEGER NOT NULL,"
-          + "LaidWords INTEGER NOT NULL," + "PointsPerWordRate INTEGER NOT NULL,"
-          + "LongestWord TEXT," + "TotalPlayedGames INTEGER NOT NULL,"
-          + "TotalWins INTEGER NOT NULL," + "WinRate REAL," + "FaveDic TEXT)";
+      String sql = "CREATE TABLE Player (Name TEXT NOT NULL," + "TotalPoints INTEGER NOT NULL,"
+          + "PersonalHighscore INTEGER NOT NULL," + "LaidWords INTEGER NOT NULL,"
+          + "PointsPerWordRate INTEGER NOT NULL," + "LongestWord TEXT,"
+          + "TotalPlayedGames INTEGER NOT NULL," + "TotalWins INTEGER NOT NULL," + "WinRate REAL,"
+          + "FaveDic TEXT," + "Music REAL," + "SoundEffect REAL)";
       stm.executeUpdate(sql);
-      // System.out.println("Table for player generated!");
     } catch (SQLException e) {
       e.printStackTrace();
     }
   }
 
   /**
-   * @author lengist
+   * Generates the table "server" with all required columns.
    * 
-   *         Generates the table "server" with all required columns.
+   * @author lengist
+   * @author nitterhe
    */
   private void createTableServer() {
     removeTable("Server");
     try (Statement stm = connection.createStatement()) {
-      String sql = "CREATE TABLE Server (ServerListNames TEXT," + "Dictionaries TEXT,"
-          + "VictoryRanking TEXT," + "GameRanking TEXT," + "VictoryLossRate TEXT)";
+      String sql = "CREATE TABLE Server (ServerHostName TEXT NOT NULL," + "ClientUsername TEXT,"
+          + "GamesPlayed INTEGER," + "GamesWon INTEGER," + "IPAddress TEXT NOT NULL)";
       stm.executeUpdate(sql);
-      // System.out.println("Table for server generated!");
     } catch (SQLException e) {
       e.printStackTrace();
     }
   }
 
   /**
-   * @author lengist
+   * Generates the table "letter" with all required columns.
    * 
-   *         Generates the table "letter" with all required columns.
+   * @author lengist
    */
   private void createTableLetters() {
     removeTable("Letters");
     try (Statement stm = connection.createStatement()) {
-      String sql = "CREATE TABLE Letters (Letter TEXT NOT NULL, Points INTEGER NOT NULL)";
+      String sql = "CREATE TABLE Letters (Letter TEXT NOT NULL, Points INTEGER NOT NULL, "
+          + "Occurrence INTEGER NOT NULL)";
       stm.executeUpdate(sql);
-      // System.out.println("Table for letters generated!");
     } catch (SQLException e) {
       e.printStackTrace();
     }

@@ -8,7 +8,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * The PopUpMessage class is used to create various PopUp messages
+ * The PopUpMessage class is used to create various pop up messages.
  * 
  * @author mherre
  *
@@ -18,12 +18,17 @@ public class PopUpMessage {
   private Stage popUp;
 
   /**
-   * Creates different kinds of PopUp messages
+   * Creates a new pop up message from a <code>String</code> and a
+   * {@link com.scrab5.ui.PopUpMessageType PopUpMessageType}. Creates a new <code>Stage</code> and
+   * sets up the <code>PopUpMessageController</code> in {@link com.scrab5.ui.Data Data}, so
+   * {@link com.scrab5.ui.PopUpMessageController PopUpMessageController} works correctly.
+   * 
    * 
    * @author mherre
-   * @param message
-   * @param type
-   * @throws IOException
+   * @param message the String that will be displayed in the UI
+   * @param type the PopUpMessageType containg the type of message
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   public PopUpMessage(String message, PopUpMessageType type) throws IOException {
 
@@ -52,7 +57,7 @@ public class PopUpMessage {
   }
 
   /**
-   * {@link javafx.stage.Stage#showAndWait()}
+   * Shows the pop up in the UI. Calls {@link javafx.stage.Stage#showAndWait()}.
    * 
    * @author mherre
    */
@@ -66,7 +71,7 @@ public class PopUpMessage {
    * @return
    * @throws IOException
    */
-  private static Parent loadFXML(String fxml) throws IOException {
+  private Parent loadFXML(String fxml) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
     return fxmlLoader.load();
   }

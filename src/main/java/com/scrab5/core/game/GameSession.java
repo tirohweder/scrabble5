@@ -1,178 +1,400 @@
 package com.scrab5.core.game;
 
+import com.scrab5.core.player.AiPlayer;
 import com.scrab5.core.player.Player;
+import com.scrab5.ui.Data;
+import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class GameSession {
+/**
+ * GameSession host everything needed to play the game.
+ *
+ * @author trohwede
+ */
+public class GameSession implements Serializable {
 
+  private static final long serialVersionUID = 1L;
+  private final GameBoard gameBoard;
+  private BagOfTiles bag = new BagOfTiles();
+  private ArrayList<Player> listOfPlayers;
+  private int skippedTurn = 0;
+  private int roundNumber = 0;
+  private boolean canEnd = false;
+  private Player currentPlayer;
+  private boolean shouldEnd = false;
+  private boolean running = true;
+  private boolean online;
 
   /**
-   * @return
+   * Intitializes the Gamsession, sets currentplayer, calls to create the correct bag, and fills the
+   * rack of each player.
+   *
+   * @author trohwede
+   * @param listOfPlayers list of players in the correct order
+   * @param letters how often each letter is there
+   * @param points how many * points each letter gives
+   * @param isOnline is the game multiplayer or singleplayer
    */
-  public static GameBoard getGameBoard() {
+  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
+      ArrayList<Integer> points, boolean isOnline) throws SQLException {
+    this.listOfPlayers = listOfPlayers;
+    currentPlayer = listOfPlayers.get(0);
+
+    this.online = isOnline;
+    if (this.online) {
+      Data.getHostedServer().startGame();
+    }
+    initializeBag(letters, points);
+    for (Player listOfPlayer : listOfPlayers) {
+      listOfPlayer.getRack().fill(bag);
+    }
+    gameBoard = new GameBoard();
+  }
+
+  /**
+   * Intitializes the Gamsession, sets currentplayer, calls to create the correct bag, and fills the
+   * rack of each player.
+   *
+   * @author trohwede
+   * @param listOfPlayers list of players in the correct order
+   * @param isOnline is the game multiplayer or singleplayer
+   * @throws SQLException if Database cant connect //TODO is this the right way
+   */
+  public GameSession(ArrayList<Player> listOfPlayers, boolean isOnline) throws SQLException {
+    this.listOfPlayers = listOfPlayers;
+    currentPlayer = listOfPlayers.get(0);
+    this.online = isOnline;
+    if (this.online) {
+      Data.getHostedServer().startGame();
+    }
+    System.out.println("Created Game Session");
+
+    initializeBag();
+    gameBoard = new GameBoard();
+    for (Player player : listOfPlayers) {
+      if (!(player instanceof AiPlayer)) {
+        player.getRack().fill(bag);
+      }
+      // System.out.println("Im creating new GameSession right now");
+      // System.out.println("Tile AT 0:" + currentPlayer.getRack().getTileAt(0));
+    }
+  }
+
+  /**
+   * Getter for gameBoard.
+   *
+   * @author trohweder
+   * @return gameBoard
+   */
+  public GameBoard getGameBoard() {
     return gameBoard;
   }
 
   /**
-   * @param gameBoard
+   * Getter for the current bag used.
+   *
    * @author trohwede
+   * @return bag
    */
-  public static void setGameBoard(GameBoard gameBoard) {
-    GameSession.gameBoard = gameBoard;
-  }
-
-  /**
-   * @return
-   * @author trohwede
-   */
-  public static BagOfTiles getBag() {
+  public BagOfTiles getBag() {
     return bag;
   }
 
   /**
-   * @param bag
+   * Setter for the bag.
+   *
    * @author trohwede
+   * @param bag sets the bag for the game.
    */
-  public static void setBag(BagOfTiles bag) {
-    GameSession.bag = bag;
+  public void setBag(BagOfTiles bag) {
+    this.bag = bag;
   }
 
   /**
-   * @return
+   * Getter for the current list of players.
+   *
    * @author trohwede
+   * @return current list of players
    */
-  public static Player[] getList_of_players() {
-    return list_of_players;
+  public ArrayList<Player> getListOfPlayers() {
+    return listOfPlayers;
+  }
+
+  public void setListOfPlayers(ArrayList<Player> listOfPlayers) {
+    this.listOfPlayers = listOfPlayers;
   }
 
   /**
-   * @param list_of_players
+   * Getter current skipped turns.
+   *
    * @author trohwede
+   * @return skippedTurns
    */
-  public static void setList_of_players(Player[] list_of_players) {
-    GameSession.list_of_players = list_of_players;
+  public int getSkippedTurn() {
+    return skippedTurn;
   }
 
   /**
-   * @return
+   * Setter for skipped turns.
+   *
    * @author trohwede
+   * @param skippedTurn amount of skipped turns in a game
    */
-  public static int getSkipped_turn() {
-    return skipped_turn;
+  public void setSkippedTurn(int skippedTurn) {
+    this.skippedTurn = skippedTurn;
   }
 
   /**
-   * @param skipped_turn
+   * Getter for the current round number.
+   *
    * @author trohwede
+   * @return roundNumber
    */
-  public static void setSkipped_turn(int skipped_turn) {
-    GameSession.skipped_turn = skipped_turn;
+  public int getRoundNumber() {
+    return roundNumber;
+  }
+
+  public void setRoundNumber(int roundNumber) {
+    this.roundNumber = roundNumber;
   }
 
   /**
-   * @return
+   * Setter if we can end.
+   *
    * @author trohwede
+   * @return if you can end the game
    */
-  public static int getRound_number() {
-    return round_number;
+  public boolean isCanEnd() {
+    return canEnd;
   }
 
   /**
-   * @param round_number
+   * Setter for setting the possibility to end the game.
+   *
    * @author trohwede
+   * @param canEnd sets if its possible to end the game
    */
-  public static void setRound_number(int round_number) {
-    GameSession.round_number = round_number;
+  public void setCanEnd(boolean canEnd) {
+    this.canEnd = canEnd;
   }
 
   /**
-   * @return
+   * Getter for current player.
+   *
    * @author trohwede
+   * @return the current player
    */
-  public static boolean isCan_end() {
-    return can_end;
+  public Player getCurrentPlayer() {
+    return currentPlayer;
+  }
+
+  public void setCurrentPlayer(Player currentPlayer) {
+    this.currentPlayer = currentPlayer;
   }
 
   /**
-   * @param can_end
+   * Returns if the game is online or offline.
+   *
    * @author trohwede
+   * @return if the game is online
    */
-  public static void setCan_end(boolean can_end) {
-    GameSession.can_end = can_end;
+  public boolean isOnline() {
+    return online;
   }
 
   /**
-   * @return
+   * Setter if the game is online or offline.
+   *
    * @author trohwede
+   * @param online is game multiplayer(online) or not
    */
-  public static Player getCurrent_Player() {
-    return current_Player;
+  public void setOnline(boolean online) {
+    this.online = online;
   }
 
   /**
-   * @param current_Player
+   * Returns if the game is running or not.
+   *
    * @author trohwede
+   * @return if the game is running
    */
-  public static void setCurrent_Player(Player current_Player) {
-    GameSession.current_Player = current_Player;
+  public boolean isRunning() {
+    return running;
   }
 
-
-  private static GameBoard gameBoard = new GameBoard();
-  private static BagOfTiles bag = new BagOfTiles();
-  private static Player[] list_of_players;
-  private static int skipped_turn = 0;
-  private static int round_number = 0;
-  private static boolean can_end = false;
-  private static Player current_Player;
+  /**
+   * Set if the game is running or not.
+   *
+   * @author trohwede
+   * @param running is the game live
+   */
+  public void setRunning(boolean running) {
+    this.running = running;
+  }
 
   // initialize bag fills the bag with the selected tiles
 
   /**
-   * Starts GameSession with up to 4 Players.
+   * Returns boolean if the game should end.
    *
-   * @param gamePlayer
-   * @throws SQLException
    * @author trohwede
+   * @return if the game shouldEnd
    */
-  public GameSession(Player[] gamePlayer) throws SQLException {
-    list_of_players = new Player[gamePlayer.length];
-    current_Player = list_of_players[0];
-
-    initializeBag();
-
-    for (int i = 0; i < gamePlayer.length; i++) {
-      list_of_players[i].getRack().fill(bag);
-    }
-
+  public boolean isShouldEnd() {
+    return shouldEnd;
   }
 
+  /**
+   * Setter for shouldEnd.
+   *
+   * @author trohwede
+   * @param shouldEnd if the game should end when checked upon
+   */
+  public void setShouldEnd(boolean shouldEnd) {
+    this.shouldEnd = shouldEnd;
+  }
 
   /**
+   * Reads the distribution of tiles from the database and creates the bag accordingly.
+   *
    * @author trohwede
+   * @throws SQLException if cant connect to the database
    */
   public void initializeBag() throws SQLException {
-    ResultSet rs = FillDatabase.viewLetters();
+
+    System.out.println("Initialized Bag");
+
+    FillDatabase.fillLetters();
+    Database.disconnect();
+    Database.reconnect();
+    ResultSet rs = UseDatabase.viewLetters();
     while (rs.next()) {
       this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
+      // System.out.println(rs.getString("Letter") + " : " + rs.getInt("Points"));
+    }
+
+    System.out.println("Finished Initialized Bag");
+    rs.close();
+    Database.disconnect();
+  }
+
+  /**
+   * When the gameSession is created, fills the bagOfTiles with the tiles set in the lobby.
+   *
+   * @author trohwede
+   * @param lettersOccurrence how often each letter is there
+   * @param points how many points each letter gives
+   */
+  public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
+
+    // TODO joker richtig bennen
+    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+
+    for (int i = 0; i < lettersOccurrence.size(); i++) {
+      for (int j = 0; j < lettersOccurrence.get(i); j++) {
+
+        this.bag.add(new Tile(buchstaben[i], points.get(i)));
+      }
+    }
+
+    Database.disconnect();
+  }
+
+  /**
+   * When turn is finished correctly, rack need to be refilled, round number increased,
+   * currentplayer set correctly.
+   *
+   * @author trohwede
+   */
+  public void finishTurn() {
+    currentPlayer.getRack().fill(bag);
+    roundNumber++;
+    currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
+    // System.out.println("Current Player= " + currentPlayer.getName());
+    if (currentPlayer instanceof AiPlayer) {
+      System.out.println("Ai will try to play now: ");
+      AiPlayer aiPlayer = (AiPlayer) currentPlayer;
+      aiPlayer.aiPlay();
+    }
+    gameBoard.finishTurn();
+    if (online) {
+      Data.getPlayerClient().makeTurn();
+    }
+  }
+
+  // TODO
+  public void checkEndScreen() {}
+
+  /**
+   * ZEUG.
+   *
+   * @author mherre
+   */
+  public void endGame() {
+
+    for (Player player : Data.getGameSession().getListOfPlayers()) {
+      if (!(player instanceof AiPlayer)) {
+        player.getPlayerProfile().addPoints(player.getName(), player.getPoints());
+        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
+      }
+    }
+
+    // for (Player player : Data.getGameSession().getListOfPlayers()) {
+    // if (player.isHuman()) {
+    // Data.getGameSession().getCurrentPlayer().getPlayerProfile()
+    // .setCurrentPoints(PlayerProfileDatabase.getTotalPoints(Data.getCurrentUser()));
+    // System.out.println("geht");
+    // // Database.disconnect();
+    // player.getPlayerProfile().addPoints(player.getPoints());
+    // System.out.println(player.getPlayerProfile().getName() + player.getPoints());
+    // }
+    // }
+    this.running = false;
+  }
+
+  /**
+   * Checks if its the Ai Turn and if the first tile has to be played yet. If yes makes it play.
+   *
+   * @author trohwede
+   */
+  public void isAiFirstTurn() {
+    if (currentPlayer instanceof AiPlayer && this.gameBoard.isFirstTile()) {
+      System.out.println("Ai will try to play now: ");
+      AiPlayer aiPlayer = (AiPlayer) currentPlayer;
+      aiPlayer.aiPlay();
+    }
+  }
+
+  // TODO
+  public boolean giveUp() {
+    return false;
+  }
+
+  /**
+   * Checks if rack and bag are empty, if yes shouldEnd is set to true.
+   *
+   * @author trohwede
+   * @param player that should be checked
+   */
+  public void checkBagAndRack(Player player) {
+    if (bag.getSize() == 0 && !player.getRack().isRackFull()) {
+      this.shouldEnd = true;
     }
   }
 
   /**
-   * @param bag
-   * @param p
-   * @param gameBoard
+   * Calculates if the more than 5 turns have been skipped in a row.
+   *
    * @author trohwede
+   * @return if its possible to end the game, because of skipped turns
    */
-  public void turn(BagOfTiles bag, Player p, GameBoard gameBoard) {
-
-  }
-
-  /**
-   * @author trohwede
-   */
-  public void endGame() {
+  public boolean calculateEndPossibility() {
+    return this.skippedTurn >= 6;
   }
 }

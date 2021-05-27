@@ -1,0 +1,69 @@
+package com.scrab5.util.database;
+
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.sql.SQLException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+
+/**
+ * This class tests the deletion of either the content of a whole table or just the deletion of a
+ * single entry. Concerning CreateDatabase.java and Use Case 1. Note: In the methods with access to
+ * the database to connection gets established and disconnect individually for each method. Because
+ * of that every test method needs to do so too.
+ * 
+ * @author lengist
+ */
+@Disabled
+class DeleteTest {
+  CreateDatabase cd = new CreateDatabase();
+
+  /**
+   * Tests the deletion of the whole table "Player".
+   * 
+   * @author lengist
+   */
+  @Test
+  void testDeleteTable() {
+    cd.createTest();
+    FillDatabase.createPlayer("Laura");
+    FillDatabase.deleteTable("Player");
+    Database.reconnect();
+    Statement stm;
+
+    try {
+      stm = Database.connection.createStatement();
+      ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+      assertEquals(false, rs.next());
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    Database.disconnect();
+  }
+
+  /**
+   * Tests the deletion of a certain player in the table Player. Test for Use Case 1 delete.
+   * 
+   * @author lengist
+   */
+  @Test
+  void testDeletePlayer() {
+    Database.reconnect();
+    cd.createTest();
+    FillDatabase.createPlayer("Laura");
+    FillDatabase.deletePlayer("Laura");
+    Database.reconnect();
+
+    Statement stm;
+
+    try {
+      stm = Database.connection.createStatement();
+      ResultSet rs = stm.executeQuery("SELECT * FROM Player");
+      assertEquals(false, rs.next());
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    Database.disconnect();
+  }
+}

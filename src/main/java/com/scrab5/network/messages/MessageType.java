@@ -5,6 +5,11 @@
  */
 package com.scrab5.network.messages;
 
+/**
+ * Enum for all MessageTypes.
+ * 
+ * @author nitterhe
+ */
 public enum MessageType {
-  DEFAULT, GETSERVERDATA, CONNECT, DISCONNECT, CHAT
+  DEFAULT, GETSERVERDATA, SENDSERVERDATA, CONNECT, DISCONNECT, CHAT, LOBBYUPDATE, SENDREADY, MAKETURN, DICTIONARY
 }

@@ -21,7 +21,7 @@
                   <Image url="@images/SB01_CreateButtonClicked.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="quitButton" fitHeight="53.0" fitWidth="128.0" layoutX="110.0" layoutY="657.0" onMouseClicked="#close" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="quitButton" fitHeight="53.0" fitWidth="128.0" layoutX="110.0" layoutY="657.0" onMouseClicked="#closeGame" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/SB01_QuitButtonClicked.png" />
                </image>
