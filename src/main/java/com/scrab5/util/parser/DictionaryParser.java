@@ -107,11 +107,6 @@ public class DictionaryParser {
    */
   private static void loadFile(String file) {
     try {
-      /*
-       * File fileOne = new File(System.getProperty("user.dir") +
-       * System.getProperty("file.separator") + "src/main/resources/com/scrab5/util/textParser/" +
-       * "words.txt");
-       */
       File fileOne = new File(
           System.getProperty("user.dir") + System.getProperty("file.separator") + file);
       FileInputStream fileInput = new FileInputStream(fileOne);
