@@ -156,7 +156,7 @@ class AiPlayerTest {
     testResult.add(14);
     testResult.add(45);
 
-    assertEquals(testResult, test.countScore(new GameBoard(), possibleWords));
+    assertEquals(testResult, AiPlayer.countScore(new GameBoard(), possibleWords));
 
     ArrayList<ArrayList<Tile>> tilesList = new ArrayList<ArrayList<Tile>>();
     Tile t1 = new Tile("H", 1, 7, 6);
@@ -184,7 +184,7 @@ class AiPlayerTest {
     ArrayList<Integer> scoreList = new ArrayList<Integer>();
     scoreList.add(10);
     scoreList.add(4);
-    assertEquals(scoreList, test.countScore(new GameBoard(), tilesList));
+    assertEquals(scoreList, AiPlayer.countScore(new GameBoard(), tilesList));
   }
 
   @Test

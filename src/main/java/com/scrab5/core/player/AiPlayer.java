@@ -345,6 +345,7 @@ public class AiPlayer extends Player {
    */
   public static ArrayList<Integer> countScore(
       GameBoard gameBoard, ArrayList<ArrayList<Tile>> possibleWords) {
+
     ArrayList<Integer> scoreList = new ArrayList<>();
 
     for (ArrayList<Tile> word : possibleWords) {
@@ -371,7 +372,7 @@ public class AiPlayer extends Player {
           default:
             scoreToBe += tile.getValue();
         }
-        Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
+        // Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
       }
 
       if (dw) {
