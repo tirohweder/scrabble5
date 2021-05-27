@@ -12,39 +12,6 @@ import java.sql.SQLException;
 public class PlayerProfileDatabase extends Database {
 
   /**
-   * Returns the content in column Picture at Player name.
-   * 
-   * @author lengist.
-   * @param name String name of the user to insert into preparedStatement
-   * @return String with path to picture
-   */
-  public static synchronized String getPicture(String name) {
-    Database.disconnect();
-    Database.reconnect();
-    String picture = null;
-    ResultSet rs = null;
-    try {
-      PreparedStatement pstm =
-          connection.prepareStatement("SELECT Picture FROM Player WHERE Name = ?");
-      pstm.setString(1, name);
-      rs = pstm.executeQuery();
-      while (rs.next()) {
-        picture = rs.getString(1);
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    } finally {
-      try {
-        rs.close();
-      } catch (SQLException e) {
-        e.printStackTrace();
-      }
-    }
-    Database.disconnect();
-    return picture;
-  }
-
-  /**
    * Returns the content in column TotalPoints at Player name.
    * 
    * @author lengist
@@ -353,18 +320,6 @@ public class PlayerProfileDatabase extends Database {
    */
   public static void setName(String name, String newName) {
     FillDatabase.updatePlayer("Name", name, newName, 0, 0.0);
-    Database.disconnect();
-  }
-
-  /**
-   * Updates current value of Picture with String value delivered by parameter.
-   * 
-   * @author lengist
-   * @param name String name of the user where the picture needs to be set
-   * @param picture String representing the new picture path to be stored in the database
-   */
-  public static void setPicture(String name, String picture) {
-    FillDatabase.updatePlayer("Picture", name, picture, 0, 0.0);
     Database.disconnect();
   }
 

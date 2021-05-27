@@ -37,17 +37,6 @@ public class PlayerProfile implements Serializable {
   public static String getName() {
     return name;
   }
-
-  /**
-   * Return the picture of the current user if added.
-   *
-   * @return String representation of the picture of the current user
-   * @author lengist
-   */
-  public static String getPicture() {
-    picture = PlayerProfileDatabase.getPicture(name);
-    return picture;
-  }
   
   public void setCurrentPoints(int newPoints) {
     currentPoints = newPoints;
@@ -221,7 +210,7 @@ public class PlayerProfile implements Serializable {
   }
 
   /**
-   * Returns the personal highscore in the database for player name
+   * Returns the personal highscore in the database for player name.
    *
    * @return int the saved personal highscore from table Player
    * @author lengist
@@ -243,7 +232,7 @@ public class PlayerProfile implements Serializable {
   }
 
   /**
-   * Returns the points per word rate in the database for player name
+   * Returns the points per word rate in the database for player name.
    *
    * @return double the saved points per word rate from table Player
    * @author lengist
@@ -254,7 +243,7 @@ public class PlayerProfile implements Serializable {
   }
 
   /**
-   * Returns the longest word in the database for the current player name
+   * Returns the longest word in the database for the current player name.
    *
    * @return String the saved longest word from table Player
    * @author lengist

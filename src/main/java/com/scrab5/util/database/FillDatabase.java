@@ -121,22 +121,21 @@ public class FillDatabase extends Database {
     boolean created = false;
     try {
       pstmPlayer = connection.prepareStatement(
-          "INSERT INTO Player " + "(Name, Picture, TotalPoints, PersonalHighscore, LaidWords, "
+          "INSERT INTO Player " + "(Name, TotalPoints, PersonalHighscore, LaidWords, "
               + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
-              + "WinRate, FaveDic, Music, SoundEffect) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?);");
+              + "WinRate, FaveDic, Music, SoundEffect) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
       pstmPlayer.setString(1, name);
-      pstmPlayer.setString(2, picture);
+      pstmPlayer.setInt(2, 0);
       pstmPlayer.setInt(3, 0);
       pstmPlayer.setInt(4, 0);
       pstmPlayer.setInt(5, 0);
       pstmPlayer.setInt(6, 0);
       pstmPlayer.setInt(7, 0);
       pstmPlayer.setInt(8, 0);
-      pstmPlayer.setInt(9, 0);
-      pstmPlayer.setDouble(10, 0.0);
-      pstmPlayer.setString(11, "");
+      pstmPlayer.setDouble(9, 0.0);
+      pstmPlayer.setString(10, "");
+      pstmPlayer.setDouble(11, 50.0);
       pstmPlayer.setDouble(12, 50.0);
-      pstmPlayer.setDouble(13, 50.0);
       pstmPlayer.executeUpdate();
       created = true;
     } catch (SQLException e) {
@@ -147,7 +146,6 @@ public class FillDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    //closeStatement("player");
     Database.disconnect();
     return created;
   }
@@ -164,7 +162,6 @@ public class FillDatabase extends Database {
       pstm.close();
     } catch (SQLException e) {
       System.out.println("in update points");
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
     
@@ -204,15 +201,6 @@ public class FillDatabase extends Database {
           pstmt.setString(2, name);
           pstmt.executeUpdate();
           //pstmt.close();
-        } else if (column.equals("Picture")) {
-          System.out.println("pic aufgerufen.");
-          //Database.disconnect();
-          //Database.reconnect();
-          String sql = "UPDATE Player SET Picture = ? WHERE Name = ?";
-          pstmt = connection.prepareStatement(sql);
-          pstmt.setString(2, contentString);
-          pstmt.setString(1, name);
-          pstmt.executeUpdate();
         } else if (column.equals("TotalPoints")) {
           System.out.println("points aufgerufen");
           //Database.disconnect();
@@ -333,8 +321,6 @@ public class FillDatabase extends Database {
       System.out.println(e.getMessage());
       System.out.println("line 284");
     }
-
-    //closeStatement("player");
     Database.disconnect();
   }
 
