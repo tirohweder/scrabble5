@@ -62,9 +62,11 @@ public class ClientThread extends Threads implements Serializable {
         switch (message.getType()) {
 
           case DISCONNECT:
-            MultiplayerLobbyController.lobbyClosed();
             this.closeConnection();
-            Data.getGameSession().setRunning(false);
+            if (Data.getGameSession() != null) {
+              Data.getGameSession().setRunning(false);
+            }
+            MultiplayerLobbyController.lobbyClosed();
             break;
           case CHAT:
             ChatMessage chatMessage = (ChatMessage) message;
