@@ -6,6 +6,7 @@ import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
+import com.scrab5.network.messages.PlaySoundMessage;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
@@ -106,6 +107,10 @@ public class ServerThread extends Threads {
             Data.setGameSession(mtm.getGameSession());
             this.server.resetTimer();
             server.sendMessageToAllClients(mtm);
+            break;
+          case PLAYSOUND:
+            PlaySoundMessage psm = (PlaySoundMessage) message;
+            server.sendMessageToAllClients(psm);
             break;
           default:
             break;

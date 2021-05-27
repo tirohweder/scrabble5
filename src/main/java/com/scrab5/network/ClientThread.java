@@ -107,6 +107,9 @@ public class ClientThread extends Threads implements Serializable {
             Data.setSelectedDictionary(dm.getDictionaryName());
             DictionaryParser.addDictionary(dm.getDictionary(), dm.getDictionaryName());
             break;
+          case PLAYSOUND:
+            // needs implementation
+            break;
           default:
             break;
         }

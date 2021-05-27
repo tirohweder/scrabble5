@@ -8,6 +8,7 @@ import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.MessageType;
+import com.scrab5.network.messages.PlaySoundMessage;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
@@ -417,7 +418,24 @@ public class Client implements Serializable {
     this.starting = starting;
   }
 
+  /**
+   * Returns if the ClientThread is running.
+   * 
+   * @author nitterhe
+   * @return running - the boolean if the ClientThread is running
+   */
   public boolean threadIsRunning() {
     return this.clientThread.running;
+  }
+
+  /**
+   * Sends a message to the Server that a sound should be played (true = tripple word scored / false
+   * = bingo scored).
+   * 
+   * @author nitterhe
+   * @param tob - the boolean which sound should be played
+   */
+  public void playSound(boolean tob) {
+    this.clientThread.sendMessageToServer(new PlaySoundMessage(this.username, tob));
   }
 }
