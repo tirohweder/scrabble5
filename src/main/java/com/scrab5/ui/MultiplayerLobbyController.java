@@ -277,11 +277,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     // voteResults.set(maximum, 0);
     // }
 
-    GameSession gs;
-
-    ArrayList<Integer> pointsDito;
-    ArrayList<Integer> occurrencyDisto;
-
     if (Data.getHasBeenEdited()) {
       ArrayList<Integer> tiles = createTileBag(Data.getOccurrencyDistribution());
       new GameSession(gameSessionList, tiles, Data.getPointsDistribution(), true);
@@ -305,7 +300,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     Data.getPlayerClient().getClientThread()
         .sendMessageToServer(new MakeTurnMessage(Data.getCurrentUser(), Data.getGameSession()));
   }
-
 
   /**
    * Use Case 3.3 and 5 within.
