@@ -91,8 +91,7 @@ public class BagOfTiles implements Serializable {
 
     String[] letter = UseDatabase.getAllLetters();
     int[] points = UseDatabase.getAllPointsPerLetter();
-    int[] occurrences = UseDatabase.getAllOccurrences();
-    // distribution
+
     int set = 0;
 
     Iterator<Entry<String, Integer>> it = newWordDistro.entrySet().iterator();
@@ -101,8 +100,6 @@ public class BagOfTiles implements Serializable {
     while (it.hasNext()) {
       Entry<String, Integer> pair = it.next();
       for (int i = 0; i < pair.getValue(); i++) {
-        // bag.add(count, new Tile(pair.getKey(), points[set]));
-
         for (int j = 0; j < letter.length; j++) {
           if (pair.getKey() == letter[j]) {
             set = j;
@@ -113,16 +110,5 @@ public class BagOfTiles implements Serializable {
       }
       it.remove();
     }
-
-    /*Iterator<Entry<String, Integer>> it = newWordDistro.entrySet().iterator();
-    int count = 0;
-    while (it.hasNext()) {
-      Entry<String, Integer> pair = it.next();
-      for (int i = 0; i < pair.getValue(); i++) {
-        bag.add(count, new Tile(pair.getKey(), UseDatabase.getPointForLetter(pair.getKey())));
-        count++;
-      }
-      it.remove();
-    }*/
   }
 }

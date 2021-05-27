@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
+import com.scrab5.util.constants.Constants;
 import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
@@ -193,8 +194,8 @@ class AiPlayerTest {
   void wordToTilesTest() {
     cd.createTest();
     FillDatabase.fillLetters();
-    test.lettersFromDatabase = UseDatabase.getAllLetters();
-    test.pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
+    Constants.lettersFromDatabase = UseDatabase.getAllLetters();
+    Constants.pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
     ArrayList<Tile> tiles = test.wordToTiles("HELLO", "H", 7, 7, true);
     assertEquals(7, tiles.get(0).getColumn());
     assertEquals(7, tiles.get(0).getRow());
