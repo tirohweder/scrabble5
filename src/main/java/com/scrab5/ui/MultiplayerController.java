@@ -14,10 +14,14 @@ import javafx.scene.text.TextFlow;
 
 public class MultiplayerController extends InGameController implements Initializable {
 
-  @FXML ImageView chatImage;
-  @FXML TextFlow chatTextField;
-  @FXML TextField chatInsert;
-  @FXML TextArea textArea;
+  @FXML
+  ImageView chatImage;
+  @FXML
+  TextFlow chatTextField;
+  @FXML
+  TextField chatInsert;
+  @FXML
+  TextArea textArea;
 
   private boolean chatOpen = false;
   private int roundNumber;
@@ -27,13 +31,13 @@ public class MultiplayerController extends InGameController implements Initializ
 
     synchronized (this) {
       try {
-        wait(300);
+        wait(200);
       } catch (Exception e) {
         // do nothing. this is just so dictionaries and database can be loaded and prepared at every
         // client
       }
     }
-
+    roundNumber = Data.getGameSession().getRoundNumber();
     try {
       aiTurn();
     } catch (IOException e) {
@@ -41,7 +45,7 @@ public class MultiplayerController extends InGameController implements Initializ
     }
 
     refreshUI();
-    roundNumber = Data.getGameSession().getRoundNumber();
+
   }
 
   @FXML
@@ -62,16 +66,15 @@ public class MultiplayerController extends InGameController implements Initializ
   @FXML
   private void sentClicked(MouseEvent event) {
     if (chatOpen) {
-      Platform.runLater(
-          new Runnable() {
+      Platform.runLater(new Runnable() {
 
-            @Override
-            public void run() {
-              chatInsert.selectAll();
-              Data.getPlayerClient()
-                  .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
-            }
-          });
+        @Override
+        public void run() {
+          chatInsert.selectAll();
+          Data.getPlayerClient()
+              .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
+        }
+      });
     }
   }
 
@@ -85,46 +88,43 @@ public class MultiplayerController extends InGameController implements Initializ
    */
   private void refreshUI() {
 
-    Thread t =
-        new Thread(
-            new Runnable() {
+    Thread t = new Thread(new Runnable() {
 
-              @Override
-              public void run() {
+      @Override
+      public void run() {
 
-                while (Data.getPlayerClient().threadIsRunning()) {
+        while (Data.getPlayerClient().threadIsRunning()) {
 
-                  Platform.runLater(
-                      new Runnable() {
+          Platform.runLater(new Runnable() {
 
-                        @Override
-                        public void run() {
+            @Override
+            public void run() {
 
-                          initRack();
-                          initPlayers();
-                          textArea.setText(Data.getChatHistory().toString());
-                          try {
-                            initButtons();
-                          } catch (IOException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                          }
-                          if (Data.getGameSession().getRoundNumber() != roundNumber) {
-                            initGameboard();
-                            roundNumber = Data.getGameSession().getRoundNumber();
-                          }
-                        }
-                      });
-                  synchronized (this) {
-                    try {
-                      this.wait(300);
-                    } catch (InterruptedException e) {
-                      // e.printStackTrace();
-                    }
-                  }
-                }
+              initRack();
+              initPlayers();
+              textArea.setText(Data.getChatHistory().toString());
+              try {
+                initButtons();
+              } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
               }
-            });
+              if (Data.getGameSession().getRoundNumber() != roundNumber) {
+                initGameboard();
+                roundNumber = Data.getGameSession().getRoundNumber();
+              }
+            }
+          });
+          synchronized (this) {
+            try {
+              this.wait(300);
+            } catch (InterruptedException e) {
+              // e.printStackTrace();
+            }
+          }
+        }
+      }
+    });
     t.start();
   }
 }
