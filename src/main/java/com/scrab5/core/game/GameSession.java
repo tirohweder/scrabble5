@@ -340,8 +340,6 @@ public class GameSession implements Serializable {
 
     for (Player player : Data.getGameSession().getListOfPlayers()) {
       if (!(player instanceof AiPlayer)) {
-        // FillDatabase.updatePoints(player.getName(), player.getPoints());
-        // PlayerProfileDatabase.setTotalPoints(player.getName(), player.getPoints());
         player.getPlayerProfile().addPoints(player.getName(), player.getPoints());
         System.out.println(player.getPlayerProfile().getName() + player.getPoints());
       }
