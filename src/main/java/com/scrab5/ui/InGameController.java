@@ -855,6 +855,8 @@ public abstract class InGameController implements Initializable {
         if (Data.getGameSession().getGameBoard().checkWordsLegit()) {
 
           Data.getGameSession().setSkippedTurn(0);
+          Data.getGameSession().getCurrentPlayer()
+              .setCorrectWords(Data.getGameSession().getCurrentPlayer().getCorrectWords() + 1);
 
           int points = Data.getGameSession().getGameBoard().countScore();
 
