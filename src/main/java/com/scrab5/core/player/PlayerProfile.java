@@ -167,11 +167,9 @@ public class PlayerProfile implements Serializable {
    * @author lengist
    */
   public void adjustWinRate(double winRate) {
-    double currentWRate = PlayerProfileDatabase.getWinRate(name);
-    if (winRate > currentWRate) {
-      PlayerProfileDatabase.setWinRate(name, winRate);
-      // setCurrentWinRate(winRate);
-    }
+    PlayerProfileDatabase.setWinRate(name, winRate);
+    // setCurrentWinRate(winRate);
+
   }
 
   public void setCurrentDictionary(String dictionary) {

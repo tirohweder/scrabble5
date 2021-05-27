@@ -351,6 +351,7 @@ public class GameSession implements Serializable {
       Player one = Data.getGameSession().getListOfPlayers().get(i);
       if (mostPoints < one.getPoints()) {
         mostPoints = one.getPoints();
+        name = one.getName();
       }
     }
     for (Player player : Data.getGameSession().getListOfPlayers()) {
@@ -366,16 +367,11 @@ public class GameSession implements Serializable {
         }
         if ((temp.getName().equals(name)) && (player.getPoints() != 0)) {
           temp.addWins(1);
-          System.out.println("ADDED A WIN");
         }
         if (temp.getTotalPlayedGames() != 0) {
-          temp.adjustWinRate(temp.getTotalWins() / temp.getTotalPlayedGames());
+          double newWinRate = (double) temp.getTotalWins() / (double) temp.getTotalPlayedGames();
+          temp.adjustWinRate(newWinRate);
         }
-
-        System.out.println(
-            (temp.getTotalWins() / temp.getTotalPlayedGames()) + " " + temp.getTotalWins());
-        System.out.println("ttal Wins: " + temp.getTotalWins());
-        System.out.println("ttal played games: " + temp.getTotalPlayedGames());
       }
     }
     this.running = false;
