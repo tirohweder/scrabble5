@@ -370,8 +370,7 @@ public class GameSession implements Serializable {
         if (temp.getLaidWords() != 0) {
           temp.adjustPointsPerWordRate(temp.getTotalPoints() / temp.getLaidWords());
         }
-        if (temp.getLongestWord().length() > PlayerProfileDatabase.getLongestWord(player.getName())
-            .length()) {
+        if (temp.getLongestWord() > PlayerProfileDatabase.getLongestWord(player.getName())) {
           temp.adjustLongestWord(temp.getLongestWord());
         }
         if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {

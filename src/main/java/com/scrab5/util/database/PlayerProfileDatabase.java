@@ -131,16 +131,16 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user to insert into preparedStatement
    * @return String with the longest word stored in the database
    */
-  public static synchronized String getLongestWord(String name) {
+  public static synchronized int getLongestWord(String name) {
     Database.reconnect();
-    String word = null;
+    int word = 0;
     try {
       PreparedStatement pstm =
           connection.prepareStatement("SELECT LongestWord FROM Player WHERE Name = ?");
       pstm.setString(1, name);
       ResultSet rs = pstm.executeQuery();
       while (rs.next()) {
-        word = rs.getString(1);
+        word = rs.getInt(1);
       }
       
       rs.close();
@@ -379,8 +379,8 @@ public class PlayerProfileDatabase extends Database {
    * @param name String name of the user where the longest word needs to be set
    * @param longestWord String representing the new longest word to be stored in the database
    */
-  public static void setLongestWord(String name, String longestWord) {
-    FillDatabase.updatePlayer("LongestWord", name, longestWord, 0, 0.0);
+  public static void setLongestWord(String name, int longestWord) {
+    FillDatabase.updatePlayer("LongestWord", name, null, longestWord, 0.0);
     Database.disconnect();
   }
 
