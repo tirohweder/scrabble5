@@ -81,10 +81,22 @@ public class Player implements Serializable {
     this.points = points;
   }
 
+  /**
+   * Getter for the correct placed words.
+   * 
+   * @author apilgrim
+   * @return correctWords - the player place during the game.
+   */
   public int getCorrectWords() {
     return correctWords;
   }
 
+  /**
+   * Setter for the correct placed words.
+   * 
+   * @author apilgrim
+   * @param correctWords - the correct placed words to set
+   */
   public void setCorrectWords(int correctWords) {
     this.correctWords = correctWords;
   }
