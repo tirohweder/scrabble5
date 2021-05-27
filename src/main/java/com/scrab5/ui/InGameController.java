@@ -1,5 +1,6 @@
 package com.scrab5.ui;
 
+import com.scrab5.core.game.GameSession;
 import com.scrab5.core.game.Rack;
 import com.scrab5.core.game.Tile;
 import com.scrab5.core.player.Player;
@@ -111,6 +112,8 @@ public abstract class InGameController implements Initializable {
   private Label pointsPlayer4;
   @FXML
   private Label skipPlay;
+  @FXML
+  private Label bagSize;
   private int rackClicked;
   private ArrayList<ImageView> changes = new ArrayList<ImageView>();
 
@@ -321,6 +324,8 @@ public abstract class InGameController implements Initializable {
 
     double layoutX = 263.0;
     double layoutY = 53.0;
+
+    bagSize.setText("bag size: " + Integer.toString(Data.getGameSession().getBag().getSize()));
 
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
@@ -1294,7 +1299,7 @@ public abstract class InGameController implements Initializable {
     if (chooseJoker) {
       letterJoker = iv.getId();
       setNewTile(clickedLetter, clickedLabel, letterJoker, 0);
-      
+
       if (Data.getGameSession().getGameBoard().placeTile(new Tile(letterJoker, 0),
           rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
         chooseJoker = false;

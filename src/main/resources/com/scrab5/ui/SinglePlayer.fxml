@@ -1600,12 +1600,7 @@ The method specification which implements what to do when a field is clicked/ en
                         <Image url="@board_Images/Letter%20clicked.png" />
                      </image>
                   </ImageView>
-                  <ImageView id="S" fitHeight="48.0"
-	fitWidth="43.0" layoutX="136.0" layoutY="310.0"
-	onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten"
-	onMouseExited="#darken" onMousePressed="#darken"
-	onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true"
-	preserveRatio="true">
+                  <ImageView id="S" fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="310.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@board_Images/Letter%20clicked.png" />
                      </image>
@@ -1662,6 +1657,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
+            <Label fx:id="bagSize" layoutX="1166.0" layoutY="15.0" prefHeight="17.0" prefWidth="74.0" text="bag size: " textFill="#eadcb4" />
          </children>
       </AnchorPane>
    </children>
