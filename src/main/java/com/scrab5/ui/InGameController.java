@@ -1294,9 +1294,7 @@ public abstract class InGameController implements Initializable {
     if (chooseJoker) {
       letterJoker = iv.getId();
       setNewTile(clickedLetter, clickedLabel, letterJoker, 0);
-
-      // TODO
-      System.out.println(letterJoker);
+      
       if (Data.getGameSession().getGameBoard().placeTile(new Tile(letterJoker, 0),
           rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
         chooseJoker = false;
