@@ -101,6 +101,7 @@ public class AiPlayer extends Player {
     for (Tile tile : listOfTiles) {
       String letter = tile.getLetter();
       possibleLetters1.add(letter);
+      System.out.println("ADDED TO BAG : " + letter);
     }
 
     String[] possibleLetters = new String[possibleLetters1.size()];
