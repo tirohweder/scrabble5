@@ -1600,7 +1600,12 @@ The method specification which implements what to do when a field is clicked/ en
                         <Image url="@board_Images/Letter%20clicked.png" />
                      </image>
                   </ImageView>
-                  <ImageView id="S" fitHeight="48.0" fitWidth="43.0" layoutX="136.0" layoutY="310.0" onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="S" fitHeight="48.0"
+	fitWidth="43.0" layoutX="136.0" layoutY="310.0"
+	onMouseClicked="#jokerLetterChoosen" onMouseEntered="#lighten"
+	onMouseExited="#darken" onMousePressed="#darken"
+	onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true"
+	preserveRatio="true">
                      <image>
                         <Image url="@board_Images/Letter%20clicked.png" />
                      </image>
