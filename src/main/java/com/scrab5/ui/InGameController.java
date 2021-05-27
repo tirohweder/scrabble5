@@ -125,7 +125,7 @@ public abstract class InGameController implements Initializable {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    
+
     initGameboard();
   }
 
@@ -937,18 +937,18 @@ public abstract class InGameController implements Initializable {
             pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
             pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
           }
-
+          System.out.println("FIIIIIIIIIIIIINEEEEEEEEEEEEEEEEE1");
           initRack();
           initPlayers();
+          System.out.println("FIIIIIIIIIIIIINEEEEEEEEEEEEEEEEE2");
           letterClicked = false;
           tileClicked = false;
           clickedLetter = null;
           clickedTile = null;
           turn = true;
           changes.clear();
-
+          System.out.println("FIIIIIIIIIIIIINEEEEEEEEEEEEEEEEE3");
           Data.getGameSession().checkBagAndRack(current);
-
         } else {
           String message = "The word placed isnt legit!";
           PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
@@ -1083,6 +1083,7 @@ public abstract class InGameController implements Initializable {
 
     tilePlacedOrder.remove(tilePlacedOrder.size() - 1);
     iv.setImage(markedTile);
+    iv.setOpacity(0);
     clickedTile = null;
     tileClicked = false;
     letterClicked = false;
@@ -1098,7 +1099,6 @@ public abstract class InGameController implements Initializable {
    */
   private void placeLetter(ImageView iv, Label l) {
 
-    System.out.println();
     tilePlacedOrder.add(rackClicked);
 
     markedTile = clickedTile.getImage();

@@ -33,7 +33,7 @@ public class Data {
   private static StringBuffer chatHistory = new StringBuffer();
   private static GameSession gameSession;
 
-  public static GameSession getGameSession() {
+  public synchronized static GameSession getGameSession() {
     return gameSession;
   }
 

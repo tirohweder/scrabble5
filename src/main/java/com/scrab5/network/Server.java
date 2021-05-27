@@ -369,6 +369,17 @@ public class Server implements Serializable {
   }
 
   /**
+   * Creates a new Timer instance. This is only used when a server is hosted multiple times since no
+   * new Server instance is created.
+   * 
+   * @author nitterhe
+   */
+  public void newTimer() {
+    timer = new Timer(true);
+    this.startTimer();
+  }
+
+  /**
    * Starts a 10 min timer for a client to make his turn. Server shuts down after 10 mins.
    *
    * @author nitterhe, trohwede
@@ -404,6 +415,7 @@ public class Server implements Serializable {
   public void cancelTimer() {
     timer.cancel();
     timer.purge();
+    timer = null;
   }
 
   /**

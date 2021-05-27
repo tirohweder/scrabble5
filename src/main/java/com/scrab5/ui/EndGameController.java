@@ -124,7 +124,14 @@ public class EndGameController extends InGameController implements Initializable
 
   @FXML
   private void playAgainClicked(MouseEvent event) throws IOException {
-
-    App.setRoot("SingleplayerLobby");
+    if (Data.getGameSession().isOnline()) {
+      App.setRoot("MultiplayerLobbyController");
+      if (Data.getPlayerClient().getCurrentServer().getHost()
+          .equals(Data.getPlayerClient().getUsername())) {
+        Data.getHostedServer().sendUpdateMessage();
+      }
+    } else {
+      App.setRoot("SingleplayerLobby");
+    }
   }
 }

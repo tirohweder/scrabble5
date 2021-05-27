@@ -291,7 +291,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
         points.add(help3[j]);
       }
       ArrayList<Integer> tiles = createTileBag(help1);
-      Data.setGameSession(new GameSession(gameSessionList, tiles, points, false));
+      Data.setGameSession(new GameSession(gameSessionList, tiles, points, true));
     }
 
     Data.getHostedServer().startGame();
@@ -331,6 +331,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
               if (Data.getPlayerClient().getStarting()) {
                 try {
                   Data.getPlayerClient().setStarting(false);
+                  Data.getPlayerClient().setReady(false, null);
                   App.setRoot("MultiPlayer");
                 } catch (IOException e) {
                   e.printStackTrace();

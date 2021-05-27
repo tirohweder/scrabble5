@@ -79,6 +79,7 @@ public class Client implements Serializable {
       hostedServer.setClientMaximum(clientMaximum);
       hostedServer.loadServerStatistics();
       hostedServer.openServerSocket();
+      hostedServer.newTimer();
     }
     hostedServer.acceptClients();
     try {
