@@ -387,6 +387,11 @@ public class AiPlayer extends Player {
       } else {
         score += scoreToBe;
       }
+
+      if (word.size() == 8) {
+        score += 50;
+      }
+
       scoreList.add(score);
     }
     System.out.println("------- NEW WORD ----------");
@@ -395,8 +400,8 @@ public class AiPlayer extends Player {
   }
 
   /**
-   * The idea of the fuction is to find out how much space it has to play with the given coordinates
-   * so that it creates only one word and dosnt touch any other tiles.
+   * The idea of the function is to find out how much space it has to play with the given
+   * coordinates so that it creates only one word and dosnt touch any other tiles.
    *
    * @author trohwede
    * @param row coordinates row
@@ -450,7 +455,9 @@ public class AiPlayer extends Player {
         counterUp++;
       } else if (column == 14 && gameBoard[0][14] == null && gameBoard[0][13] == null) {
         counterUp++;
-      } else if (gameBoard[0][column] == null
+      } else if (column != 0
+          && column != 14
+          && gameBoard[0][column] == null
           && gameBoard[0][column - 1] == null
           && gameBoard[0][column + 1] == null) {
         counterUp++;
@@ -499,7 +506,9 @@ public class AiPlayer extends Player {
         counterDown++;
       } else if (column == 14 && gameBoard[14][14] == null && gameBoard[14][13] == null) {
         counterDown++;
-      } else if (gameBoard[14][column] == null
+      } else if (column != 14
+          && column != 0
+          && gameBoard[14][column] == null
           && gameBoard[14][column - 1] == null
           && gameBoard[14][column + 1] == null) {
         counterDown++;
@@ -549,7 +558,9 @@ public class AiPlayer extends Player {
         counterRight++;
       } else if (row == 14 && gameBoard[14][14] == null && gameBoard[13][14] == null) {
         counterRight++;
-      } else if (gameBoard[row][14] == null
+      } else if (row != 0
+          && row != 14
+          && gameBoard[row][14] == null
           && gameBoard[row - 1][14] == null
           && gameBoard[row + 1][14] == null) {
         counterRight++;
@@ -600,7 +611,9 @@ public class AiPlayer extends Player {
         counterLeft++;
       } else if (row == 14 && gameBoard[14][0] == null && gameBoard[13][0] == null) {
         counterLeft++;
-      } else if (gameBoard[row][0] == null
+      } else if (row != 0
+          && column != 14
+          && gameBoard[row][0] == null
           && gameBoard[row - 1][0] == null
           && gameBoard[row + 1][0] == null) {
         counterLeft++;
@@ -1074,6 +1087,13 @@ public class AiPlayer extends Player {
         }
 
         Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
+      }
+      if (choosenWord.size() == 8) {
+        if (Data.getGameSession().isOnline()) {
+          Data.getPlayerClient().playSound(true);
+        } else {
+          Data.getGameSession().playSound(true);
+        }
       }
       System.out.println("placed");
     } else {
