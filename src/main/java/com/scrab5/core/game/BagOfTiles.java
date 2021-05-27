@@ -96,7 +96,7 @@ public class BagOfTiles implements Serializable {
     int[] points = UseDatabase.getAllPointsPerLetter();
 
     for (int i = 0; i < points.length; i++) {
-      System.out.println(points[i]);
+      System.out.println(letter[i] + " : " + points[i]);
     }
 
     int set = 0;
@@ -108,8 +108,11 @@ public class BagOfTiles implements Serializable {
       Entry<String, Integer> pair = it.next();
       for (int i = 0; i < pair.getValue(); i++) {
         for (int j = 0; j < letter.length; j++) {
-          if (pair.getKey() == letter[j]) {
+          System.out.println(pair.getKey() + " : " + letter[j]);
+
+          if (pair.getKey().equals(letter[j])) {
             set = j;
+            System.out.println("WKJEi");
           }
         }
         System.out.println(pair.getKey() + " : " + points[set]);
