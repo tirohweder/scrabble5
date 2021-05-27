@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import com.scrab5.util.database.Database;
+import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -40,6 +41,7 @@ public class LetterCustomizationController extends Controller implements Initial
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
+    FillDatabase.fillLetters();
     int[] occurrencies = UseDatabase.getAllOccurrences();
     int[] pointsDistribution = UseDatabase.getAllPointsPerLetter();
 
