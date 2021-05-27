@@ -221,7 +221,7 @@ public class ProfileController extends Controller implements Initializable {
     this.totalWins.setText(String.valueOf(totalWins));
 
     double winRate = PlayerProfileDatabase.getWinRate(name);
-    this.winPercentage.setText(String.valueOf(winRate * 100));
+    this.winPercentage.setText(String.valueOf(winRate * 100.0));
 
     if (totalPoints == 0 || totalPlayedGames == 0) {
       this.averagePointsGame.setText("0");

@@ -358,10 +358,16 @@ public class GameSession implements Serializable {
       if (!(player instanceof AiPlayer)) {
         PlayerProfile temp = player.getPlayerProfile();
         temp.addPoints(player.getName(), player.getPoints());
-        temp.addWords(temp.getLaidWords());
+        temp.addWords(player.getCorrectWords());
         temp.addGames(1);
 
-
+        if (temp.getLaidWords() != 0) {
+          temp.adjustPointsPerWordRate(temp.getTotalPoints() / temp.getLaidWords());
+        }
+        if (temp.getLongestWord().length() > PlayerProfileDatabase.getLongestWord(player.getName())
+            .length()) {
+          temp.adjustLongestWord(temp.getLongestWord());
+        }
         if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {
           temp.adjustPersonalHighscore(player.getPoints());
         }
@@ -370,7 +376,7 @@ public class GameSession implements Serializable {
         }
         if (temp.getTotalPlayedGames() != 0) {
           double newWinRate = (double) temp.getTotalWins() / (double) temp.getTotalPlayedGames();
-          temp.adjustWinRate(Math.round(newWinRate * 10) / 10);
+          temp.adjustWinRate(Math.round(newWinRate * 100.0) / 100.0);
         }
       }
     }
@@ -416,4 +422,5 @@ public class GameSession implements Serializable {
   public boolean calculateEndPossibility() {
     return this.skippedTurn >= 6;
   }
+
 }
