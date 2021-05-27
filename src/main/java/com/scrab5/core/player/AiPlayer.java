@@ -61,15 +61,15 @@ public class AiPlayer extends Player {
    * could possibly lay as Tiles with coordinates and points is created and passed. Line 277 and
    * following.
    *
+   * @author lengist
    * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
    *        word next to
    * @param before the amount of tiles that are free before this letter
    * @param after the amount of tiles that are free after this letter
-   * @param x the x-coordinate of the tile with letter fixLetter on the board
-   * @param y the y-coordinate of the tile with letter fixLetter on the board
+   * @param column the column of the tile with letter fixLetter on the board
+   * @param row the row of the tile with letter fixLetter on the board
    * @param horizontal is true, when the word needs to get laid horizontal and false if vertical.
    *        This parameter is needed later on
-   * @author lengist
    */
   public static ArrayList<ArrayList<Tile>> wordGenerator(String fixLetter, int before, int after,
       int column, int row, boolean horizontal) {
@@ -80,9 +80,6 @@ public class AiPlayer extends Player {
     System.out.println("column: " + column);
     System.out.println("row: " + row);
     System.out.println("horizontal: " + horizontal);
-
-    // System.out.println(
-    // "Saved fixLetter: " + currentFixLetter + " x: " + currentFixX + "y: " + currentFixY);
 
     System.out.println();
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
@@ -113,6 +110,7 @@ public class AiPlayer extends Player {
     finalWords = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
     System.out.println("1. Final Words length: " + finalWords.size());
 
+    /* Deletion round 1: deleting all words that include a letter that is not in the bag. */
     StringBuilder sb = new StringBuilder();
     for (String s : possibleLetters) {
       sb.append(s);
@@ -129,12 +127,16 @@ public class AiPlayer extends Player {
 
     System.out.println("After Deltion round 1: " + finalWords.size());
 
+    /*
+     * Deletion round 2: deleting all words that do not fit to the requirements regarding the space
+     * before and after the fixLetter.
+     */
     for (String s : finalWords) {
       for (int i = 0; i < s.length(); i++) {
 
         if (s.charAt(i) == fixLetter.charAt(0)) {
           before2 = i;
-          after2 = s.length() - i;
+          after2 = s.length() - (i + 1);
 
           if (before2 > before) {
             deletionRound2.add(s);
@@ -148,6 +150,10 @@ public class AiPlayer extends Player {
 
     System.out.println("After Deltion round 2: " + finalWords.size());
 
+    /*
+     * Deletion round 3: deleting all words that contain an amount of a specific letter not
+     * compatible with the occurrence in the bag.
+     */
     ArrayList<String> deletionRound3 = new ArrayList<String>();
     HashMap<String, Integer> currentDistribution = bag.getCurrentBagDistribution();
     for (String s : finalWords) {
@@ -160,11 +166,14 @@ public class AiPlayer extends Player {
 
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
     for (String s : finalWords) {
-      // System.out.println("test word: " + s);
-      // tiles.add(wordToTiles(s, fixLetter, currentFixX, currentFixY, horizontal));
       tiles.add(wordToTiles(s, fixLetter, column, row, horizontal));
     }
     return tiles;
+  }
+  
+  public static void main(String[] args) {
+    String s = "laura";
+    System.out.println(s.length());
   }
 
   /**
@@ -174,8 +183,8 @@ public class AiPlayer extends Player {
    * @param word the word that needs to be converted into tiles
    * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
    *        word next to
-   * @param x the x-coordinate of the tile with letter fixLetter on the board
-   * @param y the y-coordinate of the tile with letter fixLetter on the board
+   * @param column the column of the tile with letter fixLetter on the board
+   * @param row the row of the tile with letter fixLetter on the board
    * @param horizontal is true, when the word needs to get laid horizontal and false if vertical
    * @return tiles a ArrayList containing all tiles for the word word
    */
@@ -183,31 +192,23 @@ public class AiPlayer extends Player {
       boolean horizontal) {
     ArrayList<Tile> tiles = new ArrayList<Tile>();
     tiles = getCoordinatesRep(word, fixLetter, column, row, horizontal);
-    /*
-     * if (!isLetterExistingRepeatedly(word)) { /*for (int i = 0; i < word.length(); i++) {
-     * 
-     * value = getPointForLetter(String.valueOf(word.charAt(i))); coordinates = getCoordinates(word,
-     * fixLetter, String.valueOf(word.charAt(i)), x, y, horizontal); row = coordinates.get(1);
-     * column = coordinates.get(0); Tile t = new Tile(String.valueOf(word.charAt(i)), value, row,
-     * column); tiles.add(t); }
-     */
-    /*
-     * } else { tiles = getCoordinatesRep(word, fixLetter, x, y, horizontal); /*for (int i = 0; i <
-     * word.length(); i++) {
-     * 
-     * value = getPointForLetter(String.valueOf(word.charAt(i))); coordinates = getCoordinates(word,
-     * fixLetter, String.valueOf(word.charAt(i)), x, y, horizontal); row = coordinates.get(1);
-     * column = coordinates.get(0); Tile t = new Tile(String.valueOf(word.charAt(i)), value, row,
-     * column); tiles.add(t); }
-     * 
-     * for (int i = 1; i < word.length(); i++) { if (word.charAt(i) == word.charAt(i - 1)) { if
-     * (!horizontal) { tiles.get(i - 1).setRow(tiles.get(i).getRow() - 1); } else { tiles.get(i -
-     * 1).setColumn(tiles.get(i).getColumn() - 1); } } }
-     */
-    // }
     return tiles;
   }
 
+  /**
+   * Method to calculate the coordinates for the tiles of a new word. First it estimates the place
+   * of the fixLetter in word. With this information, the Coordinates for the newLetter get
+   * calculated and saved as new Tile.
+   * 
+   * @author lengist
+   * @param word the word that needs to be created with tiles
+   * @param fixLetter the letter that is already on the gameboard
+   * @param columnFixLetter the column of the fixLetter
+   * @param rowFixLetter the row of the fixLetter
+   * @param horizontal a boolean variable for the alignment of the word on the board. If it is true,
+   *        the word will be laid horizontal. If not, vertical.
+   * @return tiles, a ArrayList including all tiles for the word word
+   */
   public static ArrayList<Tile> getCoordinatesRep(String word, String fixLetter,
       int columnFixLetter, int rowFixLetter, boolean horizontal) {
     int fixPosition = 0;
@@ -257,63 +258,17 @@ public class AiPlayer extends Player {
         tiles.add(t);
       }
     }
-
     return tiles;
   }
 
   /**
-   * Method to calculate the coordinates for the tiles of a new word. First it estimates the place
-   * of the fixLetter in word and then the place of the newLetter in word. With this information,
-   * the Coordinates for the newLetter get calculated.
-   *
-   * @param word the word that contains the fixLetter and newLetter to calculate the exact positions
-   *        of the given letters
-   * @param fixLetter the letter that is already n the gameboard
-   * @param newLetter a letter from the word different to fixLetter. This is the letter the
-   *        coordinates need to be calculated for.
-   * @param xfixLetter the x-Coordinate of the fixLetter
-   * @param yfixLetter the y-Coordinate of the fixLetter
-   * @param horizontal a boolean variable for the alignment of the word on the board. If it is true,
-   *        the word will be laid horizontal. If not, vertical.
-   * @return coordinates, a ArrayList including the x- and y-Coordinate of the newLetter.
+   * Returns if a word contains a letter more than one time.
+   * 
    * @author lengist
+   * @param word the word which will be scanned
+   * @return a boolean value whether it contains a letter for more than one time (true) oder not
+   *         (false)
    */
-  public static ArrayList<Integer> getCoordinates(String word, String fixLetter, String newLetter,
-      int xfixLetter, int yfixLetter, boolean horizontal) {
-    int placeFixLetter = 0;
-    int xnew = 0;
-    int ynew = 0;
-
-    for (int i = 0; i < word.length(); i++) {
-      if (word.charAt(i) == fixLetter.charAt(0)) {
-        placeFixLetter = i;
-      }
-    }
-    for (int i = 0; i < word.length(); i++) {
-      if (word.charAt(i) == newLetter.charAt(0)) {
-        if (horizontal) {
-          ynew = yfixLetter;
-          if (i < placeFixLetter) {
-            xnew = xfixLetter - (placeFixLetter - i);
-          } else {
-            xnew = xfixLetter + (i - placeFixLetter);
-          }
-        } else {
-          xnew = xfixLetter;
-          if (i < placeFixLetter) {
-            ynew = yfixLetter - (placeFixLetter - i);
-          } else {
-            ynew = yfixLetter + (i - placeFixLetter);
-          }
-        }
-      }
-    }
-    ArrayList<Integer> coordinates = new ArrayList<Integer>();
-    coordinates.add(xnew);
-    coordinates.add(ynew);
-    return coordinates;
-  }
-
   public static boolean isLetterExistingRepeatedly(String word) {
     for (int i = 1; i < word.length(); i++) {
       if (word.charAt(i) == word.charAt(i - 1)) {
@@ -326,14 +281,12 @@ public class AiPlayer extends Player {
   /**
    * Method to return the points for a letter saved in the database.
    *
+   * @author lengist
    * @param letter the String of the letter for that the points need to be known
    * @return points the points saved in database for the letter.
-   * @author lengist
    */
   public static int getPointForLetter(String letter) {
-
     int points = 0;
-    // System.out.println("Letter length" + lettersFromDatabase.length);
     for (int i = 0; i < lettersFromDatabase.length; i++) {
       if (lettersFromDatabase[i].equals(letter)) {
         points = pointsPerLetterFromDatabase[i];
