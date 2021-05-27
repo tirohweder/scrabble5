@@ -65,7 +65,7 @@ public class CreateDatabase extends Database {
     try (Statement stm = connection.createStatement()) {
       String sql = "CREATE TABLE Player (Name TEXT NOT NULL," + "TotalPoints INTEGER NOT NULL,"
           + "PersonalHighscore INTEGER NOT NULL," + "LaidWords INTEGER NOT NULL,"
-          + "PointsPerWordRate INTEGER NOT NULL," + "LongestWord TEXT,"
+          + "PointsPerWordRate INTEGER NOT NULL," + "LongestWord INTEGER,"
           + "TotalPlayedGames INTEGER NOT NULL," + "TotalWins INTEGER NOT NULL," + "WinRate REAL,"
           + "FaveDic TEXT," + "Music REAL," + "SoundEffect REAL)";
       stm.executeUpdate(sql);
