@@ -348,14 +348,20 @@ public class AiPlayer extends Player {
 
     ArrayList<Integer> scoreList = new ArrayList<>();
 
+    boolean tw = false;
+    boolean dw = false;
     for (ArrayList<Tile> word : possibleWords) {
       int score = 0;
       int scoreToBe = 0;
-      boolean tw = false;
-      boolean dw = false;
       for (Tile tile : word) {
-        System.out.println("SPECIAL : " + gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn()));
-        switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
+        System.out.println(
+            "SPECIAL : "
+                + Data.getGameSession()
+                    .getGameBoard()
+                    .getSpecialsAt(tile.getRow(), tile.getColumn()));
+        switch (Data.getGameSession()
+            .getGameBoard()
+            .getSpecialsAt(tile.getRow(), tile.getColumn())) {
           case "DL":
             scoreToBe += tile.getValue() * 2;
             break;
@@ -385,6 +391,8 @@ public class AiPlayer extends Player {
       }
       scoreList.add(score);
     }
+
+    // TODO bingo einführen
     return scoreList;
   }
 
