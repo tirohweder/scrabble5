@@ -125,7 +125,7 @@ public abstract class InGameController implements Initializable {
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    
+
     initGameboard();
   }
 
@@ -309,6 +309,14 @@ public abstract class InGameController implements Initializable {
     }
   }
 
+  /**
+   * Initiliazes the gameboard in the ingame (thru opacity/ text setting of Labels and ImageViews).
+   * Therefore it checks every place in the Gameboard field, if a letter is placed and if so, set
+   * there an image file with the letter plus the points. Is called after every turn of a player, to
+   * check what is new on the board.
+   *
+   * @author apilgrim
+   */
   protected void initGameboard() {
 
     double layoutX = 263.0;
@@ -349,13 +357,15 @@ public abstract class InGameController implements Initializable {
   // Tile acctions
 
   /**
-   * @param event - MouseEvent
-   * @throws IOException this method is called when a tile on the board is clicked. It checks 1. if
-   *         the field already contained a letter which than is removed (backToRack) 2. else, if no
-   *         other tile is clicked and the place isn't taken, then it is marked thru the opacity or
-   *         if a letter is clicked as well, the Letter is placed. 3. last if another tile has been
-   *         clicked before it is unclicked an reseted from the clickedTile
+   * This method is called when a field on the board is clicked and if it's the players turn. It
+   * checks 1. if no other tile is clicked and the place isn't taken, then it is marked thru the
+   * opacity or if a letter is clicked as well, the Letter is placed on the gameboard. 3. last if
+   * the same tile has been clicked before it is unclicked an reseted from the clickedTile
+   * 
    * @author apilgirm
+   * @param event - MouseEvent created when a field is clicked
+   * @throws IOException when you are not the current player or the tile is not correct placed
+   * 
    */
   @FXML
   private void fieldClicked(MouseEvent event) throws IOException {
@@ -400,13 +410,17 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param event
-   * @throws IOException method which is called when the rack Place One is clicked and checks 1. if
-   *         another letter is clicked/marked 2. if not, it checks if a destination tile is already
-   *         marked on the field and therefore is replaced with this letter, otherwise it is marked
-   *         and is locked in the clicked Letter attribute. Or 3. least if it was already the marked
-   *         letter in the rack it is unmarked and unclicked
+   * Method which is called when the rack Place One is clicked and checks (if it is your turn) 1. if
+   * another letter is clicked/marked 2. if not, it checks if a destination tile is already marked
+   * on the field and therefore is replaced with this letter (Image set plus opacity on 0 to remove
+   * from rack), otherwise it is marked and is locked in the clicked Letter attribute. Or 3. if
+   * another letter has been clicked with no destination, the clickedLetter is switched to the new
+   * one. Least, if it has been selected before, it is unclicked.
+   * 
    * @author apilgirm
+   * @param event - MouseEvent created when the rackPlace 1 is clicked
+   * @throws IOException - thrown when an Error occurs thru the click or the PopUp Message
+   * 
    */
   @FXML
   private void rackPlace1clicked(MouseEvent event) throws IOException {
@@ -460,10 +474,13 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param event
-   * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 2 like in rackPlace1Clicked
+   * This method is called when rackPlace2 is clicked. It checks different options to handle the
+   * clicked Letter in rackPlace2 like in rackPlace1Clicked and handles it the same.
+   * 
    * @author apilgirm
+   * @param event - MouseEvent created when the rackPlace2 is clicked
+   * @throws IOException
+   * 
    */
   @FXML
   private void rackPlace2clicked(MouseEvent event) throws IOException {
@@ -1028,7 +1045,6 @@ public abstract class InGameController implements Initializable {
       }
       jokerPlacedAt.remove(jokerPlacedAt.size() - 1);
     } else {
-      System.out.println("hallo2" + tilePlacedOrder.get(tilePlacedOrder.size() - 1));
       if (place == 0) {
         rackPlace1.setOpacity(1);
         pointsRack1.setLayoutX(rackPlace1.getLayoutX() + LABEL_X_CORD_BACK);
@@ -1098,7 +1114,7 @@ public abstract class InGameController implements Initializable {
    * @author apilgrim
    */
   private void placeLetter(ImageView iv, Label l) {
-    
+
     tilePlacedOrder.add(rackClicked);
 
     markedTile = clickedTile.getImage();
