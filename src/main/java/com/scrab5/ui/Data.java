@@ -14,8 +14,6 @@ import java.util.ArrayList;
  */
 public class Data {
 
-  public static int easyAiThreshold = 5;
-  public static int hardAiThreshold = 25;
   private static String currentUser;
   private static String inputFieldText;
   private static String popUpMessage;
@@ -95,8 +93,8 @@ public class Data {
   }
 
   /**
-   * Saves the text message that gets displayed on the currently opened
-   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Saves the text message that gets displayed on the currently opened {@link
+   * com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
    * @param message the string that gets set
    * @author mherre
