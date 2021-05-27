@@ -354,6 +354,7 @@ public class AiPlayer extends Player {
       boolean tw = false;
       boolean dw = false;
       for (Tile tile : word) {
+        System.out.println("SPECIAL : " + gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn()));
         switch (gameBoard.getSpecialsAt(tile.getRow(), tile.getColumn())) {
           case "DL":
             scoreToBe += tile.getValue() * 2;
@@ -372,7 +373,7 @@ public class AiPlayer extends Player {
           default:
             scoreToBe += tile.getValue();
         }
-        // Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
+        Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
       }
 
       if (dw) {

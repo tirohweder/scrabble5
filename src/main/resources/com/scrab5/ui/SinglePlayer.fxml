@@ -1657,7 +1657,7 @@ The method specification which implements what to do when a field is clicked/ en
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="bagSize" layoutX="1166.0" layoutY="15.0" prefHeight="17.0" prefWidth="74.0" text="bag size: " textFill="#eadcb4" />
+            <Label fx:id="bagSize" layoutX="1166.0" layoutY="15.0" prefHeight="17.0" prefWidth="74.0" text="Bag size: " textFill="#eadcb4" />
          </children>
       </AnchorPane>
    </children>
