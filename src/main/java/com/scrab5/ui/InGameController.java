@@ -1083,6 +1083,7 @@ public abstract class InGameController implements Initializable {
 
     tilePlacedOrder.remove(tilePlacedOrder.size() - 1);
     iv.setImage(markedTile);
+    iv.setOpacity(0);
     clickedTile = null;
     tileClicked = false;
     letterClicked = false;
@@ -1097,8 +1098,7 @@ public abstract class InGameController implements Initializable {
    * @author apilgrim
    */
   private void placeLetter(ImageView iv, Label l) {
-
-    System.out.println();
+    
     tilePlacedOrder.add(rackClicked);
 
     markedTile = clickedTile.getImage();
