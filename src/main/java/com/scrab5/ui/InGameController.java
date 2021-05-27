@@ -1262,7 +1262,7 @@ public abstract class InGameController implements Initializable {
         if (Data.getGameSession().getBag().getSize() > 7) {
           App.setRoot("Exchange");
         } else {
-          newPum("Sorry there are not enough tile left in the bag");
+          newPum("Sorry there are not enough tiles left in the bag");
         }
       } else {
         newPum(
