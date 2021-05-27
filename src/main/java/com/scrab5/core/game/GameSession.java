@@ -441,7 +441,6 @@ public class GameSession implements Serializable {
    * @param tob - the variable if Triple.mp3 or Bingo.mp3 shall be played.
    */
   public void playSound(boolean tob) {
-    System.out.println("PLAAAAAAAAAYYYYYYYYYYYYYYYY SSSSSSOUUUNNDDDDDD2");
     String file = "";
     if (tob) {
       file = "Bingo.mp3";
