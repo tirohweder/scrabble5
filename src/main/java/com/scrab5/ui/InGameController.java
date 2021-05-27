@@ -1,6 +1,5 @@
 package com.scrab5.ui;
 
-import com.scrab5.core.game.GameSession;
 import com.scrab5.core.game.Rack;
 import com.scrab5.core.game.Tile;
 import com.scrab5.core.player.Player;
@@ -837,7 +836,6 @@ public abstract class InGameController implements Initializable {
   @FXML
   private void playClicked(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
-    ImageView iv = (ImageView) event.getSource();
 
     ArrayList<Tile> currentChanges = Data.getGameSession().getGameBoard().getCurrentChanges();
 
@@ -870,8 +868,6 @@ public abstract class InGameController implements Initializable {
           pum.show();
 
           Player current = Data.getGameSession().getCurrentPlayer();
-
-          Data.getGameSession().finishTurn();
 
           // reset Opacity on the Rag Board if not null
           if (rackPlace1 != null && rackPlace1.getOpacity() == 0) {
@@ -959,14 +955,17 @@ public abstract class InGameController implements Initializable {
             pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
             pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
           }
-          initRack();
-          initPlayers();
           letterClicked = false;
           tileClicked = false;
           clickedLetter = null;
           clickedTile = null;
           turn = true;
           changes.clear();
+
+          initRack();
+          initPlayers();
+
+          Data.getGameSession().finishTurn();
 
           Data.getGameSession().checkBagAndRack(current);
         } else {

@@ -37,7 +37,7 @@ public class Data {
     return gameSession;
   }
 
-  public static void setGameSession(GameSession gs) {
+  public synchronized static void setGameSession(GameSession gs) {
     gameSession = gs;
   }
 
