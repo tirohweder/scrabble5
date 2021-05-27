@@ -5,6 +5,7 @@ import com.scrab5.core.player.Player;
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
 import java.io.Serializable;
 import java.sql.ResultSet;
@@ -341,20 +342,12 @@ public class GameSession implements Serializable {
     for (Player player : Data.getGameSession().getListOfPlayers()) {
       if (!(player instanceof AiPlayer)) {
         player.getPlayerProfile().addPoints(player.getName(), player.getPoints());
-        System.out.println(player.getPlayerProfile().getName() + player.getPoints());
+
+        if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {
+          player.getPlayerProfile().adjustPersonalHighscore(player.getPoints());
+        }
       }
     }
-
-    // for (Player player : Data.getGameSession().getListOfPlayers()) {
-    // if (player.isHuman()) {
-    // Data.getGameSession().getCurrentPlayer().getPlayerProfile()
-    // .setCurrentPoints(PlayerProfileDatabase.getTotalPoints(Data.getCurrentUser()));
-    // System.out.println("geht");
-    // // Database.disconnect();
-    // player.getPlayerProfile().addPoints(player.getPoints());
-    // System.out.println(player.getPlayerProfile().getName() + player.getPoints());
-    // }
-    // }
     this.running = false;
   }
 
