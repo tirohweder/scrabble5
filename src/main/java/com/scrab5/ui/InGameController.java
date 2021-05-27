@@ -18,10 +18,11 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-/*
+/**
+ * The InGameController class controls the components of the "AccountCreation.fxml".
+ * 
  * @author apilgrim
  */
-
 public abstract class InGameController implements Initializable {
 
   private static final double LABEL_X_CORD = 30.0;
