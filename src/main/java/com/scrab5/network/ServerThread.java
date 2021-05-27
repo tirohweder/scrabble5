@@ -203,7 +203,6 @@ public class ServerThread extends Threads {
    */
   protected synchronized void closeConnection() {
     sendMessageToClient(new DisconnectMessage(server.getHost()));
-    deleteClient(this.connectedClient.getUsername());
     this.stopThread();
     try {
       this.socketToClient.close();

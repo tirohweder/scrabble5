@@ -299,6 +299,7 @@ public class Server implements Serializable {
     for (ServerThread serverThread : connections.values()) {
       serverThread.closeConnection();
     }
+
     try {
       serverSocket.close();
     } catch (IOException e) {

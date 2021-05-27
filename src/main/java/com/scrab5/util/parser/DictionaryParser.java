@@ -77,8 +77,12 @@ public class DictionaryParser {
    */
   public static void createSearchableFile(String dictionaryFile) {
 
-    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/" + newFileName);
+    /*
+     * File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") +
+     * "src/main/resources/com/scrab5/util/textParser/" + newFileName);
+     */
+    File file = new File(
+        System.getProperty("user.dir") + System.getProperty("file.separator") + newFileName);
 
     try {
       if (!file.exists()) {
@@ -106,8 +110,8 @@ public class DictionaryParser {
    */
   private static void loadFile(String file) {
     try {
-      File fileOne = new File(
-          System.getProperty("user.dir") + System.getProperty("file.separator") + file);
+      File fileOne =
+          new File(System.getProperty("user.dir") + System.getProperty("file.separator") + file);
       FileInputStream fileInput = new FileInputStream(fileOne);
 
       BufferedReader buf =
@@ -171,8 +175,12 @@ public class DictionaryParser {
    * @return the dictionary file to send to all clients
    */
   public static File getDictionaryFile(String dictionaryName) {
-    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/" + dictionaryName);
+    /*
+     * File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") +
+     * "src/main/resources/com/scrab5/util/textParser/" + dictionaryName);
+     */
+    File file = new File(
+        System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
     return file;
   }
 
@@ -188,8 +196,12 @@ public class DictionaryParser {
   public static void addDictionary(String dictionary, String dictionaryName) {
     Thread t = new Thread(new Runnable() {
       public void run() {
+        /*
+         * File file = new File(System.getProperty("user.dir") +
+         * System.getProperty("file.separator") + "src/main/resources/com/scrab5/util/textParser/" +
+         * dictionaryName.replace(".", "Parsed."));
+         */
         File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-            + "src/main/resources/com/scrab5/util/textParser/"
             + dictionaryName.replace(".", "Parsed."));
         try {
           if (file.createNewFile()) {
