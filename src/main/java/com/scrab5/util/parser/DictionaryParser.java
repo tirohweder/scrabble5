@@ -64,8 +64,8 @@ public class DictionaryParser {
   public static void parseFile(String originalFile) {
     StringBuilder sb = new StringBuilder(originalFile);
     sb.setLength(sb.length() - 4);
-    //newFileName = sb.toString() + "Parsed.txt";
-    newFileName = originalFile + "Parsed.txt";
+    newFileName = sb.toString() + "Parsed.txt";
+    //newFileName = originalFile + "Parsed.txt";
     System.out.println(newFileName);
     createSearchableFile(originalFile);
   }
@@ -112,8 +112,8 @@ public class DictionaryParser {
        * System.getProperty("file.separator") + "src/main/resources/com/scrab5/util/textParser/" +
        * "words.txt");
        */
-      File fileOne =
-          new File(System.getProperty("user.dir") + System.getProperty("file.separator") + file + ".txt");
+      File fileOne = new File(
+          System.getProperty("user.dir") + System.getProperty("file.separator") + file);
       FileInputStream fileInput = new FileInputStream(fileOne);
 
       BufferedReader buf =
