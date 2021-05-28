@@ -66,10 +66,12 @@ public class PopUpMessage {
   }
 
   /**
+   * Loads the given fxml and returns it as parent.
+   *
+   * @param fxml loads the fxml
+   * @return Parent
+   * @throws IOException tried to read a local file that was no longer available
    * @author trohwede
-   * @param fxml
-   * @return
-   * @throws IOException
    */
   private Parent loadFXML(String fxml) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
