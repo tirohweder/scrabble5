@@ -6,211 +6,304 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.ExchangeController">
-   <children>
-      <AnchorPane prefHeight="768.0" prefWidth="1618.0">
-         <children>
-            <ImageView fitHeight="768.0" fitWidth="1360.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="382.0">
-               <image>
-                  <Image url="@board_Images/Singleplayer_Background.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="768.0" layoutX="178.0" opacity="1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="178.0" AnchorPane.rightAnchor="382.0" AnchorPane.topAnchor="0.0">
-               <image>
-                  <Image url="@board_Images/Spielfeld.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="1360.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/Singleplayer_TopContainer.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="81.0" fitWidth="1360.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/Singleplayer_TopContainer.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="34.0" fitWidth="117.0" layoutX="15.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/MM_ExitButton.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="34.0" fitWidth="117.0" layoutX="15.0" layoutY="7.0" onMouseClicked="#closeGame" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/MM_ExitButton_Clicked.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="player1" layoutX="242.0" layoutY="-3.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="player4" layoutX="997.0" layoutY="-3.0" opacity="0.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="player3" layoutX="758.0" layoutY="-3.0" opacity="0.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="player2" layoutX="494.0" layoutY="-3.0" opacity="0.0" prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw" textFill="#fefff2">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="65.0" fitWidth="43.0" layoutX="192.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="playerProfile4Active" fitHeight="65.0" fitWidth="43.0" layoutX="947.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="playerProfile3Active" fitHeight="65.0" fitWidth="43.0" layoutX="708.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="playerProfile2Active" fitHeight="65.0" fitWidth="43.0" layoutX="444.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/Singleplayer_Profile_Bright.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="playerProfile1Passive" fitHeight="65.0" fitWidth="43.0" layoutX="192.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="playerProfile2Passive" fitHeight="65.0" fitWidth="43.0" layoutX="444.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="playerProfile3Passive" fitHeight="65.0" fitWidth="43.0" layoutX="708.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="playerProfile4Passive" fitHeight="65.0" fitWidth="43.0" layoutX="947.0" layoutY="2.0" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/Singleplayer_Profile_Dark.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="pointsPlayer1" layoutX="242.0" layoutY="18.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="pointsPlayer2" layoutX="494.0" layoutY="19.0" opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="pointsPlayer3" layoutX="758.0" layoutY="18.0" opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label fx:id="pointsPlayer4" layoutX="997.0" layoutY="19.0" opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="18.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="849.0" fitWidth="1360.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/popUpBackground.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="348.0" fitWidth="557.0" layoutX="305.0" layoutY="168.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/exchangeTiles.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="34.0" fitWidth="81.0" layoutX="327.0" layoutY="473.0" onMouseClicked="#backClicked" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/backClicked.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="34.0" fitWidth="80.0" layoutX="764.0" layoutY="475.0" onMouseClicked="#exchangeConfirmed" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@board_Images/exchangeClicked.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="rackPlace1" fitHeight="70.0" fitWidth="65.0" layoutX="327.0" layoutY="319.0" onMouseClicked="#rackPlace1clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Images/placeHolder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="rackPlace2" fitHeight="70.0" fitWidth="65.0" layoutX="402.0" layoutY="319.0" onMouseClicked="#rackPlace2clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Images/placeHolder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="rackPlace3" fitHeight="70.0" fitWidth="65.0" layoutX="477.0" layoutY="319.0" onMouseClicked="#rackPlace3clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Images/placeHolder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="rackPlace4" fitHeight="70.0" fitWidth="65.0" layoutX="552.0" layoutY="319.0" onMouseClicked="#rackPlace4clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Images/placeHolder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="rackPlace5" fitHeight="70.0" fitWidth="65.0" layoutX="627.0" layoutY="319.0" onMouseClicked="#rackPlace5clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Images/placeHolder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="rackPlace6" fitHeight="70.0" fitWidth="65.0" layoutX="702.0" layoutY="319.0" onMouseClicked="#rackPlace6clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Images/placeHolder.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="rackPlace7" fitHeight="70.0" fitWidth="65.0" layoutX="777.0" layoutY="319.0" onMouseClicked="#rackPlace7clicked" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@letter_Images/placeHolder.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="pointsRack1" alignment="CENTER_RIGHT" layoutX="371.0" layoutY="364.0" text="points" textAlignment="RIGHT">
-               <font>
-                  <Font name="Candara" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="pointsRack2" alignment="CENTER_RIGHT" layoutX="446.0" layoutY="364.0" text="points" textAlignment="RIGHT">
-               <font>
-                  <Font name="Candara" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="pointsRack3" alignment="CENTER_RIGHT" layoutX="521.0" layoutY="364.0" text="points" textAlignment="RIGHT">
-               <font>
-                  <Font name="Candara" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="pointsRack4" alignment="CENTER_RIGHT" layoutX="596.0" layoutY="364.0" text="points" textAlignment="RIGHT">
-               <font>
-                  <Font name="Candara" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="pointsRack5" alignment="CENTER_RIGHT" layoutX="671.0" layoutY="364.0" text="points" textAlignment="RIGHT">
-               <font>
-                  <Font name="Candara" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="pointsRack6" alignment="CENTER_RIGHT" layoutX="746.0" layoutY="364.0" text="points" textAlignment="RIGHT">
-               <font>
-                  <Font name="Candara" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="pointsRack7" alignment="CENTER_RIGHT" layoutX="819.0" layoutY="364.0" text="points" textAlignment="RIGHT">
-               <font>
-                  <Font name="Candara" size="16.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
-   </children>
+<!-- @author apilgrim fxml file which contains all images and informations 
+	for the UI screen of the "Exchange". Displays all tiles from the rack and 
+	selects the tiles to exchange. After exchanging returns to the game. ExchangeController 
+	for the fxml handling. -->
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0"
+	prefWidth="1360.0" xmlns="http://javafx.com/javafx/16"
+	xmlns:fx="http://javafx.com/fxml/1"
+	fx:controller="com.scrab5.ui.ExchangeController">
+	<children>
+		<AnchorPane prefHeight="768.0" prefWidth="1618.0">
+			<children>
+				<ImageView fitHeight="768.0" fitWidth="1360.0"
+					layoutX="-1.0" pickOnBounds="true" preserveRatio="true"
+					AnchorPane.rightAnchor="382.0">
+					<image>
+						<Image url="@board_Images/Singleplayer_Background.jpg" />
+					</image>
+				</ImageView>
+				<ImageView fitHeight="768.0" layoutX="178.0" opacity="1.0"
+					pickOnBounds="true" preserveRatio="true"
+					AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="178.0"
+					AnchorPane.rightAnchor="382.0" AnchorPane.topAnchor="0.0">
+					<image>
+						<Image url="@board_Images/Spielfeld.png" />
+					</image>
+				</ImageView>
+				<ImageView fitHeight="81.0" fitWidth="1360.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/Singleplayer_TopContainer.png" />
+					</image>
+				</ImageView>
+				<ImageView fitHeight="81.0" fitWidth="1360.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/Singleplayer_TopContainer.png" />
+					</image>
+				</ImageView>
+				<ImageView fitHeight="34.0" fitWidth="117.0"
+					layoutX="15.0" layoutY="7.0" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@images/MM_ExitButton.png" />
+					</image>
+				</ImageView>
+				<ImageView fitHeight="34.0" fitWidth="117.0"
+					layoutX="15.0" layoutY="7.0" onMouseClicked="#closeGame"
+					onMouseEntered="#lighten" onMouseExited="#darken"
+					onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@images/MM_ExitButton_Clicked.png" />
+					</image>
+				</ImageView>
+				<Label fx:id="player1" layoutX="242.0" layoutY="-3.0"
+					prefHeight="34.0" prefWidth="127.0" text="qwertzuiopqw"
+					textFill="#fefff2">
+					<font>
+						<Font name="Arial Rounded MT Bold" size="18.0" />
+					</font>
+				</Label>
+				<Label fx:id="player4" layoutX="997.0" layoutY="-3.0"
+					opacity="0.0" prefHeight="34.0" prefWidth="127.0"
+					text="qwertzuiopqw" textFill="#fefff2">
+					<font>
+						<Font name="Arial Rounded MT Bold" size="18.0" />
+					</font>
+				</Label>
+				<Label fx:id="player3" layoutX="758.0" layoutY="-3.0"
+					opacity="0.0" prefHeight="34.0" prefWidth="127.0"
+					text="qwertzuiopqw" textFill="#fefff2">
+					<font>
+						<Font name="Arial Rounded MT Bold" size="18.0" />
+					</font>
+				</Label>
+				<Label fx:id="player2" layoutX="494.0" layoutY="-3.0"
+					opacity="0.0" prefHeight="34.0" prefWidth="127.0"
+					text="qwertzuiopqw" textFill="#fefff2">
+					<font>
+						<Font name="Arial Rounded MT Bold" size="18.0" />
+					</font>
+				</Label>
+				<ImageView fitHeight="65.0" fitWidth="43.0"
+					layoutX="192.0" layoutY="2.0" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@board_Images/Singleplayer_Profile_Bright.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="playerProfile4Active" fitHeight="65.0"
+					fitWidth="43.0" layoutX="947.0" layoutY="2.0" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/Singleplayer_Profile_Bright.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="playerProfile3Active" fitHeight="65.0"
+					fitWidth="43.0" layoutX="708.0" layoutY="2.0" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/Singleplayer_Profile_Bright.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="playerProfile2Active" fitHeight="65.0"
+					fitWidth="43.0" layoutX="444.0" layoutY="2.0" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/Singleplayer_Profile_Bright.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="playerProfile1Passive" fitHeight="65.0"
+					fitWidth="43.0" layoutX="192.0" layoutY="2.0" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/Singleplayer_Profile_Dark.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="playerProfile2Passive" fitHeight="65.0"
+					fitWidth="43.0" layoutX="444.0" layoutY="2.0" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/Singleplayer_Profile_Dark.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="playerProfile3Passive" fitHeight="65.0"
+					fitWidth="43.0" layoutX="708.0" layoutY="2.0" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/Singleplayer_Profile_Dark.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="playerProfile4Passive" fitHeight="65.0"
+					fitWidth="43.0" layoutX="947.0" layoutY="2.0" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/Singleplayer_Profile_Dark.png" />
+					</image>
+				</ImageView>
+				<Label fx:id="pointsPlayer1" layoutX="242.0" layoutY="18.0"
+					prefHeight="27.0" prefWidth="56.0" text="Label" textFill="#bc0000">
+					<font>
+						<Font name="Arial Rounded MT Bold" size="18.0" />
+					</font>
+				</Label>
+				<Label fx:id="pointsPlayer2" layoutX="494.0" layoutY="19.0"
+					opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label"
+					textFill="#bc0000">
+					<font>
+						<Font name="Arial Rounded MT Bold" size="18.0" />
+					</font>
+				</Label>
+				<Label fx:id="pointsPlayer3" layoutX="758.0" layoutY="18.0"
+					opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label"
+					textFill="#bc0000">
+					<font>
+						<Font name="Arial Rounded MT Bold" size="18.0" />
+					</font>
+				</Label>
+				<Label fx:id="pointsPlayer4" layoutX="997.0" layoutY="19.0"
+					opacity="0.0" prefHeight="27.0" prefWidth="56.0" text="Label"
+					textFill="#bc0000">
+					<font>
+						<Font name="Arial Rounded MT Bold" size="18.0" />
+					</font>
+				</Label>
+				<ImageView fitHeight="849.0" fitWidth="1360.0"
+					onMouseClicked="#backClicked" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@board_Images/popUpBackground.png" />
+					</image>
+				</ImageView>
+				<ImageView fitHeight="348.0" fitWidth="557.0"
+					layoutX="305.0" layoutY="168.0" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@board_Images/exchangeTiles.png" />
+					</image>
+				</ImageView>
+				<ImageView fitHeight="34.0" fitWidth="81.0"
+					layoutX="327.0" layoutY="473.0" onMouseClicked="#backClicked"
+					onMouseEntered="#lighten" onMouseExited="#darken"
+					onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/backClicked.png" />
+					</image>
+				</ImageView>
+				<ImageView fitHeight="34.0" fitWidth="80.0"
+					layoutX="764.0" layoutY="475.0" onMouseClicked="#exchangeConfirmed"
+					onMouseEntered="#lighten" onMouseExited="#darken"
+					onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0"
+					pickOnBounds="true" preserveRatio="true">
+					<image>
+						<Image url="@board_Images/exchangeClicked.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="rackPlace1" fitHeight="70.0"
+					fitWidth="65.0" layoutX="327.0" layoutY="319.0"
+					onMouseClicked="#rackPlace1clicked" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@letter_Images/placeHolder.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="rackPlace2" fitHeight="70.0"
+					fitWidth="65.0" layoutX="402.0" layoutY="319.0"
+					onMouseClicked="#rackPlace2clicked" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@letter_Images/placeHolder.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="rackPlace3" fitHeight="70.0"
+					fitWidth="65.0" layoutX="477.0" layoutY="319.0"
+					onMouseClicked="#rackPlace3clicked" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@letter_Images/placeHolder.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="rackPlace4" fitHeight="70.0"
+					fitWidth="65.0" layoutX="552.0" layoutY="319.0"
+					onMouseClicked="#rackPlace4clicked" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@letter_Images/placeHolder.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="rackPlace5" fitHeight="70.0"
+					fitWidth="65.0" layoutX="627.0" layoutY="319.0"
+					onMouseClicked="#rackPlace5clicked" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@letter_Images/placeHolder.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="rackPlace6" fitHeight="70.0"
+					fitWidth="65.0" layoutX="702.0" layoutY="319.0"
+					onMouseClicked="#rackPlace6clicked" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@letter_Images/placeHolder.png" />
+					</image>
+				</ImageView>
+				<ImageView fx:id="rackPlace7" fitHeight="70.0"
+					fitWidth="65.0" layoutX="777.0" layoutY="319.0"
+					onMouseClicked="#rackPlace7clicked" pickOnBounds="true"
+					preserveRatio="true">
+					<image>
+						<Image url="@letter_Images/placeHolder.png" />
+					</image>
+				</ImageView>
+				<Label fx:id="pointsRack1" alignment="CENTER_RIGHT"
+					layoutX="371.0" layoutY="364.0" text="points" textAlignment="RIGHT">
+					<font>
+						<Font name="Candara" size="16.0" />
+					</font>
+				</Label>
+				<Label fx:id="pointsRack2" alignment="CENTER_RIGHT"
+					layoutX="446.0" layoutY="364.0" text="points" textAlignment="RIGHT">
+					<font>
+						<Font name="Candara" size="16.0" />
+					</font>
+				</Label>
+				<Label fx:id="pointsRack3" alignment="CENTER_RIGHT"
+					layoutX="521.0" layoutY="364.0" text="points" textAlignment="RIGHT">
+					<font>
+						<Font name="Candara" size="16.0" />
+					</font>
+				</Label>
+				<Label fx:id="pointsRack4" alignment="CENTER_RIGHT"
+					layoutX="596.0" layoutY="364.0" text="points" textAlignment="RIGHT">
+					<font>
+						<Font name="Candara" size="16.0" />
+					</font>
+				</Label>
+				<Label fx:id="pointsRack5" alignment="CENTER_RIGHT"
+					layoutX="671.0" layoutY="364.0" text="points" textAlignment="RIGHT">
+					<font>
+						<Font name="Candara" size="16.0" />
+					</font>
+				</Label>
+				<Label fx:id="pointsRack6" alignment="CENTER_RIGHT"
+					layoutX="746.0" layoutY="364.0" text="points" textAlignment="RIGHT">
+					<font>
+						<Font name="Candara" size="16.0" />
+					</font>
+				</Label>
+				<Label fx:id="pointsRack7" alignment="CENTER_RIGHT"
+					layoutX="819.0" layoutY="364.0" text="points" textAlignment="RIGHT">
+					<font>
+						<Font name="Candara" size="16.0" />
+					</font>
+				</Label>
+			</children>
+		</AnchorPane>
+	</children>
 </AnchorPane>
