@@ -189,6 +189,6 @@ public class ClientThread extends Threads implements Serializable {
    * @author nitterhe
    */
   protected void closeConnection() {
-    this.stopThread();
+    this.running = false;
   }
 }
