@@ -6,10 +6,12 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 /**
  * Parses a dictionary and saves it as a new file.
@@ -20,8 +22,7 @@ public class DictionaryParser {
 
   static BufferedWriter bufWriter = null;
   private static String currentDictionary;
-  // private static String currentDictionary = "Built-In Standard Dictionary.txt";
-  private static String newFileName = null;
+  private static String newFileName;
   private static String dictionary;
 
   /**
@@ -75,31 +76,32 @@ public class DictionaryParser {
    * @author lengist
    * @param dictionaryFile The file the user inserts as new dictionary
    */
-  public static void createSearchableFile(String dictionaryFile) {
-
-    /*
-     * File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") +
-     * "src/main/resources/com/scrab5/util/textParser/" + newFileName);
-     */
+  public static boolean createSearchableFile(String dictionaryFile) {
     File file = new File(
         System.getProperty("user.dir") + System.getProperty("file.separator") + newFileName);
 
     try {
-      if (!file.exists()) {
+      if (!doesAlreadyExist(file)) {
         file.createNewFile();
       } else {
         System.out.println("File already exists!");
+        return false;
       }
       bufWriter = new BufferedWriter(new FileWriter(file));
     } catch (IOException e) {
       e.printStackTrace();
     }
-    loadFile(dictionaryFile);
+    loadFile(dictionaryFile, file);
     try {
       bufWriter.close();
     } catch (IOException e) {
       e.printStackTrace();
     }
+    return true;
+  }
+  
+  private static void setReadOnly(File file) {
+    file.setReadOnly();
   }
 
   /**
@@ -108,7 +110,7 @@ public class DictionaryParser {
    * @author lengist
    * @param file with the name of the file for the dictionary
    */
-  private static void loadFile(String file) {
+  private static void loadFile(String file, File newFile) {
     try {
       File fileOne =
           new File(System.getProperty("user.dir") + System.getProperty("file.separator") + file);
@@ -126,9 +128,8 @@ public class DictionaryParser {
     } catch (IOException e) {
       e.printStackTrace();
     }
+    setReadOnly(newFile);
   }
-
-  // Check: file.createNewFile()
 
   /**
    * Filters the words with help of a regular expression and passes them to createDoc.
@@ -168,20 +169,46 @@ public class DictionaryParser {
   }
 
   /**
-   * Returns the file of the current Dictionary.
-   *
+   * Checks if there already is a same file in the folder. This method is needed to prevent from
+   * duplicates.
+   * 
    * @author lengist
-   * @param dictionaryName the name of the current set dictionary
-   * @return the dictionary file to send to all clients
+   * @param file2 the file that should be created
+   * @return a boolean value whether this exact file already exists in the folder or not
    */
-  public static File getDictionaryFile(String dictionaryName) {
-    /*
-     * File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") +
-     * "src/main/resources/com/scrab5/util/textParser/" + dictionaryName);
-     */
-    File file = new File(
-        System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
-    return file;
+  public static boolean doesAlreadyExist(File file2) {
+    File help = new File(System.getProperty("user.dir") + System.getProperty("file.separator"));
+    File[] savedFiles = help.listFiles();
+    String line1;
+    String line2;
+
+    for (File file1 : savedFiles) {
+      System.out.println("test :" + file1.getName());
+      if (file1.length() == file2.length()) {
+        BufferedReader buf1;
+        BufferedReader buf2;
+        try {
+          buf1 = new BufferedReader(new FileReader(file1));
+          buf2 = new BufferedReader(new FileReader(file2));
+          while (((line1 = buf1.readLine()) != null) && ((line2 = buf2.readLine()) != null)) {
+            if (!line1.contentEquals(line2)) {
+              buf1.close();
+              buf2.close();
+              return false;
+            }
+          }
+          System.out.println("file that already exists: " + file1.getName());
+          buf1.close();
+          buf2.close();
+          return true;
+        } catch (FileNotFoundException e) {
+          e.printStackTrace();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+    return false;
   }
 
   /**
@@ -196,11 +223,6 @@ public class DictionaryParser {
   public static void addDictionary(String dictionary, String dictionaryName) {
     Thread t = new Thread(new Runnable() {
       public void run() {
-        /*
-         * File file = new File(System.getProperty("user.dir") +
-         * System.getProperty("file.separator") + "src/main/resources/com/scrab5/util/textParser/" +
-         * dictionaryName.replace(".", "Parsed."));
-         */
         File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
             + dictionaryName.replace(".", "Parsed."));
         try {

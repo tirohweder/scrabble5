@@ -27,6 +27,7 @@ public class DictionaryScanner {
      * + "src/main/resources/com/scrab5/util/textParser/" +
      * Data.getSelectedDictionary().replace(".", "Parsed."));
      */
+    /*TODO: file name auf DictionaryParser.get oder so aendern.*/
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + Data.getSelectedDictionary().replace(".", "Parsed."));
     boolean found = false;
@@ -53,11 +54,12 @@ public class DictionaryScanner {
     return found;
   }
 
+  /**
+   * This method is only for testing.
+   * @param searchedWord
+   * @return
+   */
   public static boolean scanTest(String searchedWord) {
-    /*
-     * File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-     * + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
-     */
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + DictionaryParser.getNewFileName());
     boolean found = false;

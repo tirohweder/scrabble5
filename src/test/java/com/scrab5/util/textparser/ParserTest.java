@@ -1,6 +1,7 @@
 package com.scrab5.util.textparser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.scrab5.util.parser.DictionaryParser;
 import java.io.File;
 import org.junit.jupiter.api.Test;
@@ -24,8 +25,22 @@ class ParserTest {
     DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
     DictionaryParser.parseFile(DictionaryParser.getFileName());
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/" + DictionaryParser.getNewFileName());
+        + DictionaryParser.getNewFileName());
     assertEquals(true, file.exists());
   }
 
+  /**
+   * Tests the check if a file already exists. Not only the same, but the content. Is needed to
+   * prevent from several duplicates.
+   * 
+   * @author lengist
+   */
+  @Test
+  void testDoesAlreadyExist() {
+    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
+    DictionaryParser.parseFile(DictionaryParser.getFileName());
+    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + DictionaryParser.getNewFileName());
+    assertEquals(true, DictionaryParser.doesAlreadyExist(file));
+  }
 }
