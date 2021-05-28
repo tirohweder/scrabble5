@@ -23,13 +23,116 @@ import javafx.stage.Stage;
 public class LetterCustomizationController extends Controller implements Initializable {
 
   @FXML
-  private TextField aO, bO, cO, dO, eO, fO, gO, hO, iO, jO, kO, lO, mO, nO, oO, pO, qO, rO, sO, tO,
-      uO, vO, wO, xO, yO, zO, spaceO;
+  private TextField aO;
   @FXML
-  private TextField aP, bP, cP, dP, eP, fP, gP, hP, iP, jP, kP, lP, mP, nP, oP, pP, qP, rP, sP, tP,
-      uP, vP, wP, xP, yP, zP, spaceP;
+  private TextField bO;
+  @FXML
+  private TextField cO;
+  @FXML
+  private TextField dO;
+  @FXML
+  private TextField eO;
+  @FXML
+  private TextField fO;
+  @FXML
+  private TextField gO;
+  @FXML
+  private TextField hO;
+  @FXML
+  private TextField iO;
+  @FXML
+  private TextField jO;
+  @FXML
+  private TextField kO;
+  @FXML
+  private TextField lO;
+  @FXML
+  private TextField mO;
+  @FXML
+  private TextField nO;
+  @FXML
+  private TextField oO;
+  @FXML
+  private TextField pO;
+  @FXML
+  private TextField qO;
+  @FXML
+  private TextField rO;
+  @FXML
+  private TextField sO;
+  @FXML
+  private TextField tO;
+  @FXML
+  private TextField uO;
+  @FXML
+  private TextField vO;
+  @FXML
+  private TextField wO;
+  @FXML
+  private TextField xO;
+  @FXML
+  private TextField yO;
+  @FXML
+  private TextField zO;
+  @FXML
+  private TextField spaceO;
+  @FXML
+  private TextField aP;
+  @FXML
+  private TextField bP;
+  @FXML
+  private TextField cP;
+  @FXML
+  private TextField dP;
+  @FXML
+  private TextField eP;
+  @FXML
+  private TextField fP;
+  @FXML
+  private TextField gP;
+  @FXML
+  private TextField hP;
+  @FXML
+  private TextField iP;
+  @FXML
+  private TextField jP;
+  @FXML
+  private TextField kP;
+  @FXML
+  private TextField lP;
+  @FXML
+  private TextField mP;
+  @FXML
+  private TextField nP;
+  @FXML
+  private TextField oP;
+  @FXML
+  private TextField pP;
+  @FXML
+  private TextField qP;
+  @FXML
+  private TextField rP;
+  @FXML
+  private TextField sP;
+  @FXML
+  private TextField tP;
+  @FXML
+  private TextField uP;
+  @FXML
+  private TextField vP;
+  @FXML
+  private TextField wP;
+  @FXML
+  private TextField xP;
+  @FXML
+  private TextField yP;
+  @FXML
+  private TextField zP;
+  @FXML
+  private TextField spaceP;
 
-  private ArrayList<TextField> al, alP;
+  private ArrayList<TextField> al;
+  private ArrayList<TextField> alP;
 
   /**
    * Call certain methods as soon as the Controller is loaded. Sets the displayed occurrences and
@@ -57,7 +160,8 @@ public class LetterCustomizationController extends Controller implements Initial
 
     } else {
 
-      ArrayList<Integer> listO, listP;
+      ArrayList<Integer> listO;
+      ArrayList<Integer> listP;
       listO = Data.getOccurrencyDistribution();
       listP = Data.getPointsDistribution();
       UseDatabase.updateLetterCustomization(listP, listO);
@@ -85,7 +189,8 @@ public class LetterCustomizationController extends Controller implements Initial
 
     if (this.areValuesValid()) {
 
-      ArrayList<Integer> listO, listP;
+      ArrayList<Integer> listO;
+      ArrayList<Integer> listP;
       listO = new ArrayList<Integer>();
       listP = new ArrayList<Integer>();
 
