@@ -47,14 +47,32 @@ public class BagOfTiles implements Serializable {
     return test;
   }
 
+  /**
+   * Returns a random Letter from the Bag. Used for AI.
+   *
+   * @author trohwede
+   * @return returns random letter from the bag.
+   */
   public String randomLetterFromBag() {
     return bag.get(new Random().nextInt(bag.size())).getLetter();
   }
 
+  /**
+   * Getter for Bag.
+   *
+   * @author trohwede
+   * @return returns bag.
+   */
   public ArrayList<Tile> getBag() {
     return bag;
   }
 
+  /**
+   * Setter for bag.
+   *
+   * @author trohwede
+   * @param bag bag to be set.
+   */
   public void setBag(ArrayList<Tile> bag) {
     this.bag = bag;
   }
@@ -69,6 +87,12 @@ public class BagOfTiles implements Serializable {
     return this.bag.size();
   }
 
+  /**
+   * Adds the content of the Rack to the bag.
+   *
+   * @author trohwede
+   * @param rack rack to be added to the bag.
+   */
   public void addRackToBag(Rack rack) {
     for (int i = 0; i < rack.getRackSize(); i++) {
 

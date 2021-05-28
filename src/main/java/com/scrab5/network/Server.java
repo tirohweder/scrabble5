@@ -28,19 +28,16 @@ import java.util.TimerTask;
 public class Server implements Serializable {
 
   private static final long serialVersionUID = 1L;
-
-  public final int serverPort = 8080;
-
-  private final String host;
-  private String ip4;
   private static ServerSocket serverSocket;
-  private boolean gameStart;
   private static int clientCounter;
   private static int clientMaximum;
-  private ServerStatistics serverStatistics;
   private static Timer timer;
   private static TimerTask task;
-
+  public final int serverPort = 8080;
+  private final String host;
+  private String ip4;
+  private boolean gameStart;
+  private ServerStatistics serverStatistics;
   private LinkedHashMap<String, ClientData> clients;
   private HashMap<ClientData, ServerThread> connections;
 
@@ -101,11 +98,12 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void acceptClients() {
-    Runnable r = new Runnable() {
-      public void run() {
-        accept();
-      }
-    };
+    Runnable r =
+        new Runnable() {
+          public void run() {
+            accept();
+          }
+        };
     new Thread(r).start();
   }
 
@@ -117,7 +115,8 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   private void accept() {
-    while (!this.gameStart && Server.clientCounter < Server.clientMaximum
+    while (!this.gameStart
+        && Server.clientCounter < Server.clientMaximum
         && !serverSocket.isClosed()) {
       try {
         Socket newClient = serverSocket.accept();
@@ -188,6 +187,16 @@ public class Server implements Serializable {
   }
 
   /**
+   * Sets the IP4Address of this server object to the given String.
+   *
+   * @param ip4 - the IP4Address as a String
+   * @author nitterhe
+   */
+  public void setIp4(String ip4) {
+    this.ip4 = ip4;
+  }
+
+  /**
    * Returns the server's status (true = in game/ false = waiting for clients).
    *
    * @return gameStart - the server's status
@@ -228,6 +237,16 @@ public class Server implements Serializable {
   }
 
   /**
+   * Sets the maximum amount of clients allowed to connect.
+   *
+   * @param clientMaximum - the maximum amount of clients allowed to connect.
+   * @author nitterhe
+   */
+  public void setClientMaximum(int clientMaximum) {
+    Server.clientMaximum = clientMaximum;
+  }
+
+  /**
    * Returns the number of connected clients as an int after updating it.
    *
    * @return client count - number of connected clients
@@ -239,12 +258,18 @@ public class Server implements Serializable {
 
   /**
    * Updates all the other clients with the changes that were made (i.e. gameboard, turn skipped).
-   * 
+   *
    * @author nitterhe
    */
   public void sendUpdateMessage() {
-    this.sendMessageToAllClients(new LobbyUpdateMessage(this.getHost(), this.getIp4(),
-        this.getStatus(), this.getClients(), this.getClientMaximum(), this.getServerStatistics()));
+    this.sendMessageToAllClients(
+        new LobbyUpdateMessage(
+            this.getHost(),
+            this.getIp4(),
+            this.getStatus(),
+            this.getClients(),
+            this.getClientMaximum(),
+            this.getServerStatistics()));
   }
 
   /**
@@ -256,6 +281,16 @@ public class Server implements Serializable {
    */
   public LinkedHashMap<String, ClientData> getClients() {
     return clients;
+  }
+
+  /**
+   * Overrides the client list.
+   *
+   * @param clients - the new HashMap of the clients
+   * @author nitterhe
+   */
+  public void setClients(LinkedHashMap<String, ClientData> clients) {
+    this.clients = clients;
   }
 
   /**
@@ -326,26 +361,6 @@ public class Server implements Serializable {
   }
 
   /**
-   * Overrides the client list.
-   *
-   * @param clients - the new HashMap of the clients
-   * @author nitterhe
-   */
-  public void setClients(LinkedHashMap<String, ClientData> clients) {
-    this.clients = clients;
-  }
-
-  /**
-   * Sets the maximum amount of clients allowed to connect.
-   *
-   * @param clientMaximum - the maximum amount of clients allowed to connect.
-   * @author nitterhe
-   */
-  public void setClientMaximum(int clientMaximum) {
-    Server.clientMaximum = clientMaximum;
-  }
-
-  /**
    * Sets the given client's ready status.
    *
    * @param clientname - the client's name
@@ -360,19 +375,9 @@ public class Server implements Serializable {
   }
 
   /**
-   * Sets the IP4Address of this server object to the given String.
-   * 
-   * @param ip4 - the IP4Address as a String
-   * @author nitterhe
-   */
-  public void setIp4(String ip4) {
-    this.ip4 = ip4;
-  }
-
-  /**
    * Creates a new Timer instance. This is only used when a server is hosted multiple times since no
    * new Server instance is created.
-   * 
+   *
    * @author nitterhe
    */
   public void newTimer() {
@@ -386,12 +391,13 @@ public class Server implements Serializable {
    * @author nitterhe, trohwede
    */
   public void startTimer() {
-    task = (new TimerTask() {
-      public void run() {
-        Server.this.shutDownServer();
-        new NetworkError(NetworkErrorType.TIMER);
-      }
-    });
+    task =
+        (new TimerTask() {
+          public void run() {
+            Server.this.shutDownServer();
+            new NetworkError(NetworkErrorType.TIMER);
+          }
+        });
     timer.schedule(task, 1000 * 60 * 10);
   }
 
@@ -432,14 +438,15 @@ public class Server implements Serializable {
       this.clients.remove(clientname);
     } else {
       this.connections.get(this.clients.get(clientname)).closeConnection();
-      this.connections.get(this.clients.get(clientname)).deleteClient(clientname);;
+      this.connections.get(this.clients.get(clientname)).deleteClient(clientname);
+      ;
     }
     this.sendUpdateMessage();
   }
 
   /**
    * Adds a new client instance to the client list. Used for adding AIs.
-   * 
+   *
    * @author nitterhe
    * @param name - the name of the AiPlayer
    */
@@ -456,7 +463,7 @@ public class Server implements Serializable {
   /**
    * Sends the given dictionary to all clients so checking if the word is included in the dictionary
    * takes place at the client.
-   * 
+   *
    * @author nitterhe
    * @param dictionaryName - the name of the dictionary
    * @param dictionary - the dictionary

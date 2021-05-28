@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 /**
  * In the PlayerProfile the information for the statistics is saved and made accessible.
- * 
+ *
  * @author lengist
  * @author trohwede
  */
@@ -51,7 +51,7 @@ public class PlayerProfile implements Serializable {
 
   /**
    * Adds the laid words to the column laidWords of the user "name" in the database.
-   * 
+   *
    * @author lengist
    * @param words the amount of words the user laid in the played game
    */
@@ -77,7 +77,7 @@ public class PlayerProfile implements Serializable {
   /**
    * Changes the longest word, if the player has laid a word in the current game, that is longer
    * than the one saved.
-   * 
+   *
    * @author lengist
    * @param longestWord the user laid in the played game
    */
@@ -121,7 +121,6 @@ public class PlayerProfile implements Serializable {
   public void adjustWinRate(double winRate) {
     PlayerProfileDatabase.setWinRate(name, winRate);
   }
-
 
   /**
    * Changes the favorite dictionary of the user "name" in the database.

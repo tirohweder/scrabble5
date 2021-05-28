@@ -71,6 +71,12 @@ public class Rack implements Serializable {
     }
   }
 
+  /**
+   * Returns the rack size.
+   *
+   * @author trohwede
+   * @return returns rack size.
+   */
   public int getRackSize() {
     int size = 0;
     for (int i = 0; i < 7; i++) {
@@ -81,6 +87,11 @@ public class Rack implements Serializable {
     return size;
   }
 
+  /**
+   * Clears the complete Rack.
+   *
+   * @author trohwede
+   */
   public void clearRack() {
     for (int i = 0; i < rack.length; i++) {
       rack[i] = null;

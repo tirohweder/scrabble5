@@ -83,7 +83,7 @@ public class Player implements Serializable {
 
   /**
    * Getter for the correct placed words.
-   * 
+   *
    * @author apilgrim
    * @return correctWords - the player place during the game.
    */
@@ -93,7 +93,7 @@ public class Player implements Serializable {
 
   /**
    * Setter for the correct placed words.
-   * 
+   *
    * @author apilgrim
    * @param correctWords - the correct placed words to set
    */

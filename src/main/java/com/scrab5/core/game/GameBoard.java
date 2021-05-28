@@ -20,6 +20,11 @@ public class GameBoard implements Serializable {
   private ArrayList<Tile> currentChanges = new ArrayList<>();
   private boolean firstTile;
 
+  /**
+   * GameBoard constructor. Sets first tile to true and resets gameBoardSpecial.
+   *
+   * @author trohwede
+   */
   public GameBoard() {
     firstTile = true;
     gameBoardSpecial =
@@ -732,6 +737,13 @@ public class GameBoard implements Serializable {
     return true;*/
   }
 
+  /**
+   * Needed for testing.
+   *
+   * @author trohwede
+   * @author lengist
+   * @return if words are legit.
+   */
   public boolean checkWordsLegitTest() {
     ArrayList<String> gameWords = getWords();
     for (String gameWord : gameWords) {

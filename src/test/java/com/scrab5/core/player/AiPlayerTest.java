@@ -31,6 +31,7 @@ class AiPlayerTest {
     bagDistribution.put("L", 3);
     assertEquals(true, AiPlayer.checkBagDistributionLegal(bagDistribution, "HALLO"));
     assertEquals(true, AiPlayer.checkBagDistributionLegal(bagDistribution, "HALLLO"));
+    assertEquals(false, AiPlayer.checkBagDistributionLegal(bagDistribution, "WE"));
   }
 
   @Test
