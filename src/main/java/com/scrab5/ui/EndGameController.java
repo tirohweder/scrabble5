@@ -12,6 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * The EndGameController class controls the end screen after finishing the game by clicking "give
+ * up", "skip" 6 times of the "Exchange.fxml".
+ * 
+ * @author apilgrim
+ */
 public class EndGameController extends InGameController implements Initializable {
 
   @FXML
