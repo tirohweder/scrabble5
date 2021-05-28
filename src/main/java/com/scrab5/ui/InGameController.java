@@ -232,9 +232,9 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * initRack() initiliazes the ui rack representation in the ingame (thru opacity/ text setting of
+   * initRack() initializes the ui rack representation in the ingame (thru opacity/ text setting of
    * Labels and ImageViews rackplace1-7 and pointsRack1-7). Checks which rack is yours and gets all
-   * informations for each tile from core.game Rack.java
+   * informations for each tile from core.game Rack.java.
    *
    * @author apilgrim
    */
@@ -248,8 +248,7 @@ public abstract class InGameController implements Initializable {
         continue;
       }
     }
-    // myRack.getTileAt(i).getLetter(),
-    // myRack.getTileAt(i).getValue()
+
     for (int i = 0; i < 7; i++) {
       switch (i) {
         case 0:
@@ -315,10 +314,10 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * Initiliazes the gameboard in the ingame (thru opacity/ text setting of Labels and ImageViews).
-   * Therefore it checks every place in the Gameboard field, if a letter is placed and if so, set
-   * there an image file with the letter plus the points. Is called after every turn of a player, to
-   * check what is new on the board.
+   * Initializes the gameboard in the in game (thru opacity/ text setting of Labels and ImageViews).
+   * Therefore it checks every field in the core.game gameboard, if a letter is placed and if so,
+   * set there an image file with the letter plus the points. Is called after every turn of a
+   * player, to check what is new on the board.
    *
    * @author apilgrim
    */
@@ -367,7 +366,7 @@ public abstract class InGameController implements Initializable {
    * This method is called when a field on the board is clicked and if it's the players turn. It
    * checks 1. if no other tile is clicked and the place isn't taken, then it is marked thru the
    * opacity or if a letter is clicked as well, the Letter is placed on the gameboard. 3. last if
-   * the same tile has been clicked before it is unclicked an reseted from the clickedTile
+   * the same tile has been clicked before it is unclicked an reseted from the clickedTile.
    * 
    * @author apilgirm
    * @param event - MouseEvent created when a field is clicked
@@ -426,7 +425,7 @@ public abstract class InGameController implements Initializable {
    * 
    * @author apilgirm
    * @param event - MouseEvent created when the rackPlace 1 is clicked
-   * @throws IOException - thrown when an Error occurs thru the click or the PopUp Message
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message
    * 
    */
   @FXML
@@ -482,11 +481,11 @@ public abstract class InGameController implements Initializable {
 
   /**
    * This method is called when rackPlace2 is clicked. It checks different options to handle the
-   * clicked Letter in rackPlace2 like in rackPlace1Clicked and handles it the same.
+   * clickedLetter in rackPlace2 like in rackPlace1Clicked and handles it the same way.
    * 
    * @author apilgirm
    * @param event - MouseEvent created when the rackPlace2 is clicked
-   * @throws IOException
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message
    * 
    */
   @FXML
@@ -520,8 +519,8 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
         } else {
-          newPum(
-              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
+          newPum("Sorry, the tile can't be placed here."
+              + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -541,10 +540,13 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param event
-   * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 3 like in rackPlace1Clicked
+   * This method is called when rackPlace3 is clicked. It checks different options to handle the
+   * clickedLetter in rackPlace3 like in rackPlace1Clicked and handles it the same way.
+   * 
    * @author apilgirm
+   * @param event - MouseEvent created when the rackPlace3 is clicked
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message
+   * 
    */
   @FXML
   private void rackPlace3clicked(MouseEvent event) throws IOException {
@@ -578,8 +580,8 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
         } else {
-          newPum(
-              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
+          newPum("Sorry, the tile can't be placed here."
+              + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
       } else {
         if (clickedLetter != null) {
@@ -598,10 +600,13 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param event
-   * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 4 like in rackPlace1Clicked
+   * This method is called when rackPlace4 is clicked. It checks different options to handle the
+   * clickedLetter in rackPlace4 like in rackPlace1Clicked and handles it the same way.
+   * 
    * @author apilgirm
+   * @param event - MouseEvent created when the rackPlace4 is clicked
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message
+   * 
    */
   @FXML
   private void rackPlace4clicked(MouseEvent event) throws IOException {
@@ -634,8 +639,8 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
         } else {
-          newPum(
-              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
+          newPum("Sorry, the tile can't be placed here."
+              + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -655,10 +660,13 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param event
-   * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 5 like in rackPlace1Clicked
+   * This method is called when rackPlace5 is clicked. It checks different options to handle the
+   * clickedLetter in rackPlace5 like in rackPlace1Clicked and handles it the same way.
+   * 
    * @author apilgirm
+   * @param event - MouseEvent created when the rackPlace5 is clicked
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message
+   * 
    */
   @FXML
   private void rackPlace5clicked(MouseEvent event) throws IOException {
@@ -691,8 +699,8 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
         } else {
-          newPum(
-              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
+          newPum("Sorry, the tile can't be placed here."
+              + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -712,10 +720,13 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param event
-   * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 6 like in rackPlace1Clicked
+   * This method is called when rackPlace6 is clicked. It checks different options to handle the
+   * clickedLetter in rackPlace6 like in rackPlace1Clicked and handles it the same way.
+   * 
    * @author apilgirm
+   * @param event - MouseEvent created when the rackPlace6 is clicked
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message
+   * 
    */
   @FXML
   private void rackPlace6clicked(MouseEvent event) throws IOException {
@@ -749,8 +760,8 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
         } else {
-          newPum(
-              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
+          newPum("Sorry, the tile can't be placed here."
+              + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -770,11 +781,13 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param event
-   * @throws IOException method to check different options to handle the clicked Letter in rack
-   *         Place 7 like in rackPlace1Clicked
+   * This method is called when rackPlace7 is clicked. It checks different options to handle the
+   * clickedLetter in rackPlace7 like in rackPlace1Clicked and handles it the same way.
+   * 
    * @author apilgirm
-   * @author Aaron
+   * @param event - MouseEvent created when the rackPlace7 is clicked
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message
+   * 
    */
   @FXML
   private void rackPlace7clicked(MouseEvent event) throws IOException {
@@ -812,8 +825,8 @@ public abstract class InGameController implements Initializable {
           clickedTile = null;
           tileClicked = false;
         } else {
-          newPum(
-              "Sorry, the tile can't be placed here.\nRemember to place youre letter tiles in the same row OR column (per round)!");
+          newPum("Sorry, the tile can't be placed here."
+              + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
         }
 
       } else {
@@ -833,10 +846,17 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param event
-   * @throws IOException method to refill rack where letters have been placed and to permanently
-   *         lock
-   * @author apilgirm, (small part trohwede)
+   * Method which is called when the "play/skip" button is clicked. Checks if it's your turn and if
+   * the first tile is placed in the center. Next it checks, if something has been laid, the word
+   * laid is correct (checking in core.game). If not a PopUpMessage is created. Otherwise the points
+   * are calculated and the letters placed are removed from the rack. Then the placed letters are
+   * returned to the rack and are reinitialized. All clicked attributes are reset and the turn is
+   * finished by calling the finishTurn method of core.game. At least it is checked, if the bag and
+   * rack still contains enough letters to continue.
+   * 
+   * @author apilgirm
+   * @param event - MouseEvent created when the "play/ skip" button is clicked
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message
    */
   @FXML
   private void playClicked(MouseEvent event) throws IOException {
@@ -860,6 +880,7 @@ public abstract class InGameController implements Initializable {
       if (!notPlaceable) {
         if (Data.getGameSession().getGameBoard().checkWordsLegit()) {
 
+          // increase corrected placed word attirbute of the player laid the word
           Data.getGameSession().setSkippedTurn(0);
           Data.getGameSession().getCurrentPlayer()
               .setCorrectWords(Data.getGameSession().getCurrentPlayer().getCorrectWords() + 1);
@@ -872,7 +893,9 @@ public abstract class InGameController implements Initializable {
           PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
           pum.show();
 
-          // reset Opacity on the Rag Board if not null
+          Data.getGameSession().checkBagAndRack(Data.getGameSession().getCurrentPlayer());
+
+          // reset Opacity on the Rag Board if not null and remove tiles from rack
           if (rackPlace1 != null && rackPlace1.getOpacity() == 0) {
             rackPlace1.setOpacity(1);
             rackRemoveTile(0);
@@ -902,6 +925,7 @@ public abstract class InGameController implements Initializable {
             rackRemoveTile(6);
           }
 
+          // returns the laid letter imageView attributes back to the rack
           if (pointsRack1 != null && (pointsRack1.getLayoutY() < 740)) {
             Label point = new Label(pointsRack1.getText());
             point.setLayoutX(pointsRack1.getLayoutX());
@@ -958,6 +982,8 @@ public abstract class InGameController implements Initializable {
             pointsRack7.setLayoutX(rackPlace7.getLayoutX() + LABEL_X_CORD_BACK);
             pointsRack7.setLayoutY(rackPlace7.getLayoutY() + LABEL_Y_CORD_BACK);
           }
+
+          // reset the clicked attributes
           letterClicked = false;
           tileClicked = false;
           clickedLetter = null;
@@ -965,26 +991,204 @@ public abstract class InGameController implements Initializable {
           turn = true;
           changes.clear();
 
+          // re initialize rack and the gamboard
           initRack();
           initPlayers();
-          Player current = Data.getGameSession().getCurrentPlayer();
 
+          // finish turn
           Data.getGameSession().finishTurn();
 
-          Data.getGameSession().checkBagAndRack(current);
         } else {
+          // wrong word
           String message = "The word placed isnt legit!";
           PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
           pum.show();
         }
       } else {
+        // first word min length handling
         newPum("The first placed word must\nhave a minimum length of two!");
       }
     } else {
+      // skip turn
       Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn() + 1);
       Data.getGameSession().finishTurn();
     }
   }
+
+  @FXML
+  private void shuffleClicked(MouseEvent event) {
+    playSound("ButtonClicked.mp3");
+
+    ArrayList<Integer> order = new ArrayList<>();
+
+    if (rackPlace1.getOpacity() != 0) {
+      order.add(0);
+    }
+    if (rackPlace2.getOpacity() != 0) {
+      order.add(1);
+    }
+    if (rackPlace3.getOpacity() != 0) {
+      order.add(2);
+    }
+    if (rackPlace4.getOpacity() != 0) {
+      order.add(3);
+    }
+    if (rackPlace5.getOpacity() != 0) {
+      order.add(4);
+    }
+    if (rackPlace6.getOpacity() != 0) {
+      order.add(5);
+    }
+    if (rackPlace7.getOpacity() != 0) {
+      order.add(6);
+    }
+
+    ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
+
+    Iterator<Player> it = players.iterator();
+    while (it.hasNext()) {
+      Player p = it.next();
+      String s = p.getName();
+      if (s.equals(Data.getCurrentUser())) {
+        p.getRack().shuffleRack(order);
+        initRack();
+      } else {
+        continue;
+      }
+    }
+  }
+
+  private void unclickAll() {
+
+    if (rackPlace1.getOpacity() != 0) {
+      rackPlace1.setOpacity(1);
+    }
+    if (rackPlace2.getOpacity() != 0) {
+      rackPlace2.setOpacity(1);
+    }
+    if (rackPlace3.getOpacity() != 0) {
+      rackPlace3.setOpacity(1);
+    }
+    if (rackPlace4.getOpacity() != 0) {
+      rackPlace4.setOpacity(1);
+    }
+    if (rackPlace5.getOpacity() != 0) {
+      rackPlace5.setOpacity(1);
+    }
+    if (rackPlace6.getOpacity() != 0) {
+      rackPlace6.setOpacity(1);
+    }
+    if (rackPlace7.getOpacity() != 0) {
+      rackPlace7.setOpacity(1);
+    }
+  }
+
+  @FXML
+  private void exchangeClicked(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
+      if ((Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0)) {
+        if (Data.getGameSession().getBag().getSize() > 7) {
+          App.setRoot("Exchange");
+        } else {
+          newPum("Sorry there are not enough tiles left in the bag");
+        }
+      } else {
+        newPum(
+            "You can't place tiles and exchange in the same turn!\nRemove all before exchanging");
+      }
+    } else {
+      PopUpMessage pum =
+          new PopUpMessage("Sorry, you're not the current Player", PopUpMessageType.NOTIFICATION);
+      pum.show();
+    }
+  }
+
+  protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
+    if (letter.equals("space") | letter.equals("*") | letter.equals("joker")) {
+      letter = "placeHolder";
+    } else {
+      letter = "tile" + letter.toUpperCase();
+    }
+    Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter + ".png");
+    rackPlace.setImage(letterImage);
+    if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
+      rackPlace.setOpacity(1);
+    }
+    if (!Integer.toString(points).equals("0") | !letter.contains("placeHolder")) {
+      point.setText(Integer.toString(points));
+      point.setOpacity(1);
+    } else {
+      point.setOpacity(0);
+    }
+  }
+
+  // Joker handling
+
+  private void setJoker() throws IOException {
+    jokerPane.setOpacity(1);
+    chooseJoker = true;
+    newPum("Choose a letter on the left\n the Joker stands for!");
+  }
+
+  @FXML
+  private void jokerLetterChoosen(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    ImageView iv = (ImageView) event.getSource();
+
+    if (chooseJoker) {
+      letterJoker = iv.getId();
+      setNewTile(clickedLetter, clickedLabel, letterJoker, 0);
+
+      if (Data.getGameSession().getGameBoard().placeTile(new Tile(letterJoker, 0),
+          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
+        chooseJoker = false;
+        changes.add(clickedTile);
+        placeLetter(clickedLetter, clickedLabel);
+        jokerPlacedAt.add(changes.size() - 1);
+      } else {
+        newPum("Sorry, the tile can't be placed here."
+            + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
+      }
+
+      jokerPane.setOpacity(0);
+    }
+  }
+
+  // Buttons
+
+  @FXML
+  private void giveUpClicked(MouseEvent event) throws IOException {
+    playSound("ButtonClicked.mp3");
+    PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
+    pum.show();
+    if (Data.isConfirmed()) {
+      Data.getGameSession().setShouldEnd(true);
+      Data.getGameSession().endGame();
+      changes.clear();
+      Data.getGameSession().setSkippedTurn(0);
+      if (Data.getGameSession().isOnline()) {
+        App.setRoot("EndGameMultiplayer");
+      } else {
+        App.setRoot("EndGameSingleplayer");
+      }
+    }
+  }
+
+  @FXML
+  private void undoClicked(MouseEvent event) throws IOException {
+    if (undoButton.getOpacity() == 1) {
+      playSound("ButtonClicked.mp3");
+      if (changes.size() > 0) {
+        backToRack(changes.get(changes.size() - 1),
+            tilePlacedOrder.get(tilePlacedOrder.size() - 1));
+      }
+    }
+  }
+
+  // help methods
+
+
 
   /**
    * @param - ImageView
@@ -998,6 +1202,7 @@ public abstract class InGameController implements Initializable {
     clickedLabel = null;
     rackPlace.setOpacity(1);
   }
+
 
   private void switchClickedLetter(ImageView rackPlace, Label points) {
     clickedLetter = rackPlace;
@@ -1175,177 +1380,6 @@ public abstract class InGameController implements Initializable {
     }
     return y - 1;
   }
-
-  @FXML
-  private void shuffleClicked(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
-    ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
-    ArrayList<Integer> order = new ArrayList<>();
-
-    if (rackPlace1.getOpacity() != 0) {
-      order.add(0);
-    }
-    if (rackPlace2.getOpacity() != 0) {
-      order.add(1);
-    }
-    if (rackPlace3.getOpacity() != 0) {
-      order.add(2);
-    }
-    if (rackPlace4.getOpacity() != 0) {
-      order.add(3);
-    }
-    if (rackPlace5.getOpacity() != 0) {
-      order.add(4);
-    }
-    if (rackPlace6.getOpacity() != 0) {
-      order.add(5);
-    }
-    if (rackPlace7.getOpacity() != 0) {
-      order.add(6);
-    }
-
-    Iterator<Player> it = players.iterator();
-    while (it.hasNext()) {
-      Player p = it.next();
-      String s = p.getName();
-      if (s.equals(Data.getCurrentUser())) {
-        p.getRack().shuffleRack(order);
-        initRack();
-      } else {
-        continue;
-      }
-    }
-  }
-
-  private void unclickAll() {
-
-    if (rackPlace1.getOpacity() != 0) {
-      rackPlace1.setOpacity(1);
-    }
-    if (rackPlace2.getOpacity() != 0) {
-      rackPlace2.setOpacity(1);
-    }
-    if (rackPlace3.getOpacity() != 0) {
-      rackPlace3.setOpacity(1);
-    }
-    if (rackPlace4.getOpacity() != 0) {
-      rackPlace4.setOpacity(1);
-    }
-    if (rackPlace5.getOpacity() != 0) {
-      rackPlace5.setOpacity(1);
-    }
-    if (rackPlace6.getOpacity() != 0) {
-      rackPlace6.setOpacity(1);
-    }
-    if (rackPlace7.getOpacity() != 0) {
-      rackPlace7.setOpacity(1);
-    }
-  }
-
-  @FXML
-  private void exchangeClicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
-    if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
-      if ((Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0)) {
-        if (Data.getGameSession().getBag().getSize() > 7) {
-          App.setRoot("Exchange");
-        } else {
-          newPum("Sorry there are not enough tiles left in the bag");
-        }
-      } else {
-        newPum(
-            "You can't place tiles and exchange in the same turn!\nRemove all before exchanging");
-      }
-    } else {
-      PopUpMessage pum =
-          new PopUpMessage("Sorry, you're not the current Player", PopUpMessageType.NOTIFICATION);
-      pum.show();
-    }
-  }
-
-  protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
-    if (letter.equals("space") | letter.equals("*") | letter.equals("joker")) {
-      letter = "placeHolder";
-    } else {
-      letter = "tile" + letter.toUpperCase();
-    }
-    Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter + ".png");
-    rackPlace.setImage(letterImage);
-    if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
-      rackPlace.setOpacity(1);
-    }
-    if (!Integer.toString(points).equals("0") | !letter.contains("placeHolder")) {
-      point.setText(Integer.toString(points));
-      point.setOpacity(1);
-    } else {
-      point.setOpacity(0);
-    }
-  }
-
-  // Joker handling
-
-  private void setJoker() throws IOException {
-    jokerPane.setOpacity(1);
-    chooseJoker = true;
-    newPum("Choose a letter on the left\n the Joker stands for!");
-  }
-
-  @FXML
-  private void jokerLetterChoosen(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
-    ImageView iv = (ImageView) event.getSource();
-
-    if (chooseJoker) {
-      letterJoker = iv.getId();
-      setNewTile(clickedLetter, clickedLabel, letterJoker, 0);
-
-      if (Data.getGameSession().getGameBoard().placeTile(new Tile(letterJoker, 0),
-          rowTransformation(clickedTile.getId()), columnTransformation(clickedTile.getId()))) {
-        chooseJoker = false;
-        changes.add(clickedTile);
-        placeLetter(clickedLetter, clickedLabel);
-        jokerPlacedAt.add(changes.size() - 1);
-      } else {
-        newPum("Sorry, the tile can't be placed here."
-            + "\nRemember to place youre letter tiles in the same row OR column (per round)!");
-      }
-
-      jokerPane.setOpacity(0);
-    }
-  }
-
-  // Buttons
-
-  @FXML
-  private void giveUpClicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
-    PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
-    pum.show();
-    if (Data.isConfirmed()) {
-      Data.getGameSession().setShouldEnd(true);
-      Data.getGameSession().endGame();
-      changes.clear();
-      Data.getGameSession().setSkippedTurn(0);
-      if (Data.getGameSession().isOnline()) {
-        App.setRoot("EndGameMultiplayer");
-      } else {
-        App.setRoot("EndGameSingleplayer");
-      }
-    }
-  }
-
-  @FXML
-  private void undoClicked(MouseEvent event) throws IOException {
-    if (undoButton.getOpacity() == 1) {
-      playSound("ButtonClicked.mp3");
-      if (changes.size() > 0) {
-        backToRack(changes.get(changes.size() - 1),
-            tilePlacedOrder.get(tilePlacedOrder.size() - 1));
-      }
-    }
-  }
-
-  // help methods
 
   /**
    * Method that plays a sound file and adjusts the volume to the volume that has been set by the
