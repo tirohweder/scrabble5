@@ -21,8 +21,27 @@ import javafx.scene.input.MouseEvent;
 public class ProfileController extends Controller implements Initializable {
 
   @FXML
-  private Label nicknameLabel, totalPoints, averagePointsGame, mostPoints, laidWords,
-      averagePointsWord, longestWord, totalGames, totalWins, winPercentage, favDic;
+  private Label nicknameLabel;
+  @FXML
+  private Label totalPoints;
+  @FXML
+  private Label averagePointsGame;
+  @FXML
+  private Label mostPoints;
+  @FXML
+  private Label laidWords;
+  @FXML
+  private Label averagePointsWord;
+  @FXML
+  private Label longestWord;
+  @FXML
+  private Label totalGames;
+  @FXML
+  private Label totalWins;
+  @FXML
+  private Label winPercentage;
+  @FXML
+  private Label favDic;
 
   /**
    * Call certain methods as soon as the Controller is loaded. Calls {@link #setupStats()} and
