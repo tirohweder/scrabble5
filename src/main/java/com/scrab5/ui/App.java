@@ -83,6 +83,7 @@ public class App extends Application {
    * @throws IOException tried to read a local file that was no longer available
    * @author trohwede
    */
+  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
   private static Parent loadFXML(String fxml) throws IOException {
     FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
     return fxmlLoader.load();
