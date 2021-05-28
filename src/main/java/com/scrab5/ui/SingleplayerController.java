@@ -86,6 +86,15 @@ public class SingleplayerController extends InGameController implements Initiali
             }
           }
         }
+        if(Data.getGameSession().isShouldEnd()) {
+          Data.getGameSession().endGame();
+          try {
+            App.setRoot("EndGameSingleplayer");
+          } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+          }
+        }
       }
     });
     t.start();
