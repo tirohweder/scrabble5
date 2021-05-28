@@ -979,9 +979,23 @@ public class AiPlayer extends Player {
       getSpotsFree2(7, 7, Data.getGameSession().getGameBoard());
     }
 
+    // to randomise where words are selected, we need random arrays.
+    ArrayList<Integer> rowRand = new ArrayList<>();
+    ArrayList<Integer> columnRand = new ArrayList<>();
+    for (int i = 0; i < 15; i++) {
+      rowRand.add(i);
+      columnRand.add(i);
+    }
+    Collections.shuffle(rowRand);
+    Collections.shuffle(columnRand);
+
+    int row;
+    int column;
     findacceptable:
-    for (int row = 0; row < 15; row++) {
-      for (int column = 0; column < 15; column++) {
+    for (int i = 0; i < 15; i++) {
+      row = rowRand.get(i);
+      for (int j = 0; j < 15; j++) {
+        column = columnRand.get(j);
         System.out.println("Checking " + row + " : " + column);
 
         // If tile is already used on the gameBoard or if FirstTile
@@ -1046,17 +1060,17 @@ public class AiPlayer extends Player {
             Collections.shuffle(randomSelector);
 
             // checks if the points for the word fulfill requirements
-            for (int i = 0; i < points.size(); i++) {
+            for (int l = 0; l < points.size(); l++) {
 
               // we use the gaussian method to have random borders for playing words
 
               int aiThresholdLow = (int) Math.round(random.nextGaussian() * 2 + aiThreshold);
               int aiThresholdHigh = (int) Math.round(random.nextGaussian() * 3 + aiThreshold + 10);
 
-              if (points.get(randomSelector.get(i)) >= aiThresholdLow
-                  && points.get(randomSelector.get(i)) <= aiThresholdHigh) {
-                choosenWord = wordList.get(randomSelector.get(i));
-                pointsForRound = points.get(randomSelector.get(i));
+              if (points.get(randomSelector.get(l)) >= aiThresholdLow
+                  && points.get(randomSelector.get(l)) <= aiThresholdHigh) {
+                choosenWord = wordList.get(randomSelector.get(l));
+                pointsForRound = points.get(randomSelector.get(l));
                 foundMatchingThreshold = true;
 
                 break findacceptable;
