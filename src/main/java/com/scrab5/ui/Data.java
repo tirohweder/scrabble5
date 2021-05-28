@@ -33,11 +33,11 @@ public class Data {
   private static StringBuffer chatHistory = new StringBuffer();
   private static GameSession gameSession;
 
-  public synchronized static GameSession getGameSession() {
+  public static synchronized GameSession getGameSession() {
     return gameSession;
   }
 
-  public synchronized static void setGameSession(GameSession gs) {
+  public static synchronized void setGameSession(GameSession gs) {
     gameSession = gs;
   }
 
@@ -93,8 +93,8 @@ public class Data {
   }
 
   /**
-   * Saves the text message that gets displayed on the currently opened
-   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Saves the text message that gets displayed on the currently opened {@link
+   * com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
    * @param message the string that gets set
    * @author mherre
@@ -248,6 +248,7 @@ public class Data {
    * @author mherre
    * @return sfxVolume the double containing the volume
    */
+  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
   public static double getSFXVolume() {
     return sfxVolume;
   }
@@ -258,6 +259,7 @@ public class Data {
    * @author mherre
    * @param newVolume the double containing the new sound volume
    */
+  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
   public static void setSFXVolume(double newVolume) {
     sfxVolume = newVolume;
   }
