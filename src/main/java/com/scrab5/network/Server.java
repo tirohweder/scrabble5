@@ -260,6 +260,7 @@ public class Server implements Serializable {
    * Updates all the other clients with the changes that were made (i.e. gameboard, turn skipped).
    *
    * @author nitterhe
+   * 
    */
   public void sendUpdateMessage() {
     this.sendMessageToAllClients(
