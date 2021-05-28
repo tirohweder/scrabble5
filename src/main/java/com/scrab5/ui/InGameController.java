@@ -131,10 +131,11 @@ public abstract class InGameController implements Initializable {
     initGameboard();
   }
 
+
   // init section
 
   /**
-   * initPlayers() initiliazes the points, names and active/ passive profiles of the ingame (thru
+   * initPlayers() initializes the points, names and active/ passive profiles of the ingame (thru
    * opacity/ text setting of Labels and ImageViews).
    *
    * @author apilgrim
@@ -194,9 +195,9 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * initButtons() initiliazes the undo/ skip/play / end Game Buttons and Labels of the ingame (thru
-   * opacity/ text setting of Labels and ImageViews). Checks also the turn and displays a message
-   * when it's youre turn.
+   * initButtons() initializes the undo/ skip/play / end Game Buttons and Labels of the in game
+   * (thru opacity/ text setting of Labels and ImageViews). Checks also the turn and displays a
+   * message when it's your turn.
    *
    * @author apilgrim
    */
@@ -225,13 +226,15 @@ public abstract class InGameController implements Initializable {
     if (Data.getGameSession().getSkippedTurn() >= 6) {
       endGame.setOpacity(1);
       endPossible = true;
+    } else {
+      endGame.setOpacity(0);
     }
   }
 
   /**
-   * initButtons() initiliazes the ui rack representation in the ingame (thru opacity/ text setting
-   * of Labels and ImageViews rackplace1-7 and pointsRack1-7). Checks which rack is yours and gets
-   * all informations for each tile from core.game Rack.java
+   * initRack() initiliazes the ui rack representation in the ingame (thru opacity/ text setting of
+   * Labels and ImageViews rackplace1-7 and pointsRack1-7). Checks which rack is yours and gets all
+   * informations for each tile from core.game Rack.java
    *
    * @author apilgrim
    */
@@ -245,6 +248,8 @@ public abstract class InGameController implements Initializable {
         continue;
       }
     }
+    // myRack.getTileAt(i).getLetter(),
+    // myRack.getTileAt(i).getValue()
     for (int i = 0; i < 7; i++) {
       switch (i) {
         case 0:
@@ -867,8 +872,6 @@ public abstract class InGameController implements Initializable {
           PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
           pum.show();
 
-          Player current = Data.getGameSession().getCurrentPlayer();
-
           // reset Opacity on the Rag Board if not null
           if (rackPlace1 != null && rackPlace1.getOpacity() == 0) {
             rackPlace1.setOpacity(1);
@@ -964,6 +967,7 @@ public abstract class InGameController implements Initializable {
 
           initRack();
           initPlayers();
+          Player current = Data.getGameSession().getCurrentPlayer();
 
           Data.getGameSession().finishTurn();
 
@@ -1270,7 +1274,7 @@ public abstract class InGameController implements Initializable {
     if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
       rackPlace.setOpacity(1);
     }
-    if (!Integer.toString(points).equals("0")) {
+    if (!Integer.toString(points).equals("0") | !letter.contains("placeHolder")) {
       point.setText(Integer.toString(points));
       point.setOpacity(1);
     } else {

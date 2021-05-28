@@ -432,6 +432,7 @@ public class Server implements Serializable {
       this.clients.remove(clientname);
     } else {
       this.connections.get(this.clients.get(clientname)).closeConnection();
+      this.connections.get(this.clients.get(clientname)).deleteClient(clientname);;
     }
     this.sendUpdateMessage();
   }
