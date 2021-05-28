@@ -12,7 +12,8 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * The TutorialController class handels everything that happens during the "Play Tutorial" mode.
- * Displays next and prebvious explanations. Controller for Tutorial.fxml.
+ * Displays next and prebvious explanations. Controller for Tutorial.fxml. Images created using
+ * photoshop.
  *
  * @author apilgrim
  */
