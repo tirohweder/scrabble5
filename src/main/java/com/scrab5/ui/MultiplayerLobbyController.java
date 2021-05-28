@@ -30,14 +30,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * The MultiplayerLobbyController class is supposed to control the of the MultiplayerLobby screen.
- *
+ * The MultiplayerLobbyController class controls the components of the "MultiplayerLobby.fxml".
+ * 
  * @author mherre
  */
 public class MultiplayerLobbyController extends LobbyController implements Initializable {
 
-  private static LinkedHashMap<String, ArrayList<Integer>> votes =
-      new LinkedHashMap<String, ArrayList<Integer>>();
   @FXML
   private Label player1;
   @FXML
@@ -99,9 +97,17 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private boolean isHost;
   private int ai = 0;
 
+  private static LinkedHashMap<String, ArrayList<Integer>> votes =
+      new LinkedHashMap<String, ArrayList<Integer>>();
 
 
-  /** @author mherre */
+
+  /**
+   * Call certain methods as soon as the Controller is loaded.
+   * 
+   * @author mherre
+   * @author nitterhe
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     this.setUpInit();
@@ -129,28 +135,42 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   /**
-   * This method is called when the "Back"-button is clicked. It sets the scene to
-   * "MultiplayerOverview"
+   * Event method that is called when the "Back"-button in the UI is clicked. It sets the scene to
+   * "MultiplayerOverview".
    *
-   * @param event 
-   * @throws IOException
-   * @author mherre @author nitterhe
+   * @param event the event that is created from the mouse-click
+   * @author mherre
+   * @author nitterhe
    */
   @FXML
-  protected void back(MouseEvent event) throws IOException {
+  protected void back(MouseEvent event) {
     playSound("ButtonClicked.mp3");
     Data.getPlayerClient().disconnectFromServer();
   }
 
+  /**
+   * Event method that is called when the "Ready"-button in the UI is clicked. It sets the ready
+   * status in the UI to ready / not ready and also intern.
+   *
+   * @param event the event that is created from the mouse-click
+   * @author mherre
+   * @author nitterhe
+   */
   @FXML
-  private void ready(MouseEvent event) throws IOException {
-
+  private void ready(MouseEvent event) {
     playSound("ButtonClicked.mp3");
-
     this.isReady = !isReady;
     Data.getPlayerClient().setReady(this.isReady, this.getPlayerVotes());
   }
 
+  /**
+   * Event method that is called when the "Chat"-button in the UI is clicked. It sends the entered
+   * message to every client and refreshes the chat UI.
+   *
+   * @param event the event that is created from the mouse-click
+   * @author mherre
+   * @author nitterhe
+   */
   @FXML
   private void enterChatMessage(MouseEvent event) {
 
@@ -165,6 +185,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     });
   }
 
+  /**
+   * 
+   */
   protected void addPlayer(MouseEvent event) {
 
     playSound("ButtonClicked.mp3");
