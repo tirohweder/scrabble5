@@ -312,24 +312,37 @@ public class AiPlayer extends Player {
    * @param word is the word that is going to be checked
    * @author hraza
    */
-  public static Boolean checkBagDistributionLegal(
-      HashMap<String, Integer> currentDistribution, String word, String fixLetter) {
+  public static Boolean checkBagDistributionLegal(HashMap<String, Integer> currentDistribution,
+      String word, String fixLetter) {
     boolean b = true;
-    boolean fix = true;
     int j = 0;
 
+    StringBuilder testb = new StringBuilder(word);
+
+
+    for (int i = 0; i < word.length(); i++) {
+      if (word.charAt(i) == fixLetter.charAt(0)) {
+        testb.deleteCharAt(i);
+        break;
+
+      }
+
+
+    }
+
+    word = testb.toString();
     for (int i = 0; i < word.length(); i++) {
       if (!currentDistribution.containsKey(String.valueOf(word.charAt(i)))) {
+
+
+
         return false;
+
       }
+
     }
     for (int i = 0; i < word.length(); i++) {
-      if (word.charAt(i) == fixLetter.charAt(0) && fix) {
-        fix = false;
-        continue;
-      }
-      currentDistribution.replace(
-          Character.toString(word.charAt(i)),
+      currentDistribution.replace(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) - 1);
       if (currentDistribution.get(Character.toString(word.charAt(i))) < 0) {
         b = false;
@@ -341,13 +354,9 @@ public class AiPlayer extends Player {
     }
 
     for (int i = 0; i <= j; i++) {
-      if (word.charAt(i) == fixLetter.charAt(0) && !fix) {
-        fix = true;
-        continue;
-      }
-      currentDistribution.replace(
-          Character.toString(word.charAt(i)),
+      currentDistribution.replace(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) + 1);
+
     }
     return b;
   }
@@ -650,9 +659,9 @@ public class AiPlayer extends Player {
   public void getSpotsFree(int x, int y, GameBoard g) {
     /*
      * int counterRight = 0; int counterLeft = 0; int counterUp = 0; int counterDown = 0;
-     *
+     * 
      * System.out.println("Finding free Spots at: " + y + " : " + x);
-     *
+     * 
      * // Checking the right Side of the Position on the Board while (y < 14 && y > 0 && x + 2 +
      * counterRight <= 14 && g.isSpotFreeOld(y, x + 1 + counterRight) && g.isSpotFreeOld(y, x + 2 +
      * counterRight) && g.isSpotFreeOld(y - 1, x + 1 + counterRight) && g.isSpotFreeOld(y + 1, x + 1
@@ -661,7 +670,7 @@ public class AiPlayer extends Player {
      * g.isSpotFreeOld(y + 1, x + 1 + counterRight)) { counterRight++; } while (y == 0 && x + 2 +
      * counterRight <= 14 && g.isSpotFreeOld(y, x + 1 + counterRight) && g.isSpotFreeOld(y, x + 2 +
      * counterRight) && g.isSpotFreeOld(y + 1, x + 1 + counterRight)) { counterRight++; }
-     *
+     * 
      * while (y == 0 && x + 2 + counterRight == 15 && g.isSpotFreeOld(y, x + 1 + counterRight) &&
      * g.isSpotFreeOld(y + 1, x + 1 + counterRight)) { counterRight++; } while (y == 14 && x + 2 +
      * counterRight <= 14 && g.isSpotFreeOld(y, x + 1 + counterRight) && g.isSpotFreeOld(y, x + 2 +
@@ -669,13 +678,13 @@ public class AiPlayer extends Player {
      * == 14 && x + 2 + counterRight == 15 && g.isSpotFreeOld(y, x + 1 + counterRight) &&
      * g.isSpotFreeOld(y - 1, x + 1 + counterRight)) { counterRight++; } if (x + 2 <= 14 &&
      * g.isSpotFree(y, x + 1) && !g.isSpotFree(y, x + 2)) { counterRight = -1; }
-     *
+     * 
      * if (x + 2 == 15 && y > 0 && y < 14 && g.isSpotFree(y, x + 1) && (!g.isSpotFree(y - 1, x + 1)
      * || !g.isSpotFree(y + 1, x + 1))) { counterRight = -1; } if (x + 2 == 15 && y == 0 &&
      * g.isSpotFree(y, x + 1) && !g.isSpotFree(y + 1, x + 1)) { counterRight = -1; } if (x + 2 == 15
      * && y == 14 && g.isSpotFree(y, x + 1) && !g.isSpotFree(y - 1, x + 1)) { counterRight = -1; }
      * if (x - 1 >= 0 && !g.isSpotFree(y, x - 1)) { counterRight = -1; }
-     *
+     * 
      * // Checking the left Side of the Position on the Board while (y < 14 && y > 0 && x - 2 -
      * counterLeft >= 0 && g.isSpotFreeOld(y, x - 1 - counterLeft) && g.isSpotFreeOld(y, x - 2 -
      * counterLeft) && g.isSpotFreeOld(y - 1, x - 1 - counterLeft) && g.isSpotFreeOld(y + 1, x - 1 -
@@ -693,20 +702,20 @@ public class AiPlayer extends Player {
      * g.isSpotFreeOld(y, x - 1 - counterLeft) && g.isSpotFreeOld(y - 1, x - 1 - counterLeft)) {
      * counterLeft++; } if (x - 2 >= 0 && g.isSpotFree(y, x - 1) && !g.isSpotFree(y, x - 2)) {
      * counterLeft = -1; }
-     *
+     * 
      * if (x - 2 == -1 && y > 0 && y < 14 && g.isSpotFree(y, x - 1) && (!g.isSpotFree(y - 1, x - 1)
      * || !g.isSpotFree(y + 1, x - 1))) { counterLeft = -1; } if (x - 2 == -1 && y == 0 &&
      * g.isSpotFree(y, x - 1) && !g.isSpotFree(y + 1, x - 1)) { counterLeft = -1; } if (x - 2 == -1
      * && y == 14 && g.isSpotFree(y, x - 1) && !g.isSpotFree(y - 1, x - 1)) { counterLeft = -1; } if
      * (x + 1 <= 14 && !g.isSpotFree(y, x + 1)) { counterLeft = -1; }
-     *
+     * 
      * // Checking for free Spots under the Position x,y while (y + 2 + counterDown <= 14 && x > 0
      * && x < 14 && g.isSpotFreeOld(y + 1 + counterDown, x) && g.isSpotFreeOld(y + 2 + counterDown,
      * x) && g.isSpotFreeOld(y + 1 + counterDown, x + 1) && g.isSpotFreeOld(y + 1 + counterDown, x -
      * 1)) { counterDown++; } while (y + 2 + counterDown == 15 && x > 0 && x < 14 &&
      * g.isSpotFreeOld(y + 1 + counterDown, x) && g.isSpotFreeOld(y + 1 + counterDown, x + 1) &&
      * g.isSpotFreeOld(y + 1 + counterDown, x - 1)) { counterDown++; }
-     *
+     * 
      * while (y + 2 + counterDown <= 14 && x == 0 && g.isSpotFreeOld(y + 1 + counterDown, x) &&
      * g.isSpotFreeOld(y + 2 + counterDown, x) && g.isSpotFreeOld(y + 1 + counterDown, x + 1)) {
      * counterDown++; } while (y + 2 + counterDown == 15 && x == 0 && g.isSpotFreeOld(y + 1 +
@@ -716,12 +725,12 @@ public class AiPlayer extends Player {
      * counterDown++; } while (y + 2 + counterDown == 15 && x == 14 && g.isSpotFreeOld(y + 1 +
      * counterDown, x) && g.isSpotFreeOld(y + 1 + counterDown, x - 1)) { counterDown++; } if (y + 2
      * <= 14 && g.isSpotFree(y + 1, x) && !g.isSpotFree(y + 2, x)) { counterDown = -1; }
-     *
+     * 
      * if (y + 2 == 15 && x > 0 && x < 14 && g.isSpotFree(y + 1, x) && (!g.isSpotFree(y + 1, x + 1)
      * || !g.isSpotFree(y + 1, x - 1))) { counterDown = -1; } if (y + 2 == 15 && x == 0 &&
      * g.isSpotFree(y + 1, x) && !g.isSpotFree(y + 1, x + 1)) { counterDown = -1; } if (y + 2 == 15
      * && x == 14 && g.isSpotFree(y + 1, x) && !g.isSpotFree(y + 1, x - 1)) { counterDown = -1; }
-     *
+     * 
      * if (y - 1 >= 0 && !g.isSpotFree(y - 1, x)) { counterDown = -1; } // Checking for free Spots
      * above the Position x,y while (y - 2 - counterUp >= 0 && x > 0 && x < 14 && g.isSpotFreeOld(y
      * - 1 - counterUp, x) && g.isSpotFreeOld(y - 2 - counterUp, x) && g.isSpotFreeOld(y - 1 -
@@ -737,14 +746,14 @@ public class AiPlayer extends Player {
      * counterUp, x) && g.isSpotFreeOld(y - 2 - counterUp, x) && g.isSpotFreeOld(y - 1 - counterUp,
      * x - 1)) { counterUp++; } while (y - 2 - counterUp == -1 && x == 14 && g.isSpotFreeOld(y - 1 -
      * counterUp, x) && g.isSpotFreeOld(y - 1 - counterUp, x - 1)) { counterUp++; }
-     *
+     * 
      * if (y - 2 >= 0 && g.isSpotFree(y - 1, x) && !g.isSpotFree(y - 2, x)) { counterUp = -1; }
-     *
+     * 
      * if (y - 2 == -1 && x > 0 && x < 14 && g.isSpotFree(y - 1, x) && (!g.isSpotFree(y - 1, x - 1)
      * || !g.isSpotFree(y - 1, x + 1))) { counterUp = -1; } if (y - 2 == -1 && x == 0 &&
      * g.isSpotFree(y - 1, x) && !g.isSpotFree(y - 1, x + 1)) { counterUp = -1; } if (y - 2 == -1 &&
      * x == 14 && g.isSpotFree(y - 1, x) && !g.isSpotFree(y - 1, x - 1)) { counterUp = -1; }
-     *
+     * 
      * if (y + 1 <= 14 && !g.isSpotFree(y + 1, x)) { counterUp = -1; }
      */
     /*
@@ -961,13 +970,13 @@ public class AiPlayer extends Player {
       // play sound bingo if 7 tiles are played at once by the ai. Because it always only uses 1
       // tile to create a word it need length 8
 
-      if (choosenWord.size() == 8) {
+      if (choosenWord.size() == 7) {
         if (Data.getGameSession().isOnline()) {
           Data.getPlayerClient().playSound(false);
         } else {
           Data.getGameSession().playSound(false);
         }
-      } else if (choosenWord.size() == 7) { // if ai plays first turn, needs to check if it just
+      } else if (choosenWord.size() == 8) { // if ai plays first turn, needs to check if it just
         // uses 7,7 from an old tile or
         // if it played it new
         for (Tile tile : choosenWord) {
