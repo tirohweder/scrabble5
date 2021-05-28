@@ -100,7 +100,7 @@ public class DictionaryParser {
   }
 
   private static void setReadOnly(File file) {
-    file.setReadOnly();
+    //file.setReadOnly();
   }
 
   /**

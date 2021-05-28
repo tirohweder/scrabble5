@@ -16,7 +16,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
-   * @return int Integer value of the total points from user "name" in the database
+   * @return points int value of the total points from user "name" in the database
    */
   public static synchronized int getTotalPoints(String name) {
     Database.reconnect();
@@ -42,7 +42,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
-   * @return int Integer value of the personal highscore stored in the database
+   * @return highscore int value of the personal high score stored in the database
    */
   public static synchronized int getPersonalHighscore(String name) {
     Database.reconnect();
@@ -76,7 +76,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
-   * @return int Integer value of the count of laid words stored in the database
+   * @return words int value of the count of laid words stored in the database
    */
   public static synchronized int getLaidWords(String name) {
     Database.reconnect();
@@ -102,7 +102,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
-   * @return pperWord Integer value of the points per word rate stored in the database
+   * @return pperWord int value of the points per word rate stored in the database
    */
   public static synchronized int getPointsPerWordRate(String name) {
     Database.reconnect();
@@ -129,7 +129,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
-   * @return String with the longest word stored in the database
+   * @return word String with the longest word stored in the database
    */
   public static synchronized int getLongestWord(String name) {
     Database.reconnect();
@@ -142,7 +142,7 @@ public class PlayerProfileDatabase extends Database {
       while (rs.next()) {
         word = rs.getInt(1);
       }
-      
+
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -157,7 +157,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
-   * @return int Integer value of the total played games stored in the database
+   * @return games int value of the total played games stored in the database
    */
   public static synchronized int getTotalPlayedGames(String name) {
     Database.reconnect();
@@ -183,7 +183,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
-   * @return int Integer value of the total wins stored in the database
+   * @return wins int value of the total wins stored in the database
    */
   public static synchronized int getTotalWins(String name) {
     Database.reconnect();
@@ -210,7 +210,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
-   * @return Double value of the win rate stored in the database
+   * @return rate Double value of the win rate stored in the database
    */
   public static synchronized double getWinRate(String name) {
     Database.reconnect();
@@ -236,7 +236,8 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
-   * @return String representing the favorite dictionary of the player name stored in the database
+   * @return dic String representing the favorite dictionary of the player name stored in the
+   *         database
    */
   public static synchronized String getFavoriteDictionary(String name) {
     Database.reconnect();
@@ -262,7 +263,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengits
    * @param name String name of the user where the music volume needs to be returned
-   * @return double value of the music volume
+   * @return music double value of the music volume
    */
   public static synchronized double getMusicVolume(String name) {
     Database.reconnect();
@@ -279,7 +280,6 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    System.out.println("music geholt");
     Database.disconnect();
     return music;
   }
@@ -289,7 +289,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user where the sound effect volume needs to be returned
-   * @return double value of the sound effect volume
+   * @return soundEffect double value of the sound effect volume
    */
   public static synchronized double getSoundEffectVolume(String name) {
     Database.reconnect();
@@ -306,7 +306,6 @@ public class PlayerProfileDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    System.out.println("sound effect geholt");
     Database.disconnect();
     return soundEffect;
   }
@@ -328,7 +327,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user where the points needs to be set
-   * @param points Integer representing the new points to be stored in the database
+   * @param points int representing the new points to be stored in the database
    */
   public static void setTotalPoints(String name, int points) {
     FillDatabase.updatePlayer("TotalPoints", name, null, points, 0.0);
@@ -340,7 +339,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user where the highscore needs to be set
-   * @param highscore Integer representing the new highscore to be stored in the database
+   * @param highscore int representing the new highscore to be stored in the database
    */
   public static void setPersonalHighscore(String name, int highscore) {
     FillDatabase.updatePlayer("PersonalHighscore", name, null, highscore, 0.0);
@@ -352,7 +351,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user where the laid words needs to be set
-   * @param words Integer representing the new count for laid words to be stored in the database
+   * @param words int representing the new count for laid words to be stored in the database
    */
   public static void setLaidWords(String name, int words) {
     FillDatabase.updatePlayer("LaidWords", name, null, words, 0.0);
@@ -364,7 +363,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user where the points per word rate needs to be set
-   * @param pperWord Integer representing the new count for points per word rate to be stored in the
+   * @param pperWord int representing the new count for points per word rate to be stored in the
    *        database
    */
   public static void setPointsPerWordRate(String name, int pperWord) {
@@ -373,11 +372,11 @@ public class PlayerProfileDatabase extends Database {
   }
 
   /**
-   * Updates current value of LongestWord with String value delivered by parameter.
+   * Updates current value of LongestWord with int value delivered by parameter.
    * 
    * @author lengist
    * @param name String name of the user where the longest word needs to be set
-   * @param longestWord String representing the new longest word to be stored in the database
+   * @param longestWord int representing the new longest word to be stored in the database
    */
   public static void setLongestWord(String name, int longestWord) {
     FillDatabase.updatePlayer("LongestWord", name, null, longestWord, 0.0);
@@ -389,7 +388,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user where the total played games need to be set
-   * @param games Integer representing the new count for played games to be stored in the database
+   * @param games int representing the new count for played games to be stored in the database
    */
   public static void setTotalPlayedGames(String name, int games) {
     FillDatabase.updatePlayer("TotalPlayedGames", name, null, games, 0.0);
@@ -401,7 +400,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user where the total wins need to be set
-   * @param wins Integer representing the new count for total wins to be stored in the database
+   * @param wins int representing the new count for total wins to be stored in the database
    */
   public static void setTotalWins(String name, int wins) {
     FillDatabase.updatePlayer("TotalWins", name, null, wins, 0.0);
@@ -413,7 +412,7 @@ public class PlayerProfileDatabase extends Database {
    * 
    * @author lengist
    * @param name String name of the user where the win rate needs to be set
-   * @param rate Integer representing the new count for win rate to be stored in the database
+   * @param rate int representing the new count for win rate to be stored in the database
    */
   public static void setWinRate(String name, double rate) {
     FillDatabase.updatePlayer("WinRate", name, null, 0, rate);
