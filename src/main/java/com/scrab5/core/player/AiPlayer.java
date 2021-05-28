@@ -111,10 +111,14 @@ public class AiPlayer extends Player {
     }
 
     int maximumLength = before + 1 + after;
-
     ArrayList<String> finalWords = new ArrayList<String>();
-    finalWords = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
-    System.out.println("1. Final Words length: " + finalWords.size());
+    if (maximumLength <= 8) {
+      finalWords = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
+      System.out.println("1. Final Words length: " + finalWords.size());
+    } else {
+      finalWords = DictionaryScanner.getWordsIncluding(fixLetter, 8);
+      System.out.println("1. Final Words length: " + finalWords.size());
+    }
 
     /* Deletion round 1: deleting all words that include a letter that is not in the bag. */
     StringBuilder sb = new StringBuilder();
