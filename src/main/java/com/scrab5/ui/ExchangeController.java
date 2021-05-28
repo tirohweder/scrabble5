@@ -9,6 +9,8 @@ import javafx.scene.input.MouseEvent;
 
 public class ExchangeController extends InGameController implements Initializable {
 
+  private int counter = 0;
+
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
     initPlayers();
@@ -32,12 +34,15 @@ public class ExchangeController extends InGameController implements Initializabl
     } else {
       App.setRoot("SinglePlayer");
     }
-    Data.getGameSession().finishTurn();
+    if (counter != 0) {
+      Data.getGameSession().finishTurn();
+    }
   }
 
   private void exchangeTiles() {
     for (int i = 0; i < rackChanges.length; i++) {
       if (rackChanges[i] != null && rackChanges[i] == true) {
+        counter++;
         Data.getGameSession().getBag()
             .add(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(i));
         Data.getGameSession().getCurrentPlayer().getRack().removeTileFromRack(i);
