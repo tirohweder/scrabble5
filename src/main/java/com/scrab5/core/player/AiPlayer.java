@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 /**
  * Ai Class. Here everything concerning the ai is happening.
@@ -33,7 +34,7 @@ public class AiPlayer extends Player {
   int counterRight;
   int counterLeft;
   int aiThreshold;
-
+  Random random = new Random();
   /**
    * Constructor for AiPlayer. Needs difficulty set.
    *
@@ -84,6 +85,7 @@ public class AiPlayer extends Player {
     System.out.println("column: " + column);
     System.out.println("row: " + row);
     System.out.println("horizontal: " + horizontal);
+    System.out.println("Bag size: " + Data.getGameSession().getBag().getSize());
 
     System.out.println();
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
@@ -343,12 +345,10 @@ public class AiPlayer extends Player {
    * Because we create the possible words as tile lists, because when we want
    *
    * @author trohwede
-   * @param gameBoard takes the currentGameBoard
    * @param possibleWords revices the possible words as a ArrayList<Tile>
    * @return Points per Word
    */
-  public static ArrayList<Integer> countScore(
-      GameBoard gameBoard, ArrayList<ArrayList<Tile>> possibleWords) {
+  public static ArrayList<Integer> countScore(ArrayList<ArrayList<Tile>> possibleWords) {
 
     ArrayList<Integer> scoreList = new ArrayList<>();
 
@@ -381,7 +381,6 @@ public class AiPlayer extends Player {
           default:
             scoreToBe += tile.getValue();
         }
-        // Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
       }
 
       if (dw) {
@@ -394,8 +393,10 @@ public class AiPlayer extends Player {
 
       if (word.size() == 8) {
         score += 50;
+      } else if (word.size() == 7
+          && Data.getGameSession().getGameBoard().getSpecialsAt(7, 7).equals("DW")) {
+        score += 50;
       }
-
       scoreList.add(score);
     }
     System.out.println("------- NEW WORD ----------");
@@ -952,6 +953,21 @@ public class AiPlayer extends Player {
     pointsPerLetterFromDatabase = UseDatabase.getAllPointsPerLetter();
     Database.disconnect();
 
+    // needs to remove random letter from the ai rack, so the chances for pulling a tile
+    // remain the same for human player remains the same
+    System.out.println("1. Bag size: " + Data.getGameSession().getBag().getSize());
+    for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
+      if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
+        System.out.println(
+            " rack size;: "
+                + Data.getGameSession().getListOfPlayers().get(i).getRack().getRackSize());
+        Data.getGameSession()
+            .getBag()
+            .addRackToBag(Data.getGameSession().getListOfPlayers().get(i).getRack());
+        Data.getGameSession().getListOfPlayers().get(i).getRack().clearRack();
+      }
+    }
+    System.out.println("2. Bag size: " + Data.getGameSession().getBag().getSize());
     boolean foundMatchingThreshold = false;
 
     ArrayList<Tile> choosenWord = new ArrayList<>();
@@ -975,14 +991,13 @@ public class AiPlayer extends Player {
 
           ArrayList<ArrayList<Tile>> wordList = new ArrayList<>();
 
-          System.out.println("row: " + row);
-          System.out.println("column: " + column);
-          System.out.println("Trying someting");
-
           if (Data.getGameSession().getGameBoard().isFirstTile()) {
-            currentFixLetter = "B";
-            wordList = wordGenerator("B", 5, 4, 7, 7, true);
 
+            currentFixLetter = Data.getGameSession().getBag().randomLetterFromBag();
+            boolean horizontal = random.nextBoolean();
+            wordList = wordGenerator(currentFixLetter, 5, 4, 7, 7, horizontal);
+
+            // if there is more space to go vertical go vertical
           } else if (counterDown + counterUp > counterLeft + counterRight
               && counterDown + counterUp + counterRight + counterLeft > 0) {
             currentFixLetter =
@@ -1000,6 +1015,7 @@ public class AiPlayer extends Player {
             if (wordList.isEmpty()) {
               break;
             }
+            // else if there is space go horizontal
           } else if (counterDown + counterUp + counterRight + counterLeft > 0) {
             currentFixLetter =
                 Data.getGameSession().getGameBoard().getPlayedTile(row, column).getLetter();
@@ -1019,40 +1035,30 @@ public class AiPlayer extends Player {
             }
           }
           if (wordList.size() > 0) {
-            System.out.println("left: " + counterLeft);
-            System.out.println("right: " + counterRight);
-            System.out.println("up: " + counterUp);
-            System.out.println("down: " + counterDown);
 
-            System.out.println("Checked all");
-
-            ArrayList<ArrayList<Tile>> wordListtest = new ArrayList<>();
-
-            // for (int i = 0; i < 10; i++) {
-            // wordListtest.add(wordList.get(i));
-            // }
-
-            ArrayList<Integer> points = countScore(Data.getGameSession().getGameBoard(), wordList);
-
-            System.out.println("Points size :" + points.size());
-            System.out.println(
-                "How many points does the first word give:" + points.get(0).toString());
-            // System.out.println(aiThreshold);
+            // because wordList is in alphabetical order we check random entrys if they can fulfill
+            // requirements
+            ArrayList<Integer> points = countScore(wordList);
             ArrayList<Integer> randomSelector = new ArrayList<>();
-
             for (int k = 0; k < points.size(); k++) {
               randomSelector.add(k);
             }
             Collections.shuffle(randomSelector);
 
+            // checks if the points for the word fulfill requirements
             for (int i = 0; i < points.size(); i++) {
-              if (points.get(randomSelector.get(i)) >= aiThreshold
-                  && points.get(randomSelector.get(i)) <= aiThreshold + 7) {
+
+              // we use the gaussian method to have random borders for playing words
+
+              int aiThresholdLow = (int) Math.round(random.nextGaussian() * 2 + aiThreshold);
+              int aiThresholdHigh = (int) Math.round(random.nextGaussian() * 3 + aiThreshold + 10);
+
+              if (points.get(randomSelector.get(i)) >= aiThresholdLow
+                  && points.get(randomSelector.get(i)) <= aiThresholdHigh) {
                 choosenWord = wordList.get(randomSelector.get(i));
                 pointsForRound = points.get(randomSelector.get(i));
                 foundMatchingThreshold = true;
 
-                System.out.println("DID BREAK : " + points.get(randomSelector.get(i)));
                 break findacceptable;
               }
             }
@@ -1061,24 +1067,21 @@ public class AiPlayer extends Player {
       }
     }
 
-    System.out.println("chosen word length : " + choosenWord.size());
-    // for (Tile t : choosenWord) {
-    // System.out.print(t.getLetter());
-    // }
-    System.out.println();
-
-    // because ai uses tiles from the bag, the correct distubution needs to be set.
-    HashMap<String, Integer> currentDistru =
+    // because ai uses tiles from the bag, the correct distribution needs to be set.
+    HashMap<String, Integer> currentBagDistribution =
         Data.getGameSession().getBag().getCurrentBagDistribution();
 
     if (foundMatchingThreshold) {
-      System.out.println("chosen word : ");
       for (Tile tile : choosenWord) {
-        System.out.print(tile.getLetter());
-        System.out.println("Row: " + tile.getRow() + " column: " + tile.getColumn());
-
+        // needed because other wise removes 1 more letter from the bag for the tile that was
+        // already placed
+        if (Data.getGameSession().getGameBoard().isSpotFreeOld(tile.getRow(), tile.getColumn())) {
+          currentBagDistribution.put(
+              tile.getLetter(), currentBagDistribution.get(tile.getLetter()) - 1);
+        }
         Data.getGameSession().getGameBoard().placeTileTest(tile, tile.getRow(), tile.getColumn());
-        currentDistru.put(tile.getLetter(), currentDistru.get(tile.getLetter()) - 1);
+
+        // Plays sound if triple word
         if (Data.getGameSession()
             .getGameBoard()
             .getSpecialsAt(tile.getRow(), tile.getColumn())
@@ -1089,37 +1092,49 @@ public class AiPlayer extends Player {
             Data.getGameSession().playSound(false);
           }
         }
-
+        // if special tiles are used needs to reset them.
         Data.getGameSession().getGameBoard().setSpecialAt(tile.getRow(), tile.getColumn(), "  ");
       }
+
+      // if ai plays it will reset skipped turns
+      Data.getGameSession().setSkippedTurn(0);
+
+      // play sound bingo if 7 tiles are played at once by the ai. Because it always only uses 1
+      // tile to create a word it need length 8
+
       if (choosenWord.size() == 8) {
         if (Data.getGameSession().isOnline()) {
           Data.getPlayerClient().playSound(true);
         } else {
           Data.getGameSession().playSound(true);
         }
+      } else if (choosenWord.size()
+          == 7) { // if ai plays first turn, needs to check if it just uses 7,7 from an old tile or
+        // if it played it new
+        for (Tile tile : choosenWord) {
+          if (tile.getRow() == 7
+              && tile.getColumn() == 7
+              && Data.getGameSession().getGameBoard().getPlayedTile(7, 7) == null) {
+            if (Data.getGameSession().isOnline()) {
+              Data.getPlayerClient().playSound(true);
+            } else {
+              Data.getGameSession().playSound(true);
+            }
+          }
+        }
       }
-      System.out.println("placed");
     } else {
+      // if ai skips a turn it needs to increase skipped turns
       Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn() + 1);
     }
 
+    // sets new Distribution, adds points to the ai, and finishes turn
     Data.getGameSession()
         .getCurrentPlayer()
         .setPoints(Data.getGameSession().getCurrentPlayer().getPoints() + pointsForRound);
-    System.out.println("erster");
-    Data.getGameSession().getBag().setBagWithDistribution(currentDistru);
-    System.out.println("zweiter");
-    Data.getGameSession().getGameBoard().finishTurn();
-    System.out.println("dritter");
-
-    /*
-     * System.out.println( Data.getGameSession() .getGameBoard()
-     * .getTile(choosenWord.get(0).getRow(), choosenWord.get(0).getColumn()).getLetter());
-     */
-
+    Data.getGameSession().getBag().setBagWithDistribution(currentBagDistribution);
     Data.getGameSession().finishTurn();
-    System.out.println("will hier jetzt wieder schließen.");
+
     Database.disconnect();
   }
 }

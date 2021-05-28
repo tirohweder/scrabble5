@@ -464,7 +464,11 @@ public class SingleplayerLobbyController extends LobbyController implements Init
     FilenameFilter filter = new FilenameFilter() {
 
       public boolean accept(File dir, String name) {
-        return name.endsWith(".txt");
+        if (name.endsWith("Parsed.txt")) {
+          return false;
+        } else {
+          return name.endsWith(".txt");
+        }
       }
     };
 

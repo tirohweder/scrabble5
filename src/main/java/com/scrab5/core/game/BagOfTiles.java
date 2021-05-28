@@ -47,6 +47,10 @@ public class BagOfTiles implements Serializable {
     return test;
   }
 
+  public String randomLetterFromBag() {
+    return bag.get(new Random().nextInt(bag.size())).getLetter();
+  }
+
   public ArrayList<Tile> getBag() {
     return bag;
   }
@@ -63,6 +67,13 @@ public class BagOfTiles implements Serializable {
    */
   public int getSize() {
     return this.bag.size();
+  }
+
+  public void addRackToBag(Rack rack) {
+    for (int i = 0; i < rack.getRackSize(); i++) {
+
+      bag.add(rack.getTileAt(i));
+    }
   }
 
   /**

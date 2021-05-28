@@ -531,9 +531,12 @@ public class MultiplayerOverviewController extends Controller implements Initial
     FilenameFilter filter = new FilenameFilter() {
 
       public boolean accept(File dir, String name) {
-        return name.endsWith(".txt");
+        if (name.endsWith("Parsed.txt")) {
+          return false;
+        } else {
+          return name.endsWith(".txt");
+        }
       }
-
     };
 
     String[] fileNames = dir.list(filter);

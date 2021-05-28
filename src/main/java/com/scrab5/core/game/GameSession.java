@@ -48,8 +48,12 @@ public class GameSession implements Serializable {
    * @param points how many * points each letter gives
    * @param isOnline is the game multiplayer or singleplayer
    */
-  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
-      ArrayList<Integer> points, boolean isOnline) throws SQLException {
+  public GameSession(
+      ArrayList<Player> listOfPlayers,
+      ArrayList<Integer> letters,
+      ArrayList<Integer> points,
+      boolean isOnline)
+      throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -58,39 +62,11 @@ public class GameSession implements Serializable {
       Data.getHostedServer().startGame();
     }
     initializeBag(letters, points);
-    for (Player listOfPlayer : listOfPlayers) {
-      listOfPlayer.getRack().fill(bag);
-    }
-    gameBoard = new GameBoard();
-  }
-
-  /**
-   * Intitializes the Gamsession, sets currentplayer, calls to create the correct bag, and fills the
-   * rack of each player.
-   *
-   * @author trohwede
-   * @param listOfPlayers list of players in the correct order
-   * @param isOnline is the game multiplayer or singleplayer
-   * @throws SQLException if Database cant connect //TODO is this the right way
-   */
-  public GameSession(ArrayList<Player> listOfPlayers, boolean isOnline) throws SQLException {
-    this.listOfPlayers = listOfPlayers;
-    currentPlayer = listOfPlayers.get(0);
-    this.online = isOnline;
-    if (this.online) {
-      Data.getHostedServer().startGame();
-    }
-    System.out.println("Created Game Session");
-
-    initializeBag();
-    gameBoard = new GameBoard();
     for (Player player : listOfPlayers) {
-      if (!(player instanceof AiPlayer)) {
-        player.getRack().fill(bag);
-      }
-      // System.out.println("Im creating new GameSession right now");
-      // System.out.println("Tile AT 0:" + currentPlayer.getRack().getTileAt(0));
+      // we fill rack of every player even ai, this acts like it blocks the stuff
+      player.getRack().fill(bag);
     }
+    gameBoard = new GameBoard();
   }
 
   /**
@@ -301,8 +277,10 @@ public class GameSession implements Serializable {
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
 
     // TODO joker richtig bennen
-    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    String[] buchstaben = {
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+      "T", "U", "V", "W", "X", "Y", "Z", "*"
+    };
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -321,7 +299,18 @@ public class GameSession implements Serializable {
    * @author trohwede
    */
   public void finishTurn() throws IOException {
+    for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
+      if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
+        Data.getGameSession()
+            .getListOfPlayers()
+            .get(i)
+            .getRack()
+            .fill(Data.getGameSession().getBag());
+      }
+    }
+
     currentPlayer.getRack().fill(bag);
+
     roundNumber++;
     currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
     // System.out.println("Current Player= " + currentPlayer.getName());
@@ -361,7 +350,6 @@ public class GameSession implements Serializable {
       }
     }
 
-
     for (Player player : Data.getGameSession().getListOfPlayers()) {
       if (!(player instanceof AiPlayer)) {
         PlayerProfile temp = player.getPlayerProfile();
@@ -380,7 +368,8 @@ public class GameSession implements Serializable {
         if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {
           temp.adjustPersonalHighscore(player.getPoints());
         }
-        if ((player.getName().equals(name)) && (player.getPoints() != 0)
+        if ((player.getName().equals(name))
+            && (player.getPoints() != 0)
             && (player.getPoints() == mostPoints)) {
           temp.addWins(1);
         }
@@ -436,7 +425,7 @@ public class GameSession implements Serializable {
   /**
    * Method that plays a sound file and adjusts the volume to the volume that has been set by the
    * user in the "Settings.fxml" scene.
-   * 
+   *
    * @author mherre
    * @param tob - the variable if Triple.mp3 or Bingo.mp3 shall be played.
    */
@@ -447,8 +436,9 @@ public class GameSession implements Serializable {
     } else {
       file = "Triple.mp3";
     }
-    Media sound = new Media(
-        Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file).toExternalForm());
+    Media sound =
+        new Media(
+            Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file).toExternalForm());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();
