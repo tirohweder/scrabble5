@@ -205,10 +205,13 @@ public class ServerThread extends Threads {
   protected synchronized void closeConnection() {
     sendMessageToClient(new DisconnectMessage(server.getHost()));
     this.stopThread();
-    try {
-      this.socketToClient.close();
-    } catch (Exception e) {
-      new NetworkError(NetworkErrorType.CLOSECONNECTION);
+    synchronized (this) {
+      try {
+        wait(200);
+        this.socketToClient.close();
+      } catch (Exception e) {
+        new NetworkError(NetworkErrorType.CLOSECONNECTION);
+      }
     }
   }
 }
