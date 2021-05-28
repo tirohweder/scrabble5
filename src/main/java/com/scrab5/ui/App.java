@@ -53,11 +53,10 @@ public class App extends Application {
     if (!Database.databaseExistance()) {
       db = new Database();
       CreateDatabase cdb = new CreateDatabase();
-      FillDatabase.fillLetters();
     } else {
       Database.reconnect();
     }
-
+    FillDatabase.fillLetters();
     if (UseDatabase.tablePlayerIsEmpty()) {
       scene = new Scene(loadFXML("Login"), 1360, 768);
     } else {
