@@ -18,8 +18,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 /**
- * The App class contains some methods changing the scene seen and the sets the app up for the first
- * time it gets started.
+ * The App class contains some methods changing the scene seen and sets the app up for the first
+ * time it is started.
  *
  * @author trohwede
  * @author mherre
@@ -28,22 +28,24 @@ public class App extends Application {
 
   private static Scene scene;
   private static Stage mainStage;
+  private static MediaPlayer mediaplayer;
+
   private Database db;
   private Media sound;
-  private static MediaPlayer mediaplayer;
 
 
   /**
-   * This method is called when ever the app gets startet. First it checks whether a database
-   * already exists if not a new database gets created.
+   * This method is called when ever the application is started. First it checks whether a database
+   * already exists, if not a new database is created.
    * <p>
-   * Then it sets up the app screen and shows the first scene
+   * Then it sets up the app screen (icons, mediaplayer for sound) and shows the first scene.
+   * </p>
+   * The close operation has also been changed, so the app closes properly:
    * <p>
    * https://www.codota.com/code/java/methods/javafx.stage.Stage/setOnCloseRequest
-   * <p>
-   * TODO: Update Comments
+   * </p>
    *
-   * @param stage
+   * @param stage the main stage where the app is presented
    * @author mherre
    */
   public void start(Stage stage) throws IOException {
@@ -53,11 +55,10 @@ public class App extends Application {
     if (!Database.databaseExistance()) {
       db = new Database();
       CreateDatabase cdb = new CreateDatabase();
-      FillDatabase.fillLetters();
     } else {
       Database.reconnect();
     }
-
+    FillDatabase.fillLetters();
     if (UseDatabase.tablePlayerIsEmpty()) {
       scene = new Scene(loadFXML("Login"), 1360, 768);
     } else {
@@ -68,27 +69,27 @@ public class App extends Application {
     this.setMediaPlayer();
 
     stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-
       @Override
       public void handle(WindowEvent event) {
 
         if (Data.getHostedServer() != null) {
           Data.getHostedServer().shutDownServer();
         }
-
         Platform.exit();
         System.exit(0);
       }
     });
+
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
     stage.setResizable(false);
     stage.show();
-    System.out.println("hier sind wir jetzt!");
-
   }
 
   /**
+   * This method is used to create a <code>MediaPlayer</code> which runs while the app is running.
+   * It plays the background music.
+   * 
    * @author mherre
    */
   private void setMediaPlayer() {
@@ -100,7 +101,10 @@ public class App extends Application {
   }
 
   /**
-   * @param stage
+   * This method is used to set the task bar icon. The icon is either a 32x32 image or a 16x16
+   * image, this depends on the resolution of the users desktop.
+   * 
+   * @param stage the main stage where the app is presented
    * @author mherre
    */
   private void setIcons(Stage stage) {
@@ -124,31 +128,33 @@ public class App extends Application {
   }
 
   /**
-   * Changes the current shown scene depending on the predescessor scene
+   * Changes the current shown scene depending on the predecessor scene.
    *
-   * @param fxml
-   * @param predescessor
-   * @throws IOException
    * @author mherre
+   * @param fxml the String values the name of the .fxml scene
+   * @param predescessor the String values the name of the scene which was seen before
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
    */
   public static void setRoot(String fxml, String predescessor) throws IOException {
 
     switch (predescessor) {
-
       case "Profile":
+
         switch (fxml) {
           case "AccountCreation":
             AccountCreationController.setPredecessor("Profile");
             break;
           case "RealLogin":
             RealLoginController.setPredecessor("Profile");
+            break;
           default:
             break;
         }
 
+        break;
       default:
         break;
-
     }
     scene.setRoot(loadFXML(fxml));
   }
@@ -176,14 +182,33 @@ public class App extends Application {
     launch();
   }
 
+  /**
+   * This method is called when the sound volume of the music needs to be adjusted (e.g.
+   * "Settings.fxml").
+   * 
+   * @author mherre
+   * @param volume the double contains the value to which the music volume is set
+   */
   public static void setMusicVolume(double volume) {
     mediaplayer.setVolume(volume);
   }
 
+  /**
+   * Returns the main <code>Stage</code>.
+   * 
+   * @author mherre
+   * @return mainStage the stage which contains the main stage
+   */
   public static Stage getMainStage() {
     return mainStage;
   }
 
+  /**
+   * Returns the current loaded scene.
+   * 
+   * @author mherre
+   * @return scene the Scene which contains the current set scene
+   */
   public static Scene getScene() {
     return scene;
   }

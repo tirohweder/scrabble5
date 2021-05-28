@@ -89,9 +89,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     // this is so CurrentServer can be set up first
     synchronized (this) {
       try {
-        wait(250);
+        wait(200);
       } catch (Exception e) {
-        e.printStackTrace();
+        // do nothing. this is just so everything transfered via the server can load
       }
     }
     if (Data.getPlayerClient().getUsername()

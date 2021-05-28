@@ -12,6 +12,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * The EndGameController class controls the end screen after finishing the game by clicking "give
+ * up", "skip" 6 times of the "Exchange.fxml".
+ * 
+ * @author apilgrim
+ */
 public class EndGameController extends InGameController implements Initializable {
 
   @FXML
@@ -46,7 +52,13 @@ public class EndGameController extends InGameController implements Initializable
   }
 
 
-
+  /**
+   * Method called, when the game is finished. Checks who has the most points and displays the
+   * correct order of the players. The player with the most points get a "you won" anyone else gets
+   * a "you lost".
+   * 
+   * @author apilgrim
+   */
   private void initEndGame() {
     Data.getGameSession().setRunning(false);
     ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
@@ -114,6 +126,15 @@ public class EndGameController extends InGameController implements Initializable
   }
 
 
+  /**
+   * Is called when "main menu" - button is clicked, switches to the main menu. Disconnects the
+   * server if the game played, was online.
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "main menu" button is clicked
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   @FXML
   private void mainMenuClicked(MouseEvent event) throws IOException {
     if (Data.getGameSession().isOnline()) {
@@ -122,15 +143,18 @@ public class EndGameController extends InGameController implements Initializable
     App.setRoot("MainMenu");
   }
 
+  /**
+   * Is called when "play again" - button is clicked, switches to the singleplayer lobby. Only
+   * clickable if the game was offline in the singleplayer.
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "play again" button is clicked
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   @FXML
   private void playAgainClicked(MouseEvent event) throws IOException {
-    if (Data.getGameSession().isOnline()) {
-      App.setRoot("MultiplayerLobbyController");
-      if (Data.getPlayerClient().getCurrentServer().getHost()
-          .equals(Data.getPlayerClient().getUsername())) {
-        Data.getHostedServer().sendUpdateMessage();
-      }
-    } else {
+    if (!Data.getGameSession().isOnline()) {
       App.setRoot("SingleplayerLobby");
     }
   }

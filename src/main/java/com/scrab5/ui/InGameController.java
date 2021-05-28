@@ -1527,7 +1527,7 @@ public abstract class InGameController implements Initializable {
    * first that it isnt a letter already placed or the marked field with the square.
    * 
    * @author apilgirm
-   * @param event- MouseEvent created when image is entered or released after clicking.
+   * @param event - MouseEvent created when image is entered or released after clicking.
    */
   @FXML
   private void lighten(MouseEvent event) {
@@ -1562,7 +1562,7 @@ public abstract class InGameController implements Initializable {
    * first that it isnt a letter already placed or the marked field with the square.
    * 
    * @author apilgirm
-   * @param event- MouseEvent created when image is excited or pressed.
+   * @param event - MouseEvent created when image is excited or pressed.
    */
   @FXML
   private void darken(MouseEvent event) {

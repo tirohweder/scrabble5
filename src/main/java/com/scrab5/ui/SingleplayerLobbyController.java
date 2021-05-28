@@ -348,7 +348,6 @@ public class SingleplayerLobbyController extends LobbyController implements Init
       ArrayList<Integer> tiles = createTileBag(help1);
       Data.setGameSession(new GameSession(setPlayerOrder(getPlayerVotes()), tiles, points, false));
     }
-    // Database.disconnect();
     App.setRoot("SinglePlayer");
   }
 
@@ -455,6 +454,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    *
    * <p>
    * https://stackabuse.com/java-list-files-in-a-directory/
+   * </p>
    *
    * @author mherre
    */
