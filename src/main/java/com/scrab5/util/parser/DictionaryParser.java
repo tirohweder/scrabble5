@@ -11,7 +11,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 
 /**
  * Parses a dictionary and saves it as a new file.
@@ -99,7 +98,7 @@ public class DictionaryParser {
     }
     return true;
   }
-  
+
   private static void setReadOnly(File file) {
     file.setReadOnly();
   }
@@ -184,7 +183,7 @@ public class DictionaryParser {
 
     for (File file1 : savedFiles) {
       System.out.println("test :" + file1.getName());
-      if (file1.length() == file2.length()) {
+      if (file1.getName().equals(file2.getName())) {
         BufferedReader buf1;
         BufferedReader buf2;
         try {

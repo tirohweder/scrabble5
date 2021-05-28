@@ -12,6 +12,16 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.TextFlow;
 
+/**
+ * The MultiplayerController class handles everything that happens during the "Multiplayer" in game.
+ * Everything in common with the multiplayer mode is once implemented in the abstract
+ * InGameController class and is used by the different specific in game controllers. The multiplayer
+ * controller refreshes the UI (rack, gameboard, players/points, buttons and chat) and checks if the
+ * game isn't finished with a thread checking several conditions in the InGameController. Controller
+ * for MultiPlayer.fxml.
+ *
+ * @author apilgrim
+ */
 public class MultiplayerController extends InGameController implements Initializable {
 
   @FXML
@@ -25,6 +35,16 @@ public class MultiplayerController extends InGameController implements Initializ
 
   private boolean chatOpen = false;
   private int roundNumber;
+
+  /**
+   * Initializes the rack and player when a game is started. Called method aiTurn() checks if the
+   * first turn is by the AI player. After this the thread refreshing the board/ rack/ player
+   * attributes/ buttons and chat is called when the roundNumber changed. Which means, that some
+   * information or the rack definitely have changed.
+   * 
+   * @author apilgrim
+   * @param arg0 URL, arg1 Resourcebundle
+   */
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -46,10 +66,16 @@ public class MultiplayerController extends InGameController implements Initializ
       e.printStackTrace();
     }
     initGameboard();
-    refreshUI();
+    refreshUi();
 
   }
 
+  /**
+   * Is called when "chat" - button is clicked, opens the chat in the game.
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "chat" button is clicked
+   */
   @FXML
   private void chatClicked(MouseEvent event) {
     if (chatOpen) {
@@ -65,6 +91,13 @@ public class MultiplayerController extends InGameController implements Initializ
     }
   }
 
+  /**
+   * Is called when sent - button is clicked. Everything tipped will be sent to any other player and
+   * displayed in the chatBox.
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the sent button is clicked
+   */
   @FXML
   private void sentClicked(MouseEvent event) {
     if (chatOpen) {
@@ -84,11 +117,13 @@ public class MultiplayerController extends InGameController implements Initializ
   private void chatInsertClicked(MouseEvent event) {}
 
   /**
-   * Use Case 3.3 within.
+   * Use Case 3.3 within. Thread started when the singleplayer game is started. Refreshes the UI
+   * elements by calling methods from InGameController which are checking, if something on the board
+   * or on the rack/ points changed. Connected to network.
    *
-   * @author nitterhe @author apilgrem
+   * @author apilgrim @author nitterhe
    */
-  private void refreshUI() {
+  private void refreshUi() {
 
     Thread t = new Thread(new Runnable() {
 
