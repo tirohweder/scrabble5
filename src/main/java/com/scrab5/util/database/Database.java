@@ -36,7 +36,6 @@ public class Database {
     try {
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
-      //System.out.println("reconnected!");
     } catch (ClassNotFoundException e) {
       System.out.println("Connection not possible" + e.getMessage());
     } catch (SQLException e1) {
@@ -59,14 +58,13 @@ public class Database {
   }
 
   /**
-   * Method to disconnect from the database.
+   * Method to disconnect the connection to the database.
    *
    * @author lengist
    */
   public static void disconnect() {
     try {
       connection.close();
-      //System.out.println("disconnected!");
     } catch (SQLException e) {
       System.out.println("Problem with closing connection: " + e.getMessage());
       e.printStackTrace();
@@ -74,16 +72,16 @@ public class Database {
   }
 
   /**
-   * Method to establish the connection to the database file given in the parameter file.
+   * Method to establish the connection to the database file whos name is given in the parameter
+   * file.
    *
    * @author lengist
-   * @param file String of the path to the database file
+   * @param file the name of the database file
    */
   protected void connect(String file) {
     try {
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:" + file);
-      //System.out.println("connected");
     } catch (ClassNotFoundException e) {
       System.out.println("Connection not possible" + e.getMessage());
     } catch (SQLException e1) {

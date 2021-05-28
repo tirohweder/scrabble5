@@ -30,7 +30,7 @@ public class CreateDatabase extends Database {
   }
 
   /**
-   * Create all tables initialy.
+   * Create all tables initially.
    * 
    * @author lengist
    */
@@ -41,10 +41,10 @@ public class CreateDatabase extends Database {
   }
 
   /**
-   * Remove a table with the name "name". For example in case of a new start.
+   * Removes a table in the database with the label name.
    * 
    * @author lengist
-   * @param name String representing the name of the player who's column needs to be deleted
+   * @param name String representing the name of the table
    */
   private void removeTable(String name) {
     try (Statement stm = connection.createStatement()) {
