@@ -228,6 +228,7 @@ public abstract class InGameController implements Initializable {
       endPossible = true;
     } else {
       endGame.setOpacity(0);
+      endPossible = false;
     }
   }
 
@@ -1015,6 +1016,15 @@ public abstract class InGameController implements Initializable {
     }
   }
 
+  /**
+   * This method is called when "shuffle" button is clicked. It checks which letters is still in the
+   * rack and add it to the ArrayList order. It checks which is the rack of the current user and
+   * then the shuffleRack method in core.game.Rack.java is called. After this the ui rack is
+   * reinitialized.
+   * 
+   * @author apilgirm
+   * @param event - MouseEvent created when the "shuffle" - button is clicked
+   */
   @FXML
   private void shuffleClicked(MouseEvent event) {
     playSound("ButtonClicked.mp3");
@@ -1058,31 +1068,17 @@ public abstract class InGameController implements Initializable {
     }
   }
 
-  private void unclickAll() {
-
-    if (rackPlace1.getOpacity() != 0) {
-      rackPlace1.setOpacity(1);
-    }
-    if (rackPlace2.getOpacity() != 0) {
-      rackPlace2.setOpacity(1);
-    }
-    if (rackPlace3.getOpacity() != 0) {
-      rackPlace3.setOpacity(1);
-    }
-    if (rackPlace4.getOpacity() != 0) {
-      rackPlace4.setOpacity(1);
-    }
-    if (rackPlace5.getOpacity() != 0) {
-      rackPlace5.setOpacity(1);
-    }
-    if (rackPlace6.getOpacity() != 0) {
-      rackPlace6.setOpacity(1);
-    }
-    if (rackPlace7.getOpacity() != 0) {
-      rackPlace7.setOpacity(1);
-    }
-  }
-
+  /**
+   * This method is called when "exchange" button is clicked. It checks which letters is selected
+   * from the rack to get exchanged. Handled in the ExchangeController called thru the
+   * Exchange.fxml. If not enough tiles are left, letters in your turn already laid or its not your
+   * turn, a PopUpMessage is displayed with an error.
+   * 
+   * @author apilgirm
+   * @param event - MouseEvent created when the "exchange" - button is clicked
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message or the fxml file
+   *         doesnt exists
+   */
   @FXML
   private void exchangeClicked(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
@@ -1104,33 +1100,13 @@ public abstract class InGameController implements Initializable {
     }
   }
 
-  protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
-    if (letter.equals("space") | letter.equals("*") | letter.equals("joker")) {
-      letter = "placeHolder";
-    } else {
-      letter = "tile" + letter.toUpperCase();
-    }
-    Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter + ".png");
-    rackPlace.setImage(letterImage);
-    if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
-      rackPlace.setOpacity(1);
-    }
-    if (!Integer.toString(points).equals("0") | !letter.contains("placeHolder")) {
-      point.setText(Integer.toString(points));
-      point.setOpacity(1);
-    } else {
-      point.setOpacity(0);
-    }
-  }
-
-  // Joker handling
-
-  private void setJoker() throws IOException {
-    jokerPane.setOpacity(1);
-    chooseJoker = true;
-    newPum("Choose a letter on the left\n the Joker stands for!");
-  }
-
+  /**
+   * This method is called when a letter from the JokerPane is choosen for the laid joker.
+   * 
+   * @author apilgirm
+   * @param event - MouseEvent created when the "exchange" - button is clicked
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message
+   */
   @FXML
   private void jokerLetterChoosen(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
@@ -1155,8 +1131,14 @@ public abstract class InGameController implements Initializable {
     }
   }
 
-  // Buttons
-
+  /**
+   * This method is called when "give up" - button is clicked.
+   * 
+   * @author apilgirm
+   * @param event - MouseEvent created when the "give up" - button is clicked
+   * @throws IOException - thrown when an Error occurs handling the PopUp Message or the fxml file
+   *         exists
+   */
   @FXML
   private void giveUpClicked(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
@@ -1186,9 +1168,61 @@ public abstract class InGameController implements Initializable {
     }
   }
 
+
   // help methods
 
+  protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
+    if (letter.equals("space") | letter.equals("*") | letter.equals("joker")) {
+      letter = "placeHolder";
+    } else {
+      letter = "tile" + letter.toUpperCase();
+    }
+    Image letterImage = new Image("/com/scrab5/ui/letter_Images/" + letter + ".png");
+    rackPlace.setImage(letterImage);
+    if (!rackPlace.getImage().getUrl().equals(letterImage.getUrl())) {
+      rackPlace.setOpacity(1);
+    }
+    if (!Integer.toString(points).equals("0") | !letter.contains("placeHolder")) {
+      point.setText(Integer.toString(points));
+      point.setOpacity(1);
+    } else {
+      point.setOpacity(0);
+    }
+  }
 
+
+  // Joker handling
+
+  private void setJoker() throws IOException {
+    jokerPane.setOpacity(1);
+    chooseJoker = true;
+    newPum("Choose a letter on the left\n the Joker stands for!");
+  }
+
+  private void unclickAll() {
+
+    if (rackPlace1.getOpacity() != 0) {
+      rackPlace1.setOpacity(1);
+    }
+    if (rackPlace2.getOpacity() != 0) {
+      rackPlace2.setOpacity(1);
+    }
+    if (rackPlace3.getOpacity() != 0) {
+      rackPlace3.setOpacity(1);
+    }
+    if (rackPlace4.getOpacity() != 0) {
+      rackPlace4.setOpacity(1);
+    }
+    if (rackPlace5.getOpacity() != 0) {
+      rackPlace5.setOpacity(1);
+    }
+    if (rackPlace6.getOpacity() != 0) {
+      rackPlace6.setOpacity(1);
+    }
+    if (rackPlace7.getOpacity() != 0) {
+      rackPlace7.setOpacity(1);
+    }
+  }
 
   /**
    * @param - ImageView
