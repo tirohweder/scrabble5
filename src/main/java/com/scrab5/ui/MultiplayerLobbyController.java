@@ -86,6 +86,14 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     this.setUpInit();
     votes = new LinkedHashMap<String, ArrayList<Integer>>();
 
+    // this is so CurrentServer can be set up first
+    synchronized (this) {
+      try {
+        wait(250);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
     if (Data.getPlayerClient().getUsername()
         .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
       isHost = true;

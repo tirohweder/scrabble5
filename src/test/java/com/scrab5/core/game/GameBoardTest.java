@@ -319,8 +319,8 @@ class GameBoardTest {
 
   @Test
   void checkWordsLegit() {
-    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
-    DictionaryParser.parseFile("Built-In Standard Dictionary.txt");
+    DictionaryParser.setCurrentDictionary("Built-In_Standard_Dictionary.txt");
+    DictionaryParser.parseFile("Built-In_Standard_Dictionary.txt");
     gameBoardTest.placeTileTest(new Tile("H", 3), 0, 0);
     gameBoardTest.placeTileTest(new Tile("E", 3), 0, 1);
     gameBoardTest.placeTileTest(new Tile("L", 3), 0, 2);
