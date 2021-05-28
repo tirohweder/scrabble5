@@ -258,6 +258,7 @@ public abstract class InGameController implements Initializable {
                 myRack.getTileAt(i).getValue());
           } else {
             rackPlace1.setOpacity(0);
+            pointsRack1.setOpacity(0);
           }
           break;
         case 1:
@@ -266,6 +267,7 @@ public abstract class InGameController implements Initializable {
                 myRack.getTileAt(i).getValue());
           } else {
             rackPlace2.setOpacity(0);
+            pointsRack2.setOpacity(0);
           }
           break;
         case 2:
@@ -274,6 +276,7 @@ public abstract class InGameController implements Initializable {
                 myRack.getTileAt(i).getValue());
           } else {
             rackPlace3.setOpacity(0);
+            pointsRack3.setOpacity(0);
           }
           break;
         case 3:
@@ -282,6 +285,7 @@ public abstract class InGameController implements Initializable {
                 myRack.getTileAt(i).getValue());
           } else {
             rackPlace4.setOpacity(0);
+            pointsRack4.setOpacity(0);
           }
           break;
         case 4:
@@ -290,6 +294,7 @@ public abstract class InGameController implements Initializable {
                 myRack.getTileAt(i).getValue());
           } else {
             rackPlace5.setOpacity(0);
+            pointsRack5.setOpacity(0);
           }
           break;
         case 5:
@@ -298,6 +303,7 @@ public abstract class InGameController implements Initializable {
                 myRack.getTileAt(i).getValue());
           } else {
             rackPlace6.setOpacity(0);
+            pointsRack6.setOpacity(0);
           }
           break;
         case 6:
@@ -306,6 +312,7 @@ public abstract class InGameController implements Initializable {
                 myRack.getTileAt(i).getValue());
           } else {
             rackPlace7.setOpacity(0);
+            pointsRack7.setOpacity(0);
           }
           break;
         default:
