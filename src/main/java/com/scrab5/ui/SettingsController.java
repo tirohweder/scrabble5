@@ -115,8 +115,7 @@ public class SettingsController extends Controller implements Initializable {
       @Override
       public void changed(ObservableValue<? extends Number> observable, Number oldValue,
           Number newValue) {
-        App.setMusicVolume((double) newValue / 100);
-        System.out.println("SettingsController: set volume");
+        App.setMusicVolume((double) newValue / 100.0);
         PlayerProfileDatabase.setMusicVolume(Data.getCurrentUser(), (double) newValue);
       }
     });
@@ -125,8 +124,7 @@ public class SettingsController extends Controller implements Initializable {
       @Override
       public void changed(ObservableValue<? extends Number> observable, Number oldValue,
           Number newValue) {
-        Data.setSFXVolume((double) newValue / 100);
-        System.out.println("SettingsController: set music");
+        Data.setSFXVolume((double) newValue / 100.0);
         PlayerProfileDatabase.setSoundEffectVolume(Data.getCurrentUser(), (double) newValue);
       }
     }));

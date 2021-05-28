@@ -399,5 +399,20 @@ class AiPlayerTest {
     assertEquals(1, test.counterLeft);
     assertEquals(0, test.counterRight);
     assertEquals(0, test.counterDown);
+
+    GameBoard g8 = new GameBoard();
+
+    g8.placeTileTest(new Tile("A ", 1), 2, 6);
+    g8.placeTileTest(new Tile("A ", 1), 2, 5);
+    g8.placeTileTest(new Tile("A ", 1), 2, 7);
+
+    g8.placeTileTest(new Tile("A ", 1), 4, 6);
+
+    g8.finishTurn();
+    test.getSpotsFree2(2, 6, g8);
+    assertEquals(2, test.counterUp);
+    assertEquals(0, test.counterLeft);
+    assertEquals(0, test.counterRight);
+    assertEquals(0, test.counterDown);
   }
 }

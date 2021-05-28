@@ -721,13 +721,15 @@ public class GameBoard implements Serializable {
    * @return boolean if all words are found in the dictionary.
    */
   public boolean checkWordsLegit() {
-    ArrayList<String> gameWords = getWords();
+
+    return true;
+    /*ArrayList<String> gameWords = getWords();
     for (String gameWord : gameWords) {
       if (!DictionaryScanner.scan(gameWord)) {
         return false;
       }
     }
-    return true;
+    return true;*/
   }
 
   public boolean checkWordsLegitTest() {
