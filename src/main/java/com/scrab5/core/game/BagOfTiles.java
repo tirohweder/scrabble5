@@ -47,6 +47,10 @@ public class BagOfTiles implements Serializable {
     return test;
   }
 
+  public String randomLetterFromBag() {
+    return bag.get(new Random().nextInt(bag.size())).getLetter();
+  }
+
   public ArrayList<Tile> getBag() {
     return bag;
   }

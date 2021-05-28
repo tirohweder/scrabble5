@@ -1,6 +1,5 @@
 package com.scrab5.core.game;
 
-import com.scrab5.ui.Data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
@@ -24,15 +23,11 @@ public class Rack implements Serializable {
    */
   public void fill(BagOfTiles bag) {
     for (int i = 0; i < 7; i++) {
-      // System.out.println(rack[i]);
-      // System.out.println(rack[i] == null);
       if (this.rack[i] == null && bag.getSize() >= 1) {
         rack[i] = bag.pick();
         rack[i].setRackPlace(i);
-        System.out.println("hier?");
       }
     }
-    System.out.println("Trying to fill rack of " + Data.getCurrentUser());
   }
 
   /**
@@ -76,12 +71,22 @@ public class Rack implements Serializable {
     }
   }
 
+  public int rackSize() {
+    int size = 0;
+    for (int i = 0; i < 7; i++) {
+      if (this.rack[i] == null) {
+        size++;
+      }
+    }
+    return size;
+  }
+
   /**
    * Method to shuffle the order of the remaining (not placed) tiles on the rack while playing.
    *
    * @author apilgrim
    * @param order - ArrayList(Integer) with the tiles from the rack not already placed. Comes from
-   *        IngameController method shuffleClicked.
+   *     IngameController method shuffleClicked.
    */
   public void shuffleRack(ArrayList<Integer> order) {
     Random rand = new Random();
@@ -108,7 +113,7 @@ public class Rack implements Serializable {
 
   /**
    * Getter to get the tile from the rack at position "pos".
-   * 
+   *
    * @author apilgrim
    * @param pos - position from the tile.
    * @return rack[pos] - Tile from rack at position "pos".

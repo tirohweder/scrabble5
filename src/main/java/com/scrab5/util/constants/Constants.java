@@ -7,8 +7,8 @@ package com.scrab5.util.constants;
  */
 public class Constants {
 
-  public static final int EASY_AI_THRESHOLD = 5;
-  public static final int HARD_AI_THRESHOLD = 25;
+  public static final int EASY_AI_THRESHOLD = 10;
+  public static final int HARD_AI_THRESHOLD = 20;
   public static final String[][] GAME_BOARD_SPECIAL_BASIC =
       new String[][] {
         {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
