@@ -48,8 +48,12 @@ public class GameSession implements Serializable {
    * @param points how many * points each letter gives
    * @param isOnline is the game multiplayer or singleplayer
    */
-  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
-      ArrayList<Integer> points, boolean isOnline) throws SQLException {
+  public GameSession(
+      ArrayList<Player> listOfPlayers,
+      ArrayList<Integer> letters,
+      ArrayList<Integer> points,
+      boolean isOnline)
+      throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -273,8 +277,10 @@ public class GameSession implements Serializable {
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
 
     // TODO joker richtig bennen
-    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    String[] buchstaben = {
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+      "T", "U", "V", "W", "X", "Y", "Z", "*"
+    };
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -293,29 +299,41 @@ public class GameSession implements Serializable {
    * @author trohwede
    */
   public void finishTurn() throws IOException {
+
+    boolean doanythingelse = true;
     for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
       if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
-        Data.getGameSession().getListOfPlayers().get(i).getRack()
+        Data.getGameSession()
+            .getListOfPlayers()
+            .get(i)
+            .getRack()
             .fill(Data.getGameSession().getBag());
+        if (Data.getGameSession().getListOfPlayers().get(i).getRack().getRackSize() == 0) {
+          this.shouldEnd = true;
+          doanythingelse = false;
+        }
       }
     }
 
-    currentPlayer.getRack().fill(bag);
+    // TODO fix this if nesessary
+    if (doanythingelse) {
+      currentPlayer.getRack().fill(bag);
 
-    roundNumber++;
-    currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
-    // System.out.println("Current Player= " + currentPlayer.getName());
-    gameBoard.finishTurn();
-    if (currentPlayer instanceof AiPlayer) {
+      roundNumber++;
+      currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
+      // System.out.println("Current Player= " + currentPlayer.getName());
+      gameBoard.finishTurn();
+      if (currentPlayer instanceof AiPlayer) {
 
-      PopUpMessage pum = new PopUpMessage("AI will Play now.", PopUpMessageType.NOTIFICATION);
-      pum.show();
-      AiPlayer aiPlayer = (AiPlayer) currentPlayer;
-      aiPlayer.aiPlay();
-    }
+        PopUpMessage pum = new PopUpMessage("AI will Play now.", PopUpMessageType.NOTIFICATION);
+        pum.show();
+        AiPlayer aiPlayer = (AiPlayer) currentPlayer;
+        aiPlayer.aiPlay();
+      }
 
-    if (online) {
-      Data.getPlayerClient().makeTurn();
+      if (online) {
+        Data.getPlayerClient().makeTurn();
+      }
     }
   }
 
@@ -359,7 +377,8 @@ public class GameSession implements Serializable {
         if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {
           temp.adjustPersonalHighscore(player.getPoints());
         }
-        if ((player.getName().equals(name)) && (player.getPoints() != 0)
+        if ((player.getName().equals(name))
+            && (player.getPoints() != 0)
             && (player.getPoints() == mostPoints)) {
           temp.addWins(1);
         }
@@ -431,8 +450,9 @@ public class GameSession implements Serializable {
     } else {
       file = "Triple.mp3";
     }
-    Media sound = new Media(
-        Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file).toExternalForm());
+    Media sound =
+        new Media(
+            Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file).toExternalForm());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();
