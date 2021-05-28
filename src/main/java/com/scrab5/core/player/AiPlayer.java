@@ -56,31 +56,20 @@ public class AiPlayer extends Player {
 
   /**
    * Method to generate a fitting word and create a ArrayList containing a ArrayList of Tiles for
-   * the possible words. 1. First it saves the letters from the bag of tiles in the array
-   * possibleLetters. Line 205 and following. 2. The DictionaryScanner returns words from the
-   * current dictionary that contain the at least the fixLetter or one of the letters from
-   * possibleLetters and adds them to the finalWords. Line 219 and following. 3. In a new step, all
-   * the words that do not only consist of the letters in possibleLetters will be removed from
-   * finalWords. Line 227 and following. 4. Next there is another check to see if the words in
-   * finalWords fulfill the requirements. For example, if not too long. Line 245 and following. 5.
-   * The words that are still in the finalWords will now be checked if the occurrence of letters in
-   * it conform to the occurrence of them in the bag of tiles. If not, they will be removed from
-   * finalWords. Line 268 and following. 6. In the last step a ArrayList containing all words the AI
-   * could possibly lay as Tiles with coordinates and points is created and passed. Line 277 and
-   * following.
+   * the possible words. The different steps are explained within the method.
    *
    * @author lengist
    * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
-   *     word next to
+   *        word next to
    * @param before the amount of tiles that are free before this letter
    * @param after the amount of tiles that are free after this letter
    * @param column the column of the tile with letter fixLetter on the board
    * @param row the row of the tile with letter fixLetter on the board
    * @param horizontal is true, when the word needs to get laid horizontal and false if vertical.
-   *     This parameter is needed later on
+   *        This parameter is needed later on
    */
-  public static ArrayList<ArrayList<Tile>> wordGenerator(
-      String fixLetter, int before, int after, int column, int row, boolean horizontal) {
+  public static ArrayList<ArrayList<Tile>> wordGenerator(String fixLetter, int before, int after,
+      int column, int row, boolean horizontal) {
     System.out.println();
     System.out.println("fixLetter: " + fixLetter);
     System.out.println("before: " + before);
@@ -191,25 +180,20 @@ public class AiPlayer extends Player {
     return tiles;
   }
 
-  public static void main(String[] args) {
-    String s = "laura";
-    System.out.println(s.length());
-  }
-
   /**
    * Creates the tiles for a word.
    *
    * @author lengist
    * @param word the word that needs to be converted into tiles
    * @param fixLetter the Letter that is already placed on the GameBoard where the Ai wants to lay a
-   *     word next to
+   *        word next to
    * @param column the column of the tile with letter fixLetter on the board
    * @param row the row of the tile with letter fixLetter on the board
    * @param horizontal is true, when the word needs to get laid horizontal and false if vertical
    * @return tiles a ArrayList containing all tiles for the word word
    */
-  public static ArrayList<Tile> wordToTiles(
-      String word, String fixLetter, int column, int row, boolean horizontal) {
+  public static ArrayList<Tile> wordToTiles(String word, String fixLetter, int column, int row,
+      boolean horizontal) {
     ArrayList<Tile> tiles = new ArrayList<Tile>();
     tiles = getCoordinatesRep(word, fixLetter, column, row, horizontal);
     return tiles;
@@ -226,11 +210,11 @@ public class AiPlayer extends Player {
    * @param columnFixLetter the column of the fixLetter
    * @param rowFixLetter the row of the fixLetter
    * @param horizontal a boolean variable for the alignment of the word on the board. If it is true,
-   *     the word will be laid horizontal. If not, vertical.
+   *        the word will be laid horizontal. If not, vertical.
    * @return tiles, a ArrayList including all tiles for the word word
    */
-  public static ArrayList<Tile> getCoordinatesRep(
-      String word, String fixLetter, int columnFixLetter, int rowFixLetter, boolean horizontal) {
+  public static ArrayList<Tile> getCoordinatesRep(String word, String fixLetter,
+      int columnFixLetter, int rowFixLetter, boolean horizontal) {
     int fixPosition = 0;
     ArrayList<Integer> list = new ArrayList<Integer>();
     ArrayList<Tile> tiles = new ArrayList<Tile>();
@@ -287,7 +271,7 @@ public class AiPlayer extends Player {
    * @author lengist
    * @param word the word which will be scanned
    * @return a boolean value whether it contains a letter for more than one time (true) oder not
-   *     (false)
+   *         (false)
    */
   public static boolean isLetterExistingRepeatedly(String word) {
     for (int i = 1; i < word.length(); i++) {
@@ -326,15 +310,13 @@ public class AiPlayer extends Player {
    * @param word is the word that is going to be checked
    * @author hraza
    */
-  public static Boolean checkBagDistributionLegal(
-      HashMap<String, Integer> currentDistribution, String word) {
+  public static Boolean checkBagDistributionLegal(HashMap<String, Integer> currentDistribution,
+      String word) {
     boolean b = true;
     int j = 0;
     for (int i = 0; i < word.length(); i++) {
-      currentDistribution.put(
-          Character.toString(word.charAt(i)),
+      currentDistribution.put(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) - 1);
-
       if (currentDistribution.get(Character.toString(word.charAt(i))) < 0) {
         b = false;
         j = i;
@@ -345,8 +327,7 @@ public class AiPlayer extends Player {
     }
 
     for (int i = 0; i <= j; i++) {
-      currentDistribution.put(
-          Character.toString(word.charAt(i)),
+      currentDistribution.put(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) + 1);
     }
     return b;

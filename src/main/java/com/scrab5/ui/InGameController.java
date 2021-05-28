@@ -331,7 +331,7 @@ public abstract class InGameController implements Initializable {
    * @author apilgrim
    */
   protected void initGameboard() {
-
+    
     double layoutX = 263.0;
     double layoutY = 53.0;
 
