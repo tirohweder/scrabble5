@@ -71,14 +71,20 @@ public class Rack implements Serializable {
     }
   }
 
-  public int rackSize() {
+  public int getRackSize() {
     int size = 0;
     for (int i = 0; i < 7; i++) {
-      if (this.rack[i] == null) {
+      if (this.rack[i] != null) {
         size++;
       }
     }
     return size;
+  }
+
+  public void clearRack() {
+    for (int i = 0; i < rack.length; i++) {
+      rack[i] = null;
+    }
   }
 
   /**

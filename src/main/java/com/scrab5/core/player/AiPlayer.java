@@ -85,6 +85,7 @@ public class AiPlayer extends Player {
     System.out.println("column: " + column);
     System.out.println("row: " + row);
     System.out.println("horizontal: " + horizontal);
+    System.out.println("Bag size: " + Data.getGameSession().getBag().getSize());
 
     System.out.println();
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
@@ -950,16 +951,19 @@ public class AiPlayer extends Player {
 
     // needs to remove random letter from the ai rack, so the chances for pulling a tile
     // remain the same for human player remains the same
+    System.out.println("1. Bag size: " + Data.getGameSession().getBag().getSize());
     for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
       if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
-        for (int j = 0; j < Data.getGameSession().getCurrentPlayer().getRack().rackSize(); j++) {
-          Data.getGameSession()
-              .getBag()
-              .add(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(j));
-        }
+        System.out.println(
+            " rack size;: "
+                + Data.getGameSession().getListOfPlayers().get(i).getRack().getRackSize());
+        Data.getGameSession()
+            .getBag()
+            .addRackToBag(Data.getGameSession().getListOfPlayers().get(i).getRack());
+        Data.getGameSession().getListOfPlayers().get(i).getRack().clearRack();
       }
     }
-
+    System.out.println("2. Bag size: " + Data.getGameSession().getBag().getSize());
     boolean foundMatchingThreshold = false;
 
     ArrayList<Tile> choosenWord = new ArrayList<>();

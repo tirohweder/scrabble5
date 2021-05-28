@@ -69,6 +69,13 @@ public class BagOfTiles implements Serializable {
     return this.bag.size();
   }
 
+  public void addRackToBag(Rack rack) {
+    for (int i = 0; i < rack.getRackSize(); i++) {
+
+      bag.add(rack.getTileAt(i));
+    }
+  }
+
   /**
    * Returns the current distribution of the bag, in a HashMap format.
    *
