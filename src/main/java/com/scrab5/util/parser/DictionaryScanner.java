@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 /**
  * Class to scan a document.
- * 
+ *
  * @author lengist
  */
 public class DictionaryScanner {
@@ -28,8 +28,11 @@ public class DictionaryScanner {
      * Data.getSelectedDictionary().replace(".", "Parsed."));
      */
     /* TODO: file name auf DictionaryParser.get oder so aendern. */
-    File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + Data.getSelectedDictionary().replace(".", "Parsed."));
+    File fileOne =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + Data.getSelectedDictionary().replace(".", "Parsed."));
     boolean found = false;
     // String[] possibleLetters = UseDatabase.getAllLetters();
     // String test;
@@ -56,13 +59,16 @@ public class DictionaryScanner {
 
   /**
    * This method is only for testing.
-   * 
+   *
    * @param searchedWord
    * @return
    */
   public static boolean scanTest(String searchedWord) {
-    File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + Data.getSelectedDictionary().replace(".", "Parsed."));
+    File fileOne =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + DictionaryParser.getNewFileName());
     boolean found = false;
 
     try {
@@ -82,7 +88,7 @@ public class DictionaryScanner {
 
   /**
    * Method to return words that contains the letter "letter" and are at most "length" chars long.
-   * 
+   *
    * @author lengist
    * @param letter the letter that needs to be in the wanted word
    * @param length the maximum length the wanted words can be
@@ -99,8 +105,11 @@ public class DictionaryScanner {
      * "src/main/resources/com/scrab5/util/textParser/" + Data.getSelectedDictionary().replace(".",
      * "Parsed."));
      */
-    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + Data.getSelectedDictionary().replace(".", "Parsed."));
+    File file =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + Data.getSelectedDictionary().replace(".", "Parsed."));
     try {
       Scanner scanner = new Scanner(file);
       while (scanner.hasNextLine()) {
@@ -120,7 +129,7 @@ public class DictionaryScanner {
 
   /**
    * Returns a new array that contains the words from the parameter array which include letter.
-   * 
+   *
    * @author lengist
    * @param words a ArrayList containing all words to check
    * @param letter a String of the letter that should be in the array that gets returned

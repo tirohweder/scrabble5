@@ -241,6 +241,7 @@ public abstract class InGameController implements Initializable {
    */
   protected void initRack() {
     Rack myRack = null;
+
     for (Player p : Data.getGameSession().getListOfPlayers()) {
       String s = p.getName();
       if (s.equalsIgnoreCase(Data.getCurrentUser())) {
@@ -1145,7 +1146,8 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * This method is called when "give up" - button is clicked.
+   * This method is called when "give up" - button is clicked. If confirmed, the end game screen is
+   * displayed.
    * 
    * @author apilgirm
    * @param event - MouseEvent created when the "give up" - button is clicked
@@ -1170,8 +1172,15 @@ public abstract class InGameController implements Initializable {
     }
   }
 
+  /**
+   * This method is called when "undo" - button is clicked. The last laid letter will be returned to
+   * the rack.
+   * 
+   * @author apilgirm
+   * @param event - MouseEvent created when the "undi" - button is clicked
+   */
   @FXML
-  private void undoClicked(MouseEvent event) throws IOException {
+  private void undoClicked(MouseEvent event) {
     if (undoButton.getOpacity() == 1) {
       playSound("ButtonClicked.mp3");
       if (changes.size() > 0) {
@@ -1184,6 +1193,15 @@ public abstract class InGameController implements Initializable {
 
   // help methods
 
+  /**
+   * This method is called when the rack is initialized. It gets the image file from letter_images
+   * and lay the correct points as label on it. So creating the UI representation of the rackplaces.
+   * 
+   * @author apilgirm
+   * @param rackPlace - ImageView of the rackplace being initialized, point - Label representing the
+   *        points of the rackplace being initialized, letter - String the letter for the rackplace,
+   *        points - Integer the value of the letter
+   */
   protected void setNewTile(ImageView rackPlace, Label point, String letter, int points) {
     if (letter.equals("space") | letter.equals("*") | letter.equals("joker")) {
       letter = "placeHolder";
@@ -1206,12 +1224,24 @@ public abstract class InGameController implements Initializable {
 
   // Joker handling
 
+  /**
+   * This method is called when the clicked Letter is a joker. Opens the jokerPane to choose a
+   * letter for the joker.
+   * 
+   * @author apilgirm
+   * @throws IOException - when new PopUpMessage is created and throws an error
+   */
   private void setJoker() throws IOException {
     jokerPane.setOpacity(1);
     chooseJoker = true;
     newPum("Choose a letter on the left\n the Joker stands for!");
   }
 
+  /**
+   * Help method to unclick all rackplaces faster. Sets opacity of all rackplaces on 1.
+   * 
+   * @author apilgirm
+   */
   private void unclickAll() {
 
     if (rackPlace1.getOpacity() != 0) {
@@ -1238,10 +1268,10 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param - ImageView
-   *        <p>
-   *        reset the opacity of the clickedLetter in the Rack and resets him from being clicked
-   * @author apilgrim
+   * Help method to unclick the clickedLetter and reset the attributes for the clicked letter.
+   * 
+   * @author apilgirm
+   * @param rackPlace - ImageView which is unclicked
    */
   private void unclickLetter(ImageView rackPlace) {
     letterClicked = false;
@@ -1251,6 +1281,13 @@ public abstract class InGameController implements Initializable {
   }
 
 
+  /**
+   * Help method to switch the clickedLetter and switch the attributes for the clicked letter.
+   * 
+   * @author apilgirm
+   * @param rackPlace - ImageView which is unclicked, points - Label representing the points for the
+   *        letter which needs to be switched
+   */
   private void switchClickedLetter(ImageView rackPlace, Label points) {
     clickedLetter = rackPlace;
     clickedLabel = points;
@@ -1259,14 +1296,15 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param iv - ImageView
-   *        <p>
-   *        This method is called when a destination Tile is clicked on the GameBoard which already
-   *        contains a letter tile (is chosen but not permanently logged) and brings back the letter
-   *        to the rack. It changes the Image on the Board back to the marked Tile (black square)
-   *        and brings the Letter from the Board back to the rack thru the opacity and resets the
-   *        clicked attributes (Letter/ Tile) for source and destination
-   * @author apilgrim
+   * This method is called when the "undo" button is clicked and brings back the letter to the ui
+   * rack. It changes the Image on the Board back to the marked Tile (black square) and brings the
+   * Letter from the Board back to the rack thru the opacity and resets the clicked attributes
+   * (Letter/ Tile) for source and destination. Checks the two options if the letter is a joker to
+   * return or a normal letter by checking arraylists with the order when the letter has been laid.
+   * 
+   * @author apilgirm
+   * @param ImageView iv field which contained a letter returned, int place - which rackplace is
+   *        returned
    */
   private void backToRack(ImageView iv, int place) {
 
@@ -1365,11 +1403,13 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param iv - ImageView This method is called when a destination Tile is clicked on the GameBoard
-   *        and a Letter Tile is selected. It changes the Image on the Board and "deletes" the
-   *        Letter from the Board thru the opacity and resets the boolean clicked attributes
-   *        (Letter/ Tile) for source and destination
-   * @author apilgrim
+   * This method is called when a destination Tile is clicked on the GameBoard and a Letter Tile is
+   * selected. It changes the Image on the Board and "deletes" the Letter from the Board thru the
+   * opacity and resets the boolean clicked attributes (Letter/ Tile) for source and destination,
+   * 
+   * @author apilgirm
+   * @param ImageView iv field which contained a letter returned, int place - which rackplace is
+   *        returned
    */
   private void placeLetter(ImageView iv, Label l) {
 
@@ -1388,10 +1428,13 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
+   * Help method to transform the id of the field into the row int representation for the gameboard
+   * placement.
+   * 
+   * @author apilgrim
    * @param placeID - String representation of the coordinate from every tile on the board read from
    *        the fxml document as ID
    * @return x - Integer representation of the x coordinate for the tile, placed on the Gameboard
-   * @author apilgrim
    */
   private int rowTransformation(String placeId) {
 
@@ -1402,10 +1445,13 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
+   * Help method to transform the id of the field into the column int representation for the
+   * gameboard placement.
+   * 
+   * @author apilgrim
    * @param placeID - String representation of the coordinate from every tile on the board read from
    *        the fxml document as ID
-   * @return y - Integer representation of the y coordinate for the tile, placed on the Gameboard
-   * @author apilgrim
+   * @return x - Integer representation of the y coordinate for the tile, placed on the Gameboard
    */
   private int columnTransformation(String placeId) {
 
@@ -1443,11 +1489,23 @@ public abstract class InGameController implements Initializable {
     mediaPlayer.play();
   }
 
+  /**
+   * Method to create a new popupmessage.
+   *
+   * @author apilgrim
+   * @param String message for the PopUpMessage
+   */
   private void newPum(String message) throws IOException {
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
     pum.show();
   }
 
+  /**
+   * Method to remove the tile from the rack at the position i.
+   *
+   * @author apilgrim
+   * @param int position of the tile
+   */
   protected void rackRemoveTile(int pos) {
     ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
 
@@ -1465,10 +1523,11 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param event - MouseEvent
-   *        <p>
-   *        method to set the opacity and let it looks like the field/ button is entered
+   * method to set the opacity on 1 and let it looks like the field/ button is entered but checks
+   * first that it isnt a letter already placed or the marked field with the square.
+   * 
    * @author apilgirm
+   * @param event - MouseEvent created when image is entered or released after clicking.
    */
   @FXML
   private void lighten(MouseEvent event) {
@@ -1488,16 +1547,22 @@ public abstract class InGameController implements Initializable {
     }
   }
 
+  /**
+   * Method to check if the first turn is from the ai.
+   * 
+   * @author apilgirm
+   * @throws IOException - when handling went wrong
+   */
   protected void aiTurn() throws IOException {
     Data.getGameSession().isAiFirstTurn();
   }
 
   /**
+   * method to set the opacity on zero and let it looks like the field/ button is excited but checks
+   * first that it isnt a letter already placed or the marked field with the square.
+   * 
    * @author apilgirm
-   *         <p>
-   *         method to set the opacity on zero and let it looks like the field/ button is excited
-   *         but checks first that it isnt a letter already placed or the marked field with the
-   *         square
+   * @param event - MouseEvent created when image is excited or pressed.
    */
   @FXML
   private void darken(MouseEvent event) {
@@ -1509,6 +1574,13 @@ public abstract class InGameController implements Initializable {
     }
   }
 
+  /**
+   * Method to check if the end is possible after 6 skipped turns. If end game is clicked the game
+   * is ended and the end game screen is displayed.
+   * 
+   * @author apilgirm
+   * @throws IOException - when file fxml is not found.
+   */
   @FXML
   private void endGame(MouseEvent event) throws IOException {
     playSound("ButtonClicked.mp3");
@@ -1523,6 +1595,12 @@ public abstract class InGameController implements Initializable {
     }
   }
 
+  /**
+   * Method checking whos players turn it is. Setting the opacity of the profile images in the top
+   * container.
+   * 
+   * @author apilgrim
+   */
   private void nextPlayer() {
     if (Data.getGameSession().getCurrentPlayer().getName().equalsIgnoreCase(player1.getText())) {
       playerProfile1Passive.setOpacity(0);
@@ -1547,9 +1625,12 @@ public abstract class InGameController implements Initializable {
   }
 
   /**
-   * @param event
-   * @throws IOException
-   * @author mherre
+   * Modified method from @mherre to end a game when exit the game. Checks if online or offline and
+   * ends the game if exit is confirmed.
+   * 
+   * @author mherre @author apilgrim
+   * @param event MouseEvent - created when "Exit" button is clicked
+   * @throws IOException thrown when fxml file doesnt exist or PopUpMessage occured an error
    */
   @FXML
   private void closeGame(MouseEvent event) throws IOException {

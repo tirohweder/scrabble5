@@ -91,6 +91,7 @@ public class ServerThread extends Threads {
               server.shutDownServer();
             } else {
               closeConnection();
+              deleteClient(disconnect.getSender());
             }
             break;
           case CHAT:
@@ -207,7 +208,7 @@ public class ServerThread extends Threads {
     try {
       this.socketToClient.close();
     } catch (Exception e) {
-      // new NetworkError(NetworkErrorType.CLOSECONNECTION);
+      new NetworkError(NetworkErrorType.CLOSECONNECTION);
     }
   }
 }

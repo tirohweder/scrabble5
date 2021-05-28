@@ -1,12 +1,12 @@
 package com.scrab5.ui;
 
+import com.scrab5.util.database.Database;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import com.scrab5.util.database.Database;
-import com.scrab5.util.database.FillDatabase;
-import com.scrab5.util.database.UseDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -67,7 +67,7 @@ public class LetterCustomizationController extends Controller implements Initial
         alP.get(i).setText(listP.get(i) + "");
       }
     }
-    
+
     Database.disconnect();
   }
 

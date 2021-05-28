@@ -2,7 +2,6 @@ package com.scrab5.util.database;
 
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;

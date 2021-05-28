@@ -407,8 +407,19 @@ public class GameSession implements Serializable {
    * @param player that should be checked
    */
   public void checkBagAndRack(Player player) {
-    if (bag.getSize() == 0 && !player.getRack().isRackFull()) {
+
+    int size = bag.getSize();
+
+    for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
+      if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
+        size -= Data.getGameSession().getListOfPlayers().get(i).getRack().getRackSize();
+      }
+    }
+
+    System.out.println("WHAT HAPPEND ?");
+    if (size == 0 && !player.getRack().isRackFull()) {
       this.shouldEnd = true;
+      System.out.println("Good shit happend");
     }
   }
 

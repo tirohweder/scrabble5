@@ -7,6 +7,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * The ExchangeController class controls the exchange process of the "Exchange.fxml".
+ * 
+ * @author apilgrim
+ */
 public class ExchangeController extends InGameController implements Initializable {
 
   private int counter = 0;
@@ -17,6 +22,14 @@ public class ExchangeController extends InGameController implements Initializabl
     initRack();
   }
 
+  /**
+   * Is called when "back" - button is clicked, switches back to the game.
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "back" button is clicked
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   @FXML
   private void backClicked(MouseEvent event) throws IOException {
     if (Data.getGameSession().isOnline()) {
@@ -26,6 +39,15 @@ public class ExchangeController extends InGameController implements Initializabl
     }
   }
 
+  /**
+   * Is called when "exchange" - button is clicked, exchanges the selected tiles and finishes the
+   * turn when at least one tile is selected.
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "exchange" button is clicked
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *         exist
+   */
   @FXML
   private void exchangeConfirmed(MouseEvent event) throws IOException {
     exchangeTiles();
@@ -39,6 +61,12 @@ public class ExchangeController extends InGameController implements Initializabl
     }
   }
 
+  /**
+   * Is called when "exchange" - button is clicked, exchanges the selected tiles and returns them to
+   * the bag. Than drag new ones from the bag and place them in the rack.
+   * 
+   * @author apilgrim
+   */
   private void exchangeTiles() {
     for (int i = 0; i < rackChanges.length; i++) {
       if (rackChanges[i] != null && rackChanges[i] == true) {
@@ -52,6 +80,13 @@ public class ExchangeController extends InGameController implements Initializabl
     }
   }
 
+  /**
+   * Selects/ unselects the rackplace1 (by adding to a list) to exchange when confirmed by clicking
+   * "exchange".
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "rackplace1" is clicked
+   */
   @FXML
   private void rackPlace1clicked(MouseEvent event) {
     if (rackChanges[0] != null && rackChanges[0]) {
@@ -63,6 +98,13 @@ public class ExchangeController extends InGameController implements Initializabl
     }
   }
 
+  /**
+   * Selects/ unselects the rackplace2 (by adding to a list) to exchange when confirmed by clicking
+   * "exchange".
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "rackplace2" is clicked
+   */
   @FXML
   private void rackPlace2clicked(MouseEvent event) {
     if (rackChanges[1] != null && rackChanges[1]) {
@@ -74,6 +116,13 @@ public class ExchangeController extends InGameController implements Initializabl
     }
   }
 
+  /**
+   * Selects/ unselects the rackplace3 (by adding to a list) to exchange when confirmed by clicking
+   * "exchange".
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "rackplace3" is clicked
+   */
   @FXML
   private void rackPlace3clicked(MouseEvent event) {
     if (rackChanges[2] != null && rackChanges[2]) {
@@ -85,6 +134,13 @@ public class ExchangeController extends InGameController implements Initializabl
     }
   }
 
+  /**
+   * Selects/ unselects the rackplace4 (by adding to a list) to exchange when confirmed by clicking
+   * "exchange".
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "rackplace4" is clicked
+   */
   @FXML
   private void rackPlace4clicked(MouseEvent event) {
     if (rackChanges[3] != null && rackChanges[3]) {
@@ -96,6 +152,13 @@ public class ExchangeController extends InGameController implements Initializabl
     }
   }
 
+  /**
+   * Selects/ unselects the rackplace5 (by adding to a list) to exchange when confirmed by clicking
+   * "exchange".
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "rackplace5" is clicked
+   */
   @FXML
   private void rackPlace5clicked(MouseEvent event) {
     if (rackChanges[4] != null && rackChanges[4]) {
@@ -107,6 +170,13 @@ public class ExchangeController extends InGameController implements Initializabl
     }
   }
 
+  /**
+   * Selects/ unselects the rackplace6 (by adding to a list) to exchange when confirmed by clicking
+   * "exchange".
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "rackplace6" is clicked
+   */
   @FXML
   private void rackPlace6clicked(MouseEvent event) {
     if (rackChanges[5] != null && rackChanges[5]) {
@@ -118,6 +188,13 @@ public class ExchangeController extends InGameController implements Initializabl
     }
   }
 
+  /**
+   * Selects/ unselects the rackplace7 (by adding to a list) to exchange when confirmed by clicking
+   * "exchange".
+   * 
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "rackplace7" is clicked
+   */
   @FXML
   private void rackPlace7clicked(MouseEvent event) {
     if (rackChanges[6] != null && rackChanges[6]) {
