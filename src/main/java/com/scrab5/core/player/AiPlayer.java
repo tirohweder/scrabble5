@@ -315,18 +315,23 @@ public class AiPlayer extends Player {
     boolean b = true;
     boolean fix = true;
     int j = 0;
+
+    for (int i = 0; i < word.length(); i++) {
+      if (!currentDistribution.containsKey(String.valueOf(word.charAt(i)))) {
+        return false;
+      }
+    }
     for (int i = 0; i < word.length(); i++) {
       if (word.charAt(i) == fixLetter.charAt(0) && fix) {
         fix = false;
         continue;
       }
-      currentDistribution.put(Character.toString(word.charAt(i)),
+      currentDistribution.replace(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) - 1);
       if (currentDistribution.get(Character.toString(word.charAt(i))) < 0) {
         b = false;
         j = i;
         break;
-
       } else {
         j = word.length() - 1;
       }
@@ -337,7 +342,7 @@ public class AiPlayer extends Player {
         fix = true;
         continue;
       }
-      currentDistribution.put(Character.toString(word.charAt(i)),
+      currentDistribution.replace(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) + 1);
 
     }
