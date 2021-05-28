@@ -134,6 +134,7 @@ public class AiPlayer extends Player {
     for (String s : possibleLetters) {
       sb.append(s);
     }
+    sb.append(fixLetter);
     String b = sb.toString();
     for (String s : finalWords) {
       for (int i = 0; i < s.length(); i++) {
