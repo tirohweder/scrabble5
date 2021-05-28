@@ -31,24 +31,83 @@ import javafx.scene.input.MouseEvent;
 public class MultiplayerOverviewController extends Controller implements Initializable {
 
   @FXML
-  private Label userPlaying, dicDisplaying;
+  private Label userPlaying;
   @FXML
-  private ImageView playerNumber, arrowRight, arrowLeft;
+  private Label dicDisplaying;
+  @FXML
+  private ImageView playerNumber;
+  @FXML
+  private ImageView arrowRight;
+  @FXML
+  private ImageView arrowLeft;
   @FXML
   private ComboBox<String> dictionarySelection;
   @FXML
   private ImageView dropDownButton;
   @FXML
-  private ImageView joinButton0, joinButton1, joinButton2, joinButton3, joinButton4, joinButton5,
-      joinButton6, joinButton7;
+  private ImageView joinButton0;
   @FXML
-  private Label serverName0, serverName1, serverName2, serverName3, serverName4, serverName5,
-      serverName6, serverName7;
+  private ImageView joinButton1;
   @FXML
-  private Label playerCount0, playerCount1, playerCount2, playerCount3, playerCount4, playerCount5,
-      playerCount6, playerCount7;
+  private ImageView joinButton2;
   @FXML
-  private Label status0, status1, status2, status3, status4, status5, status6, status7;
+  private ImageView joinButton3;
+  @FXML
+  private ImageView joinButton4;
+  @FXML
+  private ImageView joinButton5;
+  @FXML
+  private ImageView joinButton6;
+  @FXML
+  private ImageView joinButton7;
+  @FXML
+  private Label serverName0;
+  @FXML
+  private Label serverName1;
+  @FXML
+  private Label serverName2;
+  @FXML
+  private Label serverName3;
+  @FXML
+  private Label serverName4;
+  @FXML
+  private Label serverName5;
+  @FXML
+  private Label serverName6;
+  @FXML
+  private Label serverName7;
+  @FXML
+  private Label playerCount0;
+  @FXML
+  private Label playerCount1;
+  @FXML
+  private Label playerCount2;
+  @FXML
+  private Label playerCount3;
+  @FXML
+  private Label playerCount4;
+  @FXML
+  private Label playerCount5;
+  @FXML
+  private Label playerCount6;
+  @FXML
+  private Label playerCount7;
+  @FXML
+  private Label status0;
+  @FXML
+  private Label status1;
+  @FXML
+  private Label status2;
+  @FXML
+  private Label status3;
+  @FXML
+  private Label status4;
+  @FXML
+  private Label status5;
+  @FXML
+  private Label status6;
+  @FXML
+  private Label status7;
 
   private boolean isDictionarySelected = false;
   private int playerCount = 2;
@@ -475,6 +534,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
         break;
       case 4:
         img = new Image("/com/scrab5/ui/images/SB04_4.png", 23, 28, false, false);
+        break;
       default:
         break;
     }
@@ -597,10 +657,10 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @param IPAddress - the IPAddress of the server that should be joined as a String
    * @author nitterhe
    */
-  private boolean joinServer(String IPAddress) {
+  private boolean joinServer(String ipAddress) {
     try {
-      if (InetAddress.getByName(IPAddress).isReachable(5000)) {
-        Data.getPlayerClient().connectToServer(IPAddress);
+      if (InetAddress.getByName(ipAddress).isReachable(5000)) {
+        Data.getPlayerClient().connectToServer(ipAddress);
         return true;
       }
     } catch (UnknownHostException e) {

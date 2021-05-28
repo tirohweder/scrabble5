@@ -30,7 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * The MultiplayerLobbyController class is supposed to control the of the MultiplayerLobby screen
+ * The MultiplayerLobbyController class is supposed to control the of the MultiplayerLobby screen.
  *
  * @author mherre
  */
@@ -39,17 +39,53 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private static LinkedHashMap<String, ArrayList<Integer>> votes =
       new LinkedHashMap<String, ArrayList<Integer>>();
   @FXML
-  private Label player1, player2, player3, player4;
+  private Label player1;
   @FXML
-  private Label ready1, ready2, ready3, ready4;
+  private Label player2;
   @FXML
-  private Label playerNameStats1, playerNameStats2, playerNameStats3, playerNameStats4;
+  private Label player3;
   @FXML
-  private Label played1, played2, played3, played4;
+  private Label player4;
   @FXML
-  private Label won1, won2, won3, won4;
+  private Label ready1;
   @FXML
-  private Label score1, score2, score3, score4;
+  private Label ready2;
+  @FXML
+  private Label ready3;
+  @FXML
+  private Label ready4;
+  @FXML
+  private Label playerNameStats1;
+  @FXML
+  private Label playerNameStats2;
+  @FXML
+  private Label playerNameStats3;
+  @FXML
+  private Label playerNameStats4;
+  @FXML
+  private Label played1;
+  @FXML
+  private Label played2;
+  @FXML
+  private Label played3;
+  @FXML
+  private Label played4;
+  @FXML
+  private Label won1;
+  @FXML
+  private Label won2;
+  @FXML
+  private Label won3;
+  @FXML
+  private Label won4;
+  @FXML
+  private Label score1;
+  @FXML
+  private Label score2;
+  @FXML
+  private Label score3;
+  @FXML
+  private Label score4;
   @FXML
   private Label ipAddress;
   @FXML
@@ -58,27 +94,12 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   private TextArea chatBox;
   @FXML
   private TextField messageTextField;
+
   private boolean isReady = false;
   private boolean isHost;
   private int ai = 0;
 
-  /**
-   * Called when the lobby was closed by the host.
-   *
-   * @throws IOException
-   * @author nitterhe
-   */
-  public static void lobbyClosed() {
-    try {
-      App.setRoot("MultiplayerOverview");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-  }
 
-  public static void addVote(String clientname, ArrayList<Integer> vote) {
-    votes.putIfAbsent(clientname, vote);
-  }
 
   /** @author mherre */
   @Override
@@ -86,7 +107,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     this.setUpInit();
     votes = new LinkedHashMap<String, ArrayList<Integer>>();
 
-    // this is so CurrentServer can be set up first
     synchronized (this) {
       try {
         wait(200);
@@ -262,29 +282,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     for (Player p : gameSessionList) {
       System.out.println(p.getName());
     }
-
-    // int maximum;
-    // Iterator<ClientData> iterator;
-    // ClientData cd;
-    // for (int clients = 0; clients < clientnames.size(); clients++) {
-    // maximum = 0;
-    // for (int k = 1; k < clientnames.size(); k++) {
-    // if (voteResults.get(maximum) < voteResults.get(k)) {
-    // maximum = k;
-    // }
-    // }
-    // it = clientnames.iterator();
-    // for (int l = 0; l < maximum; l++) {
-    // it.next();
-    // }
-    // cd = it.next();
-    // if (cd.getIp().equals("AI")) {
-    // playerList.add(0, new AiPlayer(cd.getUsername(), dificulties[maximum]));
-    // } else {
-    // playerList.add(0, new Player(it.next().getUsername(), true));
-    // }
-    // voteResults.set(maximum, 0);
-    // }
 
     if (Data.getHasBeenEdited()) {
       ArrayList<Integer> tiles = createTileBag(Data.getOccurrencyDistribution());
@@ -526,29 +523,24 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     t.start();
   }
 
-  // protected void setUpInit() {
-  // this.isDictionarySelected = true;
-  // this.player1.setText(Data.getCurrentUser());
-  // this.ready1.setText("Not Ready");
-  // for (int i = 1; i <= 4; i++) {
-  // this.voteSelection1.getItems().add(i);
-  // this.voteSelection2.getItems().add(i);
-  // this.voteSelection3.getItems().add(i);
-  // this.voteSelection4.getItems().add(i);
-  // }
-  // this.voteSelection1.getSelectionModel().select(0);
-  // this.voteSelection2.getSelectionModel().select(1);
-  // this.voteSelection3.getSelectionModel().select(2);
-  // this.voteSelection4.getSelectionModel().select(3);
-  //
-  // this.diffBox2.getItems().add("Easy");
-  // this.diffBox2.getItems().add("Difficult");
-  // this.diffBox3.getItems().add("Easy");
-  // this.diffBox3.getItems().add("Difficult");
-  //
-  // this.diffBox2.getSelectionModel().select(0);
-  // this.diffBox3.getSelectionModel().select(0);
-  // }
+  /**
+   * Called when the lobby was closed by the host.
+   *
+   * @throws IOException
+   * @author nitterhe
+   */
+  public static void lobbyClosed() {
+    try {
+      App.setRoot("MultiplayerOverview");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void addVote(String clientname, ArrayList<Integer> vote) {
+    votes.putIfAbsent(clientname, vote);
+  }
+
 
   protected boolean isClickable() {
     if (playerAmount == Data.getPlayerClient().getCurrentServer().getClientMaximum()

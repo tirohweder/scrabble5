@@ -66,17 +66,17 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   /**
    * Event method that is called when the "Ready"-button in the UI is clicked.
-   *
    * <p>
    * 1. Checks first if the user is already ready. If not, then further conditions (s. 2.) are
-   * checked. In both cases the <code>Label</code> that displays the ready status gets updated. 2.
-   * If every player is ready and a dictionary has been selected by the user, then further
+   * checked. In both cases the <code>Label</code> that displays the ready status gets updated.
+   * </p>
+   * 2. If every player is ready and a dictionary has been selected by the user, then further
    * conditions (s. 3.) are checked. If not, then an error message is created and ready status reset
    * to "Not Ready".
-   *
    * <p>
    * 3. If there is at least one more player in the lobby, then the "Start"-button appears. If not,
    * then an error message is created and ready status reset to "Not Ready".
+   * </p>
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
@@ -123,10 +123,10 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    * Event method that is called when the "Add Player"-button in the UI is clicked. Adds an AI
    * player to the first free position in the lobby. Calls
    * {@link com.scrab5.ui.SingleplayerController#isClickable isClickable()}.
-   *
    * <p>
    * Every AI player has a "Kick"-button and a ComboBox to select a difficulty (hard or easy). Every
    * necessary component gets displayed in this method.
+   * </p>
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
@@ -308,17 +308,17 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   /**
    * Event method that is called when the "Start"-button in the UI is clicked.
-   *
    * <p>
-   * First, an <code>ArrayList</code> that contains all players of the lobby is created. Second, if
-   * the letters have been customized then the letters are loaded from the class
+   * First, an <code>ArrayList</code> that contains all players of the lobby is created.
+   * </p>
+   * Second, if the letters have been customized then the letters are loaded from the class
    * {@link com.scrab5.ui.Data Data}, if not then they are loaded and converted from
    * {@link com.scrab5.util.database.UseDatabase UseDatabase}. In both cases
    * {@link com.scrab5.ui.SingleplayerLobbyController#createTileBag(ArrayList) createTileBag(...)}
    * is called and a new {@link com.scrab5.core.game.GameSession GameSession} is created.
-   *
    * <p>
    * Third, the scene gets changed to "SinglePlayer.fxml".
+   * </p>
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
@@ -354,15 +354,16 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   /**
    * This method is needed to create a <code>GameSession</code>. It sets the correct play order of
    * the players and creates the AI players as well as the player itself.
-   *
    * <p>
    * 1. A new <code>ArrayList temp</code> is created which contains the amount of votes as well as
-   * the position of the corresponding player. 2. The votes get multiplied by 1000, this way we can
-   * easily randomize the position of two players in case they have the same amount of votes.
-   *
+   * the position of the corresponding player.
+   * </p>
+   * 2. The votes get multiplied by 1000, this way we can easily randomize the position of two
+   * players in case they have the same amount of votes.
    * <p>
    * 3. <code>temp</code> gets sorted by a Bubble Sort algorithm. 4. The players are created and
    * added to <code>playerList</code> which then is returned.
+   * </p>
    *
    * @author mherre
    * @param playerVotes the <code>ArrayList</code> which contains the votes of the postion 1 - 4

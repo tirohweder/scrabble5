@@ -25,9 +25,13 @@ public class PopUpMessageController extends Controller implements Initializable 
   @FXML
   private ImageView messageIcon;
   @FXML
-  private ImageView okayButton, okayButtonClicked;
+  private ImageView okayButton;
   @FXML
-  private ImageView confirmButton, confirmButtonClicked;
+  private ImageView okayButtonClicked;
+  @FXML
+  private ImageView confirmButton;
+  @FXML
+  private ImageView confirmButtonClicked;
   @FXML
   private TextField textfield;
 
@@ -103,6 +107,7 @@ public class PopUpMessageController extends Controller implements Initializable 
       case INPUT:
         Data.setInputFieldText(textfield.getText());
         Data.setOkayClicked(true);
+        break;
       default:
         break;
     }

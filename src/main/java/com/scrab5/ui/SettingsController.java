@@ -24,7 +24,10 @@ import javafx.stage.FileChooser;
 public class SettingsController extends Controller implements Initializable {
 
   @FXML
-  private Slider sliderSFX, sliderMusic;
+  private Slider sliderSoundEffects;
+
+  @FXML
+  private Slider sliderMusic;
 
   /**
    * Call certain methods as soon as the Controller is loaded.
@@ -33,10 +36,9 @@ public class SettingsController extends Controller implements Initializable {
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    System.out.println("settings");
     String user = Data.getCurrentUser();
     this.sliderMusic.setValue(PlayerProfileDatabase.getMusicVolume(user));
-    this.sliderSFX.setValue(PlayerProfileDatabase.getSoundEffectVolume(user));
+    this.sliderSoundEffects.setValue(PlayerProfileDatabase.getSoundEffectVolume(user));
     this.setupListeners();
   }
 
@@ -103,9 +105,9 @@ public class SettingsController extends Controller implements Initializable {
   }
 
   /**
-   * Setups two listeners for <code>sliderMusic</code> and <code>sliderSFX</code>. If the listeners
-   * are called then the volume changes to the value the user selected with the sliders. The values
-   * are stored in <code>PlayerProfileDatabase</code>.
+   * Setups two listeners for <code>sliderMusic</code> and <code>sliderSoundEffects</code>. If the
+   * listeners are called then the volume changes to the value the user selected with the sliders.
+   * The values are stored in <code>PlayerProfileDatabase</code>.
    * 
    * @author mherre
    */
@@ -120,7 +122,7 @@ public class SettingsController extends Controller implements Initializable {
       }
     });
 
-    sliderSFX.valueProperty().addListener((new ChangeListener<Number>() {
+    sliderSoundEffects.valueProperty().addListener((new ChangeListener<Number>() {
       @Override
       public void changed(ObservableValue<? extends Number> observable, Number oldValue,
           Number newValue) {
