@@ -1,7 +1,7 @@
 package com.scrab5.ui;
 
-import java.util.Set;
 import com.scrab5.util.database.Database;
+import java.util.Set;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
