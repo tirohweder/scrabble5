@@ -29,16 +29,18 @@ public class AiPlayer extends Player {
   static int currentFixX;
   static int currentFixY;
   static String currentFixLetter;
+  private static int fakeRackSize = 7;
   int counterUp;
   int counterDown;
   int counterRight;
   int counterLeft;
-  int aiThreshold;
   Random random = new Random();
+  private int aiThreshold;
+  private int aiSkippedTurns = 0;
   /**
    * Constructor for AiPlayer. Needs difficulty set.
    *
-   * @param name
+   * @param name name of the ai.
    * @author trohwede
    */
   public AiPlayer(String name, int difficulty) {
@@ -103,7 +105,9 @@ public class AiPlayer extends Player {
     for (Tile tile : listOfTiles) {
       String letter = tile.getLetter();
       possibleLetters1.add(letter);
+      System.out.print(letter + " : ");
     }
+    System.out.println();
 
     String[] possibleLetters = new String[possibleLetters1.size()];
     for (int i = 0; i < possibleLetters.length; i++) {
@@ -112,7 +116,12 @@ public class AiPlayer extends Player {
 
     int maximumLength = before + 1 + after;
     ArrayList<String> finalWords = new ArrayList<String>();
-    if (maximumLength <= 8) {
+
+    // TODO
+    if (Data.getGameSession().getCurrentPlayer().getRack().getRackSize() <= 7) {
+      System.out.println("Used fake Rack size: " + fakeRackSize);
+      finalWords = DictionaryScanner.getWordsIncluding(fixLetter, fakeRackSize);
+    } else if (maximumLength <= 8) {
       finalWords = DictionaryScanner.getWordsIncluding(fixLetter, maximumLength);
       System.out.println("1. Final Words length: " + finalWords.size());
     } else {
@@ -125,6 +134,7 @@ public class AiPlayer extends Player {
     for (String s : possibleLetters) {
       sb.append(s);
     }
+    sb.append(fixLetter);
     String b = sb.toString();
     for (String s : finalWords) {
       for (int i = 0; i < s.length(); i++) {
@@ -399,8 +409,6 @@ public class AiPlayer extends Player {
       }
       scoreList.add(score);
     }
-    System.out.println("------- NEW WORD ----------");
-    // TODO bingo einführen
     return scoreList;
   }
 
@@ -955,23 +963,21 @@ public class AiPlayer extends Player {
 
     // needs to remove random letter from the ai rack, so the chances for pulling a tile
     // remain the same for human player remains the same
-    System.out.println("1. Bag size: " + Data.getGameSession().getBag().getSize());
+
     for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
       if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
-        System.out.println(
-            " rack size;: "
-                + Data.getGameSession().getListOfPlayers().get(i).getRack().getRackSize());
         Data.getGameSession()
             .getBag()
             .addRackToBag(Data.getGameSession().getListOfPlayers().get(i).getRack());
+        fakeRackSize = Data.getGameSession().getCurrentPlayer().getRack().getRackSize();
         Data.getGameSession().getListOfPlayers().get(i).getRack().clearRack();
       }
     }
-    System.out.println("2. Bag size: " + Data.getGameSession().getBag().getSize());
+
     boolean foundMatchingThreshold = false;
 
     ArrayList<Tile> choosenWord = new ArrayList<>();
-    System.out.println("Starting to find word");
+
     // go through game while threshhold is not reached
     int pointsForRound = 0;
 
@@ -1063,9 +1069,14 @@ public class AiPlayer extends Player {
             for (int l = 0; l < points.size(); l++) {
 
               // we use the gaussian method to have random borders for playing words
+              // also reduces threshold needed for each consecutive skipped turn
 
-              int aiThresholdLow = (int) Math.round(random.nextGaussian() * 2 + aiThreshold);
-              int aiThresholdHigh = (int) Math.round(random.nextGaussian() * 3 + aiThreshold + 10);
+              int aiThresholdLow =
+                  (int) Math.round(random.nextGaussian() * 2 + aiThreshold - (aiSkippedTurns * 2));
+              int aiThresholdHigh =
+                  (int)
+                      Math.round(
+                          random.nextGaussian() * 3 + aiThreshold + 10 + (aiSkippedTurns * 2));
 
               if (points.get(randomSelector.get(l)) >= aiThresholdLow
                   && points.get(randomSelector.get(l)) <= aiThresholdHigh) {
@@ -1112,6 +1123,7 @@ public class AiPlayer extends Player {
 
       // if ai plays it will reset skipped turns
       Data.getGameSession().setSkippedTurn(0);
+      aiSkippedTurns = 0;
 
       // play sound bingo if 7 tiles are played at once by the ai. Because it always only uses 1
       // tile to create a word it need length 8
@@ -1139,6 +1151,7 @@ public class AiPlayer extends Player {
       }
     } else {
       // if ai skips a turn it needs to increase skipped turns
+      aiSkippedTurns++;
       Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn() + 1);
     }
 

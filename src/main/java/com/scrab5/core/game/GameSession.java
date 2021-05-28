@@ -48,12 +48,8 @@ public class GameSession implements Serializable {
    * @param points how many * points each letter gives
    * @param isOnline is the game multiplayer or singleplayer
    */
-  public GameSession(
-      ArrayList<Player> listOfPlayers,
-      ArrayList<Integer> letters,
-      ArrayList<Integer> points,
-      boolean isOnline)
-      throws SQLException {
+  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
+      ArrayList<Integer> points, boolean isOnline) throws SQLException {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -277,10 +273,8 @@ public class GameSession implements Serializable {
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
 
     // TODO joker richtig bennen
-    String[] buchstaben = {
-      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-      "T", "U", "V", "W", "X", "Y", "Z", "*"
-    };
+    String[] buchstaben = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+        "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -301,10 +295,7 @@ public class GameSession implements Serializable {
   public void finishTurn() throws IOException {
     for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
       if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
-        Data.getGameSession()
-            .getListOfPlayers()
-            .get(i)
-            .getRack()
+        Data.getGameSession().getListOfPlayers().get(i).getRack()
             .fill(Data.getGameSession().getBag());
       }
     }
@@ -368,8 +359,7 @@ public class GameSession implements Serializable {
         if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {
           temp.adjustPersonalHighscore(player.getPoints());
         }
-        if ((player.getName().equals(name))
-            && (player.getPoints() != 0)
+        if ((player.getName().equals(name)) && (player.getPoints() != 0)
             && (player.getPoints() == mostPoints)) {
           temp.addWins(1);
         }
@@ -410,13 +400,7 @@ public class GameSession implements Serializable {
 
     int size = bag.getSize();
 
-    for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
-      if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
-        size -= Data.getGameSession().getListOfPlayers().get(i).getRack().getRackSize();
-      }
-    }
-
-    System.out.println("WHAT HAPPEND ?");
+    System.out.println("WHAT HAPPEND ? " + size);
     if (size == 0 && !player.getRack().isRackFull()) {
       this.shouldEnd = true;
       System.out.println("Good shit happend");
@@ -447,9 +431,8 @@ public class GameSession implements Serializable {
     } else {
       file = "Triple.mp3";
     }
-    Media sound =
-        new Media(
-            Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file).toExternalForm());
+    Media sound = new Media(
+        Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file).toExternalForm());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();
