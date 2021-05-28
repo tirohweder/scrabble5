@@ -8,12 +8,12 @@ import javafx.application.Platform;
 import javafx.fxml.Initializable;
 
 /**
- * The SingleplayerController class handels everything that happens during the "Singleplayer" in
+ * The SingleplayerController class handles everything that happens during the "Singleplayer" in
  * game. Everything in common with the multiplayer mode is once implemented in the abstract
- * InGameController class and is used by the differnet specific in game controllers. The
- * singleplayer controller refreshs the UI (rack and gameboard) and checks if the game isn't
- * finished with a thread checking several conditions in the InGameController. Controller for
- * SinglePlayer.fxml.
+ * InGameController class and is used by the different specific in game controllers. The
+ * singleplayer controller refreshes the UI (rack, gameboard, players/points and buttons) and checks
+ * if the game isn't finished with a thread checking several conditions in the InGameController.
+ * Controller for SinglePlayer.fxml.
  *
  * @author apilgrim
  */
@@ -23,10 +23,10 @@ public class SingleplayerController extends InGameController implements Initiali
   private int roundNumber;
 
   /**
-   * Initializes the rack and player when game is started. Called method aiTurn() checks if the
+   * Initializes the rack and player when a game is started. Calls method aiTurn() checks if the
    * first turn is by the AI player. After this the thread refreshing the board/ rack/ player
    * attributes/ buttons is called when the roundNumber changed. Which means, that some information
-   * or the rack definetly have changed.
+   * or the rack definitely have changed.
    * 
    * @author apilgrim
    * @param arg0 URL, arg1 Resourcebundle
@@ -39,18 +39,19 @@ public class SingleplayerController extends InGameController implements Initiali
     } catch (IOException e) {
       e.printStackTrace();
     }
-    refreshUI();
+    refreshUi();
     initGameboard();
   }
 
   /**
-   * Thread started when the singleplayer game is started. Refreshs the UI elements by calling
-   * methods from InGameController which are checking, if something did change.
+   * Thread started when the singleplayer game is started. Refreshes the UI elements by calling
+   * methods from InGameController which are checking, if something on the board or on the rack/
+   * points changed.
    * 
    * @author apilgrim
    * 
    */
-  private void refreshUI() {
+  private void refreshUi() {
 
     Thread t = new Thread(new Runnable() {
 
