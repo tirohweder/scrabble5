@@ -82,10 +82,7 @@ public class PlayerProfile implements Serializable {
    * @param longestWord the user laid in the played game
    */
   public void adjustLongestWord(int longestWord) {
-    int currentLongestW = PlayerProfileDatabase.getLongestWord(name);
-    if (longestWord > currentLongestW) {
-      PlayerProfileDatabase.setLongestWord(name, longestWord);
-    }
+    PlayerProfileDatabase.setLongestWord(name, longestWord);
   }
 
   /**

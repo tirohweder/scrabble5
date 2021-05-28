@@ -33,11 +33,11 @@ class AiPlayerTest {
     bagDistribution.put("O", 1);
     assertEquals(false, AiPlayer.checkBagDistributionLegal(bagDistribution, "HALLO", "L"));
     bagDistribution.put("L", 1);
-    assertEquals(true, AiPlayer.checkBagDistributionLegal(bagDistribution, "HALLO", "L"));
+    assertEquals(false, AiPlayer.checkBagDistributionLegal(bagDistribution, "WALLO", "L"));
     bagDistribution.put("L", 3);
     assertEquals(true, AiPlayer.checkBagDistributionLegal(bagDistribution, "HALLLLO", "L"));
     assertEquals(true, AiPlayer.checkBagDistributionLegal(bagDistribution, "HALLLO", "L"));
-    assertEquals(true, AiPlayer.checkBagDistributionLegal(bagDistribution, "WALLLO", "W"));
+    assertEquals(false, AiPlayer.checkBagDistributionLegal(bagDistribution, "WALLLO", "W"));
   }
 
   /*
