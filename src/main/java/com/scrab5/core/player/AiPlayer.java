@@ -313,19 +313,33 @@ public class AiPlayer extends Player {
   public static Boolean checkBagDistributionLegal(HashMap<String, Integer> currentDistribution,
       String word, String fixLetter) {
     boolean b = true;
-    boolean fix = true;
     int j = 0;
 
+    StringBuilder testb = new StringBuilder(word);
+
+
+    for (int i = 0; i < word.length(); i++) {
+      if (word.charAt(i) == fixLetter.charAt(0)) {
+        testb.deleteCharAt(i);
+        break;
+
+      }
+
+
+    }
+
+    word = testb.toString();
     for (int i = 0; i < word.length(); i++) {
       if (!currentDistribution.containsKey(String.valueOf(word.charAt(i)))) {
+
+
+
         return false;
+
       }
+
     }
     for (int i = 0; i < word.length(); i++) {
-      if (word.charAt(i) == fixLetter.charAt(0) && fix) {
-        fix = false;
-        continue;
-      }
       currentDistribution.replace(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) - 1);
       if (currentDistribution.get(Character.toString(word.charAt(i))) < 0) {
@@ -338,10 +352,6 @@ public class AiPlayer extends Player {
     }
 
     for (int i = 0; i <= j; i++) {
-      if (word.charAt(i) == fixLetter.charAt(0) && !fix) {
-        fix = true;
-        continue;
-      }
       currentDistribution.replace(Character.toString(word.charAt(i)),
           currentDistribution.get(Character.toString(word.charAt(i))) + 1);
 
