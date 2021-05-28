@@ -8,7 +8,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SettingsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.SettingsController">
 	<children>
 		<AnchorPane prefHeight="768.0" prefWidth="1360.0">
 			<children>
@@ -32,7 +32,7 @@
 						<Image url="@images/SB03_ButtonClicked.png" />
 					</image>
 				</ImageView>
-            <Slider fx:id="sliderSFX" layoutX="343.0" layoutY="247.0" prefHeight="14.0" prefWidth="766.0" value="100.0" />
+            <Slider fx:id="sliderSoundEffects" layoutX="343.0" layoutY="247.0" prefHeight="14.0" prefWidth="766.0" value="100.0" />
             <Slider fx:id="sliderMusic" layoutX="343.0" layoutY="336.0" prefHeight="14.0" prefWidth="766.0" value="100.0" />
 			</children>
 		</AnchorPane>

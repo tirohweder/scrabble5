@@ -132,7 +132,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    * This method is called when the "Back"-button is clicked. It sets the scene to
    * "MultiplayerOverview"
    *
-   * @param event
+   * @param event 
    * @throws IOException
    * @author mherre @author nitterhe
    */
