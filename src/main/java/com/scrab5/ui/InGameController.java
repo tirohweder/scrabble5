@@ -241,6 +241,7 @@ public abstract class InGameController implements Initializable {
    */
   protected void initRack() {
     Rack myRack = null;
+
     for (Player p : Data.getGameSession().getListOfPlayers()) {
       String s = p.getName();
       if (s.equalsIgnoreCase(Data.getCurrentUser())) {
@@ -249,57 +250,70 @@ public abstract class InGameController implements Initializable {
         continue;
       }
     }
-    // myRack.getTileAt(i).getLetter(),
-    // myRack.getTileAt(i).getValue()
+
     for (int i = 0; i < 7; i++) {
       switch (i) {
         case 0:
           if (myRack.getTileAt(i) != null) {
-            setNewTile(rackPlace1, pointsRack1, "joker", 0);
+            setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
           } else {
             rackPlace1.setOpacity(0);
+            pointsRack1.setOpacity(0);
           }
           break;
         case 1:
           if (myRack.getTileAt(i) != null) {
-            setNewTile(rackPlace2, pointsRack2, "I", 1);
+            setNewTile(rackPlace2, pointsRack2, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
           } else {
             rackPlace2.setOpacity(0);
+            pointsRack2.setOpacity(0);
           }
           break;
         case 2:
           if (myRack.getTileAt(i) != null) {
-            setNewTile(rackPlace3, pointsRack3, "I", 1);
+            setNewTile(rackPlace3, pointsRack3, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
           } else {
             rackPlace3.setOpacity(0);
+            pointsRack3.setOpacity(0);
           }
           break;
         case 3:
           if (myRack.getTileAt(i) != null) {
-            setNewTile(rackPlace4, pointsRack4, "R", 1);
+            setNewTile(rackPlace4, pointsRack4, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
           } else {
             rackPlace4.setOpacity(0);
+            pointsRack4.setOpacity(0);
           }
           break;
         case 4:
           if (myRack.getTileAt(i) != null) {
-            setNewTile(rackPlace5, pointsRack5, "W", 4);
+            setNewTile(rackPlace5, pointsRack5, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
           } else {
             rackPlace5.setOpacity(0);
+            pointsRack5.setOpacity(0);
           }
           break;
         case 5:
           if (myRack.getTileAt(i) != null) {
-            setNewTile(rackPlace6, pointsRack6, "E", 1);
+            setNewTile(rackPlace6, pointsRack6, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
           } else {
             rackPlace6.setOpacity(0);
+            pointsRack6.setOpacity(0);
           }
           break;
         case 6:
           if (myRack.getTileAt(i) != null) {
-            setNewTile(rackPlace7, pointsRack7, "Y", 4);
+            setNewTile(rackPlace7, pointsRack7, myRack.getTileAt(i).getLetter(),
+                myRack.getTileAt(i).getValue());
           } else {
             rackPlace7.setOpacity(0);
+            pointsRack7.setOpacity(0);
           }
           break;
         default:
@@ -307,90 +321,6 @@ public abstract class InGameController implements Initializable {
       }
     }
   }
-
-
-  // protected void initRack() {
-  // Rack myRack = null;
-  //
-  // for (Player p : Data.getGameSession().getListOfPlayers()) {
-  // String s = p.getName();
-  // if (s.equalsIgnoreCase(Data.getCurrentUser())) {
-  // myRack = p.getRack();
-  // } else {
-  // continue;
-  // }
-  // }
-  //
-  // for (int i = 0; i < 7; i++) {
-  // switch (i) {
-  // case 0:
-  // if (myRack.getTileAt(i) != null) {
-  // setNewTile(rackPlace1, pointsRack1, myRack.getTileAt(i).getLetter(),
-  // myRack.getTileAt(i).getValue());
-  // } else {
-  // rackPlace1.setOpacity(0);
-  // pointsRack1.setOpacity(0);
-  // }
-  // break;
-  // case 1:
-  // if (myRack.getTileAt(i) != null) {
-  // setNewTile(rackPlace2, pointsRack2, myRack.getTileAt(i).getLetter(),
-  // myRack.getTileAt(i).getValue());
-  // } else {
-  // rackPlace2.setOpacity(0);
-  // pointsRack2.setOpacity(0);
-  // }
-  // break;
-  // case 2:
-  // if (myRack.getTileAt(i) != null) {
-  // setNewTile(rackPlace3, pointsRack3, myRack.getTileAt(i).getLetter(),
-  // myRack.getTileAt(i).getValue());
-  // } else {
-  // rackPlace3.setOpacity(0);
-  // pointsRack3.setOpacity(0);
-  // }
-  // break;
-  // case 3:
-  // if (myRack.getTileAt(i) != null) {
-  // setNewTile(rackPlace4, pointsRack4, myRack.getTileAt(i).getLetter(),
-  // myRack.getTileAt(i).getValue());
-  // } else {
-  // rackPlace4.setOpacity(0);
-  // pointsRack4.setOpacity(0);
-  // }
-  // break;
-  // case 4:
-  // if (myRack.getTileAt(i) != null) {
-  // setNewTile(rackPlace5, pointsRack5, myRack.getTileAt(i).getLetter(),
-  // myRack.getTileAt(i).getValue());
-  // } else {
-  // rackPlace5.setOpacity(0);
-  // pointsRack5.setOpacity(0);
-  // }
-  // break;
-  // case 5:
-  // if (myRack.getTileAt(i) != null) {
-  // setNewTile(rackPlace6, pointsRack6, myRack.getTileAt(i).getLetter(),
-  // myRack.getTileAt(i).getValue());
-  // } else {
-  // rackPlace6.setOpacity(0);
-  // pointsRack6.setOpacity(0);
-  // }
-  // break;
-  // case 6:
-  // if (myRack.getTileAt(i) != null) {
-  // setNewTile(rackPlace7, pointsRack7, myRack.getTileAt(i).getLetter(),
-  // myRack.getTileAt(i).getValue());
-  // } else {
-  // rackPlace7.setOpacity(0);
-  // pointsRack7.setOpacity(0);
-  // }
-  // break;
-  // default:
-  // break;
-  // }
-  // }
-  // }
 
   /**
    * Initializes the gameboard in the in game (thru opacity/ text setting of Labels and ImageViews).
