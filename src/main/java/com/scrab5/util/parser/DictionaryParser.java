@@ -221,8 +221,6 @@ public class DictionaryParser {
                 if (file.createNewFile()) {
                   bufWriter = new BufferedWriter(new FileWriter(file));
                   filterWords(dictionary);
-                } else {
-                  System.out.println("dictionary already exists");
                 }
               } catch (Exception e) {
                 e.printStackTrace();

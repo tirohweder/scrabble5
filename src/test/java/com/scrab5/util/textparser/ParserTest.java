@@ -27,6 +27,7 @@ class ParserTest {
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + DictionaryParser.getNewFileName());
     assertEquals(true, file.exists());
+    file.delete();
   }
 
   /**
@@ -42,5 +43,6 @@ class ParserTest {
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + DictionaryParser.getNewFileName());
     assertEquals(true, DictionaryParser.doesAlreadyExist(file));
+    file.delete();
   }
 }
