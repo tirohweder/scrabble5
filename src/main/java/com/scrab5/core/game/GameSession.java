@@ -340,11 +340,6 @@ public class GameSession implements Serializable {
     }
   }
 
-  // TODO
-  public boolean giveUp() {
-    return false;
-  }
-
   /**
    * Checks if rack and bag are empty, if yes shouldEnd is set to true.
    *

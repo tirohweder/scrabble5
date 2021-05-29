@@ -25,74 +25,40 @@ import javafx.stage.StageStyle;
  */
 public abstract class LobbyController extends Controller {
 
-  @FXML
-  protected ImageView kick2;
-  @FXML
-  protected ImageView kick3;
-  @FXML
-  protected ImageView kick4;
-  @FXML
-  protected ImageView addPlayerButton;
-  @FXML
-  protected ImageView startButton;
-  @FXML
-  protected ImageView darkBackground;
-  @FXML
-  protected ImageView diffSelection2;
-  @FXML
-  protected ImageView diffSelection3;
-  @FXML
-  protected ImageView diffSelection4;
-  @FXML
-  protected ImageView diffButton1;
-  @FXML
-  protected ImageView diffButton2;
-  @FXML
-  protected ImageView diffButton3;
-  @FXML
-  protected Label player1;
-  @FXML
-  protected Label player2;
-  @FXML
-  protected Label player3;
-  @FXML
-  protected Label player4;
-  @FXML
-  protected Label ready1;
-  @FXML
-  protected Label ready2;
-  @FXML
-  protected Label ready3;
-  @FXML
-  protected Label ready4;
-  @FXML
-  protected Label vote1;
-  @FXML
-  protected Label vote2;
-  @FXML
-  protected Label vote3;
-  @FXML
-  protected Label vote4;
-  @FXML
-  protected Label difficulty2;
-  @FXML
-  protected Label difficulty3;
-  @FXML
-  protected Label difficulty4;
-  @FXML
-  protected ComboBox<Integer> voteSelection1;
-  @FXML
-  protected ComboBox<Integer> voteSelection2;
-  @FXML
-  protected ComboBox<Integer> voteSelection3;
-  @FXML
-  protected ComboBox<Integer> voteSelection4;
-  @FXML
-  protected ComboBox<String> diffBox1;
-  @FXML
-  protected ComboBox<String> diffBox2;
-  @FXML
-  protected ComboBox<String> diffBox3;
+  @FXML protected ImageView kick2;
+  @FXML protected ImageView kick3;
+  @FXML protected ImageView kick4;
+  @FXML protected ImageView addPlayerButton;
+  @FXML protected ImageView startButton;
+  @FXML protected ImageView darkBackground;
+  @FXML protected ImageView diffSelection2;
+  @FXML protected ImageView diffSelection3;
+  @FXML protected ImageView diffSelection4;
+  @FXML protected ImageView diffButton1;
+  @FXML protected ImageView diffButton2;
+  @FXML protected ImageView diffButton3;
+  @FXML protected Label player1;
+  @FXML protected Label player2;
+  @FXML protected Label player3;
+  @FXML protected Label player4;
+  @FXML protected Label ready1;
+  @FXML protected Label ready2;
+  @FXML protected Label ready3;
+  @FXML protected Label ready4;
+  @FXML protected Label vote1;
+  @FXML protected Label vote2;
+  @FXML protected Label vote3;
+  @FXML protected Label vote4;
+  @FXML protected Label difficulty2;
+  @FXML protected Label difficulty3;
+  @FXML protected Label difficulty4;
+  @FXML protected ComboBox<Integer> voteSelection1;
+  @FXML protected ComboBox<Integer> voteSelection2;
+  @FXML protected ComboBox<Integer> voteSelection3;
+  @FXML protected ComboBox<Integer> voteSelection4;
+  @FXML protected ComboBox<String> diffBox1;
+  @FXML protected ComboBox<String> diffBox2;
+  @FXML protected ComboBox<String> diffBox3;
 
   protected int playerAmount = 1;
   protected boolean[] isReady = {false, true, true, true};
@@ -121,12 +87,12 @@ public abstract class LobbyController extends Controller {
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>loadFXML(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void customize(MouseEvent event) throws IOException {
 
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.darkBackground.setFitWidth(1360);
     this.darkBackground.setFitHeight(768);
     this.darkBackground.setOpacity(1);
@@ -137,7 +103,7 @@ public abstract class LobbyController extends Controller {
     customScreen.initStyle(StageStyle.UNDECORATED);
     customScreen.showAndWait();
 
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.darkBackground.setFitWidth(10);
     this.darkBackground.setFitHeight(10);
     this.darkBackground.setOpacity(0);
@@ -152,7 +118,7 @@ public abstract class LobbyController extends Controller {
    */
   @FXML
   private void clickComboBox1(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.voteSelection1.show();
   }
 
@@ -165,7 +131,7 @@ public abstract class LobbyController extends Controller {
    */
   @FXML
   private void clickComboBox2(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.voteSelection2.show();
   }
 
@@ -178,7 +144,7 @@ public abstract class LobbyController extends Controller {
    */
   @FXML
   private void clickComboBox3(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.voteSelection3.show();
   }
 
@@ -191,7 +157,7 @@ public abstract class LobbyController extends Controller {
    */
   @FXML
   private void clickComboBox4(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.voteSelection4.show();
   }
 
@@ -204,7 +170,7 @@ public abstract class LobbyController extends Controller {
    */
   @FXML
   private void clickDiffBox1(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.diffBox1.show();
   }
 
@@ -217,7 +183,7 @@ public abstract class LobbyController extends Controller {
    */
   @FXML
   private void clickDiffBox2(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.diffBox2.show();
   }
 
@@ -230,7 +196,7 @@ public abstract class LobbyController extends Controller {
    */
   @FXML
   private void clickDiffBox3(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.diffBox3.show();
   }
 
@@ -240,7 +206,7 @@ public abstract class LobbyController extends Controller {
    *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setDifficulty1(ActionEvent event) {
@@ -254,7 +220,7 @@ public abstract class LobbyController extends Controller {
    *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setDifficulty2(ActionEvent event) {
@@ -268,7 +234,7 @@ public abstract class LobbyController extends Controller {
    *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setDifficulty3(ActionEvent event) {
@@ -282,7 +248,7 @@ public abstract class LobbyController extends Controller {
    *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setPlayerVote1(ActionEvent event) {
@@ -296,7 +262,7 @@ public abstract class LobbyController extends Controller {
    *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setPlayerVote2(ActionEvent event) {
@@ -310,7 +276,7 @@ public abstract class LobbyController extends Controller {
    *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setPlayerVote3(ActionEvent event) {
@@ -324,7 +290,7 @@ public abstract class LobbyController extends Controller {
    *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setPlayerVote4(ActionEvent event) {

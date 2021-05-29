@@ -179,8 +179,7 @@ public class Data {
   }
 
   /**
-   * Returns the text of the {@link com.scrab5.ui.PopUpMessageController#textfield textfield} from a
-   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Returns the text of the from a {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
    * @return inputFieldText the String containing the text of the textfield
    * @author mherre
@@ -190,8 +189,7 @@ public class Data {
   }
 
   /**
-   * Saves the text of the {@link com.scrab5.ui.PopUpMessageController#textfield textfield} from a
-   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Saves the text of the from a {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
    * @param ipft the String that gets set
    * @author mherre

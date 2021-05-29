@@ -141,7 +141,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void start(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (this.isDictionarySelected) {
 
@@ -173,7 +173,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     Data.setIsSearching(false);
     App.setRoot("MainMenu");
   }
@@ -189,7 +189,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void nextNumber(MouseEvent event) {
     playerCount++;
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (playerCount > 4) {
       playerCount--;
@@ -220,7 +220,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void previousNumber(MouseEvent event) {
     playerCount--;
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (playerCount < 2) {
       playerCount++;
@@ -249,7 +249,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void clickComboBox(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     dictionarySelection.show();
   }
 
@@ -288,7 +288,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void refresh(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     Data.setIsSearching(false);
     this.searchServers();
   }
@@ -306,7 +306,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void findGame(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (!Data.getServerList().isEmpty()) {
       String ip4 = Data.getServerList().get((int) (Data.getServerList().size() * Math.random()))
           .getIp4Address();
@@ -546,7 +546,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   private void joinGame(int number) throws IOException {
     if (Data.getServerList().size() >= number) {
-      playSound("ButtonClicked.mp3");
+      playSound();
     }
     if (Data.getServerList().get(number).getClientCounter() == Data.getServerList().get(number)
         .getClientMaximum()) {
@@ -643,7 +643,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   /**
    * Joins a server with the given IPAddress.
    *
-   * @param IPAddress - the IPAddress of the server that should be joined as a String
+   * @param ipAddress - the IPAddress of the server that should be joined as a String
    * @author nitterhe
    */
   private boolean joinServer(String ipAddress) {

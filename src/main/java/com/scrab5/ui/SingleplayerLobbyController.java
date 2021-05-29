@@ -60,7 +60,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    */
   @FXML
   protected void back(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     App.setRoot("MainMenu");
   }
 
@@ -85,7 +85,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    */
   @FXML
   private void ready(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (!isReady[0]) {
       this.ready1.setText("Ready");
@@ -134,7 +134,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   @FXML
   protected void addPlayer(MouseEvent event) {
 
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.playerAmount++;
 
     for (int i = 1; i < freeSpaces.length; i++) {
@@ -188,7 +188,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   @FXML
   protected void kickPlayer2(MouseEvent event) {
     if (kick2.getOpacity() == 1.0) {
-      playSound("ButtonClicked.mp3");
+      playSound();
       this.player2.setText("");
       this.ready2.setText("");
       this.difficulty2.setOpacity(0);
@@ -213,7 +213,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   protected void kickPlayer3(MouseEvent event) {
 
     if (kick3.getOpacity() == 1.0) {
-      playSound("ButtonClicked.mp3");
+      playSound();
       this.player3.setText("");
       this.ready3.setText("");
       this.difficulty3.setOpacity(0);
@@ -238,7 +238,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   protected void kickPlayer4(MouseEvent event) {
 
     if (kick4.getOpacity() == 1.0) {
-      playSound("ButtonClicked.mp3");
+      playSound();
       this.player4.setText("");
       this.ready4.setText("");
       this.difficulty4.setOpacity(0);
@@ -281,7 +281,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    */
   @FXML
   private void clickComboBox(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     dictionarySelection.show();
   }
 
