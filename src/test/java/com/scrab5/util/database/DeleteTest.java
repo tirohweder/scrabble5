@@ -1,9 +1,10 @@
 package com.scrab5.util.database;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 

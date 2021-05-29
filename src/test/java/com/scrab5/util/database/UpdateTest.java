@@ -25,7 +25,6 @@ class UpdateTest {
    * 
    * @author lengist
    */
-
   @Test
   void testUpdatePlayer() {
     cd.createTest();
@@ -48,7 +47,7 @@ class UpdateTest {
       assertEquals(0.0, rs.getDouble("WinRate"));
       assertEquals("", rs.getString("FaveDic"));
       assertEquals(50.0, rs.getDouble("Music"));
-      assertEquals(50.0, rs.getDouble("SoundEffect"));
+      assertEquals(25.0, rs.getDouble("SoundEffect"));
     } catch (SQLException e) {
       e.printStackTrace();
     }

@@ -70,16 +70,6 @@ public class AiPlayer extends Player {
    */
   public static ArrayList<ArrayList<Tile>> wordGenerator(
       String fixLetter, int before, int after, int column, int row, boolean horizontal) {
-    System.out.println();
-    System.out.println("fixLetter: " + fixLetter);
-    System.out.println("before: " + before);
-    System.out.println("after: " + after);
-    System.out.println("column: " + column);
-    System.out.println("row: " + row);
-    System.out.println("horizontal: " + horizontal);
-    System.out.println("Bag size: " + Data.getGameSession().getBag().getSize());
-
-    System.out.println();
     ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
     ArrayList<String> possibleLetters1 = new ArrayList<String>();
 
@@ -95,9 +85,7 @@ public class AiPlayer extends Player {
     for (Tile tile : listOfTiles) {
       String letter = tile.getLetter();
       possibleLetters1.add(letter);
-      System.out.print(letter + " : ");
     }
-    System.out.println();
 
     String[] possibleLetters = new String[possibleLetters1.size()];
     for (int i = 0; i < possibleLetters.length; i++) {
@@ -118,7 +106,6 @@ public class AiPlayer extends Player {
     } else {
       finalWords = DictionaryScanner.getWordsIncluding(fixLetter, 8);
     }
-    System.out.println("1. Final Words length: " + finalWords.size());
 
     /* Deletion round 1: deleting all words that include a letter that is not in the bag. */
     StringBuilder sb = new StringBuilder();
@@ -135,8 +122,6 @@ public class AiPlayer extends Player {
       }
     }
     finalWords.removeAll(deletionRound1);
-
-    System.out.println("After Deltion round 1: " + finalWords.size());
 
     /*
      * Deletion round 2: deleting all words that do not fit to the requirements regarding the space
@@ -159,8 +144,6 @@ public class AiPlayer extends Player {
     }
     finalWords.removeAll(deletionRound2);
 
-    System.out.println("After Deltion round 2: " + finalWords.size());
-
     /*
      * Deletion round 3: deleting all words that contain an amount of a specific letter not
      * compatible with the occurrence in the bag.
@@ -173,7 +156,6 @@ public class AiPlayer extends Player {
       }
     }
     finalWords.removeAll(deletionRound3);
-    System.out.println("Final Words length 3. : " + finalWords.size());
 
     ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
     for (String s : finalWords) {
@@ -218,7 +200,6 @@ public class AiPlayer extends Player {
   public static ArrayList<Tile> getCoordinatesRep(
       String word, String fixLetter, int columnFixLetter, int rowFixLetter, boolean horizontal) {
     int fixPosition = 0;
-    ArrayList<Integer> list = new ArrayList<Integer>();
     ArrayList<Tile> tiles = new ArrayList<Tile>();
     int row = 0;
     int column = 0;
@@ -231,7 +212,6 @@ public class AiPlayer extends Player {
     if (horizontal) {
       for (int i = 0; i < fixPosition; i++) {
         value = getPointForLetter(String.valueOf(word.charAt(i)));
-        // System.out.println(word.charAt(i));
         row = rowFixLetter;
         column = columnFixLetter - (fixPosition - i);
         Tile t = new Tile(String.valueOf(word.charAt(i)), value, row, column);

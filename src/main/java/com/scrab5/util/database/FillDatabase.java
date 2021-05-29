@@ -133,7 +133,7 @@ public class FillDatabase extends Database {
       pstmPlayer.setDouble(9, 0.0);
       pstmPlayer.setString(10, "");
       pstmPlayer.setDouble(11, 50.0);
-      pstmPlayer.setDouble(12, 50.0);
+      pstmPlayer.setDouble(12, 25.0);
       pstmPlayer.executeUpdate();
       created = true;
     } catch (SQLException e) {

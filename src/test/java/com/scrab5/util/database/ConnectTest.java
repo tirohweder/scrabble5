@@ -1,6 +1,7 @@
 package com.scrab5.util.database;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 
