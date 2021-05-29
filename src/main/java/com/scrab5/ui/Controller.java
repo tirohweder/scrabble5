@@ -86,7 +86,6 @@ public abstract class Controller {
 
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();
-
   }
 
   /**
