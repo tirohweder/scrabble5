@@ -25,7 +25,7 @@ class ScannerTest {
   @Test
   void testScan() {
     DictionaryParser.setCurrentDictionary("Built-In_Standard_Dictionary.txt");
-    DictionaryParser.parseFile(DictionaryParser.getFileName());
+    DictionaryParser.parseFile("Built-In_Standard_Dictionary.txt");
 
     assertEquals(true, DictionaryScanner.scanTest("ZZZ"));
     assertEquals(false, DictionaryScanner.scanTest("XXXX"));
