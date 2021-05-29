@@ -32,9 +32,9 @@ public class Client implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public final int serverPort = 8080;
+  private ClientThread clientThread;
   private String ip;
   private String username;
-  private ClientThread clientThread;
   private ArrayList<ServerData> serverList;
   private Server currentServer;
   private Server hostedServer;
@@ -178,6 +178,8 @@ public class Client implements Serializable {
       }
     });
     t1.start();
+
+
   }
 
   /**
