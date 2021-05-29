@@ -113,22 +113,4 @@ public class DictionaryScanner {
     list.toArray(suitableWords);
     return list;
   }
-
-  /**
-   * Returns a new array that contains the words from the parameter array which include letter.
-   *
-   * @author lengist
-   * @param words a ArrayList containing all words to check
-   * @param letter a String of the letter that should be in the array that gets returned
-   * @return checked a ArrayList containing all words containing the letter
-   */
-  public static ArrayList<String> getWordsIncludingFrom(ArrayList<String> words, String letter) {
-    ArrayList<String> checked = new ArrayList<>();
-    for (String line : words) {
-      if (line.contains(letter)) {
-        checked.add(line);
-      }
-    }
-    return checked;
-  }
 }

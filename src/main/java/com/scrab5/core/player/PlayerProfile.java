@@ -119,16 +119,6 @@ public class PlayerProfile implements Serializable {
   }
 
   /**
-   * Changes the favorite dictionary of the user "name" in the database.
-   *
-   * @author lengist
-   * @param dictionary the user selected in the played game
-   */
-  public void changeDictionary(String dictionary) {
-    PlayerProfileDatabase.setFavoriteDictionary(name, dictionary);
-  }
-
-  /**
    * Returns the total points saved in the database for player "name".
    *
    * @author lengist
@@ -207,15 +197,5 @@ public class PlayerProfile implements Serializable {
    */
   public double getWinRate() {
     return PlayerProfileDatabase.getWinRate(name);
-  }
-
-  /**
-   * Returns the favorite dictionary saved in the database for player "name".
-   *
-   * @author lengist
-   * @return String the favorite dictionary saved in the database for the user name
-   */
-  public String getFavoriteDictionary() {
-    return PlayerProfileDatabase.getFavoriteDictionary(name);
   }
 }
