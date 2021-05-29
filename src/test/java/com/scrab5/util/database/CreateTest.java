@@ -1,9 +1,10 @@
 package com.scrab5.util.database;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
@@ -49,7 +50,7 @@ class CreateTest {
       assertEquals(0.0, rs.getDouble("WinRate"));
       assertEquals("", rs.getString("FaveDic"));
       assertEquals(50.0, rs.getDouble("Music"));
-      assertEquals(50.0, rs.getDouble("SoundEffect"));
+      assertEquals(25.0, rs.getDouble("SoundEffect"));
       System.out.println("done");
     } catch (SQLException e) {
       e.printStackTrace();
