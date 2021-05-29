@@ -20,7 +20,7 @@ public class Player implements Serializable {
   /**
    * Constructor for Player. Sets name, creates new Rack, sets points to 0, and creates a new
    * playerProfile.
-   * 
+   *
    * @param name When Player is created gives the player a name and a personal rack
    * @author trohwede
    */

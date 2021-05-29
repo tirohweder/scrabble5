@@ -2,7 +2,6 @@ package com.scrab5.core.player;
 
 import static com.scrab5.util.constants.Constants.lettersFromDatabase;
 import static com.scrab5.util.constants.Constants.pointsPerLetterFromDatabase;
-
 import com.scrab5.core.game.BagOfTiles;
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
@@ -94,10 +93,6 @@ public class AiPlayer extends Player {
 
     int maximumLength = before + 1 + after;
     ArrayList<String> finalWords;
-
-    // TODO
-
-    System.out.println("FAKE RACK SIZE: " + fakeRackSize);
 
     if (fakeRackSize < 7) {
       finalWords = DictionaryScanner.getWordsIncluding(fixLetter, fakeRackSize);

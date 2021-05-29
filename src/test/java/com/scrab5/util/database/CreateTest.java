@@ -1,7 +1,6 @@
 package com.scrab5.util.database;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -20,6 +19,7 @@ import org.junit.jupiter.api.Test;
 class CreateTest {
 
   CreateDatabase cd = new CreateDatabase();
+
   /**
    * Tests the function to create a new Player in the database. Test for Use Case 1 create.
    * 
@@ -49,7 +49,6 @@ class CreateTest {
       assertEquals("", rs.getString("FaveDic"));
       assertEquals(50.0, rs.getDouble("Music"));
       assertEquals(25.0, rs.getDouble("SoundEffect"));
-      System.out.println("done");
     } catch (SQLException e) {
       e.printStackTrace();
     }

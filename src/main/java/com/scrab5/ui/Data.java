@@ -35,7 +35,7 @@ public class Data {
 
   /**
    * Returns the current GameSession the player is currently playing in.
-   * 
+   *
    * @author nitterhe, mherre
    * @return gameSession - the current GameSession object
    */
@@ -45,9 +45,9 @@ public class Data {
 
   /**
    * Sets the current GameSession the player is currently playing in.
-   * 
+   *
    * @author nitterhe, mherre
-   * @param gameSession - the current GameSession object
+   * @param gs - the current GameSession object
    */
   public static synchronized void setGameSession(GameSession gs) {
     gameSession = gs;
@@ -105,8 +105,8 @@ public class Data {
   }
 
   /**
-   * Saves the text message that gets displayed on the currently opened
-   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Saves the text message that gets displayed on the currently opened {@link
+   * com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
    * @param message the string that gets set
    * @author mherre
@@ -202,7 +202,7 @@ public class Data {
 
   /**
    * Returns the Client object belonging to the player.
-   * 
+   *
    * @author nitterhe, mherre
    * @return playerClient - the Client object of the player for communication with the server
    */
@@ -212,7 +212,7 @@ public class Data {
 
   /**
    * Sets the Client object belonging to the player.
-   * 
+   *
    * @author nitterhe, mherre
    * @param client - the Client object of the player for communication with the server
    */
@@ -224,7 +224,7 @@ public class Data {
 
   /**
    * Updates the Client object belonging to the player.
-   * 
+   *
    * @author nitterhe, mherre
    * @param client - the Client object of the player for communication with the server
    */
@@ -256,7 +256,7 @@ public class Data {
 
   /**
    * Returns a list of all servers in the local network.
-   * 
+   *
    * @author nitterhe
    * @return serverList - all servers in the local network that were found
    */
@@ -265,8 +265,8 @@ public class Data {
   }
 
   /**
-   * Sets the list of servers found in the local network.
-   * 
+   * Sets the list of servers found in the local network..
+   *
    * @author nitterhe
    * @param slist - the list of Servers that were found
    */
@@ -276,7 +276,7 @@ public class Data {
 
   /**
    * Returns if the client is currently searching for servers.
-   * 
+   *
    * @author nitterhe
    * @return isSearching - boolean if client is currently searching for servers in the local network
    */
@@ -286,7 +286,7 @@ public class Data {
 
   /**
    * Sets the value of is searching. True is the client is currently searching for servers.
-   * 
+   *
    * @author nitterhe
    * @param searching - the boolean if currently searching
    */

@@ -98,12 +98,11 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void acceptClients() {
-    Runnable r =
-        new Runnable() {
-          public void run() {
-            accept();
-          }
-        };
+    Runnable r = new Runnable() {
+      public void run() {
+        accept();
+      }
+    };
     new Thread(r).start();
   }
 
@@ -115,8 +114,7 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   private void accept() {
-    while (!this.gameStart
-        && Server.clientCounter < Server.clientMaximum
+    while (!this.gameStart && Server.clientCounter < Server.clientMaximum
         && !serverSocket.isClosed()) {
       try {
         Socket newClient = serverSocket.accept();
@@ -126,7 +124,7 @@ public class Server implements Serializable {
         // does nothing, this happens when the server socket is closed. I could implement a feature
         // with a new socket but i do not see the need
       } catch (Exception e) {
-        System.out.println(e.getCause());
+        e.printStackTrace();
       }
     }
   }
@@ -262,14 +260,8 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void sendUpdateMessage() {
-    this.sendMessageToAllClients(
-        new LobbyUpdateMessage(
-            this.getHost(),
-            this.getIp4(),
-            this.getStatus(),
-            this.getClients(),
-            this.getClientMaximum(),
-            this.getServerStatistics()));
+    this.sendMessageToAllClients(new LobbyUpdateMessage(this.getHost(), this.getIp4(),
+        this.getStatus(), this.getClients(), this.getClientMaximum(), this.getServerStatistics()));
   }
 
   /**
@@ -391,13 +383,12 @@ public class Server implements Serializable {
    * @author nitterhe, trohwede
    */
   public void startTimer() {
-    task =
-        (new TimerTask() {
-          public void run() {
-            Server.this.shutDownServer();
-            new NetworkError(NetworkErrorType.TIMER);
-          }
-        });
+    task = (new TimerTask() {
+      public void run() {
+        Server.this.shutDownServer();
+        new NetworkError(NetworkErrorType.TIMER);
+      }
+    });
     timer.schedule(task, 1000 * 60 * 10);
   }
 

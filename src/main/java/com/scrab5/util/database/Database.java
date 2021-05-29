@@ -37,12 +37,8 @@ public class Database {
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
     } catch (ClassNotFoundException e) {
-      System.out.println("Connection not possible" + e.getMessage());
+      e.printStackTrace();
     } catch (SQLException e1) {
-      System.out.println("reconnect: Connection not possible" + e1.getMessage());
-      System.out.println("Sql Exception: " + e1.getMessage());
-      System.out.println("Sql State: " + e1.getSQLState());
-      System.out.println("Sql Error: " + e1.getErrorCode());
       e1.printStackTrace();
     }
   }
@@ -66,7 +62,6 @@ public class Database {
     try {
       connection.close();
     } catch (SQLException e) {
-      System.out.println("Problem with closing connection: " + e.getMessage());
       e.printStackTrace();
     }
   }
@@ -83,12 +78,8 @@ public class Database {
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:" + file);
     } catch (ClassNotFoundException e) {
-      System.out.println("Connection not possible" + e.getMessage());
+      e.printStackTrace();
     } catch (SQLException e1) {
-      System.out.println("connect: Connection not possible" + e1.getMessage());
-      System.out.println("Sql Exception: " + e1.getMessage());
-      System.out.println("Sql State: " + e1.getSQLState());
-      System.out.println("Sql Error: " + e1.getErrorCode());
       e1.printStackTrace();
     }
   }
@@ -103,9 +94,7 @@ public class Database {
     disconnect();
     File file = new File(
         System.getProperty("user.dir") + System.getProperty("file.separator") + databaseFileName);
-    System.out.println(file.exists());
     file.delete();
-    System.out.println("danach: " + file.exists());
   }
 
   /**
@@ -121,7 +110,7 @@ public class Database {
       connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
       return true;
     } catch (ClassNotFoundException e) {
-      System.out.println("Connection not possible" + e.getMessage());
+      e.printStackTrace();
     } catch (SQLException e1) {
       e1.printStackTrace();
     }
