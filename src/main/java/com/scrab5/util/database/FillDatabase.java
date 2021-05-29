@@ -53,12 +53,10 @@ public class FillDatabase extends Database {
           }
           break;
         default:
-          System.out.println("Closing of statement " + name + " not possible!");
           break;
       }
     } catch (Exception e) {
-      System.out.println(e);
-      System.out.println("Problem with closing statement " + name + "!");
+      e.printStackTrace();
     }
   }
 
@@ -78,8 +76,7 @@ public class FillDatabase extends Database {
       statement.execute(sql);
       statement.close();
     } catch (SQLException e) {
-      System.out.println("Could not perform deletion in table " + name);
-      System.out.println(e);
+      e.printStackTrace();
     }
     Database.disconnect();
   }
@@ -98,8 +95,7 @@ public class FillDatabase extends Database {
       pstmDelete.setString(1, name);
       pstmDelete.executeUpdate();
     } catch (SQLException e) {
-      System.out.println("Could not perform deletion from player " + name);
-      System.out.println(e);
+      e.printStackTrace();
     }
     closeStatement("delete");
     Database.disconnect();
@@ -116,12 +112,10 @@ public class FillDatabase extends Database {
   public static synchronized void createPlayer(String name) {
     Database.reconnect();
     try {
-      pstmPlayer =
-          connection.prepareStatement(
-              "INSERT INTO Player "
-                  + "(Name, TotalPoints, PersonalHighscore, LaidWords, "
-                  + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
-                  + "WinRate, FaveDic, Music, SoundEffect) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+      pstmPlayer = connection.prepareStatement(
+          "INSERT INTO Player " + "(Name, TotalPoints, PersonalHighscore, LaidWords, "
+              + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
+              + "WinRate, FaveDic, Music, SoundEffect) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
       pstmPlayer.setString(1, name);
       pstmPlayer.setInt(2, 0);
       pstmPlayer.setInt(3, 0);
@@ -155,13 +149,13 @@ public class FillDatabase extends Database {
    * @param column String with the name of the column in the table where a change needs to be done
    * @param name String with name of the user
    * @param contentString String that contains the new information that needs to be stored in the
-   *     database
+   *        database
    * @param contentInt Integer that contains the new information that needs to be stored in the
-   *     database
+   *        database
    * @param doubleValues the values for the rate, given as double
    */
-  protected static synchronized void updatePlayer(
-      String column, String name, String contentString, int contentInt, double doubleValues) {
+  protected static synchronized void updatePlayer(String column, String name, String contentString,
+      int contentInt, double doubleValues) {
     Database.disconnect();
     Database.reconnect();
 
@@ -264,14 +258,13 @@ public class FillDatabase extends Database {
    * @param clientUsername with name of the user
    * @param ipAddress the ip adress of the server
    */
-  public static synchronized void createServerRow(
-      String serverHost, String clientUsername, String ipAddress) {
+  public static synchronized void createServerRow(String serverHost, String clientUsername,
+      String ipAddress) {
     Database.reconnect();
     try {
-      pstmServer =
-          connection.prepareStatement(
-              "INSERT INTO Server (ServerHostName, ClientUsername, GamesPlayed, "
-                  + "GamesWon, IPAddress) VALUES (?,?,?,?,?);");
+      pstmServer = connection
+          .prepareStatement("INSERT INTO Server (ServerHostName, ClientUsername, GamesPlayed, "
+              + "GamesWon, IPAddress) VALUES (?,?,?,?,?);");
       pstmServer.setString(1, serverHost);
       pstmServer.setString(2, clientUsername);
       pstmServer.setInt(3, 0);
@@ -295,13 +288,12 @@ public class FillDatabase extends Database {
    * @author lengist
    * @author nitterhe
    * @param serverObject an object received from the server with all information needed for the
-   *     statistics in a hosted game
+   *        statistics in a hosted game
    */
   public static synchronized void updateServer(Server serverObject) {
     Database.reconnect();
-    String sql =
-        "UPDATE Server SET gamesPlayed = ?, gamesWon = ? "
-            + "WHERE ServerHostName = ? AND ClientUsername = ?;";
+    String sql = "UPDATE Server SET gamesPlayed = ?, gamesWon = ? "
+        + "WHERE ServerHostName = ? AND ClientUsername = ?;";
     PreparedStatement pstm;
     try {
       Iterator<ClientStatistic> iterator =
@@ -335,9 +327,8 @@ public class FillDatabase extends Database {
   public static synchronized void insertLetters(String letter, int point, int occurrence) {
     Database.reconnect();
     try {
-      pstmDic =
-          connection.prepareStatement(
-              "INSERT INTO Letters (Letter, Points, Occurrence) VALUES (?,?,?);");
+      pstmDic = connection
+          .prepareStatement("INSERT INTO Letters (Letter, Points, Occurrence) VALUES (?,?,?);");
       pstmDic.setString(1, letter);
       pstmDic.setInt(2, point);
       pstmDic.setInt(3, occurrence);
@@ -361,16 +352,12 @@ public class FillDatabase extends Database {
   public static synchronized void fillLetters() {
     deleteTable("Letters");
     Database.reconnect();
-    String[] letter = {
-      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
-      "T", "U", "V", "W", "X", "Y", "Z", "*"
-    };
-    int[] points = {
-      1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10, 0
-    };
-    int[] occurrence = {
-      9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1, 2
-    };
+    String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    int[] points =
+        {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10, 0};
+    int[] occurrence =
+        {9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1, 2};
     for (int i = 0; i < 27; i++) {
       insertLetters(letter[i], points[i], occurrence[i]);
     }

@@ -29,7 +29,7 @@ public class ServerStatistics implements Serializable {
    *
    * @author nitterhe
    * @return serverStatistics - HashMap with all clients and their personal statistics on this
-   *     server.
+   *         server.
    */
   public LinkedHashMap<String, ClientStatistic> getServerStatistics() {
     return this.serverStatistics;
@@ -61,7 +61,7 @@ public class ServerStatistics implements Serializable {
    * @author nitterhe
    * @param clientname - the username of the client as a String
    * @throws Exception - an Exception that is thrown when a similar client with the same name was
-   *     already on the server
+   *         already on the server
    */
   public boolean addClient(String clientname, String ipAddress) throws Exception {
     if (serverStatistics.containsKey(clientname)) {
@@ -71,7 +71,6 @@ public class ServerStatistics implements Serializable {
       throw new Exception();
     }
     this.serverStatistics.put(clientname, new ClientStatistic(clientname, ipAddress));
-    System.out.println("player added");
     this.sort();
     return true;
   }
@@ -86,8 +85,8 @@ public class ServerStatistics implements Serializable {
    * @param gamesWon - the number of games won by this client
    */
   public void loadClient(String clientname, String ipAddress, int gamesPlayed, int gamesWon) {
-    this.serverStatistics.put(
-        clientname, new ClientStatistic(clientname, ipAddress, gamesPlayed, gamesWon));
+    this.serverStatistics.put(clientname,
+        new ClientStatistic(clientname, ipAddress, gamesPlayed, gamesWon));
   }
 
   /**

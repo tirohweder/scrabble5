@@ -30,44 +30,82 @@ import javafx.scene.input.MouseEvent;
  */
 public class MultiplayerOverviewController extends Controller implements Initializable {
 
-  @FXML private Label userPlaying;
-  @FXML private Label dicDisplaying;
-  @FXML private ImageView playerNumber;
-  @FXML private ImageView arrowRight;
-  @FXML private ImageView arrowLeft;
-  @FXML private ComboBox<String> dictionarySelection;
-  @FXML private ImageView joinButton0;
-  @FXML private ImageView joinButton1;
-  @FXML private ImageView joinButton2;
-  @FXML private ImageView joinButton3;
-  @FXML private ImageView joinButton4;
-  @FXML private ImageView joinButton5;
-  @FXML private ImageView joinButton6;
-  @FXML private ImageView joinButton7;
-  @FXML private Label serverName0;
-  @FXML private Label serverName1;
-  @FXML private Label serverName2;
-  @FXML private Label serverName3;
-  @FXML private Label serverName4;
-  @FXML private Label serverName5;
-  @FXML private Label serverName6;
-  @FXML private Label serverName7;
-  @FXML private Label playerCount0;
-  @FXML private Label playerCount1;
-  @FXML private Label playerCount2;
-  @FXML private Label playerCount3;
-  @FXML private Label playerCount4;
-  @FXML private Label playerCount5;
-  @FXML private Label playerCount6;
-  @FXML private Label playerCount7;
-  @FXML private Label status0;
-  @FXML private Label status1;
-  @FXML private Label status2;
-  @FXML private Label status3;
-  @FXML private Label status4;
-  @FXML private Label status5;
-  @FXML private Label status6;
-  @FXML private Label status7;
+  @FXML
+  private Label userPlaying;
+  @FXML
+  private Label dicDisplaying;
+  @FXML
+  private ImageView playerNumber;
+  @FXML
+  private ImageView arrowRight;
+  @FXML
+  private ImageView arrowLeft;
+  @FXML
+  private ComboBox<String> dictionarySelection;
+  @FXML
+  private ImageView joinButton0;
+  @FXML
+  private ImageView joinButton1;
+  @FXML
+  private ImageView joinButton2;
+  @FXML
+  private ImageView joinButton3;
+  @FXML
+  private ImageView joinButton4;
+  @FXML
+  private ImageView joinButton5;
+  @FXML
+  private ImageView joinButton6;
+  @FXML
+  private ImageView joinButton7;
+  @FXML
+  private Label serverName0;
+  @FXML
+  private Label serverName1;
+  @FXML
+  private Label serverName2;
+  @FXML
+  private Label serverName3;
+  @FXML
+  private Label serverName4;
+  @FXML
+  private Label serverName5;
+  @FXML
+  private Label serverName6;
+  @FXML
+  private Label serverName7;
+  @FXML
+  private Label playerCount0;
+  @FXML
+  private Label playerCount1;
+  @FXML
+  private Label playerCount2;
+  @FXML
+  private Label playerCount3;
+  @FXML
+  private Label playerCount4;
+  @FXML
+  private Label playerCount5;
+  @FXML
+  private Label playerCount6;
+  @FXML
+  private Label playerCount7;
+  @FXML
+  private Label status0;
+  @FXML
+  private Label status1;
+  @FXML
+  private Label status2;
+  @FXML
+  private Label status3;
+  @FXML
+  private Label status4;
+  @FXML
+  private Label status5;
+  @FXML
+  private Label status6;
+  @FXML
+  private Label status7;
 
   private boolean isDictionarySelected = false;
   private int playerCount = 2;
@@ -99,7 +137,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void start(MouseEvent event) throws IOException {
@@ -131,7 +169,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -223,7 +261,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void manualHostEntry(MouseEvent event) throws IOException {
@@ -231,8 +269,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.INPUT);
     pum.show();
 
-    if (Data.isOkayClicked()
-        && !Data.getInputFieldText().equals("")
+    if (Data.isOkayClicked() && !Data.getInputFieldText().equals("")
         && this.joinServer(Data.getInputFieldText())) {
       Data.setOkayClicked(false);
       App.setRoot("MultiplayerLobby");
@@ -265,16 +302,14 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author nitterhe
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void findGame(MouseEvent event) throws IOException {
     playSound();
     if (!Data.getServerList().isEmpty()) {
-      String ip4 =
-          Data.getServerList()
-              .get((int) (Data.getServerList().size() * Math.random()))
-              .getIp4Address();
+      String ip4 = Data.getServerList().get((int) (Data.getServerList().size() * Math.random()))
+          .getIp4Address();
       if (joinServer(ip4)) {
         App.setRoot("MultiplayerLobby");
       }
@@ -303,7 +338,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void join0(MouseEvent event) throws IOException {
@@ -320,7 +355,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void join1(MouseEvent event) throws IOException {
@@ -337,7 +372,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void join2(MouseEvent event) throws IOException {
@@ -354,7 +389,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void join3(MouseEvent event) throws IOException {
@@ -371,7 +406,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void join4(MouseEvent event) throws IOException {
@@ -388,7 +423,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void join5(MouseEvent event) throws IOException {
@@ -405,7 +440,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void join6(MouseEvent event) throws IOException {
@@ -422,7 +457,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void join7(MouseEvent event) throws IOException {
@@ -507,14 +542,14 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @param number the integer containing the number which "Join"-button has been clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   private void joinGame(int number) throws IOException {
     if (Data.getServerList().size() >= number) {
       playSound();
     }
-    if (Data.getServerList().get(number).getClientCounter()
-        == Data.getServerList().get(number).getClientMaximum()) {
+    if (Data.getServerList().get(number).getClientCounter() == Data.getServerList().get(number)
+        .getClientMaximum()) {
       new NetworkError(NetworkErrorType.SERVERFULL);
     } else {
       if (joinServer(Data.getServerList().get(number).getIp4Address())) {
@@ -538,30 +573,28 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * This method is called to setup the <code>ComboBox dictionarySelection</code>, so all inserted
    * dictionaries are getting displayed. The dictionaries must be in the same directory as the .jar.
    *
-   * <p>https://stackabuse.com/java-list-files-in-a-directory/
+   * <p>
+   * https://stackabuse.com/java-list-files-in-a-directory/
    *
    * @author mherre
    */
   private void setUpDicitionaryBox() {
 
     File dir = new File(System.getProperty("user.dir"));
-    FilenameFilter filter =
-        new FilenameFilter() {
+    FilenameFilter filter = new FilenameFilter() {
 
-          public boolean accept(File dir, String name) {
-            if (name.endsWith("Parsed.txt")) {
-              return false;
-            } else {
-              return name.endsWith(".txt");
-            }
-          }
-        };
+      public boolean accept(File dir, String name) {
+        if (name.endsWith("Parsed.txt")) {
+          return false;
+        } else {
+          return name.endsWith(".txt");
+        }
+      }
+    };
 
     String[] fileNames = dir.list(filter);
 
-    if (fileNames == null) {
-      System.out.println("JCOMBO BOX Directory is INCORRECT or does not exist!");
-    } else {
+    if (fileNames != null) {
       for (String filename : fileNames) {
         this.dictionarySelection.getItems().add(filename);
       }
@@ -582,28 +615,27 @@ public class MultiplayerOverviewController extends Controller implements Initial
       Data.setIsSearching(true);
       Data.getPlayerClient().searchServers();
 
-      Runnable r =
-          new Runnable() {
+      Runnable r = new Runnable() {
 
-            public synchronized void run() {
-              for (int i = 0; i < 35 && Data.getIsSearching(); i++) {
-                Data.setServerList(Data.getPlayerClient().getServerList());
-                if (!Data.getServerList().isEmpty()) {
-                  int j = 0;
-                  while (j < Data.getServerList().size()) {
-                    displayServer(Data.getServerList().get(j), j);
-                    j++;
-                  }
-                }
-                try {
-                  wait(2000);
-                } catch (InterruptedException e) {
-                  e.printStackTrace();
-                }
+        public synchronized void run() {
+          for (int i = 0; i < 35 && Data.getIsSearching(); i++) {
+            Data.setServerList(Data.getPlayerClient().getServerList());
+            if (!Data.getServerList().isEmpty()) {
+              int j = 0;
+              while (j < Data.getServerList().size()) {
+                displayServer(Data.getServerList().get(j), j);
+                j++;
               }
-              Data.setIsSearching(false);
             }
-          };
+            try {
+              wait(2000);
+            } catch (InterruptedException e) {
+              e.printStackTrace();
+            }
+          }
+          Data.setIsSearching(false);
+        }
+      };
       new Thread(r).start();
     }
   }
@@ -638,77 +670,76 @@ public class MultiplayerOverviewController extends Controller implements Initial
    * @author mherre
    * @author nitterhe
    * @param serverdata contains the information needed to display everything correctly in the server
-   *     list
+   *        list
    * @param position the integer containing the position of the server in the server list
    */
   private void displayServer(ServerData serverdata, int position) {
-    Platform.runLater(
-        new Runnable() {
+    Platform.runLater(new Runnable() {
 
-          public void run() {
+      public void run() {
 
-            switch (position) {
-              case 0:
-                serverName0.setText(serverdata.getServerHost() + "'s Lobby");
-                playerCount0.setText(
-                    serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
-                status0.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
-                joinButton0.setOpacity(1.0);
-                break;
-              case 1:
-                serverName1.setText(serverdata.getServerHost() + "'s Lobby");
-                playerCount1.setText(
-                    serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
-                status1.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
-                joinButton1.setOpacity(1.0);
-                break;
-              case 2:
-                serverName2.setText(serverdata.getServerHost() + "'s Lobby");
-                playerCount2.setText(
-                    serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
-                status2.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
-                joinButton2.setOpacity(1.0);
-                break;
-              case 3:
-                serverName3.setText(serverdata.getServerHost() + "'s Lobby");
-                playerCount3.setText(
-                    serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
-                status3.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
-                joinButton3.setOpacity(1.0);
-                break;
-              case 4:
-                serverName4.setText(serverdata.getServerHost() + "'s Lobby");
-                playerCount4.setText(
-                    serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
-                status4.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
-                joinButton4.setOpacity(1.0);
-                break;
-              case 5:
-                serverName5.setText(serverdata.getServerHost() + "'s Lobby");
-                playerCount5.setText(
-                    serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
-                status5.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
-                joinButton5.setOpacity(1.0);
-                break;
-              case 6:
-                serverName6.setText(serverdata.getServerHost() + "'s Lobby");
-                playerCount6.setText(
-                    serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
-                status6.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
-                joinButton6.setOpacity(1.0);
-                break;
-              case 7:
-                serverName7.setText(serverdata.getServerHost() + "'s Lobby");
-                playerCount7.setText(
-                    serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
-                status7.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
-                joinButton7.setOpacity(1.0);
-                break;
-              default:
-                break;
-            }
-          }
-        });
+        switch (position) {
+          case 0:
+            serverName0.setText(serverdata.getServerHost() + "'s Lobby");
+            playerCount0
+                .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+            status0.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+            joinButton0.setOpacity(1.0);
+            break;
+          case 1:
+            serverName1.setText(serverdata.getServerHost() + "'s Lobby");
+            playerCount1
+                .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+            status1.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+            joinButton1.setOpacity(1.0);
+            break;
+          case 2:
+            serverName2.setText(serverdata.getServerHost() + "'s Lobby");
+            playerCount2
+                .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+            status2.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+            joinButton2.setOpacity(1.0);
+            break;
+          case 3:
+            serverName3.setText(serverdata.getServerHost() + "'s Lobby");
+            playerCount3
+                .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+            status3.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+            joinButton3.setOpacity(1.0);
+            break;
+          case 4:
+            serverName4.setText(serverdata.getServerHost() + "'s Lobby");
+            playerCount4
+                .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+            status4.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+            joinButton4.setOpacity(1.0);
+            break;
+          case 5:
+            serverName5.setText(serverdata.getServerHost() + "'s Lobby");
+            playerCount5
+                .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+            status5.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+            joinButton5.setOpacity(1.0);
+            break;
+          case 6:
+            serverName6.setText(serverdata.getServerHost() + "'s Lobby");
+            playerCount6
+                .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+            status6.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+            joinButton6.setOpacity(1.0);
+            break;
+          case 7:
+            serverName7.setText(serverdata.getServerHost() + "'s Lobby");
+            playerCount7
+                .setText(serverdata.getClientCounter() + "/" + serverdata.getClientMaximum());
+            status7.setText(serverdata.getServerStatus() ? "Playing" : "Waiting");
+            joinButton7.setOpacity(1.0);
+            break;
+          default:
+            break;
+        }
+      }
+    });
   }
 
   /**
