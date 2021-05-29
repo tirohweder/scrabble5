@@ -545,6 +545,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *         exist
    */
   private void joinGame(int number) throws IOException {
+    Data.setIsSearching(false);
     if (Data.getServerList().size() >= number) {
       playSound();
     }
@@ -618,7 +619,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
       Runnable r = new Runnable() {
 
         public synchronized void run() {
-          for (int i = 0; i < 35 && Data.getIsSearching(); i++) {
+          for (int i = 0; i < 70 && Data.getIsSearching(); i++) {
             Data.setServerList(Data.getPlayerClient().getServerList());
             if (!Data.getServerList().isEmpty()) {
               int j = 0;
