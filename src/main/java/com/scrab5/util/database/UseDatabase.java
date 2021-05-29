@@ -45,7 +45,7 @@ public class UseDatabase extends Database {
   public static synchronized boolean tablePlayerIsEmpty() {
     Database.reconnect();
     boolean empty = false;
-    int anzahl = 0;
+    int anzahl;
     ResultSet rs = null;
     try {
       Statement stm = connection.createStatement();
@@ -59,6 +59,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -84,6 +85,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -113,6 +115,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -143,6 +146,7 @@ public class UseDatabase extends Database {
     String[] letters = new String[letter.size()];
     letters = letter.toArray(letters);
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -154,16 +158,14 @@ public class UseDatabase extends Database {
    * Returns all the points of the letters as array.
    *
    * @author lengist
-   * @return integer array containing all points saved in the database
-   *         <p>
-   *         code line to convert list to array from:
-   *         https://www.techiedelight.com/convert-list-integer-array-int/
+   * @return integer array containing all points saved in the database code line to convert list to
+   *     array from: https://www.techiedelight.com/convert-list-integer-array-int/
    */
   public static synchronized int[] getAllPointsPerLetter() {
     Database.reconnect();
     ResultSet rs = null;
     Statement stm;
-    ArrayList<Integer> point = new ArrayList<Integer>();
+    ArrayList<Integer> point = new ArrayList<>();
     try {
       stm = connection.createStatement();
       rs = stm.executeQuery("SELECT Points FROM Letters");
@@ -175,6 +177,7 @@ public class UseDatabase extends Database {
     }
     int[] points = point.stream().mapToInt(Integer::intValue).toArray();
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -186,16 +189,14 @@ public class UseDatabase extends Database {
    * Returns all the Occurrences of the letters as array.
    *
    * @author lengist
-   * @return occurrence integer array containing all occurrences saved in the database
-   *         <p>
-   *         code line to convert list to array from:
-   *         https://www.techiedelight.com/convert-list-integer-array-int/
+   * @return occurrence integer array containing all occurrences saved in the database code line to
+   *     convert list to array from: https://www.techiedelight.com/convert-list-integer-array-int/
    */
   public static synchronized int[] getAllOccurrences() {
     Database.reconnect();
     ResultSet rs = null;
     Statement stm;
-    ArrayList<Integer> occurrence = new ArrayList<Integer>();
+    ArrayList<Integer> occurrence = new ArrayList<>();
     try {
       stm = connection.createStatement();
       rs = stm.executeQuery("SELECT Occurrence FROM Letters");
@@ -207,38 +208,12 @@ public class UseDatabase extends Database {
     }
     int[] occurrences = occurrence.stream().mapToInt(Integer::intValue).toArray();
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return occurrences;
-  }
-
-  /**
-   * Returns the points for a letter saved in the table Letters to calculate the points for a laid
-   * word.
-   *
-   * @author lengist
-   * @param letter representing the letter for which the points need to be known
-   * @return int value of the points for the letter
-   */
-  public static synchronized int getPointForLetter(String letter) {
-    Database.reconnect();
-    ResultSet rs = null;
-    Statement stm;
-    ArrayList<Integer> point = new ArrayList<Integer>();
-    try {
-      stm = connection.createStatement();
-      rs = stm.executeQuery("SELECT Points FROM Letters WHERE (Letter = '" + letter + "');");
-
-      while (rs.next()) {
-        point.add(rs.getInt(1));
-        return rs.getInt(1);
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return 0;
   }
 
   /**
@@ -255,11 +230,12 @@ public class UseDatabase extends Database {
     ResultSet s = null;
     try {
       Statement stm = connection.createStatement();
-      s = stm
-          .executeQuery("SELECT * FROM Server WHERE (ServerHostName = '" + serverHostName + "');");
+      s =
+          stm.executeQuery(
+              "SELECT * FROM Server WHERE (ServerHostName = '" + serverHostName + "');");
       ServerStatistics ss = new ServerStatistics();
-      String client = "";
-      String ipAddress = "";
+      String client;
+      String ipAddress;
       int gamesPlayed;
       int gamesWon;
       while (s.next()) {
@@ -275,6 +251,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
       try {
+        assert s != null;
         s.close();
       } catch (SQLException e1) {
         e1.printStackTrace();
@@ -285,42 +262,20 @@ public class UseDatabase extends Database {
   }
 
   /**
-   * Changes the points for the letter letter in the table Letters when a user chooses to
-   * individualize.
-   *
-   * @author lengist
-   * @param letter String for the letter where a change needs to be fulfilled
-   * @param point int for the new points
-   */
-  public static synchronized void setPointForLetter(String letter, int point) {
-    FillDatabase.updatePointLetters(letter, point);
-  }
-
-  /**
-   * Changes the occurrence for the letter letter in the table Letters when a user chooses to
-   * individualize.
-   *
-   * @author lengist
-   * @param letter String for the letter where a change needs to be fulfilled
-   * @param occurrence int for the new occurrence
-   */
-  public static synchronized void setOccurrenceLetters(String letter, int occurrence) {
-    FillDatabase.updateOccurrenceLetters(letter, occurrence);
-  }
-
-  /**
    * Updates the values in the table Letters after a user customized it.
    *
    * @author lengist
    * @param points a ArrayList for all the points that need to be saved.
    * @param occurrences a ArrayList for al the occurrences that need to be saved.
    */
-  public static synchronized void updateLetterCustomization(ArrayList<Integer> points,
-      ArrayList<Integer> occurrences) {
+  public static synchronized void updateLetterCustomization(
+      ArrayList<Integer> points, ArrayList<Integer> occurrences) {
     Database.reconnect();
     FillDatabase.deleteTable("Letters");
-    String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
-        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    String[] letter = {
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+      "T", "U", "V", "W", "X", "Y", "Z", "*"
+    };
     int[] point = new int[points.size()];
     int count = 0;
     for (int n : points) {
@@ -363,6 +318,7 @@ public class UseDatabase extends Database {
       e1.printStackTrace();
     }
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();

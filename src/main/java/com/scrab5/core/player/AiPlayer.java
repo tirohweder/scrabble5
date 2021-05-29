@@ -70,14 +70,14 @@ public class AiPlayer extends Player {
    */
   public static ArrayList<ArrayList<Tile>> wordGenerator(
       String fixLetter, int before, int after, int column, int row, boolean horizontal) {
-    ArrayList<Tile> listOfTiles = new ArrayList<Tile>();
-    ArrayList<String> possibleLetters1 = new ArrayList<String>();
+    ArrayList<Tile> listOfTiles;
+    ArrayList<String> possibleLetters1 = new ArrayList<>();
 
-    ArrayList<String> deletionRound1 = new ArrayList<String>();
-    ArrayList<String> deletionRound2 = new ArrayList<String>();
+    ArrayList<String> deletionRound1 = new ArrayList<>();
+    ArrayList<String> deletionRound2 = new ArrayList<>();
 
-    int before2 = 0;
-    int after2 = 0;
+    int before2;
+    int after2;
 
     BagOfTiles bag = Data.getGameSession().getBag();
     listOfTiles = bag.getBag();
@@ -93,7 +93,7 @@ public class AiPlayer extends Player {
     }
 
     int maximumLength = before + 1 + after;
-    ArrayList<String> finalWords = new ArrayList<String>();
+    ArrayList<String> finalWords;
 
     // TODO
 
@@ -148,7 +148,7 @@ public class AiPlayer extends Player {
      * Deletion round 3: deleting all words that contain an amount of a specific letter not
      * compatible with the occurrence in the bag.
      */
-    ArrayList<String> deletionRound3 = new ArrayList<String>();
+    ArrayList<String> deletionRound3 = new ArrayList<>();
     HashMap<String, Integer> currentDistribution = bag.getCurrentBagDistribution();
     for (String s : finalWords) {
       if (!checkBagDistributionLegal(currentDistribution, s, fixLetter)) {
@@ -157,7 +157,7 @@ public class AiPlayer extends Player {
     }
     finalWords.removeAll(deletionRound3);
 
-    ArrayList<ArrayList<Tile>> tiles = new ArrayList<ArrayList<Tile>>();
+    ArrayList<ArrayList<Tile>> tiles = new ArrayList<>();
     for (String s : finalWords) {
       tiles.add(wordToTiles(s, fixLetter, column, row, horizontal));
     }
@@ -178,7 +178,7 @@ public class AiPlayer extends Player {
    */
   public static ArrayList<Tile> wordToTiles(
       String word, String fixLetter, int column, int row, boolean horizontal) {
-    ArrayList<Tile> tiles = new ArrayList<Tile>();
+    ArrayList<Tile> tiles;
     tiles = getCoordinatesRep(word, fixLetter, column, row, horizontal);
     return tiles;
   }
@@ -200,10 +200,10 @@ public class AiPlayer extends Player {
   public static ArrayList<Tile> getCoordinatesRep(
       String word, String fixLetter, int columnFixLetter, int rowFixLetter, boolean horizontal) {
     int fixPosition = 0;
-    ArrayList<Tile> tiles = new ArrayList<Tile>();
-    int row = 0;
-    int column = 0;
-    int value = 0;
+    ArrayList<Tile> tiles = new ArrayList<>();
+    int row;
+    int column;
+    int value;
     for (int i = 0; i < word.length(); i++) {
       if (word.charAt(i) == fixLetter.charAt(0)) {
         fixPosition = i;
@@ -245,23 +245,6 @@ public class AiPlayer extends Player {
       }
     }
     return tiles;
-  }
-
-  /**
-   * Returns if a word contains a letter more than one time.
-   *
-   * @author lengist
-   * @param word the word which will be scanned
-   * @return a boolean value whether it contains a letter for more than one time (true) oder not
-   *     (false)
-   */
-  public static boolean isLetterExistingRepeatedly(String word) {
-    for (int i = 1; i < word.length(); i++) {
-      if (word.charAt(i) == word.charAt(i - 1)) {
-        return true;
-      }
-    }
-    return false;
   }
 
   /**

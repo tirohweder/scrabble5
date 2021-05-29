@@ -17,7 +17,7 @@ public class ServerStatistics implements Serializable {
 
   /**
    * Constructor for creating a new ServerStatistics instance. Creates an empty HashMap.
-   * 
+   *
    * @author nitterhe
    */
   public ServerStatistics() {
@@ -26,10 +26,10 @@ public class ServerStatistics implements Serializable {
 
   /**
    * Helping class to save every clients statistics in one object.
-   * 
+   *
    * @author nitterhe
    * @return serverStatistics - HashMap with all clients and their personal statistics on this
-   *         server.
+   *     server.
    */
   public LinkedHashMap<String, ClientStatistic> getServerStatistics() {
     return this.serverStatistics;
@@ -37,7 +37,7 @@ public class ServerStatistics implements Serializable {
 
   /**
    * Returns the instance at the number i.
-   * 
+   *
    * @author nitterhe
    * @param i - the place the object has that should be returned.
    * @return cs - the clientStatistic object at the position i
@@ -57,11 +57,11 @@ public class ServerStatistics implements Serializable {
   /**
    * Adds the client to serverStatistics if the client is new. Double if statement is used to avoid
    * NullpointerExceptions.
-   * 
+   *
    * @author nitterhe
    * @param clientname - the username of the client as a String
    * @throws Exception - an Exception that is thrown when a similar client with the same name was
-   *         already on the server
+   *     already on the server
    */
   public boolean addClient(String clientname, String ipAddress) throws Exception {
     if (serverStatistics.containsKey(clientname)) {
@@ -78,7 +78,7 @@ public class ServerStatistics implements Serializable {
 
   /**
    * Used when loading ServerStatistics from the database.
-   * 
+   *
    * @author nitterhe
    * @param clientname - the client's name
    * @param ipAddress - the client's ip address
@@ -86,13 +86,13 @@ public class ServerStatistics implements Serializable {
    * @param gamesWon - the number of games won by this client
    */
   public void loadClient(String clientname, String ipAddress, int gamesPlayed, int gamesWon) {
-    this.serverStatistics.put(clientname,
-        new ClientStatistic(clientname, ipAddress, gamesPlayed, gamesWon));
+    this.serverStatistics.put(
+        clientname, new ClientStatistic(clientname, ipAddress, gamesPlayed, gamesWon));
   }
 
   /**
    * Increases the clients gamesPlayed and also gamesWon when the boolean winner is true.
-   * 
+   *
    * @author nitterhe
    * @param clientname - the name of the client that has played
    * @param winner - the client that won the game
@@ -107,7 +107,7 @@ public class ServerStatistics implements Serializable {
 
   /**
    * Sorts the ServerStatistics ordered by gamesWon.
-   * 
+   *
    * @author nitterhe
    */
   private void sort() {
@@ -133,10 +133,9 @@ public class ServerStatistics implements Serializable {
     this.serverStatistics = help;
   }
 
-
   /**
    * Helping class to save every clients statistics in one object.
-   * 
+   *
    * @author nitterhe
    */
   public class ClientStatistic implements Serializable {
@@ -149,7 +148,7 @@ public class ServerStatistics implements Serializable {
 
     /**
      * Constructor for creating a single client's statistic object.
-     * 
+     *
      * @author nitterhe
      * @param clientname - the client's username
      * @param ipAddress - the client's ipAddress
@@ -164,7 +163,7 @@ public class ServerStatistics implements Serializable {
     /**
      * Constructor for creating a single client's statistic object. Used when loading statistics
      * from the server.
-     * 
+     *
      * @author nitterhe
      * @param clientname - the client's username
      * @param ipAddress - the client's ipAddress
@@ -180,7 +179,7 @@ public class ServerStatistics implements Serializable {
 
     /**
      * Returns the client's username.
-     * 
+     *
      * @author nitterhe
      * @return clientname - the client's username as a String
      */
@@ -190,7 +189,7 @@ public class ServerStatistics implements Serializable {
 
     /**
      * Returns the client's IPAddress.
-     * 
+     *
      * @author nitterhe
      * @return IPAddress - the client's IPAddress
      */
@@ -200,7 +199,7 @@ public class ServerStatistics implements Serializable {
 
     /**
      * Returns the number of games played on the server by the client.
-     * 
+     *
      * @author nitterhe
      * @return gamesPlayed - the number of games played by the client as an int
      */
@@ -210,7 +209,7 @@ public class ServerStatistics implements Serializable {
 
     /**
      * Returns the number of games won on the server by the client.
-     * 
+     *
      * @author nitterhe
      * @return gamesWon - the number og games won by the client as an int
      */
@@ -220,7 +219,7 @@ public class ServerStatistics implements Serializable {
 
     /**
      * Method to be called when the client played a game on the gameserver. Increases gamesPlayed.
-     * 
+     *
      * @author nitterhe
      */
     public void gamePlayed() {
@@ -229,7 +228,7 @@ public class ServerStatistics implements Serializable {
 
     /**
      * Method to be called when the client won a game on the gameserver. Increases gamesWon.
-     * 
+     *
      * @author nitterhe
      */
     public void gameWon() {

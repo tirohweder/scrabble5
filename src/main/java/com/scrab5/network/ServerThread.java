@@ -24,7 +24,6 @@ import java.net.SocketException;
  *
  * @author nitterhe
  */
-
 public class ServerThread extends Threads {
 
   private Socket socketToClient;
@@ -65,11 +64,14 @@ public class ServerThread extends Threads {
       while (this.running) {
         message = (Message) this.fromClient.readObject();
         switch (message.getType()) {
-
           case GETSERVERDATA:
-            sendMessageToClient(new SendServerDataMessage(this.server.getHost(),
-                this.socketToClient.getLocalPort(), this.server.getClientCounter(),
-                this.server.getClientMaximum(), this.server.getStatus()));
+            sendMessageToClient(
+                new SendServerDataMessage(
+                    this.server.getHost(),
+                    this.socketToClient.getLocalPort(),
+                    this.server.getClientCounter(),
+                    this.server.getClientMaximum(),
+                    this.server.getStatus()));
             this.stopThread();
             this.socketToClient.close();
             break;
@@ -139,13 +141,13 @@ public class ServerThread extends Threads {
    *
    * @param clientData - the clientData object of the lient that just connected to the server
    * @throws Exception - an Exception that is thrown when a similar client with the same name is
-   *         already on the server / was on the server
+   *     already on the server / was on the server
    * @author nitterher
    */
   protected void addClient(ClientData clientData) throws Exception {
     if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
-      FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
-          clientData.getIp());
+      FillDatabase.createServerRow(
+          this.server.getHost(), clientData.getUsername(), clientData.getIp());
     }
     if (null != server.getClients().putIfAbsent(clientData.getUsername(), clientData)) {
       throw new Exception();
@@ -212,4 +214,3 @@ public class ServerThread extends Threads {
     }
   }
 }
-

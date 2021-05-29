@@ -6,14 +6,14 @@ import java.sql.SQLException;
 
 /**
  * Class to get and set the data for the player statistics and leader boards.
- * 
+ *
  * @author lengist
  */
 public class PlayerProfileDatabase extends Database {
 
   /**
    * Returns the content in column TotalPoints at Player name.
-   * 
+   *
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
    * @return points int value of the total points from user "name" in the database
@@ -39,7 +39,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Returns the content in column PersonalHighscore at Player name.
-   * 
+   *
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
    * @return highscore int value of the personal high score stored in the database
@@ -61,6 +61,7 @@ public class PlayerProfileDatabase extends Database {
       e.printStackTrace();
     } finally {
       try {
+        assert rs != null;
         rs.close();
       } catch (SQLException e) {
         e.printStackTrace();
@@ -70,10 +71,9 @@ public class PlayerProfileDatabase extends Database {
     return highscore;
   }
 
-
   /**
    * Returns the content in column LaidWords at Player name.
-   * 
+   *
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
    * @return words int value of the count of laid words stored in the database
@@ -99,7 +99,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Returns the content in column PointsPerWordRate at Player name.
-   * 
+   *
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
    * @return pperWord int value of the points per word rate stored in the database
@@ -123,10 +123,9 @@ public class PlayerProfileDatabase extends Database {
     return pperWord;
   }
 
-
   /**
    * Returns the content in column LongestWord at Player name.
-   * 
+   *
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
    * @return word String with the longest word stored in the database
@@ -151,10 +150,9 @@ public class PlayerProfileDatabase extends Database {
     return word;
   }
 
-
   /**
    * Returns the content in column TotalPlayedGames at Player name.
-   * 
+   *
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
    * @return games int value of the total played games stored in the database
@@ -180,7 +178,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Returns the content in column TotalWins at Player name.
-   * 
+   *
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
    * @return wins int value of the total wins stored in the database
@@ -204,10 +202,9 @@ public class PlayerProfileDatabase extends Database {
     return wins;
   }
 
-
   /**
    * Returns the content in column WinRate at Player name.
-   * 
+   *
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
    * @return rate Double value of the win rate stored in the database
@@ -233,11 +230,11 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Returns the content in column FavoriteDictionary at Player name.
-   * 
+   *
    * @author lengist
    * @param name String name of the user to insert into preparedStatement
    * @return dic String representing the favorite dictionary of the player name stored in the
-   *         database
+   *     database
    */
   public static synchronized String getFavoriteDictionary(String name) {
     Database.reconnect();
@@ -260,7 +257,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Returns the current value of the music volume for player "name".
-   * 
+   *
    * @author lengits
    * @param name String name of the user where the music volume needs to be returned
    * @return music double value of the music volume
@@ -286,7 +283,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Returns the current value of the sound effect volume for player "name".
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the sound effect volume needs to be returned
    * @return soundEffect double value of the sound effect volume
@@ -312,7 +309,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of Name with String value delivered by parameter.
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the name needs to be set
    * @param newName String representing the new name to be stored in the database
@@ -324,7 +321,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of TotalPoints with int value delivered by parameter.
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the points needs to be set
    * @param points int representing the new points to be stored in the database
@@ -336,7 +333,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of PersonalHighscore with int value delivered by parameter.
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the highscore needs to be set
    * @param highscore int representing the new highscore to be stored in the database
@@ -348,7 +345,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of LaidWords with int value delivered by parameter.
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the laid words needs to be set
    * @param words int representing the new count for laid words to be stored in the database
@@ -360,11 +357,11 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of PointsPerWordRate with int value delivered by parameter.
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the points per word rate needs to be set
    * @param pperWord int representing the new count for points per word rate to be stored in the
-   *        database
+   *     database
    */
   public static void setPointsPerWordRate(String name, int pperWord) {
     FillDatabase.updatePlayer("PointsPerWordRate", name, null, pperWord, 0.0);
@@ -373,7 +370,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of LongestWord with int value delivered by parameter.
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the longest word needs to be set
    * @param longestWord int representing the new longest word to be stored in the database
@@ -385,7 +382,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of TotalPlayedGames with int value delivered by parameter.
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the total played games need to be set
    * @param games int representing the new count for played games to be stored in the database
@@ -397,7 +394,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of TotalWins with int value delivered by parameter.
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the total wins need to be set
    * @param wins int representing the new count for total wins to be stored in the database
@@ -409,7 +406,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of WinRate with double value delivered by parameter.
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the win rate needs to be set
    * @param rate int representing the new count for win rate to be stored in the database
@@ -421,7 +418,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of FavoriteDictionary with String value delivered by parameter.
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the favorite dictionary needs to be set
    * @param language String representing the new favorite dictionary to be stored in the database
@@ -433,7 +430,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of music volume for player "name".
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the music volume needs to be set
    * @param music double value of the music volume
@@ -445,7 +442,7 @@ public class PlayerProfileDatabase extends Database {
 
   /**
    * Updates current value of sound effect volume for player "name".
-   * 
+   *
    * @author lengist
    * @param name String name of the user where the sound effect volume needs to be set
    * @param soundEffect double value of the sound effect volume

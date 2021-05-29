@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,8 +12,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
 /**
- * Parses a dictionary and saves it as a new file.
- * Creates a file to send via network and saves a file received from another user via the network.
+ * Parses a dictionary and saves it as a new file. Creates a file to send via network and saves a
+ * file received from another user via the network.
  *
  * @author lengist
  */
@@ -65,7 +64,7 @@ public class DictionaryParser {
   public static void parseFile(String originalFile) {
     StringBuilder sb = new StringBuilder(originalFile);
     sb.setLength(sb.length() - 4);
-    newFileName = sb.toString() + "Parsed.txt";
+    newFileName = sb + "Parsed.txt";
     System.out.println(newFileName);
     createSearchableFile(originalFile);
   }
@@ -77,8 +76,9 @@ public class DictionaryParser {
    * @param dictionaryFile The file the user inserts as new dictionary
    */
   public static boolean createSearchableFile(String dictionaryFile) {
-    File file = new File(
-        System.getProperty("user.dir") + System.getProperty("file.separator") + newFileName);
+    File file =
+        new File(
+            System.getProperty("user.dir") + System.getProperty("file.separator") + newFileName);
 
     try {
       if (!doesAlreadyExist(file)) {
@@ -90,7 +90,7 @@ public class DictionaryParser {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    loadFile(dictionaryFile, file);
+    loadFile(dictionaryFile);
     try {
       bufWriter.close();
     } catch (IOException e) {
@@ -99,18 +99,13 @@ public class DictionaryParser {
     return true;
   }
 
-  private static void setReadOnly(File file) {
-    //file.setReadOnly();
-  }
-
   /**
    * Loads a file from the path and passes the lines of the document on to filterWords.
    *
    * @author lengist
    * @param file a String with the name of the file for the dictionary
-   * @param newFile the new parsed file, possible to set it on readOnly if necessary
    */
-  private static void loadFile(String file, File newFile) {
+  private static void loadFile(String file) {
     try {
       File fileOne =
           new File(System.getProperty("user.dir") + System.getProperty("file.separator") + file);
@@ -123,12 +118,9 @@ public class DictionaryParser {
         filterWords(line);
       }
       buf.close();
-    } catch (FileNotFoundException e1) {
+    } catch (IOException e1) {
       e1.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
     }
-    setReadOnly(newFile);
   }
 
   /**
@@ -171,7 +163,7 @@ public class DictionaryParser {
   /**
    * Checks if there already is a same file in the folder. This method is needed to prevent from
    * duplicates.
-   * 
+   *
    * @author lengist
    * @param file2 the file that should be created
    * @return a boolean value whether this exact file already exists in the folder or not
@@ -182,6 +174,7 @@ public class DictionaryParser {
     String line1;
     String line2;
 
+    assert savedFiles != null;
     for (File file1 : savedFiles) {
       if (file1.getName().equals(file2.getName())) {
         BufferedReader buf1;
@@ -199,8 +192,6 @@ public class DictionaryParser {
           buf1.close();
           buf2.close();
           return true;
-        } catch (FileNotFoundException e) {
-          e.printStackTrace();
         } catch (IOException e) {
           e.printStackTrace();
         }
@@ -219,22 +210,25 @@ public class DictionaryParser {
    * @see DictionaryMessage
    */
   public static void addDictionary(String dictionary, String dictionaryName) {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-            + dictionaryName.replace(".", "Parsed."));
-        try {
-          if (file.createNewFile()) {
-            bufWriter = new BufferedWriter(new FileWriter(file));
-            filterWords(dictionary);
-          } else {
-            System.out.println("dictionary already exists");
-          }
-        } catch (Exception e) {
-          e.printStackTrace();
-        }
-      }
-    });
+    Thread t =
+        new Thread(
+            () -> {
+              File file =
+                  new File(
+                      System.getProperty("user.dir")
+                          + System.getProperty("file.separator")
+                          + dictionaryName.replace(".", "Parsed."));
+              try {
+                if (file.createNewFile()) {
+                  bufWriter = new BufferedWriter(new FileWriter(file));
+                  filterWords(dictionary);
+                } else {
+                  System.out.println("dictionary already exists");
+                }
+              } catch (Exception e) {
+                e.printStackTrace();
+              }
+            });
     t.start();
   }
 
@@ -246,21 +240,22 @@ public class DictionaryParser {
    * @return dictionary - the dictionary as a String
    */
   public static String getDictionary(String dictionaryName) {
-    File file = new File(
-        System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
+    File file =
+        new File(
+            System.getProperty("user.dir") + System.getProperty("file.separator") + dictionaryName);
     try {
       FileInputStream fileInput = new FileInputStream(file);
-      String line = "";
+      String line;
       BufferedReader buf =
           new BufferedReader(new InputStreamReader(fileInput, StandardCharsets.UTF_8));
-      String help = "";
+      StringBuilder help = new StringBuilder();
       int count = 0;
       while ((line = buf.readLine()) != null) {
         count++;
-        help = help + "\n" + line;
+        help.append("\n").append(line);
         if (count == 100) {
           dictionary = dictionary + help;
-          help = "";
+          help = new StringBuilder();
           count = 0;
         }
       }

@@ -314,30 +314,30 @@ public class GameSession implements Serializable {
 
     for (Player player : Data.getGameSession().getListOfPlayers()) {
       if (!(player instanceof AiPlayer)) {
-        PlayerProfile temp = player.getPlayerProfile();
-        temp.addPoints(player.getName(), player.getPoints());
-        temp.addWords(player.getCorrectWords());
+        PlayerProfile tmp = player.getPlayerProfile();
+        tmp.addPoints(player.getName(), player.getPoints());
+        tmp.addWords(player.getCorrectWords());
 
-        temp.addGames(1);
+        tmp.addGames(1);
 
-        if (temp.getLaidWords() != 0) {
-          temp.adjustPointsPerWordRate(temp.getTotalPoints() / temp.getLaidWords());
+        if (tmp.getLaidWords() != 0) {
+          tmp.adjustPointsPerWordRate(tmp.getTotalPoints() / tmp.getLaidWords());
         }
-        if (temp.getLongestWord() > PlayerProfileDatabase.getLongestWord(player.getName())) {
-          temp.adjustLongestWord(temp.getLongestWord());
+        if (tmp.getLongestWord() > PlayerProfileDatabase.getLongestWord(player.getName())) {
+          tmp.adjustLongestWord(tmp.getLongestWord());
           /* TODO: connect to change the value for the longest word */
         }
         if (player.getPoints() > PlayerProfileDatabase.getPersonalHighscore(player.getName())) {
-          temp.adjustPersonalHighscore(player.getPoints());
+          tmp.adjustPersonalHighscore(player.getPoints());
         }
         if ((player.getName().equals(name))
             && (player.getPoints() != 0)
             && (player.getPoints() == mostPoints)) {
-          temp.addWins(1);
+          tmp.addWins(1);
         }
-        if (temp.getTotalPlayedGames() != 0) {
-          double newWinRate = (double) temp.getTotalWins() / (double) temp.getTotalPlayedGames();
-          temp.adjustWinRate(Math.round(newWinRate * 100.0) / 100.0);
+        if (tmp.getTotalPlayedGames() != 0) {
+          double newWinRate = (double) tmp.getTotalWins() / (double) tmp.getTotalPlayedGames();
+          tmp.adjustWinRate(Math.round(newWinRate * 100.0) / 100.0);
         }
       }
     }

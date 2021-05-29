@@ -24,8 +24,11 @@ public class DictionaryScanner {
    * @return boolean if the file contains a searched word
    */
   public static boolean scan(String searchedWord) {
-    File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + Data.getSelectedDictionary().replace(".", "Parsed."));
+    File fileOne =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + Data.getSelectedDictionary().replace(".", "Parsed."));
     boolean found = false;
     // String[] possibleLetters = UseDatabase.getAllLetters();
     // String test;
@@ -58,8 +61,11 @@ public class DictionaryScanner {
    * @return found if the word is in the dictionary
    */
   public static boolean scanTest(String searchedWord) {
-    File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + DictionaryParser.getNewFileName());
+    File fileOne =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + DictionaryParser.getNewFileName());
     boolean found = false;
     try {
       Scanner scanner = new Scanner(fileOne);
@@ -85,9 +91,12 @@ public class DictionaryScanner {
    * @return a String array containing all the suitable words
    */
   public static ArrayList<String> getWordsIncluding(String letter, int length) {
-    ArrayList<String> list = new ArrayList<String>();
-    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + Data.getSelectedDictionary().replace(".", "Parsed."));
+    ArrayList<String> list = new ArrayList<>();
+    File file =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + Data.getSelectedDictionary().replace(".", "Parsed."));
     try {
       Scanner scanner = new Scanner(file);
       while (scanner.hasNextLine()) {
@@ -101,7 +110,7 @@ public class DictionaryScanner {
       e.printStackTrace();
     }
     String[] suitableWords = new String[list.size()];
-    suitableWords = list.toArray(suitableWords);
+    list.toArray(suitableWords);
     return list;
   }
 
@@ -114,7 +123,7 @@ public class DictionaryScanner {
    * @return checked a ArrayList containing all words containing the letter
    */
   public static ArrayList<String> getWordsIncludingFrom(ArrayList<String> words, String letter) {
-    ArrayList<String> checked = new ArrayList<String>();
+    ArrayList<String> checked = new ArrayList<>();
     for (String line : words) {
       if (line.contains(letter)) {
         checked.add(line);

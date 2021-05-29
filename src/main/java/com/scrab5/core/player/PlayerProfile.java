@@ -2,7 +2,6 @@ package com.scrab5.core.player;
 
 import com.scrab5.ui.Data;
 import com.scrab5.util.database.PlayerProfileDatabase;
-import java.io.IOException;
 import java.io.Serializable;
 
 /**
@@ -15,7 +14,7 @@ public class PlayerProfile implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private static String name = Data.getCurrentUser();
+  private static final String name = Data.getCurrentUser();
 
   /**
    * Returns the name of the current user.
@@ -125,7 +124,7 @@ public class PlayerProfile implements Serializable {
    * @author lengist
    * @param dictionary the user selected in the played game
    */
-  public void changeDictionary(String dictionary) throws IOException {
+  public void changeDictionary(String dictionary) {
     PlayerProfileDatabase.setFavoriteDictionary(name, dictionary);
   }
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * Class to save server information in one object. Including server host, ip4 and port.
- * 
+ *
  * @author nitterhe
  */
 public class ServerData implements Serializable {
@@ -20,7 +20,7 @@ public class ServerData implements Serializable {
   /**
    * Constructor for ServerData object. The serverList saves server information as ServerData
    * objects.
-   * 
+   *
    * @author nitterhe
    * @param serverHost - The name of the server host
    * @param ip4 - The IP4Address of the server
@@ -29,7 +29,12 @@ public class ServerData implements Serializable {
    * @param clientMaximum - the maximum amount of clients allowed to connect to the server
    * @param status - the server's status (true = in game/ false = waiting for clients)
    */
-  public ServerData(String serverHost, String ip4, int port, int clientCounter, int clientMaximum,
+  public ServerData(
+      String serverHost,
+      String ip4,
+      int port,
+      int clientCounter,
+      int clientMaximum,
       boolean status) {
     this.serverHost = serverHost;
     this.ip4 = ip4;
@@ -41,7 +46,7 @@ public class ServerData implements Serializable {
 
   /**
    * Returns the server's host as a String.
-   * 
+   *
    * @author nitterhe
    * @return servername - the name of the host
    */
@@ -51,7 +56,7 @@ public class ServerData implements Serializable {
 
   /**
    * Returns the IP4Address of the server as a String.
-   * 
+   *
    * @author nitterhe
    * @return ip4 - the IP4Address as a String
    */
@@ -61,7 +66,7 @@ public class ServerData implements Serializable {
 
   /**
    * Returns the server's port as an integer.
-   * 
+   *
    * @author nitterhe
    * @return port - the server's port
    */
@@ -71,7 +76,7 @@ public class ServerData implements Serializable {
 
   /**
    * Returns the server's counter of connected clients.
-   * 
+   *
    * @author nitterhe
    * @return clientCounter - the server's number of connected clients
    */
@@ -81,7 +86,7 @@ public class ServerData implements Serializable {
 
   /**
    * Returns the maximum of players allowed to connect to the server.
-   * 
+   *
    * @author nitterhe
    * @return clientMaximum - the maximum of players allowed to connect to the server
    */
@@ -91,7 +96,7 @@ public class ServerData implements Serializable {
 
   /**
    * Returns the server's current status as a boolean (true = in game/ false = waiting for clients).
-   * 
+   *
    * @author nitterhe
    * @return status - the server's current status
    */
