@@ -21,7 +21,7 @@ public class PlayerProfile implements Serializable {
    * Returns the name of the current user.
    *
    * @author lengist
-   * @return String representation of the name of the current user
+   * @return name String representation of the name of the current user
    */
   public static String getName() {
     return name;

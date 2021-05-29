@@ -61,7 +61,6 @@ public class DictionaryScanner {
     File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + DictionaryParser.getNewFileName());
     boolean found = false;
-
     try {
       Scanner scanner = new Scanner(fileOne);
       while (scanner.hasNextLine()) {
