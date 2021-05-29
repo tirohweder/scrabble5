@@ -799,8 +799,6 @@ public class AiPlayer extends Player {
       row = rowRand.get(i);
       for (int j = 0; j < 15; j++) {
         column = columnRand.get(j);
-        System.out.println("Checking " + row + " : " + column);
-
         // If tile is already used on the gameBoard or if FirstTile
         if (Data.getGameSession().getGameBoard().getPlayedTile(row, column) != null
             || Data.getGameSession().getGameBoard().isFirstTile()) {

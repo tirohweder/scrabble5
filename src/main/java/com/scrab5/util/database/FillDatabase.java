@@ -164,7 +164,6 @@ public class FillDatabase extends Database {
       String column, String name, String contentString, int contentInt, double doubleValues) {
     Database.disconnect();
     Database.reconnect();
-    System.out.println("Fill");
 
     try {
       PreparedStatement pstmt = null;
@@ -182,7 +181,6 @@ public class FillDatabase extends Database {
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
-          System.out.println("gesetzt");
         } else if (column.equals("PersonalHighscore")) {
           String sql = "UPDATE Player SET PersonalHighscore = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
@@ -229,7 +227,6 @@ public class FillDatabase extends Database {
           String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setString(1, contentString);
-          System.out.println("contentString: " + contentString);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("Music")) {
@@ -345,7 +342,6 @@ public class FillDatabase extends Database {
       pstmDic.setInt(2, point);
       pstmDic.setInt(3, occurrence);
       pstmDic.executeUpdate();
-      System.out.println("fine");
     } catch (SQLException e) {
       e.printStackTrace();
     }
