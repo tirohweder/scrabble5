@@ -8,7 +8,6 @@ import com.scrab5.ui.Data;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
 import com.scrab5.util.database.Database;
-import com.scrab5.util.database.PlayerProfileDatabase;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -59,7 +58,7 @@ public class GameSession implements Serializable {
     }
     initializeBag(letters, points);
     for (Player player : listOfPlayers) {
-      // we fill rack of every player even ai, this acts like it blocks the stuff
+      // we fill rack of every player even ai, this makes it more realistic.
       player.getRack().fill(bag);
     }
     gameBoard = new GameBoard();
@@ -255,8 +254,6 @@ public class GameSession implements Serializable {
    * @author trohwede
    */
   public void finishTurn() throws IOException {
-
-    boolean doanythingelse = true;
     for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
       if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
         Data.getGameSession()
@@ -266,13 +263,10 @@ public class GameSession implements Serializable {
             .fill(Data.getGameSession().getBag());
         if (Data.getGameSession().getListOfPlayers().get(i).getRack().getRackSize() == 0) {
           this.shouldEnd = true;
-          doanythingelse = false;
         }
       }
     }
-
-    // TODO fix this if nesessary
-    if (doanythingelse) {
+    if (!shouldEnd) {
       currentPlayer.getRack().fill(bag);
 
       roundNumber++;

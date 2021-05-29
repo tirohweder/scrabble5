@@ -777,8 +777,11 @@ public class AiPlayer extends Player {
     // go through game while threshhold is not reached
     int pointsForRound = 0;
 
+    boolean firstTilePlay = false;
+    // check if first tile was played before
     if (Data.getGameSession().getGameBoard().isFirstTile()) {
       getSpotsFree2(7, 7, Data.getGameSession().getGameBoard());
+      firstTilePlay = true;
     }
 
     // to randomise where words are selected, we need random arrays.
@@ -865,9 +868,6 @@ public class AiPlayer extends Player {
 
               // we use the gaussian method to have random borders for playing words
               // also reduces threshold needed for each consecutive skipped turn
-
-              // TODO rack size reduce points
-
               int aiThresholdLow =
                   (int) Math.round(random.nextGaussian() * 2 + aiThreshold - (aiSkippedTurns * 2));
               int aiThresholdHigh =
@@ -875,8 +875,9 @@ public class AiPlayer extends Player {
                       Math.round(
                           random.nextGaussian() * 3 + aiThreshold + 10 + (aiSkippedTurns * 2));
 
+              // when only very little tiles available allow bigger spread
               if (fakeRackSize < 7) {
-                aiThresholdLow = 0;
+                aiThresholdLow = 1;
                 aiThresholdHigh = 50;
               }
 
@@ -885,7 +886,6 @@ public class AiPlayer extends Player {
                 choosenWord = wordList.get(randomSelector.get(l));
                 pointsForRound = points.get(randomSelector.get(l));
                 foundMatchingThreshold = true;
-
                 break findacceptable;
               }
             }
@@ -930,7 +930,7 @@ public class AiPlayer extends Player {
       // play sound bingo if 7 tiles are played at once by the ai. Because it always only uses 1
       // tile to create a word it need length 8
 
-      if (choosenWord.size() == 7) {
+      if (choosenWord.size() == 7 && firstTilePlay) {
         if (Data.getGameSession().isOnline()) {
           Data.getPlayerClient().playSound(false);
         } else {
@@ -944,9 +944,9 @@ public class AiPlayer extends Player {
               && tile.getColumn() == 7
               && Data.getGameSession().getGameBoard().getPlayedTile(7, 7) == null) {
             if (Data.getGameSession().isOnline()) {
-              Data.getPlayerClient().playSound(true);
+              Data.getPlayerClient().playSound(false);
             } else {
-              Data.getGameSession().playSound(true);
+              Data.getGameSession().playSound(false);
             }
           }
         }
