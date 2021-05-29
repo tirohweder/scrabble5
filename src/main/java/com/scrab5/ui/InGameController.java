@@ -1020,6 +1020,7 @@ public abstract class InGameController implements Initializable {
         }
       } else {
         // skip turn
+        turn = true;
         Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn() + 1);
         Data.getGameSession().finishTurn();
       }
