@@ -24,7 +24,6 @@ public class AccountCreationController extends Controller implements Initializab
 
   private static String predecessor = "";
   @FXML private TextField nickname;
-  private String createdUsername;
 
   /**
    * Sets the predescessor scene of AccountCreationController.
@@ -127,9 +126,8 @@ public class AccountCreationController extends Controller implements Initializab
 
     if (username.matches(regex)) {
       if (!UseDatabase.playerExists(this.nickname.getText())) {
-        this.createdUsername = username;
-        Data.setCurrentUser(this.createdUsername);
-        FillDatabase.createPlayer(this.createdUsername);
+        Data.setCurrentUser(username);
+        FillDatabase.createPlayer(username);
         FillDatabase.createServerRow(
             Data.getCurrentUser(),
             Data.getCurrentUser(),

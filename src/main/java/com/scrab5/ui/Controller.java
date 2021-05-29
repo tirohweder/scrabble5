@@ -97,13 +97,13 @@ public abstract class Controller {
    * user in the "Settings.fxml" scene.
    *
    * @author mherre
-   * @param file the String containing the file name
    */
-  protected void playSound(String file) {
+  protected void playSound() {
     Media sound =
         new Media(
             Objects.requireNonNull(
-                    Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file))
+                    Controller.class.getResource(
+                        "/com/scrab5/ui/sound_effects/" + "ButtonClicked.mp3"))
                 .toExternalForm());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.setVolume(Data.getSFXVolume());

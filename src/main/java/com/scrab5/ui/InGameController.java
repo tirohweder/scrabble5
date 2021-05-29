@@ -46,11 +46,8 @@ public abstract class InGameController implements Initializable {
   private ImageView clickedTile;
   private ImageView clickedLetter;
   private Label clickedLabel;
-  private Media sound;
-  private MediaPlayer mediaPlayer;
   private Image markedTile;
   private boolean endPossible = false;
-  private String letterJoker;
   @FXML private ImageView playerProfile1Passive;
   @FXML private ImageView playerProfile2Passive;
   @FXML private ImageView playerProfile3Passive;
@@ -383,7 +380,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void fieldClicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
 
@@ -442,7 +439,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void rackPlace1clicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       rackPlace1 = (ImageView) event.getSource();
       rackClicked = 0;
@@ -506,7 +503,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void rackPlace2clicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       rackPlace2 = (ImageView) event.getSource();
       rackClicked = 1;
@@ -570,7 +567,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void rackPlace3clicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       rackPlace3 = (ImageView) event.getSource();
       rackClicked = 2;
@@ -634,7 +631,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void rackPlace4clicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       rackPlace4 = (ImageView) event.getSource();
       rackClicked = 3;
@@ -698,7 +695,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void rackPlace5clicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       rackPlace5 = (ImageView) event.getSource();
       rackClicked = 4;
@@ -762,7 +759,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void rackPlace6clicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       rackPlace6 = (ImageView) event.getSource();
@@ -827,7 +824,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void rackPlace7clicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
 
@@ -901,7 +898,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void playClicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     ArrayList<Tile> currentChanges = Data.getGameSession().getGameBoard().getCurrentChanges();
 
@@ -1038,7 +1035,7 @@ public abstract class InGameController implements Initializable {
             // re initialize rack and the gamboard
             initRack();
             initPlayers();
-            
+
             Data.getGameSession().checkBagAndRack(Data.getGameSession().getCurrentPlayer());
 
             // finish turn
@@ -1079,7 +1076,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void shuffleClicked(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     ArrayList<Integer> order = new ArrayList<>();
 
@@ -1129,7 +1126,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void exchangeClicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (Data.getGameSession().getGameBoard().isAllowedToPlay()) {
       if ((Data.getGameSession().getGameBoard().getCurrentChanges().size() == 0)) {
         if (Data.getGameSession().getBag().getSize() > 7) {
@@ -1157,11 +1154,11 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void jokerLetterChoosen(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     ImageView iv = (ImageView) event.getSource();
 
     if (chooseJoker) {
-      letterJoker = iv.getId();
+      String letterJoker = iv.getId();
       setNewTile(clickedLetter, clickedLabel, letterJoker, 0);
 
       if (Data.getGameSession()
@@ -1195,7 +1192,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void giveUpClicked(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
     pum.show();
     if (Data.isConfirmed()) {
@@ -1221,7 +1218,7 @@ public abstract class InGameController implements Initializable {
   @FXML
   private void undoClicked(MouseEvent event) {
     if (undoButton.getOpacity() == 1) {
-      playSound("ButtonClicked.mp3");
+      playSound();
       if (changes.size() > 0) {
         backToRack(
             changes.get(changes.size() - 1), tilePlacedOrder.get(tilePlacedOrder.size() - 1));
@@ -1339,8 +1336,7 @@ public abstract class InGameController implements Initializable {
    * return or a normal letter by checking arraylists with the order when the letter has been laid.
    *
    * @author apilgirm
-   * @param ImageView iv field which contained a letter returned, int place - which rackplace is
-   *     returned
+   * @param iv field which contained a letter returned, int place - which rackplace is returned
    */
   private void backToRack(ImageView iv, int place) {
 
@@ -1458,8 +1454,7 @@ public abstract class InGameController implements Initializable {
    * opacity and resets the boolean clicked attributes (Letter/ Tile) for source and destination,
    *
    * @author apilgirm
-   * @param ImageView iv field which contained a letter returned, int place - which rackplace is
-   *     returned
+   * @param iv field which contained a letter returned, int place - which rackplace is returned
    */
   private void placeLetter(ImageView iv, Label l) {
 
@@ -1482,7 +1477,7 @@ public abstract class InGameController implements Initializable {
    * placement.
    *
    * @author apilgrim
-   * @param placeID - String representation of the coordinate from every tile on the board read from
+   * @param placeId - String representation of the coordinate from every tile on the board read from
    *     the fxml document as ID
    * @return x - Integer representation of the x coordinate for the tile, placed on the Gameboard
    */
@@ -1498,7 +1493,7 @@ public abstract class InGameController implements Initializable {
    * gameboard placement.
    *
    * @author apilgrim
-   * @param placeID - String representation of the coordinate from every tile on the board read from
+   * @param placeId - String representation of the coordinate from every tile on the board read from
    *     the fxml document as ID
    * @return x - Integer representation of the y coordinate for the tile, placed on the Gameboard
    */
@@ -1528,15 +1523,15 @@ public abstract class InGameController implements Initializable {
    * user in the "Settings.fxml" scene.
    *
    * @author mherre
-   * @param file the String containing the file name
    */
-  protected void playSound(String file) {
-    sound =
+  protected void playSound() {
+    Media sound =
         new Media(
             Objects.requireNonNull(
-                    Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file))
+                    Controller.class.getResource(
+                        "/com/scrab5/ui/sound_effects/" + "ButtonClicked.mp3"))
                 .toExternalForm());
-    mediaPlayer = new MediaPlayer(sound);
+    MediaPlayer mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();
   }
@@ -1545,7 +1540,7 @@ public abstract class InGameController implements Initializable {
    * Method to create a new popupmessage.
    *
    * @author apilgrim
-   * @param String message for the PopUpMessage
+   * @param message for the PopUpMessage
    */
   private void newPum(String message) throws IOException {
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
@@ -1556,7 +1551,7 @@ public abstract class InGameController implements Initializable {
    * Method to remove the tile from the rack at the position i.
    *
    * @author apilgrim
-   * @param int position of the tile
+   * @param pos of the tile
    */
   protected void rackRemoveTile(int pos) {
     ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
@@ -1631,7 +1626,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void endGame(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (endPossible) {
       Data.getGameSession().setShouldEnd(true);
       Data.getGameSession().endGame();
@@ -1682,7 +1677,7 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void closeGame(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     PopUpMessage pum =
         new PopUpMessage(
             "Really!?\nEvery progress is lost and there is no way back....",
