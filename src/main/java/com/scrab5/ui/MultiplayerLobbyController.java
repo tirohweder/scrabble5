@@ -113,6 +113,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     this.setUpInit();
     votes = new LinkedHashMap<String, ArrayList<Integer>>();
 
+    // this is a short delay so things in the background sent via the server are set up.
     synchronized (this) {
       try {
         wait(200);
@@ -129,8 +130,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.customizeButton.setOpacity(1.0);
     }
     this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4());
-    this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4());
-    this.refreshUI();
+    this.refreshUi();
   }
 
   /**
@@ -191,6 +191,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
     playSound("ButtonClicked.mp3");
 
+    // adds a different AI when adding an AI
     if (Data.getHostedServer().getClientMaximum() > Data.getHostedServer().getClientCounter()) {
       switch (ai % 3) {
         case 0:
@@ -258,6 +259,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
 
+    // initialization if used Lists and arrays
     ArrayList<Player> gameSessionList = new ArrayList<Player>();
     ArrayList<Integer> voteResults = new ArrayList<Integer>();
     Collection<ClientData> clientdata =
@@ -270,6 +272,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     Iterator<ClientData> it = clientdata.iterator();
     ClientData current;
     int counter = 0;
+    // inizializes a list of all players with the names of the currently connected clients and added
+    // AIs
     while (it.hasNext()) {
       current = it.next();
       if (current.getIp().equals("AI")) {
@@ -280,10 +284,13 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       }
     }
 
+    // for the number of clients and AIs connected a new voteResult with the value 0 is added
     for (int i = 0; i < clientdata.size(); i++) {
       voteResults.add(0);
     }
 
+    // for each vote that was handed in by the clients the order numbers for each client is added
+    // up. (1. gets 1 point added 2. gets 2 ....)
     for (ArrayList<Integer> vote : votes.values()) {
       for (int j = 0; j < clientdata.size(); j++) {
         voteResults.add(j, vote.get(j) + voteResults.remove(j));
@@ -291,6 +298,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
 
     int max;
+    // now the maximum in the voteResults is calulated and added on top of the list. So the player
+    // with the highest amount of votes is added first and therefore plays as the last player. Many
+    // votes mean that this player was often last in the suggested orders.
     for (int i = 0; i < playerList.size(); i++) {
       max = 0;
       for (int k = 1; k < clientdata.size(); k++) {
@@ -302,10 +312,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       voteResults.set(max, 0);
     }
 
-    for (Player p : gameSessionList) {
-      System.out.println(p.getName());
-    }
-
+    // now with the correct order of players and the eventually edited letter distribution and value
+    // distribution a new gameSession is created
     if (Data.getHasBeenEdited()) {
       ArrayList<Integer> tiles = createTileBag(Data.getOccurrencyDistribution());
       new GameSession(gameSessionList, tiles, Data.getPointsDistribution(), true);
@@ -323,6 +331,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       Data.setGameSession(new GameSession(gameSessionList, tiles, points, true));
     }
 
+    // the game is started and sent to all connected clients
     Data.getHostedServer().startGame();
     Data.getHostedServer().sendDictionary(Data.getSelectedDictionary(),
         DictionaryParser.getDictionary(Data.getSelectedDictionary()));
@@ -331,11 +340,12 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   /**
-   * Use Case 3.3 and 5 within.
+   * Refreshes the UI and therefore changes like player joined or chat Messages received. Use Case
+   * 3.3 and 5 within.
    *
-   * @author nitterhe
+   * @author nitterhe, mherre
    */
-  private void refreshUI() {
+  private void refreshUi() {
 
     Thread t = new Thread(new Runnable() {
 
@@ -344,19 +354,22 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
         while (Data.getPlayerClient().getClientThread().isAlive()) {
 
-          Server UIServer = Data.getPlayerClient().getCurrentServer();
-          ServerStatistics sd = UIServer.getServerStatistics();
-          Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
+          // initialization of used collections
+          Server uiServer = Data.getPlayerClient().getCurrentServer();
+          ServerStatistics sd = uiServer.getServerStatistics();
+          Iterator<ClientData> iterator = uiServer.getClients().values().iterator();
 
-          playerAmount = UIServer.getClientCounter();
+          playerAmount = uiServer.getClientCounter();
 
           Platform.runLater(new Runnable() {
 
             @Override
             public void run() {
 
+              // updates the chat
               chatBox.setText(Data.getChatHistory().toString());
 
+              // switches the layer to in game is the game has started
               if (Data.getPlayerClient().getStarting()) {
                 try {
                   Data.getPlayerClient().setStarting(false);
@@ -369,6 +382,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
 
               boolean start = true;
 
+              // sets the texts on the labels for each player
               ClientData client;
               if (iterator.hasNext()) {
                 client = iterator.next();
@@ -469,6 +483,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 kick4.setOpacity(0);
               }
 
+              // sets the posibility to start the game for the host
               if (start && Data.getPlayerClient().getCurrentServer().getClients().size() > 1
                   && isHost) {
                 startButton.setOpacity(1.0);
@@ -488,6 +503,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                 startButton.setOnMouseClicked(null);
               }
 
+              // loads and displays the lobby statistics
               ClientStatistic help;
               if (null != (help = sd.get(1))) {
                 playerNameStats1.setText(help.getClientName());
@@ -533,6 +549,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
           });
 
           isClickable();
+          // delay for less lag
           synchronized (this) {
             try {
               this.wait(200);
@@ -549,7 +566,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   /**
    * Called when the lobby was closed by the host.
    *
-   * @throws IOException
+   * @throws IOException - thrown when the layer could not be switched
    * @author nitterhe
    */
   public static void lobbyClosed() {
@@ -560,11 +577,20 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
   }
 
+  /**
+   * Adds a play order vote to all votes.
+   * 
+   * @author nitterhe
+   * @param clientname - the name of the client suggesting the player order
+   * @param vote - the actual order
+   */
   public static void addVote(String clientname, ArrayList<Integer> vote) {
     votes.putIfAbsent(clientname, vote);
   }
 
-
+  /**
+   * @author mherre
+   */
   protected boolean isClickable() {
     if (playerAmount == Data.getPlayerClient().getCurrentServer().getClientMaximum()
         || !this.isHost) {
