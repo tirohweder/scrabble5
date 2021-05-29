@@ -2,6 +2,7 @@ package com.scrab5.ui;
 
 import com.scrab5.util.database.Database;
 import java.util.Objects;
+import java.util.Set;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
@@ -86,6 +87,11 @@ public abstract class Controller {
 
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();
+
+    Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+    for (Thread t : threadSet) {
+      System.out.println(t);
+    }
   }
 
   /**
@@ -93,12 +99,12 @@ public abstract class Controller {
    * user in the "Settings.fxml" scene.
    *
    * @author mherre
-   * @param file the String containing the file name
    */
-  protected void playSound(String file) {
-    Media sound = new Media(
-        Objects.requireNonNull(Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file))
-            .toExternalForm());
+  protected void playSound() {
+    Media sound = new Media(Objects
+        .requireNonNull(
+            Controller.class.getResource("/com/scrab5/ui/sound_effects/" + "ButtonClicked.mp3"))
+        .toExternalForm());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();

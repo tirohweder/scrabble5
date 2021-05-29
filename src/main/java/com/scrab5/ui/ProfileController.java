@@ -57,7 +57,7 @@ public class ProfileController extends Controller implements Initializable {
   private void deleteProfile(MouseEvent event) throws IOException {
     Database.reconnect();
 
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     String message = "Are you sure you want to delete this profile? (You can't undo this)";
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.CONFIRMATION);
@@ -90,7 +90,7 @@ public class ProfileController extends Controller implements Initializable {
   @FXML
   private void editName(MouseEvent event) throws IOException {
     Database.reconnect();
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     String message = "Enter your changes and click 'Okay'";
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.INPUT);
@@ -115,7 +115,7 @@ public class ProfileController extends Controller implements Initializable {
    */
   @FXML
   private void changeProfile(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     App.setRoot("RealLogin", "Profile");
   }
 
@@ -130,7 +130,7 @@ public class ProfileController extends Controller implements Initializable {
    */
   @FXML
   private void createNewPlayerProfile(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     App.setRoot("AccountCreation", "Profile");
   }
 
@@ -145,7 +145,7 @@ public class ProfileController extends Controller implements Initializable {
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     App.setRoot("MainMenu");
   }
 
