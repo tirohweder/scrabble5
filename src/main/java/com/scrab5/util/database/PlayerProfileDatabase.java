@@ -441,7 +441,6 @@ public class PlayerProfileDatabase extends Database {
   public static void setMusicVolume(String name, Double music) {
     FillDatabase.updatePlayer("Music", name, null, 0, music);
     Database.disconnect();
-    System.out.println("VolumeFertig");
   }
 
   /**
@@ -454,6 +453,5 @@ public class PlayerProfileDatabase extends Database {
   public static void setSoundEffectVolume(String name, Double soundEffect) {
     FillDatabase.updatePlayer("SoundEffect", name, null, 0, soundEffect);
     Database.disconnect();
-    System.out.println("EffectFertig");
   }
 }

@@ -14,6 +14,7 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Parses a dictionary and saves it as a new file.
+ * Creates a file to send via network and saves a file received from another user via the network.
  *
  * @author lengist
  */
@@ -38,7 +39,7 @@ public class DictionaryParser {
    * Returns the name of the current inserted and used dictionary file.
    *
    * @author lengist
-   * @return String representation of the current inserted dictionary file name
+   * @return currentDictionary String representation of the current inserted dictionary file name
    */
   public static String getFileName() {
     return currentDictionary;
@@ -48,7 +49,7 @@ public class DictionaryParser {
    * Returns the name of the new file to scan.
    *
    * @author lengist
-   * @return String representation of the new file name
+   * @return newFileName String representation of the new file name
    */
   public static String getNewFileName() {
     return newFileName;
@@ -83,7 +84,6 @@ public class DictionaryParser {
       if (!doesAlreadyExist(file)) {
         file.createNewFile();
       } else {
-        System.out.println("File already exists!");
         return false;
       }
       bufWriter = new BufferedWriter(new FileWriter(file));
@@ -107,7 +107,8 @@ public class DictionaryParser {
    * Loads a file from the path and passes the lines of the document on to filterWords.
    *
    * @author lengist
-   * @param file with the name of the file for the dictionary
+   * @param file a String with the name of the file for the dictionary
+   * @param newFile the new parsed file, possible to set it on readOnly if necessary
    */
   private static void loadFile(String file, File newFile) {
     try {
@@ -182,7 +183,6 @@ public class DictionaryParser {
     String line2;
 
     for (File file1 : savedFiles) {
-      System.out.println("test :" + file1.getName());
       if (file1.getName().equals(file2.getName())) {
         BufferedReader buf1;
         BufferedReader buf2;
@@ -196,7 +196,6 @@ public class DictionaryParser {
               return false;
             }
           }
-          System.out.println("file that already exists: " + file1.getName());
           buf1.close();
           buf2.close();
           return true;
