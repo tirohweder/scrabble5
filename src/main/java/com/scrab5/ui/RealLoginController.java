@@ -57,7 +57,7 @@ public class RealLoginController extends Controller implements Initializable {
   @FXML
   private void login() throws IOException {
 
-    playSound("ButtonClicked.mp3");
+    playSound();
     Database.reconnect();
 
     if (this.isProfileSelected) {
@@ -98,7 +98,7 @@ public class RealLoginController extends Controller implements Initializable {
    */
   @FXML
   private void clickComboBox() {
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.profileSelection.show();
   }
 

@@ -51,7 +51,7 @@ public class SettingsController extends Controller implements Initializable {
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     App.setRoot("MainMenu");
   }
 
@@ -67,7 +67,7 @@ public class SettingsController extends Controller implements Initializable {
    */
   @FXML
   private void addDictionary(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     FileChooser fc = new FileChooser();
     fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Dictionaries", "*.txt"));

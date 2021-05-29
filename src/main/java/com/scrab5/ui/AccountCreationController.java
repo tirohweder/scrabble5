@@ -56,7 +56,7 @@ public class AccountCreationController extends Controller implements Initializab
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if ("Profile".equals(predecessor)) {
       App.setRoot("Profile");
@@ -95,7 +95,7 @@ public class AccountCreationController extends Controller implements Initializab
    */
   @FXML
   private void enter(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (this.isUsernameValid(this.nickname.getText())) {
       System.out.println("AccountCreationController: get music");
       App.setMusicVolume(PlayerProfileDatabase.getMusicVolume(Data.getCurrentUser()));

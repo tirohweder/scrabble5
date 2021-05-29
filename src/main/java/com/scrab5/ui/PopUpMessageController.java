@@ -88,7 +88,7 @@ public class PopUpMessageController extends Controller implements Initializable 
    */
   @FXML
   private void okay(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (Data.getMessageType() == PopUpMessageType.INPUT) {
       Data.setInputFieldText(textfield.getText());
@@ -108,7 +108,7 @@ public class PopUpMessageController extends Controller implements Initializable 
    */
   @FXML
   private void confirm(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     Data.setConfirmed(true);
     Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
     s.close();

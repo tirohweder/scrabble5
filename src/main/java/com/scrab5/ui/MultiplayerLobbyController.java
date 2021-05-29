@@ -136,7 +136,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    */
   @FXML
   protected void back(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     Data.getPlayerClient().disconnectFromServer();
   }
 
@@ -150,7 +150,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    */
   @FXML
   private void ready(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     this.isReady = !isReady;
     Data.getPlayerClient().setReady(this.isReady, this.getPlayerVotes());
   }
@@ -188,7 +188,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
    */
   protected void addPlayer(MouseEvent event) {
 
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     // adds a different AI when adding an AI
     if (Data.getHostedServer().getClientMaximum() > Data.getHostedServer().getClientCounter()) {
@@ -223,7 +223,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     if (kick2.getOpacity() == 1.0) {
       Data.getHostedServer().kickClient(this.player2.getText());
     }
-    playSound("ButtonClicked.mp3");
+    playSound();
   }
 
   /**
@@ -240,7 +240,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     if (kick3.getOpacity() == 1.0) {
       Data.getHostedServer().kickClient(this.player3.getText());
     }
-    playSound("ButtonClicked.mp3");
+    playSound();
   }
 
   /**
@@ -257,7 +257,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     if (kick4.getOpacity() == 1.0) {
       Data.getHostedServer().kickClient(this.player4.getText());
     }
-    playSound("ButtonClicked.mp3");
+    playSound();
   }
 
   /**
