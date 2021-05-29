@@ -867,12 +867,18 @@ public class AiPlayer extends Player {
               // also reduces threshold needed for each consecutive skipped turn
 
               // TODO rack size reduce points
+
               int aiThresholdLow =
                   (int) Math.round(random.nextGaussian() * 2 + aiThreshold - (aiSkippedTurns * 2));
               int aiThresholdHigh =
                   (int)
                       Math.round(
                           random.nextGaussian() * 3 + aiThreshold + 10 + (aiSkippedTurns * 2));
+
+              if (fakeRackSize < 7) {
+                aiThresholdLow = 0;
+                aiThresholdHigh = 50;
+              }
 
               if (points.get(randomSelector.get(l)) >= aiThresholdLow
                   && points.get(randomSelector.get(l)) <= aiThresholdHigh) {
