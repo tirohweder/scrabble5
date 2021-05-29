@@ -113,6 +113,8 @@ public abstract class InGameController implements Initializable {
   private Label skipPlay;
   @FXML
   private Label bagSize;
+  @FXML
+  private Label rounds;
   private int rackClicked;
   private ArrayList<ImageView> changes = new ArrayList<ImageView>();
 
@@ -210,6 +212,9 @@ public abstract class InGameController implements Initializable {
       undoLabel.setOpacity(0);
       undoButton.setOpacity(0);
     }
+
+    rounds.setText("Rounds played:  "
+        + Data.getGameSession().getRoundNumber() / Data.getGameSession().getListOfPlayers().size());
 
     if (turn && Data.getGameSession().getCurrentPlayer().getName()
         .equalsIgnoreCase(Data.getCurrentUser())) {
@@ -1020,6 +1025,7 @@ public abstract class InGameController implements Initializable {
         }
       } else {
         // skip turn
+        turn = true;
         Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn() + 1);
         Data.getGameSession().finishTurn();
       }

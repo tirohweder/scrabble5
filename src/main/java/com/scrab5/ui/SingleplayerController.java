@@ -99,13 +99,16 @@ public class SingleplayerController extends InGameController implements Initiali
 
         }
 
+        // check for bag and rack empty to end the game and display statistics
         if (Data.getGameSession().isShouldEnd()) {
-          Data.getGameSession().endGame();
-          try {
-            App.setRoot("EndGameSingleplayer");
-          } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+          if (Data.getGameSession().isRunning()) {
+            Data.getGameSession().endGame();
+            try {
+              App.setRoot("EndGameSingleplayer");
+            } catch (IOException e) {
+              // TODO Auto-generated catch block
+              e.printStackTrace();
+            }
           }
         }
       }
