@@ -25,6 +25,11 @@ class AiPlayerTest {
   AiPlayer test = new AiPlayer("Hans", 0);
   CreateDatabase cd = new CreateDatabase();
 
+  /**
+   * Test for checkBagDistribution, this test is checking if the Method is working
+   *
+   * @author hraza
+   */
   @Test
   void checkBagDistributionLegalTest() {
     HashMap<String, Integer> bagDistribution = new HashMap<>();
@@ -297,7 +302,7 @@ class AiPlayerTest {
   /**
    * Test for getSpotsFree2. Goal was to try all basic settings plus some more special ones.
    *
-   * @author trohwede
+   * @author hraza, trohwede
    */
   @Test
   void getSpotsFree2() {

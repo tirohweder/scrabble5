@@ -271,9 +271,11 @@ public class AiPlayer extends Player {
    * still positive. If it is negative, the boolean will be changed to false, the loop breaks and
    * the hashmap will be resetted and false is given back
    *
-   * @param currentDistribution is the current letter-occurence of the tiles in the bag
-   * @param word is the word that is going to be checked
    * @author hraza
+   * @param currentDistribution is a HashMap of the current letter-occurence of the tiles in the bag
+   * @param word is the word that is going to be checked
+   * @param fixLetter is the fix Letter of the word
+   * 
    */
   public static Boolean checkBagDistributionLegal(
       HashMap<String, Integer> currentDistribution, String word, String fixLetter) {
