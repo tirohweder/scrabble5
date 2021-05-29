@@ -24,14 +24,10 @@ import javafx.scene.text.TextFlow;
  */
 public class MultiplayerController extends InGameController implements Initializable {
 
-  @FXML
-  ImageView chatImage;
-  @FXML
-  TextFlow chatTextField;
-  @FXML
-  TextField chatInsert;
-  @FXML
-  TextArea textArea;
+  @FXML ImageView chatImage;
+  @FXML TextFlow chatTextField;
+  @FXML TextField chatInsert;
+  @FXML TextArea textArea;
 
   private boolean chatOpen = false;
   private int roundNumber;
@@ -41,11 +37,10 @@ public class MultiplayerController extends InGameController implements Initializ
    * first turn is by the AI player. After this the thread refreshing the board/ rack/ player
    * attributes/ buttons and chat is called when the roundNumber changed. Which means, that some
    * information or the rack definitely have changed.
-   * 
+   *
    * @author apilgrim
    * @param arg0 URL, arg1 Resourcebundle
    */
-
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -67,12 +62,11 @@ public class MultiplayerController extends InGameController implements Initializ
     }
     initGameboard();
     refreshUi();
-
   }
 
   /**
    * Is called when "chat" - button is clicked, opens the chat in the game.
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the "chat" button is clicked
    */
@@ -94,22 +88,23 @@ public class MultiplayerController extends InGameController implements Initializ
   /**
    * Is called when sent - button is clicked. Everything tipped will be sent to any other player and
    * displayed in the chatBox.
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the sent button is clicked
    */
   @FXML
   private void sentClicked(MouseEvent event) {
     if (chatOpen) {
-      Platform.runLater(new Runnable() {
+      Platform.runLater(
+          new Runnable() {
 
-        @Override
-        public void run() {
-          chatInsert.selectAll();
-          Data.getPlayerClient()
-              .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
-        }
-      });
+            @Override
+            public void run() {
+              chatInsert.selectAll();
+              Data.getPlayerClient()
+                  .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
+            }
+          });
     }
   }
 
@@ -125,65 +120,68 @@ public class MultiplayerController extends InGameController implements Initializ
    */
   private void refreshUi() {
 
-    Thread t = new Thread(new Runnable() {
+    Thread t =
+        new Thread(
+            new Runnable() {
 
-      @Override
-      public void run() {
+              @Override
+              public void run() {
 
-        while (Data.getPlayerClient().threadIsRunning()) {
+                while (Data.getPlayerClient().threadIsRunning()) {
 
-          if (Data.getGameSession().isShouldEnd()) {
-            Data.getGameSession().endGame();
-            try {
-              App.setRoot("EndGameSingleplayer");
-            } catch (IOException e) {
-              // TODO Auto-generated catch block
-              e.printStackTrace();
-            }
-          }
+                  if (Data.getGameSession().isShouldEnd()) {
+                    Data.getGameSession().endGame();
+                    try {
+                      App.setRoot("EndGameSingleplayer");
+                    } catch (IOException e) {
+                      // TODO Auto-generated catch block
+                      e.printStackTrace();
+                    }
+                  }
 
-          Platform.runLater(new Runnable() {
+                  Platform.runLater(
+                      new Runnable() {
 
-            @Override
-            public void run() {
+                        @Override
+                        public void run() {
 
-              textArea.setText(Data.getChatHistory().toString());
-              try {
-                initButtons();
-              } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                          textArea.setText(Data.getChatHistory().toString());
+                          try {
+                            initButtons();
+                          } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                          }
+                          if (Data.getGameSession().getRoundNumber() != roundNumber) {
+                            initPlayers();
+                            initRack();
+                            initGameboard();
+                            roundNumber = Data.getGameSession().getRoundNumber();
+                          }
+                        }
+                      });
+                  synchronized (this) {
+                    try {
+                      this.wait(300);
+                    } catch (InterruptedException e) {
+                      // e.printStackTrace();
+                    }
+                  }
+                }
+                // check for bag and rack empty to end the game and display statistics
+                if (Data.getGameSession().isShouldEnd()) {
+                  if (Data.getGameSession().isRunning()) {
+                    Data.getGameSession().endGame();
+                    try {
+                      App.setRoot("EndGameSingleplayer");
+                    } catch (IOException e) {
+                      // TODO Auto-generated catch block
+                      e.printStackTrace();
+                    }
+                  }
+                }
               }
-              if (Data.getGameSession().getRoundNumber() != roundNumber) {
-                initPlayers();
-                initRack();
-                initGameboard();
-                roundNumber = Data.getGameSession().getRoundNumber();
-              }
-            }
-          });
-          synchronized (this) {
-            try {
-              this.wait(300);
-            } catch (InterruptedException e) {
-              // e.printStackTrace();
-            }
-          }
-        }
-        // check for bag and rack empty to end the game and display statistics
-        if (Data.getGameSession().isShouldEnd()) {
-          if (Data.getGameSession().isRunning()) {
-            Data.getGameSession().endGame();
-            try {
-              App.setRoot("EndGameSingleplayer");
-            } catch (IOException e) {
-              // TODO Auto-generated catch block
-              e.printStackTrace();
-            }
-          }
-        }
-      }
-    });
+            });
     t.start();
   }
 }

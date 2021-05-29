@@ -9,26 +9,24 @@ import javafx.stage.Stage;
 
 /**
  * The PopUpMessage class is used to create various pop up messages.
- * 
- * @author mherre
  *
+ * @author mherre
  */
 public class PopUpMessage {
 
   private Stage popUp;
 
   /**
-   * Creates a new pop up message from a <code>String</code> and a
-   * {@link com.scrab5.ui.PopUpMessageType PopUpMessageType}. Creates a new <code>Stage</code> and
-   * sets up the <code>PopUpMessageController</code> in {@link com.scrab5.ui.Data Data}, so
-   * {@link com.scrab5.ui.PopUpMessageController PopUpMessageController} works correctly.
-   * 
-   * 
+   * Creates a new pop up message from a <code>String</code> and a {@link
+   * com.scrab5.ui.PopUpMessageType PopUpMessageType}. Creates a new <code>Stage</code> and sets up
+   * the <code>PopUpMessageController</code> in {@link com.scrab5.ui.Data Data}, so {@link
+   * com.scrab5.ui.PopUpMessageController PopUpMessageController} works correctly.
+   *
    * @author mherre
    * @param message the String that will be displayed in the UI
    * @param type the PopUpMessageType containg the type of message
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   public PopUpMessage(String message, PopUpMessageType type) throws IOException {
 
@@ -51,14 +49,14 @@ public class PopUpMessage {
       default:
     }
 
-    this.popUp.setScene(new Scene(loadFXML("PopUpMessage"), 500, 200));
+    this.popUp.setScene(new Scene(loadFXML(), 500, 200));
     this.popUp.initModality(Modality.APPLICATION_MODAL);
     this.popUp.setResizable(false);
   }
 
   /**
    * Shows the pop up in the UI. Calls {@link javafx.stage.Stage#showAndWait()}.
-   * 
+   *
    * @author mherre
    */
   public void show() {
@@ -68,15 +66,13 @@ public class PopUpMessage {
   /**
    * Loads the given fxml and returns it as parent.
    *
-   * @param fxml loads the fxml
    * @return Parent
    * @throws IOException tried to read a local file that was no longer available
    * @author trohwede
    */
-  private Parent loadFXML(String fxml) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
+  private Parent loadFXML() throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("PopUpMessage" + ".fxml"));
     return fxmlLoader.load();
   }
-
-
 }

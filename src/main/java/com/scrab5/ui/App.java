@@ -5,6 +5,7 @@ import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 import java.io.IOException;
+import java.util.Objects;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -30,9 +31,6 @@ public class App extends Application {
   private static Stage mainStage;
   private static MediaPlayer mediaplayer;
 
-  private Database db;
-  private Media sound;
-
   /**
    * Sets the given fxml as root.
    *
@@ -55,22 +53,17 @@ public class App extends Application {
    */
   public static void setRoot(String fxml, String predescessor) throws IOException {
 
-    switch (predescessor) {
-      case "Profile":
-        switch (fxml) {
-          case "AccountCreation":
-            AccountCreationController.setPredecessor("Profile");
-            break;
-          case "RealLogin":
-            RealLoginController.setPredecessor("Profile");
-            break;
-          default:
-            break;
-        }
-
-        break;
-      default:
-        break;
+    if ("Profile".equals(predescessor)) {
+      switch (fxml) {
+        case "AccountCreation":
+          AccountCreationController.setPredecessor("Profile");
+          break;
+        case "RealLogin":
+          RealLoginController.setPredecessor("Profile");
+          break;
+        default:
+          break;
+      }
     }
     scene.setRoot(loadFXML(fxml));
   }
@@ -147,7 +140,7 @@ public class App extends Application {
     mainStage = stage;
 
     if (!Database.databaseExistance()) {
-      db = new Database();
+      Database db = new Database();
       CreateDatabase cdb = new CreateDatabase();
     } else {
       Database.reconnect();
@@ -163,7 +156,7 @@ public class App extends Application {
     this.setMediaPlayer();
 
     stage.setOnCloseRequest(
-        new EventHandler<WindowEvent>() {
+        new EventHandler<>() {
           @Override
           public void handle(WindowEvent event) {
 
@@ -188,10 +181,11 @@ public class App extends Application {
    * @author mherre
    */
   private void setMediaPlayer() {
-    sound =
+    Media sound =
         new Media(
-            Controller.class
-                .getResource("/com/scrab5/ui/sound_effects/BackgroundMusic.mp3")
+            Objects.requireNonNull(
+                    Controller.class.getResource(
+                        "/com/scrab5/ui/sound_effects/BackgroundMusic.mp3"))
                 .toExternalForm());
     mediaplayer = new MediaPlayer(sound);
     mediaplayer.setCycleCount(MediaPlayer.INDEFINITE);
@@ -208,10 +202,12 @@ public class App extends Application {
   private void setIcons(Stage stage) {
     Image icon1 =
         new Image(
-            App.class.getResource("/com/scrab5/ui/images/TaskbarIcon32.png").toExternalForm());
+            Objects.requireNonNull(App.class.getResource("/com/scrab5/ui/images/TaskbarIcon32.png"))
+                .toExternalForm());
     Image icon2 =
         new Image(
-            App.class.getResource("/com/scrab5/ui/images/TaskbarIcon16.png").toExternalForm());
+            Objects.requireNonNull(App.class.getResource("/com/scrab5/ui/images/TaskbarIcon16.png"))
+                .toExternalForm());
     stage.getIcons().add(icon1);
     stage.getIcons().add(icon2);
   }

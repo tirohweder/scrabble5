@@ -18,6 +18,7 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
+
 /**
  * Class to implement the client sided client-server-communication. Starts the ClientThread Class.
  * Provides methods for the client to communicate with the server. Serializable so the whole Client

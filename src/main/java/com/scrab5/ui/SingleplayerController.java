@@ -1,7 +1,6 @@
 package com.scrab5.ui;
 
 import java.io.IOException;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
@@ -18,8 +17,6 @@ import javafx.fxml.Initializable;
  * @author apilgrim
  */
 public class SingleplayerController extends InGameController implements Initializable {
-
-  int counter = 0;
   private int roundNumber;
 
   /**
@@ -27,7 +24,7 @@ public class SingleplayerController extends InGameController implements Initiali
    * first turn is by the AI player. After this the thread refreshing the board/ rack/ player
    * attributes/ buttons is called when the roundNumber changed. Which means, that some information
    * or the rack definitely have changed.
-   * 
+   *
    * @author apilgrim
    * @param arg0 URL, arg1 Resourcebundle
    */
@@ -47,72 +44,72 @@ public class SingleplayerController extends InGameController implements Initiali
    * Thread started when the singleplayer game is started. Refreshes the UI elements by calling
    * methods from InGameController which are checking, if something on the board or on the rack/
    * points changed.
-   * 
+   *
    * @author apilgrim
-   * 
    */
   private void refreshUi() {
 
-    Thread t = new Thread(new Runnable() {
+    Thread t =
+        new Thread(
+            new Runnable() {
 
-      @Override
-      public void run() {
+              @Override
+              public void run() {
 
-        while (!Data.getGameSession().isShouldEnd()) {
+                while (!Data.getGameSession().isShouldEnd()) {
 
-          if (Data.getGameSession().isShouldEnd()) {
-            Data.getGameSession().endGame();
-            try {
-              App.setRoot("EndGameSingleplayer");
-            } catch (IOException e) {
-              // TODO Auto-generated catch block
-              e.printStackTrace();
-            }
-          }
+                  if (Data.getGameSession().isShouldEnd()) {
+                    Data.getGameSession().endGame();
+                    try {
+                      App.setRoot("EndGameSingleplayer");
+                    } catch (IOException e) {
+                      // TODO Auto-generated catch block
+                      e.printStackTrace();
+                    }
+                  }
 
-          Platform.runLater(new Runnable() {
+                  Platform.runLater(
+                      new Runnable() {
 
-            @Override
-            public void run() {
-              initRack();
-              initPlayers();
-              try {
-                initButtons();
-              } catch (IOException e) {
-                e.printStackTrace();
+                        @Override
+                        public void run() {
+                          initRack();
+                          initPlayers();
+                          try {
+                            initButtons();
+                          } catch (IOException e) {
+                            e.printStackTrace();
+                          }
+
+                          if (Data.getGameSession().getRoundNumber() != roundNumber) {
+                            initGameboard();
+                            roundNumber = Data.getGameSession().getRoundNumber();
+                          }
+                        }
+                      });
+                  synchronized (this) {
+                    try {
+                      this.wait(200);
+                    } catch (InterruptedException e) {
+                      // e.printStackTrace();
+                    }
+                  }
+                }
+
+                // check for bag and rack empty to end the game and display statistics
+                if (Data.getGameSession().isShouldEnd()) {
+                  if (Data.getGameSession().isRunning()) {
+                    Data.getGameSession().endGame();
+                    try {
+                      App.setRoot("EndGameSingleplayer");
+                    } catch (IOException e) {
+                      // TODO Auto-generated catch block
+                      e.printStackTrace();
+                    }
+                  }
+                }
               }
-
-              if (Data.getGameSession().getRoundNumber() != roundNumber) {
-                initGameboard();
-                roundNumber = Data.getGameSession().getRoundNumber();
-              }
-            }
-          });
-          synchronized (this) {
-            try {
-              this.wait(200);
-            } catch (InterruptedException e) {
-              // e.printStackTrace();
-            }
-          }
-
-
-        }
-
-        // check for bag and rack empty to end the game and display statistics
-        if (Data.getGameSession().isShouldEnd()) {
-          if (Data.getGameSession().isRunning()) {
-            Data.getGameSession().endGame();
-            try {
-              App.setRoot("EndGameSingleplayer");
-            } catch (IOException e) {
-              // TODO Auto-generated catch block
-              e.printStackTrace();
-            }
-          }
-        }
-      }
-    });
+            });
     t.start();
   }
 }

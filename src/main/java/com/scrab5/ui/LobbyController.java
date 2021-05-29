@@ -20,45 +20,54 @@ import javafx.stage.StageStyle;
 /**
  * The LobbyController class contains some basic methods which are needed by the MultiplayerLobby-
  * and SingleplayerLobbyController.
- * 
+ *
  * @author mherre
  */
 public abstract class LobbyController extends Controller {
 
+  @FXML protected ImageView kick2, kick3, kick4, addPlayerButton, startButton, darkBackground;
   @FXML
-  protected ImageView kick2, kick3, kick4, addPlayerButton, startButton, darkBackground;
-  @FXML
-  protected ImageView diffSelection2, diffSelection3, diffSelection4, diffButton1, diffButton2,
+  protected ImageView diffSelection2,
+      diffSelection3,
+      diffSelection4,
+      diffButton1,
+      diffButton2,
       diffButton3;
-  @FXML
-  protected Label player1, player2, player3, player4;
-  @FXML
-  protected Label ready1, ready2, ready3, ready4;
-  @FXML
-  protected Label vote1, vote2, vote3, vote4;
-  @FXML
-  protected Label difficulty2, difficulty3, difficulty4;
-  @FXML
-  protected ComboBox<Integer> voteSelection1, voteSelection2, voteSelection3, voteSelection4;
-  @FXML
-  protected ComboBox<String> diffBox1, diffBox2, diffBox3;
+  @FXML protected Label player1, player2, player3, player4;
+  @FXML protected Label ready1, ready2, ready3, ready4;
+  @FXML protected Label vote1, vote2, vote3, vote4;
+  @FXML protected Label difficulty2, difficulty3, difficulty4;
+  @FXML protected ComboBox<Integer> voteSelection1, voteSelection2, voteSelection3, voteSelection4;
+  @FXML protected ComboBox<String> diffBox1, diffBox2, diffBox3;
 
   protected int playerAmount = 1;
   protected boolean[] isReady = {false, true, true, true};
   protected boolean[] freeSpaces = {false, true, true, true};
   protected boolean isDictionarySelected = false;
 
+  /**
+   * Loads the fxml as LetterCustomization.
+   *
+   * @author trohwede
+   * @return parent of letterCustomization
+   * @throws IOException when App.class.getResource doesnt exist.
+   */
+  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
+  private static Parent loadFXML() throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("LetterCustomization" + ".fxml"));
+    return fxmlLoader.load();
+  }
 
   /**
    * Event method that is called when the "Customize"-button in the UI is clicked. Grays out the
    * background and creates a new <code>Stage</code> that loads "LetterCustomization.fxml" (for
    * further information check out the class {@link com.scrab5.ui.LetterCustomizationController
    * LetterCustomizationController}.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>loadFXML(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void customize(MouseEvent event) throws IOException {
@@ -69,7 +78,7 @@ public abstract class LobbyController extends Controller {
     this.darkBackground.setOpacity(1);
 
     Stage customScreen = new Stage();
-    customScreen.setScene(new Scene(loadFXML("LetterCustomization"), 622, 650));
+    customScreen.setScene(new Scene(loadFXML(), 622, 650));
     customScreen.initModality(Modality.APPLICATION_MODAL);
     customScreen.initStyle(StageStyle.UNDECORATED);
     customScreen.showAndWait();
@@ -83,7 +92,7 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when the first drop down button for the player votes in the UI is
    * clicked. Opens the associated <code>ComboBox</code>.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    */
@@ -96,7 +105,7 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when the second drop down button for the player votes in the UI is
    * clicked. Opens the associated <code>ComboBox</code>.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    */
@@ -109,7 +118,7 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when the third drop down button for the player votes in the UI is
    * clicked. Opens the associated <code>ComboBox</code>.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    */
@@ -122,7 +131,7 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when the fourth drop down button for the player votes in the UI is
    * clicked. Opens the associated <code>ComboBox</code>.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    */
@@ -135,7 +144,7 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when the first drop down button for the difficulty selection in the
    * UI is clicked. Opens the associated <code>ComboBox</code>.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    */
@@ -148,7 +157,7 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when the second drop down button for the difficulty selection in
    * the UI is clicked. Opens the associated <code>ComboBox</code>.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    */
@@ -161,7 +170,7 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when the third drop down button for the difficulty selection in the
    * UI is clicked. Opens the associated <code>ComboBox</code>.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    */
@@ -174,10 +183,10 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when an item (difficulty) in the first difficulty selection for the
    * AI has been selected. Refreshes the <code>Label</code> that displays the difficulty.
-   * 
+   *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setDifficulty1(ActionEvent event) {
@@ -188,10 +197,10 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when an item (difficulty) in the second difficulty selection for
    * the AI has been selected. Refreshes the <code>Label</code> that displays the difficulty.
-   * 
+   *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setDifficulty2(ActionEvent event) {
@@ -202,10 +211,10 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when an item (difficulty) in the third difficulty selection for the
    * AI has been selected. Refreshes the <code>Label</code> that displays the difficulty.
-   * 
+   *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setDifficulty3(ActionEvent event) {
@@ -216,10 +225,10 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when an item (votes) in the first vote selection for the players/AI
    * has been selected. Refreshes the <code>Label</code> that displays the votes.
-   * 
+   *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setPlayerVote1(ActionEvent event) {
@@ -230,10 +239,10 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when an item (votes) in the second vote selection for the
    * players/AI has been selected. Refreshes the <code>Label</code> that displays the votes.
-   * 
+   *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setPlayerVote2(ActionEvent event) {
@@ -244,10 +253,10 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when an item (votes) in the third vote selection for the players/AI
    * has been selected. Refreshes the <code>Label</code> that displays the votes.
-   * 
+   *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setPlayerVote3(ActionEvent event) {
@@ -258,10 +267,10 @@ public abstract class LobbyController extends Controller {
   /**
    * Event method that is called when an item (votes) in the fourth vote selection for the
    * players/AI has been selected. Refreshes the <code>Label</code> that displays the votes.
-   * 
+   *
    * @author mherre
    * @param event the event that is created when an item in the associated <code>ComboBox</code> is
-   *        selected
+   *     selected
    */
   @FXML
   private void setPlayerVote4(ActionEvent event) {
@@ -284,10 +293,10 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
-   * Event method that is called when the mouse is exiting the <code>ImageView</code> object
-   * <code>iv</code> or when it is pressed. Changes the <code>image</code> to
+   * Event method that is called when the mouse is exiting the <code>ImageView</code> object <code>
+   * iv</code> or when it is pressed. Changes the <code>image</code> to
    * "/com/scrab5/ui/images/SB05_KickIcon.png".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the exiting and pressing
    */
@@ -312,10 +321,10 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
-   * Event method that is called when the mouse is exiting the <code>ImageView</code> object
-   * <code>iv</code> or when it is pressed. Changes the <code>image</code> to
+   * Event method that is called when the mouse is exiting the <code>ImageView</code> object <code>
+   * iv</code> or when it is pressed. Changes the <code>image</code> to
    * "/com/scrab5/ui/images/SB05_PlayerVoteButton.png".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the exiting and pressing
    */
@@ -340,10 +349,10 @@ public abstract class LobbyController extends Controller {
   }
 
   /**
-   * Event method that is called when the mouse is exiting the <code>ImageView</code> object
-   * <code>iv</code> or when it is pressed. Changes the <code>image</code> to
+   * Event method that is called when the mouse is exiting the <code>ImageView</code> object <code>
+   * iv</code> or when it is pressed. Changes the <code>image</code> to
    * "/com/scrab5/ui/images/SB05_StartButton.png".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the exiting and pressing
    */
@@ -355,13 +364,13 @@ public abstract class LobbyController extends Controller {
 
   /**
    * Method that checks if everyone in the lobby clicked ready / is ready.
-   * 
+   *
    * @author mherre
    * @return the boolean valuing if everyone is ready
    */
   protected boolean isEveryoneReady() {
-    for (int i = 0; i < isReady.length; i++) {
-      if (!isReady[i]) {
+    for (boolean b : isReady) {
+      if (!b) {
         return false;
       }
     }
@@ -372,7 +381,7 @@ public abstract class LobbyController extends Controller {
    * Method that is called in the initialize methods of Multiplayer- and
    * SingleplayerLobbyController. Sets up all ComboBoxes (Player votes, difficulty) and two Labels
    * (name displaying, ready status).
-   * 
+   *
    * @author mherre
    */
   protected void setUpInit() {
@@ -405,13 +414,13 @@ public abstract class LobbyController extends Controller {
    * Method that is called to get the cast votes of each player. The votes are returned in form of
    * an <code>ArrayList</code>. The first item in the list is the amount of votes for the first
    * player, the second item for the second player, ...
-   * 
+   *
    * @author mherre
    * @return al the ArrayList that cotains the votes
    */
   protected ArrayList<Integer> getPlayerVotes() {
 
-    ArrayList<Integer> al = new ArrayList<Integer>();
+    ArrayList<Integer> al = new ArrayList<>();
 
     for (int i = 0; i < 4; i++) {
 
@@ -424,9 +433,8 @@ public abstract class LobbyController extends Controller {
       } else if (i == 2) {
         al.add(voteSelection3.getValue());
 
-      } else if (i == 3) {
+      } else {
         al.add(voteSelection4.getValue());
-
       }
     }
     return al;
@@ -442,52 +450,41 @@ public abstract class LobbyController extends Controller {
    */
   protected ArrayList<Integer> createTileBag(ArrayList<Integer> al) {
 
-    ArrayList<Integer> finalBag = new ArrayList<Integer>();
+    ArrayList<Integer> finalBag = new ArrayList<>();
     int numberOfTiles = 0;
 
-    for (int i = 0; i < al.size(); i++) {
-      numberOfTiles += al.get(i);
+    for (Integer integer : al) {
+      numberOfTiles += integer;
     }
 
-    for (int i = 0; i < al.size(); i++) {
-      double letterAmount = Math.ceil(al.get(i) * 100 / numberOfTiles);
+    for (Integer integer : al) {
+      double letterAmount = Math.ceil(integer * 100 / numberOfTiles);
       finalBag.add((int) letterAmount);
     }
 
     return finalBag;
   }
 
-  /**
-   * @param fxml
-   * @return
-   * @throws IOException
-   * @author trohwede
-   */
-  private static Parent loadFXML(String fxml) throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-    return fxmlLoader.load();
-  }
-
-  abstract protected boolean isClickable();
+  protected abstract boolean isClickable();
 
   @FXML
-  abstract protected void startGame(MouseEvent event) throws IOException, SQLException;
+  protected abstract void startGame(MouseEvent event) throws IOException, SQLException;
 
   @FXML
-  abstract protected void back(MouseEvent event) throws IOException;
+  protected abstract void back(MouseEvent event) throws IOException;
 
   @FXML
-  abstract protected void addPlayer(MouseEvent event) throws IOException;
+  protected abstract void addPlayer(MouseEvent event) throws IOException;
 
   @FXML
-  abstract protected void dontShow(MouseEvent event) throws IOException;
+  protected abstract void dontShow(MouseEvent event) throws IOException;
 
   @FXML
-  abstract protected void kickPlayer2(MouseEvent event);
+  protected abstract void kickPlayer2(MouseEvent event);
 
   @FXML
-  abstract protected void kickPlayer3(MouseEvent event);
+  protected abstract void kickPlayer3(MouseEvent event);
 
   @FXML
-  abstract protected void kickPlayer4(MouseEvent event);
+  protected abstract void kickPlayer4(MouseEvent event);
 }

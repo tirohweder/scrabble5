@@ -9,7 +9,7 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * The ExchangeController class controls the exchange process of the "Exchange.fxml".
- * 
+ *
  * @author apilgrim
  */
 public class ExchangeController extends InGameController implements Initializable {
@@ -24,11 +24,11 @@ public class ExchangeController extends InGameController implements Initializabl
 
   /**
    * Is called when "back" - button is clicked, switches back to the game.
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the "back" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void backClicked(MouseEvent event) throws IOException {
@@ -42,11 +42,11 @@ public class ExchangeController extends InGameController implements Initializabl
   /**
    * Is called when "exchange" - button is clicked, exchanges the selected tiles and finishes the
    * turn when at least one tile is selected.
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the "exchange" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void exchangeConfirmed(MouseEvent event) throws IOException {
@@ -64,14 +64,15 @@ public class ExchangeController extends InGameController implements Initializabl
   /**
    * Is called when "exchange" - button is clicked, exchanges the selected tiles and returns them to
    * the bag. Than drag new ones from the bag and place them in the rack.
-   * 
+   *
    * @author apilgrim
    */
   private void exchangeTiles() {
     for (int i = 0; i < rackChanges.length; i++) {
-      if (rackChanges[i] != null && rackChanges[i] == true) {
+      if (rackChanges[i] != null && rackChanges[i]) {
         counter++;
-        Data.getGameSession().getBag()
+        Data.getGameSession()
+            .getBag()
             .add(Data.getGameSession().getCurrentPlayer().getRack().getTileAt(i));
         Data.getGameSession().getCurrentPlayer().getRack().removeTileFromRack(i);
 
@@ -83,7 +84,7 @@ public class ExchangeController extends InGameController implements Initializabl
   /**
    * Selects/ unselects the rackplace1 (by adding to a list) to exchange when confirmed by clicking
    * "exchange".
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the "rackplace1" is clicked
    */
@@ -101,7 +102,7 @@ public class ExchangeController extends InGameController implements Initializabl
   /**
    * Selects/ unselects the rackplace2 (by adding to a list) to exchange when confirmed by clicking
    * "exchange".
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the "rackplace2" is clicked
    */
@@ -119,7 +120,7 @@ public class ExchangeController extends InGameController implements Initializabl
   /**
    * Selects/ unselects the rackplace3 (by adding to a list) to exchange when confirmed by clicking
    * "exchange".
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the "rackplace3" is clicked
    */
@@ -137,7 +138,7 @@ public class ExchangeController extends InGameController implements Initializabl
   /**
    * Selects/ unselects the rackplace4 (by adding to a list) to exchange when confirmed by clicking
    * "exchange".
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the "rackplace4" is clicked
    */
@@ -155,7 +156,7 @@ public class ExchangeController extends InGameController implements Initializabl
   /**
    * Selects/ unselects the rackplace5 (by adding to a list) to exchange when confirmed by clicking
    * "exchange".
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the "rackplace5" is clicked
    */
@@ -173,7 +174,7 @@ public class ExchangeController extends InGameController implements Initializabl
   /**
    * Selects/ unselects the rackplace6 (by adding to a list) to exchange when confirmed by clicking
    * "exchange".
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the "rackplace6" is clicked
    */
@@ -191,7 +192,7 @@ public class ExchangeController extends InGameController implements Initializabl
   /**
    * Selects/ unselects the rackplace7 (by adding to a list) to exchange when confirmed by clicking
    * "exchange".
-   * 
+   *
    * @author apilgrim
    * @param event - MouseEvent created, when the "rackplace7" is clicked
    */

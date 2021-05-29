@@ -14,39 +14,27 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * The ProfileController class controls the components of the "Profile.fxml".
- * 
- * @author mherre
  *
+ * @author mherre
  */
 public class ProfileController extends Controller implements Initializable {
 
-  @FXML
-  private Label nicknameLabel;
-  @FXML
-  private Label totalPoints;
-  @FXML
-  private Label averagePointsGame;
-  @FXML
-  private Label mostPoints;
-  @FXML
-  private Label laidWords;
-  @FXML
-  private Label averagePointsWord;
-  @FXML
-  private Label longestWord;
-  @FXML
-  private Label totalGames;
-  @FXML
-  private Label totalWins;
-  @FXML
-  private Label winPercentage;
-  @FXML
-  private Label favDic;
+  @FXML private Label nicknameLabel;
+  @FXML private Label totalPoints;
+  @FXML private Label averagePointsGame;
+  @FXML private Label mostPoints;
+  @FXML private Label laidWords;
+  @FXML private Label averagePointsWord;
+  @FXML private Label longestWord;
+  @FXML private Label totalGames;
+  @FXML private Label totalWins;
+  @FXML private Label winPercentage;
+  @FXML private Label favDic;
 
   /**
    * Call certain methods as soon as the Controller is loaded. Calls {@link #setupStats()} and
    * displays the name of the current user
-   * 
+   *
    * @author mherre
    */
   @Override
@@ -58,12 +46,12 @@ public class ProfileController extends Controller implements Initializable {
   /**
    * Event method that is called when the "Delete Profile"-button in the UI is clicked. Opens a
    * Pop-Up and depending on the users action the profile gets deleted and scene changed or not.
-   * 
+   *
    * @author mherre
    * @author lengist
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void deleteProfile(MouseEvent event) throws IOException {
@@ -83,7 +71,6 @@ public class ProfileController extends Controller implements Initializable {
 
       } else {
         App.setRoot("RealLogin");
-
       }
     }
     Database.disconnect();
@@ -93,12 +80,12 @@ public class ProfileController extends Controller implements Initializable {
    * Event method that is called when the "Edit Name"-button in the UI is clicked. Opens a Pop-Up
    * message with a textfield displaying the user's current nickname. In case the edited nickname
    * fullfills the username criteria then the name will be updated in the database.
-   * 
+   *
    * @author mherre
    * @author lengist
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void editName(MouseEvent event) throws IOException {
@@ -120,11 +107,11 @@ public class ProfileController extends Controller implements Initializable {
   /**
    * Event method that is called when the "Change Profile"-button in the UI is clicked. Changes the
    * scene to "RealLogin.fxml".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void changeProfile(MouseEvent event) throws IOException {
@@ -135,11 +122,11 @@ public class ProfileController extends Controller implements Initializable {
   /**
    * Event method that is called when "Create New Profile"-button in the UI is clicked. Changes the
    * scene to "AccountCreation.fxml".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void createNewPlayerProfile(MouseEvent event) throws IOException {
@@ -150,11 +137,11 @@ public class ProfileController extends Controller implements Initializable {
   /**
    * Event method that is called when the "Back"-button in the UI is clicked. Changes the scene to
    * "MainMenu.fxml".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -166,12 +153,12 @@ public class ProfileController extends Controller implements Initializable {
    * Checks whether a given username fulfills the criteria (consists only of numbers, letters and
    * underscores). In case it does, it returns true. In case it doesn't it returns false and shows a
    * PopUp message stating the username doesn't fullfill the criteria.
-   * 
+   *
    * @author mherre
    * @param username the string containing the username that's tested
    * @return the boolean describing if the username is valid
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   public boolean isUsernameValid(String username) throws IOException {
 
@@ -188,22 +175,21 @@ public class ProfileController extends Controller implements Initializable {
         pum = new PopUpMessage(message, PopUpMessageType.ERROR);
         pum.show();
         return false;
-
       }
     } else {
-      message = "Please make sure your nickname consists only of letters, numbers, "
-          + "underscores and is only 12 signs long";
+      message =
+          "Please make sure your nickname consists only of letters, numbers, "
+              + "underscores and is only 12 signs long";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
       return false;
-
     }
   }
 
   /**
    * Gathers all necessary data from the database and sets the text of various labels that are
    * displaying the statistics in the UI.
-   * 
+   *
    * @author mherre
    * @author lengist
    */
@@ -247,7 +233,6 @@ public class ProfileController extends Controller implements Initializable {
     } else {
       int averagePointsPerGame = totalPoints / totalPlayedGames;
       this.averagePointsGame.setText(String.valueOf(averagePointsPerGame));
-
     }
   }
 }

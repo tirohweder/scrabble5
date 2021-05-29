@@ -19,13 +19,20 @@ import javafx.scene.input.MouseEvent;
  */
 public class RealLoginController extends Controller implements Initializable {
 
-  @FXML
-  private ComboBox<String> profileSelection;
-  @FXML
-  private Label nameDisplaying;
-
-  private boolean isProfileSelected = false;
   private static String predecessor = "";
+  @FXML private ComboBox<String> profileSelection;
+  @FXML private Label nameDisplaying;
+  private boolean isProfileSelected = false;
+
+  /**
+   * Sets the predecessor scene of this scene.
+   *
+   * @param predecessorPara the String valuing the name of the predecessor scene
+   * @author mherre
+   */
+  public static void setPredecessor(String predecessorPara) {
+    predecessor = predecessorPara;
+  }
 
   /**
    * Call certain methods as soon as the Controller is loaded.
@@ -44,7 +51,7 @@ public class RealLoginController extends Controller implements Initializable {
    * otherwise a Pop-Up message is created.
    *
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    * @author mherre
    */
   @FXML
@@ -59,19 +66,19 @@ public class RealLoginController extends Controller implements Initializable {
       App.setRoot("MainMenu");
 
     } else {
-      String message = "You must select a profile to continue. "
-          + "Click on the 'Arrow Down' button and select a profile";
+      String message =
+          "You must select a profile to continue. "
+              + "Click on the 'Arrow Down' button and select a profile";
       PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
-
     }
     Database.disconnect();
   }
 
   /**
    * Event method that is called when an item in <code>profileSelection</code> has been selected.
-   * Displays the name of the selected profile and sets <code>isProfileSelected</code> on
-   * <code>true</code>.
+   * Displays the name of the selected profile and sets <code>isProfileSelected</code> on <code>true
+   * </code>.
    *
    * @author mherre
    */
@@ -96,8 +103,8 @@ public class RealLoginController extends Controller implements Initializable {
   }
 
   /**
-   * Event method that is called when <code>profileSelection</code> is clicked. Ensures that
-   * <code>profileSelection</code> only opens when the "Arrow Down"-button is clicked.
+   * Event method that is called when <code>profileSelection</code> is clicked. Ensures that <code>
+   * profileSelection</code> only opens when the "Arrow Down"-button is clicked.
    *
    * @author mherre
    */
@@ -112,7 +119,7 @@ public class RealLoginController extends Controller implements Initializable {
    *
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    * @author mherre
    */
   @FXML
@@ -122,16 +129,5 @@ public class RealLoginController extends Controller implements Initializable {
     } else {
       closeGame(event);
     }
-  }
-
-  /**
-   * Sets the predecessor scene of this scene.
-   *
-   * @param predecessorPara the String valuing the name of the predecessor scene
-   * @author mherre
-   */
-  public static void setPredecessor(String predecessorPara) {
-    predecessor = predecessorPara;
-
   }
 }

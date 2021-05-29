@@ -18,20 +18,18 @@ import javafx.stage.FileChooser;
 
 /**
  * The SettingsController class controls the components of the "Settings.fxml".
- * 
+ *
  * @author mherre
  */
 public class SettingsController extends Controller implements Initializable {
 
-  @FXML
-  private Slider sliderSoundEffects;
+  @FXML private Slider sliderSoundEffects;
 
-  @FXML
-  private Slider sliderMusic;
+  @FXML private Slider sliderMusic;
 
   /**
    * Call certain methods as soon as the Controller is loaded.
-   * 
+   *
    * @author mherre
    */
   @Override
@@ -45,11 +43,11 @@ public class SettingsController extends Controller implements Initializable {
   /**
    * Event method that is called when the "Back"-button in the UI is clicked. Changes the scene to
    * "MainMenu.fxml".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -61,11 +59,11 @@ public class SettingsController extends Controller implements Initializable {
    * Event method that is called when the "Add Dictionary"-button in the UI is clicked. Opens a
    * <code>FileChooser</code> instance where the user can select a .txt file. The selected file will
    * be copied in the directory of the .jar.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void addDictionary(MouseEvent event) throws IOException {
@@ -77,8 +75,9 @@ public class SettingsController extends Controller implements Initializable {
 
     if (source != null) {
       String fileName = source.getName();
-      File destination = new File(
-          System.getProperty("user.dir") + System.getProperty("file.separator") + fileName);
+      File destination =
+          new File(
+              System.getProperty("user.dir") + System.getProperty("file.separator") + fileName);
       this.copyFile(source, destination);
     }
   }
@@ -87,11 +86,11 @@ public class SettingsController extends Controller implements Initializable {
    * Event method that is called when the "Edit Dictionary"-button in the UI is clicked. Opens a
    * <code>FileChooser</code> instance where the user can select a .txt file. The selected file will
    * be opened so the user can edit it.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void editDictionaries(MouseEvent event) throws IOException {
@@ -108,56 +107,56 @@ public class SettingsController extends Controller implements Initializable {
    * Setups two listeners for <code>sliderMusic</code> and <code>sliderSoundEffects</code>. If the
    * listeners are called then the volume changes to the value the user selected with the sliders.
    * The values are stored in <code>PlayerProfileDatabase</code>.
-   * 
+   *
    * @author mherre
    */
   private void setupListeners() {
 
-    sliderMusic.valueProperty().addListener(new ChangeListener<Number>() {
-      @Override
-      public void changed(ObservableValue<? extends Number> observable, Number oldValue,
-          Number newValue) {
-        App.setMusicVolume((double) newValue / 100.0);
-        PlayerProfileDatabase.setMusicVolume(Data.getCurrentUser(), (double) newValue);
-      }
-    });
+    sliderMusic
+        .valueProperty()
+        .addListener(
+            new ChangeListener<>() {
+              @Override
+              public void changed(
+                  ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                App.setMusicVolume((double) newValue / 100.0);
+                PlayerProfileDatabase.setMusicVolume(Data.getCurrentUser(), (double) newValue);
+              }
+            });
 
-    sliderSoundEffects.valueProperty().addListener((new ChangeListener<Number>() {
-      @Override
-      public void changed(ObservableValue<? extends Number> observable, Number oldValue,
-          Number newValue) {
-        Data.setSFXVolume((double) newValue / 100.0);
-        PlayerProfileDatabase.setSoundEffectVolume(Data.getCurrentUser(), (double) newValue);
-      }
-    }));
+    sliderSoundEffects
+        .valueProperty()
+        .addListener(
+            (new ChangeListener<>() {
+              @Override
+              public void changed(
+                  ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                Data.setSFXVolume((double) newValue / 100.0);
+                PlayerProfileDatabase.setSoundEffectVolume(
+                    Data.getCurrentUser(), (double) newValue);
+              }
+            }));
   }
 
   /**
    * Copies a file <code>source</code> into the directory <code>dest</code>.
-   * <p>
-   * https://stackoverflow.com/questions/16433915/how-to-copy-file-from-one-location-to-another-location
-   * </p>
-   * 
+   *
+   * <p>https://stackoverflow.com/questions/16433915/how-to-copy-file-from-one-location-to-another-location
+   *
    * @author mherre
    * @param source the file that will be copied
    * @param dest the directory where <code>source</code> will copied to
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   private void copyFile(File source, File dest) throws IOException {
-    FileInputStream is = null;
-    FileOutputStream os = null;
-    try {
-      is = new FileInputStream(source);
-      os = new FileOutputStream(dest);
+    try (FileInputStream is = new FileInputStream(source);
+        FileOutputStream os = new FileOutputStream(dest)) {
       byte[] buffer = new byte[1024];
       int length;
       while ((length = is.read(buffer)) > 0) {
         os.write(buffer, 0, length);
       }
-    } finally {
-      is.close();
-      os.close();
     }
   }
 }
