@@ -95,7 +95,6 @@ public class BagOfTiles implements Serializable {
    */
   public void addRackToBag(Rack rack) {
     for (int i = 0; i < rack.getRackSize(); i++) {
-
       bag.add(rack.getTileAt(i));
     }
   }

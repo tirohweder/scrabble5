@@ -8,14 +8,11 @@ import com.scrab5.ui.Data;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
 import com.scrab5.util.database.Database;
-import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.PlayerProfileDatabase;
-import com.scrab5.util.database.UseDatabase;
 import java.io.IOException;
 import java.io.Serializable;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Objects;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -28,8 +25,8 @@ public class GameSession implements Serializable {
 
   private static final long serialVersionUID = 1L;
   private final GameBoard gameBoard;
+  private final ArrayList<Player> listOfPlayers;
   private BagOfTiles bag = new BagOfTiles();
-  private ArrayList<Player> listOfPlayers;
   private int skippedTurn = 0;
   private int roundNumber = 0;
   private boolean canEnd = false;
@@ -39,21 +36,20 @@ public class GameSession implements Serializable {
   private boolean online;
 
   /**
-   * Intitializes the Gamsession, sets currentplayer, calls to create the correct bag, and fills the
+   * Initializes the gameSession, sets currentPlayer, calls to create the correct bag, and fills the
    * rack of each player.
    *
    * @author trohwede
    * @param listOfPlayers list of players in the correct order
    * @param letters how often each letter is there
    * @param points how many * points each letter gives
-   * @param isOnline is the game multiplayer or singleplayer
+   * @param isOnline is the game multiplayer or SinglePlayer.
    */
   public GameSession(
       ArrayList<Player> listOfPlayers,
       ArrayList<Integer> letters,
       ArrayList<Integer> points,
-      boolean isOnline)
-      throws SQLException {
+      boolean isOnline) {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -109,10 +105,6 @@ public class GameSession implements Serializable {
     return listOfPlayers;
   }
 
-  public void setListOfPlayers(ArrayList<Player> listOfPlayers) {
-    this.listOfPlayers = listOfPlayers;
-  }
-
   /**
    * Getter current skipped turns.
    *
@@ -143,10 +135,6 @@ public class GameSession implements Serializable {
     return roundNumber;
   }
 
-  public void setRoundNumber(int roundNumber) {
-    this.roundNumber = roundNumber;
-  }
-
   /**
    * Setter if we can end.
    *
@@ -175,10 +163,6 @@ public class GameSession implements Serializable {
    */
   public Player getCurrentPlayer() {
     return currentPlayer;
-  }
-
-  public void setCurrentPlayer(Player currentPlayer) {
-    this.currentPlayer = currentPlayer;
   }
 
   /**
@@ -244,30 +228,6 @@ public class GameSession implements Serializable {
   }
 
   /**
-   * Reads the distribution of tiles from the database and creates the bag accordingly.
-   *
-   * @author trohwede
-   * @throws SQLException if cant connect to the database
-   */
-  public void initializeBag() throws SQLException {
-
-    System.out.println("Initialized Bag");
-
-    FillDatabase.fillLetters();
-    Database.disconnect();
-    Database.reconnect();
-    ResultSet rs = UseDatabase.viewLetters();
-    while (rs.next()) {
-      this.bag.add(new Tile(rs.getString("Letter"), rs.getInt("Points")));
-      // System.out.println(rs.getString("Letter") + " : " + rs.getInt("Points"));
-    }
-
-    System.out.println("Finished Initialized Bag");
-    rs.close();
-    Database.disconnect();
-  }
-
-  /**
    * When the gameSession is created, fills the bagOfTiles with the tiles set in the lobby.
    *
    * @author trohwede
@@ -275,26 +235,22 @@ public class GameSession implements Serializable {
    * @param points how many points each letter gives
    */
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
-
-    // TODO joker richtig bennen
-    String[] buchstaben = {
+    String[] letters = {
       "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
       "T", "U", "V", "W", "X", "Y", "Z", "*"
     };
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
-
-        this.bag.add(new Tile(buchstaben[i], points.get(i)));
+        this.bag.add(new Tile(letters[i], points.get(i)));
       }
     }
-
     Database.disconnect();
   }
 
   /**
    * When turn is finished correctly, rack need to be refilled, round number increased,
-   * currentplayer set correctly.
+   * currentPlayer set correctly.
    *
    * @author trohwede
    */
@@ -336,9 +292,6 @@ public class GameSession implements Serializable {
       }
     }
   }
-
-  // TODO
-  public void checkEndScreen() {}
 
   /**
    * This method is called when the "Exit"- or "Give Up"-button in the UI is clicked. It first
@@ -416,13 +369,9 @@ public class GameSession implements Serializable {
    * @param player that should be checked
    */
   public void checkBagAndRack(Player player) {
-
     int size = bag.getSize();
-
-    System.out.println("WHAT HAPPEND ? " + size);
     if (size == 0 && !player.getRack().isRackFull()) {
       this.shouldEnd = true;
-      System.out.println("Good shit happend");
     }
   }
 
@@ -444,7 +393,7 @@ public class GameSession implements Serializable {
    * @param tob - the variable if Triple.mp3 or Bingo.mp3 shall be played.
    */
   public void playSound(boolean tob) {
-    String file = "";
+    String file;
     if (tob) {
       file = "Bingo.mp3";
     } else {
@@ -452,7 +401,9 @@ public class GameSession implements Serializable {
     }
     Media sound =
         new Media(
-            Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file).toExternalForm());
+            Objects.requireNonNull(
+                    Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file))
+                .toExternalForm());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();

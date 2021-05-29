@@ -1,13 +1,15 @@
 package com.scrab5.core.game;
 
 import com.scrab5.ui.Data;
+import com.scrab5.util.constants.Constants;
 import com.scrab5.util.parser.DictionaryScanner;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * GameBoard, represents the physical gameboard where everyone plays on. Including all functions
- * that change or edit the gameboard.
+ * GameBoard, represents the physical gameBoard where everyone plays on. Including all functions
+ * that change or edit the gameBoard.Here we can calculate the points, check what new words haven
+ * been played and check if the words are still legit.
  *
  * @author trohwede
  */
@@ -83,24 +85,8 @@ public class GameBoard implements Serializable {
     return firstTile;
   }
 
-  public void setFirstTile(boolean firstTile) {
-    this.firstTile = firstTile;
-  }
-
   public ArrayList<Tile> getCurrentChanges() {
     return currentChanges;
-  }
-
-  public void setCurrentChanges(ArrayList<Tile> currentChanges) {
-    this.currentChanges = currentChanges;
-  }
-
-  public String[][] getGameBoardSpecial() {
-    return gameBoardSpecial;
-  }
-
-  public void setGameBoardSpecial(String[][] gameBoardSpecial) {
-    this.gameBoardSpecial = gameBoardSpecial;
   }
 
   public void setSpecialAt(int row, int column, String string) {
@@ -138,15 +124,14 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Placing a tile in the test doesn't have to follow rules, this makes testing a lot easier.
+   * Placing a tile without checking if its correct. Needed for the Ai, and makes testing easier.
    *
    * @author trohwede
    * @param t Tile you want to place
    * @param row coordinates of the to be checked spot
    * @param column coordinates of the to be checked spot
-   * @return if your placement was successful
    */
-  public boolean placeTileTest(Tile t, int row, int column) {
+  public void placeTileForce(Tile t, int row, int column) {
     if (isSpotFree(row, column)) {
       gameBoardCurrent[row][column] = t;
       t.setRow(row);
@@ -154,9 +139,6 @@ public class GameBoard implements Serializable {
       t.setRackPlace(null);
       currentChanges.add(t);
       firstTile = false;
-      return true;
-    } else {
-      return false;
     }
   }
 
@@ -210,7 +192,7 @@ public class GameBoard implements Serializable {
 
   /**
    * If the turn is finished this method, will set add the new tiles placed this round to the
-   * gameBoard that has all confirmed changes. Also currentChanges have to be resettet.
+   * gameBoard that has all confirmed changes. Also currentChanges have to be reset.
    *
    * @author trohwede
    */
@@ -263,20 +245,18 @@ public class GameBoard implements Serializable {
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
 
+    // quick check if its just next to each other without an old tile connecting
     if ((row == row1 + 1 && column == column1)
         || (row == row1 - 1 && column == column1)
         || (row == row1 && column == column1 + 1)
         || (row == row1 && column == column1 - 1)) {
       return true;
-    } else {
-      System.out.println("Nicht nebeinander");
     }
 
-    // gleiche reihe
+    // needs to check if other "old" tiles fill the void between the 2 placed tiles.
+    // same row
     if (row1 == row) {
-      System.out.println("Gleiche Reihe");
       if (column1 < column) {
-        System.out.println("Neue Tile is right");
         for (int i = 1; i < column - column1; i++) {
           if (gameBoard[row][column1 + i] == null) {
             return false;
@@ -289,9 +269,8 @@ public class GameBoard implements Serializable {
           }
         }
       }
-      // gleiche column
+      // same column
     } else if (column1 == column) {
-      System.out.println("Gleiche Spalte");
       if (row1 < row) {
         for (int i = 1; i < row - row1; i++) {
           if (gameBoard[row1 + i][column1] == null) {
@@ -340,7 +319,7 @@ public class GameBoard implements Serializable {
     int row2 = currentChanges.get(1).getRow();
     int column2 = currentChanges.get(1).getColumn();
 
-    if (column1 == column2 && column1 == column) {
+    if (column1 == column2 && column1 == column) { // given coordinates are vertical
       if (row < row1) {
         for (int i = 1; i < Integer.min(row1, row2) - row; i++) {
           if (gameBoardCurrent[Integer.min(row1, row2) - i][column] == null) {
@@ -355,24 +334,21 @@ public class GameBoard implements Serializable {
         }
       }
 
-    } else if (row1 == row2 && row1 == row) {
-      System.out.println("Same Row");
+    } else if (row1 == row2 && row1 == row) { // given coordinates are horizontal
       if (column < column1) {
-        System.out.println("Neuer buchstabe ist left");
         for (int i = 1; i < Integer.min(column1, column2) - column; i++) {
           if (gameBoardCurrent[row][Integer.min(column1, column2) - i] == null) {
             return false;
           }
         }
       } else if (column > column1) {
-        System.out.println("Neuer buchstabe ist right");
         for (int i = 1; i < column - Integer.max(column1, column2); i++) {
           if (gameBoardCurrent[row][Integer.max(column1, column2) + i] == null) {
             return false;
           }
         }
       }
-    } else {
+    } else { // if not horizontal or vertical its not a legal move.
       return false;
     }
     return true;
@@ -388,18 +364,22 @@ public class GameBoard implements Serializable {
    */
   public boolean isTileLegal(int row, int column) {
 
+    // if first tile is not played yet, needs to be placed on 7,7
     if (firstTile) {
-      System.out.println("First Tile should be Placed");
       return (row == 7 && column == 7);
 
     } else {
+      // if its the first tile played need to be next to one tile on the old gameBoard
       if (currentChanges.size() == 0) {
         return isConnectedToOldTiles(row, column);
+        // the second tile can should create a horizontal line or a vertical line
       } else if (currentChanges.size() == 1) {
         if (!(isSpotFree(row, column))) {
           return false;
         }
         return isSpotNext(row, column);
+        // if 3 or more tiles, it needs to be in the horizontal or vertical line created by the 1.
+        // and 2. tile played
       } else {
         if (!(isSpotFree(row, column))) {
           return false;
@@ -429,9 +409,8 @@ public class GameBoard implements Serializable {
 
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
-        if (changedWords[i][j] != null) { // Tile is empty
+        if (changedWords[i][j] != null) {
           word.append(getTile(i, j).getLetter());
-          System.out.print(getTile(i, j).getLetter() + " tile: ");
           switch (gameBoardSpecial[i][j]) {
             case "TL":
               scoreToBe += changedWords[i][j].getValue() * 3;
@@ -510,6 +489,7 @@ public class GameBoard implements Serializable {
               scoreToBe += changedWords[i][j].getValue();
               break;
           }
+          // needs to remove gameBoardSpecial here, so it cant be used more than once.
           gameBoardSpecial[i][j] = "  ";
 
         } else { // Tile is empty
@@ -539,9 +519,11 @@ public class GameBoard implements Serializable {
       System.out.println(score);
     }
 
+    // if 7 tiles have been played by the player receive bingo points
     if (currentChanges.size() == 7) {
       score += 50;
 
+      // bingo sound
       if (Data.getGameSession().isOnline()) {
         Data.getPlayerClient().playSound(true);
       } else {
@@ -572,34 +554,28 @@ public class GameBoard implements Serializable {
       int column = currentChange.getColumn();
 
       touchedTiles[row][column] = currentChange;
-
+      // if there are tiles that are left,right,above or below the currentChanges tiles.
       int count = 1;
 
-      // System.out.println("Current Tile: " + currentChanges.get(i).getLetter());
       if ((row - count >= 0) && gameBoard[row - count][column] != null) {
         top = true;
-        // System.out.println("Drüber: " + gameBoard[row - count][column].getLetter());
       }
 
       if ((row + count < 15) && gameBoard[row + count][column] != null) {
         below = true;
-        // System.out.println("below: " + gameBoard[row + count][column].getLetter());
       }
 
       if ((column + count < 15) && gameBoard[row][column + count] != null) {
         right = true;
-        // System.out.println("right: " + gameBoard[row][column + count].getLetter());
       }
 
       if ((column - count >= 0) && gameBoard[row][column - count] != null) {
         left = true;
-        // System.out.println("left: " + gameBoard[row][column - count].getLetter());
       }
 
       while (row - count >= 0 && top) {
         if (gameBoard[row - count][column] != null) {
           touchedTiles[row - count][column] = gameBoard[row - count][column];
-          // System.out.println("topsucces");
           count++;
         } else {
           top = false;
@@ -608,10 +584,10 @@ public class GameBoard implements Serializable {
 
       count = 1;
 
+      // Searches further into the rows or columns to find more tiles that create the choose word.
       while (row + count <= 14 && below) {
         if (gameBoard[row + count][column] != null) {
           touchedTiles[row + count][column] = gameBoard[row + count][column];
-          // System.out.println("belowsucces");
           count++;
         } else {
           below = false;
@@ -623,7 +599,6 @@ public class GameBoard implements Serializable {
       while (column + count <= 14 && right) {
         if (gameBoard[row][column + count] != null) {
           touchedTiles[row][column + count] = gameBoard[row][column + count];
-          // System.out.println("right succes");
           count++;
         } else {
           right = false;
@@ -635,7 +610,6 @@ public class GameBoard implements Serializable {
       while (column - count >= 0 && left) {
         if (gameBoard[row][column - count] != null) {
           touchedTiles[row][column - count] = gameBoard[row][column - count];
-          // System.out.println("left succes");
           count++;
         } else {
           left = false;
@@ -672,11 +646,14 @@ public class GameBoard implements Serializable {
     ArrayList<String> listOfWords = new ArrayList<>();
     StringBuilder word = new StringBuilder();
 
+    // double for loop to go through the gameBoard left to right and top to bottom
     for (int i = 0; i < 15; i++) {
       for (int j = 0; j < 15; j++) {
+        // adds all consecutive tiles that arent empty to a string.
         if (gameBoardCurrent[i][j] != null) {
           word.append(getTile(i, j).getLetter());
         } else {
+          // if the string is longer than 1, it counts as a word and is added to the word list.
           if (word.length() > 1) {
             listOfWords.add(word.toString());
           }
@@ -693,6 +670,8 @@ public class GameBoard implements Serializable {
       word.setLength(0);
     }
 
+    // double for loop to go through the gameBoard top to bottom and left to right. Basic copy from
+    // above just changed j/i
     for (int j = 0; j < 15; j++) {
       for (int i = 0; i < 15; i++) {
         if (gameBoardCurrent[i][j] != null) {
@@ -720,7 +699,7 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Checks if all the words generated are actually in the dictionary.
+   * Checks if all words generated by getWords() are found in the dictionary.
    *
    * @author trohwede
    * @return boolean if all words are found in the dictionary.
@@ -738,7 +717,7 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Needed for testing.
+   * Checks if all words generated by getWords() are found in the dictionary. Adjusted for testing.
    *
    * @author trohwede
    * @author lengist
@@ -755,7 +734,8 @@ public class GameBoard implements Serializable {
   }
 
   /**
-   * Clears the board of all Tiles and sets them to null.
+   * Clears the board of all Tiles and sets them to null. Also resets currentChanges, firstTile, and
+   * gameBoardSpecial.
    *
    * @author trohwede
    */
@@ -767,52 +747,6 @@ public class GameBoard implements Serializable {
     }
     currentChanges.clear();
     firstTile = true;
-
-    gameBoardSpecial =
-        new String[][] {
-          {
-            "TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"
-          },
-          {
-            "  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "
-          },
-          {
-            "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "
-          },
-          {
-            "DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"
-          },
-          {
-            "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "
-          },
-          {
-            "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "
-          },
-          {
-            "  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "
-          },
-          {
-            "TW", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"
-          },
-          {
-            "  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "
-          },
-          {
-            "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "
-          },
-          {
-            "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "
-          },
-          {
-            "DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"
-          },
-          {
-            "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "
-          },
-          {
-            "  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "
-          },
-          {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"}
-        };
+    gameBoardSpecial = Constants.GAME_BOARD_SPECIAL_BASIC;
   }
 }

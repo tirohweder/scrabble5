@@ -2,6 +2,7 @@ package com.scrab5.core.game;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -46,28 +47,14 @@ public class Rack implements Serializable {
   }
 
   /**
-   * Adds the tile t to the position pos in the rack. //TODO ASK why not needed
-   *
-   * @author trohwede
-   * @param t the tile that wants to be added
-   * @param pos position of where to add the tile in the rack
-   */
-  public void addToRack(Tile t, int pos) {
-    this.rack[pos] = t;
-  }
-
-  /**
    * Removes a tile from the rack at the given position.
    *
    * @author trohwede
    * @param pos position of the rack you want to remove the tile from
    */
-  public boolean removeTileFromRack(int pos) {
+  public void removeTileFromRack(int pos) {
     if (this.rack[pos] != null) {
       this.rack[pos] = null;
-      return true;
-    } else {
-      return false;
     }
   }
 
@@ -93,9 +80,7 @@ public class Rack implements Serializable {
    * @author trohwede
    */
   public void clearRack() {
-    for (int i = 0; i < rack.length; i++) {
-      rack[i] = null;
-    }
+    Arrays.fill(rack, null);
   }
 
   /**
@@ -103,7 +88,7 @@ public class Rack implements Serializable {
    *
    * @author apilgrim
    * @param order - ArrayList(Integer) with the tiles from the rack not already placed. Comes from
-   *     IngameController method shuffleClicked.
+   *     InGameController method shuffleClicked.
    */
   public void shuffleRack(ArrayList<Integer> order) {
     Random rand = new Random();
