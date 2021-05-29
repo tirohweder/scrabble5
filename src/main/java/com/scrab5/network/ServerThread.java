@@ -6,6 +6,7 @@ import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
+import com.scrab5.network.messages.PlaySoundMessage;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
@@ -23,10 +24,9 @@ import java.net.SocketException;
  *
  * @author nitterhe
  */
-
 public class ServerThread extends Threads {
 
-  private Socket socketToClient;
+  private final Socket socketToClient;
   private Server server;
   private ObjectOutputStream toClient;
   private ObjectInputStream fromClient;
@@ -64,11 +64,14 @@ public class ServerThread extends Threads {
       while (this.running) {
         message = (Message) this.fromClient.readObject();
         switch (message.getType()) {
-
           case GETSERVERDATA:
-            sendMessageToClient(new SendServerDataMessage(this.server.getHost(),
-                this.socketToClient.getLocalPort(), this.server.getClientCounter(),
-                this.server.getClientMaximum(), this.server.getStatus()));
+            sendMessageToClient(
+                new SendServerDataMessage(
+                    this.server.getHost(),
+                    this.socketToClient.getLocalPort(),
+                    this.server.getClientCounter(),
+                    this.server.getClientMaximum(),
+                    this.server.getStatus()));
             this.stopThread();
             this.socketToClient.close();
             break;
@@ -84,12 +87,12 @@ public class ServerThread extends Threads {
             break;
           case DISCONNECT:
             DisconnectMessage disconnect = (DisconnectMessage) message;
-            boolean inGame =
-                (Data.getGameSession() != null) ? Data.getGameSession().isRunning() : false;
+            boolean inGame = Data.getGameSession() != null && Data.getGameSession().isRunning();
             if (disconnect.getSender().equals(server.getHost()) || inGame) {
               server.shutDownServer();
             } else {
               closeConnection();
+              deleteClient(disconnect.getSender());
             }
             break;
           case CHAT:
@@ -106,6 +109,10 @@ public class ServerThread extends Threads {
             Data.setGameSession(mtm.getGameSession());
             this.server.resetTimer();
             server.sendMessageToAllClients(mtm);
+            break;
+          case PLAYSOUND:
+            PlaySoundMessage psm = (PlaySoundMessage) message;
+            server.sendMessageToAllClients(psm);
             break;
           default:
             break;
@@ -133,13 +140,13 @@ public class ServerThread extends Threads {
    *
    * @param clientData - the clientData object of the lient that just connected to the server
    * @throws Exception - an Exception that is thrown when a similar client with the same name is
-   *         already on the server / was on the server
+   *     already on the server / was on the server
    * @author nitterher
    */
   protected void addClient(ClientData clientData) throws Exception {
     if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
-      FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
-          clientData.getIp());
+      FillDatabase.createServerRow(
+          this.server.getHost(), clientData.getUsername(), clientData.getIp());
     }
     if (null != server.getClients().putIfAbsent(clientData.getUsername(), clientData)) {
       throw new Exception();
@@ -198,12 +205,11 @@ public class ServerThread extends Threads {
    */
   protected synchronized void closeConnection() {
     sendMessageToClient(new DisconnectMessage(server.getHost()));
-    deleteClient(this.connectedClient.getUsername());
     this.stopThread();
     try {
       this.socketToClient.close();
     } catch (Exception e) {
-      // new NetworkError(NetworkErrorType.CLOSECONNECTION);
+      new NetworkError(NetworkErrorType.CLOSECONNECTION);
     }
   }
 }

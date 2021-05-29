@@ -1,10 +1,10 @@
 package com.scrab5.util.database;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Disabled;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
  * 
  * @author lengist
  */
-@Disabled
 class DeleteTest {
   CreateDatabase cd = new CreateDatabase();
 
@@ -39,7 +38,7 @@ class DeleteTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -64,6 +63,6 @@ class DeleteTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 }

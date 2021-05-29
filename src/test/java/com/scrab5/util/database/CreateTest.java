@@ -1,10 +1,9 @@
 package com.scrab5.util.database;
 
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.junit.jupiter.api.Disabled;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -17,10 +16,10 @@ import org.junit.jupiter.api.Test;
  * 
  * @author lengist
  */
-@Disabled
 class CreateTest {
 
   CreateDatabase cd = new CreateDatabase();
+
   /**
    * Tests the function to create a new Player in the database. Test for Use Case 1 create.
    * 
@@ -49,12 +48,11 @@ class CreateTest {
       assertEquals(0.0, rs.getDouble("WinRate"));
       assertEquals("", rs.getString("FaveDic"));
       assertEquals(50.0, rs.getDouble("Music"));
-      assertEquals(50.0, rs.getDouble("SoundEffect"));
-      System.out.println("done");
+      assertEquals(25.0, rs.getDouble("SoundEffect"));
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -79,7 +77,7 @@ class CreateTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -159,7 +157,7 @@ class CreateTest {
     assertEquals(4, point[24]);
     assertEquals("Z", letter[25]);
     assertEquals(10, point[25]);
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
 }

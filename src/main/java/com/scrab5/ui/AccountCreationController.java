@@ -17,19 +17,28 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * The AccountCreationController class controls the components of the "AccountCreation.fxml".
- * 
+ *
  * @author mherre
  */
 public class AccountCreationController extends Controller implements Initializable {
 
+  private static String predecessor = "";
   @FXML
   private TextField nickname;
-  private String createdUsername;
-  private static String predecessor = "";
+
+  /**
+   * Sets the predescessor scene of AccountCreationController.
+   *
+   * @author mherre
+   * @param predecessorPara the name of the scene that was shown before
+   */
+  public static void setPredecessor(String predecessorPara) {
+    predecessor = predecessorPara;
+  }
 
   /**
    * Call certain methods as soon as the Controller is loaded.
-   * 
+   *
    * @author mherre
    */
   @Override
@@ -40,7 +49,7 @@ public class AccountCreationController extends Controller implements Initializab
   /**
    * Event method that is called when the "Back"-button in the UI is clicked. The scene gets changed
    * to a certain predecessor scene.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
@@ -48,25 +57,19 @@ public class AccountCreationController extends Controller implements Initializab
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
-    switch (predecessor) {
-
-      case "Profile":
-        App.setRoot("Profile");
-        break;
-
-      default:
-        App.setRoot("Login");
-        break;
+    if ("Profile".equals(predecessor)) {
+      App.setRoot("Profile");
+    } else {
+      App.setRoot("Login");
     }
-
   }
 
   /**
    * Event method that is called when "Enter" is pressed on the key board. If a valid username has
    * been entered the scene and the audio volume gets adopted.
-   * 
+   *
    * @author mherre
    * @param event the KeyEvent that is created when a key is pressed on the key board
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
@@ -75,7 +78,6 @@ public class AccountCreationController extends Controller implements Initializab
   @FXML
   private void enterPressed(KeyEvent event) throws IOException {
     if (event.getCode() == KeyCode.ENTER && this.isUsernameValid(this.nickname.getText())) {
-      System.out.println("AccountCreationController: get sound effect");
       App.setMusicVolume(PlayerProfileDatabase.getMusicVolume(Data.getCurrentUser()));
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       App.setRoot("MainMenu");
@@ -85,7 +87,7 @@ public class AccountCreationController extends Controller implements Initializab
   /**
    * Event method that is called when the "Enter"-button is clicked in the UI. If a valid username
    * has been entered the scene and the audio volume gets adopted.
-   * 
+   *
    * @author mherre
    * @param event the MouseEvent that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
@@ -93,9 +95,8 @@ public class AccountCreationController extends Controller implements Initializab
    */
   @FXML
   private void enter(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (this.isUsernameValid(this.nickname.getText())) {
-      System.out.println("AccountCreationController: get music");
       App.setMusicVolume(PlayerProfileDatabase.getMusicVolume(Data.getCurrentUser()));
       Data.setSFXVolume(PlayerProfileDatabase.getSoundEffectVolume(Data.getCurrentUser()));
       App.setRoot("MainMenu");
@@ -103,25 +104,14 @@ public class AccountCreationController extends Controller implements Initializab
   }
 
   /**
-   * Returns a String containing the last created valid username that has been entered in the
-   * TextField <code>nickname</code>.
-   * 
-   * @author mherre
-   * @return returns <code>createdUsername</code>
-   */
-  public String getCreatedUsername() {
-    return createdUsername;
-  }
-
-  /**
    * Checks if a nickname only consists of letters, numbers and underscores and is at least 1 char
    * long but no longer than 12 chars. In case the entered username doesn't fullfill the criteria
    * the game will show an error message explaining why the username isn't valid.
+   *
    * <p>
    * In case the nickname fullfills the criteria a new profile gets generated in the database and
    * the user gets shown a confirmation message.
-   * </p>
-   * 
+   *
    * @author mherre
    * @param username the string containing the username thats tested
    * @return the boolean describing if the username is valid
@@ -136,12 +126,10 @@ public class AccountCreationController extends Controller implements Initializab
 
     if (username.matches(regex)) {
       if (!UseDatabase.playerExists(this.nickname.getText())) {
-        this.createdUsername = username;
-        Data.setCurrentUser(this.createdUsername);
-        FillDatabase.createPlayer(this.createdUsername);
+        Data.setCurrentUser(username);
+        FillDatabase.createPlayer(username);
         FillDatabase.createServerRow(Data.getCurrentUser(), Data.getCurrentUser(),
             InetAddress.getLocalHost().getHostAddress());
-
 
         message = "Congratulations! Your account has been created";
         pum = new PopUpMessage(message, PopUpMessageType.NOTIFICATION);
@@ -165,16 +153,5 @@ public class AccountCreationController extends Controller implements Initializab
 
       return false;
     }
-  }
-
-  /**
-   * Sets the predescessor scene of AccountCreationController.
-   * 
-   * @author mherre
-   * @param predecessorPara the name of the scene that was shown before
-   */
-  public static void setPredecessor(String predecessorPara) {
-    predecessor = predecessorPara;
-
   }
 }

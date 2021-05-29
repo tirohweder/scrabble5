@@ -6,26 +6,30 @@ import java.util.LinkedHashMap;
 
 /**
  * Class for messages update every client's lobby.
- * 
+ *
  * @author nitterhe
  */
 public class LobbyUpdateMessage extends Message {
   private static final long serialVersionUID = 1L;
 
-  private boolean gameStart;
-  private String ip4;
-  private LinkedHashMap<String, ClientData> clients;
-  private int clientMaximum;
-  private ServerStatistics serverStatistics;
+  private final boolean gameStart;
+  private final String ip4;
+  private final LinkedHashMap<String, ClientData> clients;
+  private final int clientMaximum;
+  private final ServerStatistics serverStatistics;
 
   /**
    * Constructor for creating LobbyUpdateMessages.
-   * 
+   *
    * @author nitterhe
    * @param sender - the LobbyUpdateMessage sender (always server's host)
    */
-  public LobbyUpdateMessage(String sender, String ip4, boolean gameStart,
-      LinkedHashMap<String, ClientData> clients, int clientMaximum,
+  public LobbyUpdateMessage(
+      String sender,
+      String ip4,
+      boolean gameStart,
+      LinkedHashMap<String, ClientData> clients,
+      int clientMaximum,
       ServerStatistics serverStatistics) {
     super(sender);
     this.type = MessageType.LOBBYUPDATE;
@@ -38,7 +42,7 @@ public class LobbyUpdateMessage extends Message {
 
   /**
    * Returns the server's gameStart boolean.
-   * 
+   *
    * @author nitterhe
    * @return gameStart - boolean if server is ingame (true=in game/false = waiting for clients)
    */
@@ -48,7 +52,7 @@ public class LobbyUpdateMessage extends Message {
 
   /**
    * Returns the server host's IP4Address.
-   * 
+   *
    * @return ip4 - the IP4Address as a string.
    * @author nitterhe
    */
@@ -58,7 +62,7 @@ public class LobbyUpdateMessage extends Message {
 
   /**
    * Returns the server's client overview.
-   * 
+   *
    * @author nitterhe
    * @return client - object of the connecting client
    */
@@ -68,7 +72,7 @@ public class LobbyUpdateMessage extends Message {
 
   /**
    * Returns the server's maximum amount of clients allowed to connect.
-   * 
+   *
    * @author nitterhe
    * @return clientMaximum - the maximum amount of clients allowed to connect to the server
    */
@@ -78,7 +82,7 @@ public class LobbyUpdateMessage extends Message {
 
   /**
    * Returns the server's statistics overview.
-   * 
+   *
    * @author nitterhe
    * @return serverStatistics - this server's ServerStatistics object
    */

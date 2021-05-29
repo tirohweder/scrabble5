@@ -28,19 +28,16 @@ import java.util.TimerTask;
 public class Server implements Serializable {
 
   private static final long serialVersionUID = 1L;
-
-  public final int serverPort = 8080;
-
-  private final String host;
-  private String ip4;
   private static ServerSocket serverSocket;
-  private boolean gameStart;
   private static int clientCounter;
   private static int clientMaximum;
-  private ServerStatistics serverStatistics;
   private static Timer timer;
   private static TimerTask task;
-
+  public final int serverPort = 8080;
+  private final String host;
+  private String ip4;
+  private boolean gameStart;
+  private ServerStatistics serverStatistics;
   private LinkedHashMap<String, ClientData> clients;
   private HashMap<ClientData, ServerThread> connections;
 
@@ -56,8 +53,8 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public Server(String host, int clientMaximum, boolean uiServerInstance) {
-    this.clients = new LinkedHashMap<String, ClientData>();
-    this.connections = new HashMap<ClientData, ServerThread>();
+    this.clients = new LinkedHashMap<>();
+    this.connections = new HashMap<>();
     this.gameStart = false;
     this.host = host;
     Server.clientMaximum = clientMaximum;
@@ -127,7 +124,7 @@ public class Server implements Serializable {
         // does nothing, this happens when the server socket is closed. I could implement a feature
         // with a new socket but i do not see the need
       } catch (Exception e) {
-        System.out.println(e.getCause());
+        e.printStackTrace();
       }
     }
   }
@@ -152,7 +149,7 @@ public class Server implements Serializable {
   public void endGame(String winner) {
     this.cancelTimer();
     this.gameStart = false;
-    boolean win = false;
+    boolean win;
     for (String client : this.clients.keySet()) {
       win = client.equals(winner);
       this.serverStatistics.gamePlayed(client, win);
@@ -185,6 +182,16 @@ public class Server implements Serializable {
    */
   public String getIp4() {
     return this.ip4;
+  }
+
+  /**
+   * Sets the IP4Address of this server object to the given String.
+   *
+   * @param ip4 - the IP4Address as a String
+   * @author nitterhe
+   */
+  public void setIp4(String ip4) {
+    this.ip4 = ip4;
   }
 
   /**
@@ -228,6 +235,16 @@ public class Server implements Serializable {
   }
 
   /**
+   * Sets the maximum amount of clients allowed to connect.
+   *
+   * @param clientMaximum - the maximum amount of clients allowed to connect.
+   * @author nitterhe
+   */
+  public void setClientMaximum(int clientMaximum) {
+    Server.clientMaximum = clientMaximum;
+  }
+
+  /**
    * Returns the number of connected clients as an int after updating it.
    *
    * @return client count - number of connected clients
@@ -239,7 +256,7 @@ public class Server implements Serializable {
 
   /**
    * Updates all the other clients with the changes that were made (i.e. gameboard, turn skipped).
-   * 
+   *
    * @author nitterhe
    */
   public void sendUpdateMessage() {
@@ -256,6 +273,16 @@ public class Server implements Serializable {
    */
   public LinkedHashMap<String, ClientData> getClients() {
     return clients;
+  }
+
+  /**
+   * Overrides the client list.
+   *
+   * @param clients - the new HashMap of the clients
+   * @author nitterhe
+   */
+  public void setClients(LinkedHashMap<String, ClientData> clients) {
+    this.clients = clients;
   }
 
   /**
@@ -299,6 +326,7 @@ public class Server implements Serializable {
     for (ServerThread serverThread : connections.values()) {
       serverThread.closeConnection();
     }
+
     try {
       serverSocket.close();
     } catch (IOException e) {
@@ -325,26 +353,6 @@ public class Server implements Serializable {
   }
 
   /**
-   * Overrides the client list.
-   *
-   * @param clients - the new HashMap of the clients
-   * @author nitterhe
-   */
-  public void setClients(LinkedHashMap<String, ClientData> clients) {
-    this.clients = clients;
-  }
-
-  /**
-   * Sets the maximum amount of clients allowed to connect.
-   *
-   * @param clientMaximum - the maximum amount of clients allowed to connect.
-   * @author nitterhe
-   */
-  public void setClientMaximum(int clientMaximum) {
-    Server.clientMaximum = clientMaximum;
-  }
-
-  /**
    * Sets the given client's ready status.
    *
    * @param clientname - the client's name
@@ -359,13 +367,14 @@ public class Server implements Serializable {
   }
 
   /**
-   * Sets the IP4Address of this server object to the given String.
-   * 
-   * @param ip4 - the IP4Address as a String
+   * Creates a new Timer instance. This is only used when a server is hosted multiple times since no
+   * new Server instance is created.
+   *
    * @author nitterhe
    */
-  public void setIp4(String ip4) {
-    this.ip4 = ip4;
+  public void newTimer() {
+    timer = new Timer(true);
+    this.startTimer();
   }
 
   /**
@@ -402,8 +411,11 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public void cancelTimer() {
-    timer.cancel();
-    timer.purge();
+    if (timer != null) {
+      timer.cancel();
+      timer.purge();
+      timer = null;
+    }
   }
 
   /**
@@ -417,13 +429,14 @@ public class Server implements Serializable {
       this.clients.remove(clientname);
     } else {
       this.connections.get(this.clients.get(clientname)).closeConnection();
+      this.connections.get(this.clients.get(clientname)).deleteClient(clientname);
     }
     this.sendUpdateMessage();
   }
 
   /**
    * Adds a new client instance to the client list. Used for adding AIs.
-   * 
+   *
    * @author nitterhe
    * @param name - the name of the AiPlayer
    */
@@ -440,7 +453,7 @@ public class Server implements Serializable {
   /**
    * Sends the given dictionary to all clients so checking if the word is included in the dictionary
    * takes place at the client.
-   * 
+   *
    * @author nitterhe
    * @param dictionaryName - the name of the dictionary
    * @param dictionary - the dictionary

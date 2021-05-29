@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 /**
  * filter words This class tests the parsing of a dictionary file into a new file to be scanned. The
  * method to filter for words is tested in ScannerTest.java.
- *
+ * 
  * @author lengist
  */
 class ParserTest {
@@ -23,13 +23,26 @@ class ParserTest {
   @Test
   void testCreateSearchableFile() {
     DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
-    DictionaryParser.parseFile("Built-In Standard Dictionary.txt");
-    File file =
-        new File(
-            System.getProperty("user.dir")
-                + System.getProperty("file.separator")
-                + "src/main/resources/com/scrab5/util/textParser/"
-                + DictionaryParser.getNewFileName());
+    DictionaryParser.parseFile(DictionaryParser.getFileName());
+    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + DictionaryParser.getNewFileName());
     assertEquals(true, file.exists());
+    file.delete();
+  }
+
+  /**
+   * Tests the check if a file already exists. Not only the same, but the content. Is needed to
+   * prevent from several duplicates.
+   * 
+   * @author lengist
+   */
+  @Test
+  void testDoesAlreadyExist() {
+    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
+    DictionaryParser.parseFile(DictionaryParser.getFileName());
+    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + DictionaryParser.getNewFileName());
+    assertEquals(true, DictionaryParser.doesAlreadyExist(file));
+    file.delete();
   }
 }

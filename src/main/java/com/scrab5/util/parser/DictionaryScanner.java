@@ -8,29 +8,27 @@ import java.util.Scanner;
 
 /**
  * Class to scan a document.
- * 
+ *
  * @author lengist
  */
 public class DictionaryScanner {
 
   /**
    * Scans the created file of the dictionary for the word searchedWord and returns if its
-   * contained.
+   * contained. The commented sections were for the use of a joker. Because of the implementation of
+   * the function that a user can choose which letter to lay to replace the joker tile, this part is
+   * no longer needed.
    *
    * @author lengist
    * @param searchedWord the String of the laid Word to check
-   * @return boolean of the file contains a searched word
+   * @return boolean if the file contains a searched word
    */
-
   public static boolean scan(String searchedWord) {
-    /*
-     * File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-     * + "src/main/resources/com/scrab5/util/textParser/" +
-     * "Built-In Standard DictionaryParsed.txt");
-     */
-    File fileOne = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/"
-        + Data.getSelectedDictionary().replace(".", "Parsed."));
+    File fileOne =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + Data.getSelectedDictionary().replace(".", "Parsed."));
     boolean found = false;
     // String[] possibleLetters = UseDatabase.getAllLetters();
     // String test;
@@ -50,28 +48,55 @@ public class DictionaryScanner {
       }
       scanner.close();
     } catch (FileNotFoundException e) {
-      System.out.println("File not found");
+      e.printStackTrace();
+    }
+    return found;
+  }
+
+  /**
+   * This method is for testing only.
+   *
+   * @author lengist
+   * @param searchedWord the word that needs to be checked if it exists in the dictionary
+   * @return found if the word is in the dictionary
+   */
+  public static boolean scanTest(String searchedWord) {
+    File fileOne =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + DictionaryParser.getNewFileName());
+    boolean found = false;
+    try {
+      Scanner scanner = new Scanner(fileOne);
+      while (scanner.hasNextLine()) {
+        String line = scanner.nextLine();
+        if (line.equalsIgnoreCase(searchedWord)) {
+          found = true;
+        }
+      }
+      scanner.close();
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
     }
     return found;
   }
 
   /**
    * Method to return words that contains the letter "letter" and are at most "length" chars long.
-   * 
+   *
    * @author lengist
    * @param letter the letter that needs to be in the wanted word
    * @param length the maximum length the wanted words can be
    * @return a String array containing all the suitable words
    */
   public static ArrayList<String> getWordsIncluding(String letter, int length) {
-    ArrayList<String> list = new ArrayList<String>();
-    /*
-     * File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator") +
-     * "src/main/resources/com/scrab5/util/textParser/" + "Built-In Standard DictionaryParsed.txt");
-     */
-    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
-        + "src/main/resources/com/scrab5/util/textParser/"
-        + Data.getSelectedDictionary().replace(".", "Parsed."));
+    ArrayList<String> list = new ArrayList<>();
+    File file =
+        new File(
+            System.getProperty("user.dir")
+                + System.getProperty("file.separator")
+                + Data.getSelectedDictionary().replace(".", "Parsed."));
     try {
       Scanner scanner = new Scanner(file);
       while (scanner.hasNextLine()) {
@@ -80,62 +105,12 @@ public class DictionaryScanner {
           list.add(line);
         }
       }
+      scanner.close();
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     }
     String[] suitableWords = new String[list.size()];
-    suitableWords = list.toArray(suitableWords);
-
+    list.toArray(suitableWords);
     return list;
   }
-
-  /**
-   * Returns a new array that contains the words from the parameter array which include letter.
-   * 
-   * @author lengist
-   * @param words a ArrayList containing all words to check
-   * @param letter a String of the letter that should be in the array that gets returned
-   * @return a ArrayList containing all words containing the letter
-   */
-  public static ArrayList<String> getWordsIncludingFrom(ArrayList<String> words, String letter) {
-    ArrayList<String> checked = new ArrayList<String>();
-    for (String line : words) {
-      if (line.contains(letter)) {
-        checked.add(line);
-      }
-    }
-    return checked;
-  }
-
-
-
-  /**
-   * main method to test the implementation.
-   * 
-   * @author lengist
-   * @param args
-   */
-  // public static void main(String[] args) {
-  // Database db = new Database();
-  // CreateDatabase cdb = new CreateDatabase();
-  // FillDatabase fd = new FillDatabase();
-  // fd.fillLetters();
-  //
-  //
-  // // DictionaryParser.setCurrentDictionary("words.txt");
-  // // DictionaryParser.parseFile("words.txt");
-  // DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
-  // // System.out.println(scan("JOK*R"));
-  // System.out.println(scan("ZZZ"));
-  // System.out.println();
-  //
-  // System.out.println("before: ");
-  // System.out.println(scan("before"));
-  // System.out.println();
-  // // String[] test = getWordsIncluding("A", 3);
-  // /*
-  // * for(int i = 0; i < test.length; i++) { System.out.println(test[i]); }
-  // * System.out.println("after");
-  // */
-  // }
 }

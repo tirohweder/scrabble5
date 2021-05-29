@@ -12,50 +12,46 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * The EndGameController class controls the end screen after finishing the game by clicking "give
+ * up", "skip" 6 times of the "Exchange.fxml".
+ *
+ * @author apilgrim
+ */
 public class EndGameController extends InGameController implements Initializable {
 
-  @FXML
-  private ImageView wonScreen;
-  @FXML
-  private ImageView lostScreen;
+  @FXML private ImageView wonScreen;
+  @FXML private ImageView lostScreen;
 
-  @FXML
-  private Label firstPlayer;
-  @FXML
-  private Label secondPlayer;
-  @FXML
-  private Label thirdPlayer;
-  @FXML
-  private Label fourthPlayer;
-  @FXML
-  private Label firstPlayerPoints;
-  @FXML
-  private Label secondPlayerPoints;
-  @FXML
-  private Label thirdPlayerPoints;
-  @FXML
-  private Label fourthPlayerPoints;
-
+  @FXML private Label firstPlayer;
+  @FXML private Label secondPlayer;
+  @FXML private Label thirdPlayer;
+  @FXML private Label fourthPlayer;
+  @FXML private Label firstPlayerPoints;
+  @FXML private Label secondPlayerPoints;
+  @FXML private Label thirdPlayerPoints;
+  @FXML private Label fourthPlayerPoints;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-    
-      try {
-        initPlayers();
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+
+    initPlayers();
 
     initEndGame();
   }
-  
-  
 
+  /**
+   * Method called, when the game is finished. Checks who has the most points and displays the
+   * correct order of the players. The player with the most points get a "you won" anyone else gets
+   * a "you lost".
+   *
+   * @author apilgrim
+   */
   private void initEndGame() {
     Data.getGameSession().setRunning(false);
     ArrayList<Player> players = Data.getGameSession().getListOfPlayers();
-    Player p, swap;
+    Player p;
+    Player swap;
     Iterator<Player> it = players.iterator();
     int counter = 0;
 
@@ -82,9 +78,11 @@ public class EndGameController extends InGameController implements Initializable
       lostScreen.setOpacity(1);
     }
 
-
-    if (Data.getGameSession().isOnline() && Data.getPlayerClient().getCurrentServer().getHost()
-        .equals(Data.getPlayerClient().getUsername())) {
+    if (Data.getGameSession().isOnline()
+        && Data.getPlayerClient()
+            .getCurrentServer()
+            .getHost()
+            .equals(Data.getPlayerClient().getUsername())) {
       Data.getHostedServer().endGame(order[counter].getName());
     }
 
@@ -114,22 +112,39 @@ public class EndGameController extends InGameController implements Initializable
       fourthPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
       fourthPlayer.setOpacity(1);
       fourthPlayerPoints.setOpacity(1);
-      counter--;
     }
   }
 
-
+  /**
+   * Is called when "main menu" - button is clicked, switches to the main menu. Disconnects the
+   * server if the game played, was online.
+   *
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "main menu" button is clicked
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *     exist
+   */
   @FXML
   private void mainMenuClicked(MouseEvent event) throws IOException {
-    Data.getPlayerClient().disconnectFromServer();
+    if (Data.getGameSession().isOnline()) {
+      Data.getPlayerClient().disconnectFromServer();
+    }
     App.setRoot("MainMenu");
   }
 
+  /**
+   * Is called when "play again" - button is clicked, switches to the singleplayer lobby. Only
+   * clickable if the game was offline in the singleplayer.
+   *
+   * @author apilgrim
+   * @param event - MouseEvent created, when the "play again" button is clicked
+   * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
+   *     exist
+   */
   @FXML
   private void playAgainClicked(MouseEvent event) throws IOException {
-
-    App.setRoot("SingleplayerLobby");
+    if (!Data.getGameSession().isOnline()) {
+      App.setRoot("SingleplayerLobby");
+    }
   }
 }
-
-

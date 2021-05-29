@@ -1,6 +1,7 @@
 package com.scrab5.core.game;
 
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.UseDatabase;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -46,10 +47,32 @@ public class BagOfTiles implements Serializable {
     return test;
   }
 
+  /**
+   * Returns a random Letter from the Bag. Used for AI.
+   *
+   * @author trohwede
+   * @return returns random letter from the bag.
+   */
+  public String randomLetterFromBag() {
+    return bag.get(new Random().nextInt(bag.size())).getLetter();
+  }
+
+  /**
+   * Getter for Bag.
+   *
+   * @author trohwede
+   * @return returns bag.
+   */
   public ArrayList<Tile> getBag() {
     return bag;
   }
 
+  /**
+   * Setter for bag.
+   *
+   * @author trohwede
+   * @param bag bag to be set.
+   */
   public void setBag(ArrayList<Tile> bag) {
     this.bag = bag;
   }
@@ -62,6 +85,18 @@ public class BagOfTiles implements Serializable {
    */
   public int getSize() {
     return this.bag.size();
+  }
+
+  /**
+   * Adds the content of the Rack to the bag.
+   *
+   * @author trohwede
+   * @param rack rack to be added to the bag.
+   */
+  public void addRackToBag(Rack rack) {
+    for (int i = 0; i < rack.getRackSize(); i++) {
+      bag.add(rack.getTileAt(i));
+    }
   }
 
   /**
@@ -88,11 +123,11 @@ public class BagOfTiles implements Serializable {
    */
   public void setBagWithDistribution(HashMap<String, Integer> newWordDistro) {
     bag.clear();
-
+    FillDatabase.fillLetters();
     String[] letter = UseDatabase.getAllLetters();
     int[] points = UseDatabase.getAllPointsPerLetter();
 
-    int set = 0;
+    int match = 0;
 
     Iterator<Entry<String, Integer>> it = newWordDistro.entrySet().iterator();
     int count = 0;
@@ -101,11 +136,11 @@ public class BagOfTiles implements Serializable {
       Entry<String, Integer> pair = it.next();
       for (int i = 0; i < pair.getValue(); i++) {
         for (int j = 0; j < letter.length; j++) {
-          if (pair.getKey() == letter[j]) {
-            set = j;
+          if (pair.getKey().equals(letter[j])) {
+            match = j;
           }
         }
-        bag.add(count, new Tile(pair.getKey(), points[set]));
+        bag.add(count, new Tile(pair.getKey(), points[match]));
         count++;
       }
       it.remove();

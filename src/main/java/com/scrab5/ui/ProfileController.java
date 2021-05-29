@@ -1,12 +1,12 @@
 package com.scrab5.ui;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
 import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -14,20 +14,27 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * The ProfileController class controls the components of the "Profile.fxml".
- * 
- * @author mherre
  *
+ * @author mherre
  */
 public class ProfileController extends Controller implements Initializable {
 
-  @FXML
-  private Label nicknameLabel, totalPoints, averagePointsGame, mostPoints, laidWords,
-      averagePointsWord, longestWord, totalGames, totalWins, winPercentage, favDic;
+  @FXML private Label nicknameLabel;
+  @FXML private Label totalPoints;
+  @FXML private Label averagePointsGame;
+  @FXML private Label mostPoints;
+  @FXML private Label laidWords;
+  @FXML private Label averagePointsWord;
+  @FXML private Label longestWord;
+  @FXML private Label totalGames;
+  @FXML private Label totalWins;
+  @FXML private Label winPercentage;
+  @FXML private Label favDic;
 
   /**
    * Call certain methods as soon as the Controller is loaded. Calls {@link #setupStats()} and
    * displays the name of the current user
-   * 
+   *
    * @author mherre
    */
   @Override
@@ -39,18 +46,18 @@ public class ProfileController extends Controller implements Initializable {
   /**
    * Event method that is called when the "Delete Profile"-button in the UI is clicked. Opens a
    * Pop-Up and depending on the users action the profile gets deleted and scene changed or not.
-   * 
+   *
    * @author mherre
    * @author lengist
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void deleteProfile(MouseEvent event) throws IOException {
     Database.reconnect();
 
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     String message = "Are you sure you want to delete this profile? (You can't undo this)";
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.CONFIRMATION);
@@ -64,7 +71,6 @@ public class ProfileController extends Controller implements Initializable {
 
       } else {
         App.setRoot("RealLogin");
-
       }
     }
     Database.disconnect();
@@ -74,17 +80,17 @@ public class ProfileController extends Controller implements Initializable {
    * Event method that is called when the "Edit Name"-button in the UI is clicked. Opens a Pop-Up
    * message with a textfield displaying the user's current nickname. In case the edited nickname
    * fullfills the username criteria then the name will be updated in the database.
-   * 
+   *
    * @author mherre
    * @author lengist
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void editName(MouseEvent event) throws IOException {
     Database.reconnect();
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     String message = "Enter your changes and click 'Okay'";
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.INPUT);
@@ -101,45 +107,45 @@ public class ProfileController extends Controller implements Initializable {
   /**
    * Event method that is called when the "Change Profile"-button in the UI is clicked. Changes the
    * scene to "RealLogin.fxml".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void changeProfile(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     App.setRoot("RealLogin", "Profile");
   }
 
   /**
    * Event method that is called when "Create New Profile"-button in the UI is clicked. Changes the
    * scene to "AccountCreation.fxml".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void createNewPlayerProfile(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     App.setRoot("AccountCreation", "Profile");
   }
 
   /**
    * Event method that is called when the "Back"-button in the UI is clicked. Changes the scene to
    * "MainMenu.fxml".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     App.setRoot("MainMenu");
   }
 
@@ -147,12 +153,12 @@ public class ProfileController extends Controller implements Initializable {
    * Checks whether a given username fulfills the criteria (consists only of numbers, letters and
    * underscores). In case it does, it returns true. In case it doesn't it returns false and shows a
    * PopUp message stating the username doesn't fullfill the criteria.
-   * 
+   *
    * @author mherre
    * @param username the string containing the username that's tested
    * @return the boolean describing if the username is valid
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   public boolean isUsernameValid(String username) throws IOException {
 
@@ -169,39 +175,38 @@ public class ProfileController extends Controller implements Initializable {
         pum = new PopUpMessage(message, PopUpMessageType.ERROR);
         pum.show();
         return false;
-
       }
     } else {
-      message = "Please make sure your nickname consists only of letters, numbers, "
-          + "underscores and is only 12 signs long";
+      message =
+          "Please make sure your nickname consists only of letters, numbers, "
+              + "underscores and is only 12 signs long";
       pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
       return false;
-
     }
   }
 
   /**
    * Gathers all necessary data from the database and sets the text of various labels that are
    * displaying the statistics in the UI.
-   * 
+   *
    * @author mherre
    * @author lengist
    */
   private synchronized void setupStats() {
-    
+
     String name = Data.getCurrentUser();
 
-    String longestWord = PlayerProfileDatabase.getLongestWord(name);
-    this.longestWord.setText(longestWord);
-    
+    int longestWord = PlayerProfileDatabase.getLongestWord(name);
+    this.longestWord.setText(String.valueOf(longestWord));
+
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
     if (!favoriteDictionary.equals("")) {
       this.favDic.setText(favoriteDictionary.substring(0, favoriteDictionary.length() - 4));
     } else {
       this.favDic.setText("-");
     }
-    
+
     int totalPoints = PlayerProfileDatabase.getTotalPoints(name);
     this.totalPoints.setText(String.valueOf(totalPoints));
 
@@ -221,14 +226,13 @@ public class ProfileController extends Controller implements Initializable {
     this.totalWins.setText(String.valueOf(totalWins));
 
     double winRate = PlayerProfileDatabase.getWinRate(name);
-    this.winPercentage.setText(String.valueOf(winRate));
+    this.winPercentage.setText(String.valueOf(winRate * 100.0));
 
     if (totalPoints == 0 || totalPlayedGames == 0) {
       this.averagePointsGame.setText("0");
     } else {
       int averagePointsPerGame = totalPoints / totalPlayedGames;
       this.averagePointsGame.setText(String.valueOf(averagePointsPerGame));
-
     }
   }
 }

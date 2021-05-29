@@ -1,8 +1,8 @@
 package com.scrab5.core.game;
 
-import com.scrab5.ui.Data;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -24,15 +24,11 @@ public class Rack implements Serializable {
    */
   public void fill(BagOfTiles bag) {
     for (int i = 0; i < 7; i++) {
-      // System.out.println(rack[i]);
-      // System.out.println(rack[i] == null);
       if (this.rack[i] == null && bag.getSize() >= 1) {
         rack[i] = bag.pick();
         rack[i].setRackPlace(i);
-        System.out.println("hier?");
       }
     }
-    System.out.println("Trying to fill rack of " + Data.getCurrentUser());
   }
 
   /**
@@ -51,39 +47,55 @@ public class Rack implements Serializable {
   }
 
   /**
-   * Adds the tile t to the position pos in the rack. //TODO ASK why not needed
-   *
-   * @author trohwede
-   * @param t the tile that wants to be added
-   * @param pos position of where to add the tile in the rack
-   */
-  public void addToRack(Tile t, int pos) {
-    this.rack[pos] = t;
-  }
-
-  /**
    * Removes a tile from the rack at the given position.
    *
    * @author trohwede
    * @param pos position of the rack you want to remove the tile from
    */
-  public boolean removeTileFromRack(int pos) {
+  public void removeTileFromRack(int pos) {
     if (this.rack[pos] != null) {
       this.rack[pos] = null;
-      return true;
-    } else {
-      return false;
     }
   }
 
   /**
-   * //TODO AARON.
+   * Returns the rack size.
+   *
+   * @author trohwede
+   * @return returns rack size.
+   */
+  public int getRackSize() {
+    int size = 0;
+    for (int i = 0; i < 7; i++) {
+      if (this.rack[i] != null) {
+        size++;
+      }
+    }
+    return size;
+  }
+
+  /**
+   * Clears the complete Rack.
+   *
+   * @author trohwede
+   */
+  public void clearRack() {
+    Arrays.fill(rack, null);
+  }
+
+  /**
+   * Method to shuffle the order of the remaining (not placed) tiles on the rack while playing.
    *
    * @author apilgrim
+   * @param order - ArrayList(Integer) with the tiles from the rack not already placed. Comes from
+   *     InGameController method shuffleClicked.
    */
   public void shuffleRack(ArrayList<Integer> order) {
     Random rand = new Random();
-    int random, values = order.size(), swapWith, swapOther;
+    int random;
+    int values = order.size();
+    int swapWith;
+    int swapOther;
     Tile swap;
 
     for (int i = 0; i < order.size(); i++) {
@@ -102,9 +114,11 @@ public class Rack implements Serializable {
   }
 
   /**
-   * //TODO AARON.
+   * Getter to get the tile from the rack at position "pos".
    *
    * @author apilgrim
+   * @param pos - position from the tile.
+   * @return rack[pos] - Tile from rack at position "pos".
    */
   public Tile getTileAt(int pos) {
     return rack[pos];

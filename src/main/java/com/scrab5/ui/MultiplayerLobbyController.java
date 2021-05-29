@@ -8,6 +8,7 @@ import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
 import com.scrab5.network.messages.MakeTurnMessage;
+import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.parser.DictionaryParser;
 import java.io.IOException;
 import java.net.URL;
@@ -29,33 +30,41 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 /**
- * The MultiplayerLobbyController class is supposed to control the of the MultiplayerLobby screen
+ * The MultiplayerLobbyController class controls the components of the "MultiplayerLobby.fxml".
  *
  * @author mherre
  */
 public class MultiplayerLobbyController extends LobbyController implements Initializable {
 
-  private static LinkedHashMap<String, ArrayList<Integer>> votes;
-  @FXML
-  private Label player1, player2, player3, player4;
-  @FXML
-  private Label ready1, ready2, ready3, ready4;
-  @FXML
-  private Label playerNameStats1, playerNameStats2, playerNameStats3, playerNameStats4;
-  @FXML
-  private Label played1, played2, played3, played4;
-  @FXML
-  private Label won1, won2, won3, won4;
-  @FXML
-  private Label score1, score2, score3, score4;
-  @FXML
-  private Label ipAddress;
-  @FXML
-  private ImageView customizeButton;
-  @FXML
-  private TextArea chatBox;
-  @FXML
-  private TextField messageTextField;
+  private static LinkedHashMap<String, ArrayList<Integer>> votes = new LinkedHashMap<>();
+  @FXML private Label player1;
+  @FXML private Label player2;
+  @FXML private Label player3;
+  @FXML private Label player4;
+  @FXML private Label ready1;
+  @FXML private Label ready2;
+  @FXML private Label ready3;
+  @FXML private Label ready4;
+  @FXML private Label playerNameStats1;
+  @FXML private Label playerNameStats2;
+  @FXML private Label playerNameStats3;
+  @FXML private Label playerNameStats4;
+  @FXML private Label played1;
+  @FXML private Label played2;
+  @FXML private Label played3;
+  @FXML private Label played4;
+  @FXML private Label won1;
+  @FXML private Label won2;
+  @FXML private Label won3;
+  @FXML private Label won4;
+  @FXML private Label score1;
+  @FXML private Label score2;
+  @FXML private Label score3;
+  @FXML private Label score4;
+  @FXML private Label ipAddress;
+  @FXML private ImageView customizeButton;
+  @FXML private TextArea chatBox;
+  @FXML private TextField messageTextField;
   private boolean isReady = false;
   private boolean isHost;
   private int ai = 0;
@@ -63,7 +72,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   /**
    * Called when the lobby was closed by the host.
    *
-   * @throws IOException
+   * @throws IOException - thrown when the layer could not be switched
    * @author nitterhe
    */
   public static void lobbyClosed() {
@@ -74,17 +83,38 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
   }
 
+  /**
+   * Adds a play order vote to all votes.
+   *
+   * @author nitterhe
+   * @param clientname - the name of the client suggesting the player order
+   * @param vote - the actual order
+   */
   public static void addVote(String clientname, ArrayList<Integer> vote) {
     votes.putIfAbsent(clientname, vote);
   }
 
-  /** @author mherre */
+  /**
+   * Call certain methods as soon as the Controller is loaded.
+   *
+   * @author mherre
+   * @author nitterhe
+   */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     this.setUpInit();
-    votes = new LinkedHashMap<String, ArrayList<Integer>>();
+    votes = new LinkedHashMap<>();
 
-    if (Data.getPlayerClient().getUsername()
+    // this is a short delay so things in the background sent via the server are set up.
+    synchronized (this) {
+      try {
+        wait(200);
+      } catch (Exception e) {
+        // do nothing. this is just so everything transfered via the server can load
+      }
+    }
+    if (Data.getPlayerClient()
+        .getUsername()
         .equals(Data.getPlayerClient().getCurrentServer().getHost())) {
       isHost = true;
     } else {
@@ -93,51 +123,74 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       this.customizeButton.setOpacity(1.0);
     }
     this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4());
-    this.ipAddress.setText(Data.getPlayerClient().getCurrentServer().getIp4());
-    this.refreshUI();
+    this.refreshUi();
   }
 
   /**
-   * This method is called when the "Back"-button is clicked. It sets the scene to
-   * "MultiplayerOverview"
+   * Event method that is called when the "Back"-button in the UI is clicked. It sets the scene to
+   * "MultiplayerOverview".
    *
-   * @param event
-   * @throws IOException
-   * @author mherre @author nitterhe
+   * @param event the event that is created from the mouse-click
+   * @author mherre
+   * @author nitterhe
    */
   @FXML
-  protected void back(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+  protected void back(MouseEvent event) {
+    playSound();
     Data.getPlayerClient().disconnectFromServer();
   }
 
+  /**
+   * Event method that is called when the "Ready"-button in the UI is clicked. It sets the ready
+   * status in the UI to ready / not ready and also intern.
+   *
+   * @param event the event that is created from the mouse-click
+   * @author mherre
+   * @author nitterhe
+   */
   @FXML
-  private void ready(MouseEvent event) throws IOException {
-
-    playSound("ButtonClicked.mp3");
-
+  private void ready(MouseEvent event) {
+    playSound();
     this.isReady = !isReady;
     Data.getPlayerClient().setReady(this.isReady, this.getPlayerVotes());
   }
 
+  /**
+   * Event method that is called when the "Chat"-button in the UI is clicked. It sends the entered
+   * message to every client and refreshes the chat UI.
+   *
+   * @param event the event that is created from the mouse-click
+   * @author mherre
+   * @author nitterhe
+   */
   @FXML
   private void enterChatMessage(MouseEvent event) {
 
-    Platform.runLater(new Runnable() {
+    Platform.runLater(
+        new Runnable() {
 
-      @Override
-      public void run() {
-        messageTextField.selectAll();
-        Data.getPlayerClient()
-            .sendChatMessage(Data.getCurrentUser() + ": " + messageTextField.getText() + "\n");
-      }
-    });
+          @Override
+          public void run() {
+            messageTextField.selectAll();
+            Data.getPlayerClient()
+                .sendChatMessage(Data.getCurrentUser() + ": " + messageTextField.getText() + "\n");
+          }
+        });
   }
 
+  /**
+   * Event method that is called when the "Add Player"-button in the UI is clicked. If the there are
+   * free spaces in the lobby, then an AIPlayer is added.
+   *
+   * @author mherre
+   * @author nitterhe
+   * @param event the event that is created from the mouse-click
+   */
   protected void addPlayer(MouseEvent event) {
 
-    playSound("ButtonClicked.mp3");
+    playSound();
 
+    // adds a different AI when adding an AI
     if (Data.getHostedServer().getClientMaximum() > Data.getHostedServer().getClientCounter()) {
       switch (ai % 3) {
         case 0:
@@ -156,33 +209,65 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
   }
 
+  /**
+   * Event method that is called when the "Kick"-button of the second player in the UI is clicked.
+   * Removes every visual component of an added player and calls {@link
+   * com.scrab5.ui.MultiplayerLobbyController#isClickable isClickable()}.
+   *
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   */
   @FXML
   protected void kickPlayer2(MouseEvent event) {
 
     if (kick2.getOpacity() == 1.0) {
       Data.getHostedServer().kickClient(this.player2.getText());
     }
-    playSound("ButtonClicked.mp3");
+    playSound();
   }
 
+  /**
+   * Event method that is called when the "Kick"-button of the third player in the UI is clicked.
+   * Removes every visual component of an added player and calls {@link
+   * com.scrab5.ui.MultiplayerLobbyController#isClickable isClickable()}.
+   *
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   */
   @FXML
   protected void kickPlayer3(MouseEvent event) {
 
     if (kick3.getOpacity() == 1.0) {
       Data.getHostedServer().kickClient(this.player3.getText());
     }
-    playSound("ButtonClicked.mp3");
+    playSound();
   }
 
+  /**
+   * Event method that is called when the "Kick"-button of the fourth player in the UI is clicked.
+   * Removes every visual component of an added player and calls {@link
+   * com.scrab5.ui.MultiplayerLobbyController#isClickable isClickable()}.
+   *
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   */
   @FXML
   protected void kickPlayer4(MouseEvent event) {
 
     if (kick4.getOpacity() == 1.0) {
       Data.getHostedServer().kickClient(this.player4.getText());
     }
-    playSound("ButtonClicked.mp3");
+    playSound();
   }
 
+  /**
+   * Method that is called when a <code>ComboBox</code> in the UI clicked. Makes every <code>
+   * ComboBox</code> in this class only openable when a corresponding "Arrow Down"-button is
+   * clicked.
+   *
+   * @author mherre
+   * @param event the event that is created from the mouse-click
+   */
   @FXML
   protected void dontShow(MouseEvent event) {
     voteSelection1.hide();
@@ -197,40 +282,49 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   /**
    * Starts the game in a multipalyer session. You will not understand the code but it works fine.
    *
-   * @param event
-   * @throws IOException
-   * @throws SQLException
+   * @param event start game was clicked
+   * @throws IOException wrong input recived
+   * @throws SQLException if database is empty
    * @author trohwede, nitterhe
    */
   @Override
   protected void startGame(MouseEvent event) throws IOException, SQLException {
 
-    ArrayList<Player> gameSessionList = new ArrayList<Player>();
-    ArrayList<Integer> voteResults = new ArrayList<Integer>();
+    // initialization if used Lists and arrays
+    ArrayList<Player> gameSessionList = new ArrayList<>();
+    ArrayList<Integer> voteResults = new ArrayList<>();
     Collection<ClientData> clientdata =
         Data.getPlayerClient().getCurrentServer().getClients().values();
-    int[] difficulties = new int[] {this.diffBox1.getSelectionModel().getSelectedIndex(),
-        this.diffBox2.getSelectionModel().getSelectedIndex(),
-        this.diffBox3.getSelectionModel().getSelectedIndex()};
-    LinkedList<Player> playerList = new LinkedList<Player>();
+    int[] difficulties =
+        new int[] {
+          this.diffBox1.getSelectionModel().getSelectedIndex(),
+          this.diffBox2.getSelectionModel().getSelectedIndex(),
+          this.diffBox3.getSelectionModel().getSelectedIndex()
+        };
+    LinkedList<Player> playerList = new LinkedList<>();
 
     Iterator<ClientData> it = clientdata.iterator();
     ClientData current;
     int counter = 0;
+    // inizializes a list of all players with the names of the currently connected clients and added
+    // AIs
     while (it.hasNext()) {
       current = it.next();
       if (current.getIp().equals("AI")) {
-        playerList.add(playerList.size(),
-            new AiPlayer(current.getUsername(), difficulties[counter]));
+        playerList.add(
+            playerList.size(), new AiPlayer(current.getUsername(), difficulties[counter]));
       } else {
         playerList.add(playerList.size(), new Player(current.getUsername()));
       }
     }
 
+    // for the number of clients and AIs connected a new voteResult with the value 0 is added
     for (int i = 0; i < clientdata.size(); i++) {
       voteResults.add(0);
     }
 
+    // for each vote that was handed in by the clients the order numbers for each client is added
+    // up. (1. gets 1 point added 2. gets 2 ....)
     for (ArrayList<Integer> vote : votes.values()) {
       for (int j = 0; j < clientdata.size(); j++) {
         voteResults.add(j, vote.get(j) + voteResults.remove(j));
@@ -238,6 +332,9 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
     }
 
     int max;
+    // now the maximum in the voteResults is calulated and added on top of the list. So the player
+    // with the highest amount of votes is added first and therefore plays as the last player. Many
+    // votes mean that this player was often last in the suggested orders.
     for (int i = 0; i < playerList.size(); i++) {
       max = 0;
       for (int k = 1; k < clientdata.size(); k++) {
@@ -249,294 +346,276 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
       voteResults.set(max, 0);
     }
 
-    for (Player p : gameSessionList) {
-      System.out.println(p.getName());
-    }
-
-    // int maximum;
-    // Iterator<ClientData> iterator;
-    // ClientData cd;
-    // for (int clients = 0; clients < clientnames.size(); clients++) {
-    // maximum = 0;
-    // for (int k = 1; k < clientnames.size(); k++) {
-    // if (voteResults.get(maximum) < voteResults.get(k)) {
-    // maximum = k;
-    // }
-    // }
-    // it = clientnames.iterator();
-    // for (int l = 0; l < maximum; l++) {
-    // it.next();
-    // }
-    // cd = it.next();
-    // if (cd.getIp().equals("AI")) {
-    // playerList.add(0, new AiPlayer(cd.getUsername(), dificulties[maximum]));
-    // } else {
-    // playerList.add(0, new Player(it.next().getUsername(), true));
-    // }
-    // voteResults.set(maximum, 0);
-    // }
-
-    GameSession gs;
-
+    // now with the correct order of players and the eventually edited letter distribution and value
+    // distribution a new gameSession is created
     if (Data.getHasBeenEdited()) {
-      ArrayList<Integer> pointsDito = Data.getPointsDistribution();
-      ArrayList<Integer> occurrencyDisto = Data.getOccurrencyDistribution();
-
-      gs = new GameSession(gameSessionList, pointsDito, occurrencyDisto, true);
-      Data.setGameSession(gs);
-
+      ArrayList<Integer> tiles = createTileBag(Data.getOccurrencyDistribution());
+      new GameSession(gameSessionList, tiles, Data.getPointsDistribution(), true);
     } else {
-      gs = new GameSession(gameSessionList, true);
-      Data.setGameSession(gs);
-      System.out.println("Online GameSession created");
+      int[] help2 = UseDatabase.getAllOccurrences();
+      int[] help3 = UseDatabase.getAllPointsPerLetter();
+
+      ArrayList<Integer> points = new ArrayList<>();
+      ArrayList<Integer> help1 = new ArrayList<>();
+      for (int j = 0; j < help2.length; j++) {
+        help1.add(help2[j]);
+        points.add(help3[j]);
+      }
+      ArrayList<Integer> tiles = createTileBag(help1);
+      Data.setGameSession(new GameSession(gameSessionList, tiles, points, true));
     }
 
+    // the game is started and sent to all connected clients
     Data.getHostedServer().startGame();
-    Data.getHostedServer().sendDictionary(Data.getSelectedDictionary(),
-        DictionaryParser.getDictionary(Data.getSelectedDictionary()));
-    Data.getPlayerClient().getClientThread()
+    Data.getHostedServer()
+        .sendDictionary(
+            Data.getSelectedDictionary(),
+            DictionaryParser.getDictionary(Data.getSelectedDictionary()));
+    Data.getPlayerClient()
+        .getClientThread()
         .sendMessageToServer(new MakeTurnMessage(Data.getCurrentUser(), Data.getGameSession()));
   }
 
   /**
-   * Use Case 3.3 and 5 within.
+   * Refreshes the UI and therefore changes like player joined or chat Messages received. Use Case
+   * 3.3 and 5 within.
    *
-   * @author nitterhe
+   * @author nitterhe, mherre
    */
-  private void refreshUI() {
+  private void refreshUi() {
 
-    Thread t = new Thread(new Runnable() {
+    Thread t =
+        new Thread(
+            new Runnable() {
 
-      @Override
-      public void run() {
+              @Override
+              public void run() {
 
-        while (Data.getPlayerClient().getClientThread().isAlive()) {
+                while (Data.getPlayerClient().getClientThread().isAlive()) {
 
-          Server UIServer = Data.getPlayerClient().getCurrentServer();
-          ServerStatistics sd = UIServer.getServerStatistics();
-          Iterator<ClientData> iterator = UIServer.getClients().values().iterator();
+                  // initialization of used collections
+                  Server uiServer = Data.getPlayerClient().getCurrentServer();
+                  ServerStatistics sd = uiServer.getServerStatistics();
+                  Iterator<ClientData> iterator = uiServer.getClients().values().iterator();
 
-          playerAmount = UIServer.getClientCounter();
+                  playerAmount = uiServer.getClientCounter();
 
-          Platform.runLater(new Runnable() {
+                  Platform.runLater(
+                      new Runnable() {
 
-            @Override
-            public void run() {
+                        @Override
+                        public void run() {
 
-              chatBox.setText(Data.getChatHistory().toString());
+                          // updates the chat
+                          chatBox.setText(Data.getChatHistory().toString());
 
-              if (Data.getPlayerClient().getStarting()) {
-                try {
-                  Data.getPlayerClient().setStarting(false);
-                  App.setRoot("MultiPlayer");
-                } catch (IOException e) {
-                  e.printStackTrace();
-                }
-              }
+                          // switches the layer to in game is the game has started
+                          if (Data.getPlayerClient().getStarting()) {
+                            try {
+                              Data.getPlayerClient().setStarting(false);
+                              Data.getPlayerClient().setReady(false, null);
+                              App.setRoot("MultiPlayer");
+                            } catch (IOException e) {
+                              e.printStackTrace();
+                            }
+                          }
 
-              boolean start = true;
+                          boolean start = true;
 
-              ClientData client;
-              if (iterator.hasNext()) {
-                client = iterator.next();
-                player1.setText(client.getUsername());
-                ready1.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (!client.isReady()) {
-                  start = false;
-                }
-              } else {
-                player1.setText("");
-                ready1.setText("");
-              }
+                          // sets the texts on the labels for each player
+                          ClientData client;
+                          if (iterator.hasNext()) {
+                            client = iterator.next();
+                            player1.setText(client.getUsername());
+                            ready1.setText(client.isReady() ? "Ready" : "Not Ready");
+                            if (!client.isReady()) {
+                              start = false;
+                            }
+                          } else {
+                            player1.setText("");
+                            ready1.setText("");
+                          }
 
-              if (iterator.hasNext()) {
-                client = iterator.next();
-                player2.setText(client.getUsername());
-                ready2.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (isHost) {
-                  kick2.setOpacity(1.0);
-                  if (client.getIp().equals("AI")) {
-                    difficulty2.setOpacity(1.0);
-                    diffSelection2.setOpacity(1.0);
-                    diffButton1.setOpacity(1.0);
-                  }
-                }
-                if (client.getIp().equals("AI")) {
-                  difficulty2.setOpacity(1.0);
-                  diffSelection2.setOpacity(1.0);
-                  diffButton1.setOpacity(1.0);
-                }
-                if (!client.isReady()) {
-                  start = false;
-                }
-              } else {
-                player2.setText("");
-                ready2.setText("");
-                difficulty2.setOpacity(0);
-                diffSelection2.setOpacity(0);
-                diffButton1.setOpacity(0);
-                kick2.setOpacity(0);
-              }
+                          if (iterator.hasNext()) {
+                            client = iterator.next();
+                            player2.setText(client.getUsername());
+                            ready2.setText(client.isReady() ? "Ready" : "Not Ready");
+                            if (isHost) {
+                              kick2.setOpacity(1.0);
+                              if (client.getIp().equals("AI")) {
+                                difficulty2.setOpacity(1.0);
+                                diffSelection2.setOpacity(1.0);
+                                diffButton1.setOpacity(1.0);
+                              }
+                            }
+                            if (client.getIp().equals("AI")) {
+                              difficulty2.setOpacity(1.0);
+                              diffSelection2.setOpacity(1.0);
+                              diffButton1.setOpacity(1.0);
+                            }
+                            if (!client.isReady()) {
+                              start = false;
+                            }
+                          } else {
+                            player2.setText("");
+                            ready2.setText("");
+                            difficulty2.setOpacity(0);
+                            diffSelection2.setOpacity(0);
+                            diffButton1.setOpacity(0);
+                            kick2.setOpacity(0);
+                          }
 
-              if (iterator.hasNext()) {
-                client = iterator.next();
-                player3.setText(client.getUsername());
-                ready3.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (isHost) {
-                  kick3.setOpacity(1.0);
-                  if (client.getIp().equals("AI")) {
-                    difficulty3.setOpacity(1.0);
-                    diffSelection3.setOpacity(1.0);
-                    diffButton2.setOpacity(1.0);
-                  }
-                }
-                if (client.getIp().equals("AI")) {
-                  difficulty3.setOpacity(1.0);
-                  diffSelection3.setOpacity(1.0);
-                  diffButton2.setOpacity(1.0);
-                }
-                if (!client.isReady()) {
-                  start = false;
-                }
-              } else {
-                player3.setText("");
-                ready3.setText("");
-                difficulty3.setOpacity(0);
-                diffSelection3.setOpacity(0);
-                diffButton2.setOpacity(0);
-                kick3.setOpacity(0);
-              }
+                          if (iterator.hasNext()) {
+                            client = iterator.next();
+                            player3.setText(client.getUsername());
+                            ready3.setText(client.isReady() ? "Ready" : "Not Ready");
+                            if (isHost) {
+                              kick3.setOpacity(1.0);
+                              if (client.getIp().equals("AI")) {
+                                difficulty3.setOpacity(1.0);
+                                diffSelection3.setOpacity(1.0);
+                                diffButton2.setOpacity(1.0);
+                              }
+                            }
+                            if (client.getIp().equals("AI")) {
+                              difficulty3.setOpacity(1.0);
+                              diffSelection3.setOpacity(1.0);
+                              diffButton2.setOpacity(1.0);
+                            }
+                            if (!client.isReady()) {
+                              start = false;
+                            }
+                          } else {
+                            player3.setText("");
+                            ready3.setText("");
+                            difficulty3.setOpacity(0);
+                            diffSelection3.setOpacity(0);
+                            diffButton2.setOpacity(0);
+                            kick3.setOpacity(0);
+                          }
 
-              if (iterator.hasNext()) {
-                client = iterator.next();
-                player4.setText(client.getUsername());
-                ready4.setText(client.isReady() ? "Ready" : "Not Ready");
-                if (isHost) {
-                  kick4.setOpacity(1.0);
-                  if (client.getIp().equals("AI")) {
-                    difficulty4.setOpacity(1.0);
-                    diffSelection4.setOpacity(1.0);
-                    diffButton3.setOpacity(1.0);
-                  }
-                }
-                if (client.getIp().equals("AI")) {
-                  difficulty4.setOpacity(1.0);
-                  diffSelection4.setOpacity(1.0);
-                  diffButton3.setOpacity(1.0);
-                }
-                if (!client.isReady()) {
-                  start = false;
-                }
-              } else {
-                player4.setText("");
-                ready4.setText("");
-                difficulty4.setOpacity(0);
-                diffSelection4.setOpacity(0);
-                diffButton3.setOpacity(0);
-                kick4.setOpacity(0);
-              }
+                          if (iterator.hasNext()) {
+                            client = iterator.next();
+                            player4.setText(client.getUsername());
+                            ready4.setText(client.isReady() ? "Ready" : "Not Ready");
+                            if (isHost) {
+                              kick4.setOpacity(1.0);
+                              if (client.getIp().equals("AI")) {
+                                difficulty4.setOpacity(1.0);
+                                diffSelection4.setOpacity(1.0);
+                                diffButton3.setOpacity(1.0);
+                              }
+                            }
+                            if (client.getIp().equals("AI")) {
+                              difficulty4.setOpacity(1.0);
+                              diffSelection4.setOpacity(1.0);
+                              diffButton3.setOpacity(1.0);
+                            }
+                            if (!client.isReady()) {
+                              start = false;
+                            }
+                          } else {
+                            player4.setText("");
+                            ready4.setText("");
+                            difficulty4.setOpacity(0);
+                            diffSelection4.setOpacity(0);
+                            diffButton3.setOpacity(0);
+                            kick4.setOpacity(0);
+                          }
 
-              if (start && Data.getPlayerClient().getCurrentServer().getClients().size() > 1
-                  && isHost) {
-                startButton.setOpacity(1.0);
-                startButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                          // sets the posibility to start the game for the host
+                          if (start
+                              && Data.getPlayerClient().getCurrentServer().getClients().size() > 1
+                              && isHost) {
+                            startButton.setOpacity(1.0);
+                            startButton.setOnMouseClicked(
+                                new EventHandler<>() {
 
-                  @Override
-                  public void handle(MouseEvent event) {
+                                  @Override
+                                  public void handle(MouseEvent event) {
+                                    try {
+                                      startGame(event);
+                                    } catch (IOException | SQLException e) {
+                                      e.printStackTrace();
+                                    }
+                                  }
+                                });
+                          } else {
+                            startButton.setOpacity(0);
+                            startButton.setOnMouseClicked(null);
+                          }
+
+                          // loads and displays the lobby statistics
+                          ClientStatistic help;
+                          if (null != (help = sd.get(1))) {
+                            playerNameStats1.setText(help.getClientName());
+                            played1.setText("" + help.getGamesPlayed());
+                            won1.setText("" + help.getGamesWon());
+                            if (help.getGamesPlayed() > 0) {
+                              score1.setText(
+                                  100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                            } else {
+                              score1.setText("0");
+                            }
+                          }
+                          if (null != (help = sd.get(2))) {
+                            playerNameStats2.setText(help.getClientName());
+                            played2.setText("" + help.getGamesPlayed());
+                            won2.setText("" + help.getGamesWon());
+                            if (help.getGamesPlayed() > 0) {
+                              score2.setText(
+                                  100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                            } else {
+                              score2.setText("0");
+                            }
+                          }
+                          if (null != (help = sd.get(3))) {
+                            playerNameStats3.setText(help.getClientName());
+                            played3.setText("" + help.getGamesPlayed());
+                            won3.setText("" + help.getGamesWon());
+                            if (help.getGamesPlayed() > 0) {
+                              score3.setText(
+                                  100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                            } else {
+                              score3.setText("0");
+                            }
+                          }
+                          if (null != (help = sd.get(4))) {
+                            playerNameStats4.setText(help.getClientName());
+                            played4.setText("" + help.getGamesPlayed());
+                            won4.setText("" + help.getGamesWon());
+                            if (help.getGamesPlayed() > 0) {
+                              score4.setText(
+                                  100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
+                            } else {
+                              score4.setText("0");
+                            }
+                          }
+                        }
+                      });
+
+                  isClickable();
+                  // delay for less lag
+                  synchronized (this) {
                     try {
-                      startGame(event);
-                    } catch (IOException | SQLException e) {
-                      e.printStackTrace();
+                      this.wait(200);
+                    } catch (InterruptedException e) {
+                      // e.printStackTrace();
                     }
                   }
-                });
-              } else {
-                startButton.setOpacity(0);
-                startButton.setOnMouseClicked(null);
-              }
-
-              ClientStatistic help;
-              if (null != (help = sd.get(1))) {
-                playerNameStats1.setText(help.getClientName());
-                played1.setText("" + help.getGamesPlayed());
-                won1.setText("" + help.getGamesWon());
-                if (help.getGamesPlayed() > 0) {
-                  score1.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
-                } else {
-                  score1.setText("0");
                 }
               }
-              if (null != (help = sd.get(2))) {
-                playerNameStats2.setText(help.getClientName());
-                played2.setText("" + help.getGamesPlayed());
-                won2.setText("" + help.getGamesWon());
-                if (help.getGamesPlayed() > 0) {
-                  score2.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
-                } else {
-                  score2.setText("0");
-                }
-              }
-              if (null != (help = sd.get(3))) {
-                playerNameStats3.setText(help.getClientName());
-                played3.setText("" + help.getGamesPlayed());
-                won3.setText("" + help.getGamesWon());
-                if (help.getGamesPlayed() > 0) {
-                  score3.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
-                } else {
-                  score3.setText("0");
-                }
-              }
-              if (null != (help = sd.get(4))) {
-                playerNameStats4.setText(help.getClientName());
-                played4.setText("" + help.getGamesPlayed());
-                won4.setText("" + help.getGamesWon());
-                if (help.getGamesPlayed() > 0) {
-                  score4.setText(100 * (help.getGamesWon() / help.getGamesPlayed()) + "");
-                } else {
-                  score4.setText("0");
-                }
-              }
-            }
-          });
-
-          isClickable();
-          synchronized (this) {
-            try {
-              this.wait(200);
-            } catch (InterruptedException e) {
-              // e.printStackTrace();
-            }
-          }
-        }
-      }
-    });
+            });
     t.start();
   }
 
-  // protected void setUpInit() {
-  // this.isDictionarySelected = true;
-  // this.player1.setText(Data.getCurrentUser());
-  // this.ready1.setText("Not Ready");
-  // for (int i = 1; i <= 4; i++) {
-  // this.voteSelection1.getItems().add(i);
-  // this.voteSelection2.getItems().add(i);
-  // this.voteSelection3.getItems().add(i);
-  // this.voteSelection4.getItems().add(i);
-  // }
-  // this.voteSelection1.getSelectionModel().select(0);
-  // this.voteSelection2.getSelectionModel().select(1);
-  // this.voteSelection3.getSelectionModel().select(2);
-  // this.voteSelection4.getSelectionModel().select(3);
-  //
-  // this.diffBox2.getItems().add("Easy");
-  // this.diffBox2.getItems().add("Difficult");
-  // this.diffBox3.getItems().add("Easy");
-  // this.diffBox3.getItems().add("Difficult");
-  //
-  // this.diffBox2.getSelectionModel().select(0);
-  // this.diffBox3.getSelectionModel().select(0);
-  // }
-
+  /**
+   * Checks if the lobby contains the maximum amount of players. If so, the "Add Player"-button gets
+   * grayed out. If not, then the "Add Player"-button either stays the same or it isn't grayed out
+   * any more. Makes sure only the host can add players.
+   *
+   * @author mherre
+   */
   protected boolean isClickable() {
     if (playerAmount == Data.getPlayerClient().getCurrentServer().getClientMaximum()
         || !this.isHost) {

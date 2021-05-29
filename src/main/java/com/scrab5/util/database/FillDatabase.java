@@ -2,12 +2,10 @@ package com.scrab5.util.database;
 
 import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
-import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Iterator;
-
 
 /**
  * class with methods to fill all tables, edit certain entries or delete a table or certain entries
@@ -55,12 +53,10 @@ public class FillDatabase extends Database {
           }
           break;
         default:
-          System.out.println("Closing of statement " + name + " not possible!");
           break;
       }
     } catch (Exception e) {
-      System.out.println(e);
-      System.out.println("Problem with closing statement " + name + "!");
+      e.printStackTrace();
     }
   }
 
@@ -69,7 +65,7 @@ public class FillDatabase extends Database {
    *
    * @author lengist
    * @author hraza
-   * @param name String with name of the user
+   * @param name String with name of the the table
    */
   protected static synchronized void deleteTable(String name) {
     Database.reconnect();
@@ -80,8 +76,7 @@ public class FillDatabase extends Database {
       statement.execute(sql);
       statement.close();
     } catch (SQLException e) {
-      System.out.println("Could not perform deletion in table " + name);
-      System.out.println(e);
+      e.printStackTrace();
     }
     Database.disconnect();
   }
@@ -100,8 +95,7 @@ public class FillDatabase extends Database {
       pstmDelete.setString(1, name);
       pstmDelete.executeUpdate();
     } catch (SQLException e) {
-      System.out.println("Could not perform deletion from player " + name);
-      System.out.println(e);
+      e.printStackTrace();
     }
     closeStatement("delete");
     Database.disconnect();
@@ -115,9 +109,8 @@ public class FillDatabase extends Database {
    * @author hraza
    * @param name String with the name of the user
    */
-  public static synchronized boolean createPlayer(String name) {
+  public static synchronized void createPlayer(String name) {
     Database.reconnect();
-    boolean created = false;
     try {
       pstmPlayer = connection.prepareStatement(
           "INSERT INTO Player " + "(Name, TotalPoints, PersonalHighscore, LaidWords, "
@@ -134,9 +127,8 @@ public class FillDatabase extends Database {
       pstmPlayer.setDouble(9, 0.0);
       pstmPlayer.setString(10, "");
       pstmPlayer.setDouble(11, 50.0);
-      pstmPlayer.setDouble(12, 50.0);
+      pstmPlayer.setDouble(12, 25.0);
       pstmPlayer.executeUpdate();
-      created = true;
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -146,26 +138,7 @@ public class FillDatabase extends Database {
       e.printStackTrace();
     }
     Database.disconnect();
-    return created;
   }
-
-  /*public static synchronized void updatePoints(String userName, int newPoints) {
-    Database.reconnect();
-    PreparedStatement pstm;
-    String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
-    try {
-      pstm = connection.prepareStatement(sql);
-      pstm.setInt(1, newPoints);
-      pstm.setString(2, userName);
-      pstm.executeUpdate();
-      pstm.close();
-    } catch (SQLException e) {
-      System.out.println("in update points");
-      e.printStackTrace();
-    }
-
-    System.out.println("gesetzt");
-  }*/
 
   /**
    * Filling the table player at a specific index/column. If the variable for column name is from
@@ -185,93 +158,78 @@ public class FillDatabase extends Database {
       int contentInt, double doubleValues) {
     Database.disconnect();
     Database.reconnect();
-    System.out.println("Fill");
 
     try {
       PreparedStatement pstmt = null;
 
       try {
         if (column.equals("Name")) {
-          System.out.println("name aufgerufen.");
           String sql = "UPDATE Player SET Name = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setString(1, contentString);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("TotalPoints")) {
-          System.out.println("points aufgerufen");
           String sql = "UPDATE Player SET TotalPoints = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
-          System.out.println("gesetzt");
         } else if (column.equals("PersonalHighscore")) {
-          System.out.println("highscore aufgerufen.");
           String sql = "UPDATE Player SET PersonalHighscore = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("LaidWords")) {
-          System.out.println("laid words aufgerufen.");
           String sql = "UPDATE Player SET Laidwords = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("PointsPerWordRate")) {
-          System.out.println("ppwordrate aufgerufen.");
           String sql = "UPDATE Player SET PointsPerWordRate = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("LongestWord")) {
-          System.out.println("longest word aufgerufen.");
           String sql = "UPDATE Player SET LongestWord = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("TotalPlayedGames")) {
-          System.out.println("total played aufgerufen.");
           String sql = "UPDATE Player SET TotalPlayedGames = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("TotalWins")) {
-          System.out.println("total wins aufgerufen.");
           String sql = "UPDATE Player SET TotalWins = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("WinRate")) {
-          System.out.println("win rate aufgerufen.");
           String sql = "UPDATE Player SET WinRate = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setDouble(1, doubleValues);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("FavDic")) {
-          System.out.println("dic aufgerufen.");
           String sql = "UPDATE Player SET FaveDic = ? WHERE name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setString(1, contentString);
-          System.out.println("contentString: " + contentString);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("Music")) {
-          System.out.println("music aufgerufen.");
           String sql = "UPDATE Player SET Music = ? WHERE name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setDouble(1, doubleValues);
           pstmt.setString(2, name);
           pstmt.executeUpdate();
         } else if (column.equals("SoundEffect")) {
-          System.out.println("se aufgerufen.");
           String sql = "UPDATE Player SET SoundEffect = ? WHERE name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setDouble(1, doubleValues);
@@ -375,7 +333,6 @@ public class FillDatabase extends Database {
       pstmDic.setInt(2, point);
       pstmDic.setInt(3, occurrence);
       pstmDic.executeUpdate();
-      System.out.println("fine");
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -449,5 +406,3 @@ public class FillDatabase extends Database {
     Database.disconnect();
   }
 }
-
-

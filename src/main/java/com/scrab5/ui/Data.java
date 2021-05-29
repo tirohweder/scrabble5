@@ -33,11 +33,23 @@ public class Data {
   private static StringBuffer chatHistory = new StringBuffer();
   private static GameSession gameSession;
 
-  public static GameSession getGameSession() {
+  /**
+   * Returns the current GameSession the player is currently playing in.
+   *
+   * @author nitterhe, mherre
+   * @return gameSession - the current GameSession object
+   */
+  public static synchronized GameSession getGameSession() {
     return gameSession;
   }
 
-  public static void setGameSession(GameSession gs) {
+  /**
+   * Sets the current GameSession the player is currently playing in.
+   *
+   * @author nitterhe, mherre
+   * @param gs - the current GameSession object
+   */
+  public static synchronized void setGameSession(GameSession gs) {
     gameSession = gs;
   }
 
@@ -167,8 +179,7 @@ public class Data {
   }
 
   /**
-   * Returns the text of the {@link com.scrab5.ui.PopUpMessageController#textfield textfield} from a
-   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Returns the text of the from a {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
    * @return inputFieldText the String containing the text of the textfield
    * @author mherre
@@ -178,8 +189,7 @@ public class Data {
   }
 
   /**
-   * Saves the text of the {@link com.scrab5.ui.PopUpMessageController#textfield textfield} from a
-   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Saves the text of the from a {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
    * @param ipft the String that gets set
    * @author mherre
@@ -188,56 +198,96 @@ public class Data {
     inputFieldText = ipft;
   }
 
-  /** @return */
+  /**
+   * Returns the Client object belonging to the player.
+   *
+   * @author nitterhe, mherre
+   * @return playerClient - the Client object of the player for communication with the server
+   */
   public static Client getPlayerClient() {
     return playerClient;
   }
 
-  /** @param client */
+  /**
+   * Sets the Client object belonging to the player.
+   *
+   * @author nitterhe, mherre
+   * @param client - the Client object of the player for communication with the server
+   */
   public static void setPlayerClient(Client client) {
     if (playerClient == null) {
       playerClient = client;
     }
   }
 
-  /** @param client */
+  /**
+   * Updates the Client object belonging to the player.
+   *
+   * @author nitterhe, mherre
+   * @param client - the Client object of the player for communication with the server
+   */
   public static void updatePlayerClient(Client client) {
     playerClient = client;
   }
 
   /**
-   * Just set if you host a server, not join a server.
+   * Just set if you host a server, not join a server. Returns the hosted Server.
    *
-   * @return
    * @author nitterhe
+   * @return playerServer - the hosted Server
    */
   public static Server getHostedServer() {
     return playerServer;
   }
 
-  /** @param server */
+  /**
+   * Just set if you host a server, not join a server. Sets the hosted Server.
+   *
+   * @author nitterhe
+   * @param server - the hosted Server
+   */
   public static void setHostedServer(Server server) {
     if (playerServer == null) {
       playerServer = server;
     }
   }
 
-  /** @return */
+  /**
+   * Returns a list of all servers in the local network.
+   *
+   * @author nitterhe
+   * @return serverList - all servers in the local network that were found
+   */
   public static ArrayList<ServerData> getServerList() {
     return serverList;
   }
 
-  /** @param slist */
+  /**
+   * Sets the list of servers found in the local network..
+   *
+   * @author nitterhe
+   * @param slist - the list of Servers that were found
+   */
   public static void setServerList(ArrayList<ServerData> slist) {
     serverList = slist;
   }
 
-  /** @return */
+  /**
+   * Returns if the client is currently searching for servers.
+   *
+   * @author nitterhe
+   * @return isSearching - boolean if client is currently searching for servers in the local network
+   */
   public static boolean getIsSearching() {
     return isSearching;
   }
 
-  /** @param searching */
+  /**
+   * Sets the value of is searching. True is the client is currently searching for servers.
+   *
+   * @author nitterhe
+   * @param searching - the boolean if currently searching
+   */
   public static void setIsSearching(boolean searching) {
     isSearching = searching;
   }
@@ -248,6 +298,7 @@ public class Data {
    * @author mherre
    * @return sfxVolume the double containing the volume
    */
+  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
   public static double getSFXVolume() {
     return sfxVolume;
   }
@@ -258,6 +309,7 @@ public class Data {
    * @author mherre
    * @param newVolume the double containing the new sound volume
    */
+  @SuppressWarnings("checkstyle:AbbreviationAsWordInName")
   public static void setSFXVolume(double newVolume) {
     sfxVolume = newVolume;
   }

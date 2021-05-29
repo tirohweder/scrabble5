@@ -7,6 +7,7 @@ import com.scrab5.network.messages.DictionaryMessage;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
+import com.scrab5.network.messages.PlaySoundMessage;
 import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.ui.PopUpMessage;
@@ -29,12 +30,11 @@ import javafx.application.Platform;
 public class ClientThread extends Threads implements Serializable {
 
   private static final long serialVersionUID = 1L;
-
+  public final String sender;
   private transient Client client;
   private transient ObjectOutputStream toServer;
   private transient ObjectInputStream fromServer;
   private transient Socket socketToServer;
-  public final String sender;
 
   /**
    * Creates a Client Thread. Thread is started when the Client connects to a server.
@@ -60,11 +60,12 @@ public class ClientThread extends Threads implements Serializable {
       while (this.running) {
         message = (Message) this.fromServer.readObject();
         switch (message.getType()) {
-
           case DISCONNECT:
-            MultiplayerLobbyController.lobbyClosed();
             this.closeConnection();
-            Data.getGameSession().setRunning(false);
+            if (Data.getGameSession() != null) {
+              Data.getGameSession().setRunning(false);
+            }
+            MultiplayerLobbyController.lobbyClosed();
             break;
           case CHAT:
             ChatMessage chatMessage = (ChatMessage) message;
@@ -105,6 +106,10 @@ public class ClientThread extends Threads implements Serializable {
             Data.setSelectedDictionary(dm.getDictionaryName());
             DictionaryParser.addDictionary(dm.getDictionary(), dm.getDictionaryName());
             break;
+          case PLAYSOUND:
+            PlaySoundMessage psm = (PlaySoundMessage) message;
+            Data.getGameSession().playSound(psm.getTripleOrBingo());
+            break;
           default:
             break;
         }
@@ -117,18 +122,21 @@ public class ClientThread extends Threads implements Serializable {
     try {
       this.socketToServer.close();
       try {
-        Platform.runLater(new Runnable() {
-          public void run() {
-            try {
-              PopUpMessage npm = new PopUpMessage(
-                  "The connection has been closed. A player disconnected or you have been kicked.",
-                  PopUpMessageType.NOTIFICATION);
-              npm.show();
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-          }
-        });
+        Platform.runLater(
+            new Runnable() {
+              public void run() {
+                try {
+                  PopUpMessage npm =
+                      new PopUpMessage(
+                          "The connection has been closed."
+                              + " A player disconnected or you have been kicked.",
+                          PopUpMessageType.NOTIFICATION);
+                  npm.show();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              }
+            });
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -182,6 +190,6 @@ public class ClientThread extends Threads implements Serializable {
    * @author nitterhe
    */
   protected void closeConnection() {
-    this.stopThread();
+    this.running = false;
   }
 }

@@ -31,24 +31,81 @@ import javafx.scene.input.MouseEvent;
 public class MultiplayerOverviewController extends Controller implements Initializable {
 
   @FXML
-  private Label userPlaying, dicDisplaying;
+  private Label userPlaying;
   @FXML
-  private ImageView playerNumber, arrowRight, arrowLeft;
+  private Label dicDisplaying;
+  @FXML
+  private ImageView playerNumber;
+  @FXML
+  private ImageView arrowRight;
+  @FXML
+  private ImageView arrowLeft;
   @FXML
   private ComboBox<String> dictionarySelection;
   @FXML
-  private ImageView dropDownButton;
+  private ImageView joinButton0;
   @FXML
-  private ImageView joinButton0, joinButton1, joinButton2, joinButton3, joinButton4, joinButton5,
-      joinButton6, joinButton7;
+  private ImageView joinButton1;
   @FXML
-  private Label serverName0, serverName1, serverName2, serverName3, serverName4, serverName5,
-      serverName6, serverName7;
+  private ImageView joinButton2;
   @FXML
-  private Label playerCount0, playerCount1, playerCount2, playerCount3, playerCount4, playerCount5,
-      playerCount6, playerCount7;
+  private ImageView joinButton3;
   @FXML
-  private Label status0, status1, status2, status3, status4, status5, status6, status7;
+  private ImageView joinButton4;
+  @FXML
+  private ImageView joinButton5;
+  @FXML
+  private ImageView joinButton6;
+  @FXML
+  private ImageView joinButton7;
+  @FXML
+  private Label serverName0;
+  @FXML
+  private Label serverName1;
+  @FXML
+  private Label serverName2;
+  @FXML
+  private Label serverName3;
+  @FXML
+  private Label serverName4;
+  @FXML
+  private Label serverName5;
+  @FXML
+  private Label serverName6;
+  @FXML
+  private Label serverName7;
+  @FXML
+  private Label playerCount0;
+  @FXML
+  private Label playerCount1;
+  @FXML
+  private Label playerCount2;
+  @FXML
+  private Label playerCount3;
+  @FXML
+  private Label playerCount4;
+  @FXML
+  private Label playerCount5;
+  @FXML
+  private Label playerCount6;
+  @FXML
+  private Label playerCount7;
+  @FXML
+  private Label status0;
+  @FXML
+  private Label status1;
+  @FXML
+  private Label status2;
+  @FXML
+  private Label status3;
+  @FXML
+  private Label status4;
+  @FXML
+  private Label status5;
+  @FXML
+  private Label status6;
+  @FXML
+  private Label status7;
 
   private boolean isDictionarySelected = false;
   private int playerCount = 2;
@@ -84,7 +141,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void start(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (this.isDictionarySelected) {
 
@@ -102,7 +159,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
       String message = "To start the game please select a dictionary!";
       PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
       pum.show();
-
     }
   }
 
@@ -117,15 +173,15 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     Data.setIsSearching(false);
     App.setRoot("MainMenu");
   }
 
   /**
    * Event method that is called when the "Right Arrow"-button in the UIis clicked. The displayed
-   * number gets increased by one. Changes "Right Arrow"-button to a grayed out image if
-   * <code>playerCount</code> equals 4, this can't be clicked anymore.
+   * number gets increased by one. Changes "Right Arrow"-button to a grayed out image if <code>
+   * playerCount</code> equals 4, this can't be clicked anymore.
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
@@ -133,7 +189,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void nextNumber(MouseEvent event) {
     playerCount++;
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (playerCount > 4) {
       playerCount--;
@@ -150,14 +206,13 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
     } else {
       this.changeNumberImage();
-
     }
   }
 
   /**
    * Event method that is called when the "Left Arrow"-button in the UIis clicked. The displayed
-   * number gets decreased by one. Changes "Left Arrow"-button to a grayed out image if
-   * <code>playerCount</code> equals 2, this can't be clicked anymore.
+   * number gets decreased by one. Changes "Left Arrow"-button to a grayed out image if <code>
+   * playerCount</code> equals 2, this can't be clicked anymore.
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
@@ -165,7 +220,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
   @FXML
   private void previousNumber(MouseEvent event) {
     playerCount--;
-    playSound("ButtonClicked.mp3");
+    playSound();
 
     if (playerCount < 2) {
       playerCount++;
@@ -182,29 +237,27 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
     } else {
       this.changeNumberImage();
-
     }
   }
 
   /**
-   * Event method that is called when the "Arrow Down"-button in the UI is clicked. Opens the
-   * <code>ComboBox dictionarySelection</code> displaying all available dictionaries.
+   * Event method that is called when the "Arrow Down"-button in the UI is clicked. Opens the <code>
+   * ComboBox dictionarySelection</code> displaying all available dictionaries.
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
    */
   @FXML
   private void clickComboBox(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     dictionarySelection.show();
-
   }
 
   /**
    * Event method that is called when the "Manual Host Entry"-button in the UI is clicked. Creates a
    * {@link com.scrab5.ui.PopUpMessage PopUpMessage} where the user can enter an IP address, so the
    * user can join a specific server.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
@@ -215,7 +268,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
     String message = "Enter a specific IP adress:";
     PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.INPUT);
     pum.show();
-
 
     if (Data.isOkayClicked() && !Data.getInputFieldText().equals("")
         && this.joinServer(Data.getInputFieldText())) {
@@ -236,7 +288,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void refresh(MouseEvent event) {
-    playSound("ButtonClicked.mp3");
+    playSound();
     Data.setIsSearching(false);
     this.searchServers();
   }
@@ -254,7 +306,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
    */
   @FXML
   private void findGame(MouseEvent event) throws IOException {
-    playSound("ButtonClicked.mp3");
+    playSound();
     if (!Data.getServerList().isEmpty()) {
       String ip4 = Data.getServerList().get((int) (Data.getServerList().size() * Math.random()))
           .getIp4Address();
@@ -429,10 +481,10 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * Event method that is called when the mouse is exiting the <code>ImageView</code> object
-   * <code>iv</code> or when it is pressed. Changes the <code>image</code> to
+   * Event method that is called when the mouse is exiting the <code>ImageView</code> object <code>
+   * iv</code> or when it is pressed. Changes the <code>image</code> to
    * "/com/scrab5/ui/images/SB06_JoinButton.png".
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the exiting and pressing
    */
@@ -444,13 +496,13 @@ public class MultiplayerOverviewController extends Controller implements Initial
 
   /**
    * Event method that is called when an item in <code>dictionarySelection</code> has been selected.
-   * 
+   *
    * @author mherre
    * @param event the event that is created when an item has been selected
    */
   @FXML
   private void setSelectedDictionary(ActionEvent event) {
-    String selected = (String) this.dictionarySelection.getValue();
+    String selected = this.dictionarySelection.getValue();
     this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
     DictionaryParser.setCurrentDictionary(selected);
     DictionaryParser.parseFile(selected);
@@ -459,8 +511,8 @@ public class MultiplayerOverviewController extends Controller implements Initial
   }
 
   /**
-   * Changes the image of the current <code>playerNumber</code> to the fitting
-   * <code>playerCount</code>.
+   * Changes the image of the current <code>playerNumber</code> to the fitting <code>playerCount
+   * </code>.
    *
    * @author mherre
    */
@@ -475,6 +527,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
         break;
       case 4:
         img = new Image("/com/scrab5/ui/images/SB04_4.png", 23, 28, false, false);
+        break;
       default:
         break;
     }
@@ -492,8 +545,9 @@ public class MultiplayerOverviewController extends Controller implements Initial
    *         exist
    */
   private void joinGame(int number) throws IOException {
+    Data.setIsSearching(false);
     if (Data.getServerList().size() >= number) {
-      playSound("ButtonClicked.mp3");
+      playSound();
     }
     if (Data.getServerList().get(number).getClientCounter() == Data.getServerList().get(number)
         .getClientMaximum()) {
@@ -519,9 +573,9 @@ public class MultiplayerOverviewController extends Controller implements Initial
   /**
    * This method is called to setup the <code>ComboBox dictionarySelection</code>, so all inserted
    * dictionaries are getting displayed. The dictionaries must be in the same directory as the .jar.
+   *
    * <p>
    * https://stackabuse.com/java-list-files-in-a-directory/
-   * </p>
    *
    * @author mherre
    */
@@ -531,18 +585,18 @@ public class MultiplayerOverviewController extends Controller implements Initial
     FilenameFilter filter = new FilenameFilter() {
 
       public boolean accept(File dir, String name) {
-        return name.endsWith(".txt");
+        if (name.endsWith("Parsed.txt")) {
+          return false;
+        } else {
+          return name.endsWith(".txt");
+        }
       }
-
     };
 
     String[] fileNames = dir.list(filter);
 
-    if (fileNames == null) {
-      System.out.println("JCOMBO BOX Directory is INCORRECT or does not exist!");
-    } else {
-      for (int i = 0; i < fileNames.length; i++) {
-        String filename = fileNames[i];
+    if (fileNames != null) {
+      for (String filename : fileNames) {
         this.dictionarySelection.getItems().add(filename);
       }
     }
@@ -565,7 +619,7 @@ public class MultiplayerOverviewController extends Controller implements Initial
       Runnable r = new Runnable() {
 
         public synchronized void run() {
-          for (int i = 0; i < 35 && Data.getIsSearching(); i++) {
+          for (int i = 0; i < 70 && Data.getIsSearching(); i++) {
             Data.setServerList(Data.getPlayerClient().getServerList());
             if (!Data.getServerList().isEmpty()) {
               int j = 0;
@@ -587,17 +641,16 @@ public class MultiplayerOverviewController extends Controller implements Initial
     }
   }
 
-
   /**
    * Joins a server with the given IPAddress.
    *
-   * @param IPAddress - the IPAddress of the server that should be joined as a String
+   * @param ipAddress - the IPAddress of the server that should be joined as a String
    * @author nitterhe
    */
-  private boolean joinServer(String IPAddress) {
+  private boolean joinServer(String ipAddress) {
     try {
-      if (InetAddress.getByName(IPAddress).isReachable(5000)) {
-        Data.getPlayerClient().connectToServer(IPAddress);
+      if (InetAddress.getByName(ipAddress).isReachable(5000)) {
+        Data.getPlayerClient().connectToServer(ipAddress);
         return true;
       }
     } catch (UnknownHostException e) {
@@ -689,7 +742,6 @@ public class MultiplayerOverviewController extends Controller implements Initial
       }
     });
   }
-
 
   /**
    * Resets all 8 server displays if there is at least 1 server displayed.

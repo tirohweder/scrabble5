@@ -1,6 +1,7 @@
 package com.scrab5.util.database;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 
 
@@ -24,6 +25,7 @@ class ConnectTest {
   void testDatabase() {
     Database db = new Database();
     Database.disconnect();
+    db.deleteDatabaseFile();
   }
 
 
@@ -36,7 +38,8 @@ class ConnectTest {
   void testReconnect() {
     Database db = new Database();
     Database.disconnect();
-    Database.reconnect();
+    assertEquals(true, db.reconnectTest());
+    db.deleteDatabaseFile();
   }
 
 
@@ -47,6 +50,8 @@ class ConnectTest {
    */
   @Test
   void testDatabaseExistance() {
+    Database db = new Database();
     assertEquals(true, Database.databaseExistance());
+    db.deleteDatabaseFile();
   }
 }

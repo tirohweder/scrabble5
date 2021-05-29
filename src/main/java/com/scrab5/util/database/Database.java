@@ -36,14 +36,9 @@ public class Database {
     try {
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
-      System.out.println("reconnected!");
     } catch (ClassNotFoundException e) {
-      System.out.println("Connection not possible" + e.getMessage());
+      e.printStackTrace();
     } catch (SQLException e1) {
-      System.out.println("reconnect: Connection not possible" + e1.getMessage());
-      System.out.println("Sql Exception: " + e1.getMessage());
-      System.out.println("Sql State: " + e1.getSQLState());
-      System.out.println("Sql Error: " + e1.getErrorCode());
       e1.printStackTrace();
     }
   }
@@ -59,39 +54,66 @@ public class Database {
   }
 
   /**
-   * Method to disconnect from the database.
+   * Method to disconnect the connection to the database.
    *
    * @author lengist
    */
   public static void disconnect() {
     try {
       connection.close();
-      System.out.println("disconnected!");
     } catch (SQLException e) {
-      System.out.println("Problem with closing connection: " + e.getMessage());
       e.printStackTrace();
     }
   }
 
   /**
-   * Method to establish the connection to the database file given in the parameter file.
+   * Method to establish the connection to the database file whos name is given in the parameter
+   * file.
    *
    * @author lengist
-   * @param file String of the path to the database file
+   * @param file the name of the database file
    */
   protected void connect(String file) {
     try {
       Class.forName("org.sqlite.JDBC");
       connection = DriverManager.getConnection("jdbc:sqlite:" + file);
-      System.out.println("connected");
     } catch (ClassNotFoundException e) {
-      System.out.println("Connection not possible" + e.getMessage());
+      e.printStackTrace();
     } catch (SQLException e1) {
-      System.out.println("connect: Connection not possible" + e1.getMessage());
-      System.out.println("Sql Exception: " + e1.getMessage());
-      System.out.println("Sql State: " + e1.getSQLState());
-      System.out.println("Sql Error: " + e1.getErrorCode());
       e1.printStackTrace();
     }
+  }
+
+  /**
+   * Method to delete the database file. It is used after the tests so the game and the test
+   * database are separate.
+   *
+   * @author lengist
+   */
+  public void deleteDatabaseFile() {
+    disconnect();
+    File file = new File(
+        System.getProperty("user.dir") + System.getProperty("file.separator") + databaseFileName);
+    file.delete();
+  }
+
+  /**
+   * Method to re-establish the connection to the database file who's name is given in the
+   * parameter. It is used for testing because it returns a boolean value if the reconnection was
+   * successful. file.
+   *
+   * @author lengist
+   */
+  protected boolean reconnectTest() {
+    try {
+      Class.forName("org.sqlite.JDBC");
+      connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
+      return true;
+    } catch (ClassNotFoundException e) {
+      e.printStackTrace();
+    } catch (SQLException e1) {
+      e1.printStackTrace();
+    }
+    return false;
   }
 }

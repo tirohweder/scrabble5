@@ -1,7 +1,5 @@
 package com.scrab5.util.database;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.scrab5.network.Server;
@@ -11,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -22,7 +19,6 @@ import org.junit.jupiter.api.Test;
  * 
  * @author lengist
  */
-@Disabled
 class UseTest {
   CreateDatabase cd = new CreateDatabase();
 
@@ -62,7 +58,13 @@ class UseTest {
     assertEquals("C", letter[2]);
     assertEquals(2, point[2]);
     assertEquals(10, occurrence[2]);
-    Database.disconnect();
+    try {
+      assert rs != null;
+      rs.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -74,7 +76,7 @@ class UseTest {
   void testTablePlayerIsEmpty() {
     cd.createTest();
     assertEquals(true, UseDatabase.tablePlayerIsEmpty());
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -102,7 +104,13 @@ class UseTest {
     }
     assertEquals("Alpha", name[0]);
     assertEquals("Beta", name[1]);
-    Database.disconnect();
+    try {
+      assert rs != null;
+      rs.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -118,7 +126,7 @@ class UseTest {
     String[] letter = UseDatabase.getAllLetters();
     assertEquals("A", letter[0]);
     assertEquals("E", letter[4]);
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -134,7 +142,7 @@ class UseTest {
     int[] point = UseDatabase.getAllPointsPerLetter();
     assertEquals(1, point[0]);
     assertEquals(1, point[4]);
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -150,7 +158,7 @@ class UseTest {
     int[] occurrence = UseDatabase.getAllOccurrences();
     assertEquals(9, occurrence[0]);
     assertEquals(12, occurrence[4]);
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -175,7 +183,7 @@ class UseTest {
     assertEquals("Laura", server.getHost());
     assertEquals("client", client);
     assertEquals("12345", cs.getIpAddress());
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -190,6 +198,6 @@ class UseTest {
     FillDatabase.createPlayer("Laura");
     assertEquals(true, UseDatabase.playerExists("Laura"));
     assertEquals(false, UseDatabase.playerExists("Peter"));
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 }

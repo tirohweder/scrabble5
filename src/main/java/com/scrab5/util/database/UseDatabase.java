@@ -9,9 +9,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * Note: To save the database and make sure that not two clients at the same time are able to make a
- * request to the database file, the connection gets established and disconnected in every method
- * individual where it is necessary.
+ * UseDatabase contains methods to connect controllers and domain components with the database to
+ * get and update the information in it. Note: To save the database and make sure that not two
+ * clients at the same time are able to make a request to the database file, the connection gets
+ * established and disconnected in every method individually where it is necessary.
  *
  * @author lengist
  */
@@ -44,7 +45,7 @@ public class UseDatabase extends Database {
   public static synchronized boolean tablePlayerIsEmpty() {
     Database.reconnect();
     boolean empty = false;
-    int anzahl = 0;
+    int anzahl;
     ResultSet rs = null;
     try {
       Statement stm = connection.createStatement();
@@ -58,6 +59,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -79,11 +81,6 @@ public class UseDatabase extends Database {
 
       Statement stm = connection.createStatement();
       rs = stm.executeQuery("SELECT Name FROM Player");
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    try {
-      rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
     }
@@ -112,6 +109,7 @@ public class UseDatabase extends Database {
       e.printStackTrace();
     }
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -142,6 +140,7 @@ public class UseDatabase extends Database {
     String[] letters = new String[letter.size()];
     letters = letter.toArray(letters);
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -153,15 +152,14 @@ public class UseDatabase extends Database {
    * Returns all the points of the letters as array.
    *
    * @author lengist
-   * @return integer array containing all points saved in the database
-   *     <p>code line to convert list to array from:
-   *     https://www.techiedelight.com/convert-list-integer-array-int/
+   * @return integer array containing all points saved in the database code line to convert list to
+   *     array from: https://www.techiedelight.com/convert-list-integer-array-int/
    */
   public static synchronized int[] getAllPointsPerLetter() {
     Database.reconnect();
     ResultSet rs = null;
     Statement stm;
-    ArrayList<Integer> point = new ArrayList<Integer>();
+    ArrayList<Integer> point = new ArrayList<>();
     try {
       stm = connection.createStatement();
       rs = stm.executeQuery("SELECT Points FROM Letters");
@@ -173,6 +171,7 @@ public class UseDatabase extends Database {
     }
     int[] points = point.stream().mapToInt(Integer::intValue).toArray();
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -183,16 +182,15 @@ public class UseDatabase extends Database {
   /**
    * Returns all the Occurrences of the letters as array.
    *
-   * @return integer array containing all occurrences saved in the database
-   *     <p>code line to convert list to array from:
-   *     https://www.techiedelight.com/convert-list-integer-array-int/
    * @author lengist
+   * @return occurrence integer array containing all occurrences saved in the database code line to
+   *     convert list to array from: https://www.techiedelight.com/convert-list-integer-array-int/
    */
   public static synchronized int[] getAllOccurrences() {
     Database.reconnect();
     ResultSet rs = null;
     Statement stm;
-    ArrayList<Integer> occurrence = new ArrayList<Integer>();
+    ArrayList<Integer> occurrence = new ArrayList<>();
     try {
       stm = connection.createStatement();
       rs = stm.executeQuery("SELECT Occurrence FROM Letters");
@@ -204,6 +202,7 @@ public class UseDatabase extends Database {
     }
     int[] occurrences = occurrence.stream().mapToInt(Integer::intValue).toArray();
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -212,40 +211,13 @@ public class UseDatabase extends Database {
   }
 
   /**
-   * Returns the points for a letter saved in the table Letters to calculate the points for a laid
-   * word.
-   *
-   * @author lengist
-   * @param letter representing the letter for which the points need to be known
-   * @return int value of the points for the letter
-   */
-  public static synchronized int getPointForLetter(String letter) {
-    Database.reconnect();
-    ResultSet rs = null;
-    Statement stm;
-    ArrayList<Integer> point = new ArrayList<Integer>();
-    try {
-      stm = connection.createStatement();
-      rs = stm.executeQuery("SELECT Points FROM Letters WHERE (Letter = '" + letter + "');");
-
-      while (rs.next()) {
-        point.add(rs.getInt(1));
-        return rs.getInt(1);
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
-    return 0;
-  }
-
-  /**
    * Returns the server object to get the right server statistics when a user chooses to host his
    * server again.
    *
+   * @author lengist
+   * @author nitterhe
    * @param serverHostName String representation of the host of the server
    * @return Server object with the server statistic
-   * @auhtor lengist
-   * @author nitterhe
    */
   public static synchronized ServerStatistics getServerStatistics(String serverHostName) {
     Database.reconnect();
@@ -256,8 +228,8 @@ public class UseDatabase extends Database {
           stm.executeQuery(
               "SELECT * FROM Server WHERE (ServerHostName = '" + serverHostName + "');");
       ServerStatistics ss = new ServerStatistics();
-      String client = "";
-      String ipAddress = "";
+      String client;
+      String ipAddress;
       int gamesPlayed;
       int gamesWon;
       while (s.next()) {
@@ -273,6 +245,7 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
       try {
+        assert s != null;
         s.close();
       } catch (SQLException e1) {
         e1.printStackTrace();
@@ -280,30 +253,6 @@ public class UseDatabase extends Database {
       Database.disconnect();
       return null;
     }
-  }
-
-  /**
-   * Changes the points for the letter letter in the table letters when a user chooses to
-   * individualize.
-   *
-   * @param letter String for the letter where a change needs to be fulfilled
-   * @param point int for the new points
-   * @author lengist
-   */
-  public static synchronized void setPointForLetter(String letter, int point) {
-    FillDatabase.updatePointLetters(letter, point);
-  }
-
-  /**
-   * Changes the occurrence for the letter letter in the table letters when a user chooses to
-   * individualize.
-   *
-   * @param letter String for the letter where a change needs to be fulfilled
-   * @param occurrence int for the new occurrence
-   * @author lengist
-   */
-  public static synchronized void setOccurrenceLetters(String letter, int occurrence) {
-    FillDatabase.updateOccurrenceLetters(letter, occurrence);
   }
 
   /**
@@ -345,7 +294,7 @@ public class UseDatabase extends Database {
    *
    * @author lengist
    * @param name String of the name of the user to use in the prepared Statement
-   * @return boolean returning true if player with name "name" already exists
+   * @return exists boolean returning true if player with name "name" already exists
    */
   public static synchronized boolean playerExists(String name) {
     Database.reconnect();
@@ -363,6 +312,7 @@ public class UseDatabase extends Database {
       e1.printStackTrace();
     }
     try {
+      assert rs != null;
       rs.close();
     } catch (SQLException e) {
       e.printStackTrace();

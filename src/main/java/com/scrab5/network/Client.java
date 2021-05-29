@@ -8,6 +8,7 @@ import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.MessageType;
+import com.scrab5.network.messages.PlaySoundMessage;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
@@ -26,15 +27,14 @@ import java.util.ArrayList;
  *
  * @author nitterhe
  */
-
 public class Client implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
   public final int serverPort = 8080;
+  private ClientThread clientThread;
   private String ip;
   private String username;
-  private ClientThread clientThread;
   private ArrayList<ServerData> serverList;
   private Server currentServer;
   private Server hostedServer;
@@ -52,7 +52,7 @@ public class Client implements Serializable {
    */
   public Client(String username) {
     this.username = username;
-    serverList = new ArrayList<ServerData>();
+    serverList = new ArrayList<>();
     this.hostedServer = null; // needs connection to database
     this.isReady = false;
     this.starting = false;
@@ -79,6 +79,7 @@ public class Client implements Serializable {
       hostedServer.setClientMaximum(clientMaximum);
       hostedServer.loadServerStatistics();
       hostedServer.openServerSocket();
+      hostedServer.newTimer();
     }
     hostedServer.acceptClients();
     try {
@@ -88,7 +89,6 @@ public class Client implements Serializable {
       throw e;
     }
   }
-
 
   /**
    * Searches for Servers in the local network and adds them to the serverList.
@@ -103,11 +103,12 @@ public class Client implements Serializable {
         for (int j = 0; j < 256 && Data.getIsSearching(); j++) {
           for (int k = 0; k < 256 && Data.getIsSearching(); k++) {
             final String ip4 = "192.168." + j + "." + k;
-
+            final String ip42 = "169.254." + j + "." + k;
             Thread t = new Thread(new Runnable() {
               public void run() {
                 try {
                   InetAddress serverCheck = InetAddress.getByName(ip4);
+                  InetAddress serverCheck2 = InetAddress.getByName(ip42);
                   if (serverCheck.isReachable(1000)) {
                     Socket getServerDataSocket = new Socket(ip4, serverPort);
                     getServerDataSocket.setSoTimeout(10000);
@@ -132,6 +133,30 @@ public class Client implements Serializable {
                     getServerDataSocket.shutdownOutput();
                     getServerDataSocket.close();
                   }
+                  if (serverCheck2.isReachable(1000)) {
+                    Socket getServerDataSocket = new Socket(ip42, serverPort);
+                    getServerDataSocket.setSoTimeout(10000);
+
+                    ObjectOutputStream out =
+                        new ObjectOutputStream(getServerDataSocket.getOutputStream());
+                    ObjectInputStream in =
+                        new ObjectInputStream(getServerDataSocket.getInputStream());
+
+                    out.writeObject(new GetServerDataMessage(username));
+                    out.flush();
+                    out.reset();
+
+                    Message m = (Message) in.readObject();
+                    if (m.getType() == MessageType.SENDSERVERDATA) {
+                      SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
+                      addServerToServerList(new ServerData(ssdMessage.getSender(), ip42,
+                          ssdMessage.getPort(), ssdMessage.getClientCounter(),
+                          ssdMessage.getClientMaximum(), ssdMessage.getStatus()));
+                    }
+                    getServerDataSocket.shutdownInput();
+                    getServerDataSocket.shutdownOutput();
+                    getServerDataSocket.close();
+                  }
                 } catch (Exception e) {
                   // e.printStackTrace();
                   // does nothing here
@@ -139,10 +164,11 @@ public class Client implements Serializable {
               }
             });
             t.start();
+
             // otherwise too many Threads start at the same time
             synchronized (this) {
               try {
-                this.wait(1);
+                this.wait(2);
               } catch (InterruptedException e) {
                 e.printStackTrace();
               }
@@ -152,6 +178,8 @@ public class Client implements Serializable {
       }
     });
     t1.start();
+
+
   }
 
   /**
@@ -165,8 +193,8 @@ public class Client implements Serializable {
     for (ServerData sd : this.serverList) {
       if (sd.getServerHost().equals(serverdata.getServerHost())) {
         add = false;
+        break;
       }
-      break;
     }
     if (add) {
       serverList.add(serverdata);
@@ -205,7 +233,7 @@ public class Client implements Serializable {
    * @param ip - The ip4 which should be connected to.
    * @author nitterhe
    */
-  public void connectToServer(String ip) throws Exception {
+  public void connectToServer(String ip) {
     connectToServer(new ServerData(null, ip.trim(), serverPort, 0, 0, false));
   }
 
@@ -223,17 +251,6 @@ public class Client implements Serializable {
       return true;
     }
     return false;
-  }
-
-  /**
-   * Stops the client by calling the closeConnection method of the client's thread.
-   *
-   * @author nitterhe
-   */
-  public void stopClientThread() {
-    if (this.clientThread.running) {
-      this.clientThread.closeConnection();
-    }
   }
 
   public ClientData getClientData() {
@@ -258,6 +275,16 @@ public class Client implements Serializable {
    */
   public String getUsername() {
     return this.username;
+  }
+
+  /**
+   * Changes the username. Used when the client edits their username in the playerprofile.
+   *
+   * @param username - the new username
+   * @author nitterhe
+   */
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   /**
@@ -303,7 +330,8 @@ public class Client implements Serializable {
   /**
    * Sets the client's ready status.
    *
-   * @param ready - a boolean with the client's ready satus
+   * @param ready - a boolean with the client's ready status
+   * @param order - the suggested order the players should take turns in game
    * @author nitterhe
    */
   public void setReady(boolean ready, ArrayList<Integer> order) {
@@ -349,18 +377,8 @@ public class Client implements Serializable {
   }
 
   /**
-   * Changes the username. Used when the client edits their username in the playerprofile.
-   *
-   * @param username - the new username
-   * @author nitterhe
-   */
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  /**
    * Method to send the turn made by the client to the server.
-   * 
+   *
    * @author nitterhe
    */
   public void makeTurn() {
@@ -371,7 +389,7 @@ public class Client implements Serializable {
   /**
    * Method to set the value of the starting value. This is used to set App.setroot() once when the
    * game starts.
-   * 
+   *
    * @return starting - the starting variable
    * @author nitterhe
    */
@@ -381,7 +399,7 @@ public class Client implements Serializable {
 
   /**
    * Method to set the value of the starting variable.
-   * 
+   *
    * @param starting - the starting variable
    * @author nitterhe
    */
@@ -389,7 +407,24 @@ public class Client implements Serializable {
     this.starting = starting;
   }
 
+  /**
+   * Returns if the ClientThread is running.
+   *
+   * @author nitterhe
+   * @return running - the boolean if the ClientThread is running
+   */
   public boolean threadIsRunning() {
     return this.clientThread.running;
+  }
+
+  /**
+   * Sends a message to the Server that a sound should be played (true = tripple word scored / false
+   * = bingo scored).
+   *
+   * @author nitterhe
+   * @param tob - the boolean which sound should be played
+   */
+  public void playSound(boolean tob) {
+    this.clientThread.sendMessageToServer(new PlaySoundMessage(this.username, tob));
   }
 }

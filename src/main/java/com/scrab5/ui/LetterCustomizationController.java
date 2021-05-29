@@ -1,12 +1,12 @@
 package com.scrab5.ui;
 
+import com.scrab5.util.database.Database;
+import com.scrab5.util.database.FillDatabase;
+import com.scrab5.util.database.UseDatabase;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import com.scrab5.util.database.Database;
-import com.scrab5.util.database.FillDatabase;
-import com.scrab5.util.database.UseDatabase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -16,26 +16,75 @@ import javafx.stage.Stage;
 
 /**
  * The LetterCustomizationController class controls the components of the
- * "LetterCustomization.fxml".
- * 
+ * "LetterCustomization.fxml"..
+ *
  * @author mherre
  */
 public class LetterCustomizationController extends Controller implements Initializable {
 
-  @FXML
-  private TextField aO, bO, cO, dO, eO, fO, gO, hO, iO, jO, kO, lO, mO, nO, oO, pO, qO, rO, sO, tO,
-      uO, vO, wO, xO, yO, zO, spaceO;
-  @FXML
-  private TextField aP, bP, cP, dP, eP, fP, gP, hP, iP, jP, kP, lP, mP, nP, oP, pP, qP, rP, sP, tP,
-      uP, vP, wP, xP, yP, zP, spaceP;
+  @FXML private TextField aO;
+  @FXML private TextField bO;
+  @FXML private TextField cO;
+  @FXML private TextField dO;
+  @FXML private TextField eO;
+  @FXML private TextField fO;
+  @FXML private TextField gO;
+  @FXML private TextField hO;
+  @FXML private TextField iO;
+  @FXML private TextField jO;
+  @FXML private TextField kO;
+  @FXML private TextField lO;
+  @FXML private TextField mO;
+  @FXML private TextField nO;
+  @FXML private TextField oO;
+  @FXML private TextField pO;
+  @FXML private TextField qO;
+  @FXML private TextField rO;
+  @FXML private TextField sO;
+  @FXML private TextField tO;
+  @FXML private TextField uO;
+  @FXML private TextField vO;
+  @FXML private TextField wO;
+  @FXML private TextField xO;
+  @FXML private TextField yO;
+  @FXML private TextField zO;
+  @FXML private TextField spaceO;
+  @FXML private TextField aP;
+  @FXML private TextField bP;
+  @FXML private TextField cP;
+  @FXML private TextField dP;
+  @FXML private TextField eP;
+  @FXML private TextField fP;
+  @FXML private TextField gP;
+  @FXML private TextField hP;
+  @FXML private TextField iP;
+  @FXML private TextField jP;
+  @FXML private TextField kP;
+  @FXML private TextField lP;
+  @FXML private TextField mP;
+  @FXML private TextField nP;
+  @FXML private TextField oP;
+  @FXML private TextField pP;
+  @FXML private TextField qP;
+  @FXML private TextField rP;
+  @FXML private TextField sP;
+  @FXML private TextField tP;
+  @FXML private TextField uP;
+  @FXML private TextField vP;
+  @FXML private TextField wP;
+  @FXML private TextField xP;
+  @FXML private TextField yP;
+  @FXML private TextField zP;
+  @FXML private TextField spaceP;
 
-  private ArrayList<TextField> al, alP;
+  private ArrayList<TextField> al;
+  private ArrayList<TextField> alP;
 
   /**
    * Call certain methods as soon as the Controller is loaded. Sets the displayed occurrences and
    * points depending on if the letter's occurrences/points have already been edited, if not then
    * the standard occurrences and point distribution is loaded from the database.
-   * 
+   *
    * @author mherre
    */
   @Override
@@ -57,7 +106,8 @@ public class LetterCustomizationController extends Controller implements Initial
 
     } else {
 
-      ArrayList<Integer> listO, listP;
+      ArrayList<Integer> listO;
+      ArrayList<Integer> listP;
       listO = Data.getOccurrencyDistribution();
       listP = Data.getPointsDistribution();
       UseDatabase.updateLetterCustomization(listP, listO);
@@ -67,27 +117,28 @@ public class LetterCustomizationController extends Controller implements Initial
         alP.get(i).setText(listP.get(i) + "");
       }
     }
-    
+
     Database.disconnect();
   }
 
   /**
    * Event method that is called when the "Confirm"-button in the UI is clicked. Saves the changes
    * that were made by the user.
-   * 
+   *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void confirm(MouseEvent event) throws IOException {
 
     if (this.areValuesValid()) {
 
-      ArrayList<Integer> listO, listP;
-      listO = new ArrayList<Integer>();
-      listP = new ArrayList<Integer>();
+      ArrayList<Integer> listO;
+      ArrayList<Integer> listP;
+      listO = new ArrayList<>();
+      listP = new ArrayList<>();
 
       for (int i = 0; i < 27; i++) {
         listO.add(Integer.parseInt(al.get(i).getText()));
@@ -101,18 +152,17 @@ public class LetterCustomizationController extends Controller implements Initial
       Stage s = (Stage) ((Node) (event.getSource())).getScene().getWindow();
       s.close();
     }
-
   }
 
   /**
-   * Method that puts all <code>TextField</code> containing the occurrences into one
-   * <code>ArrayList</code>, so working with them is easier.
-   * 
+   * Method that puts all <code>TextField</code> containing the occurrences into one <code>ArrayList
+   * </code>, so working with them is easier.
+   *
    * @author mherre
    * @return al the ArrayList containing the occurrences
    */
   private ArrayList<TextField> createListO() {
-    ArrayList<TextField> al = new ArrayList<TextField>();
+    ArrayList<TextField> al = new ArrayList<>();
     al.add(aO);
     al.add(bO);
     al.add(cO);
@@ -145,14 +195,14 @@ public class LetterCustomizationController extends Controller implements Initial
   }
 
   /**
-   * Method that puts all <code>TextField</code> containing the points into one
-   * <code>ArrayList</code>, so working with them is easier.
-   * 
+   * Method that puts all <code>TextField</code> containing the points into one <code>ArrayList
+   * </code>, so working with them is easier.
+   *
    * @author mherre
    * @return al the ArrayList containing the amount of points
    */
   private ArrayList<TextField> createListP() {
-    ArrayList<TextField> al = new ArrayList<TextField>();
+    ArrayList<TextField> al = new ArrayList<>();
     al.add(aP);
     al.add(bP);
     al.add(cP);
@@ -187,12 +237,12 @@ public class LetterCustomizationController extends Controller implements Initial
   /**
    * Method that checks if all entered values in the <code>TextFields</code>'s consist only of
    * numbers.
-   * 
+   *
    * @author mherre
    * @return the boolean containing the value whether the <code>TextFields</code>'s fulfill the
-   *         requirements
+   *     requirements
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   private boolean areValuesValid() throws IOException {
 
