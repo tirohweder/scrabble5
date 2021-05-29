@@ -29,22 +29,52 @@ public class GameBoard implements Serializable {
    */
   public GameBoard() {
     firstTile = true;
-    gameBoardSpecial = new String[][] {
-        {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
-        {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
-        {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "},
-        {"DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"},
-        {"  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "},
-        {"  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "},
-        {"  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "},
-        {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"},
-        {"  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "},
-        {"  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "},
-        {"  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "},
-        {"DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"},
-        {"  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "},
-        {"  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "},
-        {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"}};
+    gameBoardSpecial =
+        new String[][] {
+          {
+            "TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"
+          },
+          {
+            "  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "
+          },
+          {
+            "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "
+          },
+          {
+            "DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"
+          },
+          {
+            "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "
+          },
+          {
+            "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "
+          },
+          {
+            "  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "
+          },
+          {
+            "TW", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"
+          },
+          {
+            "  ", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DL", "  ", "  "
+          },
+          {
+            "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  "
+          },
+          {
+            "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  ", "  ", "DW", "  ", "  ", "  ", "  "
+          },
+          {
+            "DL", "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  ", "DL"
+          },
+          {
+            "  ", "  ", "DW", "  ", "  ", "  ", "DL", "  ", "DL", "  ", "  ", "  ", "DW", "  ", "  "
+          },
+          {
+            "  ", "DW", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "TL", "  ", "  ", "  ", "DW", "  "
+          },
+          {"TW", "  ", "  ", "DL", "  ", "  ", "  ", "TW", "  ", "  ", "  ", "DL", "  ", "  ", "TW"}
+        };
   }
 
   public Tile[][] getGameBoard() {
@@ -84,6 +114,7 @@ public class GameBoard implements Serializable {
       t.setColumn(column);
       t.setRackPlace(null);
       currentChanges.add(t);
+      System.out.println(currentChanges.size());
       firstTile = false;
 
       return true;
@@ -210,12 +241,15 @@ public class GameBoard implements Serializable {
    * @return if the given coordinates are in the same row or column and if they are connected.
    */
   public boolean isSpotNext(int row, int column) {
+    System.out.println("Start");
     int row1 = currentChanges.get(0).getRow();
     int column1 = currentChanges.get(0).getColumn();
 
     // quick check if its just next to each other without an old tile connecting
-    if ((row == row1 + 1 && column == column1) || (row == row1 - 1 && column == column1)
-        || (row == row1 && column == column1 + 1) || (row == row1 && column == column1 - 1)) {
+    if ((row == row1 + 1 && column == column1)
+        || (row == row1 - 1 && column == column1)
+        || (row == row1 && column == column1 + 1)
+        || (row == row1 && column == column1 - 1)) {
       return true;
     }
 
@@ -482,6 +516,7 @@ public class GameBoard implements Serializable {
       }
       scoreToBe = 0;
       word.setLength(0);
+      System.out.println(score);
     }
 
     // if 7 tiles have been played by the player receive bingo points
@@ -657,6 +692,9 @@ public class GameBoard implements Serializable {
       listOfWords.add(word.toString());
     }
 
+    for (String word1 : listOfWords) {
+      System.out.println(word1);
+    }
     return listOfWords;
   }
 
@@ -667,25 +705,9 @@ public class GameBoard implements Serializable {
    * @return boolean if all words are found in the dictionary.
    */
   public boolean checkWordsLegit() {
-
-    return true;
-    /*
-     * ArrayList<String> gameWords = getWords(); for (String gameWord : gameWords) { if
-     * (!DictionaryScanner.scan(gameWord)) { return false; } } return true;
-     */
-  }
-
-  /**
-   * Checks if all words generated by getWords() are found in the dictionary. Adjusted for testing.
-   *
-   * @author trohwede
-   * @author lengist
-   * @return if words are legit.
-   */
-  public boolean checkWordsLegitTest() {
     ArrayList<String> gameWords = getWords();
     for (String gameWord : gameWords) {
-      if (!DictionaryScanner.scanTest(gameWord)) {
+      if (!DictionaryScanner.scan(gameWord)) {
         return false;
       }
     }
