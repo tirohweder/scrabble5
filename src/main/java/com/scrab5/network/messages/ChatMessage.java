@@ -2,17 +2,17 @@ package com.scrab5.network.messages;
 
 /**
  * Class for messages used to chat with other clients via the server.
- * 
+ *
  * @author nitterhe
  */
 public class ChatMessage extends Message {
   private static final long serialVersionUID = 1L;
 
-  private String text;
+  private final String text;
 
   /**
    * Constructor to create ChatMessages.
-   * 
+   *
    * @author nitterhe
    * @param sender - the username of the sending client
    * @param text - the text of the message as a String
@@ -25,7 +25,7 @@ public class ChatMessage extends Message {
 
   /**
    * Returns the text of the ChatMessage.
-   * 
+   *
    * @author nitterhe
    * @return text - the text of the ChatMessage
    */

@@ -8,8 +8,8 @@ package com.scrab5.network.messages;
 public class DictionaryMessage extends Message {
   private static final long serialVersionUID = 1L;
 
-  private String dictionaryName;
-  private String dictionary;
+  private final String dictionaryName;
+  private final String dictionary;
 
   /**
    * Constructor to create DictionaryMessages. The dictionary is represented by one string since a
@@ -42,7 +42,7 @@ public class DictionaryMessage extends Message {
 
   /**
    * Returns the dictionary.
-   * 
+   *
    * @author nitterhe
    * @return dictionary - the dictionary as a String
    */

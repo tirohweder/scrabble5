@@ -2,7 +2,7 @@ package com.scrab5.network.messages;
 
 /**
  * Class for messages used to disconnect the client from the server.
- * 
+ *
  * @author nitterhe
  */
 public class DisconnectMessage extends Message {
@@ -10,7 +10,7 @@ public class DisconnectMessage extends Message {
 
   /**
    * Constructor to create DisconnectMessages.
-   * 
+   *
    * @author nitterhe
    * @param sender - the username of the sending client
    */

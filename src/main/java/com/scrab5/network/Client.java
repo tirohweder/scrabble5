@@ -18,7 +18,6 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
-
 /**
  * Class to implement the client sided client-server-communication. Starts the ClientThread Class.
  * Provides methods for the client to communicate with the server. Serializable so the whole Client
@@ -27,7 +26,6 @@ import java.util.ArrayList;
  *
  * @author nitterhe
  */
-
 public class Client implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -70,7 +68,7 @@ public class Client implements Serializable {
    *
    * @param clientMaximum - the maximum number of clients allowed to connect to the server
    * @throws Exception - an Exception that is thrown to the Controller that the server could not be
-   *         hosted
+   *     hosted
    * @author nitterhe
    */
   public void hostServer(int clientMaximum) throws Exception {
@@ -91,95 +89,109 @@ public class Client implements Serializable {
     }
   }
 
-
   /**
    * Searches for Servers in the local network and adds them to the serverList.
    *
    * @author from stackoverflow -
-   *         https://stackoverflow.com/questions/24082077/java-find-server-in-network
+   *     https://stackoverflow.com/questions/24082077/java-find-server-in-network
    */
   public void searchServers() {
     this.serverList.clear();
-    Thread t1 = new Thread(new Runnable() {
-      public void run() {
-        for (int j = 0; j < 256 && Data.getIsSearching(); j++) {
-          for (int k = 0; k < 256 && Data.getIsSearching(); k++) {
-            final String ip4 = "192.168." + j + "." + k;
-            final String ip42 = "169.254." + j + "." + k;
-            Thread t = new Thread(new Runnable() {
+    Thread t1 =
+        new Thread(
+            new Runnable() {
               public void run() {
-                try {
-                  InetAddress serverCheck = InetAddress.getByName(ip4);
-                  InetAddress serverCheck2 = InetAddress.getByName(ip42);
-                  if (serverCheck.isReachable(1000)) {
-                    Socket getServerDataSocket = new Socket(ip4, serverPort);
-                    getServerDataSocket.setSoTimeout(10000);
+                for (int j = 0; j < 256 && Data.getIsSearching(); j++) {
+                  for (int k = 0; k < 256 && Data.getIsSearching(); k++) {
+                    final String ip4 = "192.168." + j + "." + k;
+                    final String ip42 = "169.254." + j + "." + k;
+                    Thread t =
+                        new Thread(
+                            new Runnable() {
+                              public void run() {
+                                try {
+                                  InetAddress serverCheck = InetAddress.getByName(ip4);
+                                  InetAddress serverCheck2 = InetAddress.getByName(ip42);
+                                  if (serverCheck.isReachable(1000)) {
+                                    Socket getServerDataSocket = new Socket(ip4, serverPort);
+                                    getServerDataSocket.setSoTimeout(10000);
 
-                    ObjectOutputStream out =
-                        new ObjectOutputStream(getServerDataSocket.getOutputStream());
-                    ObjectInputStream in =
-                        new ObjectInputStream(getServerDataSocket.getInputStream());
+                                    ObjectOutputStream out =
+                                        new ObjectOutputStream(
+                                            getServerDataSocket.getOutputStream());
+                                    ObjectInputStream in =
+                                        new ObjectInputStream(getServerDataSocket.getInputStream());
 
-                    out.writeObject(new GetServerDataMessage(username));
-                    out.flush();
-                    out.reset();
+                                    out.writeObject(new GetServerDataMessage(username));
+                                    out.flush();
+                                    out.reset();
 
-                    Message m = (Message) in.readObject();
-                    if (m.getType() == MessageType.SENDSERVERDATA) {
-                      SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
-                      addServerToServerList(new ServerData(ssdMessage.getSender(), ip4,
-                          ssdMessage.getPort(), ssdMessage.getClientCounter(),
-                          ssdMessage.getClientMaximum(), ssdMessage.getStatus()));
+                                    Message m = (Message) in.readObject();
+                                    if (m.getType() == MessageType.SENDSERVERDATA) {
+                                      SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
+                                      addServerToServerList(
+                                          new ServerData(
+                                              ssdMessage.getSender(),
+                                              ip4,
+                                              ssdMessage.getPort(),
+                                              ssdMessage.getClientCounter(),
+                                              ssdMessage.getClientMaximum(),
+                                              ssdMessage.getStatus()));
+                                    }
+                                    getServerDataSocket.shutdownInput();
+                                    getServerDataSocket.shutdownOutput();
+                                    getServerDataSocket.close();
+                                  }
+                                  if (serverCheck2.isReachable(1000)) {
+                                    Socket getServerDataSocket = new Socket(ip42, serverPort);
+                                    getServerDataSocket.setSoTimeout(10000);
+
+                                    ObjectOutputStream out =
+                                        new ObjectOutputStream(
+                                            getServerDataSocket.getOutputStream());
+                                    ObjectInputStream in =
+                                        new ObjectInputStream(getServerDataSocket.getInputStream());
+
+                                    out.writeObject(new GetServerDataMessage(username));
+                                    out.flush();
+                                    out.reset();
+
+                                    Message m = (Message) in.readObject();
+                                    if (m.getType() == MessageType.SENDSERVERDATA) {
+                                      SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
+                                      addServerToServerList(
+                                          new ServerData(
+                                              ssdMessage.getSender(),
+                                              ip42,
+                                              ssdMessage.getPort(),
+                                              ssdMessage.getClientCounter(),
+                                              ssdMessage.getClientMaximum(),
+                                              ssdMessage.getStatus()));
+                                    }
+                                    getServerDataSocket.shutdownInput();
+                                    getServerDataSocket.shutdownOutput();
+                                    getServerDataSocket.close();
+                                  }
+                                } catch (Exception e) {
+                                  // e.printStackTrace();
+                                  // does nothing here
+                                }
+                              }
+                            });
+                    t.start();
+
+                    // otherwise too many Threads start at the same time
+                    synchronized (this) {
+                      try {
+                        this.wait(1);
+                      } catch (InterruptedException e) {
+                        e.printStackTrace();
+                      }
                     }
-                    getServerDataSocket.shutdownInput();
-                    getServerDataSocket.shutdownOutput();
-                    getServerDataSocket.close();
                   }
-                  if (serverCheck2.isReachable(1000)) {
-                    Socket getServerDataSocket = new Socket(ip42, serverPort);
-                    getServerDataSocket.setSoTimeout(10000);
-
-                    ObjectOutputStream out =
-                        new ObjectOutputStream(getServerDataSocket.getOutputStream());
-                    ObjectInputStream in =
-                        new ObjectInputStream(getServerDataSocket.getInputStream());
-
-                    out.writeObject(new GetServerDataMessage(username));
-                    out.flush();
-                    out.reset();
-
-                    Message m = (Message) in.readObject();
-                    if (m.getType() == MessageType.SENDSERVERDATA) {
-                      SendServerDataMessage ssdMessage = (SendServerDataMessage) m;
-                      addServerToServerList(new ServerData(ssdMessage.getSender(), ip42,
-                          ssdMessage.getPort(), ssdMessage.getClientCounter(),
-                          ssdMessage.getClientMaximum(), ssdMessage.getStatus()));
-                    }
-                    getServerDataSocket.shutdownInput();
-                    getServerDataSocket.shutdownOutput();
-                    getServerDataSocket.close();
-                  }
-                } catch (Exception e) {
-                  // e.printStackTrace();
-                  // does nothing here
                 }
               }
             });
-            t.start();
-
-
-            // otherwise too many Threads start at the same time
-            synchronized (this) {
-              try {
-                this.wait(1);
-              } catch (InterruptedException e) {
-                e.printStackTrace();
-              }
-            }
-          }
-        }
-      }
-    });
     t1.start();
   }
 
@@ -290,6 +302,16 @@ public class Client implements Serializable {
   }
 
   /**
+   * Changes the username. Used when the client edits their username in the playerprofile.
+   *
+   * @param username - the new username
+   * @author nitterhe
+   */
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  /**
    * Returns the client's IP4Address as a String.
    *
    * @return ip - the IP4Address of the client
@@ -378,18 +400,8 @@ public class Client implements Serializable {
   }
 
   /**
-   * Changes the username. Used when the client edits their username in the playerprofile.
-   *
-   * @param username - the new username
-   * @author nitterhe
-   */
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  /**
    * Method to send the turn made by the client to the server.
-   * 
+   *
    * @author nitterhe
    */
   public void makeTurn() {
@@ -400,7 +412,7 @@ public class Client implements Serializable {
   /**
    * Method to set the value of the starting value. This is used to set App.setroot() once when the
    * game starts.
-   * 
+   *
    * @return starting - the starting variable
    * @author nitterhe
    */
@@ -410,7 +422,7 @@ public class Client implements Serializable {
 
   /**
    * Method to set the value of the starting variable.
-   * 
+   *
    * @param starting - the starting variable
    * @author nitterhe
    */
@@ -420,7 +432,7 @@ public class Client implements Serializable {
 
   /**
    * Returns if the ClientThread is running.
-   * 
+   *
    * @author nitterhe
    * @return running - the boolean if the ClientThread is running
    */
@@ -431,7 +443,7 @@ public class Client implements Serializable {
   /**
    * Sends a message to the Server that a sound should be played (true = tripple word scored / false
    * = bingo scored).
-   * 
+   *
    * @author nitterhe
    * @param tob - the boolean which sound should be played
    */

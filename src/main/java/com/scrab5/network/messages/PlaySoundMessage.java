@@ -2,17 +2,17 @@ package com.scrab5.network.messages;
 
 /**
  * Class for messages used when someone scores a triple word or bingo. Plays a sound.
- * 
+ *
  * @author nitterhe
  */
 public class PlaySoundMessage extends Message {
   private static final long serialVersionUID = 1L;
 
-  private boolean tripleOrBingo;
+  private final boolean tripleOrBingo;
 
   /**
    * Constructor to create PlaySoundMessages.
-   * 
+   *
    * @author nitterhe
    * @param sender - the username of the sending client
    * @param tob - the boolean what sound to play (false = triple/ true = bingo)
@@ -25,7 +25,7 @@ public class PlaySoundMessage extends Message {
 
   /**
    * Returns a boolean with false means triple and true means bingo.
-   * 
+   *
    * @author nitterhe
    * @return TripleOrBingo - a boolean saying what sound to play.
    */
