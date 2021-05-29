@@ -61,6 +61,12 @@ class UseTest {
     assertEquals(2, point[2]);
     assertEquals(10, occurrence[2]);
     Database.disconnect();
+    try {
+      assert rs != null;
+      rs.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -101,6 +107,12 @@ class UseTest {
     assertEquals("Alpha", name[0]);
     assertEquals("Beta", name[1]);
     Database.disconnect();
+    try {
+      assert rs != null;
+      rs.close();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
