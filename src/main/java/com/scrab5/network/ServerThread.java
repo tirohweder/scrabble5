@@ -26,7 +26,7 @@ import java.net.SocketException;
  */
 public class ServerThread extends Threads {
 
-  private Socket socketToClient;
+  private final Socket socketToClient;
   private Server server;
   private ObjectOutputStream toClient;
   private ObjectInputStream fromClient;
@@ -87,8 +87,7 @@ public class ServerThread extends Threads {
             break;
           case DISCONNECT:
             DisconnectMessage disconnect = (DisconnectMessage) message;
-            boolean inGame =
-                (Data.getGameSession() != null) ? Data.getGameSession().isRunning() : false;
+            boolean inGame = Data.getGameSession() != null && Data.getGameSession().isRunning();
             if (disconnect.getSender().equals(server.getHost()) || inGame) {
               server.shutDownServer();
             } else {

@@ -10,11 +10,11 @@ import java.io.Serializable;
 public class ServerData implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private String serverHost;
-  private String ip4;
-  private int port;
+  private final String serverHost;
+  private final String ip4;
+  private final int port;
+  private final int clientMaximum;
   private int clientCounter;
-  private int clientMaximum;
   private boolean status;
 
   /**

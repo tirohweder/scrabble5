@@ -30,12 +30,11 @@ import javafx.application.Platform;
 public class ClientThread extends Threads implements Serializable {
 
   private static final long serialVersionUID = 1L;
-
+  public final String sender;
   private transient Client client;
   private transient ObjectOutputStream toServer;
   private transient ObjectInputStream fromServer;
   private transient Socket socketToServer;
-  public final String sender;
 
   /**
    * Creates a Client Thread. Thread is started when the Client connects to a server.
@@ -61,7 +60,6 @@ public class ClientThread extends Threads implements Serializable {
       while (this.running) {
         message = (Message) this.fromServer.readObject();
         switch (message.getType()) {
-
           case DISCONNECT:
             this.closeConnection();
             if (Data.getGameSession() != null) {
@@ -124,18 +122,21 @@ public class ClientThread extends Threads implements Serializable {
     try {
       this.socketToServer.close();
       try {
-        Platform.runLater(new Runnable() {
-          public void run() {
-            try {
-              PopUpMessage npm = new PopUpMessage(
-                  "The connection has been closed. A player disconnected or you have been kicked.",
-                  PopUpMessageType.NOTIFICATION);
-              npm.show();
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-          }
-        });
+        Platform.runLater(
+            new Runnable() {
+              public void run() {
+                try {
+                  PopUpMessage npm =
+                      new PopUpMessage(
+                          "The connection has been closed."
+                              + " A player disconnected or you have been kicked.",
+                          PopUpMessageType.NOTIFICATION);
+                  npm.show();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              }
+            });
       } catch (Exception e) {
         e.printStackTrace();
       }

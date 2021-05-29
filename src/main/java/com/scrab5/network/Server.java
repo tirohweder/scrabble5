@@ -53,8 +53,8 @@ public class Server implements Serializable {
    * @author nitterhe
    */
   public Server(String host, int clientMaximum, boolean uiServerInstance) {
-    this.clients = new LinkedHashMap<String, ClientData>();
-    this.connections = new HashMap<ClientData, ServerThread>();
+    this.clients = new LinkedHashMap<>();
+    this.connections = new HashMap<>();
     this.gameStart = false;
     this.host = host;
     Server.clientMaximum = clientMaximum;
@@ -151,7 +151,7 @@ public class Server implements Serializable {
   public void endGame(String winner) {
     this.cancelTimer();
     this.gameStart = false;
-    boolean win = false;
+    boolean win;
     for (String client : this.clients.keySet()) {
       win = client.equals(winner);
       this.serverStatistics.gamePlayed(client, win);
@@ -260,7 +260,6 @@ public class Server implements Serializable {
    * Updates all the other clients with the changes that were made (i.e. gameboard, turn skipped).
    *
    * @author nitterhe
-   * 
    */
   public void sendUpdateMessage() {
     this.sendMessageToAllClients(
@@ -440,7 +439,6 @@ public class Server implements Serializable {
     } else {
       this.connections.get(this.clients.get(clientname)).closeConnection();
       this.connections.get(this.clients.get(clientname)).deleteClient(clientname);
-      ;
     }
     this.sendUpdateMessage();
   }

@@ -21,7 +21,7 @@ public class ServerStatistics implements Serializable {
    * @author nitterhe
    */
   public ServerStatistics() {
-    this.serverStatistics = new LinkedHashMap<String, ClientStatistic>();
+    this.serverStatistics = new LinkedHashMap<>();
   }
 
   /**
@@ -111,8 +111,7 @@ public class ServerStatistics implements Serializable {
    * @author nitterhe
    */
   private void sort() {
-    LinkedHashMap<String, ClientStatistic> help =
-        new LinkedHashMap<String, ClientStatistic>(this.serverStatistics.size());
+    LinkedHashMap<String, ClientStatistic> help = new LinkedHashMap<>(this.serverStatistics.size());
     Collection<ClientStatistic> clients = this.serverStatistics.values();
     Iterator<ClientStatistic> iterator;
     ClientStatistic maximum;
@@ -141,8 +140,8 @@ public class ServerStatistics implements Serializable {
   public class ClientStatistic implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String clientname;
-    private String ipAddress;
+    private final String clientname;
+    private final String ipAddress;
     private int gamesPlayed;
     private int gamesWon;
 

@@ -7,19 +7,18 @@ import javafx.application.Platform;
 
 /**
  * Class for c reating MessageDialogs with error notifications.
- * 
+ *
  * @author nitterhe
  */
 public class NetworkError extends Error {
   private static final long serialVersionUID = 1L;
-
-  private NetworkErrorType errorType;
+  private final NetworkErrorType errorType;
   protected String dialog;
 
   /**
    * Constructor for the NetworkError. Sets ErrorType and handles the Error by popping up a
    * MessageDialog.
-   * 
+   *
    * @author nitterhe
    * @param errorType - the type of error, influences the message shown
    */
@@ -31,13 +30,12 @@ public class NetworkError extends Error {
 
   /**
    * Handles the error by displaying error messages based on the errorType.
-   * 
+   *
    * @author nitterhe
    */
   public void handleError() {
 
     switch (this.errorType) {
-
       case CONNECTION:
         this.dialog = "Could not connect to the Server, try refreshing the server list.";
         break;
@@ -81,16 +79,18 @@ public class NetworkError extends Error {
     }
     if (!this.dialog.isEmpty()) {
       try {
-        Platform.runLater(new Runnable() {
-          public void run() {
-            try {
-              PopUpMessage npm = new PopUpMessage(NetworkError.this.dialog, PopUpMessageType.ERROR);
-              npm.show();
-            } catch (IOException e) {
-              e.printStackTrace();
-            }
-          }
-        });
+        Platform.runLater(
+            new Runnable() {
+              public void run() {
+                try {
+                  PopUpMessage npm =
+                      new PopUpMessage(NetworkError.this.dialog, PopUpMessageType.ERROR);
+                  npm.show();
+                } catch (IOException e) {
+                  e.printStackTrace();
+                }
+              }
+            });
       } catch (Exception e) {
         e.printStackTrace();
       }
@@ -98,21 +98,22 @@ public class NetworkError extends Error {
   }
 
   /**
-   * Returns the type of this NetworkError.
-   * 
-   * @author nitterhe
-   * @return errorType - the type of the NetworkError.
-   */
-  public NetworkErrorType getErrorType() {
-    return this.errorType;
-  }
-
-  /**
    * An enum to gather the possible errorTypes.
-   * 
+   *
    * @author Niklas
    */
   public enum NetworkErrorType {
-    CONNECTION, COMMUNICATION, IP, SEARCHSERVERS, CLIENTRUN, SERVERRUN, CLOSECONNECTION, SERVERCREATION, NAMEINUSE, NOSERVERFOUND, TIMER, SERVERFULL
+    CONNECTION,
+    COMMUNICATION,
+    IP,
+    SEARCHSERVERS,
+    CLIENTRUN,
+    SERVERRUN,
+    CLOSECONNECTION,
+    SERVERCREATION,
+    NAMEINUSE,
+    NOSERVERFOUND,
+    TIMER,
+    SERVERFULL
   }
 }

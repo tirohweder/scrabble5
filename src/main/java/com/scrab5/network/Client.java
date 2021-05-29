@@ -51,7 +51,7 @@ public class Client implements Serializable {
    */
   public Client(String username) {
     this.username = username;
-    serverList = new ArrayList<ServerData>();
+    serverList = new ArrayList<>();
     this.hostedServer = null; // needs connection to database
     this.isReady = false;
     this.starting = false;
@@ -206,8 +206,8 @@ public class Client implements Serializable {
     for (ServerData sd : this.serverList) {
       if (sd.getServerHost().equals(serverdata.getServerHost())) {
         add = false;
+        break;
       }
-      break;
     }
     if (add) {
       serverList.add(serverdata);
@@ -246,7 +246,7 @@ public class Client implements Serializable {
    * @param ip - The ip4 which should be connected to.
    * @author nitterhe
    */
-  public void connectToServer(String ip) throws Exception {
+  public void connectToServer(String ip) {
     connectToServer(new ServerData(null, ip.trim(), serverPort, 0, 0, false));
   }
 
@@ -264,17 +264,6 @@ public class Client implements Serializable {
       return true;
     }
     return false;
-  }
-
-  /**
-   * Stops the client by calling the closeConnection method of the client's thread.
-   *
-   * @author nitterhe
-   */
-  public void stopClientThread() {
-    if (this.clientThread.running) {
-      this.clientThread.closeConnection();
-    }
   }
 
   public ClientData getClientData() {
