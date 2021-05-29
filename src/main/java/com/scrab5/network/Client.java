@@ -168,7 +168,7 @@ public class Client implements Serializable {
             // otherwise too many Threads start at the same time
             synchronized (this) {
               try {
-                this.wait(1);
+                this.wait(2);
               } catch (InterruptedException e) {
                 e.printStackTrace();
               }
