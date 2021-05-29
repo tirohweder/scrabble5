@@ -1038,6 +1038,8 @@ public abstract class InGameController implements Initializable {
             // re initialize rack and the gamboard
             initRack();
             initPlayers();
+            
+            Data.getGameSession().checkBagAndRack(Data.getGameSession().getCurrentPlayer());
 
             // finish turn
             Data.getGameSession().finishTurn();
@@ -1055,6 +1057,7 @@ public abstract class InGameController implements Initializable {
       } else {
         // skip turn
         turn = true;
+        Data.getGameSession().checkBagAndRack(Data.getGameSession().getCurrentPlayer());
         Data.getGameSession().setSkippedTurn(Data.getGameSession().getSkippedTurn() + 1);
         Data.getGameSession().finishTurn();
       }
