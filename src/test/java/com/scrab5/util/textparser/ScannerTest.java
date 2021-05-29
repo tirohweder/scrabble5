@@ -3,7 +3,6 @@ package com.scrab5.util.textparser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.scrab5.util.database.CreateDatabase;
-import com.scrab5.util.database.Database;
 import com.scrab5.util.parser.DictionaryParser;
 import com.scrab5.util.parser.DictionaryScanner;
 import org.junit.jupiter.api.Disabled;
@@ -28,7 +27,6 @@ class ScannerTest {
    */
   @Test
   void testScan() {
-    Database.reconnect();
     CreateDatabase cdb = new CreateDatabase();
     DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
     DictionaryParser.parseFile(DictionaryParser.getFileName());
@@ -36,7 +34,7 @@ class ScannerTest {
     assertEquals(true, DictionaryScanner.scan("ZZZ"));
     assertEquals(false, DictionaryScanner.scan("XXXX"));
     assertEquals(true, DictionaryScanner.scan("before"));
-    Database.disconnect();
+    cdb.deleteDatabaseFile();
   }
 
 }

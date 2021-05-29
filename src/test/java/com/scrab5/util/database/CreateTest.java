@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -18,7 +17,6 @@ import org.junit.jupiter.api.Test;
  * 
  * @author lengist
  */
-@Disabled
 class CreateTest {
 
   CreateDatabase cd = new CreateDatabase();
@@ -55,7 +53,7 @@ class CreateTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -80,7 +78,7 @@ class CreateTest {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -160,7 +158,7 @@ class CreateTest {
     assertEquals(4, point[24]);
     assertEquals("Z", letter[25]);
     assertEquals(10, point[25]);
-    Database.disconnect();
+    cd.deleteDatabaseFile();
   }
 
 }

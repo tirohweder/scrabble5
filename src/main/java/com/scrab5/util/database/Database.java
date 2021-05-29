@@ -92,4 +92,39 @@ public class Database {
       e1.printStackTrace();
     }
   }
+
+  /**
+   * Method to delete the database file. It is used after the tests so the game and the test
+   * database are separate.
+   *
+   * @author lengist
+   */
+  public void deleteDatabaseFile() {
+    disconnect();
+    File file = new File(
+        System.getProperty("user.dir") + System.getProperty("file.separator") + databaseFileName);
+    System.out.println(file.exists());
+    file.delete();
+    System.out.println("danach: " + file.exists());
+  }
+
+  /**
+   * Method to re-establish the connection to the database file who's name is given in the
+   * parameter. It is used for testing because it returns a boolean value if the reconnection was
+   * successful. file.
+   *
+   * @author lengist
+   */
+  protected boolean reconnectTest() {
+    try {
+      Class.forName("org.sqlite.JDBC");
+      connection = DriverManager.getConnection("jdbc:sqlite:" + databaseFileName);
+      return true;
+    } catch (ClassNotFoundException e) {
+      System.out.println("Connection not possible" + e.getMessage());
+    } catch (SQLException e1) {
+      e1.printStackTrace();
+    }
+    return false;
+  }
 }
