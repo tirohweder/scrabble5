@@ -84,12 +84,6 @@ public class UseDatabase extends Database {
     } catch (SQLException e) {
       e.printStackTrace();
     }
-    try {
-      assert rs != null;
-      rs.close();
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
     return rs;
   }
 
