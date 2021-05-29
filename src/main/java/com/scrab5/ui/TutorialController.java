@@ -42,7 +42,7 @@ public class TutorialController extends Controller implements Initializable {
   @FXML
   private void nextClicked(MouseEvent event) throws IOException {
     page++;
-    if (page < 51) {
+    if (page < 50) {
       tutorial.setImage(
           new Image("/com/scrab5/ui/tutorial_Images/Tutorial_" + Integer.toString(page) + ".png"));
     } else {
