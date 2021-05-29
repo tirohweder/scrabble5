@@ -2637,8 +2637,11 @@
 						<Font name="Arial Rounded MT Bold" size="16.0" />
 					</font>
 				</Label>
-				<Label fx:id="bagSize" layoutX="1166.0" layoutY="15.0"
+				<Label fx:id="bagSize" layoutX="1166.0" layoutY="27.0"
 					prefHeight="17.0" prefWidth="74.0" text="Bag size: "
+					textFill="#eadcb4" />
+				<Label fx:id="rounds" layoutX="1131.0" layoutY="5.0"
+					prefHeight="17.0" prefWidth="105.0" text="Rounds played: "
 					textFill="#eadcb4" />
 			</children>
 		</AnchorPane>
