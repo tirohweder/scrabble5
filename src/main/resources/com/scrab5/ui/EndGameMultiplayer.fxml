@@ -237,19 +237,22 @@
 					</font>
 				</Label>
 				<Label fx:id="secondPlayerPoints" layoutX="760.0"
-					layoutY="337.0" opacity="0.0" text="Label" textFill="#8a1818">
+					layoutY="337.0" opacity="0.0" prefHeight="32.0" prefWidth="127.0"
+					text="Label" textFill="#8a1818">
 					<font>
 						<Font size="22.0" />
 					</font>
 				</Label>
 				<Label fx:id="thirdPlayerPoints" layoutX="760.0"
-					layoutY="372.0" opacity="0.0" text="Label" textFill="#8a1818">
+					layoutY="372.0" opacity="0.0" prefHeight="32.0" prefWidth="127.0"
+					text="Label" textFill="#8a1818">
 					<font>
 						<Font size="22.0" />
 					</font>
 				</Label>
 				<Label fx:id="fourthPlayerPoints" layoutX="760.0"
-					layoutY="407.0" opacity="0.0" text="Label" textFill="#8a1818">
+					layoutY="407.0" opacity="0.0" prefHeight="32.0" prefWidth="127.0"
+					text="Label" textFill="#8a1818">
 					<font>
 						<Font size="22.0" />
 					</font>

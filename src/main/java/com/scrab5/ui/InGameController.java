@@ -893,7 +893,9 @@ public abstract class InGameController implements Initializable {
             // increase corrected placed word attirbute of the player laid the word
             Data.getGameSession().setSkippedTurn(0);
             Data.getGameSession().getCurrentPlayer()
-                .setCorrectWords(Data.getGameSession().getCurrentPlayer().getCorrectWords() + 1);
+                .setCorrectWords(Data.getGameSession().getCurrentPlayer().getCorrectWords()
+                    + (Data.getGameSession().getGameBoard().getWords().size()
+                        - Data.getGameSession().getLastWordsSize()));
 
             int points = Data.getGameSession().getGameBoard().countScore();
 
@@ -1160,6 +1162,7 @@ public abstract class InGameController implements Initializable {
     PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
     pum.show();
     if (Data.isConfirmed()) {
+      Data.getGameSession().getCurrentPlayer().setPoints(-1);
       Data.getGameSession().setShouldEnd(true);
       if (Data.getGameSession().isOnline()) {
         Data.getPlayerClient().makeTurn();
@@ -1578,12 +1581,11 @@ public abstract class InGameController implements Initializable {
   private void endGame(MouseEvent event) throws IOException {
     playSound();
     if (endPossible) {
-      Data.getGameSession().setShouldEnd(true);
       if (Data.getGameSession().isOnline()) {
-        Data.getPlayerClient().makeTurn();
         Data.getPlayerClient().endGame();
         App.setRoot("EndGameMultiplayer");
       } else {
+        Data.getGameSession().setShouldEnd(true);
         Data.getGameSession().endGame();
         App.setRoot("EndGameSingleplayer");
       }
