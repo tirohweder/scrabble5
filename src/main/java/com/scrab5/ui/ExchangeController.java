@@ -32,6 +32,7 @@ public class ExchangeController extends InGameController implements Initializabl
    */
   @FXML
   private void backClicked(MouseEvent event) throws IOException {
+    playSound();
     if (Data.getGameSession().isOnline()) {
       App.setRoot("MultiPlayer");
     } else {
@@ -50,6 +51,7 @@ public class ExchangeController extends InGameController implements Initializabl
    */
   @FXML
   private void exchangeConfirmed(MouseEvent event) throws IOException {
+    playSound();
     exchangeTiles();
     if (Data.getGameSession().isOnline()) {
       App.setRoot("MultiPlayer");

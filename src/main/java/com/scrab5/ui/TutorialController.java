@@ -35,6 +35,7 @@ public class TutorialController extends Controller implements Initializable {
    */
   @FXML
   private void nextClicked(MouseEvent event) throws IOException {
+    playSound();
     page++;
     if (page < 50) {
       tutorial.setImage(new Image("/com/scrab5/ui/tutorial_Images/Tutorial_" + page + ".png"));
@@ -53,6 +54,7 @@ public class TutorialController extends Controller implements Initializable {
    */
   @FXML
   private void backClicked(MouseEvent event) throws IOException {
+    playSound();
     page--;
     if (page > 0) {
       tutorial.setImage(new Image("/com/scrab5/ui/tutorial_Images/Tutorial_" + page + ".png"));
@@ -71,6 +73,7 @@ public class TutorialController extends Controller implements Initializable {
    */
   @FXML
   private void backToMenu(MouseEvent event) throws IOException {
+    playSound();
     PopUpMessage pum = new PopUpMessage("Back to main menu?", PopUpMessageType.CONFIRMATION);
     pum.show();
 
