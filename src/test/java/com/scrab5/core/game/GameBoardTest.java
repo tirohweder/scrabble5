@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.scrab5.util.parser.DictionaryParser;
+import java.io.File;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -368,7 +369,6 @@ class GameBoardTest {
    *
    * @author trohwede
    */
-  @Disabled
   @Test
   void checkWordsLegit() {
 
@@ -379,20 +379,23 @@ class GameBoardTest {
     gameBoardTest.placeTileForce(new Tile("L", 3), 0, 2);
     gameBoardTest.placeTileForce(new Tile("L", 3), 0, 3);
 
-    assertTrue(gameBoardTest.checkWordsLegit());
+    assertTrue(gameBoardTest.checkWordsLegitTest());
 
     gameBoardTest.placeTileForce(new Tile("W", 3), 2, 0);
     gameBoardTest.placeTileForce(new Tile("E", 3), 2, 1);
     gameBoardTest.placeTileForce(new Tile("L", 3), 2, 2);
     gameBoardTest.placeTileForce(new Tile("L", 3), 2, 3);
 
-    assertTrue(gameBoardTest.checkWordsLegit());
+    assertTrue(gameBoardTest.checkWordsLegitTest());
 
     gameBoardTest.placeTileForce(new Tile("X", 3), 4, 0);
     gameBoardTest.placeTileForce(new Tile("X", 3), 4, 1);
     gameBoardTest.placeTileForce(new Tile("X", 3), 4, 2);
     gameBoardTest.placeTileForce(new Tile("X", 3), 4, 3);
 
-    assertFalse(gameBoardTest.checkWordsLegit());
+    assertFalse(gameBoardTest.checkWordsLegitTest());
+    File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
+        + DictionaryParser.getNewFileName());
+    file.delete();
   }
 }
