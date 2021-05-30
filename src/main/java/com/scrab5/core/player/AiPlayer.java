@@ -2,6 +2,7 @@ package com.scrab5.core.player;
 
 import static com.scrab5.util.constants.Constants.lettersFromDatabase;
 import static com.scrab5.util.constants.Constants.pointsPerLetterFromDatabase;
+
 import com.scrab5.core.game.BagOfTiles;
 import com.scrab5.core.game.GameBoard;
 import com.scrab5.core.game.Tile;
@@ -17,14 +18,14 @@ import java.util.HashMap;
 import java.util.Random;
 
 /**
- * Ai Class. Here everything concerning the ai is happening.
+ * Ai Class. Here everything concerning the ai is happening..
  *
  * @author trohwede
  * @author lengist
  * @author hraza
  */
 public class AiPlayer extends Player {
-
+  private static final long serialVersionUID = 1L;
   static int currentFixX;
   static int currentFixY;
   static String currentFixLetter;
