@@ -73,27 +73,22 @@
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="longestWord" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="448.0" prefHeight="20.0" prefWidth="138.0" text="Condescending" textAlignment="RIGHT" textFill="#fefff2">
+            <Label fx:id="totalGames" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="448.0" prefHeight="20.0" prefWidth="138.0" text="20" textAlignment="RIGHT" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="totalGames" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="487.0" prefHeight="20.0" prefWidth="138.0" text="20" textAlignment="RIGHT" textFill="#fefff2">
+            <Label fx:id="totalWins" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="487.0" prefHeight="20.0" prefWidth="138.0" text="13" textAlignment="RIGHT" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="totalWins" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="525.0" prefHeight="20.0" prefWidth="138.0" text="13" textAlignment="RIGHT" textFill="#fefff2">
+            <Label fx:id="winPercentage" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="525.0" prefHeight="20.0" prefWidth="138.0" text="65" textAlignment="RIGHT" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="winPercentage" alignment="CENTER_RIGHT" layoutX="1020.0" layoutY="563.0" prefHeight="20.0" prefWidth="138.0" text="65" textAlignment="RIGHT" textFill="#fefff2">
-               <font>
-                  <Font name="Arial Rounded MT Bold" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="favDic" alignment="CENTER_RIGHT" layoutX="875.0" layoutY="602.0" prefHeight="20.0" prefWidth="282.0" text="Built-In Standard Dictionary" textAlignment="RIGHT" textFill="#fefff2">
+            <Label fx:id="favDic" alignment="CENTER_RIGHT" layoutX="875.0" layoutY="563.0" prefHeight="20.0" prefWidth="282.0" text="Built-In Standard Dictionary" textAlignment="RIGHT" textFill="#fefff2">
                <font>
                   <Font name="Arial Rounded MT Bold" size="16.0" />
                </font>
