@@ -29,17 +29,14 @@ import javafx.scene.input.MouseEvent;
  */
 public class SingleplayerLobbyController extends LobbyController implements Initializable {
 
-  @FXML
-  private ComboBox<String> dictionarySelection;
-  @FXML
-  private ImageView dropDownButton;
-  @FXML
-  private Label dicDisplaying;
+  @FXML private ComboBox<String> dictionarySelection;
+  @FXML private ImageView dropDownButton;
+  @FXML private Label dicDisplaying;
 
   /**
-   * Call certain methods as soon as the Controller is loaded. Calls
-   * {@link com.scrab5.ui.LobbyController#setUpInit() setUpInit()} and set ups the
-   * <code>ComboBox</code> for the dictionary selection.
+   * Call certain methods as soon as the Controller is loaded. Calls {@link
+   * com.scrab5.ui.LobbyController#setUpInit() setUpInit()} and set ups the <code>ComboBox</code>
+   * for the dictionary selection.
    *
    * @author mherre
    */
@@ -56,7 +53,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   protected void back(MouseEvent event) throws IOException {
@@ -67,21 +64,19 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   /**
    * Event method that is called when the "Ready"-button in the UI is clicked.
    *
-   * <p>
-   * 1. Checks first if the user is already ready. If not, then further conditions (s. 2.) are
+   * <p>1. Checks first if the user is already ready. If not, then further conditions (s. 2.) are
    * checked. In both cases the <code>Label</code> that displays the ready status gets updated. 2.
    * If every player is ready and a dictionary has been selected by the user, then further
    * conditions (s. 3.) are checked. If not, then an error message is created and ready status reset
    * to "Not Ready".
    *
-   * <p>
-   * 3. If there is at least one more player in the lobby, then the "Start"-button appears. If not,
-   * then an error message is created and ready status reset to "Not Ready".
+   * <p>3. If there is at least one more player in the lobby, then the "Start"-button appears. If
+   * not, then an error message is created and ready status reset to "Not Ready".
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void ready(MouseEvent event) throws IOException {
@@ -121,12 +116,11 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   /**
    * Event method that is called when the "Add Player"-button in the UI is clicked. Adds an AI
-   * player to the first free position in the lobby. Calls
-   * {@link com.scrab5.ui.SingleplayerController#isClickable isClickable()}.
+   * player to the first free position in the lobby. Calls {@link
+   * com.scrab5.ui.SingleplayerLobbyController#isClickable isClickable()}.
    *
-   * <p>
-   * Every AI player has a "Kick"-button and a ComboBox to select a difficulty (hard or easy). Every
-   * necessary component gets displayed in this method.
+   * <p>Every AI player has a "Kick"-button and a ComboBox to select a difficulty (hard or easy).
+   * Every necessary component gets displayed in this method.
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
@@ -179,8 +173,8 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   /**
    * Event method that is called when the "Kick"-button of the second player in the UI is clicked.
-   * Removes every visual component of an added player and calls
-   * {@link com.scrab5.ui.SingleplayerController#isClickable isClickable()}.
+   * Removes every visual component of an added player and calls {@link
+   * com.scrab5.ui.SingleplayerLobbyController#isClickable isClickable()}.
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
@@ -203,8 +197,8 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   /**
    * Event method that is called when the "Kick"-button of the third player in the UI is clicked.
-   * Removes every visual component of an added player and calls
-   * {@link com.scrab5.ui.SingleplayerController#isClickable isClickable()}.
+   * Removes every visual component of an added player and calls {@link
+   * com.scrab5.ui.SingleplayerLobbyController#isClickable isClickable()}.
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
@@ -228,8 +222,8 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
   /**
    * Event method that is called when the "Kick"-button of the fourth player in the UI is clicked.
-   * Removes every visual component of an added player and calls
-   * {@link com.scrab5.ui.SingleplayerController#isClickable isClickable()}.
+   * Removes every visual component of an added player and calls {@link
+   * com.scrab5.ui.SingleplayerLobbyController#isClickable isClickable()}.
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
@@ -293,7 +287,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    * @author mherre
    * @author lengist
    * @param event the ActionEvent that is created when an item has been selected in the
-   *        corresponding <code>ComboBox</code>
+   *     corresponding <code>ComboBox</code>
    */
   @FXML
   private void setSelectedDictionary(ActionEvent event) {
@@ -309,21 +303,19 @@ public class SingleplayerLobbyController extends LobbyController implements Init
   /**
    * Event method that is called when the "Start"-button in the UI is clicked.
    *
-   * <p>
-   * First, an <code>ArrayList</code> that contains all players of the lobby is created. Second, if
-   * the letters have been customized then the letters are loaded from the class
-   * {@link com.scrab5.ui.Data Data}, if not then they are loaded and converted from
-   * {@link com.scrab5.util.database.UseDatabase UseDatabase}. In both cases
-   * {@link com.scrab5.ui.SingleplayerLobbyController#createTileBag(ArrayList) createTileBag(...)}
-   * is called and a new {@link com.scrab5.core.game.GameSession GameSession} is created.
+   * <p>First, an <code>ArrayList</code> that contains all players of the lobby is created. Second,
+   * if the letters have been customized then the letters are loaded from the class {@link
+   * com.scrab5.ui.Data Data}, if not then they are loaded and converted from {@link
+   * com.scrab5.util.database.UseDatabase UseDatabase}. In both cases {@link
+   * com.scrab5.ui.SingleplayerLobbyController#createTileBag(ArrayList) createTileBag(...)} is
+   * called and a new {@link com.scrab5.core.game.GameSession GameSession} is created.
    *
-   * <p>
-   * Third, the scene gets changed to "SinglePlayer.fxml".
+   * <p>Third, the scene gets changed to "SinglePlayer.fxml".
    *
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    * @throws SQLException if the database hasn't been correctly initialized
    */
   @FXML
@@ -331,8 +323,9 @@ public class SingleplayerLobbyController extends LobbyController implements Init
 
     if (Data.getHasBeenEdited()) {
       ArrayList<Integer> tiles = createTileBag(Data.getOccurrencyDistribution());
-      Data.setGameSession(new GameSession(setPlayerOrder(getPlayerVotes()), tiles,
-          Data.getPointsDistribution(), false));
+      Data.setGameSession(
+          new GameSession(
+              setPlayerOrder(getPlayerVotes()), tiles, Data.getPointsDistribution(), false));
 
     } else {
       ArrayList<Integer> points = new ArrayList<Integer>();
@@ -355,19 +348,17 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    * This method is needed to create a <code>GameSession</code>. It sets the correct play order of
    * the players and creates the AI players as well as the player itself.
    *
-   * <p>
-   * 1. A new <code>ArrayList temp</code> is created which contains the amount of votes as well as
-   * the position of the corresponding player. 2. The votes get multiplied by 1000, this way we can
-   * easily randomize the position of two players in case they have the same amount of votes.
+   * <p>1. A new <code>ArrayList temp</code> is created which contains the amount of votes as well
+   * as the position of the corresponding player. 2. The votes get multiplied by 1000, this way we
+   * can easily randomize the position of two players in case they have the same amount of votes.
    *
-   * <p>
-   * 3. <code>temp</code> gets sorted by a Bubble Sort algorithm. 4. The players are created and
+   * <p>3. <code>temp</code> gets sorted by a Bubble Sort algorithm. 4. The players are created and
    * added to <code>playerList</code> which then is returned.
    *
    * @author mherre
    * @param playerVotes the <code>ArrayList</code> which contains the votes of the postion 1 - 4
    * @return playerList the <code>ArrayList</code> which contains the correct order of newly created
-   *         players
+   *     players
    */
   private ArrayList<Player> setPlayerOrder(ArrayList<Integer> playerVotes) {
 
@@ -407,16 +398,19 @@ public class SingleplayerLobbyController extends LobbyController implements Init
       } else {
         switch (temp.get(i)[1]) {
           case 1:
-            playerList.add(new AiPlayer("CPU" + (temp.get(i)[1] + 1),
-                diffBox1.getSelectionModel().getSelectedIndex()));
+            playerList.add(
+                new AiPlayer(
+                    "CPU" + (temp.get(i)[1] + 1), diffBox1.getSelectionModel().getSelectedIndex()));
             break;
           case 2:
-            playerList.add(new AiPlayer("CPU" + (temp.get(i)[1] + 1),
-                diffBox2.getSelectionModel().getSelectedIndex()));
+            playerList.add(
+                new AiPlayer(
+                    "CPU" + (temp.get(i)[1] + 1), diffBox2.getSelectionModel().getSelectedIndex()));
             break;
           default:
-            playerList.add(new AiPlayer("CPU" + (temp.get(i)[1] + 1),
-                diffBox3.getSelectionModel().getSelectedIndex()));
+            playerList.add(
+                new AiPlayer(
+                    "CPU" + (temp.get(i)[1] + 1), diffBox3.getSelectionModel().getSelectedIndex()));
             break;
         }
       }
@@ -450,24 +444,24 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    * Method that puts all .txt files that are in the same directory as the .jar in the <code>
    * ComboBox</code> dictionarySelection.
    *
-   * <p>
-   * https://stackabuse.com/java-list-files-in-a-directory/
+   * <p>https://stackabuse.com/java-list-files-in-a-directory/
    *
    * @author mherre
    */
   private void setUpDicitionaryBox() {
 
     File dir = new File(System.getProperty("user.dir"));
-    FilenameFilter filter = new FilenameFilter() {
+    FilenameFilter filter =
+        new FilenameFilter() {
 
-      public boolean accept(File dir, String name) {
-        if (name.endsWith("Parsed.txt")) {
-          return false;
-        } else {
-          return name.endsWith(".txt");
-        }
-      }
-    };
+          public boolean accept(File dir, String name) {
+            if (name.endsWith("Parsed.txt")) {
+              return false;
+            } else {
+              return name.endsWith(".txt");
+            }
+          }
+        };
 
     String[] fileNames = dir.list(filter);
 
