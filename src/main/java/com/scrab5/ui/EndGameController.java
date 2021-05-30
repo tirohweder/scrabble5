@@ -44,6 +44,7 @@ public class EndGameController extends InGameController implements Initializable
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
+    Data.setEndScreen(true);
     initPlayers();
 
     initEndGame();

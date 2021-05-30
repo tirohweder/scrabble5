@@ -152,13 +152,12 @@ public class MultiplayerController extends InGameController implements Initializ
       @Override
       public void run() {
 
-        while (Data.getPlayerClient().threadIsRunning()) {
+        while (!Data.getEndScreen()) {
 
           if (Data.getGameSession().isShouldEnd()) {
 
             try {
               App.setRoot("EndGameMultiplayer");
-              Data.getGameSession().setShouldEnd(false);
             } catch (IOException e) {
               // TODO Auto-generated catch block
               e.printStackTrace();
