@@ -107,6 +107,8 @@ public class EndGameController extends InGameController implements Initializable
           swap = order[counter];
           order[counter] = order[counter - 1];
           order[counter - 1] = swap;
+        } else {
+          order[counter].setGivenUp(false);
         }
       }
       secondPlayer.setText("2. " + order[counter].getName());
@@ -125,6 +127,8 @@ public class EndGameController extends InGameController implements Initializable
           swap = order[counter];
           order[counter] = order[counter - 1];
           order[counter - 1] = swap;
+        } else {
+          order[counter].setGivenUp(false);
         }
       }
       thirdPlayer.setText("3. " + order[counter].getName());
@@ -141,13 +145,13 @@ public class EndGameController extends InGameController implements Initializable
       fourthPlayer.setText("4. " + order[counter].getName());
       if (order[counter].getGivenUp()) {
         fourthPlayerPoints.setText("has given up");
+        order[counter].setGivenUp(false);
       } else {
         fourthPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
       }
       fourthPlayer.setOpacity(1);
       fourthPlayerPoints.setOpacity(1);
     }
-    System.out.println("blaaaaaaaaaaaa");
     if (Data.getGameSession().isOnline() && Data.getPlayerClient().getCurrentServer().getHost()
         .equals(Data.getPlayerClient().getUsername())) {
       Data.getHostedServer().endGame(order[order.length - 1].getName());
