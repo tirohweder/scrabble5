@@ -93,7 +93,7 @@ public class Client implements Serializable {
   /**
    * Searches for Servers in the local network and adds them to the serverList.
    *
-   * @author from stackoverflow -
+   * @author nitterhe with inspiration from stackoverflow -
    *         https://stackoverflow.com/questions/24082077/java-find-server-in-network
    */
   public void searchServers() {
