@@ -20,17 +20,27 @@ import javafx.scene.input.MouseEvent;
  */
 public class EndGameController extends InGameController implements Initializable {
 
-  @FXML private ImageView wonScreen;
-  @FXML private ImageView lostScreen;
+  @FXML
+  private ImageView wonScreen;
+  @FXML
+  private ImageView lostScreen;
 
-  @FXML private Label firstPlayer;
-  @FXML private Label secondPlayer;
-  @FXML private Label thirdPlayer;
-  @FXML private Label fourthPlayer;
-  @FXML private Label firstPlayerPoints;
-  @FXML private Label secondPlayerPoints;
-  @FXML private Label thirdPlayerPoints;
-  @FXML private Label fourthPlayerPoints;
+  @FXML
+  private Label firstPlayer;
+  @FXML
+  private Label secondPlayer;
+  @FXML
+  private Label thirdPlayer;
+  @FXML
+  private Label fourthPlayer;
+  @FXML
+  private Label firstPlayerPoints;
+  @FXML
+  private Label secondPlayerPoints;
+  @FXML
+  private Label thirdPlayerPoints;
+  @FXML
+  private Label fourthPlayerPoints;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
