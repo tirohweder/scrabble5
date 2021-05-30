@@ -25,7 +25,6 @@ public class ProfileController extends Controller implements Initializable {
   @FXML private Label mostPoints;
   @FXML private Label laidWords;
   @FXML private Label averagePointsWord;
-  @FXML private Label longestWord;
   @FXML private Label totalGames;
   @FXML private Label totalWins;
   @FXML private Label winPercentage;
@@ -196,9 +195,6 @@ public class ProfileController extends Controller implements Initializable {
   private synchronized void setupStats() {
 
     String name = Data.getCurrentUser();
-
-    int longestWord = PlayerProfileDatabase.getLongestWord(name);
-    this.longestWord.setText(String.valueOf(longestWord));
 
     String favoriteDictionary = PlayerProfileDatabase.getFavoriteDictionary(name);
     if (!favoriteDictionary.equals("")) {
