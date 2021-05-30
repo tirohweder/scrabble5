@@ -22,60 +22,114 @@ import javafx.stage.Stage;
  */
 public class LetterCustomizationController extends Controller implements Initializable {
 
-  @FXML private TextField aO;
-  @FXML private TextField bO;
-  @FXML private TextField cO;
-  @FXML private TextField dO;
-  @FXML private TextField eO;
-  @FXML private TextField fO;
-  @FXML private TextField gO;
-  @FXML private TextField hO;
-  @FXML private TextField iO;
-  @FXML private TextField jO;
-  @FXML private TextField kO;
-  @FXML private TextField lO;
-  @FXML private TextField mO;
-  @FXML private TextField nO;
-  @FXML private TextField oO;
-  @FXML private TextField pO;
-  @FXML private TextField qO;
-  @FXML private TextField rO;
-  @FXML private TextField sO;
-  @FXML private TextField tO;
-  @FXML private TextField uO;
-  @FXML private TextField vO;
-  @FXML private TextField wO;
-  @FXML private TextField xO;
-  @FXML private TextField yO;
-  @FXML private TextField zO;
-  @FXML private TextField spaceO;
-  @FXML private TextField aP;
-  @FXML private TextField bP;
-  @FXML private TextField cP;
-  @FXML private TextField dP;
-  @FXML private TextField eP;
-  @FXML private TextField fP;
-  @FXML private TextField gP;
-  @FXML private TextField hP;
-  @FXML private TextField iP;
-  @FXML private TextField jP;
-  @FXML private TextField kP;
-  @FXML private TextField lP;
-  @FXML private TextField mP;
-  @FXML private TextField nP;
-  @FXML private TextField oP;
-  @FXML private TextField pP;
-  @FXML private TextField qP;
-  @FXML private TextField rP;
-  @FXML private TextField sP;
-  @FXML private TextField tP;
-  @FXML private TextField uP;
-  @FXML private TextField vP;
-  @FXML private TextField wP;
-  @FXML private TextField xP;
-  @FXML private TextField yP;
-  @FXML private TextField zP;
-  @FXML private TextField spaceP;
+  @FXML
+  private TextField aO;
+  @FXML
+  private TextField bO;
+  @FXML
+  private TextField cO;
+  @FXML
+  private TextField dO;
+  @FXML
+  private TextField eO;
+  @FXML
+  private TextField fO;
+  @FXML
+  private TextField gO;
+  @FXML
+  private TextField hO;
+  @FXML
+  private TextField iO;
+  @FXML
+  private TextField jO;
+  @FXML
+  private TextField kO;
+  @FXML
+  private TextField lO;
+  @FXML
+  private TextField mO;
+  @FXML
+  private TextField nO;
+  @FXML
+  private TextField oO;
+  @FXML
+  private TextField pO;
+  @FXML
+  private TextField qO;
+  @FXML
+  private TextField rO;
+  @FXML
+  private TextField sO;
+  @FXML
+  private TextField tO;
+  @FXML
+  private TextField uO;
+  @FXML
+  private TextField vO;
+  @FXML
+  private TextField wO;
+  @FXML
+  private TextField xO;
+  @FXML
+  private TextField yO;
+  @FXML
+  private TextField zO;
+  @FXML
+  private TextField spaceO;
+  @FXML
+  private TextField aP;
+  @FXML
+  private TextField bP;
+  @FXML
+  private TextField cP;
+  @FXML
+  private TextField dP;
+  @FXML
+  private TextField eP;
+  @FXML
+  private TextField fP;
+  @FXML
+  private TextField gP;
+  @FXML
+  private TextField hP;
+  @FXML
+  private TextField iP;
+  @FXML
+  private TextField jP;
+  @FXML
+  private TextField kP;
+  @FXML
+  private TextField lP;
+  @FXML
+  private TextField mP;
+  @FXML
+  private TextField nP;
+  @FXML
+  private TextField oP;
+  @FXML
+  private TextField pP;
+  @FXML
+  private TextField qP;
+  @FXML
+  private TextField rP;
+  @FXML
+  private TextField sP;
+  @FXML
+  private TextField tP;
+  @FXML
+  private TextField uP;
+  @FXML
+  private TextField vP;
+  @FXML
+  private TextField wP;
+  @FXML
+  private TextField xP;
+  @FXML
+  private TextField yP;
+  @FXML
+  private TextField zP;
+  @FXML
+  private TextField spaceP;
 
   private ArrayList<TextField> al;
   private ArrayList<TextField> alP;
@@ -128,7 +182,7 @@ public class LetterCustomizationController extends Controller implements Initial
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void confirm(MouseEvent event) throws IOException {
@@ -240,15 +294,17 @@ public class LetterCustomizationController extends Controller implements Initial
    *
    * @author mherre
    * @return the boolean containing the value whether the <code>TextFields</code>'s fulfill the
-   *     requirements
+   *         requirements
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   private boolean areValuesValid() throws IOException {
 
     for (int i = 0; i < 27; i++) {
-      if (!al.get(i).getText().matches("[0-9]+") || !alP.get(i).getText().matches("[0-9]+")) {
-        String message = "Please make sure your values only consist of numbers!";
+      if (!al.get(i).getText().matches("[0-9]{0,4}")
+          || !alP.get(i).getText().matches("[0-9]{0,4}")) {
+        String message =
+            "Please make sure your values only consist of numbers and do not exceed 9.999!";
         PopUpMessage pum = new PopUpMessage(message, PopUpMessageType.ERROR);
         pum.show();
         return false;
