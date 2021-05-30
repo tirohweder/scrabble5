@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.SocketException;
+import java.util.ArrayList;
 import javafx.application.Platform;
 
 /**
@@ -103,6 +104,9 @@ public class ClientThread extends Threads implements Serializable {
             Data.setGameSession(mtm.getGameSession());
             if (mtm.getGameSession().getRoundNumber() == 0) {
               this.client.setStarting(true);
+              // this sets the server list empty so after leaving the game no old servers are
+              // displayed
+              Data.setServerList(new ArrayList<ServerData>());
             }
             break;
           case DICTIONARY:
