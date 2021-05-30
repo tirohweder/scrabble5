@@ -114,8 +114,8 @@ public class FillDatabase extends Database {
     try {
       pstmPlayer = connection.prepareStatement(
           "INSERT INTO Player " + "(Name, TotalPoints, PersonalHighscore, LaidWords, "
-              + "PointsPerWordRate, LongestWord, TotalPlayedGames, TotalWins, "
-              + "WinRate, FaveDic, Music, SoundEffect) VALUES (?,?,?,?,?,?,?,?,?,?,?,?);");
+              + "PointsPerWordRate, TotalPlayedGames, TotalWins, "
+              + "WinRate, FaveDic, Music, SoundEffect) VALUES (?,?,?,?,?,?,?,?,?,?,?);");
       pstmPlayer.setString(1, name);
       pstmPlayer.setInt(2, 0);
       pstmPlayer.setInt(3, 0);
@@ -123,11 +123,10 @@ public class FillDatabase extends Database {
       pstmPlayer.setInt(5, 0);
       pstmPlayer.setInt(6, 0);
       pstmPlayer.setInt(7, 0);
-      pstmPlayer.setInt(8, 0);
-      pstmPlayer.setDouble(9, 0.0);
-      pstmPlayer.setString(10, "");
-      pstmPlayer.setDouble(11, 50.0);
-      pstmPlayer.setDouble(12, 25.0);
+      pstmPlayer.setDouble(8, 0.0);
+      pstmPlayer.setString(9, "");
+      pstmPlayer.setDouble(10, 50.0);
+      pstmPlayer.setDouble(11, 25.0);
       pstmPlayer.executeUpdate();
     } catch (SQLException e) {
       e.printStackTrace();
@@ -189,12 +188,6 @@ public class FillDatabase extends Database {
           pstmt.executeUpdate();
         } else if (column.equals("PointsPerWordRate")) {
           String sql = "UPDATE Player SET PointsPerWordRate = ? WHERE Name = ?";
-          pstmt = connection.prepareStatement(sql);
-          pstmt.setInt(1, contentInt);
-          pstmt.setString(2, name);
-          pstmt.executeUpdate();
-        } else if (column.equals("LongestWord")) {
-          String sql = "UPDATE Player SET LongestWord = ? WHERE Name = ?";
           pstmt = connection.prepareStatement(sql);
           pstmt.setInt(1, contentInt);
           pstmt.setString(2, name);
@@ -355,9 +348,9 @@ public class FillDatabase extends Database {
     String[] letter = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
         "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
     int[] points =
-        {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10, 0};
+      {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10, 0};
     int[] occurrence =
-        {9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1, 2};
+      {9, 2, 2, 4, 12, 2, 3, 2, 9, 1, 1, 4, 2, 6, 8, 2, 1, 6, 4, 6, 4, 2, 2, 1, 2, 1, 2};
     for (int i = 0; i < 27; i++) {
       insertLetters(letter[i], points[i], occurrence[i]);
     }

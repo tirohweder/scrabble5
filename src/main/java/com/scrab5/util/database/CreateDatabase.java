@@ -69,7 +69,6 @@ public class CreateDatabase extends Database {
               + "PersonalHighscore INTEGER NOT NULL,"
               + "LaidWords INTEGER NOT NULL,"
               + "PointsPerWordRate INTEGER NOT NULL,"
-              + "LongestWord INTEGER,"
               + "TotalPlayedGames INTEGER NOT NULL,"
               + "TotalWins INTEGER NOT NULL,"
               + "WinRate REAL,"
