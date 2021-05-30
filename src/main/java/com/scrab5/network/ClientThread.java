@@ -8,11 +8,13 @@ import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
 import com.scrab5.network.messages.PlaySoundMessage;
+import com.scrab5.network.messages.ResendMessage;
 import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.ui.PopUpMessage;
 import com.scrab5.ui.PopUpMessageType;
 import com.scrab5.util.parser.DictionaryParser;
+import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -55,9 +57,9 @@ public class ClientThread extends Threads implements Serializable {
   public void run() {
     this.running = true;
     sendMessageToServer(new ConnectMessage(this.sender, this.client.getClientData()));
-    try {
-      Message message;
-      while (this.running) {
+    Message message;
+    while (this.running) {
+      try {
         message = (Message) this.fromServer.readObject();
         switch (message.getType()) {
           case DISCONNECT:
@@ -113,30 +115,31 @@ public class ClientThread extends Threads implements Serializable {
           default:
             break;
         }
+      } catch (EOFException e) {
+        sendMessageToServer(new ResendMessage(this.client.getUsername()));
+      } catch (Exception e) {
+        e.printStackTrace();
+        new NetworkError(NetworkErrorType.CLIENTRUN);
+        sendMessageToServer(new ResendMessage(this.client.getUsername()));
       }
-    } catch (Exception e) {
-      e.printStackTrace();
-      new NetworkError(NetworkErrorType.CLIENTRUN);
     }
 
     try {
       this.socketToServer.close();
       try {
-        Platform.runLater(
-            new Runnable() {
-              public void run() {
-                try {
-                  PopUpMessage npm =
-                      new PopUpMessage(
-                          "The connection has been closed."
-                              + " A player disconnected or you have been kicked.",
-                          PopUpMessageType.NOTIFICATION);
-                  npm.show();
-                } catch (IOException e) {
-                  e.printStackTrace();
-                }
-              }
-            });
+        Platform.runLater(new Runnable() {
+          public void run() {
+            try {
+              PopUpMessage npm = new PopUpMessage(
+                  "The connection has been closed."
+                      + " A player disconnected or you have been kicked.",
+                  PopUpMessageType.NOTIFICATION);
+              npm.show();
+            } catch (IOException e) {
+              e.printStackTrace();
+            }
+          }
+        });
       } catch (Exception e) {
         e.printStackTrace();
       }
