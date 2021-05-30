@@ -246,53 +246,6 @@ public class GameSession implements Serializable {
   }
 
   /**
-   * This method is called when the "Exit"- or "Give Up"-button in the UI is clicked. It first
-   * determines the winner of the game. In the second step all statistics which can be found in
-   * "Profile.fxml" are getting updated.
-   *
-   * @author mherre
-   */
-  public void endGame() {
-
-    int mostPoints = 0;
-    String name = "";
-    for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
-      Player one = Data.getGameSession().getListOfPlayers().get(i);
-      if (mostPoints < one.getPoints()) {
-        mostPoints = one.getPoints();
-        name = one.getName();
-      }
-    }
-
-    for (Player player : Data.getGameSession().getListOfPlayers()) {
-      if (!(player instanceof AiPlayer)) {
-        PlayerProfile tmp = player.getPlayerProfile();
-        tmp.addPoints(player.getName(), player.getPoints());
-        tmp.addWords(player.getCorrectWords());
-
-        tmp.addGames(1);
-
-        if (tmp.getLaidWords() != 0) {
-          tmp.adjustPointsPerWordRate(tmp.getTotalPoints() / tmp.getLaidWords());
-        }
-        if (player.getPoints() > tmp.getPersonalHighscore()) {
-          tmp.adjustPersonalHighscore(player.getPoints());
-        }
-        if ((player.getName().equals(name))
-            && (player.getPoints() != 0)
-            && (player.getPoints() == mostPoints)) {
-          tmp.addWins(1);
-        }
-        if (tmp.getTotalPlayedGames() != 0) {
-          double newWinRate = (double) tmp.getTotalWins() / (double) tmp.getTotalPlayedGames();
-          tmp.adjustWinRate(Math.round(newWinRate * 100.0) / 100.0);
-        }
-      }
-    }
-    this.running = false;
-  }
-
-  /**
    * Checks if its the Ai Turn and if the first tile has to be played yet. If yes makes it play.
    *
    * @author trohwede
@@ -339,5 +292,48 @@ public class GameSession implements Serializable {
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();
+  }
+
+  /**
+   * This method is called when the "Exit"- or "Give Up"-button in the UI is clicked. It first
+   * determines the winner of the game. In the second step all statistics which can be found in
+   * "Profile.fxml" are getting updated.
+   *
+   * @author mherre
+   */
+  public void endGame() {
+    int mostPoints = 0;
+    String name = "";
+    for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
+      Player one = Data.getGameSession().getListOfPlayers().get(i);
+      if (mostPoints < one.getPoints()) {
+        mostPoints = one.getPoints();
+        name = one.getName();
+      }
+    }
+    for (Player player : Data.getGameSession().getListOfPlayers()) {
+      if (!(player instanceof AiPlayer)) {
+        PlayerProfile tmp = player.getPlayerProfile();
+        tmp.addPoints(player.getName(), player.getPoints());
+        tmp.addWords(player.getCorrectWords());
+        tmp.addGames(1);
+        if (tmp.getLaidWords() != 0) {
+          tmp.adjustPointsPerWordRate(tmp.getTotalPoints() / tmp.getLaidWords());
+        }
+        if (player.getPoints() > tmp.getPersonalHighscore()) {
+          tmp.adjustPersonalHighscore(player.getPoints());
+        }
+        if ((player.getName().equals(name))
+            && (player.getPoints() != 0)
+            && (player.getPoints() == mostPoints)) {
+          tmp.addWins(1);
+        }
+        if (tmp.getTotalPlayedGames() != 0) {
+          double newWinRate = (double) tmp.getTotalWins() / (double) tmp.getTotalPlayedGames();
+          tmp.adjustWinRate(Math.round(newWinRate * 100.0) / 100.0);
+        }
+      }
+    }
+    this.running = false;
   }
 }
