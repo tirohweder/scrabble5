@@ -6,18 +6,15 @@ import com.scrab5.network.messages.ConnectMessage;
 import com.scrab5.network.messages.DisconnectMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
 import com.scrab5.network.messages.Message;
-import com.scrab5.network.messages.PlaySoundMessage;
 import com.scrab5.network.messages.SendReadyMessage;
 import com.scrab5.network.messages.SendServerDataMessage;
 import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
-import java.io.EOFException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.SocketException;
 
 /**
  * Thread for the server sided client-server communication. Exchanges messages with the client and
@@ -108,8 +105,7 @@ public class ServerThread extends Threads {
             server.sendMessageToAllClients(mtm);
             break;
           case PLAYSOUND:
-            PlaySoundMessage psm = (PlaySoundMessage) message;
-            server.sendMessageToAllClients(psm);
+            server.sendMessageToAllClients(message);
             break;
           case RESEND:
             if (Data.getGameSession().isRunning()) {
@@ -117,12 +113,14 @@ public class ServerThread extends Threads {
                   new MakeTurnMessage(this.server.getHost(), Data.getGameSession()));
             }
             break;
+          case ENDGAME:
+            sendMessageToClient(message);
+            break;
           default:
             break;
         }
         this.server.sendUpdateMessage();
-
-      } catch (EOFException | SocketException e) {
+        // } catch (EOFException | SocketException e) {
         // does nothing on purpose
       } catch (Exception e) {
         e.printStackTrace();

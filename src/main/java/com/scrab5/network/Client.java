@@ -3,6 +3,7 @@ package com.scrab5.network;
 import com.scrab5.network.NetworkError.NetworkErrorType;
 import com.scrab5.network.messages.ChatMessage;
 import com.scrab5.network.messages.DisconnectMessage;
+import com.scrab5.network.messages.EndGameMessage;
 import com.scrab5.network.messages.GetServerDataMessage;
 import com.scrab5.network.messages.LobbyUpdateMessage;
 import com.scrab5.network.messages.MakeTurnMessage;
@@ -426,5 +427,14 @@ public class Client implements Serializable {
    */
   public void playSound(boolean tob) {
     this.clientThread.sendMessageToServer(new PlaySoundMessage(this.username, tob));
+  }
+
+  /**
+   * Method to send a message to all clients that the game was ended.
+   * 
+   * @author nitterhe
+   */
+  public void endGame() {
+    this.clientThread.sendMessageToServer(new EndGameMessage(this.username));
   }
 }

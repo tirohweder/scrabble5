@@ -147,7 +147,7 @@ public class Server implements Serializable {
    */
   // must be called by Game logic after game ends
   public void endGame(String winner) {
-    this.cancelTimer();
+    this.resetTimer();
     this.gameStart = false;
     boolean win;
     for (String client : this.clients.keySet()) {

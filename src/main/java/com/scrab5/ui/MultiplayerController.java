@@ -157,8 +157,9 @@ public class MultiplayerController extends InGameController implements Initializ
 
           if (Data.getGameSession().isShouldEnd()) {
             Data.getGameSession().endGame();
+            Data.getGameSession().setShouldEnd(false);
             try {
-              App.setRoot("EndGameSingleplayer");
+              App.setRoot("EndGameMultiplayer");
             } catch (IOException e) {
               // TODO Auto-generated catch block
               e.printStackTrace();
