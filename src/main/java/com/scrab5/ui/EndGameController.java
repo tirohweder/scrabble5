@@ -38,7 +38,6 @@ public class EndGameController extends InGameController implements Initializable
     initPlayers();
 
     initEndGame();
-
   }
 
   /**
@@ -74,7 +73,7 @@ public class EndGameController extends InGameController implements Initializable
     counter--;
 
     if (0 < players.size()) {
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         swap = order[counter];
         order[counter] = order[counter - 1];
         order[counter - 1] = swap;
@@ -86,7 +85,7 @@ public class EndGameController extends InGameController implements Initializable
       counter--;
     }
     if (1 < players.size()) {
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         if (counter > 0) {
           swap = order[counter];
           order[counter] = order[counter - 1];
@@ -94,7 +93,7 @@ public class EndGameController extends InGameController implements Initializable
         }
       }
       secondPlayer.setText("2. " + order[counter].getName());
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         secondPlayerPoints.setText("has given up");
         thirdPlayerPoints.setText("has given up");
       } else {
@@ -105,7 +104,7 @@ public class EndGameController extends InGameController implements Initializable
       counter--;
     }
     if (2 < players.size()) {
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         if (counter > 0) {
           swap = order[counter];
           order[counter] = order[counter - 1];
@@ -113,7 +112,7 @@ public class EndGameController extends InGameController implements Initializable
         }
       }
       thirdPlayer.setText("3. " + order[counter].getName());
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         thirdPlayerPoints.setText("has given up");
         thirdPlayerPoints.setText("has given up");
       } else {
@@ -125,7 +124,7 @@ public class EndGameController extends InGameController implements Initializable
     }
     if (3 < players.size()) {
       fourthPlayer.setText("4. " + order[counter].getName());
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         fourthPlayerPoints.setText("has given up");
         order[counter].setGivenUp(false);
       } else {
@@ -142,8 +141,11 @@ public class EndGameController extends InGameController implements Initializable
       lostScreen.setOpacity(1);
       wonScreen.setOpacity(0);
     }
-    if (Data.getGameSession().isOnline() && Data.getPlayerClient().getCurrentServer().getHost()
-        .equals(Data.getPlayerClient().getUsername())) {
+    if (Data.getGameSession().isOnline()
+        && Data.getPlayerClient()
+            .getCurrentServer()
+            .getHost()
+            .equals(Data.getPlayerClient().getUsername())) {
       Data.getHostedServer().endGame(order[order.length - 1].getName());
     }
   }
@@ -155,7 +157,7 @@ public class EndGameController extends InGameController implements Initializable
    * @author apilgrim
    * @param event - MouseEvent created, when the "main menu" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void mainMenuClicked(MouseEvent event) throws IOException {
@@ -173,7 +175,7 @@ public class EndGameController extends InGameController implements Initializable
    * @author apilgrim
    * @param event - MouseEvent created, when the "play again" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void playAgainClicked(MouseEvent event) throws IOException {
