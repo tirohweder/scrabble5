@@ -74,17 +74,6 @@ public class PlayerProfile implements Serializable {
   }
 
   /**
-   * Changes the longest word, if the player has laid a word in the current game, that is longer
-   * than the one saved.
-   *
-   * @author lengist
-   * @param longestWord the user laid in the played game
-   */
-  public void adjustLongestWord(int longestWord) {
-    PlayerProfileDatabase.setLongestWord(name, longestWord);
-  }
-
-  /**
    * Adds the quantity of played games of the user "name" to the database.
    *
    * @author lengist
@@ -156,17 +145,6 @@ public class PlayerProfile implements Serializable {
    */
   public int getPointsPerWordRate() {
     return PlayerProfileDatabase.getPointsPerWordRate(name);
-  }
-
-  /**
-   * Returns the length of the previous longest laid word in the database for the current player
-   * name.
-   *
-   * @author lengist
-   * @return int the saved longest length from table Player
-   */
-  public int getLongestWord() {
-    return PlayerProfileDatabase.getLongestWord(name);
   }
 
   /**

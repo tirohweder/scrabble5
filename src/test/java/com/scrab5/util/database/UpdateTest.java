@@ -40,7 +40,6 @@ class UpdateTest {
       assertEquals(0, rs.getInt("PersonalHighscore"));
       assertEquals(0, rs.getInt("LaidWords"));
       assertEquals(0, rs.getInt("PointsPerWordRate"));
-      assertEquals(0, rs.getInt("LongestWord"));
       assertEquals(0, rs.getInt("TotalPlayedGames"));
       assertEquals(0, rs.getInt("TotalWins"));
       assertEquals(0.0, rs.getDouble("WinRate"));

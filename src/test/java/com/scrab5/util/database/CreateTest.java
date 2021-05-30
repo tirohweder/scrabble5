@@ -1,6 +1,7 @@
 package com.scrab5.util.database;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -42,7 +43,6 @@ class CreateTest {
       assertEquals(0, rs.getInt("PersonalHighscore"));
       assertEquals(0, rs.getInt("LaidWords"));
       assertEquals(0, rs.getInt("PointsPerWordRate"));
-      assertEquals(0, rs.getInt("LongestWord"));
       assertEquals(0, rs.getInt("TotalPlayedGames"));
       assertEquals(0, rs.getInt("TotalWins"));
       assertEquals(0.0, rs.getDouble("WinRate"));
