@@ -8,7 +8,6 @@ import com.scrab5.network.Server;
 import com.scrab5.network.ServerStatistics;
 import com.scrab5.network.ServerStatistics.ClientStatistic;
 import com.scrab5.network.messages.MakeTurnMessage;
-import com.scrab5.util.database.PlayerProfileDatabase;
 import com.scrab5.util.database.UseDatabase;
 import com.scrab5.util.parser.DictionaryParser;
 import java.io.IOException;
@@ -422,8 +421,8 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
   }
 
   /**
-   * Refreshes the UI and therefore changes like player joined or chat Messages received. Use Case
-   * 3.3 and 5 within.
+   * Refreshes the UI and therefore changes like player joined or chat Messages received. This
+   * implementation is chosen to provide 3 frames per second. Use Case 3.3 and 5 within.
    *
    * @author nitterhe, mherre
    */
@@ -490,11 +489,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                     diffButton1.setOpacity(1.0);
                   }
                 }
-                if (client.getIp().equals("AI")) {
-                  difficulty2.setOpacity(1.0);
-                  diffSelection2.setOpacity(1.0);
-                  diffButton1.setOpacity(1.0);
-                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -519,11 +513,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                     diffButton2.setOpacity(1.0);
                   }
                 }
-                if (client.getIp().equals("AI")) {
-                  difficulty3.setOpacity(1.0);
-                  diffSelection3.setOpacity(1.0);
-                  diffButton2.setOpacity(1.0);
-                }
                 if (!client.isReady()) {
                   start = false;
                 }
@@ -547,11 +536,6 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
                     diffSelection4.setOpacity(1.0);
                     diffButton3.setOpacity(1.0);
                   }
-                }
-                if (client.getIp().equals("AI")) {
-                  difficulty4.setOpacity(1.0);
-                  diffSelection4.setOpacity(1.0);
-                  diffButton3.setOpacity(1.0);
                 }
                 if (!client.isReady()) {
                   start = false;
@@ -634,7 +618,7 @@ public class MultiplayerLobbyController extends LobbyController implements Initi
           // delay for less lag
           synchronized (this) {
             try {
-              this.wait(200);
+              this.wait(300);
             } catch (InterruptedException e) {
               // e.printStackTrace();
             }

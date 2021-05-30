@@ -122,10 +122,8 @@ public class ServerThread extends Threads {
         }
         this.server.sendUpdateMessage();
 
-      } catch (EOFException e) {
+      } catch (EOFException | SocketException e) {
         // does nothing on purpose
-      } catch (SocketException e) {
-        // does nothing is on purpose
       } catch (Exception e) {
         e.printStackTrace();
         new NetworkError(NetworkErrorType.SERVERRUN);
