@@ -49,7 +49,6 @@ public class MultiplayerController extends InGameController implements Initializ
    */
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-
     synchronized (this) {
       try {
         wait(200);
@@ -156,15 +155,16 @@ public class MultiplayerController extends InGameController implements Initializ
         while (Data.getPlayerClient().threadIsRunning()) {
 
           if (Data.getGameSession().isShouldEnd()) {
-            Data.getPlayerClient().endGame();
-            Data.getGameSession().setShouldEnd(false);
+
             try {
               App.setRoot("EndGameMultiplayer");
+              Data.getGameSession().setShouldEnd(false);
             } catch (IOException e) {
               // TODO Auto-generated catch block
               e.printStackTrace();
             }
           }
+
           Platform.runLater(new Runnable() {
 
             @Override
@@ -190,18 +190,6 @@ public class MultiplayerController extends InGameController implements Initializ
               this.wait(300);
             } catch (InterruptedException e) {
               // e.printStackTrace();
-            }
-          }
-        }
-        // check for bag and rack empty to end the game and display statistics
-        if (Data.getGameSession().isShouldEnd()) {
-          if (Data.getGameSession().isRunning()) {
-            Data.getGameSession().endGame();
-            try {
-              App.setRoot("EndGameMultiplayer");
-            } catch (IOException e) {
-              // TODO Auto-generated catch block
-              e.printStackTrace();
             }
           }
         }

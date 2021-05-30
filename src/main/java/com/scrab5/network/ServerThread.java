@@ -99,10 +99,8 @@ public class ServerThread extends Threads {
             server.setClientReady(srm.getSender(), srm.getReady());
             break;
           case MAKETURN:
-            MakeTurnMessage mtm = (MakeTurnMessage) message;
-            Data.setGameSession(mtm.getGameSession());
             this.server.resetTimer();
-            server.sendMessageToAllClients(mtm);
+            server.sendMessageToAllClients(message);
             break;
           case PLAYSOUND:
             server.sendMessageToAllClients(message);
@@ -114,7 +112,7 @@ public class ServerThread extends Threads {
             }
             break;
           case ENDGAME:
-            sendMessageToClient(message);
+            server.sendMessageToAllClients(message);
             break;
           default:
             break;

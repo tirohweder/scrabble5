@@ -1162,13 +1162,20 @@ public abstract class InGameController implements Initializable {
     PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
     pum.show();
     if (Data.isConfirmed()) {
-      Data.getGameSession().getCurrentPlayer().setPoints(-1);
-      Data.getGameSession().setShouldEnd(true);
+      Iterator<Player> it = Data.getGameSession().getListOfPlayers().iterator();
+      Player p;
+      while (it.hasNext()) {
+        p = it.next();
+        if (p.getName().equals(Data.getCurrentUser())) {
+          p.setGivenUp(true);
+        }
+      }
       if (Data.getGameSession().isOnline()) {
+        // this is sent so all players know who gave up
         Data.getPlayerClient().makeTurn();
         Data.getPlayerClient().endGame();
-        App.setRoot("EndGameMultiplayer");
       } else {
+        Data.getGameSession().setShouldEnd(true);
         Data.getGameSession().endGame();
         App.setRoot("EndGameSingleplayer");
       }
@@ -1583,7 +1590,6 @@ public abstract class InGameController implements Initializable {
     if (endPossible) {
       if (Data.getGameSession().isOnline()) {
         Data.getPlayerClient().endGame();
-        App.setRoot("EndGameMultiplayer");
       } else {
         Data.getGameSession().setShouldEnd(true);
         Data.getGameSession().endGame();

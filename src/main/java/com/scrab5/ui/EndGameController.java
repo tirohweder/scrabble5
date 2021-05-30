@@ -44,10 +44,10 @@ public class EndGameController extends InGameController implements Initializable
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
-
     initPlayers();
 
     initEndGame();
+
   }
 
   /**
@@ -88,12 +88,12 @@ public class EndGameController extends InGameController implements Initializable
       lostScreen.setOpacity(1);
     }
 
-    if (Data.getGameSession().isOnline() && Data.getPlayerClient().getCurrentServer().getHost()
-        .equals(Data.getPlayerClient().getUsername())) {
-      Data.getHostedServer().endGame(order[counter].getName());
-    }
-
     if (0 < players.size()) {
+      if (order[counter].getGivenUp()) {
+        swap = order[counter];
+        order[counter] = order[counter - 1];
+        order[counter - 1] = swap;
+      }
       firstPlayer.setText("1. " + order[counter].getName());
       firstPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
       firstPlayer.setOpacity(1);
@@ -101,8 +101,15 @@ public class EndGameController extends InGameController implements Initializable
       counter--;
     }
     if (1 < players.size()) {
+      if (order[counter].getGivenUp()) {
+        if (counter > 0) {
+          swap = order[counter];
+          order[counter] = order[counter - 1];
+          order[counter - 1] = swap;
+        }
+      }
       secondPlayer.setText("2. " + order[counter].getName());
-      if (order[counter].getPoints() == -1) {
+      if (order[counter].getGivenUp()) {
         secondPlayerPoints.setText("has given up");
       } else {
         secondPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
@@ -112,8 +119,15 @@ public class EndGameController extends InGameController implements Initializable
       counter--;
     }
     if (2 < players.size()) {
+      if (order[counter].getGivenUp()) {
+        if (counter > 0) {
+          swap = order[counter];
+          order[counter] = order[counter - 1];
+          order[counter - 1] = swap;
+        }
+      }
       thirdPlayer.setText("3. " + order[counter].getName());
-      if (order[counter].getPoints() == -1) {
+      if (order[counter].getGivenUp()) {
         thirdPlayerPoints.setText("has given up");
       } else {
         thirdPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
@@ -124,13 +138,18 @@ public class EndGameController extends InGameController implements Initializable
     }
     if (3 < players.size()) {
       fourthPlayer.setText("4. " + order[counter].getName());
-      if (order[counter].getPoints() == -1) {
+      if (order[counter].getGivenUp()) {
         fourthPlayerPoints.setText("has given up");
       } else {
         fourthPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
       }
       fourthPlayer.setOpacity(1);
       fourthPlayerPoints.setOpacity(1);
+    }
+    System.out.println("blaaaaaaaaaaaa");
+    if (Data.getGameSession().isOnline() && Data.getPlayerClient().getCurrentServer().getHost()
+        .equals(Data.getPlayerClient().getUsername())) {
+      Data.getHostedServer().endGame(order[order.length - 1].getName());
     }
   }
 

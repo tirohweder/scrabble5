@@ -49,7 +49,7 @@ public class App extends Application {
    * @param fxml the String values the name of the .fxml scene
    * @param predescessor the String values the name of the scene which was seen before
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   public static void setRoot(String fxml, String predescessor) throws IOException {
 
@@ -127,10 +127,12 @@ public class App extends Application {
    * This method is called when ever the application is started. First it checks whether a database
    * already exists, if not a new database is created.
    *
-   * <p>Then it sets up the app screen (icons, mediaplayer for sound) and shows the first scene. The
+   * <p>
+   * Then it sets up the app screen (icons, mediaplayer for sound) and shows the first scene. The
    * close operation has also been changed, so the app closes properly:
    *
-   * <p>https://www.codota.com/code/java/methods/javafx.stage.Stage/setOnCloseRequest.
+   * <p>
+   * https://www.codota.com/code/java/methods/javafx.stage.Stage/setOnCloseRequest.
    *
    * @param stage the main stage where the app is presented
    * @author mherre
@@ -155,20 +157,21 @@ public class App extends Application {
     this.setIcons(stage);
     this.setMediaPlayer();
 
-    stage.setOnCloseRequest(
-        new EventHandler<>() {
-          @Override
-          public void handle(WindowEvent event) {
+    stage.setOnCloseRequest(new EventHandler<>() {
+      @Override
+      public void handle(WindowEvent event) {
 
-            if (Data.getHostedServer() != null) {
-              Data.getHostedServer().shutDownServer();
-            } else if (Data.getPlayerClient() != null) {
-              Data.getPlayerClient().disconnectFromServer();
-            }
-            Platform.exit();
-            System.exit(0);
+        if (Data.getHostedServer() != null) {
+          Data.getHostedServer().shutDownServer();
+        } else if (Data.getPlayerClient() != null) {
+          if (Data.getPlayerClient().threadIsRunning()) {
+            Data.getPlayerClient().disconnectFromServer();
           }
-        });
+        }
+        Platform.exit();
+        System.exit(0);
+      }
+    });
 
     stage.setScene(scene);
     stage.setTitle("Scrabble - Group 5");
@@ -183,12 +186,10 @@ public class App extends Application {
    * @author mherre
    */
   private void setMediaPlayer() {
-    Media sound =
-        new Media(
-            Objects.requireNonNull(
-                    Controller.class.getResource(
-                        "/com/scrab5/ui/sound_effects/BackgroundMusic.mp3"))
-                .toExternalForm());
+    Media sound = new Media(Objects
+        .requireNonNull(
+            Controller.class.getResource("/com/scrab5/ui/sound_effects/BackgroundMusic.mp3"))
+        .toExternalForm());
     mediaplayer = new MediaPlayer(sound);
     mediaplayer.setCycleCount(MediaPlayer.INDEFINITE);
     mediaplayer.play();
@@ -202,14 +203,12 @@ public class App extends Application {
    * @author mherre
    */
   private void setIcons(Stage stage) {
-    Image icon1 =
-        new Image(
-            Objects.requireNonNull(App.class.getResource("/com/scrab5/ui/images/TaskbarIcon32.png"))
-                .toExternalForm());
-    Image icon2 =
-        new Image(
-            Objects.requireNonNull(App.class.getResource("/com/scrab5/ui/images/TaskbarIcon16.png"))
-                .toExternalForm());
+    Image icon1 = new Image(
+        Objects.requireNonNull(App.class.getResource("/com/scrab5/ui/images/TaskbarIcon32.png"))
+            .toExternalForm());
+    Image icon2 = new Image(
+        Objects.requireNonNull(App.class.getResource("/com/scrab5/ui/images/TaskbarIcon16.png"))
+            .toExternalForm());
     stage.getIcons().add(icon1);
     stage.getIcons().add(icon2);
   }
