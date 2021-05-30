@@ -23,111 +23,111 @@ import javafx.stage.Stage;
 public class LetterCustomizationController extends Controller implements Initializable {
 
   @FXML
-  private TextField aO;
+  private TextField occA;
   @FXML
-  private TextField bO;
+  private TextField occB;
   @FXML
-  private TextField cO;
+  private TextField occC;
   @FXML
-  private TextField dO;
+  private TextField occD;
   @FXML
-  private TextField eO;
+  private TextField occE;
   @FXML
-  private TextField fO;
+  private TextField occF;
   @FXML
-  private TextField gO;
+  private TextField occG;
   @FXML
-  private TextField hO;
+  private TextField occH;
   @FXML
-  private TextField iO;
+  private TextField occI;
   @FXML
-  private TextField jO;
+  private TextField occJ;
   @FXML
-  private TextField kO;
+  private TextField occK;
   @FXML
-  private TextField lO;
+  private TextField occL;
   @FXML
-  private TextField mO;
+  private TextField occM;
   @FXML
-  private TextField nO;
+  private TextField occN;
   @FXML
-  private TextField oO;
+  private TextField occO;
   @FXML
-  private TextField pO;
+  private TextField occP;
   @FXML
-  private TextField qO;
+  private TextField occQ;
   @FXML
-  private TextField rO;
+  private TextField occR;
   @FXML
-  private TextField sO;
+  private TextField occS;
   @FXML
-  private TextField tO;
+  private TextField occT;
   @FXML
-  private TextField uO;
+  private TextField occU;
   @FXML
-  private TextField vO;
+  private TextField occV;
   @FXML
-  private TextField wO;
+  private TextField occW;
   @FXML
-  private TextField xO;
+  private TextField occX;
   @FXML
-  private TextField yO;
+  private TextField occY;
   @FXML
-  private TextField zO;
+  private TextField occZ;
   @FXML
   private TextField spaceO;
   @FXML
-  private TextField aP;
+  private TextField poiA;
   @FXML
-  private TextField bP;
+  private TextField poiB;
   @FXML
-  private TextField cP;
+  private TextField poiC;
   @FXML
-  private TextField dP;
+  private TextField poiD;
   @FXML
-  private TextField eP;
+  private TextField poiE;
   @FXML
-  private TextField fP;
+  private TextField poiF;
   @FXML
-  private TextField gP;
+  private TextField poiG;
   @FXML
-  private TextField hP;
+  private TextField poiH;
   @FXML
-  private TextField iP;
+  private TextField poiI;
   @FXML
-  private TextField jP;
+  private TextField poiJ;
   @FXML
-  private TextField kP;
+  private TextField poiK;
   @FXML
-  private TextField lP;
+  private TextField poiL;
   @FXML
-  private TextField mP;
+  private TextField poiM;
   @FXML
-  private TextField nP;
+  private TextField poiN;
   @FXML
-  private TextField oP;
+  private TextField poiO;
   @FXML
-  private TextField pP;
+  private TextField poiP;
   @FXML
-  private TextField qP;
+  private TextField poiQ;
   @FXML
-  private TextField rP;
+  private TextField poiR;
   @FXML
-  private TextField sP;
+  private TextField poiS;
   @FXML
-  private TextField tP;
+  private TextField poiT;
   @FXML
-  private TextField uP;
+  private TextField poiU;
   @FXML
-  private TextField vP;
+  private TextField poiV;
   @FXML
-  private TextField wP;
+  private TextField poiW;
   @FXML
-  private TextField xP;
+  private TextField poiX;
   @FXML
-  private TextField yP;
+  private TextField poiY;
   @FXML
-  private TextField zP;
+  private TextField poiZ;
   @FXML
   private TextField spaceP;
 
@@ -217,32 +217,32 @@ public class LetterCustomizationController extends Controller implements Initial
    */
   private ArrayList<TextField> createListO() {
     ArrayList<TextField> al = new ArrayList<>();
-    al.add(aO);
-    al.add(bO);
-    al.add(cO);
-    al.add(dO);
-    al.add(eO);
-    al.add(fO);
-    al.add(gO);
-    al.add(hO);
-    al.add(iO);
-    al.add(jO);
-    al.add(kO);
-    al.add(lO);
-    al.add(mO);
-    al.add(nO);
-    al.add(oO);
-    al.add(pO);
-    al.add(qO);
-    al.add(rO);
-    al.add(sO);
-    al.add(tO);
-    al.add(uO);
-    al.add(vO);
-    al.add(wO);
-    al.add(xO);
-    al.add(yO);
-    al.add(zO);
+    al.add(occA);
+    al.add(occB);
+    al.add(occC);
+    al.add(occD);
+    al.add(occE);
+    al.add(occF);
+    al.add(occG);
+    al.add(occH);
+    al.add(occI);
+    al.add(occJ);
+    al.add(occK);
+    al.add(occL);
+    al.add(occM);
+    al.add(occN);
+    al.add(occO);
+    al.add(occP);
+    al.add(occQ);
+    al.add(occR);
+    al.add(occS);
+    al.add(occT);
+    al.add(occU);
+    al.add(occV);
+    al.add(occW);
+    al.add(occX);
+    al.add(occY);
+    al.add(occZ);
     al.add(spaceO);
 
     return al;
@@ -257,32 +257,32 @@ public class LetterCustomizationController extends Controller implements Initial
    */
   private ArrayList<TextField> createListP() {
     ArrayList<TextField> al = new ArrayList<>();
-    al.add(aP);
-    al.add(bP);
-    al.add(cP);
-    al.add(dP);
-    al.add(eP);
-    al.add(fP);
-    al.add(gP);
-    al.add(hP);
-    al.add(iP);
-    al.add(jP);
-    al.add(kP);
-    al.add(lP);
-    al.add(mP);
-    al.add(nP);
-    al.add(oP);
-    al.add(pP);
-    al.add(qP);
-    al.add(rP);
-    al.add(sP);
-    al.add(tP);
-    al.add(uP);
-    al.add(vP);
-    al.add(wP);
-    al.add(xP);
-    al.add(yP);
-    al.add(zP);
+    al.add(poiA);
+    al.add(poiB);
+    al.add(poiC);
+    al.add(poiD);
+    al.add(poiE);
+    al.add(poiF);
+    al.add(poiG);
+    al.add(poiH);
+    al.add(poiI);
+    al.add(poiJ);
+    al.add(poiK);
+    al.add(poiL);
+    al.add(poiM);
+    al.add(poiN);
+    al.add(poiO);
+    al.add(poiP);
+    al.add(poiQ);
+    al.add(poiR);
+    al.add(poiS);
+    al.add(poiT);
+    al.add(poiU);
+    al.add(poiV);
+    al.add(poiW);
+    al.add(poiX);
+    al.add(poiY);
+    al.add(poiZ);
     al.add(spaceP);
 
     return al;
