@@ -17,5 +17,6 @@ public enum MessageType {
   MAKETURN,
   DICTIONARY,
   PLAYSOUND,
-  RESEND
+  RESEND,
+  ENDGAME
 }

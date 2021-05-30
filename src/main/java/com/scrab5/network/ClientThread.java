@@ -21,6 +21,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.SocketException;
 import javafx.application.Platform;
 
 /**
@@ -37,6 +38,7 @@ public class ClientThread extends Threads implements Serializable {
   private transient ObjectOutputStream toServer;
   private transient ObjectInputStream fromServer;
   private transient Socket socketToServer;
+  private transient int resendTrys = 0;
 
   /**
    * Creates a Client Thread. Thread is started when the Client connects to a server.
@@ -112,15 +114,29 @@ public class ClientThread extends Threads implements Serializable {
             PlaySoundMessage psm = (PlaySoundMessage) message;
             Data.getGameSession().playSound(psm.getTripleOrBingo());
             break;
+          case ENDGAME:
+            Data.getGameSession().setShouldEnd(true);
+            break;
           default:
             break;
         }
-      } catch (EOFException e) {
-        sendMessageToServer(new ResendMessage(this.client.getUsername()));
+        resendTrys = 0;
+      } catch (EOFException | SocketException e) {
+        if (resendTrys > 10) {
+          this.closeConnection();
+        } else {
+          sendMessageToServer(new ResendMessage(this.client.getUsername(), resendTrys));
+          resendTrys++;
+        }
       } catch (Exception e) {
         e.printStackTrace();
         new NetworkError(NetworkErrorType.CLIENTRUN);
-        sendMessageToServer(new ResendMessage(this.client.getUsername()));
+        if (resendTrys > 10) {
+          this.closeConnection();
+        } else {
+          sendMessageToServer(new ResendMessage(this.client.getUsername(), resendTrys));
+          resendTrys++;
+        }
       }
     }
 
@@ -175,7 +191,7 @@ public class ClientThread extends Threads implements Serializable {
    * @param message - the Message object to send to the server
    * @author nitterhe
    */
-  public void sendMessageToServer(Message message) {
+  public synchronized void sendMessageToServer(Message message) {
     try {
       this.toServer.writeObject(message);
       this.toServer.flush();
