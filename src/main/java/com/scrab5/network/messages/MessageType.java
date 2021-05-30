@@ -21,5 +21,6 @@ public enum MessageType {
   SENDREADY,
   MAKETURN,
   DICTIONARY,
-  PLAYSOUND
+  PLAYSOUND,
+  RESEND
 }

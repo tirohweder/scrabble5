@@ -13,6 +13,7 @@ import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
+import java.io.EOFException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -59,19 +60,15 @@ public class ServerThread extends Threads {
   public void run() {
     this.running = true;
 
-    try {
-      Message message;
-      while (this.running) {
+    Message message;
+    while (this.running) {
+      try {
         message = (Message) this.fromClient.readObject();
         switch (message.getType()) {
           case GETSERVERDATA:
-            sendMessageToClient(
-                new SendServerDataMessage(
-                    this.server.getHost(),
-                    this.socketToClient.getLocalPort(),
-                    this.server.getClientCounter(),
-                    this.server.getClientMaximum(),
-                    this.server.getStatus()));
+            sendMessageToClient(new SendServerDataMessage(this.server.getHost(),
+                this.socketToClient.getLocalPort(), this.server.getClientCounter(),
+                this.server.getClientMaximum(), this.server.getStatus()));
             this.stopThread();
             this.socketToClient.close();
             break;
@@ -114,22 +111,28 @@ public class ServerThread extends Threads {
             PlaySoundMessage psm = (PlaySoundMessage) message;
             server.sendMessageToAllClients(psm);
             break;
+          case RESEND:
+            if (Data.getGameSession().isRunning()) {
+              sendMessageToClient(
+                  new MakeTurnMessage(this.server.getHost(), Data.getGameSession()));
+            }
+            break;
           default:
             break;
         }
         this.server.sendUpdateMessage();
-      }
 
-      /*
-       * This is in close connection, but also here to ensure that sockets on ports are really
-       * closed and no conflicts shoot when hosting the App the next time.
-       */
-    } catch (SocketException e) {
-      // e.printStackTrace();
-      // does nothing is on purpose
+      } catch (EOFException | SocketException e) {
+        // does nothing on purpose
+      } catch (Exception e) {
+        e.printStackTrace();
+        new NetworkError(NetworkErrorType.SERVERRUN);
+      }
+    }
+    try {
+      this.socketToClient.close();
     } catch (Exception e) {
-      e.printStackTrace();
-      new NetworkError(NetworkErrorType.SERVERRUN);
+      new NetworkError(NetworkErrorType.CLOSECONNECTION);
     }
   }
 
@@ -140,13 +143,13 @@ public class ServerThread extends Threads {
    *
    * @param clientData - the clientData object of the lient that just connected to the server
    * @throws Exception - an Exception that is thrown when a similar client with the same name is
-   *     already on the server / was on the server
+   *         already on the server / was on the server
    * @author nitterher
    */
   protected void addClient(ClientData clientData) throws Exception {
     if (server.getServerStatistics().addClient(clientData.getUsername(), clientData.getIp())) {
-      FillDatabase.createServerRow(
-          this.server.getHost(), clientData.getUsername(), clientData.getIp());
+      FillDatabase.createServerRow(this.server.getHost(), clientData.getUsername(),
+          clientData.getIp());
     }
     if (null != server.getClients().putIfAbsent(clientData.getUsername(), clientData)) {
       throw new Exception();
@@ -206,10 +209,5 @@ public class ServerThread extends Threads {
   protected synchronized void closeConnection() {
     sendMessageToClient(new DisconnectMessage(server.getHost()));
     this.stopThread();
-    try {
-      this.socketToClient.close();
-    } catch (Exception e) {
-      new NetworkError(NetworkErrorType.CLOSECONNECTION);
-    }
   }
 }
