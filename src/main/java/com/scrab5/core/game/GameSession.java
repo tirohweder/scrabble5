@@ -265,7 +265,7 @@ public class GameSession implements Serializable {
     }
 
     for (Player player : Data.getGameSession().getListOfPlayers()) {
-      if (!(player instanceof AiPlayer)) {
+      if (!(player instanceof AiPlayer) && (Data.getCurrentUser().equals(player.getName()))) {
         PlayerProfile tmp = player.getPlayerProfile();
         tmp.addPoints(player.getName(), player.getPoints());
         tmp.addWords(player.getCorrectWords());
