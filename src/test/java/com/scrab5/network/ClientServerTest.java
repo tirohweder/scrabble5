@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.scrab5.ui.Data;
+import com.scrab5.util.database.CreateDatabase;
 import com.scrab5.util.database.Database;
 import java.net.InetAddress;
 import org.junit.Test;
@@ -49,6 +50,7 @@ public class ClientServerTest {
    */
   @Test
   public void serverTest() {
+    CreateDatabase cd = new CreateDatabase();
     try {
       testServer = new Server("serverTest", 4, false);
 
@@ -60,6 +62,7 @@ public class ClientServerTest {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    cd.deleteDatabaseFile();
   }
 
   /**
@@ -71,7 +74,7 @@ public class ClientServerTest {
    */
   @Test
   public void clientServerCommuncationTest() {
-    Database.reconnect();
+    CreateDatabase cd = new CreateDatabase();
     try {
       testClient = new Client("networkTest");
       testClient.hostServer(4);
@@ -155,6 +158,7 @@ public class ClientServerTest {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    cd.deleteDatabaseFile();
   }
 
   /**

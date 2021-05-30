@@ -22,7 +22,7 @@ class ParserTest {
    */
   @Test
   void testCreateSearchableFile() {
-    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
+    DictionaryParser.setCurrentDictionary("Built-In_Standard_Dictionary.txt");
     DictionaryParser.parseFile(DictionaryParser.getFileName());
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + DictionaryParser.getNewFileName());
@@ -38,7 +38,7 @@ class ParserTest {
    */
   @Test
   void testDoesAlreadyExist() {
-    DictionaryParser.setCurrentDictionary("Built-In Standard Dictionary.txt");
+    DictionaryParser.setCurrentDictionary("Built-In_Standard_Dictionary.txt");
     DictionaryParser.parseFile(DictionaryParser.getFileName());
     File file = new File(System.getProperty("user.dir") + System.getProperty("file.separator")
         + DictionaryParser.getNewFileName());
