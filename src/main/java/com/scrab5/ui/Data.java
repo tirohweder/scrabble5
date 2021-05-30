@@ -32,6 +32,7 @@ public class Data {
   private static double sfxVolume = 1.0;
   private static StringBuffer chatHistory = new StringBuffer();
   private static GameSession gameSession;
+  private static boolean endScreen = false;;
 
   /**
    * Returns the current GameSession the player is currently playing in.
@@ -105,8 +106,8 @@ public class Data {
   }
 
   /**
-   * Saves the text message that gets displayed on the currently opened {@link
-   * com.scrab5.ui.PopUpMessage PopUpMessage}.
+   * Saves the text message that gets displayed on the currently opened
+   * {@link com.scrab5.ui.PopUpMessage PopUpMessage}.
    *
    * @param message the string that gets set
    * @author mherre
@@ -412,5 +413,23 @@ public class Data {
    */
   public static void resetChatHistroy() {
     chatHistory = new StringBuffer();
+  }
+
+  /**
+   * Returns a boolean that is true if the EndGame screen has been called.
+   * 
+   * @author nitterhe
+   */
+  public static boolean getEndScreen() {
+    return endScreen;
+  }
+
+  /**
+   * Sets a boolean that is true if the EndGame screen has been called.
+   * 
+   * @author nitterhe
+   */
+  public static void setEndScreen(boolean end) {
+    endScreen = end;
   }
 }

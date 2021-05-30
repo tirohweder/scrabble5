@@ -1158,22 +1158,34 @@ public abstract class InGameController implements Initializable {
    */
   @FXML
   private void giveUpClicked(MouseEvent event) throws IOException {
-    playSound();
-    PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
-    pum.show();
-    if (Data.isConfirmed()) {
-      Data.getGameSession().getCurrentPlayer().setGivenUp(true);;
-      Data.getGameSession().setShouldEnd(true);
-      if (Data.getGameSession().isOnline()) {
-        Data.getPlayerClient().makeTurn();
-        Data.getPlayerClient().endGame();
-        App.setRoot("EndGameMultiplayer");
-      } else {
-        Data.getGameSession().endGame();
-        App.setRoot("EndGameSingleplayer");
+    if (!((Data.getGameSession().getRoundNumber()
+        / Data.getGameSession().getListOfPlayers().size()) < 1)) {
+      playSound();
+      PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
+      pum.show();
+      if (Data.isConfirmed()) {
+        Iterator<Player> it = Data.getGameSession().getListOfPlayers().iterator();
+        Player p;
+        while (it.hasNext()) {
+          p = it.next();
+          if (p.getName().equals(Data.getCurrentUser())) {
+            p.setGivenUp(true);
+          }
+        }
+        if (Data.getGameSession().isOnline()) {
+          // this is sent so all players know who gave up
+          Data.getPlayerClient().makeTurn();
+          Data.getPlayerClient().endGame();
+        } else {
+          Data.getGameSession().setShouldEnd(true);
+          Data.getGameSession().endGame();
+          App.setRoot("EndGameSingleplayer");
+        }
+        changes.clear();
+        Data.getGameSession().setSkippedTurn(0);
       }
-      changes.clear();
-      Data.getGameSession().setSkippedTurn(0);
+    } else {
+      newPum("You can't give up in the first round!");
     }
   }
 
@@ -1583,7 +1595,6 @@ public abstract class InGameController implements Initializable {
     if (endPossible) {
       if (Data.getGameSession().isOnline()) {
         Data.getPlayerClient().endGame();
-        App.setRoot("EndGameMultiplayer");
       } else {
         Data.getGameSession().setShouldEnd(true);
         Data.getGameSession().endGame();

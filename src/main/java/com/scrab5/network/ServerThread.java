@@ -12,9 +12,11 @@ import com.scrab5.ui.Data;
 import com.scrab5.ui.MultiplayerLobbyController;
 import com.scrab5.util.database.Database;
 import com.scrab5.util.database.FillDatabase;
+import java.io.EOFException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  * Thread for the server sided client-server communication. Exchanges messages with the client and
@@ -99,10 +101,8 @@ public class ServerThread extends Threads {
             server.setClientReady(srm.getSender(), srm.getReady());
             break;
           case MAKETURN:
-            MakeTurnMessage mtm = (MakeTurnMessage) message;
-            Data.setGameSession(mtm.getGameSession());
             this.server.resetTimer();
-            server.sendMessageToAllClients(mtm);
+            server.sendMessageToAllClients(message);
             break;
           case PLAYSOUND:
             server.sendMessageToAllClients(message);
@@ -114,13 +114,13 @@ public class ServerThread extends Threads {
             }
             break;
           case ENDGAME:
-            sendMessageToClient(message);
+            server.sendMessageToAllClients(message);
             break;
           default:
             break;
         }
         this.server.sendUpdateMessage();
-        // } catch (EOFException | SocketException e) {
+      } catch (EOFException | SocketException e) {
         // does nothing on purpose
       } catch (Exception e) {
         e.printStackTrace();
