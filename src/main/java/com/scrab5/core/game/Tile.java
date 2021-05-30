@@ -10,8 +10,8 @@ import java.io.Serializable;
 public class Tile implements Serializable {
 
   private static final long serialVersionUID = 1L;
-  private String letter;
-  private int value;
+  private final String letter;
+  private final int value;
   private int column;
   private int row;
   private Integer rackPlace;
@@ -105,16 +105,6 @@ public class Tile implements Serializable {
   }
 
   /**
-   * Returns if the letter is equal to null.
-   *
-   * @author trohwede
-   * @return if the letter is null
-   */
-  public boolean isNull() {
-    return (this.letter == null);
-  }
-
-  /**
    * Getter for String of Tile.
    *
    * @author trohwede
@@ -125,16 +115,6 @@ public class Tile implements Serializable {
   }
 
   /**
-   * Sets the Letter of a Tile.
-   *
-   * @author trohwede
-   * @param letter String of the TIle
-   */
-  public void setLetter(String letter) {
-    this.letter = letter;
-  }
-
-  /**
    * Getter for Value of Tile.
    *
    * @author trohwede
@@ -142,15 +122,5 @@ public class Tile implements Serializable {
    */
   public int getValue() {
     return value;
-  }
-
-  /**
-   * Setter for Value of Tile.
-   *
-   * @author trohwede
-   * @param value Amount of points for the letter
-   */
-  public void setValue(int value) {
-    this.value = value;
   }
 }

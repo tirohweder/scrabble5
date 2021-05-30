@@ -68,16 +68,6 @@ public class BagOfTiles implements Serializable {
   }
 
   /**
-   * Setter for bag.
-   *
-   * @author trohwede
-   * @param bag bag to be set.
-   */
-  public void setBag(ArrayList<Tile> bag) {
-    this.bag = bag;
-  }
-
-  /**
    * Returns the size of the bag.
    *
    * @author trohwede

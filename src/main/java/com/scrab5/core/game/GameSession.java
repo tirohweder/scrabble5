@@ -28,7 +28,6 @@ public class GameSession implements Serializable {
   private BagOfTiles bag = new BagOfTiles();
   private int skippedTurn = 0;
   private int roundNumber = 0;
-  private boolean canEnd = false;
   private Player currentPlayer;
   private boolean shouldEnd = false;
   private boolean running = true;
@@ -44,8 +43,11 @@ public class GameSession implements Serializable {
    * @param points how many * points each letter gives
    * @param isOnline is the game multiplayer or SinglePlayer.
    */
-  public GameSession(ArrayList<Player> listOfPlayers, ArrayList<Integer> letters,
-      ArrayList<Integer> points, boolean isOnline) {
+  public GameSession(
+      ArrayList<Player> listOfPlayers,
+      ArrayList<Integer> letters,
+      ArrayList<Integer> points,
+      boolean isOnline) {
     this.listOfPlayers = listOfPlayers;
     currentPlayer = listOfPlayers.get(0);
 
@@ -79,16 +81,6 @@ public class GameSession implements Serializable {
    */
   public BagOfTiles getBag() {
     return bag;
-  }
-
-  /**
-   * Setter for the bag.
-   *
-   * @author trohwede
-   * @param bag sets the bag for the game.
-   */
-  public void setBag(BagOfTiles bag) {
-    this.bag = bag;
   }
 
   /**
@@ -132,26 +124,6 @@ public class GameSession implements Serializable {
   }
 
   /**
-   * Setter if we can end.
-   *
-   * @author trohwede
-   * @return if you can end the game
-   */
-  public boolean isCanEnd() {
-    return canEnd;
-  }
-
-  /**
-   * Setter for setting the possibility to end the game.
-   *
-   * @author trohwede
-   * @param canEnd sets if its possible to end the game
-   */
-  public void setCanEnd(boolean canEnd) {
-    this.canEnd = canEnd;
-  }
-
-  /**
    * Getter for current player.
    *
    * @author trohwede
@@ -169,16 +141,6 @@ public class GameSession implements Serializable {
    */
   public boolean isOnline() {
     return online;
-  }
-
-  /**
-   * Setter if the game is online or offline.
-   *
-   * @author trohwede
-   * @param online is game multiplayer(online) or not
-   */
-  public void setOnline(boolean online) {
-    this.online = online;
   }
 
   /**
@@ -231,8 +193,10 @@ public class GameSession implements Serializable {
    * @param points how many points each letter gives
    */
   public void initializeBag(ArrayList<Integer> lettersOccurrence, ArrayList<Integer> points) {
-    String[] letters = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
-        "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "*"};
+    String[] letters = {
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S",
+      "T", "U", "V", "W", "X", "Y", "Z", "*"
+    };
 
     for (int i = 0; i < lettersOccurrence.size(); i++) {
       for (int j = 0; j < lettersOccurrence.get(i); j++) {
@@ -251,7 +215,10 @@ public class GameSession implements Serializable {
   public void finishTurn() throws IOException {
     for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
       if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
-        Data.getGameSession().getListOfPlayers().get(i).getRack()
+        Data.getGameSession()
+            .getListOfPlayers()
+            .get(i)
+            .getRack()
             .fill(Data.getGameSession().getBag());
         if (Data.getGameSession().getListOfPlayers().get(i).getRack().getRackSize() == 0) {
           this.shouldEnd = true;
@@ -311,7 +278,8 @@ public class GameSession implements Serializable {
         if (player.getPoints() > tmp.getPersonalHighscore()) {
           tmp.adjustPersonalHighscore(player.getPoints());
         }
-        if ((player.getName().equals(name)) && (player.getPoints() != 0)
+        if ((player.getName().equals(name))
+            && (player.getPoints() != 0)
             && (player.getPoints() == mostPoints)) {
           tmp.addWins(1);
         }
@@ -350,16 +318,6 @@ public class GameSession implements Serializable {
   }
 
   /**
-   * Calculates if the more than 5 turns have been skipped in a row.
-   *
-   * @author trohwede
-   * @return if its possible to end the game, because of skipped turns
-   */
-  public boolean calculateEndPossibility() {
-    return this.skippedTurn >= 6;
-  }
-
-  /**
    * Method that plays a sound file and adjusts the volume to the volume that has been set by the
    * user in the "Settings.fxml" scene.
    *
@@ -373,9 +331,11 @@ public class GameSession implements Serializable {
     } else {
       file = "Triple.mp3";
     }
-    Media sound = new Media(
-        Objects.requireNonNull(Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file))
-            .toExternalForm());
+    Media sound =
+        new Media(
+            Objects.requireNonNull(
+                    Controller.class.getResource("/com/scrab5/ui/sound_effects/" + file))
+                .toExternalForm());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();
