@@ -83,13 +83,8 @@ public class EndGameController extends InGameController implements Initializable
 
     counter--;
 
-    if (order[counter].getName().equalsIgnoreCase(Data.getCurrentUser())) {
-      wonScreen.setOpacity(1);
-    } else {
-      lostScreen.setOpacity(1);
-    }
-
     if (0 < players.size()) {
+      System.out.println(order[counter].getName() + " " + order[counter].getGivenUp());
       if (order[counter].getGivenUp()) {
         swap = order[counter];
         order[counter] = order[counter - 1];
@@ -151,6 +146,14 @@ public class EndGameController extends InGameController implements Initializable
       }
       fourthPlayer.setOpacity(1);
       fourthPlayerPoints.setOpacity(1);
+    }
+
+    if (order[order.length - 1].getName().equalsIgnoreCase(Data.getCurrentUser())) {
+      wonScreen.setOpacity(1);
+      lostScreen.setOpacity(0);
+    } else {
+      lostScreen.setOpacity(1);
+      wonScreen.setOpacity(0);
     }
     if (Data.getGameSession().isOnline() && Data.getPlayerClient().getCurrentServer().getHost()
         .equals(Data.getPlayerClient().getUsername())) {
