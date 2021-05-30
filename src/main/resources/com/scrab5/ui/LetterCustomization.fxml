@@ -2,299 +2,358 @@
 
 <!-- @author mherre Every used image file was created by myself with Adobe 
 	Photoshop 2017 -->
-	
+
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="622.0" style="-fx-background-color: #1a1a1a;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.scrab5.ui.LetterCustomizationController">
-   <children>
-      <ImageView fitHeight="650.0" fitWidth="622.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/SB05_LetterCustomization.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="169.0" layoutX="422.0" layoutY="603.0" onMouseClicked="#confirm" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/SB05_Clicked.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="31.0" fitWidth="169.0" layoutX="32.0" layoutY="603.0" onMouseClicked="#close" onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten" opacity="0.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@images/SB05_Clicked.png" />
-         </image>
-      </ImageView>
-      <TextField fx:id="occA" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="62.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiA" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="62.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occB" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="100.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiB" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="100.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occC" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="139.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiC" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="139.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occD" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="177.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiD" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="177.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occE" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="215.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiE" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="215.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occF" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="254.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiF" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="254.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occG" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="293.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiG" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="293.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occH" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="331.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiH" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="331.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occI" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="370.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiI" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="370.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occJ" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="408.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiJ" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="408.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occK" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="446.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiK" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="446.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occL" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="485.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiL" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="485.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occM" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="522.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiM" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="522.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occN" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="561.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiN" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="561.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occO" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="62.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiP" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="62.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occP" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="100.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiP" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="100.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occQ" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="139.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiQ" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="139.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occR" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="177.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiR" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="177.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occS" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="215.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiS" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="215.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occT" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="254.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiT" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="254.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occU" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="293.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiU" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="293.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occV" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="331.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiV" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="331.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occW" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="370.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiW" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="370.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="408.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;" fx:id="occX">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="408.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;" fx:id="poiX">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occY" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="446.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiY" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="446.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="occZ" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="485.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="poiZ" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="485.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="spaceO" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="523.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="spaceP" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="523.0" prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
-         <font>
-            <Font name="Arial Rounded MT Bold" size="11.0" />
-         </font>
-      </TextField>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="650.0" prefWidth="622.0" style="-fx-background-color: #1a1a1a;"
+            xmlns="http://javafx.com/javafx/15.0.1" fx:controller="com.scrab5.ui.LetterCustomizationController">
+    <children>
+        <ImageView fitHeight="650.0" fitWidth="622.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/SB05_LetterCustomization.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="31.0" fitWidth="169.0" layoutX="422.0" layoutY="603.0" onMouseClicked="#confirm"
+                   onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten"
+                   opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/SB05_Clicked.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="31.0" fitWidth="169.0" layoutX="32.0" layoutY="603.0" onMouseClicked="#close"
+                   onMouseEntered="#lighten" onMouseExited="#darken" onMousePressed="#darken" onMouseReleased="#lighten"
+                   opacity="0.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@images/SB05_Clicked.png"/>
+            </image>
+        </ImageView>
+        <TextField fx:id="occA" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="62.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiA" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="62.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occB" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="100.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiB" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="100.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occC" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="139.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiC" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="139.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occD" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="177.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiD" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="177.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occE" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="215.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiE" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="215.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occF" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="254.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiF" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="254.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occG" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="293.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiG" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="293.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occH" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="331.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiH" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="331.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occI" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="370.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiI" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="370.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occJ" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="408.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiJ" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="408.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occK" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="446.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiK" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="446.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occL" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="485.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiL" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="485.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occM" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="522.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiM" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="522.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occN" alignment="CENTER" focusTraversable="false" layoutX="139.0" layoutY="561.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiN" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="561.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occO" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="62.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiP" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="62.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occP" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="100.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiO" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="100.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occQ" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="139.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiQ" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="139.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occR" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="177.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiR" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="177.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occS" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="215.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiS" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="215.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occT" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="254.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiT" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="254.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occU" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="293.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiU" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="293.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occV" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="331.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiV" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="331.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occW" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="370.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiW" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="370.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="408.0" prefHeight="23.0"
+                   prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;" fx:id="occX">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="408.0" prefHeight="23.0"
+                   prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;" fx:id="poiX">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occY" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="446.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiY" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="446.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="occZ" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="485.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="poiZ" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="485.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="spaceO" alignment="CENTER" focusTraversable="false" layoutX="435.0" layoutY="523.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+        <TextField fx:id="spaceP" alignment="CENTER" focusTraversable="false" layoutX="539.0" layoutY="523.0"
+                   prefHeight="23.0" prefWidth="53.0" promptText="1" style="-fx-background-color: transparent;">
+            <font>
+                <Font name="Arial Rounded MT Bold" size="11.0"/>
+            </font>
+        </TextField>
+    </children>
 </AnchorPane>

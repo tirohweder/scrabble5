@@ -23,9 +23,11 @@ import javafx.stage.FileChooser;
  */
 public class SettingsController extends Controller implements Initializable {
 
-  @FXML private Slider sliderSoundEffects;
+  @FXML
+  private Slider sliderSoundEffects;
 
-  @FXML private Slider sliderMusic;
+  @FXML
+  private Slider sliderMusic;
 
   /**
    * Call certain methods as soon as the Controller is loaded.
@@ -47,7 +49,7 @@ public class SettingsController extends Controller implements Initializable {
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void back(MouseEvent event) throws IOException {
@@ -63,7 +65,7 @@ public class SettingsController extends Controller implements Initializable {
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void addDictionary(MouseEvent event) throws IOException {
@@ -75,10 +77,11 @@ public class SettingsController extends Controller implements Initializable {
 
     if (source != null) {
       String fileName = source.getName();
-      File destination =
-          new File(
-              System.getProperty("user.dir") + System.getProperty("file.separator") + fileName);
-      this.copyFile(source, destination);
+      File destination = new File(
+          System.getProperty("user.dir") + System.getProperty("file.separator") + fileName);
+      if (source.getAbsoluteFile().compareTo(destination) != 0) {
+        this.copyFile(source, destination);
+      }
     }
   }
 
@@ -90,7 +93,7 @@ public class SettingsController extends Controller implements Initializable {
    * @author mherre
    * @param event the event that is created from the mouse-click
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void editDictionaries(MouseEvent event) throws IOException {
@@ -112,42 +115,36 @@ public class SettingsController extends Controller implements Initializable {
    */
   private void setupListeners() {
 
-    sliderMusic
-        .valueProperty()
-        .addListener(
-            new ChangeListener<>() {
-              @Override
-              public void changed(
-                  ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                App.setMusicVolume((double) newValue / 100.0);
-                PlayerProfileDatabase.setMusicVolume(Data.getCurrentUser(), (double) newValue);
-              }
-            });
+    sliderMusic.valueProperty().addListener(new ChangeListener<>() {
+      @Override
+      public void changed(ObservableValue<? extends Number> observable, Number oldValue,
+          Number newValue) {
+        App.setMusicVolume((double) newValue / 100.0);
+        PlayerProfileDatabase.setMusicVolume(Data.getCurrentUser(), (double) newValue);
+      }
+    });
 
-    sliderSoundEffects
-        .valueProperty()
-        .addListener(
-            (new ChangeListener<>() {
-              @Override
-              public void changed(
-                  ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                Data.setSFXVolume((double) newValue / 100.0);
-                PlayerProfileDatabase.setSoundEffectVolume(
-                    Data.getCurrentUser(), (double) newValue);
-              }
-            }));
+    sliderSoundEffects.valueProperty().addListener((new ChangeListener<>() {
+      @Override
+      public void changed(ObservableValue<? extends Number> observable, Number oldValue,
+          Number newValue) {
+        Data.setSFXVolume((double) newValue / 100.0);
+        PlayerProfileDatabase.setSoundEffectVolume(Data.getCurrentUser(), (double) newValue);
+      }
+    }));
   }
 
   /**
    * Copies a file <code>source</code> into the directory <code>dest</code>.
    *
-   * <p>https://stackoverflow.com/questions/16433915/how-to-copy-file-from-one-location-to-another-location
+   * <p>
+   * https://stackoverflow.com/questions/16433915/how-to-copy-file-from-one-location-to-another-location
    *
    * @author mherre
    * @param source the file that will be copied
    * @param dest the directory where <code>source</code> will copied to
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   private void copyFile(File source, File dest) throws IOException {
     try (FileInputStream is = new FileInputStream(source);
