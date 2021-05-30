@@ -48,7 +48,6 @@ public class EndGameController extends InGameController implements Initializable
     initPlayers();
 
     initEndGame();
-
   }
 
   /**
@@ -152,8 +151,11 @@ public class EndGameController extends InGameController implements Initializable
       lostScreen.setOpacity(1);
       wonScreen.setOpacity(0);
     }
-    if (Data.getGameSession().isOnline() && Data.getPlayerClient().getCurrentServer().getHost()
-        .equals(Data.getPlayerClient().getUsername())) {
+    if (Data.getGameSession().isOnline()
+        && Data.getPlayerClient()
+            .getCurrentServer()
+            .getHost()
+            .equals(Data.getPlayerClient().getUsername())) {
       Data.getHostedServer().endGame(order[order.length - 1].getName());
     }
   }
@@ -165,7 +167,7 @@ public class EndGameController extends InGameController implements Initializable
    * @author apilgrim
    * @param event - MouseEvent created, when the "main menu" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void mainMenuClicked(MouseEvent event) throws IOException {
@@ -183,7 +185,7 @@ public class EndGameController extends InGameController implements Initializable
    * @author apilgrim
    * @param event - MouseEvent created, when the "play again" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void playAgainClicked(MouseEvent event) throws IOException {
