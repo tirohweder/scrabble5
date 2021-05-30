@@ -168,6 +168,7 @@ public class EndGameController extends InGameController implements Initializable
     if (Data.getGameSession().isOnline()) {
       Data.getPlayerClient().disconnectFromServer();
     }
+    Data.setEndScreen(false);
     App.setRoot("MainMenu");
   }
 
@@ -184,6 +185,7 @@ public class EndGameController extends InGameController implements Initializable
   private void playAgainClicked(MouseEvent event) throws IOException {
     if (!Data.getGameSession().isOnline()) {
       App.setRoot("SingleplayerLobby");
+      Data.setEndScreen(false);
     }
   }
 }
