@@ -27,6 +27,7 @@ public class MainMenuController extends Controller implements Initializable {
    */
   @FXML
   private void multiplayerClicked(MouseEvent event) throws IOException {
+    playSound();
     App.setRoot("MultiplayerOverview");
   }
 
@@ -40,6 +41,7 @@ public class MainMenuController extends Controller implements Initializable {
    */
   @FXML
   private void singleplayerClicked(MouseEvent event) throws IOException {
+    playSound();
     App.setRoot("SingleplayerLobby");
   }
 
@@ -53,6 +55,7 @@ public class MainMenuController extends Controller implements Initializable {
    */
   @FXML
   private void tutorialClicked(MouseEvent event) throws IOException {
+    playSound();
     App.setRoot("Tutorial");
   }
 
@@ -66,6 +69,7 @@ public class MainMenuController extends Controller implements Initializable {
    */
   @FXML
   private void settingsClicked(MouseEvent event) throws IOException {
+    playSound();
     App.setRoot("Settings");
   }
 
@@ -79,6 +83,7 @@ public class MainMenuController extends Controller implements Initializable {
    */
   @FXML
   private void statsClicked(MouseEvent event) throws IOException {
+    playSound();
     App.setRoot("Profile");
   }
 }

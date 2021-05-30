@@ -171,6 +171,7 @@ public class EndGameController extends InGameController implements Initializable
    */
   @FXML
   private void mainMenuClicked(MouseEvent event) throws IOException {
+    playSound();
     if (Data.getGameSession().isOnline()) {
       Data.getPlayerClient().disconnectFromServer();
     }
@@ -189,6 +190,7 @@ public class EndGameController extends InGameController implements Initializable
    */
   @FXML
   private void playAgainClicked(MouseEvent event) throws IOException {
+    playSound();
     if (!Data.getGameSession().isOnline()) {
       App.setRoot("SingleplayerLobby");
       Data.setEndScreen(false);
