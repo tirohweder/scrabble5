@@ -9,6 +9,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.TextFlow;
 
@@ -105,6 +107,28 @@ public class MultiplayerController extends InGameController implements Initializ
                   .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
             }
           });
+    }
+  }
+  
+  /**
+   * Event method that is called when the "Enter"-key on the keyboard is clicked. It sends the
+   * entered message to every client and refreshes the chat UI.
+   *
+   * @param event the event that is created from the mouse-click
+   * @author mherre
+   */
+  @FXML
+  private void enterPressedChatMessage(KeyEvent event) throws IOException {
+    if (event.getCode() == KeyCode.ENTER) {
+      Platform.runLater(new Runnable() {
+
+        @Override
+        public void run() {
+          chatInsert.selectAll();
+          Data.getPlayerClient()
+              .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
+        }
+      });
     }
   }
 
