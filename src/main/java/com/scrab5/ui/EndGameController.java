@@ -20,27 +20,17 @@ import javafx.scene.input.MouseEvent;
  */
 public class EndGameController extends InGameController implements Initializable {
 
-  @FXML
-  private ImageView wonScreen;
-  @FXML
-  private ImageView lostScreen;
+  @FXML private ImageView wonScreen;
+  @FXML private ImageView lostScreen;
 
-  @FXML
-  private Label firstPlayer;
-  @FXML
-  private Label secondPlayer;
-  @FXML
-  private Label thirdPlayer;
-  @FXML
-  private Label fourthPlayer;
-  @FXML
-  private Label firstPlayerPoints;
-  @FXML
-  private Label secondPlayerPoints;
-  @FXML
-  private Label thirdPlayerPoints;
-  @FXML
-  private Label fourthPlayerPoints;
+  @FXML private Label firstPlayer;
+  @FXML private Label secondPlayer;
+  @FXML private Label thirdPlayer;
+  @FXML private Label fourthPlayer;
+  @FXML private Label firstPlayerPoints;
+  @FXML private Label secondPlayerPoints;
+  @FXML private Label thirdPlayerPoints;
+  @FXML private Label fourthPlayerPoints;
 
   @Override
   public void initialize(URL arg0, ResourceBundle arg1) {
@@ -88,13 +78,16 @@ public class EndGameController extends InGameController implements Initializable
       lostScreen.setOpacity(1);
     }
 
-    if (Data.getGameSession().isOnline() && Data.getPlayerClient().getCurrentServer().getHost()
-        .equals(Data.getPlayerClient().getUsername())) {
+    if (Data.getGameSession().isOnline()
+        && Data.getPlayerClient()
+            .getCurrentServer()
+            .getHost()
+            .equals(Data.getPlayerClient().getUsername())) {
       Data.getHostedServer().endGame(order[counter].getName());
     }
 
     if (0 < players.size()) {
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         swap = order[counter];
         order[counter] = order[counter - 1];
         order[counter - 1] = swap;
@@ -106,7 +99,7 @@ public class EndGameController extends InGameController implements Initializable
       counter--;
     }
     if (1 < players.size()) {
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         if (counter > 0) {
           swap = order[counter];
           order[counter] = order[counter - 1];
@@ -114,7 +107,7 @@ public class EndGameController extends InGameController implements Initializable
         }
       }
       secondPlayer.setText("2. " + order[counter].getName());
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         secondPlayerPoints.setText("has given up");
       } else {
         secondPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
@@ -124,7 +117,7 @@ public class EndGameController extends InGameController implements Initializable
       counter--;
     }
     if (2 < players.size()) {
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         if (counter > 0) {
           swap = order[counter];
           order[counter] = order[counter - 1];
@@ -132,7 +125,7 @@ public class EndGameController extends InGameController implements Initializable
         }
       }
       thirdPlayer.setText("3. " + order[counter].getName());
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         thirdPlayerPoints.setText("has given up");
       } else {
         thirdPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
@@ -143,7 +136,7 @@ public class EndGameController extends InGameController implements Initializable
     }
     if (3 < players.size()) {
       fourthPlayer.setText("4. " + order[counter].getName());
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         fourthPlayerPoints.setText("has given up");
       } else {
         fourthPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
@@ -160,7 +153,7 @@ public class EndGameController extends InGameController implements Initializable
    * @author apilgrim
    * @param event - MouseEvent created, when the "main menu" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void mainMenuClicked(MouseEvent event) throws IOException {
@@ -177,7 +170,7 @@ public class EndGameController extends InGameController implements Initializable
    * @author apilgrim
    * @param event - MouseEvent created, when the "play again" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *         exist
+   *     exist
    */
   @FXML
   private void playAgainClicked(MouseEvent event) throws IOException {

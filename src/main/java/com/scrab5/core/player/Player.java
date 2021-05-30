@@ -106,9 +106,9 @@ public class Player implements Serializable {
    * Getter for the given up attribute to see if this player has given up.
    *
    * @author apilgrim
-   * @return correctWords - the player place during the game.
+   * @return if player has given up
    */
-  public boolean getGivenUp() {
+  public boolean isGivenUp() {
     return givenUp;
   }
 
@@ -116,7 +116,7 @@ public class Player implements Serializable {
    * Setter for the given up attribute.
    *
    * @author apilgrim
-   * @param correctWords - the correct placed words to set
+   * @param givenUp - the correct placed words to set
    */
   public void setGivenUp(boolean givenUp) {
     this.givenUp = givenUp;

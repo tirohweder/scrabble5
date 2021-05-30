@@ -322,8 +322,51 @@ class AiPlayerTest {
     assertEquals(0, test.counterDown);
   }
 
-  // Code from @author hraza was supposed to do the same thing as getSpotsFree2() but doesnt work.
-  // Keeping it here to show he did work.
+  /*
+
+  @hraza was supposed to start working on the AiPlayer by himself. After 3 weeks of time,
+  we had no working code and no test classes. In those 3 weeks we were not told that he had major
+  problems with working on the AI or were asked any questions. (We were told EasyAi would be
+  finished after those 3 weeks.)
+  But instead nothing was working, and there was no clear plan on how to create an working Ai.
+  To make sure we can finish the project on time we needed to change team assignments.
+  Because we need working code to play the game.
+
+  After those 3 weeks we added @lengist, @trohwede to help with the AiPlayer. While @lengist was
+  creating working methods we need for the Ai, @hraza still did not produce any working code.
+
+  We split the Ai into different tasks. GetSpotsFree was one that was given to @hraza.
+  The Function was supposed to do what getSpotsFree2 is doing. After we were told the method is
+  finished. It still produced test errors. After having several days to fix the method.
+  It was still failing tests, so we needed to create an alternative that would solve the problem.
+  (We gave enough time for him to fix the method but still nothing worked.) We offered to help him,
+  but in the end we were the ones writing the code and not just helping him. Also because we
+  were so delayed because we thought the Ai would be much further along, we needed to be faster than
+  normally. Where we could have properly spend more time explaining basic java concepts and basic
+  git commands. (He was still unable to solve git conflicts and once told us he couldn't push code
+  for 2 days because he couldn't solve the conflict. This was about 40 days into the project.)
+  As no one from the group has worked with git extensively before, we all had to learn how git
+  functions.
+
+  We asked our tutor if it would be okay to start taking over the part assigned to @hraza.
+  Because we wanted to make sure, that we can finish the project we have all worked on very hard.
+
+  The date before the due date, we even noticed he didnt understand the rules of scrabble and
+  could not have programmed the Ai like he told us he would. (He was asking why he cant place tiles
+  randomly on the board as long it is connected to an old tile. In retrospect this makes sense after
+  he programmed an countScore method for the Ai, that firstly ignored "Double Letter,
+  Tripple Word, etc.". It also didnt account for the option that you are able to customize points.
+  Which we talked about extensively in our meetings.
+
+  He did put effort into the design artefacts. In the beginning he worked on the system sequence
+  diagrams and architecture diagram with @lengist and finished his use case.
+  For the final submission he designed the sequence diagrams on his own.
+
+  @author lengist, nitterhe, mherre, trohwede, apilgirm
+
+  P.S.: We are keeping the code here to show that he did something.
+
+  */
 
   /*
    * @Test void getSpotsFreeTest() { GameBoard g2 = new GameBoard(); g2.placeTileTest(new
