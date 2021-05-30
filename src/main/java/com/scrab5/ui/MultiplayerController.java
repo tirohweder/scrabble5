@@ -165,7 +165,6 @@ public class MultiplayerController extends InGameController implements Initializ
               e.printStackTrace();
             }
           }
-
           Platform.runLater(new Runnable() {
 
             @Override
@@ -199,7 +198,7 @@ public class MultiplayerController extends InGameController implements Initializ
           if (Data.getGameSession().isRunning()) {
             Data.getGameSession().endGame();
             try {
-              App.setRoot("EndGameSingleplayer");
+              App.setRoot("EndGameMultiplayer");
             } catch (IOException e) {
               // TODO Auto-generated catch block
               e.printStackTrace();
