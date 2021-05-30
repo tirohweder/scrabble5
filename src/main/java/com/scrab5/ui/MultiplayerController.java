@@ -159,7 +159,6 @@ public class MultiplayerController extends InGameController implements Initializ
             try {
               App.setRoot("EndGameMultiplayer");
             } catch (IOException e) {
-              // TODO Auto-generated catch block
               e.printStackTrace();
             }
           }
@@ -173,7 +172,6 @@ public class MultiplayerController extends InGameController implements Initializ
               try {
                 initButtons();
               } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
               }
               if (Data.getGameSession().getRoundNumber() != roundNumber) {
