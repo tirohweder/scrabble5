@@ -16,6 +16,7 @@ public class Player implements Serializable {
   private PlayerProfile playerProfile;
   private int points;
   private int correctWords = 0;
+  private boolean givenUp = false;
 
   /**
    * Constructor for Player. Sets name, creates new Rack, sets points to 0, and creates a new
@@ -99,5 +100,25 @@ public class Player implements Serializable {
    */
   public void setCorrectWords(int correctWords) {
     this.correctWords = correctWords;
+  }
+
+  /**
+   * Getter for the given up attribute to see if this player has given up.
+   *
+   * @author apilgrim
+   * @return correctWords - the player place during the game.
+   */
+  public boolean getGivenUp() {
+    return givenUp;
+  }
+
+  /**
+   * Setter for the given up attribute.
+   *
+   * @author apilgrim
+   * @param correctWords - the correct placed words to set
+   */
+  public void setGivenUp(boolean givenUp) {
+    this.givenUp = givenUp;
   }
 }
