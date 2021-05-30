@@ -23,10 +23,11 @@ public class MainMenuController extends Controller implements Initializable {
    * @author apilgrim
    * @param event - MouseEvent created, when the "Multiplayer" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void multiplayerClicked(MouseEvent event) throws IOException {
+    playSound();
     App.setRoot("MultiplayerOverview");
   }
 
@@ -36,10 +37,11 @@ public class MainMenuController extends Controller implements Initializable {
    * @author apilgrim
    * @param event - MouseEvent created, when the "Singleplayer" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void singleplayerClicked(MouseEvent event) throws IOException {
+    playSound();
     App.setRoot("SingleplayerLobby");
   }
 
@@ -49,10 +51,11 @@ public class MainMenuController extends Controller implements Initializable {
    * @author apilgrim
    * @param event - MouseEvent created, when the "Play Tutorial" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void tutorialClicked(MouseEvent event) throws IOException {
+    playSound();
     App.setRoot("Tutorial");
   }
 
@@ -62,10 +65,11 @@ public class MainMenuController extends Controller implements Initializable {
    * @author apilgrim
    * @param event - MouseEvent created, when the "Settings" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void settingsClicked(MouseEvent event) throws IOException {
+    playSound();
     App.setRoot("Settings");
   }
 
@@ -75,10 +79,11 @@ public class MainMenuController extends Controller implements Initializable {
    * @author apilgrim
    * @param event - MouseEvent created, when the "Stats" button is clicked
    * @throws IOException if the entered file name in <code>App.setRoot(String fxml)</code> doesn't
-   *     exist
+   *         exist
    */
   @FXML
   private void statsClicked(MouseEvent event) throws IOException {
+    playSound();
     App.setRoot("Profile");
   }
 }
