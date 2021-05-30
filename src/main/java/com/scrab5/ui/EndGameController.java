@@ -84,7 +84,7 @@ public class EndGameController extends InGameController implements Initializable
     counter--;
 
     if (0 < players.size()) {
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         swap = order[counter];
         order[counter] = order[counter - 1];
         order[counter - 1] = swap;
@@ -96,7 +96,7 @@ public class EndGameController extends InGameController implements Initializable
       counter--;
     }
     if (1 < players.size()) {
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         if (counter > 0) {
           swap = order[counter];
           order[counter] = order[counter - 1];
@@ -104,7 +104,7 @@ public class EndGameController extends InGameController implements Initializable
         }
       }
       secondPlayer.setText("2. " + order[counter].getName());
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         secondPlayerPoints.setText("has given up");
         thirdPlayerPoints.setText("has given up");
       } else {
@@ -115,7 +115,7 @@ public class EndGameController extends InGameController implements Initializable
       counter--;
     }
     if (2 < players.size()) {
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         if (counter > 0) {
           swap = order[counter];
           order[counter] = order[counter - 1];
@@ -123,7 +123,7 @@ public class EndGameController extends InGameController implements Initializable
         }
       }
       thirdPlayer.setText("3. " + order[counter].getName());
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         thirdPlayerPoints.setText("has given up");
         thirdPlayerPoints.setText("has given up");
       } else {
@@ -135,7 +135,7 @@ public class EndGameController extends InGameController implements Initializable
     }
     if (3 < players.size()) {
       fourthPlayer.setText("4. " + order[counter].getName());
-      if (order[counter].getGivenUp()) {
+      if (order[counter].isGivenUp()) {
         fourthPlayerPoints.setText("has given up");
         order[counter].setGivenUp(false);
       } else {
@@ -144,7 +144,7 @@ public class EndGameController extends InGameController implements Initializable
       fourthPlayer.setOpacity(1);
       fourthPlayerPoints.setOpacity(1);
     }
-    
+
     if (order[order.length - 1].getName().equalsIgnoreCase(Data.getCurrentUser())) {
       wonScreen.setOpacity(1);
       lostScreen.setOpacity(0);
