@@ -24,8 +24,7 @@ public abstract class Controller {
    * Event method that is called when the mouse is hovering over the <code>ImageView</code> object
    * <code>iv</code> or released after it has been clicked. Changes the opacity of it to 1.
    *
-   * <p>
-   * <code>iv</code> is usually a button image file with a white filter. The same button image
+   * <p><code>iv</code> is usually a button image file with a white filter. The same button image
    * without the white filter is underlying, this gives the impression that it is an actual button.
    *
    * @author mherre
@@ -41,8 +40,7 @@ public abstract class Controller {
    * Event method that is called when the mouse is exiting the <code>ImageView</code> object <code>
    * iv</code> or when it is pressed. Changes the opacity of it to 0.
    *
-   * <p>
-   * <code>iv</code> is usually a button image file with a white filter. The same button image
+   * <p><code>iv</code> is usually a button image file with a white filter. The same button image
    * without the white filter is underlying, this gives the impression that it is an actual button.
    *
    * @author mherre
@@ -95,10 +93,12 @@ public abstract class Controller {
    * @author mherre
    */
   protected void playSound() {
-    Media sound = new Media(Objects
-        .requireNonNull(
-            Controller.class.getResource("/com/scrab5/ui/sound_effects/" + "ButtonClicked.mp3"))
-        .toExternalForm());
+    Media sound =
+        new Media(
+            Objects.requireNonNull(
+                    Controller.class.getResource(
+                        "/com/scrab5/ui/sound_effects/" + "ButtonClicked.mp3"))
+                .toExternalForm());
     MediaPlayer mediaPlayer = new MediaPlayer(sound);
     mediaPlayer.setVolume(Data.getSFXVolume());
     mediaPlayer.play();

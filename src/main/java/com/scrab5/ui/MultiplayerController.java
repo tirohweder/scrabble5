@@ -26,14 +26,10 @@ import javafx.scene.text.TextFlow;
  */
 public class MultiplayerController extends InGameController implements Initializable {
 
-  @FXML
-  ImageView chatImage;
-  @FXML
-  TextFlow chatTextField;
-  @FXML
-  TextField chatInsert;
-  @FXML
-  TextArea textArea;
+  @FXML ImageView chatImage;
+  @FXML TextFlow chatTextField;
+  @FXML TextField chatInsert;
+  @FXML TextArea textArea;
 
   private boolean chatOpen = false;
   private int roundNumber;
@@ -101,15 +97,16 @@ public class MultiplayerController extends InGameController implements Initializ
   @FXML
   private void sentClicked(MouseEvent event) {
     if (chatOpen) {
-      Platform.runLater(new Runnable() {
+      Platform.runLater(
+          new Runnable() {
 
-        @Override
-        public void run() {
-          chatInsert.selectAll();
-          Data.getPlayerClient()
-              .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
-        }
-      });
+            @Override
+            public void run() {
+              chatInsert.selectAll();
+              Data.getPlayerClient()
+                  .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
+            }
+          });
     }
   }
 
@@ -123,15 +120,16 @@ public class MultiplayerController extends InGameController implements Initializ
   @FXML
   private void enterPressedChatMessage(KeyEvent event) throws IOException {
     if (event.getCode() == KeyCode.ENTER) {
-      Platform.runLater(new Runnable() {
+      Platform.runLater(
+          new Runnable() {
 
-        @Override
-        public void run() {
-          chatInsert.selectAll();
-          Data.getPlayerClient()
-              .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
-        }
-      });
+            @Override
+            public void run() {
+              chatInsert.selectAll();
+              Data.getPlayerClient()
+                  .sendChatMessage(Data.getCurrentUser() + ": " + chatInsert.getText() + "\n");
+            }
+          });
     }
   }
 
@@ -148,65 +146,68 @@ public class MultiplayerController extends InGameController implements Initializ
    */
   private void refreshUi() {
 
-    Thread t = new Thread(new Runnable() {
+    Thread t =
+        new Thread(
+            new Runnable() {
 
-      @Override
-      public void run() {
+              @Override
+              public void run() {
 
-        while (Data.getPlayerClient().threadIsRunning()) {
+                while (Data.getPlayerClient().threadIsRunning()) {
 
-          if (Data.getGameSession().isShouldEnd()) {
-            Data.getGameSession().endGame();
-            try {
-              App.setRoot("EndGameSingleplayer");
-            } catch (IOException e) {
-              // TODO Auto-generated catch block
-              e.printStackTrace();
-            }
-          }
+                  if (Data.getGameSession().isShouldEnd()) {
+                    Data.getGameSession().endGame();
+                    try {
+                      App.setRoot("EndGameSingleplayer");
+                    } catch (IOException e) {
+                      // TODO Auto-generated catch block
+                      e.printStackTrace();
+                    }
+                  }
 
-          Platform.runLater(new Runnable() {
+                  Platform.runLater(
+                      new Runnable() {
 
-            @Override
-            public void run() {
+                        @Override
+                        public void run() {
 
-              textArea.setText(Data.getChatHistory().toString());
-              try {
-                initButtons();
-              } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                          textArea.setText(Data.getChatHistory().toString());
+                          try {
+                            initButtons();
+                          } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                          }
+                          if (Data.getGameSession().getRoundNumber() != roundNumber) {
+                            initPlayers();
+                            initRack();
+                            initGameboard();
+                            roundNumber = Data.getGameSession().getRoundNumber();
+                          }
+                        }
+                      });
+                  synchronized (this) {
+                    try {
+                      this.wait(300);
+                    } catch (InterruptedException e) {
+                      // e.printStackTrace();
+                    }
+                  }
+                }
+                // check for bag and rack empty to end the game and display statistics
+                if (Data.getGameSession().isShouldEnd()) {
+                  if (Data.getGameSession().isRunning()) {
+                    Data.getGameSession().endGame();
+                    try {
+                      App.setRoot("EndGameMultiplayer");
+                    } catch (IOException e) {
+                      // TODO Auto-generated catch block
+                      e.printStackTrace();
+                    }
+                  }
+                }
               }
-              if (Data.getGameSession().getRoundNumber() != roundNumber) {
-                initPlayers();
-                initRack();
-                initGameboard();
-                roundNumber = Data.getGameSession().getRoundNumber();
-              }
-            }
-          });
-          synchronized (this) {
-            try {
-              this.wait(300);
-            } catch (InterruptedException e) {
-              // e.printStackTrace();
-            }
-          }
-        }
-        // check for bag and rack empty to end the game and display statistics
-        if (Data.getGameSession().isShouldEnd()) {
-          if (Data.getGameSession().isRunning()) {
-            Data.getGameSession().endGame();
-            try {
-              App.setRoot("EndGameSingleplayer");
-            } catch (IOException e) {
-              // TODO Auto-generated catch block
-              e.printStackTrace();
-            }
-          }
-        }
-      }
-    });
+            });
     t.start();
   }
 }

@@ -32,6 +32,7 @@ public class GameSession implements Serializable {
   private boolean shouldEnd = false;
   private boolean running = true;
   private boolean online;
+  private int lastWordsSize = 0;
 
   /**
    * Initializes the gameSession, sets currentPlayer, calls to create the correct bag, and fills the
@@ -61,6 +62,16 @@ public class GameSession implements Serializable {
       player.getRack().fill(bag);
     }
     gameBoard = new GameBoard();
+  }
+
+  /**
+   * Returns how many words were already on the board last turn.
+   *
+   * @author trohwede
+   * @return lastWordSize
+   */
+  public int getLastWordsSize() {
+    return lastWordsSize;
   }
 
   /**
@@ -213,6 +224,7 @@ public class GameSession implements Serializable {
    * @author trohwede
    */
   public void finishTurn() throws IOException {
+    lastWordsSize = gameBoard.getWords().size();
     for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
       if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
         Data.getGameSession()
@@ -227,12 +239,10 @@ public class GameSession implements Serializable {
     }
     if (!shouldEnd) {
       currentPlayer.getRack().fill(bag);
-
       roundNumber++;
       currentPlayer = listOfPlayers.get(roundNumber % listOfPlayers.size());
       gameBoard.finishTurn();
       if (currentPlayer instanceof AiPlayer) {
-
         PopUpMessage pum = new PopUpMessage("AI will Play now.", PopUpMessageType.NOTIFICATION);
         pum.show();
         AiPlayer aiPlayer = (AiPlayer) currentPlayer;
