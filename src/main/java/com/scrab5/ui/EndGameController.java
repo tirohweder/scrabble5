@@ -84,7 +84,6 @@ public class EndGameController extends InGameController implements Initializable
     counter--;
 
     if (0 < players.size()) {
-      System.out.println(order[counter].getName() + " " + order[counter].getGivenUp());
       if (order[counter].getGivenUp()) {
         swap = order[counter];
         order[counter] = order[counter - 1];
@@ -102,13 +101,12 @@ public class EndGameController extends InGameController implements Initializable
           swap = order[counter];
           order[counter] = order[counter - 1];
           order[counter - 1] = swap;
-        } else {
-          order[counter].setGivenUp(false);
         }
       }
       secondPlayer.setText("2. " + order[counter].getName());
       if (order[counter].getGivenUp()) {
         secondPlayerPoints.setText("has given up");
+        thirdPlayerPoints.setText("has given up");
       } else {
         secondPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
       }
@@ -122,12 +120,11 @@ public class EndGameController extends InGameController implements Initializable
           swap = order[counter];
           order[counter] = order[counter - 1];
           order[counter - 1] = swap;
-        } else {
-          order[counter].setGivenUp(false);
         }
       }
       thirdPlayer.setText("3. " + order[counter].getName());
       if (order[counter].getGivenUp()) {
+        thirdPlayerPoints.setText("has given up");
         thirdPlayerPoints.setText("has given up");
       } else {
         thirdPlayerPoints.setText(Integer.toString(order[counter].getPoints()));
@@ -147,7 +144,7 @@ public class EndGameController extends InGameController implements Initializable
       fourthPlayer.setOpacity(1);
       fourthPlayerPoints.setOpacity(1);
     }
-
+    
     if (order[order.length - 1].getName().equalsIgnoreCase(Data.getCurrentUser())) {
       wonScreen.setOpacity(1);
       lostScreen.setOpacity(0);
