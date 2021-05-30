@@ -24,7 +24,7 @@ public class ResendMessage extends Message {
 
   /**
    * Returns the number of trys that have been made before.
-   * 
+   *
    * @author nitterhe
    * @return tryNumber - the number of trys before
    */
