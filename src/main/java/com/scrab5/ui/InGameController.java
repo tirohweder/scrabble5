@@ -1162,7 +1162,7 @@ public abstract class InGameController implements Initializable {
     PopUpMessage pum = new PopUpMessage("Really!?", PopUpMessageType.CONFIRMATION);
     pum.show();
     if (Data.isConfirmed()) {
-      Data.getGameSession().getCurrentPlayer().setPoints(-1);
+      Data.getGameSession().getCurrentPlayer().setGivenUp(true);;
       Data.getGameSession().setShouldEnd(true);
       if (Data.getGameSession().isOnline()) {
         Data.getPlayerClient().makeTurn();
