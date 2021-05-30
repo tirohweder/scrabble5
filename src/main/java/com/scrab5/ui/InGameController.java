@@ -412,7 +412,7 @@ public abstract class InGameController implements Initializable {
                     + "\nRemember to place youre letter tiles in the "
                     + "same row OR column (per round)!");
           }
-        } else if (tileClicked && (clickedTile == event.getSource())) {
+        } else if (clickedTile == event.getSource()) {
           darken(event);
           tileClicked = false;
           clickedTile = null;

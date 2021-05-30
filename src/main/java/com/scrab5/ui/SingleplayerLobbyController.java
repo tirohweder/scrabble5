@@ -291,7 +291,7 @@ public class SingleplayerLobbyController extends LobbyController implements Init
    */
   @FXML
   private void setSelectedDictionary(ActionEvent event) {
-    String selected = (String) this.dictionarySelection.getValue();
+    String selected = this.dictionarySelection.getValue();
     this.dicDisplaying.setText(selected.substring(0, selected.length() - 4));
     DictionaryParser.setCurrentDictionary(selected);
     DictionaryParser.parseFile(selected);
