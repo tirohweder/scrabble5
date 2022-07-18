@@ -227,11 +227,17 @@ public class GameSession implements Serializable {
     lastWordsSize = gameBoard.getWords().size();
     for (int i = 0; i < Data.getGameSession().getListOfPlayers().size(); i++) {
       if (Data.getGameSession().getListOfPlayers().get(i) instanceof AiPlayer) {
+
         Data.getGameSession()
             .getListOfPlayers()
             .get(i)
             .getRack()
             .fill(Data.getGameSession().getBag());
+        System.out.println(
+            "Player: "
+                + Data.getGameSession().getListOfPlayers().get(i).getName()
+                + " Size: "
+                + Data.getGameSession().getListOfPlayers().get(i).getRack().getRackSize());
         if (Data.getGameSession().getListOfPlayers().get(i).getRack().getRackSize() == 0) {
           this.shouldEnd = true;
         }
